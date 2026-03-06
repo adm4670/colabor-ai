@@ -1,17 +1,3 @@
 /node_modules/
 /coverage/
-/dist/
 .env
-/tmp/
-/src/browser_data/*.png
-openclaw
-.colabor-ai
-.github
-# Analise temporaria
-*_content.txt
-*_analysis.txt
-full_analysis.txt
-tmp_output.txt
-# Backup
-*copy.html
-*.bak
