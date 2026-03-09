@@ -38,25 +38,25 @@ export class AgentOrchestrator {
         .join("\n");
 
       const decision = await this.planner.run(`
-Task:
-${context}
+        Task:
+        ${context}
 
-Available agents:
-${agentList}
+        Available agents:
+        ${agentList}
 
-Rules:
-- You MUST select an agent to perform the work.
-- Do NOT answer the user directly.
-- Only return "finish" after an agent has produced the final result.
-- Do NOT repeat the same instruction twice.
+        Rules:
+        - You MUST select an agent to perform the work.
+        - Do NOT answer the user directly.
+        - Only return "finish" after an agent has produced the final result.
+        - Do NOT repeat the same instruction twice.
 
-Respond ONLY with JSON:
+        Respond ONLY with JSON:
 
-{
- "agent": "agent_name | finish",
- "instruction": "what the agent should do"
-}
-`);
+        {
+        "agent": "agent_name | finish",
+        "instruction": "what the agent should do"
+        }
+        `);
 
       if (this.debug) {
         console.log("🧠 Planner raw decision:");
