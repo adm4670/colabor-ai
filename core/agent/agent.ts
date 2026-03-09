@@ -51,6 +51,10 @@ export class Agent {
       apiKey: options.apiKey ?? process.env.OPENAI_API_KEY,
       baseURL: options.baseURL
     });
+
+    console.log(`🤖 Agent '${this.name}' inicializado`);
+    console.log(`🧠 Model: ${this.model}`);
+    console.log(`🛠 Tools disponíveis: ${this.tools.length}`);
   }
 
   resetHistory(): void {
@@ -74,10 +78,17 @@ export class Agent {
         role: "system",
         content: this.buildSystemPrompt()
       });
+
+      console.log("📜 System prompt inserido no histórico");
     }
   }
 
   async run(userMessage: string): Promise<string> {
+
+    console.log("\n==============================");
+    console.log(`📩 [${this.name}] User input:`);
+    console.log(userMessage);
+
     this.ensureSystemMessage();
 
     this.history.push({
@@ -86,7 +97,12 @@ export class Agent {
     });
 
     try {
+
       while (true) {
+
+        console.log("\n🧠 Enviando requisição para o modelo...");
+        console.log(`📚 Histórico atual: ${this.history.length} mensagens`);
+
         const response = await this.client.chat.completions.create({
           model: this.model,
           messages: this.history as any,
@@ -96,43 +112,71 @@ export class Agent {
 
         const msg = response.choices[0].message;
 
+        console.log("\n🤖 Resposta do modelo recebida");
+
+        if (msg.content) {
+          console.log("💬 Conteúdo:");
+          console.log(msg.content);
+        }
+
         const assistantEntry: Message = {
           role: "assistant",
           content: msg.content
         };
 
         if (msg.tool_calls) {
+          console.log(`🔧 Tool calls detectadas: ${msg.tool_calls.length}`);
           assistantEntry.tool_calls = msg.tool_calls;
         }
 
         this.history.push(assistantEntry);
 
         if (!msg.tool_calls) {
+          console.log("\n✅ Resposta final retornada ao usuário");
           return msg.content ?? "";
         }
 
         for (const toolCall of msg.tool_calls) {
 
-          if (toolCall.type !== "function") {
-            continue;
-          }
+          if (toolCall.type !== "function") continue;
 
           const toolName = toolCall.function.name;
           const args = JSON.parse(toolCall.function.arguments || "{}");
+
+          console.log("\n🔧 Executando tool:");
+          console.log(`📌 Nome: ${toolName}`);
+          console.log(`📥 Args:`, args);
 
           const fn = this.functions[toolName];
 
           let toolResult = "";
 
           try {
+
             if (fn) {
+
               const result = await fn(args);
-              toolResult = JSON.stringify(result);
+
+              toolResult = JSON.stringify(result, null, 2);
+
+              console.log("📤 Resultado da tool:");
+              console.log(toolResult);
+
             } else {
+
               toolResult = "Erro: Função não encontrada.";
+
+              console.log("❌ Tool não encontrada");
+
             }
+
           } catch (e: any) {
+
             toolResult = `Erro na execução: ${e.message}`;
+
+            console.log("❌ Erro na execução da tool:");
+            console.log(e.message);
+
           }
 
           this.history.push({
@@ -141,9 +185,16 @@ export class Agent {
             name: toolName,
             content: toolResult
           });
+
+          console.log("📚 Resultado adicionado ao histórico");
         }
       }
+
     } catch (e: any) {
+
+      console.log("🚨 Erro no Agent:");
+      console.log(e);
+
       return `⚠️ Erro no processamento: ${e.message}`;
     }
   }

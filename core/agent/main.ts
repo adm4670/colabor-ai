@@ -1,5 +1,5 @@
 import readline from "readline";
-import { Agent } from "./core/agent/agent";
+import { Agent } from "./agent";
 
 async function startConsoleAgent() {
 
