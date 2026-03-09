@@ -4,6 +4,7 @@
     "@babel/preset-env": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
     "@types/jest": "^30.0.0",
+    "@types/node-telegram-bot-api": "^0.64.14",
     "babel-jest": "^30.2.0",
     "dotenv-cli": "^11.0.0",
     "git-commit-msg-linter": "^5.0.8",
@@ -13,9 +14,11 @@
   "scripts": {
     "test": "dotenv -e .env -- jest --runInBand",
     "start:dev:agent": "dotenv -e .env -- tsx ./core/agent/main.ts",
-    "start:dev:orchestrator": "dotenv -e .env -- tsx ./core/orchestrator/main.ts"
+    "start:dev:orchestrator": "dotenv -e .env -- tsx ./core/orchestrator/main.ts",
+    "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts"
   },
   "dependencies": {
+    "node-telegram-bot-api": "^0.63.0",
     "openai": "^6.27.0"
   }
 }
