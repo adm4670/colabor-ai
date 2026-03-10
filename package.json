@@ -18,6 +18,7 @@
     "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts"
   },
   "dependencies": {
+    "axios": "^1.13.6",
     "node-telegram-bot-api": "^0.63.0",
     "openai": "^6.27.0"
   }
