@@ -6,21 +6,61 @@ type SubAgent = {
   agent: Agent;
 };
 
+export type Message = {
+  role: "system" | "user" | "assistant" | "tool";
+  content: string;
+  name?: string;
+};
+
+type RunInput = {
+  input: string;
+  history?: Message[];
+};
+
 export class AgentOrchestrator {
+
   constructor(
     private planner: Agent,
     private agents: SubAgent[],
     private debug = true
   ) {}
 
-  async run(task: string) {
+  private formatHistory(history: Message[] = []) {
+
+    if (!history.length) return "No conversation history.";
+
+    return history
+      .map(m => {
+
+        if (m.role === "tool") {
+          return `tool(${m.name}): ${m.content}`;
+        }
+
+        return `${m.role}: ${m.content}`;
+
+      })
+      .join("\n");
+
+  }
+
+  async run({ input, history = [] }: RunInput) {
 
     if (this.debug) {
-      console.log("\n🧠 Orchestrator started");
-      console.log("📌 Task:", task);
+      console.log("\n==============================");
+      console.log("🧠 ORCHESTRATOR START");
+      console.log("📌 User input:", input);
     }
 
-    let context = task;
+    const formattedHistory = this.formatHistory(history);
+
+    let context = `
+User request:
+${input}
+
+Conversation history:
+${formattedHistory}
+`;
+
     let steps = 0;
     let lastResult = "";
     let lastInstruction = "";
@@ -37,26 +77,37 @@ export class AgentOrchestrator {
         .map(a => `${a.name}: ${a.description}`)
         .join("\n");
 
-      const decision = await this.planner.run(`
-        Task:
-        ${context}
+      const plannerPrompt = `
+User request:
+${input}
 
-        Available agents:
-        ${agentList}
+Conversation history:
+${formattedHistory}
 
-        Rules:
-        - You MUST select an agent to perform the work.
-        - Do NOT answer the user directly.
-        - Only return "finish" after an agent has produced the final result.
-        - Do NOT repeat the same instruction twice.
+Current context:
+${context}
 
-        Respond ONLY with JSON:
+Available agents:
+${agentList}
 
-        {
-        "agent": "agent_name | finish",
-        "instruction": "what the agent should do"
-        }
-        `);
+Rules:
+
+1. ALWAYS select an agent for the first step.
+2. Never return "finish" before an agent has produced a result.
+3. Do NOT repeat the same instruction twice.
+4. Use assistant for conversation and general questions.
+5. Use python_code for calculations or code.
+6. Use writer to produce the final response shown to the user.
+
+Respond ONLY with JSON:
+
+{
+  "agent": "agent_name | finish",
+  "instruction": "what the agent should do"
+}
+`;
+
+      const decision = await this.planner.run(plannerPrompt);
 
       if (this.debug) {
         console.log("🧠 Planner raw decision:");
@@ -67,25 +118,42 @@ export class AgentOrchestrator {
 
       try {
         parsed = JSON.parse(decision);
-      } catch (err) {
-        throw new Error("Planner returned invalid JSON");
+      } catch {
+
+        console.warn("⚠️ Planner returned invalid JSON");
+
+        return lastResult || "Erro ao interpretar resposta do planner.";
+
       }
 
       if (this.debug) {
         console.log("📊 Parsed decision:", parsed);
       }
 
-      // finish condition
+      // impedir finish antes de executar agente
+      if (parsed.agent === "finish" && !lastResult) {
+
+        if (this.debug) {
+          console.warn("⚠️ Planner tried to finish before any agent ran.");
+        }
+
+        parsed.agent = this.agents[0].name;
+        parsed.instruction = input;
+
+      }
+
+      // condição de parada correta
       if (parsed.agent === "finish") {
 
         if (this.debug) {
-          console.log("\n✅ Orchestration finished");
+          console.log("\n✅ ORCHESTRATION FINISHED");
         }
 
-        return lastResult || parsed.instruction || context;
+        return lastResult || parsed.instruction || "Concluído.";
+
       }
 
-      // detect repeated instruction (loop protection)
+      // proteção contra loop de instrução
       if (parsed.instruction === lastInstruction) {
 
         if (this.debug) {
@@ -93,6 +161,7 @@ export class AgentOrchestrator {
         }
 
         return lastResult || context;
+
       }
 
       lastInstruction = parsed.instruction;
@@ -100,7 +169,11 @@ export class AgentOrchestrator {
       const target = this.agents.find(a => a.name === parsed.agent);
 
       if (!target) {
-        throw new Error(`Agent not found: ${parsed.agent}`);
+
+        console.warn(`⚠️ Agent not found: ${parsed.agent}`);
+
+        return lastResult || `Erro: agente '${parsed.agent}' não encontrado.`;
+
       }
 
       if (this.debug) {
@@ -108,7 +181,21 @@ export class AgentOrchestrator {
         console.log("📨 Instruction:", parsed.instruction);
       }
 
-      const result = await target.agent.run(parsed.instruction);
+      const agentPrompt = `
+User request:
+${input}
+
+Conversation history:
+${formattedHistory}
+
+Instruction:
+${parsed.instruction}
+
+Context so far:
+${context}
+`;
+
+      const result = await target.agent.run(agentPrompt);
 
       lastResult = result;
 
@@ -127,6 +214,8 @@ export class AgentOrchestrator {
       console.warn("\n⚠️ Max steps reached. Returning last result.");
     }
 
-    return lastResult || context;
+    return lastResult || "Não foi possível concluir a tarefa.";
+
   }
+
 }

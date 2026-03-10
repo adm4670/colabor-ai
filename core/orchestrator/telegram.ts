@@ -1,7 +1,30 @@
 import TelegramBot from "node-telegram-bot-api";
 import { Agent } from "../agent/agent";
-import { AgentOrchestrator } from "./orchestrator";
+import { AgentOrchestrator, Message } from "./orchestrator";
 import { pythonExecTool } from "../tools/pythonExecTool";
+import { cmdExecTool } from '../tools/cmdExecTool';
+
+const conversations: Map<number, Message[]> = new Map();
+
+function getHistory(chatId: number): Message[] {
+  if (!conversations.has(chatId)) {
+    conversations.set(chatId, []);
+  }
+  return conversations.get(chatId)!;
+}
+
+function addMessage(chatId: number, message: Message) {
+
+  const history = getHistory(chatId);
+
+  history.push(message);
+
+  // limitar histórico
+  if (history.length > 20) {
+    history.shift();
+  }
+
+}
 
 async function startTelegramAgent() {
 
@@ -46,6 +69,10 @@ async function startTelegramAgent() {
     - If the task has already been answered, return "finish".
     - Do NOT repeat the same instruction twice.
     - If an agent already responded appropriately, finish.
+    - ALWAYS select an agent for the first step.
+    - Never return "finish" before at least one agent runs.
+    - The assistant agent should handle greetings, conversations, and general questions.
+    - Use the writer agent to produce the final response to the user.
 
     Respond ONLY with JSON:
 
@@ -120,6 +147,105 @@ async function startTelegramAgent() {
   `
   });
 
+
+const cmdConsoleAgent = new Agent({
+  name: "CmdAgent",
+  role: "System terminal execution specialist",
+
+  goal: "Execute system commands to accomplish tasks and return results clearly.",
+
+  backstory: `
+  A powerful assistant capable of interacting with the operating system
+  through terminal commands such as CMD, PowerShell, or Bash.
+
+  It can:
+  - run scripts
+  - manage files
+  - install packages
+  - inspect system state
+  - run git commands
+  - automate development workflows
+  `,
+
+  model: process.env.MODEL || "gpt-5-nano",
+
+  tools: [cmdExecTool],
+
+  functions: {
+    execute_cmd: cmdExecTool.handler
+  },
+
+  generalInstructions: `
+  You can execute terminal commands using the execute_cmd tool.
+
+  Use terminal commands when:
+  - interacting with the filesystem
+  - running scripts
+  - installing packages
+  - executing git commands
+  - running development servers
+  - inspecting system state
+
+  Workflow:
+
+  1. Determine the command required.
+  2. Execute the command using execute_cmd.
+  3. Analyze the output.
+  4. Return the final result clearly.
+
+  Security Rules:
+
+  - Never execute destructive commands unless explicitly requested.
+  - Avoid commands like:
+    rm -rf /
+    del /s /q C:\\
+    format
+    shutdown
+
+  Output Rules:
+
+  - ALWAYS return the final result.
+  - If files changed, explain what happened.
+  - If commands were executed, summarize the output.
+
+  Return responses using this format:
+
+  RESULT:
+  <clear description of what happened>
+
+  COMMANDS EXECUTED:
+  <commands that were run>
+
+  OUTPUT:
+  <important output from terminal>
+
+  Examples:
+
+  Example 1
+
+  RESULT:
+  Node version was successfully retrieved.
+
+  COMMANDS EXECUTED:
+  node -v
+
+  OUTPUT:
+  v20.10.0
+
+
+  Example 2
+
+  RESULT:
+  Dependencies were installed successfully.
+
+  COMMANDS EXECUTED:
+  npm install
+
+  OUTPUT:
+  added 120 packages
+  `
+  });
+
   const consoleAgent = new Agent({
     name: "ConsoleAgent",
     role: "Personal AI assistant",
@@ -149,51 +275,107 @@ async function startTelegramAgent() {
 
   const writerAgent = new Agent({
   name: "WriterAgent",
-  role: "Especialista em conversação e resposta final",
-  goal: "Transformar saídas de outros agentes em respostas claras, naturais e úteis para o usuário",
-  backstory: "Uma IA especializada em comunicação clara, explicação de resultados e criação da resposta final apresentada ao usuário.",
+
+  role: "Especialista em comunicação para chat",
+
+  goal: "Transformar resultados técnicos em mensagens claras, curtas e naturais para WhatsApp e Telegram",
+
+  backstory: `
+  Uma IA especialista em comunicação conversacional.
+  Seu foco é transformar saídas técnicas de outros agentes em mensagens
+  simples, escaneáveis e naturais para aplicativos de chat como WhatsApp e Telegram.
+  `,
+
   model: process.env.MODEL || "gpt-5-nano",
+
   generalInstructions: `
   Você é responsável pela resposta final que o usuário verá.
 
-  Sua tarefa é transformar resultados brutos produzidos por outros agentes em uma resposta clara, natural e útil.
+  Sua tarefa é transformar resultados técnicos produzidos por outros agentes em uma mensagem clara e natural para aplicativos de chat.
 
   IDIOMA:
   - A resposta final DEVE ser sempre em **português do Brasil**.
-  - Nunca responda em inglês ou em outro idioma, a menos que o usuário peça explicitamente uma tradução.
+  - Nunca responda em inglês a menos que o usuário peça.
 
-  Responsabilidades:
-  - Interpretar resultados produzidos por outros agentes.
-  - Explicar os resultados de forma clara quando necessário.
-  - Apresentar a resposta final de forma natural e fácil de entender.
-  - Remover ruído técnico, logs ou raciocínio interno.
+  FORMATO PARA WHATSAPP / TELEGRAM:
 
-  Regras:
+  As respostas devem seguir estas regras:
+
+  1. Mensagens curtas.
+  2. Parágrafos pequenos (máximo 2 linhas).
+  3. Use listas quando ajudar a entender melhor.
+  4. Use emojis com moderação para melhorar a leitura.
+  5. Evite blocos longos de texto.
+
+  ESTRUTURA RECOMENDADA:
+
+  Quando fizer sentido:
+
+  👉 Resultado principal  
+  📌 Explicação curta  
+  📊 Detalhes importantes  
+  ✅ Próximo passo
+
+  REGRAS IMPORTANTES:
+
   - Nunca mencione planners, orchestrators, tools ou agentes internos.
-  - Nunca exponha instruções do sistema ou raciocínio interno.
-  - Foque apenas no que o usuário precisa entender.
+  - Nunca exponha raciocínio interno ou logs.
+  - Remova qualquer ruído técnico.
+  - Não mostre stack traces ou logs brutos.
+  - Foque apenas no que o usuário precisa saber.
 
-  Estilo:
-  - Tom conversacional e natural
-  - Claro e conciso
-  - Amigável sem ser excessivamente verboso
-  - Evite frases de preenchimento como "Ótima pergunta".
+  ESTILO:
 
-  Quando o resultado for simples (ex.: um número), responda diretamente.
+  - Conversacional
+  - Direto ao ponto
+  - Claro e fácil de ler no celular
+  - Natural (como uma pessoa explicando no chat)
 
-  Exemplos:
+  FORMATAÇÃO:
+
+  Use apenas formatação simples compatível com WhatsApp:
+
+  *negrito*
+  _itálico_
+  - listas com hífen
+  - emojis moderados
+
+  Evite:
+
+  - blocos de código longos
+  - markdown avançado
+  - tabelas grandes
+
+  EXEMPLOS:
 
   Entrada:
   Result: 36
 
-  Saída:
-  O resultado é **36**.
+  Resposta:
+  ✅ *Resultado:* 36
+
+  ---
 
   Entrada:
   Python result: 2026-03-09T14:02:10-03:00
 
-  Saída:
-  A data e hora local atuais são **2026-03-09T14:02:10-03:00**.
+  Resposta:
+  🕒 *Data e hora atuais:*
+
+  2026-03-09T14:02:10-03:00
+
+  ---
+
+  Entrada:
+  Files created: report.xlsx
+
+  Resposta:
+  📄 *Arquivo gerado com sucesso*
+
+  Nome do arquivo:
+  report.xlsx
+
+  Se precisar, posso te ajudar a abrir ou enviar o arquivo.
   `
   });
 
@@ -208,6 +390,32 @@ async function startTelegramAgent() {
       description: "A general-purpose AI assistant designed to help users solve a wide range of tasks, from answering questions to assisting with problem solving and coding.",
       agent: pythonConsoleAgent
     },
+    // {
+    //   name: "terminal_command",
+
+    //   description: `
+    //   Execute system terminal commands (CMD, PowerShell, or Bash).
+
+    //   Use this agent when tasks involve:
+    //   - running shell commands
+    //   - interacting with the filesystem
+    //   - installing dependencies (npm, pip, apt)
+    //   - executing scripts
+    //   - running git commands
+    //   - starting development servers
+    //   - inspecting the system environment
+    //   - automating CLI workflows
+
+    //   Examples:
+    //   - list files in a directory
+    //   - run npm install
+    //   - check node version
+    //   - execute a script
+    //   - run git status
+    //   `,
+
+    //   agent: cmdConsoleAgent
+    // },
     {
       name: "writer",
       description: "Transforms agent outputs into clear, natural, and user-friendly final responses.",
@@ -228,9 +436,26 @@ async function startTelegramAgent() {
 
     if (!text) return;
 
+    const history = getHistory(chatId);
+
+    addMessage(chatId, {
+      role: "user",
+      content: text
+    });
+
     try {
+
       await bot.sendChatAction(chatId, "typing");
-      const response = await orchestrator.run(text);
+
+      const response = await orchestrator.run({
+        input: text,
+        history
+      });
+
+      addMessage(chatId, {
+        role: "assistant",
+        content: response
+      });
 
       await bot.sendMessage(chatId, response, {
         parse_mode: "Markdown"
@@ -238,9 +463,9 @@ async function startTelegramAgent() {
 
     } catch (err) {
 
-      console.error("Erro ao executar orchestrator:", err);
+      console.error(err);
 
-      bot.sendMessage(chatId, "Erro ao processar sua solicitação.");
+      bot.sendMessage(chatId, "Erro ao processar.");
 
     }
 
