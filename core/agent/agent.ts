@@ -62,12 +62,23 @@ export class Agent {
     console.log(`[Agent] Histórico de ${this.name} resetado.`);
   }
 
-  private buildSystemPrompt(): string {
+  public buildSystemPrompt(): string {
+    const toolsDescription = this.tools.length
+      ? `
+      Ferramentas disponíveis:
+      ${this.tools.map(t => `- ${t.function.name}: ${t.function.description}`).join("\n")}
+
+      Use essas ferramentas quando precisar de dados externos ou executar ações.
+      Se uma ferramenta for necessária, utilize-a antes de responder ao usuário.
+      `
+      : "";
+
     return (
       `Você é o agente '${this.name}'.\n` +
       `Seu papel: ${this.role}\n` +
       `Seu objetivo: ${this.goal}\n` +
       `Contexto: ${this.backstory}\n\n` +
+      toolsDescription +
       `Instruções:\n${this.generalInstructions}`
     );
   }
