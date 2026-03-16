@@ -9,6 +9,7 @@ import { plannerAgent } from '../agents/planner.agent';
 import { pythonAgent } from '../agents/python.agent';
 import { answerAgent } from '../agents/awnser.agent';
 import { assistantAgent } from "../agents/assistant.agent";
+import { taskManagerAgent } from "../agents/task-manager.agent";
 
 const conversations: Map<number, Message[]> = new Map();
 
@@ -92,6 +93,11 @@ async function startTelegramAgent() {
       name: assistantAgent.name,
       description: assistantAgent.buildSystemPrompt(),
       agent: assistantAgent
+    },
+    {
+      name: taskManagerAgent.name,
+      description: taskManagerAgent.buildSystemPrompt(),
+      agent: taskManagerAgent
     },
     {
       name: pythonAgent.name,
