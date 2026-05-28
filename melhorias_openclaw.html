@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Melhorias Futuras — colabor-ai (baseado no OpenClaw)</title>
+        <script src="https://cdn.tailwindcss.com">
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+            * { font-family: 'Inter', sans-serif; }
+            code, pre { font-family: 'JetBrains Mono', monospace; }
+            .card-hover { transition: all 0.2s ease; }
+            .card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+            .badge { font-size: 0.7rem; padding: 2px 10px; border-radius: 9999px; font-weight: 600; }
+            .progress-bar { height: 10px; border-radius: 9999px; background: #1e293b; overflow: hidden; }
+            .progress-fill { height: 100%; border-radius: 9999px; transition: width 0.8s ease; }
+            .gradient-text {
+                background: linear-gradient(135deg, #f472b6, #a78bfa, #60a5fa);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .phase-1 { border-left: 4px solid #ef4444; }
+            .phase-2 { border-left: 4px solid #f59e0b; }
+            .phase-3 { border-left: 4px solid #3b82f6; }
+            .phase-4 { border-left: 4px solid #8b5cf6; }
+        </style>
+    </head>
+    <body class="bg-slate-950 text-slate-300">
+    
+        <!-- ===== HERO ===== -->
+        <header class="relative overflow-hidden border-b border-slate-800">
+            <div class="absolute inset-0 bg-gradient-to-br from-pink-900/20 via-slate-900 to-purple-900/20 pointer-events-none"></div>
+            <div class="relative max-w-6xl mx-auto px-6 py-20 text-center">
+                <span class="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-4 inline-block">Roadmap 2026</span>
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4">
+                    <span class="gradient-text">Melhorias Futuras</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-2">colabor-ai <span class="text-slate-600">|</span> Baseado na arquitetura <strong class="text-white">OpenClaw</strong></p>
+                <p class="text-sm text-slate-500 mb-6">Analise do codigo-fonte e documentacao do OpenClaw v2026.5.28</p>
+                <div class="flex flex-wrap justify-center gap-2 text-xs">
+                    <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">13 Padroes</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">4 Fases</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">35+ Arquivos</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">50.7K linhas de codigo</span>
+                </div>
+            </div>
+        </header>
+    
+        <!-- ===== NAV ===== -->
+        <nav class="max-w-6xl mx-auto px-6 py-6">
+            <div class="flex flex-wrap gap-2">
+                <a href="#intro" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm transition">Introducao</a>
+                <a href="#overview" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm transition">OpenClaw</a>
+                <a href="#fase1" class="px-3 py-1.5 rounded-lg bg-red-900/30 hover:bg-red-900/50 text-sm transition text-red-300">Fase 1</a>
+                <a href="#fase2" class="px-3 py-1.5 rounded-lg bg-amber-900/30 hover:bg-amber-900/50 text-sm transition text-amber-300">Fase 2</a>
+                <a href="#fase3" class="px-3 py-1.5 rounded-lg bg-blue-900/30 hover:bg-blue-900/50 text-sm transition text-blue-300">Fase 3</a>
+                <a href="#fase4" class="px-3 py-1.5 rounded-lg bg-purple-900/30 hover:bg-purple-900/50 text-sm transition text-purple-300">Fase 4</a>
+                <a href="#tabela" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm transition">Tabela</a>
+                <a href="#proximos" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm transition">Proximos Passos</a>
+            </div>
+        </nav>
+    
+        <!-- ===== INTRODUCAO ===== -->
+        <section id="intro" class="max-w-6xl mx-auto px-6 py-8">
+            <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+                <h2 class="text-2xl font-bold text-white mb-4">Introducao</h2>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Este documento consolida a analise completa do projeto <strong class="text-white">OpenClaw</strong> 
+                    (versao <strong class="text-purple-300">2026.5.28</strong>) — um gateway multi-agente maduro com 
+                    milhares de arquivos e dezenas de milhares de linhas de codigo.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Foram analisados <strong class="text-white">35+ arquivos</strong> de codigo-fonte e documentacao,
+                    incluindo o <strong class="text-blue-300">agent-core</strong> (loop, harness, compaction, types),
+                    <strong class="text-blue-300">src/agents/</strong> (failover, hooks, system prompt, subagents),
+                    <strong class="text-blue-300">src/process/</strong> (command queue), e documentacao conceitual.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Cada melhoria abaixo inclui: o arquivo do OpenClaw onde o padrao foi identificado, 
+                    o tamanho da implementacao original, o status atual no colabor-ai, o esforco estimado 
+                    e links para o codigo de referencia.
+                </p>
+            </div>
+        </section>
+    
+        <!-- ===== OVERVIEW OPENCLAW ===== -->
+        <section id="overview" class="max-w-6xl mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Visao Geral do OpenClaw</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+                    <h3 class="text-lg font-semibold text-white mb-3">Estrutura de Diretorios</h3>
+                    <pre class="text-xs leading-relaxed text-slate-400">
+    <span class="text-emerald-400">openclaw/</span>
+     <span class="text-slate-600">+--</span> <span class="text-yellow-300">packages/</span>
+     <span class="text-slate-600">|   +--</span> <span class="text-blue-300">agent-core/</span>    <span class="text-slate-600"># Loop, harness, compaction</span>
+     <span class="text-slate-600">|   +--</span> <span class="text-blue-300">plugin-sdk/</span>     <span class="text-slate-600"># SDK para extensoes</span>
+     <span class="text-slate-600">|</span>
+     <span class="text-slate-600">+--</span> <span class="text-yellow-300">src/</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">agents/</span>         <span class="text-slate-600"># Runtime, failover, hooks</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">process/</span>        <span class="text-slate-600"># Command queue, lanes</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">commitments/</span>    <span class="text-slate-600"># Compromissos inferidos</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">config/</span>         <span class="text-slate-600"># Schema, sessoes</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">gateway/</span>        <span class="text-slate-600"># Servidor WebSocket</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">plugins/</span>        <span class="text-slate-600"># Sistema de plugins</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">llm/</span>            <span class="text-slate-600"># Provedores de modelo</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">infra/</span>          <span class="text-slate-600"># Infrastructure helpers</span>
+     <span class="text-slate-600">    +--</span> <span class="text-blue-300">channels/</span>       <span class="text-slate-600"># Telegram, Discord, etc</span>
+                    </pre>
+                </div>
+                <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+                    <h3 class="text-lg font-semibold text-white mb-3">Conceitos Chave</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Agent Runtime</strong> — Loop com EventStream tipado</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Plugin System</strong> — Extensoes instalaveis via npm</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Compaction</strong> — Sumarizacao automatica via LLM</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Model Failover</strong> — Fallback entre modelos + auth profiles</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Queue/Lane</strong> — Fila por sessao com concorrencia controlada</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Dreaming</strong> — Consolidacao de memoria em 3 fases</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Commitments</strong> — Compromissos inferidos em background</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <strong class="text-white">Hooks</strong> — beforeToolCall / afterToolCall</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== FASE 1 ===== -->
+        <section id="fase1" class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="badge bg-red-500/20 text-red-300 border border-red-500/30 text-sm px-4 py-1">FASE 1</span>
+                <h2 class="text-2xl font-bold text-white">Imediato (dias)</h2>
+                <span class="text-sm text-slate-500">| Baixo esforco, alto impacto</span>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+    
+                <!-- 1. Model Failover -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-1">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-red-400">01</span>
+                        <span class="badge bg-red-500/20 text-red-300 border border-red-500/30">URGENTE</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Model Failover</h3>
+                    <p class="text-xs text-slate-400 mb-3">src/agents/model-fallback.ts — 50.713 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Sistema completo de fallback com <code class="text-amber-300">runWithModelFallback()</code>, rotacao de auth profiles, cooldown e classificacao de erros.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Fallback entre modelos (primario + fallbacks)</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Erros failover-worthy: rate limit, 401, timeout</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Persiste override automaticamente</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-red-300">No colabor-ai:</strong> Modelo fixo em <code class="text-amber-300">agent.ts:41</code> — se DeepSeek cair, sistema para.
+                    </div>
+                </div>
+    
+                <!-- 2. Queue/Lane -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-1">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-red-400">02</span>
+                        <span class="badge bg-red-500/20 text-red-300 border border-red-500/30">URGENTE</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Queue / Lane System</h3>
+                    <p class="text-xs text-slate-400 mb-3">src/process/command-queue.ts — 20.218 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Fila lane-aware com concorrencia configurável, timeout por task, erros especificos e SessionActorQueue.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Lane Main (4 concorrencia), Subagent (8)</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> SessionActorQueue: serializa por session key</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> CommandLaneClearedError, TaskTimeoutError</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-red-300">No colabor-ai:</strong> <code class="text-amber-300">Map<string, number></code> volatil — zera ao reiniciar.
+                    </div>
+                </div>
+    
+                <!-- 3. Typebox Validation -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-1">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-red-400">03</span>
+                        <span class="badge bg-red-500/20 text-red-300 border border-red-500/30">URGENTE</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Typebox Validation</h3>
+                    <p class="text-xs text-slate-400 mb-3">packages/agent-core/src/validation.ts — 8.816 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Validacao de schemas de tools com Typebox, cache de compilacao, tratamento de erros de validacao.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Compile + cache com WeakMap</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Validacao de argumentos de tools</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Tipos: JsonSchemaObject, Tool, ToolCall</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-red-300">No colabor-ai:</strong> <code class="text-amber-300">JSON.parse(decision)</code> sem schema — qualquer erro quebra o fluxo.
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+    
+        <!-- ===== FASE 2 ===== -->
+        <section id="fase2" class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30 text-sm px-4 py-1">FASE 2</span>
+                <h2 class="text-2xl font-bold text-white">Curto Prazo (semanas)</h2>
+                <span class="text-sm text-slate-500">| Esforco medio, alto impacto</span>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+    
+                <!-- 4. Compaction -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-2">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-amber-400">04</span>
+                        <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">ALTA</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Compaction via LLM</h3>
+                    <p class="text-xs text-slate-400 mb-3">src/agents/compaction.ts — 23.193 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Sumarizacao real do historico em chunks com merge. Preserva file operations, tasks ativas, decisoes, TODOs.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> BASE_CHUNK_RATIO=0.4, MIN=0.15, SAFETY=1.2</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Handoff briefings entre modelos</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Identifier preservation policy</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-amber-300">No colabor-ai:</strong> ContextEngine com mode "summarize" em STUB — codigo diz "implementacao futura".
+                    </div>
+                </div>
+    
+                <!-- 5. Hooks -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-2">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-amber-400">05</span>
+                        <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">ALTA</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Hooks Before/After Tool</h3>
+                    <p class="text-xs text-slate-400 mb-3">src/agents/agent-tools.before-tool-call.ts — 39.533 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Sistema de hooks que empacota tools com validacao, bloqueio, diagnostico e ajuste de parametros.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> wrapToolWithBeforeToolCallHook()</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> runBeforeToolCallHook() + buildBlockedToolResult()</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Symbols: BEFORE_TOOL_CALL_WRAPPED</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-amber-300">No colabor-ai:</strong> Nao ha hooks. Tools executam diretamente sem validacao previa.
+                    </div>
+                </div>
+    
+                <!-- 6. Agent Loop / EventStream -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-2">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-amber-400">06</span>
+                        <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">ALTA</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Agent Loop c/ EventStream</h3>
+                    <p class="text-xs text-slate-400 mb-3">packages/agent-core/src/agent-loop.ts — 23.355 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Loop completo com eventos tipados: text_start/delta/end, tool_call_start/delta/end, lifecycle.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> agentLoop() + agentLoopContinue()</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> ToolExecutionMode: sequential | parallel</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> QueueMode: all | one-at-a-time</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-amber-300">No colabor-ai:</strong> EventStream existe mas eventos reais nao sao emitidos no loop.
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+    
+        <!-- ===== FASE 3 ===== -->
+        <section id="fase3" class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30 text-sm px-4 py-1">FASE 3</span>
+                <h2 class="text-2xl font-bold text-white">Medio Prazo (1-2 meses)</h2>
+                <span class="text-sm text-slate-500">| Esforco medio-alto</span>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+    
+                <!-- 7. Sub-agent Isolation -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-3">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-blue-400">07</span>
+                        <span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30">MEDIA</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Sub-agent Isolation</h3>
+                    <p class="text-xs text-slate-400 mb-3">src/agents/subagent-spawn.ts — 45.033 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Cada sub-agent com workspace, auth profiles, sessoes e modelos proprios. Isolamento total entre agentes.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> agentDir por agente (diretorio isolado)</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Session store separado por agente</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Bindings: canal → agente</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-blue-300">No colabor-ai:</strong> Agentes sao singletons — historico vaza entre sessoes de usuarios diferentes.
+                    </div>
+                </div>
+    
+                <!-- 8. Commitments -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-3">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-blue-400">08</span>
+                        <span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30">MEDIA</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Commitments (Compromissos)</h3>
+                    <p class="text-xs text-slate-400 mb-3">docs/concepts/commitments.md — 5.633 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Apos cada resposta, extracao oculta de follow-ups. Entrega via heartbeat com limite maxPerDay.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Passagem oculta em background</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Nao escreve na conversa visivel</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> maxPerDay: 3 (default)</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-blue-300">No colabor-ai:</strong> Nao existe. Agente apenas responde, nao age proativamente.
+                    </div>
+                </div>
+    
+                <!-- 9. System Prompt Assembly -->
+                <div class="card-hover p-5 rounded-xl bg-slate-900 border border-slate-700 phase-3">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-blue-400">09</span>
+                        <span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30">MEDIA</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">System Prompt Assembly</h3>
+                    <p class="text-xs text-slate-400 mb-3">src/agents/system-prompt.ts — 60.316 chars</p>
+                    <p class="text-sm text-slate-400 mb-3">Montagem modular do system prompt com sessoes: bootstrap, ferramentas, habilidades, memoria, canal, identidade.</p>
+                    <div class="text-xs space-y-1 mb-4">
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> buildAgentSystemPrompt() — ponto central</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Provider plugins contribuem secoes</div>
+                        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Prompt caching aware</div>
+                    </div>
+                    <div class="text-xs bg-slate-800 rounded-lg p-3">
+                        <strong class="text-blue-300">No colabor-ai:</strong> buildSystemPrompt() basico — apenas skills + notas diarias.
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+    
+        <!-- ===== FASE 4 ===== -->
+        <section id="fase4" class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-sm px-4 py-1">FASE 4</span>
+                <h2 class="text-2xl font-bold text-white">Futuro (3+ meses)</h2>
+                <span class="text-sm text-slate-500">| Alto esforco</span>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4">
+    
+                <!-- 10. Specialist Lanes -->
+                <div class="card-hover p-4 rounded-xl bg-slate-900 border border-slate-700 phase-4">
+                    <span class="text-xs font-bold text-purple-400">10</span>
+                    <h4 class="font-semibold text-white mt-2 mb-1">Specialist Lanes</h4>
+                    <p class="text-xs text-slate-400 mb-2">docs/concepts/parallel-specialist-lanes.md</p>
+                    <p class="text-xs text-slate-500">Roteia grupos para agentes diferentes. Cada lane com workspace e modelo proprios.</p>
+                    <div class="text-xs bg-slate-800 rounded-lg p-2 mt-2">
+                        <span class="text-purple-300">No colabor-ai:</span> Ausente.
+                    </div>
+                </div>
+    
+                <!-- 11. Auth Rotation -->
+                <div class="card-hover p-4 rounded-xl bg-slate-900 border border-slate-700 phase-4">
+                    <span class="text-xs font-bold text-purple-400">11</span>
+                    <h4 class="font-semibold text-white mt-2 mb-1">Auth Rotation</h4>
+                    <p class="text-xs text-slate-400 mb-2">src/agents/auth-profiles/</p>
+                    <p class="text-xs text-slate-500">Multiplas chaves API por provider. Rotacao round-robin com cooldown de profiles falhos.</p>
+                    <div class="text-xs bg-slate-800 rounded-lg p-2 mt-2">
+                        <span class="text-purple-300">No colabor-ai:</span> Uma unica API key.
+                    </div>
+                </div>
+    
+                <!-- 12. Dreaming -->
+                <div class="card-hover p-4 rounded-xl bg-slate-900 border border-slate-700 phase-4">
+                    <span class="text-xs font-bold text-purple-400">12</span>
+                    <h4 class="font-semibold text-white mt-2 mb-1">Dreaming</h4>
+                    <p class="text-xs text-slate-400 mb-2">docs/concepts/dreaming.md — 10.506 chars</p>
+                    <p class="text-xs text-slate-500">3 fases: Light (organiza), Deep (promove), REM (reflete). MEMORY.md atualizado automaticamente.</p>
+                    <div class="text-xs bg-slate-800 rounded-lg p-2 mt-2">
+                        <span class="text-purple-300">No colabor-ai:</span> So busca textual — sem consolidacao.
+                    </div>
+                </div>
+    
+                <!-- 13. Plugin System -->
+                <div class="card-hover p-4 rounded-xl bg-slate-900 border border-slate-700 phase-4">
+                    <span class="text-xs font-bold text-purple-400">13</span>
+                    <h4 class="font-semibold text-white mt-2 mb-1">Plugin System</h4>
+                    <p class="text-xs text-slate-400 mb-2">packages/plugin-sdk/</p>
+                    <p class="text-xs text-slate-500">Extensoes instalaveis via npm. Slots para context engine, skills, hooks, provedores.</p>
+                    <div class="text-xs bg-slate-800 rounded-lg p-2 mt-2">
+                        <span class="text-purple-300">No colabor-ai:</span> Nao existe.
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+    
+        <!-- ===== TABELA COMPARATIVA ===== -->
+        <section id="tabela" class="max-w-6xl mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Tabela Comparativa Completa</h2>
+            <div class="overflow-x-auto rounded-xl border border-slate-800">
+                <table class="w-full text-sm">
+                    <thead class="bg-slate-800 text-slate-300">
+                        <tr>
+                            <th class="text-left p-3 font-semibold">#</th>
+                            <th class="text-left p-3 font-semibold">Padrao</th>
+                            <th class="text-left p-3 font-semibold hidden md:table-cell">Arquivo OpenClaw</th>
+                            <th class="text-left p-3 font-semibold hidden lg:table-cell">Tam.</th>
+                            <th class="text-left p-3 font-semibold">Status colabor-ai</th>
+                            <th class="text-left p-3 font-semibold">Fase</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">1</td>
+                            <td class="p-3 font-medium text-white">Model Failover</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/agents/model-fallback.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">50.7K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">FIXO</span></td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">FASE 1</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">2</td>
+                            <td class="p-3 font-medium text-white">Queue / Lane</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/process/command-queue.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">20.2K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">VOLATIL</span></td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">FASE 1</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">3</td>
+                            <td class="p-3 font-medium text-white">Typebox Validation</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">packages/agent-core/src/validation.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">8.8K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">FRAGIL</span></td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">FASE 1</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">4</td>
+                            <td class="p-3 font-medium text-white">Compaction via LLM</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/agents/compaction.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">23.2K</td>
+                            <td class="p-3"><span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">STUB</span></td>
+                            <td class="p-3"><span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">FASE 2</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">5</td>
+                            <td class="p-3 font-medium text-white">Hooks Before/After</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/agents/agent-tools.before-tool-call.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">39.5K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">AUSENTE</span></td>
+                            <td class="p-3"><span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">FASE 2</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">6</td>
+                            <td class="p-3 font-medium text-white">Agent Loop + EventStream</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">packages/agent-core/src/agent-loop.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">23.4K</td>
+                            <td class="p-3"><span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">PARCIAL</span></td>
+                            <td class="p-3"><span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">FASE 2</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">7</td>
+                            <td class="p-3 font-medium text-white">Sub-agent Isolation</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/agents/subagent-spawn.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">45.0K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">SINGLETON</span></td>
+                            <td class="p-3"><span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30">FASE 3</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">8</td>
+                            <td class="p-3 font-medium text-white">Commitments</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">docs/concepts/commitments.md</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">5.6K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">AUSENTE</span></td>
+                            <td class="p-3"><span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30">FASE 3</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">9</td>
+                            <td class="p-3 font-medium text-white">System Prompt Assembly</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/agents/system-prompt.ts</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">60.3K</td>
+                            <td class="p-3"><span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">BASICO</span></td>
+                            <td class="p-3"><span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/30">FASE 3</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">10</td>
+                            <td class="p-3 font-medium text-white">Specialist Lanes</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">docs/concepts/parallel-specialist-lanes.md</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">3.8K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">AUSENTE</span></td>
+                            <td class="p-3"><span class="badge bg-purple-500/20 text-purple-300 border border-purple-500/30">FASE 4</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">11</td>
+                            <td class="p-3 font-medium text-white">Auth Rotation</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">src/agents/auth-profiles/</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">—</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">UNICA KEY</span></td>
+                            <td class="p-3"><span class="badge bg-purple-500/20 text-purple-300 border border-purple-500/30">FASE 4</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">12</td>
+                            <td class="p-3 font-medium text-white">Dreaming</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">docs/concepts/dreaming.md</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">10.5K</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">AUSENTE</span></td>
+                            <td class="p-3"><span class="badge bg-purple-500/20 text-purple-300 border border-purple-500/30">FASE 4</span></td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50">
+                            <td class="p-3 font-bold text-slate-400">13</td>
+                            <td class="p-3 font-medium text-white">Plugin System</td>
+                            <td class="p-3 text-slate-400 hidden md:table-cell">packages/plugin-sdk/</td>
+                            <td class="p-3 text-slate-400 hidden lg:table-cell">—</td>
+                            <td class="p-3"><span class="badge bg-red-500/20 text-red-300 border border-red-500/30">AUSENTE</span></td>
+                            <td class="p-3"><span class="badge bg-purple-500/20 text-purple-300 border border-purple-500/30">FASE 4</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    
+        <!-- ===== RECOMENDACOES FINAIS ===== -->
+        <section class="max-w-6xl mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Recomendacoes Finais</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl bg-gradient-to-br from-red-900/20 to-red-800/10 border border-red-800/30">
+                    <h3 class="text-lg font-semibold text-red-300 mb-3">Impacto Imediato</h3>
+                    <p class="text-sm text-slate-400 mb-4">
+                        Os 3 padroes da Fase 1 resolvem os problemas mais criticos do colabor-ai 
+                        e podem ser implementados em <strong class="text-white">dias</strong>:
+                    </p>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-400"></span> <strong class="text-white">Model Failover</strong> → substitui <code class="text-amber-300">baseURL</code> hardcoded por array de fallbacks</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-400"></span> <strong class="text-white">Queue/Lane</strong> → substitui <code class="text-amber-300">Map<string, number></code> por fila por sessao</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-400"></span> <strong class="text-white">Typebox Validation</strong> → substitui <code class="text-amber-300">JSON.parse()</code> por validacao com retry</li>
+                    </ul>
+                </div>
+                <div class="p-6 rounded-xl bg-gradient-to-br from-blue-900/20 to-blue-800/10 border border-blue-800/30">
+                    <h3 class="text-lg font-semibold text-blue-300 mb-3">Visao de Longo Prazo</h3>
+                    <p class="text-sm text-slate-400 mb-4">
+                        A implementacao completa dos 13 padroes transformaria o colabor-ai 
+                        em um sistema com inteligencia, memoria e resiliencia de nivel profissional:
+                    </p>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span> <strong class="text-white">Memoria que evolui</strong> — Compaction + Commitments + Dreaming</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span> <strong class="text-white">Resiliencia total</strong> — Failover + Queue + Auth Rotation</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span> <strong class="text-white">Extensibilidade</strong> — Plugin System + Hooks + Lanes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== PROXIMOS PASSOS ===== -->
+        <section id="proximos" class="max-w-6xl mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Proximos Passos</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="p-4 rounded-xl bg-slate-900 border border-slate-700 text-center">
+                    <span class="text-3xl font-bold text-red-400">3</span>
+                    <p class="text-xs text-slate-400 mt-1">Padroes Fase 1</p>
+                    <p class="text-xs text-slate-500">Implementacao em dias</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900 border border-slate-700 text-center">
+                    <span class="text-3xl font-bold text-amber-400">3</span>
+                    <p class="text-xs text-slate-400 mt-1">Padroes Fase 2</p>
+                    <p class="text-xs text-slate-500">Semanas</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900 border border-slate-700 text-center">
+                    <span class="text-3xl font-bold text-blue-400">3</span>
+                    <p class="text-xs text-slate-400 mt-1">Padroes Fase 3</p>
+                    <p class="text-xs text-slate-500">1-2 meses</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900 border border-slate-700 text-center">
+                    <span class="text-3xl font-bold text-purple-400">4</span>
+                    <p class="text-xs text-slate-400 mt-1">Padroes Fase 4</p>
+                    <p class="text-xs text-slate-500">3+ meses</p>
+                </div>
+            </div>
+            <div class="mt-8 p-6 rounded-xl bg-slate-900 border border-slate-700 text-center">
+                <p class="text-slate-400 text-sm">
+                    Total: <strong class="text-white">13 padroes</strong> identificados a partir de 
+                    <strong class="text-purple-300">35+ arquivos</strong> do OpenClaw v2026.5.28
+                </p>
+            </div>
+        </section>
+    
+        <footer class="border-t border-slate-800 mt-12 py-8 text-center text-sm text-slate-500">
+            <p>colabor-ai — Melhorias Futuras baseadas no OpenClaw</p>
+            <p class="mt-1">Analise realizada em 2026</p>
+        </footer>
+    
+    </body>
+    </html>

@@ -7,9 +7,31 @@ import axios from "axios";
 
 import { plannerAgent } from '../agents/planner.agent';
 import { pythonAgent } from '../agents/python.agent';
-import { answerAgent } from '../agents/awnser.agent';
+import { answerAgent } from '../agents/answer.agent';
 import { assistantAgent } from "../agents/assistant.agent";
 import { taskManagerAgent } from "../agents/task-manager.agent";
+import { shellAgent } from '../agents/shell.agent';
+import { browserAgent } from '../agents/browser.agent';
+import { logger } from "../utils/logger";
+
+    // Retry com backoff exponencial para envio de mensagens Telegram
+    async function sendWithRetry(bot: TelegramBot, chatId: number, text: string, options?: any, maxRetries = 3): Promise<void> {
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          await bot.sendMessage(chatId, text, options);
+          return;
+        } catch (err: any) {
+          const delay = Math.min(1000 * Math.pow(2, attempt), 10000);
+          logger ? logger.warn(`[Telegram] Tentativa ${attempt}/${maxRetries} falhou. Retry em ${delay}ms: ${err.message}`) : null;
+          if (attempt === maxRetries) {
+            logger ? logger.error(`[Telegram] Todas as ${maxRetries} tentativas falharam: ${err.message}`) : null;
+            throw err;
+          }
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
+    }
+    
 
 const conversations: Map<number, Message[]> = new Map();
 
@@ -108,13 +130,24 @@ async function startTelegramAgent() {
       name: answerAgent.name,
       description: answerAgent.buildSystemPrompt(),
       agent: answerAgent
-    }
+    },
+    {
+      name: browserAgent.name,
+      description: browserAgent.buildSystemPrompt(),
+      agent: browserAgent
+    },
+    // {
+    //   name: shellAgent.name,
+    //   description: shellAgent.buildSystemPrompt(),
+    //   agent: shellAgent
+    // }
   ], true);
 
   const bot = new TelegramBot(process.env.TELEGRAM_TOKEN as string, {
     polling: true
   });
 
+  logger ? logger.info("[Telegram] Multi-Agent iniciado.") : null;
   console.log("Telegram Multi-Agent iniciado.");
 
   bot.on("message", async (msg) => {
@@ -184,12 +217,13 @@ async function startTelegramAgent() {
       //   escapeMarkdown(response),
       //   { parse_mode: "MarkdownV2" }
       // );
-      await bot.sendMessage(chatId, response, {
+      await sendWithRetry(bot, chatId, response, {
         parse_mode: "Markdown"
       });
 
     } catch (err) {
 
+      logger ? logger.error("[Telegram] Erro ao processar mensagem: " + (err instanceof Error ? err.message : JSON.stringify(err))) : null;
       console.error(err);
 
       bot.sendMessage(chatId, "❌ Erro ao processar mensagem.");

@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { logger } from "../utils/logger";
 
 export interface AgentOptions {
   name: string;
@@ -16,6 +17,7 @@ export interface AgentOptions {
 type Message = {
   role: "system" | "user" | "assistant" | "tool";
   content?: string | null;
+  reasoning_content?: string;
   tool_call_id?: string;
   name?: string;
   tool_calls?: any;
@@ -40,7 +42,7 @@ export class Agent {
     this.goal = options.goal;
     this.backstory = options.backstory;
 
-    this.model = options.model ?? "gpt-4o-mini";
+    this.model = options.model ?? "deepseek-chat";
     this.generalInstructions =
       options.generalInstructions ?? "- Responda em PT-BR.\n";
 
@@ -48,8 +50,8 @@ export class Agent {
     this.functions = options.functions ?? {};
 
     this.client = new OpenAI({
-      apiKey: options.apiKey ?? process.env.OPENAI_API_KEY,
-      baseURL: options.baseURL
+      apiKey: options.apiKey ?? process.env.DEEPSEEK_API_KEY,
+      baseURL: options.baseURL ?? "https://api.deepseek.com",
     });
 
     console.log(`🤖 Agent '${this.name}' inicializado`);
@@ -62,55 +64,91 @@ export class Agent {
     console.log(`[Agent] Histórico de ${this.name} resetado.`);
   }
 
-  public buildSystemPrompt(): string {
-    const toolsDescription = this.tools.length
-      ? `
-      Ferramentas disponíveis:
-      ${this.tools.map(t => `- ${t.function.name}: ${t.function.description}`).join("\n")}
+  private async ensureSystemMessage(): Promise<void> {
+    const systemPrompt = await this.buildSystemPrompt();
+    if (this.history.length > 0 && this.history[0].role === "system") {
+      this.history[0].content = systemPrompt;
+    } else {
+      this.history.unshift({ role: "system", content: systemPrompt });
+    }
+  }
 
-      Use essas ferramentas quando precisar de dados externos ou executar ações.
-      Se uma ferramenta for necessária, utilize-a antes de responder ao usuário.
-      `
+  public async buildSystemPrompt(): Promise<string> {
+    const toolsDescription = this.tools.length
+      ? "\n      Ferramentas disponiveis:\n      " +
+        this.tools.map(t => "- " + t.function.name + ": " + t.function.description).join("\n") +
+        "\n\n      Use essas ferramentas quando precisar de dados externos ou executar acoes.\n      Se uma ferramenta for necessaria, utilize-a antes de responder ao usuario.\n      "
       : "";
 
+    // Carregar skills relevantes (import dinâmico evita crash se o módulo não existir)
+    let skillsInstructions = "";
+    try {
+      const { getSkillsManager } = await import("../skills/skills-manager");
+      const contextHint = this.generalInstructions.substring(0, 200);
+      const relevantSkills = getSkillsManager().loadRelevantSkills(contextHint);
+      if (relevantSkills.length > 0) {
+        skillsInstructions = "\n\n=== SKILLS DISPONIVEIS ===\n" +
+          "Voce tem acesso as seguintes habilidades especializadas:\n\n" +
+          relevantSkills.join("\n\n---\n\n") +
+          "\n\nCarregue estas skills quando o contexto da conversa for relevante para elas.\n";
+      }
+    } catch (e) {
+      // Skills manager não disponível
+    }
+
+    // Carregar notas diárias recentes (import dinâmico)
+    let dailyContext = "";
+    try {
+      const { loadRecentNotes } = await import("../notes/notes-manager");
+      const notes = loadRecentNotes();
+      if (notes.trim()) {
+        dailyContext = "\n\n=== NOTAS RECENTES ===\n" +
+          "Aqui estao anotacoes de sessoes anteriores que podem ser uteis:\n" +
+          notes.substring(0, 800) +
+          "\n";
+      }
+    } catch (e) {
+      // Notes não disponível
+    }
+
     return (
-      `Você é o agente '${this.name}'.\n` +
-      `Seu papel: ${this.role}\n` +
-      `Seu objetivo: ${this.goal}\n` +
-      `Contexto: ${this.backstory}\n\n` +
+      "Voce e o agente '" + this.name + "'.\n" +
+      "Seu papel: " + this.role + "\n" +
+      "Seu objetivo: " + this.goal + "\n" +
+      "Contexto: " + this.backstory + "\n\n" +
       toolsDescription +
-      `Instruções:\n${this.generalInstructions}`
+      skillsInstructions +
+      dailyContext +
+      "Instrucoes:\n" + this.generalInstructions
     );
   }
 
-  private ensureSystemMessage(): void {
-    if (!this.history.length || this.history[0].role !== "system") {
-      this.history.unshift({
-        role: "system",
-        content: this.buildSystemPrompt()
-      });
-
-      console.log("📜 System prompt inserido no histórico");
+  /**
+   * Carrega skills relevantes para um determinado contexto
+   */
+  public async getRelevantSkills(context: string): Promise<string[]> {
+    try {
+      const { getSkillsManager } = await import("../skills/skills-manager");
+      return getSkillsManager().loadRelevantSkills(context);
+    } catch {
+      return [];
     }
   }
 
   async run(userMessage: string): Promise<string> {
-
     console.log("\n==============================");
     console.log(`📩 [${this.name}] User input:`);
     console.log(userMessage);
 
-    this.ensureSystemMessage();
+    await this.ensureSystemMessage();
 
     this.history.push({
       role: "user",
-      content: userMessage
+      content: userMessage,
     });
 
     try {
-
       while (true) {
-
         console.log("\n🧠 Enviando requisição para o modelo...");
         console.log(`📚 Histórico atual: ${this.history.length} mensagens`);
 
@@ -118,7 +156,10 @@ export class Agent {
           model: this.model,
           messages: this.history as any,
           tools: this.tools.length ? this.tools : undefined,
-          tool_choice: this.tools.length ? "auto" : undefined
+          tool_choice: this.tools.length ? "auto" : undefined,
+          extra_body: {
+            reasoning_effort: "high",
+          },
         });
 
         const msg = response.choices[0].message;
@@ -129,11 +170,18 @@ export class Agent {
           console.log("💬 Conteúdo:");
           console.log(msg.content);
         }
+        if ((msg as any).reasoning_content) {
+          console.log("🧠 Conteúdo do raciocínio recebido (será preservado).");
+        }
 
         const assistantEntry: Message = {
           role: "assistant",
-          content: msg.content
+          content: msg.content,
         };
+
+        if ((msg as any).reasoning_content) {
+          assistantEntry.reasoning_content = (msg as any).reasoning_content;
+        }
 
         if (msg.tool_calls) {
           console.log(`🔧 Tool calls detectadas: ${msg.tool_calls.length}`);
@@ -148,7 +196,6 @@ export class Agent {
         }
 
         for (const toolCall of msg.tool_calls) {
-
           if (toolCall.type !== "function") continue;
 
           const toolName = toolCall.function.name;
@@ -163,46 +210,32 @@ export class Agent {
           let toolResult = "";
 
           try {
-
             if (fn) {
-
               const result = await fn(args);
-
               toolResult = JSON.stringify(result, null, 2);
-
               console.log("📤 Resultado da tool:");
               console.log(toolResult);
-
             } else {
-
               toolResult = "Erro: Função não encontrada.";
-
               console.log("❌ Tool não encontrada");
-
             }
-
           } catch (e: any) {
-
             toolResult = `Erro na execução: ${e.message}`;
-
             console.log("❌ Erro na execução da tool:");
             console.log(e.message);
-
           }
 
           this.history.push({
             role: "tool",
             tool_call_id: toolCall.id,
             name: toolName,
-            content: toolResult
+            content: toolResult,
           });
 
           console.log("📚 Resultado adicionado ao histórico");
         }
       }
-
     } catch (e: any) {
-
       console.log("🚨 Erro no Agent:");
       console.log(e);
 

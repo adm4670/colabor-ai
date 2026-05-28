@@ -1,4 +1,5 @@
 import { Agent } from "../agent/agent";
+import { CORE_INSTRUCTIONS } from "../constants/instructions";
 
 export const answerAgent = new Agent({
   name: "WriterAgent",
@@ -13,9 +14,13 @@ export const answerAgent = new Agent({
   simples, escaneáveis e naturais para aplicativos de chat como WhatsApp e Telegram.
   `,
 
-  model: process.env.MODEL || "gpt-5-nano",
+  model: "deepseek-v4-flash",
+  apiKey: process.env.DEEPSEEK_API_KEY || "",
+  baseURL: "https://api.deepseek.com",
 
   generalInstructions: `
+        ${CORE_INSTRUCTIONS}
+    
   Você é responsável pela resposta final que o usuário verá.
 
   Sua tarefa é transformar resultados técnicos produzidos por outros agentes em uma mensagem clara e natural para aplicativos de chat.
@@ -103,5 +108,6 @@ export const answerAgent = new Agent({
   report.xlsx
 
   Se precisar, posso te ajudar a abrir ou enviar o arquivo.
-  `
+  
+        `
   });

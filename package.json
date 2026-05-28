@@ -5,23 +5,34 @@
     "@babel/preset-typescript": "^7.28.5",
     "@types/jest": "^30.0.0",
     "@types/node-telegram-bot-api": "^0.64.14",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "babel-jest": "^30.2.0",
     "dotenv-cli": "^11.0.0",
+    "eslint": "^9.0.0",
     "git-commit-msg-linter": "^5.0.8",
     "jest": "^30.2.0",
-    "tsx": "^4.21.0"
+    "prettier": "^3.2.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.3"
   },
   "scripts": {
     "test": "dotenv -e .env -- jest --runInBand",
     "start:dev:agent": "dotenv -e .env -- tsx ./core/agent/main.ts",
     "start:dev:orchestrator": "dotenv -e .env -- tsx ./core/orchestrator/main.ts",
-    "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts"
+    "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
+    "build": "tsc",
+    "lint": "eslint 'core/**/*.ts' --fix",
+    "format": "prettier --write 'core/**/*.ts'",
+    "start:dev": "dotenv -e .env -- tsx ./core/orchestrator/main.ts",
+    "start:prod": "node dist/core/orchestrator/main.js",
+    "install-puppeteer": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "axios": "^1.13.6",
-    "express": "^5.2.1",
     "mongodb": "^7.1.0",
     "node-telegram-bot-api": "^0.67.0",
-    "openai": "^6.27.0"
+    "openai": "^6.27.0",
+    "puppeteer": "^24.43.1"
   }
 }

@@ -3,6 +3,7 @@ import { writeFileSync, unlinkSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import util from "util";
+import { logger } from "../utils/logger";
 
 const execAsync = util.promisify(exec);
 
@@ -42,7 +43,7 @@ except Exception as e:
 
       const { stdout, stderr } = await execAsync(
         `python "${filePath}"`,
-        { timeout: 10000 }
+        { timeout: parseInt(process.env.PYTHON_TIMEOUT || '30000', 10) }
       );
 
       unlinkSync(filePath);

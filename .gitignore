@@ -2,3 +2,8 @@
 /coverage/
 .env
 /tmp/
+# Browser screenshots
+/src/browser_data/*.png
+openclaw
+.colabor-ai
+.github
