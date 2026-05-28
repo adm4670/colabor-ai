@@ -18,6 +18,7 @@ import puppeteer, { Browser, Page } from "puppeteer";
         logger.info("[BrowserTool] Iniciando navegador Puppeteer...", { headless: HEADLESS });
     
         browserInstance = await puppeteer.launch({
+          executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
           headless: HEADLESS ? "new" as any : false,
           args: [
             "--no-sandbox",
