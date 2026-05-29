@@ -41,6 +41,20 @@
     }
     
     export const logger = {
+
+  /** Escreve log em arquivo (transporte adicional) */
+  _logToFile(level: string, message: string) {
+    try {
+      const fs = require("fs");
+      const path = require("path");
+      const logDir = path.join(process.cwd(), "logs");
+      if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
+      const date = new Date().toISOString().split("T")[0];
+      const line = "[" + new Date().toISOString() + "] [" + level.toUpperCase() + "] " + message + "\n";
+      fs.appendFileSync(path.join(logDir, date + ".log"), line, "utf8");
+    } catch { /* nao-critico */ }
+  },
+
       debug(message: string, meta?: Record<string, any>) {
         if (shouldLog("debug")) {
           const entry = createEntry("debug", message, meta);

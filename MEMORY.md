@@ -44,3 +44,22 @@
 
 ## Preferencias
 - [2026-05-29] que eu comece a implementar alguma das melhorias?** Posso atacar os problemas por prioridade — começando pelos críticos
+
+## Preferencias
+- [2026-05-29] revisar algum arquivo específico?
+
+## Preferencias
+- [2026-05-29] - `src/tools/manageObjectivesTool
+
+## Aprendizados
+- [2026-05-29] - `src/telegram/bot
+
+## Preferencias
+- [2026-05-29] Confirme que a variável `MONGO_URI` está configurada no painel do Render (*Environment → Environment Variables*)
+- [2026-05-29] A *Shell* é mais segura pra testar, a *automática* é melhor pra produção 🚀
+
+## Preferencias
+- [2026-05-29] ajustar algo no design? Posso mexer nas cores, textos, seções ou adicionar animações novas 😊
+
+## Aprendizados
+- [2026-05-29] - *Relatório semanal de procrastinação:* quantas tarefas adiadas, quantas concluídas, padrões (ex: "você sempre adia reuniões às segundas")

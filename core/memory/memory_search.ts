@@ -1,4 +1,8 @@
 /**
+ * @deprecated Use MemoryEngine (core/memory/memory-engine.ts) instead.
+ * Este arquivo sera removido em versoes futuras.
+ */
+/**
      * memory_search - Busca textual na memoria de longo prazo
      *
      * Inspirado no OpenClaw memory_search (docs/concepts/memory.md)

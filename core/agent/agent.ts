@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import { createLLMClient, getDefaultProvider } from "../llm/provider";
+import type { LLMProviderType } from "../types";
     import { logger } from "../utils/logger";
     
     export interface AgentOptions {
@@ -203,7 +205,7 @@ import OpenAI from "openai";
               throw lastError;
             }
             
-            // Exponential backoff com ±10% jitter
+            // Exponential backoff com ï¿½10% jitter
             const delay = baseDelay * Math.pow(2, attempt);
             const jitter = delay * 0.1 * (Math.random() * 2 - 1);
             const waitMs = Math.floor(delay + jitter);

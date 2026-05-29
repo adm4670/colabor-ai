@@ -8,15 +8,14 @@ import { agentRegistry } from "../agents/agent-registry";
 import { logger } from "../utils/logger";
 
 // Importa o planner para garantir que ele seja registrado no agentRegistry
-// Ajuste o caminho de acordo com a localização real do arquivo do planner
+// Ajuste o caminho de acordo com a localizaÃƒÂ§ÃƒÂ£o real do arquivo do planner
 import "../agents/planner.agent";
 import "../agents/assistant.agent";
-import "../agents/planner.agent";
 import "../agents/python.agent";
 import "../agents/reflector.agent";
-import "../agents/browser.agent";
+// import "../agents/browser.agent";
 import "../agents/answer.agent";
-import "../agents/shell.agent";
+// import "../agents/shell.agent";
 import "../agents/task-manager.agent";
 
 // Retry com backoff exponencial para envio de mensagens Telegram
@@ -63,7 +62,7 @@ function getHistory(chatId: number): Message[] {
 function addMessage(chatId: number, message: Message) {
   const history = getHistory(chatId);
   history.push(message);
-  // limitar histórico
+  // limitar histÃƒÂ³rico
   if (history.length > 20) {
     history.shift();
   }
@@ -138,7 +137,7 @@ async function startTelegramAgent() {
     try {
       await bot.sendChatAction(chatId, "typing");
 
-      // CASO 1: ÁUDIO / VOICE
+      // CASO 1: ÃƒÂUDIO / VOICE
       if (msg.voice || msg.audio) {
         const fileId = msg.voice?.file_id || msg.audio?.file_id;
         if (!fileId) return;
@@ -151,7 +150,7 @@ async function startTelegramAgent() {
 
       if (!text) return;
 
-      // HISTÓRICO
+      // HISTÃƒâ€œRICO
       addMessage(chatId, {
         role: "user",
         content: text,
@@ -191,7 +190,7 @@ async function startTelegramAgent() {
           )
         : null;
       console.error(err);
-      bot.sendMessage(chatId, "❌ Erro ao processar mensagem.");
+      bot.sendMessage(chatId, "Ã¢ÂÅ’ Erro ao processar mensagem.");
     }
   });
 }
@@ -201,3 +200,4 @@ startTelegramAgent().catch((err) => {
   console.error("Falha ao iniciar o bot Telegram:", err);
   process.exit(1);
 });
+
