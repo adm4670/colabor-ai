@@ -58,7 +58,43 @@ import puppeteer, { Browser, Page } from "puppeteer";
       }
     }
     
-    export const browserExecTool = {
+    
+    // ============================================================
+    // Browser Health Check
+    // ============================================================
+    
+    export function isBrowserAlive(): boolean {
+      try {
+        return !!(browserInstance && browserInstance.isConnected());
+      } catch {
+        return false;
+      }
+    }
+    
+    export async function restartBrowser(): Promise<boolean> {
+      try {
+        if (browserInstance) {
+          try { await browserInstance.close(); } catch {}
+        }
+        browserInstance = null;
+        pageInstance = null;
+        await getPage(); // Reinicia
+        logger.info("[BrowserTool] Browser reiniciado com sucesso");
+        return true;
+      } catch (e: any) {
+        logger.error(`[BrowserTool] Falha ao reiniciar browser: ${e.message}`);
+        return false;
+      }
+    }
+    
+    export async function ensureBrowserAlive(): Promise<boolean> {
+      if (isBrowserAlive()) return true;
+      logger.warn("[BrowserTool] Browser nao esta vivo. Tentando reiniciar...");
+      return await restartBrowser();
+    }
+    
+    
+export const browserExecTool = {
       type: "function",
     
       function: {

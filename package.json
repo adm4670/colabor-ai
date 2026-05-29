@@ -13,6 +13,7 @@
     "git-commit-msg-linter": "^5.0.8",
     "jest": "^30.2.0",
     "prettier": "^3.2.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.3.3"
   },
@@ -30,7 +31,6 @@
   },
   "dependencies": {
     "axios": "^1.13.6",
-    "mongodb": "^7.1.0",
     "node-telegram-bot-api": "^0.67.0",
     "openai": "^6.27.0",
     "puppeteer": "^24.43.1"

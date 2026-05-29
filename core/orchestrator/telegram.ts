@@ -217,9 +217,20 @@ async function startTelegramAgent() {
       //   escapeMarkdown(response),
       //   { parse_mode: "MarkdownV2" }
       // );
-      await sendWithRetry(bot, chatId, response, {
-        parse_mode: "Markdown"
-      });
+      // Enviar resposta com escape de MarkdownV2
+      // Se falhar por parse entities, tenta sem formatacao
+      try {
+        await sendWithRetry(bot, chatId, escapeMarkdown(response), {
+          parse_mode: "MarkdownV2"
+        });
+      } catch (parseErr: any) {
+        if (parseErr.message && parseErr.message.includes("parse")) {
+          // Fallback: envia sem formatacao
+          await sendWithRetry(bot, chatId, response, {});
+        } else {
+          throw parseErr;
+        }
+      }
 
     } catch (err) {
 

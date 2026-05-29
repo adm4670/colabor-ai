@@ -12,17 +12,19 @@ import { Agent } from "../agent/agent";
       memorySearchTool,
       readMemoryFile,
       appendToMemory,
+      saveDailyNote,
+      loadRecentNotes,
     } from "../memory/memory_search";
+    import { getMemoryEngine } from "../memory/memory-engine";
     import {
       EventStream,
       createEvent,
       type StreamEvent,
-} from "../stream/event-stream";
-        import { ContextEngine, getDefaultEngine } from "../context/context-engine";
-        import { getSkillsManager } from "../skills/skills-manager";
-        import { saveDailyNote, loadRecentNotes } from "../memory/memory_search";
+    } from "../stream/event-stream";
+    import { ContextEngine, getDefaultEngine } from "../context/context-engine";
+    import { getSkillsManager } from "../skills/skills-manager";
     
-    // Rate limiting - protecao contra uso excessivo
+    // Rate limiting - protecao contra uso excessivo (persistente)
     const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
     const messageCounts: Map<string, number> = new Map();
     
@@ -32,7 +34,36 @@ import { Agent } from "../agent/agent";
         return false;
       }
       messageCounts.set(sessionId, count + 1);
+      
+      // Persistir no transcript
+      try {
+        appendToTranscript(sessionId, {
+          role: "system" as const,
+          content: `rate_limit:${count + 1}`,
+          timestamp: Date.now(),
+        });
+      } catch {
+        // Persistencia nao-critica
+      }
       return true;
+    }
+    
+    function restoreRateLimit(sessionId: string): void {
+      try {
+        const messages = loadSessionTranscript(sessionId);
+        let maxCount = 0;
+        for (const msg of messages) {
+          if (msg.content && msg.content.startsWith("rate_limit:")) {
+            const count = parseInt(msg.content.split(":")[1], 10);
+            if (count > maxCount) maxCount = count;
+          }
+        }
+        if (maxCount > 0) {
+          messageCounts.set(sessionId, maxCount);
+        }
+      } catch {
+        // Fallback: comeca do zero
+      }
     }
     
     type SubAgent = {
@@ -53,20 +84,50 @@ import { Agent } from "../agent/agent";
       sessionId?: string;
     };
     
+    /** Resultado da reflexao sobre execucao de um agente */
+    interface ReflectionResult {
+      success: "yes" | "partial" | "no";
+      complete: boolean;
+      missingInfo: string[];
+      retryDifferent: boolean;
+      learning: string;
+    }
+    
     export class AgentOrchestrator {
-          private sessionId: string;
-          public eventStream: EventStream;
-          private contextEngine: ContextEngine;
+      private sessionId: string;
+      public eventStream: EventStream;
+      private contextEngine: ContextEngine;
+      private memoryEngine = getMemoryEngine();
+      private reflectionCount: number = 0;
+    
+      constructor(
+        private planner: Agent,
+        private agents: SubAgent[],
+        private debug = true
+      ) {
+        this.sessionId = generateSessionId("orchestrator");
+        this.eventStream = new EventStream();
+        this.contextEngine = getDefaultEngine();
         
-          constructor(
-            private planner: Agent,
-            private agents: SubAgent[],
-            private debug = true
-          ) {
-            this.sessionId = generateSessionId("orchestrator");
-            this.eventStream = new EventStream();
-            this.contextEngine = getDefaultEngine();
+        // Carregar transcript da sessao anterior se existir
+        try {
+          const existingMessages = loadSessionTranscript(this.sessionId);
+          if (existingMessages.length > 0) {
+            this.contextEngine.loadFromTranscript(
+              existingMessages.map((m) => ({
+                role: m.role as "system" | "user" | "assistant" | "tool",
+                content: m.content,
+                name: m.name,
+                tool_call_id: m.tool_call_id,
+              }))
+            );
+            // Restaurar rate limit
+            restoreRateLimit(this.sessionId);
           }
+        } catch {
+          // Transcript nao disponivel - sessao nova
+        }
+      }
     
       private formatHistory(history: Message[] = []) {
         if (!history.length) return "No conversation history.";
@@ -80,11 +141,118 @@ import { Agent } from "../agent/agent";
           .join("\n");
       }
     
-      async run({ input, history = [], sessionId }: RunInput) {
-        // Use provided sessionId or keep the existing one
+      /**
+       * Reflection step: avalia o resultado da execucao do agente.
+       * Este e o coracao da autoconsciencia do orquestrador.
+       */
+      private async reflectOnResult(
+        input: string,
+        agentName: string,
+        instruction: string,
+        result: string
+      ): Promise<ReflectionResult> {
+        this.reflectionCount++;
+    
+        const reflectionPrompt = `
+    Evaluate the agent execution result honestly.
+    
+    Task: ${input.slice(0, 300)}
+    Agent used: ${agentName}
+    Instruction given: ${instruction.slice(0, 300)}
+    Result produced: ${result.slice(0, 500)}
+    
+    Answer these questions:
+    1. Did the agent succeed? (yes / partial / no)
+    2. Is the result complete for the user's request? (yes / no)
+    3. Is there missing information? If so, what?
+    4. Should we try a different approach? (yes / no)
+    5. What did we learn from this execution? (one sentence in portuguese)
+    
+    Respond ONLY with JSON:
+    {
+      "success": "yes | partial | no",
+      "complete": true/false,
+      "missingInfo": ["item1", "item2"],
+      "retryDifferent": true/false,
+      "learning": "one sentence in portuguese"
+    }
+    `;
+    
+        try {
+          const reflectionRaw = await this.planner.run(reflectionPrompt);
+          const parsed = JSON.parse(reflectionRaw);
+          return {
+            success: parsed.success || "partial",
+            complete: parsed.complete ?? true,
+            missingInfo: parsed.missingInfo || [],
+            retryDifferent: parsed.retryDifferent ?? false,
+            learning: parsed.learning || "",
+          };
+        } catch {
+          // Fallback: assume success if we can't reflect
+          return {
+            success: "partial",
+            complete: true,
+            missingInfo: [],
+            retryDifferent: false,
+            learning: "",
+          };
+        }
+      }
+    
+    
+      /**
+       * Consome o EventStream para telemetria e logging.
+       * Loga tool calls, erros, e steps completados.
+       */
+      private consumeEventStream(): void {
+        const startTime = Date.now();
+        let currentTool = "";
+        
+        (async () => {
+          for await (const event of this.eventStream) {
+            switch (event.type) {
+              case "tool_call_start":
+                currentTool = event.toolName || "";
+                if (this.debug) {
+                  console.log(`  [EVENT] Tool call start: ${currentTool}`);
+                }
+                break;
+                
+              case "tool_call_end":
+                if (this.debug) {
+                  console.log(`  [EVENT] Tool call end: ${event.toolName || currentTool}`);
+                }
+                break;
+                
+              case "turn_end":
+                if (this.debug) {
+                  console.log(`  [EVENT] Turn completed`);
+                }
+                break;
+                
+              case "agent_end":
+                const duration = Date.now() - startTime;
+                if (this.debug) {
+                  console.log(`  [EVENT] Agent finished. Duration: ${duration}ms`);
+                }
+                break;
+                
+              default:
+                break;
+            }
+          }
+        })().catch(() => {});
+      }
+    
+  async run({ input, history = [], sessionId }: RunInput) {
         if (sessionId) this.sessionId = sessionId;
     
         this.eventStream.push(createEvent("agent_start"));
+    
+        // === EventStream consumer (telemetria) ===
+        this.consumeEventStream();
+        this.reflectionCount = 0;
     
         if (this.debug) {
           console.log("\n==============================");
@@ -116,6 +284,12 @@ import { Agent } from "../agent/agent";
     
         const formattedHistory = this.formatHistory(history);
     
+        // Buscar memoria relevante ao contexto atual (NOVO)
+        const memoryContext = this.memoryEngine.recall(input, formattedHistory);
+        if (this.debug && memoryContext.length > 50) {
+          console.log("Memory context loaded:", memoryContext.slice(0, 100) + "...");
+        }
+    
         let context = `
     User request:
     ${input}
@@ -124,14 +298,16 @@ import { Agent } from "../agent/agent";
     ${formattedHistory}
     
     Recent memory context:
-    ${readMemoryFile().slice(0, 1000)}
+    ${memoryContext.slice(0, 1500)}
     `;
     
         let steps = 0;
         let lastResult = "";
         let lastInstruction = "";
+        let lastAgentName = "";
     
         const maxSteps = 10;
+        const maxReflections = 3; // Limite de reflexoes para evitar loops infinitos
     
         while (steps < maxSteps) {
           this.eventStream.push(createEvent("turn_start", { content: `Step ${steps + 1}/${maxSteps}` }));
@@ -214,11 +390,8 @@ import { Agent } from "../agent/agent";
     
           // Check for memory_search requests embedded in instruction
           if (parsed.instruction && parsed.instruction.toLowerCase().includes("memory_search")) {
-            const memoryResults = await memorySearchTool.handler({
-              query: input,
-              maxResults: 5,
-            });
-            context += `\n\nMemory search results:\n${JSON.stringify(memoryResults.results)}`;
+            const memoryResults = this.memoryEngine.recall(input, context);
+            context += `\n\nMemory search results:\n${memoryResults}`;
           }
     
           // Stop condition
@@ -233,15 +406,26 @@ import { Agent } from "../agent/agent";
               content: lastResult || parsed.instruction || "Concluido.",
               timestamp: Date.now(),
             });
-                // Salvar nota diaria automaticamente ao finalizar
-                try {
-                  const noteContent = "Conversa: " + (input || "").substring(0, 200) + "\n" +
-                    "Resultado: " + ((lastResult || parsed.instruction || "Concluido.")).substring(0, 300);
-                  saveDailyNote(noteContent);
-                } catch (e) {
-                  // Nota diaria nao e critica
-                }
-        
+    
+            // Salvar nota diaria automaticamente ao finalizar
+            try {
+              const noteContent = "Conversa: " + (input || "").substring(0, 200) + "\n" +
+                "Resultado: " + ((lastResult || parsed.instruction || "Concluido.")).substring(0, 300);
+              saveDailyNote(noteContent);
+            } catch (e) {
+              // Nota diaria nao e critica
+            }
+    
+            // Consolidar aprendizado (NOVO)
+            try {
+              const allMessages = [
+                { role: "user" as const, content: input },
+                { role: "assistant" as const, content: lastResult || parsed.instruction || "" },
+              ];
+              this.memoryEngine.consolidate(allMessages);
+            } catch (e) {
+              // Consolidacao nao e critica
+            }
     
             this.eventStream.push(createEvent("turn_end", { content: lastResult }));
             this.eventStream.push(createEvent("agent_end"));
@@ -260,6 +444,7 @@ import { Agent } from "../agent/agent";
           }
     
           lastInstruction = parsed.instruction;
+          lastAgentName = parsed.agent;
     
           const target = this.agents.find((a) => a.name === parsed.agent);
     
@@ -282,6 +467,17 @@ import { Agent } from "../agent/agent";
             })
           );
     
+          // Usar ContextEngine para gerenciar o prompt do agente (NOVO)
+          const contextMessages = context
+            .split("\n")
+            .filter(Boolean)
+            .map((line) => ({
+              role: "system" as const,
+              content: line,
+            }));
+    
+          this.contextEngine.setHistory(contextMessages);
+    
           const agentPrompt = `
     User request:
     ${input}
@@ -293,7 +489,10 @@ import { Agent } from "../agent/agent";
     ${parsed.instruction}
     
     Context so far:
-    ${context}
+    ${this.contextEngine.buildContext().summary || context.slice(0, 3000)}
+    
+    Recent memory:
+    ${memoryContext.slice(0, 1000)}
     `;
     
           const result = await target.agent.run(agentPrompt);
@@ -305,6 +504,38 @@ import { Agent } from "../agent/agent";
             })
           );
     
+          // === REFLECTION STEP (NOVO) ===
+          if (this.reflectionCount < maxReflections) {
+            const reflection = await this.reflectOnResult(
+              input,
+              parsed.agent,
+              parsed.instruction,
+              result
+            );
+    
+            if (this.debug) {
+              console.log(`\n[Reflection #${this.reflectionCount}]`);
+              console.log(`  Success: ${reflection.success}`);
+              console.log(`  Complete: ${reflection.complete}`);
+              console.log(`  Learning: ${reflection.learning}`);
+            }
+    
+            // Se aprendeu algo, adicionar ao contexto
+            if (reflection.learning) {
+              context += `\n\n[Learning from ${parsed.agent}]: ${reflection.learning}`;
+            }
+    
+            // Se falhou e deve tentar abordagem diferente
+            if (reflection.success === "no" && reflection.retryDifferent) {
+              delete parsed.instruction; // Forca nova instrucao
+              context += `\n\nPrevious attempt with ${parsed.agent} failed: ${result.slice(0, 300)}`;
+              context += `\nMissing: ${reflection.missingInfo.join(", ")}`;
+              if (this.debug) {
+                console.log("Reflection suggests retry with different approach");
+              }
+            }
+          }
+    
           lastResult = result;
     
           if (this.debug) {
@@ -313,7 +544,6 @@ import { Agent } from "../agent/agent";
           }
     
           context += `\n\n${parsed.agent} result:\n${result}`;
-    
           steps++;
         }
     

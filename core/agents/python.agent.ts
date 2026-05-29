@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS } from "../constants/instructions";
+import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { pythonExecTool } from "../tools/pythonExecTool";
     import { memorySearchTool } from "../memory/memory_search";
     
@@ -8,7 +8,7 @@ import { CORE_INSTRUCTIONS } from "../constants/instructions";
       role: "Python execution specialist",
       goal: "Solve tasks using Python and return the result clearly",
       backstory: "An assistant specialized in writing and executing Python code to solve problems.",
-      model: "deepseek-v4-flash",
+      model: "deepseek-v4-pro",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

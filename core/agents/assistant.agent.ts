@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS } from "../constants/instructions";
+import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { memorySearchTool } from "../memory/memory_search";
     
     export const assistantAgent = new Agent({
@@ -7,7 +7,7 @@ import { CORE_INSTRUCTIONS } from "../constants/instructions";
     
       role: "General conversation agent",
     
-      model: "deepseek-v4-flash",
+      model: "deepseek-v4-pro",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

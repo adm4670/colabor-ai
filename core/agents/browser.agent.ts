@@ -1,6 +1,6 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS } from "../constants/instructions";
-        import { browserExecTool } from "../tools/browserExecTool";
+import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+        import { browserExecTool, ensureBrowserAlive } from "../tools/browserExecTool";
         import { memorySearchTool } from "../memory/memory_search";
         
         export const browserAgent = new Agent({
@@ -10,7 +10,7 @@ import { CORE_INSTRUCTIONS } from "../constants/instructions";
           backstory:
             "Um assistente especializado em automacao de navegadores. Capaz de abrir sites, clicar em elementos, preencher formularios, extrair texto e capturar screenshots como um verdadeiro clawbot.",
         
-          model: process.env.MODEL || "deepseek-chat",
+          model: process.env.MODEL || DEFAULT_MODEL,
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         

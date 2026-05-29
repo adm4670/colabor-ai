@@ -246,3 +246,41 @@ export const memorySearchTool = {
       },
     };
     
+
+    
+    // ============================================================
+    // memory_append tool - Adiciona entradas a memoria
+    // ============================================================
+    
+    export const memoryAppendTool = {
+      type: "function",
+      function: {
+        name: "memory_append",
+        description: "Adiciona uma nova entrada a memoria de longo prazo (MEMORY.md). Use para salvar preferencias, decisoes, fatos e aprendizados.",
+        parameters: {
+          type: "object",
+          properties: {
+            content: {
+              type: "string",
+              description: "Conteudo a ser salvo na memoria"
+            },
+            section: {
+              type: "string",
+              description: "Secao onde salvar: Preferencias, Decisoes, Aprendizados, ou Geral (default: Aprendizados)"
+            }
+          },
+          required: ["content"]
+        }
+      },
+    
+      async handler({ content, section }: { content: string; section?: string }) {
+        const sectionName = section || "Aprendizados";
+        appendToMemory(content, sectionName);
+        return {
+          success: true,
+          message: `Entrada adicionada na secao "${sectionName}"`,
+          content
+        };
+      }
+    };
+    

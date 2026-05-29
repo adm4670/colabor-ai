@@ -272,7 +272,29 @@
         // Skills default serao criadas separadamente
         logger.info("[SkillsManager] Diretorio de skills vazio. Skills padrao serao criadas.");
       }
-    }
+    
+      /**
+       * Carrega skills baseadas no contexto da tarefa atual.
+       * Analisa o input do usuario para determinar quais skills sao necessarias.
+       */
+      loadSkillsForTask(userInput: string, currentContext?: string): string[] {
+        const combinedContext = `${userInput} ${currentContext || ""}`;
+        return this.loadRelevantSkills(combinedContext);
+      }
+    
+      /**
+       * Retorna descricao de todas as skills para inclusao no system prompt.
+       */
+      getSkillsSummary(): string {
+        const skills = this.loadAllSkills();
+        if (skills.length === 0) return "";
+    
+        return skills
+          .map((s) => `- **${s.title}**: ${s.description}`)
+          .join("\n");
+      }
+    
+}
     
     // Singleton
     let defaultManager: SkillsManager | null = null;

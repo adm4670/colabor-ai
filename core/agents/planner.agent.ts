@@ -1,12 +1,12 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, FORMAT_RESPONSE_JSON } from "../constants/instructions";
+import { CORE_INSTRUCTIONS, FORMAT_RESPONSE_JSON, DEFAULT_MODEL } from "../constants/instructions";
 
 export const plannerAgent = new Agent({
     name: "PlannerAgent",
     role: "AI task planner",
     goal: "Decide which agent should execute the next step",
     backstory: "An AI responsible for coordinating other agents.",
-    model: "deepseek-v4-flash",
+    model: "deepseek-v4-pro",
     apiKey: process.env.DEEPSEEK_API_KEY || "",
     baseURL: "https://api.deepseek.com",
     generalInstructions: `

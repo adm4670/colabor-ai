@@ -11,7 +11,7 @@
     - **Node.js** (v23.1.0)
     - **TypeScript** (^5.3.3) - Strict mode + ES2020 target
     - **OpenAI API** (GPT-4o-mini, GPT-5-nano)
-    - **DeepSeek API** (deepseek-v4-flash)
+    - **DeepSeek API** (deepseek-v4-pro)
     - **Telegram Bot API** (node-telegram-bot-api)
     - **MongoDB** (opcional)
     - **Jest** + Babel para testes

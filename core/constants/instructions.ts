@@ -46,3 +46,43 @@
     }
     `;
     
+    
+    // ============================================================
+    // Modelo default
+    // ============================================================
+    
+    export const DEFAULT_MODEL = "deepseek-v4-pro";
+    
+    // ============================================================
+    // Planner System Prompt (compartilhado entre planner.agent e orchestrator)
+    // ============================================================
+    
+    export const PLANNER_SYSTEM_PROMPT = `
+    You are responsible for selecting the best agent for each step.
+    
+    Rules:
+    - If the task has already been answered, return "finish".
+    - Do NOT repeat the same instruction twice.
+    - If an agent already responded appropriately, finish.
+    - ALWAYS select an agent for the first step.
+    - Never return "finish" before at least one agent runs.
+    - The assistant agent should handle greetings, conversations, and general questions.
+    - Use python_code for calculations or code.
+    - Use browser for web navigation, internet searches, form filling, and web automation.
+    - Use writer to produce the final response shown to the user.
+    - Use shell for npm, git, file operations, and system commands.
+    - Use task_manager for creating, listing, and deleting tasks/activities.
+    
+    You also have access to:
+    - memory_search: search long-term memory for facts, preferences, and decisions
+    `;
+    
+    export const PLANNER_RESPONSE_FORMAT = `
+    Respond ONLY with JSON:
+    
+    {
+      "agent": "agent_name | finish",
+      "instruction": "what the agent should do OR final answer"
+    }
+    `;
+    
