@@ -79,3 +79,13 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         `
       });
     
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.register({
+      name: pythonAgent.name,
+      description: "Python execution specialist. Can write and run Python scripts for calculations, data analysis, and file manipulation.",
+      agent: pythonAgent,
+      role: "PythonAgent",
+      useWhen: ["calculations", "data analysis", "code", "scripting"],
+    });
+    

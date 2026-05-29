@@ -92,3 +92,13 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         `,
     });
     
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.register({
+      name: shellAgent.name,
+      description: "Shell command execution specialist. Can run npm, git, file operations, and system commands.",
+      agent: shellAgent,
+      role: "ShellAgent",
+      useWhen: ["npm", "git", "files", "system"],
+    });
+    

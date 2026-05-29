@@ -1,6 +1,7 @@
 import { Agent } from "../agent/agent";
     import { logger } from "../utils/logger";
     import { browserAgent } from "../agents/browser.agent";
+import { reflectorAgent } from "../agents/reflector.agent";
     import {
       appendToTranscript,
       loadSessionTranscript,
@@ -143,7 +144,7 @@ import { Agent } from "../agent/agent";
     
       /**
        * Reflection step: avalia o resultado da execucao do agente.
-       * Este e o coracao da autoconsciencia do orquestrador.
+       * Usa ReflectorAgent (agente separado) para avaliar resultados.
        */
       private async reflectOnResult(
         input: string,
@@ -179,7 +180,7 @@ import { Agent } from "../agent/agent";
     `;
     
         try {
-          const reflectionRaw = await this.planner.run(reflectionPrompt);
+          const reflectionRaw = await reflectorAgent.run(reflectionPrompt);
           const parsed = JSON.parse(reflectionRaw);
           return {
             success: parsed.success || "partial",

@@ -38,3 +38,13 @@ import { memoryAppendTool } from "../memory/memory_search";
       functions: taskFunctions
     });
     
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.register({
+      name: taskManagerAgent.name,
+      description: "Task and activity management. Can create, list, and delete tasks/activities.",
+      agent: taskManagerAgent,
+      role: "task_manager",
+      useWhen: ["tasks", "activities", "schedule"],
+    });
+    

@@ -27,3 +27,7 @@ export const plannerAgent = new Agent({
         ${FORMAT_RESPONSE_JSON}
         `
   });
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.registerPlanner(plannerAgent);
+    

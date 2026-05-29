@@ -113,3 +113,13 @@ export const answerAgent = new Agent({
   
         `
   });
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.register({
+      name: answerAgent.name,
+      description: "Transforms agent outputs into clear, natural, user-friendly final responses for chat.",
+      agent: answerAgent,
+      role: "WriterAgent",
+      useWhen: ["formatting", "final response"],
+    });
+    

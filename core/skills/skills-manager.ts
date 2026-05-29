@@ -1,12 +1,22 @@
-
-    /**
+/**
      * SkillsManager - Sistema de Skills para o agente
      *
      * Skills sao instrucoes em Markdown que expandem as capacidades
      * do agente sob demanda. Cada skill e um arquivo .md na pasta skills/.
      *
-     * O agente carrega as skills mais relevantes para o contexto atual,
-     * sem poluir o prompt principal com instrucoes desnecessarias.
+     * v2: Suporte a frontmatter YAML (formato SKILL.md do OpenClaw).
+     *     Fallback para o formato antigo (secoes ## Keywords, ## Descricao).
+     *
+     * Formato esperado (recomendado):
+     *   ---
+     *   name: my-skill
+     *   description: "Descricao curta do skill"
+     *   keywords:
+     *     - palavra1
+     *     - palavra2
+     *   ---
+     *   # Titulo da Skill
+     *   ... conteudo ...
      *
      * Inspirado no sistema de Skills do OpenClaw.
      */
@@ -20,14 +30,16 @@
     // ============================================================
     
     export interface Skill {
-      /** Nome do arquivo sem extensao */
+      /** Nome extraido do frontmatter (name) ou do arquivo */
       name: string;
-      /** Titulo extraido do frontmatter ou nome do arquivo */
+      /** Titulo extraido do frontmatter (title) ou do primeiro heading */
       title: string;
-      /** Descricao curta (primeira linha ou frontmatter) */
+      /** Descricao extraida do frontmatter (description) ou do texto */
       description: string;
-      /** Conteudo completo do skill */
+      /** Conteudo completo do skill (inclui frontmatter) */
       content: string;
+      /** Corpo do skill sem o frontmatter */
+      body: string;
       /** Palavras-chave para matching */
       keywords: string[];
       /** Caminho do arquivo */
@@ -35,12 +47,86 @@
     }
     
     export interface SkillsConfig {
-      /** Diretorio onde as skills estao armazenadas */
       skillsDir: string;
-      /** Numero maximo de skills a carregar por vez (default: 3) */
       maxSkills: number;
-      /** Score minimo para considerar uma skill relevante (0-1) */
       minScore: number;
+    }
+    
+    // ============================================================
+    // YAML Frontmatter Parser (sem dependencias externas)
+    // ============================================================
+    
+    interface SkillFrontmatter {
+      name?: string;
+      title?: string;
+      description?: string;
+      keywords?: string[];
+      [key: string]: unknown;
+    }
+    
+    /**
+     * Extrai e faz parse do frontmatter YAML entre marcadores ---.
+     * Retorna { frontmatter, body } ou null se nao houver frontmatter.
+     */
+    function parseFrontmatter(raw: string): {
+      frontmatter: SkillFrontmatter;
+      body: string;
+    } | null {
+      const trimmed = raw.trimStart();
+      if (!trimmed.startsWith("---")) return null;
+    
+      const endIdx = trimmed.indexOf("\n---", 3);
+      if (endIdx === -1) return null;
+    
+      const fmBlock = trimmed.slice(3, endIdx).trim();
+      const body = trimmed.slice(endIdx + 4).trim();
+    
+      const fm: SkillFrontmatter = {};
+      const lines = fmBlock.split("\n");
+      let currentKey: string | null = null;
+      let currentList: string[] = [];
+    
+      function flushList(): void {
+        if (currentKey && currentList.length > 0) {
+          (fm as Record<string, unknown>)[currentKey] = [...currentList];
+        }
+        currentList = [];
+        currentKey = null;
+      }
+    
+      for (const line of lines) {
+        // List item continuacao
+        if (line.match(/^\s+-\s+(.+)/)) {
+          if (currentKey) {
+            const val = line.replace(/^\s+-\s+/, "").trim();
+            // Remove aspas
+            const clean = val.replace(/^["']|["']$/g, "");
+            currentList.push(clean);
+          }
+          continue;
+        }
+    
+        // Novo key: value
+        const kvMatch = line.match(/^(\w[\w_-]*)\s*:\s*(.*)$/);
+        if (kvMatch) {
+          flushList();
+          const key = kvMatch[1];
+          let val = kvMatch[2].trim();
+    
+          if (val === "" || val === "|" || val === ">") {
+            // Inicio de lista multilinha ou bloco
+            currentKey = key;
+            currentList = [];
+          } else {
+            // Valor inline - remove aspas
+            val = val.replace(/^["']|["']$/g, "");
+            (fm as Record<string, unknown>)[key] = val;
+          }
+        }
+      }
+      flushList(); // flush ultimo
+    
+      return { frontmatter: fm, body };
     }
     
     // ============================================================
@@ -57,14 +143,16 @@
       private config: SkillsConfig;
       private skillsCache: Skill[] | null = null;
       private lastLoadTime: number = 0;
-      private readonly CACHE_TTL = 30000; // 30 segundos
+      private readonly CACHE_TTL = 30_000; // 30 segundos
     
       constructor(config?: Partial<SkillsConfig>) {
         this.config = { ...DEFAULT_CONFIG, ...config };
       }
     
       /**
-       * Carrega todas as skills do diretorio (com cache)
+       * Carrega todas as skills do diretorio (com cache).
+       * Suporta o novo formato SKILL.md (com frontmatter YAML)
+       * e fallback para o formato antigo (secoes ## Keywords, ## Descricao).
        */
       loadAllSkills(): Skill[] {
         const now = Date.now();
@@ -84,60 +172,53 @@
             return [];
           }
     
-          const files = fs.readdirSync(skillsDir).filter((f) => f.endsWith(".md"));
+          const files = fs.readdirSync(skillsDir).filter((f) => f.endsWith(".md") && !f.endsWith(".bak"));
     
           for (const file of files) {
             try {
               const filePath = path.join(skillsDir, file);
               const content = fs.readFileSync(filePath, "utf-8");
-              const name = file.replace(/\.md$/, "");
+              const fileName = file.replace(/\.md$/, "");
     
-              // Extrair titulo da primeira linha (# Titulo) ou do nome do arquivo
-              const titleMatch = content.match(/^#\s+(.+)/m);
-              const title = titleMatch ? titleMatch[1].trim() : name;
+              const parsed = parseFrontmatter(content);
     
-              // Extrair descricao (primeira linha apos o titulo, ou segunda linha)
-              const lines = content.split("\n").filter((l) => l.trim());
-              let description = "";
-              for (const line of lines) {
-                if (!line.startsWith("#") && !line.startsWith("---")) {
-                  description = line.replace(/^[#*\s]*/, "").trim();
-                  if (description.length > 100) {
-                    description = description.substring(0, 100) + "...";
+              let name: string;
+              let title: string;
+              let description: string;
+              let keywords: string[];
+              let body: string;
+    
+              if (parsed) {
+                // ==========================================
+                // Formato NOVO: frontmatter YAML (SKILL.md)
+                // ==========================================
+                const fm = parsed.frontmatter;
+                body = parsed.body;
+    
+                name = fm.name || fileName;
+                title = fm.title || extractTitleFromBody(body) || name;
+                description = fm.description || extractDescriptionLegacy(body) || "";
+                keywords = fm.keywords || [];
+    
+                // Sempre incluir nome do arquivo e partes do nome como keywords
+                const nameParts = name.split(/[-_\s]+/).filter((p) => p.length > 1);
+                for (const part of nameParts) {
+                  if (!keywords.includes(part.toLowerCase())) {
+                    keywords.push(part.toLowerCase());
                   }
-                  break;
                 }
-              }
-    
-              // Extrair palavras-chave (da secao ## Keywords ou tags)
-              const keywords: string[] = [name, ...name.split(/[-_\s]+/)];
-    
-              const keywordMatch = content.match(
-                /##\s*Keywords?\s*\n([^#]+)/i
-              );
-              if (keywordMatch) {
-                const kwText = keywordMatch[1].trim();
-                kwText.split(/[,;\n]+/).forEach((kw) => {
-                  const trimmed = kw.trim().toLowerCase();
-                  if (trimmed && !keywords.includes(trimmed)) {
-                    keywords.push(trimmed);
-                  }
-                });
-              }
-    
-              // Extrair tags do frontmatter (formato ---tags: [a, b, c]---)
-              const tagsMatch = content.match(/---\n([^]+?)\n---/);
-              if (tagsMatch) {
-                const fm = tagsMatch[1];
-                const tagMatch = fm.match(/tags:\s*\[([^\]]+)\]/);
-                if (tagMatch) {
-                  tagMatch[1].split(",").forEach((t) => {
-                    const trimmed = t.trim().toLowerCase().replace(/['"]/g, "");
-                    if (trimmed && !keywords.includes(trimmed)) {
-                      keywords.push(trimmed);
-                    }
-                  });
+                if (!keywords.includes(name.toLowerCase())) {
+                  keywords.push(name.toLowerCase());
                 }
+              } else {
+                // ==========================================
+                // Formato ANTIGO: fallback (secoes markdown)
+                // ==========================================
+                body = content;
+                name = fileName;
+                title = extractTitleFromBody(content) || name;
+                description = extractDescriptionLegacy(content);
+                keywords = extractKeywordsLegacy(content, name);
               }
     
               skills.push({
@@ -145,6 +226,7 @@
                 title,
                 description,
                 content,
+                body,
                 keywords,
                 filePath,
               });
@@ -166,8 +248,8 @@
       }
     
       /**
-       * Filtra skills por relevancia ao contexto
-       * Usa correspondencia simples de palavras-chave
+       * Filtra skills por relevancia ao contexto.
+       * Usa correspondencia de palavras-chave com scoring.
        */
       loadRelevantSkills(context: string): string[] {
         const allSkills = this.loadAllSkills();
@@ -175,16 +257,13 @@
     
         const contextLower = context.toLowerCase();
         const contextWords = new Set(
-          contextLower
-            .split(/[\s,.;!?_()\[\]{}]+/)
-            .filter((w) => w.length > 2)
+          contextLower.split(/[\s,.;!?_()\[\]{}]+/).filter((w) => w.length > 2)
         );
     
-        // Calcular score para cada skill
         const scored = allSkills.map((skill) => {
           let score = 0;
     
-          // Match por palavra-chave
+          // Match por palavra-chave no contexto
           for (const kw of skill.keywords) {
             if (contextLower.includes(kw)) {
               score += 0.3;
@@ -197,8 +276,8 @@
             if (titleDesc.includes(word)) {
               score += 0.15;
             }
-            // Match no conteudo
-            if (skill.content.toLowerCase().includes(word)) {
+            // Match no body
+            if (skill.body.toLowerCase().includes(word)) {
               score += 0.05;
             }
           }
@@ -206,7 +285,6 @@
           return { skill, score };
         });
     
-        // Filtrar por score minimo e ordenar
         const relevant = scored
           .filter((s) => s.score >= this.config.minScore)
           .sort((a, b) => b.score - a.score)
@@ -214,32 +292,30 @@
     
         if (relevant.length > 0) {
           logger.info(
-            `[SkillsManager] Skills relevantes encontradas: ${relevant
+            `[SkillsManager] Skills relevantes: ${relevant
               .map((s) => `${s.skill.name} (score: ${s.score.toFixed(2)})`)
               .join(", ")}`
           );
         }
     
+        // Retorna o conteudo completo (com frontmatter, para compatibilidade)
         return relevant.map((s) => s.skill.content);
       }
     
       /**
-       * Retorna todas as skills concatenadas como string
+       * Retorna a descricao de todas as skills para inclusao no system prompt.
        */
       getAllSkillsInstructions(): string {
         const allSkills = this.loadAllSkills();
         if (allSkills.length === 0) return "";
     
         return allSkills
-          .map(
-            (skill) =>
-              `=== Skill: ${skill.title} ===\n${skill.description}\n---`
-          )
-          .join("\n\n");
+          .map((skill) => `- **${skill.title}**: ${skill.description}`)
+          .join("\n");
       }
     
       /**
-       * Retorna os nomes das skills disponiveis
+       * Retorna os nomes das skills disponiveis.
        */
       listSkills(): { name: string; title: string; description: string }[] {
         return this.loadAllSkills().map((s) => ({
@@ -250,7 +326,7 @@
       }
     
       /**
-       * Forca o recarregamento do cache
+       * Forca o recarregamento do cache.
        */
       refreshCache(): void {
         this.skillsCache = null;
@@ -258,7 +334,7 @@
       }
     
       /**
-       * Cria uma skill padrao se o diretorio estiver vazio
+       * Cria skills padrao se o diretorio estiver vazio.
        */
       createDefaultSkills(): void {
         const skillsDir = this.config.skillsDir;
@@ -266,16 +342,16 @@
           fs.mkdirSync(skillsDir, { recursive: true });
         }
     
-        const existing = fs.readdirSync(skillsDir).filter((f) => f.endsWith(".md"));
+        const existing = fs.readdirSync(skillsDir).filter(
+          (f) => f.endsWith(".md") && !f.endsWith(".bak")
+        );
         if (existing.length > 0) return;
     
-        // Skills default serao criadas separadamente
-        logger.info("[SkillsManager] Diretorio de skills vazio. Skills padrao serao criadas.");
+        logger.info("[SkillsManager] Diretorio de skills vazio. Use 'skills/' para adicionar skills.");
       }
     
       /**
        * Carrega skills baseadas no contexto da tarefa atual.
-       * Analisa o input do usuario para determinar quais skills sao necessarias.
        */
       loadSkillsForTask(userInput: string, currentContext?: string): string[] {
         const combinedContext = `${userInput} ${currentContext || ""}`;
@@ -283,7 +359,7 @@
       }
     
       /**
-       * Retorna descricao de todas as skills para inclusao no system prompt.
+       * Retorna sumario de todas as skills.
        */
       getSkillsSummary(): string {
         const skills = this.loadAllSkills();
@@ -293,10 +369,76 @@
           .map((s) => `- **${s.title}**: ${s.description}`)
           .join("\n");
       }
+    }
     
-}
+    // ============================================================
+    // Helpers para fallback (formato antigo)
+    // ============================================================
     
+    function extractTitleFromBody(body: string): string | null {
+      const match = body.match(/^#\s+(.+)/m);
+      return match ? match[1].trim() : null;
+    }
+    
+    function extractDescriptionLegacy(body: string): string {
+      // Primeiro paragrafo significativo apos o titulo
+      const lines = body.split("\n");
+      let foundTitle = false;
+    
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        if (trimmed.startsWith("#")) {
+          foundTitle = true;
+          continue;
+        }
+        if (trimmed.startsWith("##")) continue;
+        if (trimmed.startsWith("---")) continue;
+    
+        if (foundTitle || trimmed.length > 10) {
+          let desc = trimmed.replace(/^[#*\s]*/, "").trim();
+          if (desc.length > 100) {
+            desc = desc.substring(0, 100) + "...";
+          }
+          return desc;
+        }
+      }
+    
+      return "";
+    }
+    
+    function extractKeywordsLegacy(content: string, name: string): string[] {
+      const keywords: string[] = [name.toLowerCase(), ...name.split(/[-_\s]+/).map((k) => k.toLowerCase())];
+    
+      // Extrair da secao ## Keywords / ## Palavras-chave
+      const kwMatch = content.match(/##\s*(?:Keywords|Palavras[- ]chave)\s*\n([^#]+)/i);
+      if (kwMatch) {
+        kwMatch[1].split(/[,;\n]+/).forEach((kw) => {
+          const trimmed = kw.trim().toLowerCase();
+          if (trimmed && !keywords.includes(trimmed)) {
+            keywords.push(trimmed);
+          }
+        });
+      }
+    
+      // Extrair tags do frontmatter antigo: ---tags: [a, b, c]---
+      const tagsMatch = content.match(/---\ntags:\s*\[([^\]]+)\]\n---/);
+      if (tagsMatch) {
+        tagsMatch[1].split(",").forEach((t) => {
+          const trimmed = t.trim().toLowerCase().replace(/['"]/g, "");
+          if (trimmed && !keywords.includes(trimmed)) {
+            keywords.push(trimmed);
+          }
+        });
+      }
+    
+      return keywords;
+    }
+    
+    // ============================================================
     // Singleton
+    // ============================================================
+    
     let defaultManager: SkillsManager | null = null;
     
     export function getSkillsManager(): SkillsManager {

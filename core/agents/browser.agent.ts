@@ -84,3 +84,13 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         `
         });
         
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.register({
+      name: browserAgent.name,
+      description: "Web navigation and browser automation. Can navigate websites, fill forms, extract text, and take screenshots.",
+      agent: browserAgent,
+      role: "browser",
+      useWhen: ["web", "internet", "navigation", "scraping"],
+    });
+    

@@ -50,3 +50,13 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         `
     });
     
+    // Registrar no AgentRegistry
+    import { agentRegistry } from "./agent-registry";
+    agentRegistry.register({
+      name: assistantAgent.name,
+      description: "General conversation, questions and explanations. Can search memory.",
+      agent: assistantAgent,
+      role: "assistant",
+      useWhen: ["conversation", "greetings", "general questions"],
+    });
+    

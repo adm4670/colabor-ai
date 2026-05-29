@@ -41,3 +41,6 @@
     
 ## Fatos
 - [2026-05-29] tínhamos conversado antes, e na época eu não encontrei nenhum registro de conversas anteriores substanciais
+
+## Preferencias
+- [2026-05-29] que eu comece a implementar alguma das melhorias?** Posso atacar os problemas por prioridade — começando pelos críticos
