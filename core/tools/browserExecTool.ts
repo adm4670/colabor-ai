@@ -308,6 +308,7 @@ export const browserExecTool = {
               const delta = direction === "up" ? -scrollAmount : scrollAmount;
     
               await page.evaluate((deltaY: number) => {
+                // @ts-ignore - window is valid inside page.evaluate()
                 window.scrollBy(0, deltaY);
               }, delta);
     

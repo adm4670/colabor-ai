@@ -241,14 +241,11 @@ import type { LLMProviderType } from "../types";
                 messages: this.history as any,
                 tools: this.tools.length ? this.tools : undefined,
                 tool_choice: this.tools.length ? "auto" : undefined,
-                extra_body: {
-                  reasoning_effort: "high",
-                },
-              }),
+              } as any),
               3 // maxRetries
             );
     
-            const msg = response.choices[0].message;
+            const msg = (response as any).choices[0].message;
     
             console.log("\n[Agent] Resposta do modelo recebida");
     

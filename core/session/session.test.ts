@@ -143,14 +143,14 @@
         it("deve emitir e consumir eventos", async () => {
           const stream = new EventStream();
     
-          stream.push(createEvent("agent_start"));
-          stream.push(createEvent("turn_start", { content: "Step 1" }));
-          stream.push(createEvent("text_delta", { content: "Processando..." }));
+          stream.push(createEvent("agent_start" as any as any));
+          stream.push(createEvent("turn_start", { content: "Step 1" } as any as any));
+          stream.push(createEvent("text_delta", { content: "Processando..." } as any as any));
     
           const events: any[] = [];
           setTimeout(() => {
-            stream.push(createEvent("agent_end"));
-            stream.end("done");
+            stream.push(createEvent("agent_end" as any as any));
+            stream.end("done" as any as any);
           }, 10);
     
           for await (const event of stream) {
@@ -163,11 +163,11 @@
         });
     
         it("deve retornar o resultado final", async () => {
-          const stream = new EventStream<string>();
+          const stream = new EventStream<any>();
     
           setTimeout(() => {
-            stream.push(createEvent("agent_end"));
-            stream.end("resultado_final");
+            stream.push(createEvent("agent_end" as any as any));
+            stream.end("resultado_final" as any as any);
           }, 10);
     
           const result = await stream.result();

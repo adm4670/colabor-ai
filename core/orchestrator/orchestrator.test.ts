@@ -63,9 +63,9 @@ Always respond ONLY with valid JSON:
       return;
     }
 
-    const result = await orchestrator.run(
+    const result = await orchestrator.run({ input: 
       "Calculate 2 + 3 and explain the result."
-    );
+     });
 
     expect(result).toBeDefined();
     expect(typeof result).toBe("string");
