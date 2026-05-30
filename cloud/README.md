@@ -1,145 +1,136 @@
-# colabor-ai Cloud
+# colabor-ai Cloud Backend
     
-    Backend do colabor-ai — orquestrador de agentes com sumarização inteligente
-    de contexto, execução local remota via WebSocket e memória de longo prazo.
+    > O cerebro do assistente. Pensa, decide e coordena tudo. O app so mostra o resultado.
     
-    ## Arquitetura
+    ---
+    
+    ## O que e isso?
+    
+    Imagine um **carro autonomo**: voce ve o volante girar, mas quem dirige e um computador. Aqui e igual:
+    - O **app no Windows** e o carro (voce ve a conversa na tela)
+    - O **cloud** e o motorista (pensa, decide, coordena)
+    - As **ferramentas locais** sao as maos (mexem nos seus arquivos de verdade)
     
     ```
-    Cliente (Electron/React)
-      │  WebSocket + REST (JWT)
-      ▼
-    Server (Express + ws)
-      ├── /auth          → JWT login/verify/refresh
-      ├── /chat          → REST chat endpoint
-      └── /ws            → WebSocket streaming + tool protocol
-           │
-           ▼
-      AgentOrchestrator
-      ├── PlannerAgent    → Decide qual agente usar (via LLM)
-      ├── ContextEngine   → Sumarização LLM com 3 zonas (intacta/sumarizada/descartada)
-      ├── MemoryEngine    → Busca semântica em MEMORY.md + notas diárias
-      └── Agents
-           ├── assistant      → cloud
-           ├── python_code    → cloud
-           ├── file_system    → local (via WS tool_call)
-           ├── shell          → local (via WS tool_call)
-           └── desktop        → local (via WS tool_call)
+      Voce digita: "organize meus downloads"
+           |
+           v
+      [App Windows] ---> [Cloud Backend] ---> [DeepSeek IA]
+                               |
+                         "Vou usar o agente file_system"
+                               |
+                         [Seu PC] executa e organiza
+                               |
+           v
+      Resposta: "Pronto! 42 arquivos organizados em 3 pastas"
     ```
     
-    ## API Endpoints
+    ---
     
-    ### Auth
-    | Método | Rota | Descrição |
-    |--------|------|-----------|
-    | POST | `/auth/login` | Login com API key, retorna JWT |
-    | POST | `/auth/verify` | Verifica validade do token |
-    | POST | `/auth/refresh` | Renova token |
+    ## Instalacao (3 passos)
     
-    ### Chat
-    | Método | Rota | Descrição |
-    |--------|------|-----------|
-    | POST | `/chat/message` | Envia mensagem (autenticado) |
-    | GET | `/chat/stream/:sessionId` | Info do stream WS |
-    | GET | `/chat/sessions` | Lista sessões ativas |
-    
-    ### WebSocket
-    | Endpoint | Descrição |
-    |----------|-----------|
-    | `ws://host:3001/ws?token=JWT&sessionId=ID` | Conexão persistente |
-    
-    **Mensagens do servidor:**
-    - `{ type: "stream", payload: { chunkType, content, agent } }` — Streaming de resposta
-    - `{ type: "tool_call", payload: { id, agent, tool, params, requireConfirmation } }` — Executar ferramenta local
-    
-    **Mensagens do cliente:**
-    - `{ type: "chat", payload: { message } }` — Enviar mensagem
-    - `{ type: "tool_result", payload: { id, status, result } }` — Resultado da ferramenta
-    - `{ type: "ping" }` — Keepalive
-    
-    ## Como rodar
-    
+    ### 1. Instalar dependencias
     ```bash
-    # Instalar dependências
+    cd cloud
     npm install
-    
-    # Configurar variáveis de ambiente
-    cp .env.example .env
-    # Edite .env com sua DEEPSEEK_API_KEY
-    
-    # Desenvolvimento
-    npm run dev
-    
-    # Build
-    npm run build
-    
-    # Produção
-    npm start
     ```
     
-    ## Scripts
+    ### 2. Configurar a chave da IA
+    ```bash
+    cp .env.example .env
+    # Edite .env e coloque sua chave:
+    # DEEPSEEK_API_KEY=sk-sua-chave-aqui
+    ```
     
-    | Script | Descrição |
-    |--------|-----------|
-    | `npm run build` | Compila TypeScript |
-    | `npm run dev` | Roda com ts-node |
-    | `npm start` | Roda compilado (dist/) |
-    | `npm test` | Executa testes unitários |
-    | `npm run lint` | Verifica código com ESLint |
-    | `npm run lint:fix` | Corrige problemas de lint |
-    | `npm run format` | Formata com Prettier |
-    | `npm run docs` | Gera documentação com TypeDoc |
+    ### 3. Rodar
+    ```bash
+    npm run dev
+    # Servidor inicia em http://localhost:3001
+    ```
     
-    ## Variáveis de Ambiente
+    ---
     
-    | Variável | Padrão | Descrição |
-    |----------|--------|-----------|
-    | `PORT` | `3001` | Porta do servidor |
-    | `NODE_ENV` | `development` | Ambiente |
-    | `JWT_SECRET` | `dev-secret-change-me` | Chave JWT |
-    | `JWT_EXPIRES_IN` | `24h` | Expiração do token |
-    | `LLM_PROVIDER` | `deepseek` | Provedor LLM |
-    | `DEEPSEEK_API_KEY` | — | API key DeepSeek |
-    | `OPENAI_API_KEY` | — | API key OpenAI |
-    | `TOOL_TIMEOUT_MS` | `60000` | Timeout tool calls |
-    | `MEMORY_DIR` | `./memory` | Diretório de memória |
+    ## Comandos
     
-    ## Estrutura de Diretórios
+    | Comando | O que faz |
+    |---------|-----------|
+    | `npm run dev` | Inicia o servidor em modo desenvolvimento |
+    | `npm run build` | Compila o TypeScript |
+    | `npm test` | Roda os 42 testes automatizados |
+    | `npm run lint` | Verifica se o codigo esta bem escrito |
+    | `npm run format` | Formata o codigo automaticamente |
+    | `npm run docs` | Gera documentacao tecnica (TypeDoc) |
+    
+    ---
+    
+    ## Como funciona (explicacao simples)
+    
+    ### O Orchestrator (o maestro)
+    
+    O Orchestrator e como um **maestro de orquestra**. Quando voce manda uma mensagem, ele:
+    1. Le o que voce escreveu
+    2. Decide qual musico (agente) vai tocar
+    3. Passa a instrucao e espera o resultado
+    4. Se nao ficou bom, pede pra tocar de novo
+    
+    ### Os Agentes (os musicos)
+    
+    Cada agente sabe fazer uma coisa muito bem:
+    
+    | Agente | Especialidade | Onde roda |
+    |--------|--------------|-----------|
+    | Planner | Decide quem vai trabalhar | Nuvem |
+    | Python | Faz contas e analisa dados | Nuvem |
+    | Assistant | Conversa e explica coisas | Nuvem |
+    | File System | Mexe em arquivos e pastas | Seu PC |
+    | Shell | Roda comandos no terminal | Seu PC |
+    | Desktop | Print, clipboard, processos | Seu PC |
+    
+    ### A Memoria (o cerebro)
+    
+    O sistema tem dois tipos de memoria, como uma pessoa:
+    
+    - **Curto prazo**: a conversa atual. Quando fica muito longa, o sistema faz um resumo inteligente (como voce anotando os pontos importantes de uma reuniao)
+    - **Longo prazo**: fatos que nunca esquece. Salvos em arquivos para consultas futuras
+    
+    ---
+    
+    ## Estrutura de pastas
     
     ```
     cloud/
-    ├── src/
-    │   ├── server.ts              # Entrypoint Express + WS
-    │   ├── routes/
-    │   │   ├── auth.ts            # JWT endpoints
-    │   │   └── chat.ts            # Chat endpoints
-    │   ├── orchestrator/
-    │   │   └── orchestrator.ts    # Fluxo Planner → Agent → Reflection
-    │   ├── agents/
-    │   │   ├── planner.ts         # Decide agente via LLM
-    │   │   └── python.ts          # Executor Python
-    │   ├── context/
-    │   │   └── context-engine.ts  # Sumarização LLM (3 zonas)
-    │   ├── memory/
-    │   │   └── memory-engine.ts   # Busca semântica
-    │   ├── protocol/
-    │   │   └── tool-protocol.ts   # Tipos WS (tool_call/tool_result)
-    │   ├── llm/
-    │   │   └── provider.ts        # Cliente OpenAI/DeepSeek
-    │   ├── utils/
-    │   │   └── logger.ts          # Logger
-    │   └── types/
-    │       └── index.ts           # Tipos compartilhados
-    ├── __tests__/                 # Testes unitários
-    ├── docs/                      # Documentação gerada
-    ├── eslint.config.js
-    ├── jest.config.js
-    ├── tsconfig.json
-    ├── package.json
-    └── .env.example
+      src/
+        server.ts              # O coracao: inicia o servidor
+        orchestrator/           # O maestro: coordena os agentes
+        agents/                 # Os musicos: cada um faz uma coisa
+        context/                # A memoria: gerencia o historico
+        memory/                 # O arquivo: busca e salva fatos
+        protocol/               # A lingua: como cloud e app conversam
+        routes/                 # As portas: por onde chegam as mensagens
+      __tests__/                # Os exames: 42 testes que validam tudo
+      docs/                     # Documentacao bonita (HTML com Tailwind)
     ```
     
-    ## Licença
+    ---
     
-    Propietário. Todos os direitos reservados.
+    ## Variaveis de ambiente (.env)
+    
+    So uma e obrigatoria. O resto tem valor padrao.
+    
+    | Variavel | Para que serve | Padrao |
+    |----------|---------------|--------|
+    | `DEEPSEEK_API_KEY` | Chave da IA (obrigatoria!) | - |
+    | `PORT` | Porta do servidor | 3001 |
+    | `JWT_SECRET` | Chave de seguranca | (valor padrao) |
+    | `TOOL_TIMEOUT_MS` | Tempo maximo para ferramentas | 60000 (1 min) |
+    
+    ---
+    
+    ## Documentacao visual
+    
+    Abra `docs/index.html` no navegador para ver uma pagina bonita explicando tudo com desenhos e cores.
+    
+    > "Qualquer tecnologia suficientemente avancada e indistinguivel de magia." — Arthur C. Clarke
+    
+    Aqui a gente explica a magica.
     
