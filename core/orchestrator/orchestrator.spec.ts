@@ -43,7 +43,7 @@ describe("AgentOrchestrator", () => {
 
     const orchestrator = new AgentOrchestrator(planner, []);
 
-    const result = await orchestrator.run("Test task");
+    const result = await orchestrator.run({ input: "Test task" });
 
     expect(planner.run).toHaveBeenCalled();
     expect(result).toBe("Task completed");
@@ -76,7 +76,7 @@ describe("AgentOrchestrator", () => {
       }
     ]);
 
-    const result = await orchestrator.run("Test task");
+    const result = await orchestrator.run({ input: "Test task" });
 
     expect(worker.run).toHaveBeenCalledWith("Do something");
     expect(result).toBe("Done");
@@ -109,7 +109,7 @@ describe("AgentOrchestrator", () => {
       }
     ]);
 
-    await orchestrator.run("Initial task");
+    await orchestrator.run({ input: "Initial task" });
 
     const secondPlannerCall = planner.run.mock.calls[1][0];
 
@@ -129,7 +129,7 @@ describe("AgentOrchestrator", () => {
 
     const orchestrator = new AgentOrchestrator(planner, []);
 
-    await expect(orchestrator.run("Task"))
+    await expect(orchestrator.run({ input: "Task" }))
       .rejects
       .toThrow("Agent not found");
 
@@ -154,7 +154,7 @@ describe("AgentOrchestrator", () => {
       }
     ]);
 
-    const result = await orchestrator.run("Loop task");
+    const result = await orchestrator.run({ input: "Loop task" });
 
     expect(planner.run).toHaveBeenCalledTimes(10);
     expect(result).toContain("worker result");

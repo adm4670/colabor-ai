@@ -158,10 +158,47 @@ async function startTelegramAgent() {
       const history = getHistory(chatId);
 
       // EXECUTA AGENTS
-      const response = await orchestrator.run({
-        input: text,
-        history,
-      });
+      // EXECUTA AGENTS com feedback de progresso
+          // So mostra progresso se demorar mais de 2 segundos
+          let progressMsg: any = null;
+          let progressShown = false;
+    
+          const sendProgress = async (message: string) => {
+            try {
+              if (!progressShown) {
+                progressMsg = await bot.sendMessage(chatId, message);
+                progressShown = true;
+              } else if (progressMsg) {
+                await bot.editMessageText(message, {
+                  chat_id: chatId,
+                  message_id: progressMsg.message_id,
+                });
+              }
+            } catch {
+              try {
+                progressMsg = await bot.sendMessage(chatId, message);
+                progressShown = true;
+              } catch { /* silencioso */ }
+            }
+          };
+    
+          let progressActive = false;
+          const progressTimer = setTimeout(() => { progressActive = true; }, 2000);
+    
+          const onProgress = async (message: string) => {
+            if (progressActive) await sendProgress(message);
+          };
+    
+          const response = await orchestrator.run({
+            input: text,
+            history,
+            onProgress,
+          });
+    
+          clearTimeout(progressTimer);
+          if (progressShown && progressMsg) {
+            try { await bot.deleteMessage(chatId, progressMsg.message_id); } catch { /* ok */ }
+          }
 
       addMessage(chatId, {
         role: "assistant",

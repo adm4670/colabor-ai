@@ -83,9 +83,9 @@ import { reflectorAgent } from "../agents/reflector.agent";
       input: string;
       history?: Message[];
       sessionId?: string;
+      /** Callback para feedback de progresso ao usuario */
+      onProgress?: (message: string) => Promise<void>;
     };
-    
-    /** Resultado da reflexao sobre execucao de um agente */
     interface ReflectionResult {
       success: "yes" | "partial" | "no";
       complete: boolean;
@@ -246,10 +246,16 @@ import { reflectorAgent } from "../agents/reflector.agent";
         })().catch(() => {});
       }
     
-  async run({ input, history = [], sessionId }: RunInput) {
+  async run(runInput: RunInput) {
+        const { input, history = [], sessionId, onProgress } = runInput;
         if (sessionId) this.sessionId = sessionId;
     
         this.eventStream.push(createEvent("agent_start"));
+    
+            // Feedback inicial para o usuario
+            if (onProgress) {
+              onProgress("🤔 Analisando sua mensagem...").catch(() => {});
+            }
     
         // === EventStream consumer (telemetria) ===
         this.consumeEventStream();
@@ -266,7 +272,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
         if (!checkRateLimit(this.sessionId)) {
           const errorMsg = "Limite de mensagens excedido para esta sessao.";
           this.eventStream.push(createEvent("agent_end", { content: errorMsg }));
-          this.eventStream.end(errorMsg);
+          this.eventStream.end(errorMsg as any);
           return errorMsg;
         }
     
@@ -356,6 +362,9 @@ import { reflectorAgent } from "../agents/reflector.agent";
     `;
     
           this.eventStream.push(createEvent("text_start", { content: "Consultando planner..." }));
+              if (onProgress) {
+                onProgress("🧠 Planejando resposta...").catch(() => {});
+              }
           const decision = await this.planner.run(plannerPrompt);
           this.eventStream.push(createEvent("text_delta", { content: "Planner respondeu." }));
     
@@ -396,7 +405,10 @@ import { reflectorAgent } from "../agents/reflector.agent";
           }
     
           // Stop condition
-          if (parsed.agent === "finish") {
+              if (parsed.agent === "finish") {
+                if (onProgress) {
+                  onProgress("✨ Formatando resposta...").catch(() => {});
+                }
             if (this.debug) {
               console.log("\nORCHESTRATION FINISHED");
             }
@@ -430,7 +442,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
     
             this.eventStream.push(createEvent("turn_end", { content: lastResult }));
             this.eventStream.push(createEvent("agent_end"));
-            this.eventStream.end(lastResult);
+            this.eventStream.end(lastResult as any);
             return lastResult || parsed.instruction || "Concluido.";
           }
     
@@ -440,7 +452,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
               console.warn("Repeated instruction detected. Stopping loop.");
             }
             this.eventStream.push(createEvent("agent_end"));
-            this.eventStream.end(lastResult || context);
+            this.eventStream.end((lastResult || context) as any);
             return lastResult || context;
           }
     
@@ -462,11 +474,15 @@ import { reflectorAgent } from "../agents/reflector.agent";
           }
     
           this.eventStream.push(
-            createEvent("tool_call_start", {
-              toolName: parsed.agent,
-              content: parsed.instruction,
-            })
-          );
+                createEvent("tool_call_start", {
+                  toolName: parsed.agent,
+                  content: parsed.instruction,
+                })
+              );
+    
+              if (onProgress) {
+                onProgress(`⚙️ Executando ${parsed.agent}...`).catch(() => {});
+              }
     
           // Usar ContextEngine para gerenciar o prompt do agente (NOVO)
           const contextMessages = context
@@ -506,6 +522,9 @@ import { reflectorAgent } from "../agents/reflector.agent";
           );
     
           // === REFLECTION STEP (NOVO) ===
+              if (onProgress && this.reflectionCount < maxReflections) {
+                onProgress("🔍 Avaliando resultado...").catch(() => {});
+              }
           if (this.reflectionCount < maxReflections) {
             const reflection = await this.reflectOnResult(
               input,
@@ -559,7 +578,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
         });
     
         this.eventStream.push(createEvent("agent_end"));
-        this.eventStream.end(lastResult);
+        this.eventStream.end(lastResult as any);
         return lastResult || "Nao foi possivel concluir a tarefa.";
       }
     

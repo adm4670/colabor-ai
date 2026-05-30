@@ -63,3 +63,14 @@
 
 ## Aprendizados
 - [2026-05-29] - *Relatório semanal de procrastinação:* quantas tarefas adiadas, quantas concluídas, padrões (ex: "você sempre adia reuniões às segundas")
+
+## Aprendizados
+- [2026-05-30] 🚀 Próximo passo: 22h14, já era
+- [2026-05-30] 🚀 Próximo passo: 22h15
+
+## Fatos
+- [2026-05-30] rebuild + deploy para ativar tudo
+
+## Preferencias
+- [2026-05-30] - `src/agents/profileExtractor
+- [2026-05-30] objetivos, etc
