@@ -104,3 +104,6 @@
 
 ## Preferencias
 - [2026-05-30] fazer algum ajuste no conteúdo?
+
+## Preferencias
+- [2026-05-30] - *A)* Commitar só o `memory/` + adicionar os artefatos ao `
