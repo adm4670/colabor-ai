@@ -1,0 +1,6 @@
+dist/
+node_modules/
+docs/
+coverage/
+__tests__/
+*.js

@@ -22,7 +22,8 @@
       | "tool_call_end"
       | "tool_execution_start"
       | "tool_execution_update"
-      | "tool_execution_end";
+      | "tool_execution_end"
+      | "progress";
     
     export interface StreamEvent {
       type: StreamEventType;

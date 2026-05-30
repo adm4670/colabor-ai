@@ -206,7 +206,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
        * Consome o EventStream para telemetria e logging.
        * Loga tool calls, erros, e steps completados.
        */
-      private consumeEventStream(): void {
+      private consumeEventStream(onProgress?: (msg: string) => Promise<void>): void {
         const startTime = Date.now();
         let currentTool = "";
         
@@ -215,6 +215,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
             switch (event.type) {
               case "tool_call_start":
                 currentTool = event.toolName || "";
+                // Progresso de tool delegado ao agent.ts (reasoning_content + tool args)
                 if (this.debug) {
                   console.log(`  [EVENT] Tool call start: ${currentTool}`);
                 }
@@ -238,7 +239,10 @@ import { reflectorAgent } from "../agents/reflector.agent";
                   console.log(`  [EVENT] Agent finished. Duration: ${duration}ms`);
                 }
                 break;
-                
+              case "progress":
+                onProgress?.(event.content || "");
+                break;
+
               default:
                 break;
             }
@@ -254,11 +258,11 @@ import { reflectorAgent } from "../agents/reflector.agent";
     
             // Feedback inicial para o usuario
             if (onProgress) {
-              onProgress("🤔 Analisando sua mensagem...").catch(() => {});
+              onProgress("\u{1F4A1} Entendendo: \"" + input.slice(0, 70) + (input.length > 70 ? "\u2026" : "") + "\"").catch(() => {});
             }
     
         // === EventStream consumer (telemetria) ===
-        this.consumeEventStream();
+        this.consumeEventStream(onProgress);
         this.reflectionCount = 0;
     
         if (this.debug) {
@@ -288,6 +292,12 @@ import { reflectorAgent } from "../agents/reflector.agent";
           content: input,
           timestamp: Date.now(),
         });
+
+        // Alimentar ContextEngine com input do usuario
+        this.contextEngine.addMessage({
+          role: "user",
+          content: input,
+        });
     
         const formattedHistory = this.formatHistory(history);
     
@@ -296,6 +306,8 @@ import { reflectorAgent } from "../agents/reflector.agent";
         if (this.debug && memoryContext.length > 50) {
           console.log("Memory context loaded:", memoryContext.slice(0, 100) + "...");
         }
+
+        await onProgress?.("\u{1F4DA} Recuperando memorias relevantes...");
     
         let context = `
     User request:
@@ -363,7 +375,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
     
           this.eventStream.push(createEvent("text_start", { content: "Consultando planner..." }));
               if (onProgress) {
-                onProgress("🧠 Planejando resposta...").catch(() => {});
+                onProgress("\u{1F5FA}\uFE0F Decidindo a melhor abordagem...").catch(() => {});
               }
           const decision = await this.planner.run(plannerPrompt);
           this.eventStream.push(createEvent("text_delta", { content: "Planner respondeu." }));
@@ -407,7 +419,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
           // Stop condition
               if (parsed.agent === "finish") {
                 if (onProgress) {
-                  onProgress("✨ Formatando resposta...").catch(() => {});
+                  onProgress("\u{1F4DD} Preparando a resposta final...").catch(() => {});
                 }
             if (this.debug) {
               console.log("\nORCHESTRATION FINISHED");
@@ -418,6 +430,12 @@ import { reflectorAgent } from "../agents/reflector.agent";
               role: "assistant",
               content: lastResult || parsed.instruction || "Concluido.",
               timestamp: Date.now(),
+            });
+
+            // Registrar resposta final no ContextEngine
+            this.contextEngine.addMessage({
+              role: "assistant",
+              content: lastResult || parsed.instruction || "Concluido.",
             });
     
             // Salvar nota diaria automaticamente ao finalizar
@@ -481,7 +499,15 @@ import { reflectorAgent } from "../agents/reflector.agent";
               );
     
               if (onProgress) {
-                onProgress(`⚙️ Executando ${parsed.agent}...`).catch(() => {});
+                (() => {
+                    const instructionPreview = parsed.instruction
+                      ? parsed.instruction.slice(0, 80)
+                      : '';
+                    const dispatchMsg = instructionPreview
+                      ? '\u{1F9E0} ' + parsed.agent + ' \u2192 "' + instructionPreview + (parsed.instruction && parsed.instruction.length > 80 ? '\u2026' : '') + '"'
+                      : '\u{1F9E0} Acionando ' + parsed.agent + '...';
+                    onProgress(dispatchMsg).catch(() => {});
+                  })();
               }
     
           // Usar ContextEngine para gerenciar o prompt do agente (NOVO)
@@ -506,13 +532,13 @@ import { reflectorAgent } from "../agents/reflector.agent";
     ${parsed.instruction}
     
     Context so far:
-    ${this.contextEngine.buildContext().summary || context.slice(0, 3000)}
+    ${(await this.contextEngine.buildContext()).summary || context.slice(0, 3000)}
     
     Recent memory:
     ${memoryContext.slice(0, 1000)}
     `;
     
-          const result = await target.agent.run(agentPrompt);
+          const result = await target.agent.run(agentPrompt, onProgress);
     
           this.eventStream.push(
             createEvent("tool_call_end", {
@@ -523,7 +549,7 @@ import { reflectorAgent } from "../agents/reflector.agent";
     
           // === REFLECTION STEP (NOVO) ===
               if (onProgress && this.reflectionCount < maxReflections) {
-                onProgress("🔍 Avaliando resultado...").catch(() => {});
+                onProgress("\u{1F50E} Revisando se a resposta ficou boa...").catch(() => {});
               }
           if (this.reflectionCount < maxReflections) {
             const reflection = await this.reflectOnResult(
@@ -564,6 +590,13 @@ import { reflectorAgent } from "../agents/reflector.agent";
           }
     
           context += `\n\n${parsed.agent} result:\n${result}`;
+          
+          // Alimentar o ContextEngine com o resultado do agente
+          this.contextEngine.addMessage({
+            role: "assistant",
+            content: `[${parsed.agent}]: ${result.slice(0, 2000)}`,
+          });
+          
           steps++;
         }
     

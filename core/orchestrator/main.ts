@@ -51,13 +51,20 @@ import "../agents/reflector.agent";
         if (!userInput.trim()) continue;
     
         try {
-          console.log("\n[Processando...]\n");
+          const onProgress = async (msg: string) => {
+            readline.clearLine(process.stdout, 0);
+            readline.cursorTo(process.stdout, 0);
+            process.stdout.write(`  ${msg}`);
+          };
+          console.log("");
           const response = await orchestrator.run({
             input: userInput,
             sessionId,
+            onProgress,
           });
-    
-          console.log("\nAssistant >", response, "\n");
+          console.log("");
+
+          console.log("Assistant >", response, "\n");
         } catch (err) {
           console.error("Erro ao executar orchestrator:", err);
         }

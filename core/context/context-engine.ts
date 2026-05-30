@@ -2,14 +2,16 @@
      * ContextEngine - Gerenciamento inteligente de contexto
      *
      * Controla o orcamento de tokens do historico de conversa,
-     * sumariza mensagens antigas quando necessario e mantem
+     * sumariza mensagens antigas usando LLM quando necessario e mantem
      * apenas o contexto relevante para o modelo.
      *
-     * v2: Integrado com MemoryEngine para compactacao inteligente.
+     * v3: Sumarizacao real com LLM + estrategia hibrida de 3 zonas.
      */
     
+    import OpenAI from "openai";
     import { logger } from "../utils/logger";
     import { getMemoryEngine } from "../memory/memory-engine";
+    import { createDefaultClient } from "../llm/provider";
     
     // ============================================================
     // Tipos
@@ -31,8 +33,14 @@
       recentRatio: number;
       /** Numero minimo de mensagens a manter apos sumarizacao (default: 6) */
       minMessages: number;
-      /** Modo de operacao: "trim" (corta) ou "summarize" (sumariza inteligente) */
+      /** Modo de operacao: "trim" (corta) ou "summarize" (sumariza inteligente com LLM) */
       mode: "trim" | "summarize";
+      /** Numero de mensagens recentes a manter intactas na zona 1 (default: 5) */
+      keepRecentIntact: number;
+      /** Numero maximo de mensagens na zona 2 (sumarizacao) (default: 10) */
+      summarizeZoneSize: number;
+      /** Modelo LLM para sumarizacao (default: usa o provider padrao) */
+      summaryModel?: string;
     }
     
     export interface ContextSummary {
@@ -55,6 +63,8 @@
       recentRatio: 0.6,
       minMessages: 6,
       mode: "summarize",
+      keepRecentIntact: 5,
+      summarizeZoneSize: 10,
     };
     
     /**
@@ -84,7 +94,7 @@
     }
     
     // ============================================================
-    // ContextEngine v2
+    // ContextEngine v3
     // ============================================================
     
     export class ContextEngine {
@@ -93,9 +103,17 @@
       private rawHistory: ContextMessage[] = [];
       private compressed: ContextSummary | null = null;
       private memoryEngine = getMemoryEngine();
+      private llmClient: OpenAI | null = null;
+      private summaryCache: Map<string, string> = new Map();
     
       constructor(config?: Partial<ContextEngineConfig>) {
         this.config = { ...DEFAULT_CONFIG, ...config };
+        // Inicializar cliente LLM para sumarizacao (lazy)
+        try {
+          this.llmClient = createDefaultClient();
+        } catch {
+          logger.warn("[ContextEngine] Nao foi possivel criar cliente LLM para sumarizacao. Usando fallback.");
+        }
       }
     
       /**
@@ -123,7 +141,7 @@
         }
       }
     
-  setHistory(messages: ContextMessage[]): void {
+      setHistory(messages: ContextMessage[]): void {
         this.rawHistory = [...messages];
         this.compressed = null; // invalida cache
       }
@@ -146,10 +164,10 @@
       /**
        * Processa o contexto: aplica compressao se necessario.
        * 
-       * Se mode="summarize", usa MemoryEngine para sumarizacao inteligente
+       * Se mode="summarize", usa LLM para sumarizacao inteligente
        * que preserva decisoes, preferencias e fatos importantes.
        */
-      buildContext(): ContextSummary {
+      async buildContext(): Promise<ContextSummary> {
         const history = [...this.rawHistory];
         const totalTokens = estimateMessagesTokens(history);
     
@@ -164,9 +182,9 @@
           return result;
         }
     
-        // Modo summarize: usar MemoryEngine para compressao inteligente
+        // Modo summarize: usar LLM para compressao inteligente
         if (this.config.mode === "summarize") {
-          return this.summarizeIntelligently(history);
+          return await this.summarizeIntelligently(history);
         }
     
         // Modo trim: compressao simples
@@ -177,36 +195,36 @@
        * Formatacao rapida para prompt do planner/agente.
        * Inclui user input, history e context summary.
        */
-      formatForPrompt(userInput: string, history?: string): string {
-        const context = this.buildContext();
+      async formatForPrompt(userInput: string, history?: string): Promise<string> {
+        const context = await this.buildContext();
     
         let result = `User request:
-${userInput}
-`;
+    ${userInput}
+    `;
     
         if (history) {
           result += `
-Conversation history:
-${history}
-`;
+    Conversation history:
+    ${history}
+    `;
         }
     
         if (context.summary) {
           result += `
-Summary of earlier context:
-${context.summary}
-`;
+    Summary of earlier context:
+    ${context.summary}
+    `;
         }
     
         if (context.summarizedCount > 0) {
           result += `
-[${context.summarizedCount} mensagens anteriores foram compactadas]
-`;
+    [${context.summarizedCount} mensagens anteriores foram compactadas]
+    `;
         }
     
         result += `
-Estimated tokens: ${context.estimatedTokens}
-`;
+    Estimated tokens: ${context.estimatedTokens}
+    `;
     
         return result;
       }
@@ -237,58 +255,160 @@ Estimated tokens: ${context.estimatedTokens}
       // ============================================================
     
       /**
-       * Sumarizacao inteligente usando MemoryEngine.
-       * Preserva informacoes semanticamente importantes.
+       * Estrategia hibrida de 3 zonas para compressao de contexto:
+       * 
+       * Zona 1 (ultimas N mensagens): mantidas INTACTAS
+       * Zona 2 (proximas M mensagens): SUMARIZADAS com LLM
+       * Zona 3 (restante): DESCARTADAS apos sumarizacao da zona 2
+       * 
+       * Preserva sempre: system prompt, tool definitions, ultima interacao.
        */
-      private summarizeIntelligently(history: ContextMessage[]): ContextSummary {
-        const { minMessages } = this.config;
-        const recentCount = Math.max(minMessages, Math.floor(history.length * 0.4));
-        const toKeep = history.slice(-recentCount);
-        const toSummarize = history.slice(0, -recentCount);
+      private async summarizeIntelligently(history: ContextMessage[]): Promise<ContextSummary> {
+        const { keepRecentIntact, summarizeZoneSize, minMessages } = this.config;
     
-        if (toSummarize.length === 0) {
-          const tokens = estimateMessagesTokens(toKeep);
+        // Separar system messages (sempre preservadas)
+        const systemMessages = history.filter((m) => m.role === "system");
+        const nonSystemMessages = history.filter((m) => m.role !== "system");
+    
+        if (nonSystemMessages.length <= keepRecentIntact) {
+          // Nem precisa sumarizar - muito poucas mensagens
+          const tokens = estimateMessagesTokens(history);
           return {
-            messages: toKeep,
+            messages: history,
             summarizedCount: 0,
             estimatedTokens: tokens,
           };
         }
     
-        // Usar MemoryEngine para compactar as mensagens antigas
-        const compactMessages = toSummarize.map((m) => ({
+        // Zona 1: ultimas N mensagens intactas
+        const zone1Start = Math.max(0, nonSystemMessages.length - keepRecentIntact);
+        const zone1 = nonSystemMessages.slice(zone1Start);
+    
+        // Zona 2: proximas M mensagens para sumarizar
+        const zone2Start = Math.max(0, zone1Start - summarizeZoneSize);
+        const zone2 = nonSystemMessages.slice(zone2Start, zone1Start);
+    
+        // Zona 3: o resto (sera descartado apos sumarizacao)
+        const zone3 = nonSystemMessages.slice(0, zone2Start);
+    
+        if (zone2.length === 0 && zone3.length === 0) {
+          const result = [...systemMessages, ...zone1];
+          return {
+            messages: result,
+            summarizedCount: 0,
+            estimatedTokens: estimateMessagesTokens(result),
+          };
+        }
+    
+        // Sumarizar zonas 2 e 3 juntas usando LLM
+        const allToSummarize = [...zone2, ...zone3];
+        let summary = "";
+    
+        // Tentar sumarizacao com LLM
+        if (this.llmClient) {
+          summary = await this.summarizeWithLLM(allToSummarize);
+        }
+    
+        // Fallback: sumario simples (MemoryEngine)
+        if (!summary || summary.length < 20) {
+          const compactMessages = allToSummarize.map((m) => ({
+            role: m.role,
+            content: m.content || "",
+          }));
+          const managed = this.memoryEngine.manageWorkingMemory(
+            compactMessages,
+            Math.floor(this.config.maxTokens * 0.3)
+          );
+          const summaryMsg = managed.find((m) => m.role === "system");
+          summary = summaryMsg?.content || this.generateSimpleSummary(allToSummarize);
+        }
+    
+        // Criar mensagem de sumario
+        const totalSummarized = zone2.length + zone3.length;
+        const summaryMessage: ContextMessage = {
+          role: "system",
+          content: `[Contexto anterior resumido - ${totalSummarized} mensagens]:
+    ${summary}`,
+        };
+    
+        // Montar resultado: system messages + summary + zona 1 (intacta)
+        const result = [...systemMessages, summaryMessage, ...zone1];
+        const estimatedTokens = estimateMessagesTokens(result);
+    
+        // Consolidar aprendizados das mensagens sumarizadas
+        const toConsolidate = allToSummarize.map((m) => ({
           role: m.role,
           content: m.content || "",
         }));
+        this.memoryEngine.consolidate(toConsolidate);
     
-        const managed = this.memoryEngine.manageWorkingMemory(
-          compactMessages,
-          Math.floor(this.config.maxTokens * 0.3)
+        logger.info(
+          `[ContextEngine] Sumarizacao hibrida: ${zone1.length} intactas, ${totalSummarized} sumarizadas (${estimatedTokens} tokens)`
         );
-    
-        // Extrair o resumo das mensagens compactadas
-        const summaryMsg = managed.find((m) => m.role === "system");
-        const summary = summaryMsg?.content || this.generateSimpleSummary(toSummarize);
-    
-        // Mensagem de resumo como contexto
-        const summaryMessage: ContextMessage = {
-          role: "system",
-          content: `[Contexto anterior resumido - ${toSummarize.length} mensagens]:
-${summary}`,
-        };
-    
-        const result = [summaryMessage, ...toKeep];
-        const estimatedTokens = estimateMessagesTokens(result);
-    
-        // Tambem consolidar aprendizados das mensagens sumarizadas
-        this.memoryEngine.consolidate(compactMessages);
     
         return {
           messages: result,
-          summarizedCount: toSummarize.length,
+          summarizedCount: totalSummarized,
           estimatedTokens,
           summary,
         };
+      }
+    
+      /**
+       * Sumarizacao com LLM.
+       * Envia mensagens antigas para o modelo pedindo um sumario
+       * estruturado que preserve decisoes, contexto e fatos importantes.
+       */
+      private async summarizeWithLLM(messages: ContextMessage[]): Promise<string> {
+        if (!this.llmClient || messages.length === 0) return "";
+    
+        // Construir o texto a ser sumarizado
+        const transcript = messages
+          .map((m) => `[${m.role}]: ${(m.content || "").slice(0, 500)}`)
+          .join("\n");
+    
+        // Cache key simples (hash do transcript)
+        const cacheKey = transcript.slice(0, 200);
+        if (this.summaryCache.has(cacheKey)) {
+          return this.summaryCache.get(cacheKey)!;
+        }
+    
+        const summarizationPrompt = `You are a context compressor. Summarize the following conversation transcript.
+    
+    RULES:
+    1. Preserve ALL decisions made, facts mentioned, and user preferences
+    2. Keep important context that affects future interactions
+    3. Include key questions asked and their answers
+    4. Output in Portuguese (PT-BR)
+    5. Be concise but complete - aim for 3-8 sentences
+    6. Format as plain text, no markdown
+    
+    Transcript to summarize:
+    ${transcript.slice(0, 6000)}
+    
+    Summary:`;
+    
+        try {
+          const response = await this.llmClient.chat.completions.create({
+            model: this.config.summaryModel || "deepseek-chat",
+            messages: [
+              { role: "system", content: "You are a precise context summarizer. Follow the rules exactly." },
+              { role: "user", content: summarizationPrompt },
+            ],
+            max_tokens: 500,
+            temperature: 0.3,
+          });
+    
+          const summary = response.choices[0]?.message?.content?.trim() || "";
+          if (summary) {
+            this.summaryCache.set(cacheKey, summary);
+            logger.info(`[ContextEngine] LLM summary generated (${estimateTokens(summary)} tokens)`);
+          }
+          return summary;
+        } catch (err) {
+          logger.warn(`[ContextEngine] LLM summarization failed: ${err}`);
+          return "";
+        }
       }
     
       /**
@@ -356,6 +476,8 @@ ${summary}`,
         defaultEngine = new ContextEngine({
           mode: "summarize",
           maxTokens: 8000,
+          keepRecentIntact: 5,
+          summarizeZoneSize: 10,
         });
       }
       return defaultEngine;

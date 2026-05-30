@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+    <meta charset="UTF-8">
+    <title>colabor-ai — Documentacao Completa da Arquitetura</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 2.5cm 2cm 2.5cm 2cm;
+        @bottom-center {
+          content: "colabor-ai — Documentacao v2.1 | Pagina " counter(page);
+          font-size: 9px;
+          color: #888;
+          font-family: 'Segoe UI', Arial, sans-serif;
+        }
+      }
+      @page :first {
+        @bottom-center { content: none; }
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.65;
+        color: #1a1a2e;
+      }
+    
+      /* ===== COVER PAGE ===== */
+      .cover {
+        page-break-after: always;
+        text-align: center;
+        padding-top: 120px;
+        background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        color: #e2e8f0;
+        height: 100vh;
+      }
+      .cover .logo { font-size: 72px; margin-bottom: 16px; }
+      .cover h1 {
+        font-size: 36pt; font-weight: 800; letter-spacing: -1px;
+        background: linear-gradient(135deg, #34d399, #60a5fa);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text; margin-bottom: 12px;
+      }
+      .cover .subtitle { font-size: 14pt; color: #94a3b8; margin-bottom: 48px; }
+      .cover .meta { font-size: 10pt; color: #64748b; margin-top: 80px; }
+      .cover .meta span { display: block; margin: 4px 0; }
+    
+      /* ===== TOC ===== */
+      .toc { page-break-after: always; }
+      .toc h2 { font-size: 20pt; color: #0f172a; border: none; margin-bottom: 24px; }
+      .toc ul { list-style: none; padding: 0; }
+      .toc li { padding: 8px 0; border-bottom: 1px dotted #cbd5e1; font-size: 11pt; }
+      .toc li a { color: #1e293b; text-decoration: none; }
+      .toc .toc-l2 { padding-left: 24px; font-size: 10pt; color: #475569; }
+    
+      /* ===== HEADINGS ===== */
+      h1 {
+        font-size: 24pt; font-weight: 800; color: #0f172a;
+        margin: 36px 0 16px 0; padding-bottom: 8px;
+        border-bottom: 3px solid #34d399; page-break-after: avoid;
+      }
+      h2 {
+        font-size: 16pt; font-weight: 700; color: #1e293b;
+        margin: 28px 0 12px 0; padding-bottom: 4px;
+        border-bottom: 2px solid #e2e8f0; page-break-after: avoid;
+      }
+      h3 {
+        font-size: 13pt; font-weight: 600; color: #334155;
+        margin: 20px 0 8px 0; page-break-after: avoid;
+      }
+    
+      p { margin: 8px 0 12px 0; text-align: justify; }
+    
+      code {
+        font-family: 'Consolas', monospace; font-size: 9pt;
+        background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #be123c;
+      }
+      pre {
+        background: #1e293b; color: #e2e8f0; padding: 16px 20px;
+        border-radius: 8px; font-family: 'Consolas', monospace;
+        font-size: 9pt; line-height: 1.5; overflow-x: auto;
+        margin: 12px 0; white-space: pre-wrap; word-break: break-word;
+        page-break-inside: avoid;
+      }
+      pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+    
+      table {
+        width: 100%; border-collapse: collapse; margin: 16px 0;
+        font-size: 10pt; page-break-inside: avoid;
+      }
+      th { background: #0f172a; color: #e2e8f0; padding: 10px 14px; text-align: left; font-weight: 600; }
+      td { padding: 8px 14px; border-bottom: 1px solid #e2e8f0; }
+      tr:nth-child(even) td { background: #f8fafc; }
+    
+      blockquote {
+        border-left: 4px solid #34d399; padding: 12px 20px; margin: 16px 0;
+        background: #f0fdf4; color: #065f46; font-style: italic;
+        border-radius: 0 8px 8px 0; page-break-inside: avoid;
+      }
+    
+      ul, ol { margin: 8px 0 12px 24px; }
+      li { margin: 4px 0; }
+    
+      .box { padding: 16px 20px; margin: 16px 0; border-radius: 8px; page-break-inside: avoid; }
+      .box-info { background: #eff6ff; border-left: 4px solid #3b82f6; }
+      .box-success { background: #f0fdf4; border-left: 4px solid #22c55e; }
+      .box-warning { background: #fffbeb; border-left: 4px solid #f59e0b; }
+    
+      .diagram {
+        background: #1e293b; color: #e2e8f0; padding: 20px;
+        border-radius: 8px; font-family: 'Consolas', monospace;
+        font-size: 8pt; line-height: 1.3; white-space: pre;
+        overflow-x: auto; margin: 16px 0; page-break-inside: avoid;
+      }
+    
+      .section-break { page-break-before: always; }
+    
+      .badge {
+        display: inline-block; padding: 3px 10px; border-radius: 12px;
+        font-size: 9pt; font-weight: 600; margin-right: 6px;
+      }
+      .badge-green { background: #dcfce7; color: #166534; }
+      .badge-blue { background: #dbeafe; color: #1e40af; }
+      .badge-yellow { background: #fef3c7; color: #92400e; }
+      .badge-red { background: #fee2e2; color: #991b1b; }
+    </style>
+    </head>
+    <body>
+    
+    <!-- COVER PAGE -->
+    <div class="cover">
+      <div class="logo">&#x2601;&#xFE0F;</div>
+      <h1>colabor-ai</h1>
+      <p class="subtitle">Plataforma de Orquestracao de Agentes de IA Colaborativos</p>
+      <p style="font-size:12pt;color:#cbd5e1;max-width:500px;margin:0 auto;">
+        Documentacao completa da arquitetura, modulos, agentes e protocolo de comunicacao
+      </p>
+      <div class="meta">
+        <span>Versao 2.1</span>
+        <span>Maio de 2026</span>
+        <span>github.com/adm4670/colabor-ai</span>
+      </div>
+    </div>
+    
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <h2>Sumario</h2>
+      <ul>
+        <li><a href="#visao-geral">1. Visao Geral</a></li>
+        <li class="toc-l2">1.1 O que e o colabor-ai?</li>
+        <li class="toc-l2">1.2 Filosofia do Projeto</li>
+        <li><a href="#arquitetura">2. Arquitetura Geral</a></li>
+        <li class="toc-l2">2.1 Diagrama de Alto Nivel</li>
+        <li class="toc-l2">2.2 Fluxo de uma Conversa</li>
+        <li><a href="#core">3. Modulo Core (Engine)</a></li>
+        <li class="toc-l2">3.1 Agent</li>
+        <li class="toc-l2">3.2 AgentOrchestrator</li>
+        <li class="toc-l2">3.3 ToolRegistry &amp; Tools</li>
+        <li class="toc-l2">3.4 Agentes Especializados</li>
+        <li><a href="#cloud">4. Modulo Cloud (Backend)</a></li>
+        <li class="toc-l2">4.1 Servidor (Express + WebSocket)</li>
+        <li class="toc-l2">4.2 Orchestrator Cloud Edition</li>
+        <li class="toc-l2">4.3 Memory Engine</li>
+        <li class="toc-l2">4.4 Context Engine</li>
+        <li class="toc-l2">4.5 Autenticacao (JWT)</li>
+        <li><a href="#client">5. Modulo Client (Desktop)</a></li>
+        <li class="toc-l2">5.1 Visao Geral do Client</li>
+        <li class="toc-l2">5.2 Ferramentas Locais</li>
+        <li><a href="#protocolo">6. Protocolo de Comunicacao</a></li>
+        <li class="toc-l2">6.1 WebSocket Messages</li>
+        <li class="toc-l2">6.2 Fluxo Tool Call/Result</li>
+        <li><a href="#stack">7. Stack Tecnologica</a></li>
+        <li><a href="#comecando">8. Guia de Inicio Rapido</a></li>
+        <li><a href="#roadmap">9. Roadmap</a></li>
+      </ul>
+    </div>
+    
+    <!-- 1. VISAO GERAL -->
+    <div class="section-break"></div>
+    <h1 id="visao-geral">1. Visao Geral</h1>
+    <h2>1.1 O que e o colabor-ai?</h2>
+    <p>O <strong>colabor-ai</strong> e uma plataforma open-source para criar e orquestrar <strong>agentes de IA especializados</strong> que colaboram entre si para resolver tarefas. Imagine uma equipe de mini-especialistas em IA, cada um excelente em uma area diferente, coordenados por um maestro inteligente.</p>
+    
+    <div class="box box-info">
+    <strong>Analogia:</strong> Assim como uma orquestra tem violinistas, pianistas e percussionistas, cada um tocando sua parte sob a regencia de um maestro, o colabor-ai tem agentes especializados (Chat, Python, FileSystem, etc.) orquestrados por um Planner que decide quem faz o que e em qual ordem.
+    </div>
+    
+    <table>
+    <tr><th>Agente</th><th>Especialidade</th><th>Onde Roda</th></tr>
+    <tr><td>Planner</td><td>Decidir qual agente deve agir e com qual instrucao</td><td>Cloud</td></tr>
+    <tr><td>Assistant</td><td>Conversa geral, explicacoes, duvidas</td><td>Cloud</td></tr>
+    <tr><td>Python</td><td>Calculos, analise de dados, execucao de codigo</td><td>Cloud</td></tr>
+    <tr><td>Writer</td><td>Formatacao da resposta final para o usuario</td><td>Cloud</td></tr>
+    <tr><td>File System</td><td>Ler, criar, editar e organizar arquivos no PC</td><td>Client (Windows)</td></tr>
+    <tr><td>Shell</td><td>Executar comandos CMD e PowerShell</td><td>Client (Windows)</td></tr>
+    <tr><td>Desktop</td><td>Screenshot, clipboard, processos e janelas</td><td>Client (Windows)</td></tr>
+    </table>
+    
+    <h2>1.2 Filosofia do Projeto</h2>
+    <blockquote>"Be genuinely helpful, not performatively helpful. Skip the 'Great question!' and 'I'd be happy to help!' — just help. Actions speak louder than filler words."</blockquote>
+    <ul>
+      <li><strong>Modularidade:</strong> cada agente e independente e pode ser substituido ou melhorado isoladamente</li>
+      <li><strong>Seguranca:</strong> ferramentas perigosas exigem confirmacao; Cloud e Client sao isolados</li>
+      <li><strong>Extensibilidade:</strong> novas ferramentas e agentes podem ser adicionados sem alterar o nucleo</li>
+      <li><strong>Transparencia:</strong> streaming de eventos permite que o usuario veja o progresso em tempo real</li>
+    </ul>
+    
+    <!-- 2. ARQUITETURA -->
+    <div class="section-break"></div>
+    <h1 id="arquitetura">2. Arquitetura Geral</h1>
+    <h2>2.1 Diagrama de Alto Nivel</h2>
+    <p>O colabor-ai e composto por <strong>tres modulos principais</strong> que se comunicam via WebSocket e compartilham tipos TypeScript:</p>
+    
+    <div class="diagram">
+    +====================================================================+
+    |                        colabor-ai v2.1                             |
+    |                                                                    |
+    |  +------------------+     WebSocket      +----------------------+  |
+    |  |     CLIENT       | &lt;================&gt; |       CLOUD          |  |
+    |  |  (Electron+React)|                    |   (Express+WS)       |  |
+    |  |                  |                    |                      |  |
+    |  |  - Interface UI  |                    |  - Orchestrator      |  |
+    |  |  - Tools Locais  |                    |  - PlannerAgent      |  |
+    |  |    (File System, |                    |  - PythonAgent       |  |
+    |  |     Shell,       |                    |  - MemoryEngine      |  |
+    |  |     Desktop)     |                    |  - ContextEngine     |  |
+    |  +------------------+                    |  - Auth (JWT)        |  |
+    |                                          +----------+-----------+  |
+    |                                                     |              |
+    |                                                     | OpenAI API   |
+    |                                                     v              |
+    |                                          +----------------------+  |
+    |                                          |   LLM PROVIDERS      |  |
+    |                                          |  (DeepSeek / OpenAI) |  |
+    |                                          +----------------------+  |
+    +====================================================================+
+    |                                                                    |
+    |  +--------------------------------------------------------------+ |
+    |  |                         CORE (shared)                         | |
+    |  |  agent.ts | orchestrator.ts | toolRegistry.ts | types        | |
+    |  +--------------------------------------------------------------+ |
+    +====================================================================+
+    </div>
+    
+    <h2>2.2 Fluxo de uma Conversa</h2>
+    <div class="diagram">
+    Usuario digita: "organize meus downloads por tipo de arquivo"
+        |
+        v
+    [Client] envia mensagem via WebSocket para o Cloud
+        |
+        v
+    [Cloud] Orchestrator recebe e aciona o PlannerAgent
+        |
+        v
+    [Planner] Decide: "file_system: liste os arquivos de Downloads"
+        |
+        v
+    [Cloud] Envia tool_call para o Client via WebSocket
+        |
+        v
+    [Client] Executa list_dir em C:\Users\...\Downloads
+        |
+        v
+    [Client] Retorna tool_result com a lista de arquivos
+        |
+        v
+    [Cloud] Planner avalia e decide: "file_system: mova .pdf para /PDFs..."
+        |
+        v
+    [Cloud] Envia nova tool_call (write_file / create_dir / move)
+        |
+        v
+    [Client] Executa as operacoes e retorna tool_result
+        |
+        v
+    [Cloud] Planner: "finish" | WriterAgent formata resposta
+        |
+        v
+    [Client] Exibe: "Pronto! 42 arquivos organizados em 3 pastas."
+    </div>
+    
+    <!-- 3. CORE -->
+    <div class="section-break"></div>
+    <h1 id="core">3. Modulo Core (Engine)</h1>
+    <p>O <strong>Core</strong> e a biblioteca compartilhada que contem as classes fundamentais usadas por todos os modulos. Esta na raiz do projeto (<code>core/</code>) e define a base para agentes, orquestradores e ferramentas.</p>
+    
+    <h2>3.1 Agent (<code>core/agent/agent.ts</code>)</h2>
+    <p>Cada agente e um wrapper sobre um modelo de linguagem (OpenAI/DeepSeek) que encapsula: <strong>personalidade</strong> (nome, papel, objetivo, backstory), <strong>historico de conversa</strong> (contexto da sessao), <strong>tools</strong> (ferramentas que pode chamar) e <strong>system prompt</strong> (instrucoes de comportamento).</p>
+    
+    <div class="box box-info">
+    <strong>Loop de Tool Calling:</strong> Quando o Agent detecta que o LLM retornou <code>tool_calls</code>, ele executa as funcoes registradas, adiciona os resultados ao historico, e reenvia para o LLM — repetindo ate que o modelo produza uma resposta textual final.
+    </div>
+    
+    <pre><code>const agent = new Agent({
+      name: "MathAgent",
+      role: "Math expert",
+      goal: "Solve mathematical problems",
+      backstory: "An AI specialized in calculations.",
+      model: "gpt-5-nano",
+      tools: [pythonExecTool],
+      functions: { execute_python: pythonExecTool.handler }
+    });
+    const resposta = await agent.run("Quanto e 352 x 127?");</code></pre>
+    
+    <h2>3.2 AgentOrchestrator (<code>core/orchestrator/orchestrator.ts</code>)</h2>
+    <p>O <strong>AgentOrchestrator</strong> e o maestro que coordena multiplos agentes:</p>
+    
+    <div class="diagram">
+    +-------------------------------------+
+    |        ORCHESTRATOR LOOP            |
+    |                                     |
+    |  1. Planner decide o que fazer      |
+    |  2. Planner escolhe um agente       |
+    |  3. Agente executa a tarefa         |
+    |  4. Resultado e registrado          |
+    |  5. Planner decide: continuar       |
+    |     ou "finish"?                    |
+    |  6. Se finish -> responde!          |
+    |     Se nao -> volta ao passo 1      |
+    |                                     |
+    |  (max. 10 iteracoes, protecao       |
+    |   contra loops infinitos)           |
+    +-------------------------------------+
+    </div>
+    
+    <p>O Planner responde sempre em JSON:</p>
+    <pre><code>// Precisa de acao:
+    { "agent": "python_code", "instruction": "Calcule 352 x 127 usando Python" }
+    
+    // Satisfeito:
+    { "agent": "finish", "instruction": "O resultado e 44.704" }</code></pre>
+    
+    <h2>3.3 ToolRegistry &amp; Tools</h2>
+    <table>
+    <tr><th>Componente</th><th>Descricao</th></tr>
+    <tr><td><code>ToolDefinition</code></td><td>Interface com name, description, parameters (JSON Schema) e funcao execute</td></tr>
+    <tr><td><code>ToolRegistry</code></td><td>Registro que armazena, busca e converte tools para formato OpenAI</td></tr>
+    <tr><td><code>pythonExecTool</code></td><td>Executa codigo Python via child_process com timeout de 10s</td></tr>
+    <tr><td><code>getCurrentDateTime</code></td><td>Retorna data/hora atual do sistema em ISO 8601</td></tr>
+    </table>
+    
+    <h2>3.4 Agentes Especializados</h2>
+    <table>
+    <tr><th>Agente</th><th>Funcao</th><th>Status</th></tr>
+    <tr><td>chatAgent</td><td>Conversa geral e respostas</td><td><span class="badge badge-green">feito</span></td></tr>
+    <tr><td>criticAgent</td><td>Avalia se resposta resolveu (SATISFIED/NOT_SATISFIED)</td><td><span class="badge badge-green">feito</span></td></tr>
+    <tr><td>dailyPlannerAgent</td><td>Organizacao de tarefas e planejamento diario</td><td><span class="badge badge-green">feito</span></td></tr>
+    <tr><td>executorAgent</td><td>Execucao de tarefas de um plano</td><td><span class="badge badge-green">feito</span></td></tr>
+    <tr><td>formatterAgent</td><td>Formatacao de respostas</td><td><span class="badge badge-green">feito</span></td></tr>
+    <tr><td>researchAgent</td><td>Pesquisa e analise de informacoes</td><td><span class="badge badge-green">feito</span></td></tr>
+    <tr><td>summarizerAgent</td><td>Resumo e simplificacao de textos</td><td><span class="badge badge-green">feito</span></td></tr>
+    </table>
+    
+    <!-- 4. CLOUD -->
+    <div class="section-break"></div>
+    <h1 id="cloud">4. Modulo Cloud (Backend)</h1>
+    <blockquote>O Cloud e o <strong>cerebro</strong> do assistente. Ele pensa, decide e coordena tudo. O app (Client) so mostra o resultado.</blockquote>
+    
+    <h2>4.1 Servidor (Express + WebSocket)</h2>
+    <p>O Cloud roda na porta 3001 com os seguintes endpoints:</p>
+    <table>
+    <tr><th>Endpoint</th><th>Metodo</th><th>Descricao</th></tr>
+    <tr><td>/health</td><td>GET</td><td>Health check</td></tr>
+    <tr><td>/auth/login</td><td>POST</td><td>Login com API key, retorna JWT</td></tr>
+    <tr><td>/auth/verify</td><td>POST</td><td>Verifica validade do token</td></tr>
+    <tr><td>/auth/refresh</td><td>POST</td><td>Renova token JWT</td></tr>
+    <tr><td>/chat/message</td><td>POST</td><td>Envia mensagem, recebe resposta completa</td></tr>
+    <tr><td>/chat/stream/:id</td><td>GET</td><td>Info do endpoint WebSocket</td></tr>
+    <tr><td>/chat/sessions</td><td>GET</td><td>Lista sessoes ativas</td></tr>
+    <tr><td>/ws</td><td>WebSocket</td><td>Conexao em tempo real</td></tr>
+    </table>
+    
+    <h2>4.2 Orchestrator Cloud Edition</h2>
+    <p>Suporta agentes <strong>cloud</strong> (executados no servidor) e <strong>local</strong> (executados no Client via WebSocket):</p>
+    <table>
+    <tr><th>Tipo</th><th>Agentes</th><th>Onde executam</th></tr>
+    <tr><td>Cloud</td><td>assistant, python_code, writer</td><td>Servidor, via LLM</td></tr>
+    <tr><td>Local</td><td>file_system, shell, desktop</td><td>Client Windows, via WebSocket tool_call</td></tr>
+    </table>
+    
+    <h2>4.3 Memory Engine</h2>
+    <p>Sistema de memoria de longo prazo com:</p>
+    <ul>
+      <li><strong>MEMORY.md:</strong> fatos permanentes que nunca sao esquecidos</li>
+      <li><strong>Notas diarias (memory/):</strong> registros automaticos de cada conversa</li>
+      <li><strong>Busca por similaridade:</strong> tokenizacao + scoring para encontrar memorias relevantes</li>
+      <li><strong>Cache TTL (10s):</strong> evita leitura repetida de arquivos</li>
+      <li><strong>Consolidacao:</strong> extrai fatos e decisoes importantes das conversas</li>
+    </ul>
+    
+    <h2>4.4 Context Engine</h2>
+    <p>Gerencia o orcamento de tokens do LLM com estrategia hibrida:</p>
+    <table>
+    <tr><th>Parametro</th><th>Valor</th><th>Descricao</th></tr>
+    <tr><td>maxTokens</td><td>8000</td><td>Limite maximo de tokens no contexto</td></tr>
+    <tr><td>recentRatio</td><td>0.6 (60%)</td><td>Proporcao reservada para mensagens recentes</td></tr>
+    <tr><td>keepRecentIntact</td><td>5</td><td>Ultimas N mensagens nunca sao resumidas</td></tr>
+    <tr><td>mode</td><td>summarize</td><td>Usa LLM para resumir em vez de truncar</td></tr>
+    </table>
+    
+    <div class="box box-success">
+    <strong>Exemplo:</strong> Numa conversa de 20 mensagens que excede 8000 tokens, o Context Engine mantem as 5 ultimas intactas, resume as 15 anteriores em um paragrafo usando o LLM.
+    </div>
+    
+    <h2>4.5 Autenticacao JWT</h2>
+    <ul>
+      <li><strong>Login:</strong> aceita API key ou cria sessao anonima</li>
+      <li><strong>Token JWT:</strong> assinado com HMAC-SHA256, expira em 24h</li>
+      <li><strong>Middleware:</strong> protege todas as rotas /chat/*</li>
+      <li><strong>Refresh:</strong> renova token sem reautenticar</li>
+      <li><strong>WebSocket:</strong> token passado como query param ?token=...</li>
+    </ul>
+    
+    <!-- 5. CLIENT -->
+    <div class="section-break"></div>
+    <h1 id="client">5. Modulo Client (Desktop)</h1>
+    <blockquote>O Client e o <strong>corpo</strong> do assistente. A interface que o usuario ve e as maos que executam acoes reais no Windows.</blockquote>
+    
+    <h2>5.1 Visao Geral do Client</h2>
+    <table>
+    <tr><th>Tecnologia</th><th>Funcao</th></tr>
+    <tr><td>Electron</td><td>Empacota o app como executavel nativo (.exe) com acesso ao sistema de arquivos, shell e processos do Windows</td></tr>
+    <tr><td>React 18</td><td>Interface de usuario reativa e componentizada</td></tr>
+    <tr><td>Vite 5</td><td>Build tool e dev server com HMR (Hot Module Replacement)</td></tr>
+    <tr><td>TypeScript</td><td>Tipagem estatica para seguranca e produtividade</td></tr>
+    <tr><td>WebSocket (ws)</td><td>Comunicacao bidirecional em tempo real com o Cloud</td></tr>
+    </table>
+    
+    <h2>5.2 Ferramentas Locais</h2>
+    <p>O Client expoe <strong>13 ferramentas</strong> que o Cloud pode solicitar via WebSocket:</p>
+    <table>
+    <tr><th>Categoria</th><th>Ferramenta</th><th>Descricao</th><th>Confirmacao</th></tr>
+    <tr><td rowspan="5">File System</td><td>read_file</td><td>Le um arquivo do disco</td><td>Nao</td></tr>
+    <tr><td>write_file</td><td>Cria ou sobrescreve arquivo</td><td>Sim</td></tr>
+    <tr><td>list_dir</td><td>Lista conteudo de uma pasta</td><td>Nao</td></tr>
+    <tr><td>create_dir</td><td>Cria uma nova pasta</td><td>Nao</td></tr>
+    <tr><td>delete_file</td><td>Deleta um arquivo</td><td><strong>Sim</strong></td></tr>
+    <tr><td rowspan="2">Shell</td><td>run_cmd</td><td>Executa comando no CMD</td><td><strong>Sim</strong></td></tr>
+    <tr><td>run_powershell</td><td>Executa script PowerShell</td><td><strong>Sim</strong></td></tr>
+    <tr><td rowspan="6">Desktop</td><td>get_env</td><td>Le variaveis de ambiente</td><td>Nao</td></tr>
+    <tr><td>screenshot</td><td>Tira print da tela</td><td>Sim</td></tr>
+    <tr><td>clipboard_get</td><td>Le area de transferencia</td><td>Nao</td></tr>
+    <tr><td>clipboard_set</td><td>Escreve na area de transferencia</td><td>Nao</td></tr>
+    <tr><td>list_processes</td><td>Lista programas em execucao</td><td>Nao</td></tr>
+    <tr><td>list_windows</td><td>Lista janelas abertas</td><td>Nao</td></tr>
+    </table>
+    
+    <div class="box box-warning">
+    <strong>Seguranca:</strong> Ferramentas marcadas como <strong>Sim</strong> exigem confirmacao explicita do usuario antes de serem executadas.
+    </div>
+    
+    <!-- 6. PROTOCOLO -->
+    <div class="section-break"></div>
+    <h1 id="protocolo">6. Protocolo de Comunicacao</h1>
+    <h2>6.1 WebSocket Messages</h2>
+    <p>Toda comunicacao Cloud-Client usa JSON sobre WebSocket, definido em <code>cloud/src/protocol/tool-protocol.ts</code>.</p>
+    
+    <h3>Cloud -> Client</h3>
+    <table>
+    <tr><th>Tipo</th><th>Payload</th><th>Quando</th></tr>
+    <tr><td>connected</td><td>sessionId, message, userId</td><td>Apos autenticacao WebSocket</td></tr>
+    <tr><td>tool_call</td><td>id, agent, tool, params, requireConfirmation, description</td><td>Precisa executar ferramenta local</td></tr>
+    <tr><td>stream</td><td>chunkType (text|tool_call|progress|end|error), content, agent</td><td>Streaming da resposta</td></tr>
+    <tr><td>error</td><td>message, sessionId</td><td>Erro no processamento</td></tr>
+    <tr><td>pong</td><td>timestamp</td><td>Resposta ao ping (keepalive)</td></tr>
+    </table>
+    
+    <h3>Client -> Cloud</h3>
+    <table>
+    <tr><th>Tipo</th><th>Payload</th><th>Quando</th></tr>
+    <tr><td>chat</td><td>message</td><td>Usuario envia mensagem</td></tr>
+    <tr><td>tool_result</td><td>id, status (ok|error|cancelled), result, error</td><td>Apos executar ferramenta</td></tr>
+    <tr><td>ping</td><td>(opcional)</td><td>Keepalive periodico</td></tr>
+    <tr><td>confirmation_response</td><td>id, approved (boolean)</td><td>Resposta ao dialogo de confirmacao</td></tr>
+    </table>
+    
+    <h2>6.2 Fluxo Tool Call/Result</h2>
+    <div class="diagram">
+    CLOUD                                CLIENT
+      |                                     |
+      |--- tool_call --------------------->|
+      |    { id: "call-123",               |
+      |      agent: "file_system",         |
+      |      tool: "list_dir",             |
+      |      params: {path: "Downloads"},  |
+      |      requireConfirmation: false }   |
+      |                                     |
+      |                              [executa list_dir]
+      |                               obtem resultado
+      |                                     |
+      |<--- tool_result --------------------|
+      |    { id: "call-123",               |
+      |      status: "ok",                 |
+      |      result: "documento.pdf\n      |
+      |               foto.jpg\n           |
+      |               planilha.xlsx" }     |
+      |                                     |
+      [Orchestrator continua              |
+       com o resultado]                    |
+    </div>
+    
+    <!-- 7. STACK -->
+    <div class="section-break"></div>
+    <h1 id="stack">7. Stack Tecnologica</h1>
+    <table>
+    <tr><th>Camada</th><th>Core</th><th>Cloud</th><th>Client</th></tr>
+    <tr><td>Linguagem</td><td>TypeScript</td><td>TypeScript</td><td>TypeScript</td></tr>
+    <tr><td>Runtime</td><td>Node.js + tsx</td><td>Node.js + ts-node</td><td>Electron + Vite</td></tr>
+    <tr><td>Framework</td><td>—</td><td>Express</td><td>React 18</td></tr>
+    <tr><td>Comunicacao</td><td>—</td><td>WebSocket (ws)</td><td>WebSocket (ws)</td></tr>
+    <tr><td>LLM</td><td>OpenAI SDK</td><td>OpenAI SDK + DeepSeek</td><td>—</td></tr>
+    <tr><td>Auth</td><td>—</td><td>JWT (jsonwebtoken)</td><td>—</td></tr>
+    <tr><td>Testes</td><td>Jest + Babel</td><td>Jest + ts-jest</td><td>—</td></tr>
+    <tr><td>Linting</td><td>git-commit-msg-linter</td><td>ESLint + Prettier</td><td>ESLint + Prettier</td></tr>
+    <tr><td>Docs</td><td>README.md</td><td>TypeDoc + Tailwind</td><td>README.md</td></tr>
+    <tr><td>Build</td><td>tsx (on-the-fly)</td><td>tsc</td><td>Vite + electron-builder</td></tr>
+    </table>
+    
+    <!-- 8. COMECANDO -->
+    <div class="section-break"></div>
+    <h1 id="comecando">8. Guia de Inicio Rapido</h1>
+    <h2>Pre-requisitos</h2>
+    <ul>
+      <li>Node.js 18+</li>
+      <li>Python 3.x (para execute_python tool)</li>
+      <li>API Key DeepSeek ou OpenAI</li>
+    </ul>
+    
+    <h2>Instalacao</h2>
+    <pre><code>git clone https://github.com/adm4670/colabor-ai.git
+    cd colabor-ai
+    npm install
+    cd cloud &amp;&amp; npm install &amp;&amp; cd ..
+    cd client &amp;&amp; npm install &amp;&amp; cd ..</code></pre>
+    
+    <h2>Configuracao</h2>
+    <pre><code># .env na raiz (Core)
+    OPENAI_API_KEY=sk-...
+    TELEGRAM_TOKEN=123456:ABC...
+    
+    # cloud/.env
+    DEEPSEEK_API_KEY=sk-...
+    LLM_PROVIDER=deepseek
+    JWT_SECRET=seu-segredo
+    PORT=3001</code></pre>
+    
+    <h2>Executando</h2>
+    <pre><code># Core: agente unico no terminal
+    npm run start:dev:agent
+    
+    # Core: multi-agente no terminal
+    npm run start:dev:orchestrator
+    
+    # Cloud: servidor backend
+    cd cloud &amp;&amp; npm run dev
+    
+    # Client: app Electron (modo dev)
+    cd client &amp;&amp; npm run dev</code></pre>
+    
+    <h2>Testes</h2>
+    <pre><code>npm test           # Core
+    cd cloud &amp;&amp; npm test  # Cloud (42 testes)</code></pre>
+    
+    <!-- 9. ROADMAP -->
+    <div class="section-break"></div>
+    <h1 id="roadmap">9. Roadmap</h1>
+    
+    <h2>Concluido</h2>
+    <table>
+    <tr><th>Item</th><th>Modulo</th></tr>
+    <tr><td>Agent unico com tools e historico</td><td>Core</td></tr>
+    <tr><td>Orquestrador multi-agente</td><td>Core</td></tr>
+    <tr><td>Ferramenta execute_python</td><td>Core</td></tr>
+    <tr><td>Canais: Telegram + Terminal</td><td>Core</td></tr>
+    <tr><td>Testes com Jest + cobertura 91%</td><td>Core</td></tr>
+    <tr><td>Servidor Express + WebSocket</td><td>Cloud</td></tr>
+    <tr><td>Autenticacao JWT</td><td>Cloud</td></tr>
+    <tr><td>Memory Engine com busca</td><td>Cloud</td></tr>
+    <tr><td>Context Engine com sumarizacao</td><td>Cloud</td></tr>
+    <tr><td>Tool Protocol (tool_call/tool_result)</td><td>Cloud</td></tr>
+    <tr><td>Scaffold Electron + React + Vite</td><td>Client</td></tr>
+    <tr><td>42 testes automatizados</td><td>Cloud</td></tr>
+    </table>
+    
+    <h2>Em Andamento</h2>
+    <table>
+    <tr><th>Item</th><th>Status</th></tr>
+    <tr><td>Stream de eventos (progresso em tempo real)</td><td><span class="badge badge-yellow">parcial</span></td></tr>
+    <tr><td>Memoria de longo prazo (persistencia)</td><td><span class="badge badge-yellow">parcial</span></td></tr>
+    </table>
+    
+    <h2>Planejado</h2>
+    <table>
+    <tr><th>Item</th><th>Prioridade</th></tr>
+    <tr><td>Implementar src/ (React UI) do Client</td><td><span class="badge badge-red">alta</span></td></tr>
+    <tr><td>Implementar electron/ (ferramentas locais) do Client</td><td><span class="badge badge-red">alta</span></td></tr>
+    <tr><td>Dashboard Web para agentes</td><td><span class="badge badge-blue">media</span></td></tr>
+    <tr><td>Multi-usuario com isolamento de sessoes</td><td><span class="badge badge-blue">media</span></td></tr>
+    <tr><td>Persistencia em banco de dados</td><td><span class="badge badge-blue">media</span></td></tr>
+    <tr><td>Novos canais: WhatsApp, Slack, Discord</td><td><span class="badge badge-yellow">baixa</span></td></tr>
+    <tr><td>Tool marketplace</td><td><span class="badge badge-yellow">baixa</span></td></tr>
+    <tr><td>No-code agent builder</td><td><span class="badge badge-yellow">baixa</span></td></tr>
+    <tr><td>Observabilidade (logs, metricas, tracing)</td><td><span class="badge badge-yellow">baixa</span></td></tr>
+    <tr><td>Workflow engine com branches</td><td><span class="badge badge-yellow">baixa</span></td></tr>
+    </table>
+    
+    <div class="box box-info" style="margin-top:32px;">
+    <strong>Nota:</strong> Este documento foi gerado a partir da analise do codigo-fonte do repositorio colabor-ai. Para informacoes atualizadas, consulte o repositorio oficial.
+    </div>
+    
+    </body>
+    </html>
+    

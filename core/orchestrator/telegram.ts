@@ -174,16 +174,19 @@ async function startTelegramAgent() {
                   message_id: progressMsg.message_id,
                 });
               }
-            } catch {
-              try {
-                progressMsg = await bot.sendMessage(chatId, message);
-                progressShown = true;
-              } catch { /* silencioso */ }
-            }
+            } catch (error: any) {
+                  // Ignorar erro "message is not modified" (conteudo identico)
+                  if (error?.description && error.description.includes("message is not modified")) return;
+                  try {
+                    progressMsg = await bot.sendMessage(chatId, message);
+                    progressShown = true;
+                  } catch { /* silencioso */ }
+                }
           };
     
           let progressActive = false;
-          const progressTimer = setTimeout(() => { progressActive = true; }, 2000);
+          const PROGRESS_DELAY_MS = parseInt(process.env.PROGRESS_DELAY_MS || "2000", 10);
+          const progressTimer = setTimeout(() => { progressActive = true; }, PROGRESS_DELAY_MS);
     
           const onProgress = async (message: string) => {
             if (progressActive) await sendProgress(message);

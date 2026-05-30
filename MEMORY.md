@@ -74,3 +74,33 @@
 ## Preferencias
 - [2026-05-30] - `src/agents/profileExtractor
 - [2026-05-30] objetivos, etc
+
+## Aprendizados
+- [2026-05-30] Quer se aprofundar em algum desses tópicos ou ver algo mais específico?
+
+## Preferencias
+- [2026-05-30] revisar algum ponto antes?
+
+## Fatos
+- [2026-05-30] você achar importantes
+
+## Preferencias
+- [2026-05-30] - **Integração com action4
+
+## Preferencias
+- [2026-05-30] discutir algum detalhe da arquitetura primeiro?
+
+## Preferencias
+- [2026-05-30] começar já pela implementação da base?
+
+## Preferencias
+- [2026-05-30] testar o que já está no ar?
+
+## Preferencias
+- [2026-05-30] falar de outra coisa?
+
+## Preferencias
+- [2026-05-30] algo diferente 😊
+
+## Preferencias
+- [2026-05-30] fazer algum ajuste no conteúdo?
