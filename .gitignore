@@ -1,3 +1,6 @@
 /node_modules/
 /coverage/
 .env
+/dist/
+/tmp/
+.colabor-ai/
