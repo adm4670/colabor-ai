@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+    <html lang="pt-BR" class="scroll-smooth">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colabor-ai: A Evolução de um Agente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: { 900: '#0a0a0f', 800: '#111118', 700: '#1a1a25', 600: '#222233' },
+            brand: { red: '#ef4444', orange: '#f97316', yellow: '#eab308', green: '#22c55e', blue: '#3b82f6' }
+          },
+          animation: { 'fade-in': 'fadeIn 0.6s ease-out', 'slide-up': 'slideUp 0.6s ease-out' },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+          }
+        }
+      }
+    }
+    </script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0a0a0f; color: #e4e4e7; }
+    .gradient-text { background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-gradient { background: linear-gradient(135deg, #0a0a0f 0%, #1a1030 50%, #0f1a2e 100%); }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    code { background: #1a1a25; padding: 2px 8px; border-radius: 4px; font-size: 0.875em; color: #a78bfa; }
+    pre { background: #111118; padding: 16px 20px; border-radius: 8px; overflow-x: auto; border: 1px solid #222; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0a0a0f; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    </style>
+    </head>
+    <body>
+    
+    <!-- ============================================================ -->
+    <!-- HERO -->
+    <!-- ============================================================ -->
+    <header class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-emerald-500 rounded-full blur-3xl"></div>
+      </div>
+      <div class="max-w-4xl mx-auto px-6 text-center relative z-10 animate-fade-in">
+        <div class="mb-6">
+          <span class="inline-block px-4 py-1.5 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-400 text-sm font-medium mb-4">📦 v3.0 · Documentação Completa</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+          <span class="gradient-text">colabor-ai</span>
+          <br><span class="text-white">A Evolução de um Agente</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          De um protótipo de <strong class="text-white">~3K linhas</strong> com arquitetura linear, a um sistema <strong class="text-white">multi-agente de ~8K linhas</strong> com 12 novas capacidades — inspirado na engenharia do <span class="text-orange-400">claude-code</span>.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center text-sm">
+          <span class="px-4 py-2 bg-zinc-800/80 rounded-lg border border-zinc-700">🔴 Nível 1: Fundação Multi-Agente</span>
+          <span class="px-4 py-2 bg-zinc-800/80 rounded-lg border border-zinc-700">🟠 Nível 2: Inteligência & Extensibilidade</span>
+          <span class="px-4 py-2 bg-zinc-800/80 rounded-lg border border-zinc-700">🟡 Nível 3: Autonomia & Refinamento</span>
+        </div>
+        <div class="mt-10 flex gap-6 justify-center text-zinc-500 text-sm">
+          <span>📏 47 arquivos alterados</span><span>•</span><span>➕ 4.860 linhas</span><span>•</span><span>🎯 12 features</span><span>•</span><span>🏗️ Build 0 erros</span>
+        </div>
+      </div>
+    </header>
+    
+    <!-- ============================================================ -->
+    <!-- STORYTELLING -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-purple-400 font-semibold tracking-wider uppercase text-sm">📖 Storytelling</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">Como um triciclo virou nave espacial</h2>
+      </div>
+      <div class="bg-dark-700 rounded-2xl p-8 md:p-12 border border-zinc-700/50">
+        <p class="text-zinc-300 text-lg leading-relaxed mb-6">
+          Era uma vez um <strong class="text-white">agente chamado colabor-ai</strong>. Ele funcionava — recebia uma pergunta, o Planner decidia qual agente usar, o agente executava, o Reflector avaliava. Simples, direto, funcional. Mas... <strong class="text-orange-400">ingênuo</strong>.
+        </p>
+        <p class="text-zinc-300 text-lg leading-relaxed mb-6">
+          Se alguém pedisse "analise 5 módulos e me dê um relatório consolidado", ele processava <em>um por um, em sequência</em>. Se a tarefa tivesse 10 etapas, na quinta ele já esquecia o contexto. Se demorasse 30 minutos, o usuário ficava esperando. <strong class="text-red-400">Era um triciclo — funcionava, mas não ia longe.</strong>
+        </p>
+        <p class="text-zinc-300 text-lg leading-relaxed mb-6">
+          Foi quando surgiu a oportunidade de estudar o <strong class="text-purple-400">claude-code</strong> — o CLI agent da Anthropic, com <strong class="text-white">~500.000 linhas</strong> de TypeScript. Ali estavam as respostas: sub-agentes que spawnam em paralelo, planejamento persistente em arquivo, background tasks que rodam enquanto você dorme, hooks para extensibilidade, compactação inteligente de contexto, extração automática de memórias...
+        </p>
+        <p class="text-zinc-300 text-lg leading-relaxed">
+          Em <strong class="text-emerald-400">três ondas de implementação</strong>, o colabor-ai foi transformado. Hoje ele é capaz de decompor tarefas complexas em sub-agentes paralelos, manter planos multi-step com re-planejamento dinâmico, agendar tarefas recorrentes, consolidar memórias automaticamente, buscar na web de verdade, e muito mais. <strong class="text-white">De triciclo a nave espacial — em uma única sessão.</strong> 🚀
+        </p>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- TIMELINE -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-dark-800/50">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-purple-400 font-semibold tracking-wider uppercase text-sm">⏳ Linha do Tempo</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Antes, Benchmark, Depois</h2>
+        </div>
+    
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Antes -->
+          <div class="bg-dark-700 rounded-2xl p-8 border border-red-500/20 card-hover">
+            <div class="text-4xl mb-4">🔴</div>
+            <h3 class="text-xl font-bold text-red-400 mb-3">Antes</h3>
+            <p class="text-zinc-400 text-sm mb-4">colabor-ai v1 — ~3K linhas</p>
+            <ul class="space-y-2 text-zinc-400 text-sm">
+              <li class="flex gap-2"><span class="text-red-400">•</span> Planner → Agent → Reflector linear</li>
+              <li class="flex gap-2"><span class="text-red-400">•</span> Planejamento passo-a-passo cego</li>
+              <li class="flex gap-2"><span class="text-red-400">•</span> Sem sub-agentes</li>
+              <li class="flex gap-2"><span class="text-red-400">•</span> Sem background tasks</li>
+              <li class="flex gap-2"><span class="text-red-400">•</span> Estimativa chars/4 para tokens</li>
+              <li class="flex gap-2"><span class="text-red-400">•</span> Sem busca web real</li>
+              <li class="flex gap-2"><span class="text-red-400">•</span> Sem scheduling</li>
+            </ul>
+          </div>
+    
+          <!-- Benchmark -->
+          <div class="bg-dark-700 rounded-2xl p-8 border border-purple-500/20 card-hover">
+            <div class="text-4xl mb-4">🔬</div>
+            <h3 class="text-xl font-bold text-purple-400 mb-3">Benchmark</h3>
+            <p class="text-zinc-400 text-sm mb-4">Análise do claude-code — ~500K linhas</p>
+            <ul class="space-y-2 text-zinc-400 text-sm">
+              <li class="flex gap-2"><span class="text-purple-400">•</span> AgentTool com fork/fresh sub-agents</li>
+              <li class="flex gap-2"><span class="text-purple-400">•</span> Plan Mode com arquivo persistente</li>
+              <li class="flex gap-2"><span class="text-purple-400">•</span> Task system (Local/Remote/Dream)</li>
+              <li class="flex gap-2"><span class="text-purple-400">•</span> TokenCount via API response</li>
+              <li class="flex gap-2"><span class="text-purple-400">•</span> Hook system pre/post tool/session</li>
+              <li class="flex gap-2"><span class="text-purple-400">•</span> Memory hierarchy (MEMORY.md + extras)</li>
+              <li class="flex gap-2"><span class="text-purple-400">•</span> Permission levels + confirmations</li>
+            </ul>
+          </div>
+    
+          <!-- Depois -->
+          <div class="bg-dark-700 rounded-2xl p-8 border border-emerald-500/20 card-hover">
+            <div class="text-4xl mb-4">🟢</div>
+            <h3 class="text-xl font-bold text-emerald-400 mb-3">Depois</h3>
+            <p class="text-zinc-400 text-sm mb-4">colabor-ai v3 — ~8K linhas</p>
+            <ul class="space-y-2 text-zinc-400 text-sm">
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> Sub-agentes com execução paralela</li>
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> Plano persistente com re-planejamento</li>
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> Background tasks + DreamTask</li>
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> TokenCounter com tiktoken real</li>
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> HookManager com 7 eventos</li>
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> MemoryExtractor com frontmatter</li>
+              <li class="flex gap-2"><span class="text-emerald-400">•</span> PermissionSystem + Scheduler + WebSearch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- ARQUITETURA ANTES vs DEPOIS -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-purple-400 font-semibold tracking-wider uppercase text-sm">🏗️ Arquitetura</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">Antes vs Depois</h2>
+      </div>
+    
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Antes -->
+        <div class="bg-dark-700 rounded-2xl p-8 border border-red-500/20">
+          <h3 class="text-xl font-bold text-red-400 mb-6 text-center">🔴 Antes (v1)</h3>
+          <pre class="text-xs text-zinc-300 leading-relaxed">
+    Usuário
+      │
+      ▼
+    ┌─────────────────┐
+    │   PlannerAgent  │  "Qual o próximo agente?"
+    └────────┬────────┘
+             │ {agent, instruction}
+             ▼
+    ┌─────────────────┐
+    │  Agent (1 de N) │  Executa a instrução
+    └────────┬────────┘
+             │ result
+             ▼
+    ┌─────────────────┐
+    │  ReflectorAgent │  "Ficou bom?"
+    └────────┬────────┘
+             │ finish? ──► Resposta
+             │ não
+             └──► Próximo step (máx 10)
+          </pre>
+          <div class="mt-4 p-3 bg-red-500/5 rounded-lg border border-red-500/10">
+            <p class="text-red-400 text-xs">❌ Linear, síncrono, sem sub-agentes, sem plano, sem background</p>
+          </div>
+        </div>
+    
+        <!-- Depois -->
+        <div class="bg-dark-700 rounded-2xl p-8 border border-emerald-500/20">
+          <h3 class="text-xl font-bold text-emerald-400 mb-6 text-center">🟢 Depois (v3)</h3>
+          <pre class="text-xs text-zinc-300 leading-relaxed">
+    Usuário
+      │
+      ▼
+    ┌─────────────────────────────┐
+    │  PlanManager + PlannerAgent │  Plano em .colabor-ai/plan.md
+    │  (com plano multi-step)     │  + HookManager (before/after)
+    └────────────┬────────────────┘
+                 │
+        ┌────────┴────────┐
+        ▼                 ▼
+    ┌─────────┐    ┌──────────┐
+    │ Sub-Ag 1│    │ Sub-Ag 2 │  spawn_agent em paralelo
+    │ (python)│    │(browser) │  SubAgentRunner
+    └────┬────┘    └────┬─────┘
+         │              │
+         └──────┬───────┘
+                ▼
+    ┌─────────────────────────────┐
+    │  Agent + 12+ Tools          │  web_search, todo_write,
+    │  (com HookManager hooks)    │  schedule_task, spawn_agent...
+    └────────────┬────────────────┘
+                 │
+                 ▼
+    ┌─────────────────────────────┐
+    │  ReflectorAgent (melhorado) │  retryPrompt, confidence,
+    │  + PermissionSystem         │  suggestedAgent, altApproach
+    └────────────┬────────────────┘
+                 │
+        ┌────────┴────────┐
+        ▼                 ▼
+    ┌────────────┐  ┌─────────────────┐
+    │ Background │  │  Scheduler      │  node-cron
+    │ TaskManager│  │  (cron jobs)    │
+    └─────┬──────┘  └────────┬────────┘
+          │                  │
+          └────────┬─────────┘
+                   ▼
+    ┌─────────────────────────────┐
+    │  DreamTask                  │  Consolida memória
+    │  + MemoryExtractor          │  Extrai frontmatter YAML
+    │  + TokenCounter (tiktoken)  │  Contagem real de tokens
+    └─────────────────────────────┘
+                 │
+                 ▼
+             Resposta
+          </pre>
+          <div class="mt-4 p-3 bg-emerald-500/5 rounded-lg border border-emerald-500/10">
+            <p class="text-emerald-400 text-xs">✅ Multi-agente, paralelo, plano persistente, background, hooks, permissions, scheduler</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- OS 3 NÍVEIS -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-dark-800/50">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-purple-400 font-semibold tracking-wider uppercase text-sm">🎯 Melhorias</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Os 3 Níveis de Evolução</h2>
+        </div>
+    
+        <!-- NÍVEL 1 -->
+        <div class="mb-16">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-2xl">🔴</div>
+            <div>
+              <h3 class="text-2xl font-bold text-red-400">Nível 1 — Fundação Multi-Agente</h3>
+              <p class="text-zinc-500 text-sm">Branch <code>feat/melhorias-agenticas</code> · Commit <code>7555a04</code> · <strong class="text-white">+2.354 linhas</strong></p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-dark-700 rounded-xl p-6 border border-red-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🤖 Sub-agentes</h4>
+              <p class="text-zinc-400 text-sm">AgentTool + SubAgentRunner permitem spawnar agentes filhos em paralelo. Inspirado no AgentTool do claude-code.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivos: <code>core/tools/agentTool.ts</code>, <code>core/agent/sub-agent-runner.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-red-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">📋 Planejamento Persistente</h4>
+              <p class="text-zinc-400 text-sm">PlanManager cria/atualiza <code>.colabor-ai/plan.md</code> com steps, status, dependências e aprendizados.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/plan/plan-manager.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-red-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">⚡ Background Tasks</h4>
+              <p class="text-zinc-400 text-sm">BackgroundTaskManager executa tarefas assíncronas sem bloquear a conversa principal.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivos: <code>core/tasks/background-task-manager.ts</code>, <code>core/tools/taskCreateTool.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-red-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">💤 DreamTask</h4>
+              <p class="text-zinc-400 text-sm">Consolidação periódica de memória — extrai padrões das notas diárias e atualiza MEMORY.md.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/tasks/dream-task.ts</code></p>
+            </div>
+          </div>
+        </div>
+    
+        <!-- NÍVEL 2 -->
+        <div class="mb-16">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">🟠</div>
+            <div>
+              <h3 class="text-2xl font-bold text-orange-400">Nível 2 — Inteligência & Extensibilidade</h3>
+              <p class="text-zinc-500 text-sm">Branch <code>feat/nivel-2-melhorias</code> · Commit <code>52bd51d</code> · <strong class="text-white">+910 linhas</strong></p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-dark-700 rounded-xl p-6 border border-orange-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🔢 TokenCounter</h4>
+              <p class="text-zinc-400 text-sm">Contagem real de tokens com <strong>tiktoken</strong> (encoding cl100k_base). Fallback para chars/4.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/context/token-counter.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-orange-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🪝 HookManager</h4>
+              <p class="text-zinc-400 text-sm">7 eventos (before/after planner, agent, response, on_error). Hooks com prioridade e execução assíncrona.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/hooks/hook-system.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-orange-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🧠 MemoryExtractor</h4>
+              <p class="text-zinc-400 text-sm">Extração com frontmatter YAML + heurística. Detecta fatos, decisões, preferências, aprendizados.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/memory/memory-extractor.ts</code></p>
+            </div>
+          </div>
+        </div>
+    
+        <!-- NÍVEL 3 -->
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-2xl">🟡</div>
+            <div>
+              <h3 class="text-2xl font-bold text-yellow-400">Nível 3 — Autonomia & Refinamento</h3>
+              <p class="text-zinc-500 text-sm">Branch <code>feat/nivel-3-refinamentos</code> · Commit <code>5880f39</code> · <strong class="text-white">+1.596 linhas</strong></p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">📝 TodoWrite</h4>
+              <p class="text-zinc-400 text-sm">CRUD de TODOs persistente. Agente anota tarefas pendentes durante a execução.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/tools/TodoWriteTool.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🔍 ToolSearch</h4>
+              <p class="text-zinc-400 text-sm">Busca semântica TF-IDF entre 12+ tools. Agente descobre ferramentas por linguagem natural.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/tools/tool-search.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🔄 Feedback Loop</h4>
+              <p class="text-zinc-400 text-sm">Reflector retorna retryPrompt, confidence, suggestedAgent. Orquestrador re-rotaciona automaticamente.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/agents/reflector.agent.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🔒 Permissions</h4>
+              <p class="text-zinc-400 text-sm">5 níveis (read_only → full). Confirmação para operações críticas via callback.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/permissions/permission-system.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">🌐 Web Search</h4>
+              <p class="text-zinc-400 text-sm">DuckDuckGo Instant Answer API. Busca web real, gratuita, sem API key.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivo: <code>core/tools/WebSearchTool.ts</code></p>
+            </div>
+            <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10 card-hover">
+              <h4 class="font-semibold text-white mb-2">⏰ Scheduling</h4>
+              <p class="text-zinc-400 text-sm">node-cron + ScheduleTaskTool. Tarefas recorrentes com expressões cron.</p>
+              <p class="text-zinc-600 text-xs mt-2">Arquivos: <code>core/scheduler/scheduler.ts</code>, <code>core/tools/ScheduleTaskTool.ts</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- PONTOS FORTES E FRACOS -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Pontos Fortes -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-3xl">✅</span>
+            <h3 class="text-2xl font-bold text-emerald-400">Pontos Fortes</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Arquitetura modular limpa (<code>core/cloud/client</code>) com separação clara de responsabilidades</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Sub-agentes com execução paralela — tarefas complexas decompostas automaticamente</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Plano persistente com re-planejamento dinâmico em <code>.colabor-ai/plan.md</code></span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">ContextEngine com sumarização LLM e contagem real de tokens via tiktoken</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">MemoryEngine com busca semântica + extração automática com frontmatter YAML</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Skills system com frontmatter — agentes carregam conhecimento sob demanda</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">HookManager com 7 eventos para extensibilidade sem modificar o core</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Permission system com 5 níveis e confirmação para operações críticas</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">12+ ferramentas reais: web search, cron, TODOs, sub-agentes, e mais</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-emerald-500/10 flex items-start gap-3">
+              <span class="text-emerald-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Build com <strong>zero erros</strong> em todas as 3 branches</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Pontos Fracos -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-3xl">⚠️</span>
+            <h3 class="text-2xl font-bold text-yellow-400">Pontos Fracos e Melhorias Futuras</h3>
+          </div>
+          <div class="space-y-3 mb-8">
+            <div class="bg-dark-700 rounded-lg p-4 border border-yellow-500/10 flex items-start gap-3">
+              <span class="text-yellow-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Ferramentas não integradas: email, git, banco de dados</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-yellow-500/10 flex items-start gap-3">
+              <span class="text-yellow-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Sem interface web administrativa / dashboard</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-yellow-500/10 flex items-start gap-3">
+              <span class="text-yellow-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Cobertura de testes insuficiente (unit/e2e)</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-yellow-500/10 flex items-start gap-3">
+              <span class="text-yellow-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Dependência de Node.js — não roda em browser</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-yellow-500/10 flex items-start gap-3">
+              <span class="text-yellow-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Ausência de monitoramento e observabilidade (logs, métricas)</span>
+            </div>
+            <div class="bg-dark-700 rounded-lg p-4 border border-yellow-500/10 flex items-start gap-3">
+              <span class="text-yellow-400 mt-0.5">▸</span>
+              <span class="text-zinc-300 text-sm">Configuração manual de variáveis de ambiente (.env)</span>
+            </div>
+          </div>
+    
+          <h4 class="font-semibold text-white mb-3 mt-6">🔮 Sugestões para próximas iterações:</h4>
+          <div class="space-y-2">
+            <div class="bg-purple-500/5 rounded-lg p-3 border border-purple-500/10 text-sm text-zinc-300 flex items-start gap-2">
+              <span class="text-purple-400">🧪</span> Testes automatizados (Jest/Vitest) e CI/CD (GitHub Actions)
+            </div>
+            <div class="bg-purple-500/5 rounded-lg p-3 border border-purple-500/10 text-sm text-zinc-300 flex items-start gap-2">
+              <span class="text-purple-400">📊</span> Dashboard web para monitoramento de agentes e tarefas
+            </div>
+            <div class="bg-purple-500/5 rounded-lg p-3 border border-purple-500/10 text-sm text-zinc-300 flex items-start gap-2">
+              <span class="text-purple-400">🔌</span> Suporte a MCP (Model Context Protocol) para ferramentas externas
+            </div>
+            <div class="bg-purple-500/5 rounded-lg p-3 border border-purple-500/10 text-sm text-zinc-300 flex items-start gap-2">
+              <span class="text-purple-400">📝</span> Agentes definidos via arquivos Markdown (como claude-code)
+            </div>
+            <div class="bg-purple-500/5 rounded-lg p-3 border border-purple-500/10 text-sm text-zinc-300 flex items-start gap-2">
+              <span class="text-purple-400">🔒</span> Sandbox para execução segura de código Python/Shell
+            </div>
+            <div class="bg-purple-500/5 rounded-lg p-3 border border-purple-500/10 text-sm text-zinc-300 flex items-start gap-2">
+              <span class="text-purple-400">🌍</span> Suporte a múltiplos provedores LLM (OpenAI, Anthropic, Groq)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- HISTÓRICO DE COMMITS -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-dark-800/50">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-purple-400 font-semibold tracking-wider uppercase text-sm">📜 Histórico</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Commits na Main</h2>
+        </div>
+    
+        <div class="relative">
+          <div class="absolute left-8 top-0 bottom-0 w-px bg-zinc-700"></div>
+          <div class="space-y-8">
+            <div class="relative pl-20">
+              <div class="absolute left-5 w-7 h-7 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold">🟡</div>
+              <div class="bg-dark-700 rounded-xl p-6 border border-yellow-500/10">
+                <div class="flex items-center gap-3 mb-2">
+                  <code class="text-yellow-400">5880f39</code>
+                  <span class="text-xs text-zinc-500">2026-05-31</span>
+                </div>
+                <h4 class="font-semibold text-white">feat: nivel 3 — TodoWrite, ToolSearch, permissions, web search, scheduling</h4>
+                <p class="text-zinc-400 text-sm mt-1">17 arquivos, +1.596 linhas. Web search real, cron jobs, feedback loop melhorado, permission system.</p>
+              </div>
+            </div>
+            <div class="relative pl-20">
+              <div class="absolute left-5 w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-xs font-bold">🟠</div>
+              <div class="bg-dark-700 rounded-xl p-6 border border-orange-500/10">
+                <div class="flex items-center gap-3 mb-2">
+                  <code class="text-orange-400">52bd51d</code>
+                  <span class="text-xs text-zinc-500">2026-05-31</span>
+                </div>
+                <h4 class="font-semibold text-white">feat: nivel 2 — auto-compact com tiktoken, sistema de hooks, extração automática de memórias</h4>
+                <p class="text-zinc-400 text-sm mt-1">13 arquivos, +910 linhas. TokenCounter, HookManager com 7 eventos, MemoryExtractor com frontmatter.</p>
+              </div>
+            </div>
+            <div class="relative pl-20">
+              <div class="absolute left-5 w-7 h-7 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold">🔴</div>
+              <div class="bg-dark-700 rounded-xl p-6 border border-red-500/10">
+                <div class="flex items-center gap-3 mb-2">
+                  <code class="text-red-400">7555a04</code>
+                  <span class="text-xs text-zinc-500">2026-05-31</span>
+                </div>
+                <h4 class="font-semibold text-white">feat: melhorias agenticas — sub-agentes, planejamento persistente, background tasks</h4>
+                <p class="text-zinc-400 text-sm mt-1">17 arquivos, +2.354 linhas. AgentTool, PlanManager, BackgroundTaskManager, DreamTask.</p>
+              </div>
+            </div>
+            <div class="relative pl-20">
+              <div class="absolute left-5 w-7 h-7 bg-zinc-500 rounded-full flex items-center justify-center text-xs font-bold">⚙️</div>
+              <div class="bg-dark-700 rounded-xl p-6 border border-zinc-500/10 opacity-60">
+                <div class="flex items-center gap-3 mb-2">
+                  <code class="text-zinc-400">aee8d68</code>
+                  <span class="text-xs text-zinc-500">2026-05-30</span>
+                </div>
+                <h4 class="font-semibold text-zinc-400">chore: adiciona script build e executa compilacao</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- MÉTRICAS -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-purple-400 font-semibold tracking-wider uppercase text-sm">📊 Métricas</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">A Transformação em Números</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">📏</div>
+          <div class="text-3xl font-black gradient-text">12</div>
+          <div class="text-zinc-400 text-sm mt-1">Features Novas</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">📁</div>
+          <div class="text-3xl font-black gradient-text">47</div>
+          <div class="text-zinc-400 text-sm mt-1">Arquivos Alterados</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">➕</div>
+          <div class="text-3xl font-black gradient-text">4.860</div>
+          <div class="text-zinc-400 text-sm mt-1">Linhas Adicionadas</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">🎯</div>
+          <div class="text-3xl font-black gradient-text">3</div>
+          <div class="text-zinc-400 text-sm mt-1">Níveis de Evolução</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">🌿</div>
+          <div class="text-3xl font-black text-emerald-400">3 → 1</div>
+          <div class="text-zinc-400 text-sm mt-1">Branches → Main</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">🤝</div>
+          <div class="text-3xl font-black text-emerald-400">0</div>
+          <div class="text-zinc-400 text-sm mt-1">Conflitos de Merge</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">📈</div>
+          <div class="text-3xl font-black text-emerald-400">3K→8K</div>
+          <div class="text-zinc-400 text-sm mt-1">Linhas Totais</div>
+        </div>
+        <div class="bg-dark-700 rounded-2xl p-6 text-center border border-zinc-700/50 card-hover">
+          <div class="text-4xl mb-3">🏗️</div>
+          <div class="text-3xl font-black text-emerald-400">0</div>
+          <div class="text-zinc-400 text-sm mt-1">Erros de Build</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="py-16 px-6 bg-dark-800/50 border-t border-zinc-800">
+      <div class="max-w-5xl mx-auto text-center">
+        <p class="text-zinc-500 text-sm">
+          Documentação gerada pelo <strong class="text-purple-400">colabor-ai</strong> · Junho 2026
+        </p>
+        <p class="text-zinc-600 text-xs mt-2">
+          Projeto open-source disponível em <a href="https://github.com/adm4670/colabor-ai" class="text-purple-400 hover:text-purple-300 transition-colors">github.com/adm4670/colabor-ai</a>
+        </p>
+        <p class="text-zinc-700 text-xs mt-4">
+          Inspirado na arquitetura do claude-code (Anthropic) · Construído com TypeScript, Node.js, tiktoken, node-cron e muito ❤️
+        </p>
+      </div>
+    </footer>
+    
+    </body>
+    </html>
