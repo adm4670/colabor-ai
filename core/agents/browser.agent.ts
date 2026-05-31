@@ -3,9 +3,15 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         import { browserExecTool, ensureBrowserAlive } from "../tools/browserExecTool";
             import { agentToolOpenAI } from "../tools/agentTool";
             import { taskCreateOpenAI, taskListOpenAI } from "../tools/taskCreateTool";
+    import { todoWriteOpenAI } from "../tools/TodoWriteTool";
+    import { webSearchOpenAI } from "../tools/WebSearchTool";
+    import { scheduleTaskOpenAI, listScheduledOpenAI } from "../tools/ScheduleTaskTool";
         import { memorySearchTool } from "../memory/memory_search";
             import { agentToolHandler } from "../tools/agentTool";
             import { taskCreateHandler, taskListHandler } from "../tools/taskCreateTool";
+    import { todoWriteHandler } from "../tools/TodoWriteTool";
+    import { webSearchHandler } from "../tools/WebSearchTool";
+    import { scheduleTaskHandler, listScheduledHandler } from "../tools/ScheduleTaskTool";
         
         export const browserAgent = new Agent({
           name: "browser",
@@ -18,7 +24,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         
-          tools: [browserExecTool, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI],
+          tools: [browserExecTool, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI, todoWriteOpenAI, webSearchOpenAI, scheduleTaskOpenAI, listScheduledOpenAI],
         
           functions: {
                 browser_action: browserExecTool.handler,
@@ -26,6 +32,10 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
                 spawn_agent: agentToolHandler,
                 create_background_task: taskCreateHandler,
                 list_background_tasks: taskListHandler,
+        todo_write: todoWriteHandler,
+        web_search: webSearchHandler,
+        schedule_task: scheduleTaskHandler,
+        list_scheduled_tasks: listScheduledHandler,
               },
         
           generalInstructions: `

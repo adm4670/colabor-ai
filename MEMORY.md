@@ -123,3 +123,6 @@
 
 ## Preferencias
 - [2026-05-31] testar o que já foi feito primeiro?
+
+## Preferencias
+- [2026-05-31] revisar algo?

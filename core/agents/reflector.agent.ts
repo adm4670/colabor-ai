@@ -43,13 +43,17 @@ import { Agent } from "../agent/agent";
       5. What did we learn from this execution? (one sentence in portuguese)
     
       Respond ONLY with JSON:
-      {
-        "success": "yes | partial | no",
-        "complete": true/false,
-        "missingInfo": ["item1", "item2"],
-        "retryDifferent": true/false,
-        "learning": "one sentence in portuguese"
-      }
+          {
+            "success": "yes | partial | no",
+            "complete": true/false,
+            "missingInfo": ["item1", "item2"],
+            "retryDifferent": true/false,
+            "learning": "one sentence in portuguese",
+            "confidence": 0.85,
+            "retryPrompt": "modified instruction for retry (if applicable)",
+            "alternativeApproach": "alternative way to solve (if applicable)",
+            "suggestedAgent": "alternative agent name (if applicable)"
+          }
             `,
     });
     

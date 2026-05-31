@@ -10,6 +10,7 @@
     "dotenv-cli": "^11.0.0",
     "git-commit-msg-linter": "^5.0.8",
     "jest": "^30.2.0",
+    "puppeteer": "^25.1.0",
     "typescript": "^6.0.3"
   },
   "scripts": {
@@ -19,7 +20,9 @@
     "build": "tsc"
   },
   "dependencies": {
+    "axios": "^1.16.1",
     "dotenv": "^17.3.1",
+    "node-cron": "^4.2.1",
     "node-telegram-bot-api": "^0.63.0",
     "openai": "^6.27.0",
     "tiktoken": "^1.0.22",

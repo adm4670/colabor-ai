@@ -120,3 +120,98 @@ export type MessageRole = "system" | "user" | "assistant" | "tool";
       confidence: number;
     }
     
+    
+    // ============================================================
+    // Nivel 3 - TodoWrite types
+    // ============================================================
+    
+    export type TodoStatus = "pending" | "in_progress" | "done";
+    
+    export interface TodoItem {
+      id: string;
+      title: string;
+      status: TodoStatus;
+      createdAt: string;
+      updatedAt: string;
+    }
+    
+    export interface TodoList {
+      todos: TodoItem[];
+      total: number;
+      pending: number;
+      done: number;
+    }
+    
+    // ============================================================
+    // Nivel 3 - ToolSearch types
+    // ============================================================
+    
+    export interface ToolIndexEntry {
+      name: string;
+      description: string;
+      keywords: string[];
+      category: string;
+    }
+    
+    export interface ToolSearchResult {
+      name: string;
+      description: string;
+      score: number;
+      category: string;
+    }
+    
+    // ============================================================
+    // Nivel 3 - Permission types
+    // ============================================================
+    
+    export type PermissionLevel = "read_only" | "file_write" | "network" | "shell" | "full";
+    
+    export interface PermissionCheck {
+      allowed: boolean;
+      reason?: string;
+      requiresConfirmation?: boolean;
+    }
+    
+    // ============================================================
+    // Nivel 3 - WebSearch types
+    // ============================================================
+    
+    export interface SearchResult {
+      title: string;
+      snippet: string;
+      url: string;
+      source: string;
+    }
+    
+    // ============================================================
+    // Nivel 3 - Scheduling types
+    // ============================================================
+    
+    export interface ScheduledTask {
+      name: string;
+      cronExpression: string;
+      description: string;
+      instruction: string;
+      agentName: string;
+      enabled: boolean;
+      createdAt: string;
+      lastRunAt?: string;
+      nextRunAt?: string;
+    }
+    
+    // ============================================================
+    // Nivel 3 - Improved Reflection types
+    // ============================================================
+    
+    export interface ImprovedReflectionResult {
+      success: "yes" | "partial" | "no";
+      complete: boolean;
+      missingInfo: string[];
+      retryDifferent: boolean;
+      learning: string;
+      confidence: number;           // 0-1 confidence score
+      retryPrompt?: string;         // Sugestao de prompt modificado para retry
+      alternativeApproach?: string; // Outra forma de resolver
+      suggestedAgent?: string;      // Agente alternativo sugerido
+    }
+    

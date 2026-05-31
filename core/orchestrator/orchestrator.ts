@@ -32,6 +32,7 @@ import { Agent } from "../agent/agent";
         import { getSubAgentRunner, SubAgentRunner } from "../agent/sub-agent-runner";
         import { getDreamTask, DreamTask } from "../tasks/dream-task";
     import { getHookManager, HookManager } from "../hooks/hook-system";
+    import { getPermissionSystem, PermissionSystem } from "../permissions/permission-system";
     
         // Rate limiting - protecao contra uso excessivo (persistente)
         const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
@@ -116,6 +117,7 @@ import { Agent } from "../agent/agent";
           private subAgentRunner: SubAgentRunner;
           private dreamTask: DreamTask;
       private hookManager: HookManager;
+      private permissionSystem: PermissionSystem;
     
           constructor(
             private planner: Agent,
@@ -131,6 +133,15 @@ import { Agent } from "../agent/agent";
             this.subAgentRunner = getSubAgentRunner();
             this.dreamTask = getDreamTask();
         this.hookManager = getHookManager();
+        this.permissionSystem = getPermissionSystem();
+        
+        // Configure agent permission levels
+        this.permissionSystem.setAgentLevel("assistant", "network");
+        this.permissionSystem.setAgentLevel("python_code", "file_write");
+        this.permissionSystem.setAgentLevel("browser", "network");
+        this.permissionSystem.setAgentLevel("shell", "shell");
+        this.permissionSystem.setAgentLevel("writer", "file_write");
+        this.permissionSystem.setAgentLevel("task_manager", "file_write");
     
             // Tentar carregar plano existente da sessao anterior
             try {
@@ -825,9 +836,35 @@ import { Agent } from "../agent/agent";
     
                 // Se falhou e deve tentar abordagem diferente
                 if (reflection.success === "no" && reflection.retryDifferent) {
-                  delete parsed.instruction; // Forca nova instrucao
+                  // Usar retryPrompt sugerido pelo reflector se existir
+                  const retryPrompt = (reflection as any).retryPrompt;
+                  const suggestedAgent = (reflection as any).suggestedAgent;
+                  
+                  if (retryPrompt) {
+                    // Usar o prompt melhorado sugerido pelo reflector
+                    parsed.instruction = retryPrompt;
+                    if (this.debug) {
+                      console.log(`Reflection suggested retry prompt: "${retryPrompt.slice(0, 100)}"`);
+                    }
+                  } else {
+                    delete parsed.instruction; // Forca nova instrucao
+                  }
+    
+                  // Se sugeriu agente alternativo, usar ele
+                  if (suggestedAgent && this.agents.find(a => a.name === suggestedAgent)) {
+                    parsed.agent = suggestedAgent;
+                    if (this.debug) {
+                      console.log(`Reflection suggests alternative agent: ${suggestedAgent}`);
+                    }
+                  }
+    
                   context += `\n\nPrevious attempt with ${parsed.agent} failed: ${result.slice(0, 300)}`;
                   context += `\nMissing: ${reflection.missingInfo.join(", ")}`;
+                  
+                  const altApproach = (reflection as any).alternativeApproach;
+                  if (altApproach) {
+                    context += `\nAlternative approach: ${altApproach}`;
+                  }
     
                   // Update plan step as failed
                   if (parsed.nextStep && this.planManager.hasPlan()) {

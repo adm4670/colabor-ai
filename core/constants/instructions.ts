@@ -88,6 +88,10 @@
     - spawn_agent: delegate a sub-task to a specialized agent
     - create_background_task: schedule a task to run in background
     - list_background_tasks: check status of background tasks
+- todo_write: manage internal task list (create, update, delete, list TODOs)
+- web_search: search the web for current information
+- schedule_task: schedule recurring tasks with cron expressions
+- list_scheduled_tasks: list all scheduled cron tasks
     
     When a plan exists, use it to guide your decisions. Update step status as you go.
     `;
