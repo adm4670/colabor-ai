@@ -1,6 +1,7 @@
 import { Agent } from "../agent/agent";
 import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         import { browserExecTool, ensureBrowserAlive } from "../tools/browserExecTool";
+    import { browserNavigateOpenAI } from "../tools/browserNavigateTool";
             import { agentToolOpenAI } from "../tools/agentTool";
             import { taskCreateOpenAI, taskListOpenAI } from "../tools/taskCreateTool";
     import { todoWriteOpenAI } from "../tools/TodoWriteTool";
@@ -10,6 +11,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
             import { agentToolHandler } from "../tools/agentTool";
             import { taskCreateHandler, taskListHandler } from "../tools/taskCreateTool";
     import { todoWriteHandler } from "../tools/TodoWriteTool";
+    import { browserNavigateHandler } from "../tools/browserNavigateTool";
     import { webSearchHandler } from "../tools/WebSearchTool";
     import { scheduleTaskHandler, listScheduledHandler } from "../tools/ScheduleTaskTool";
         
@@ -24,10 +26,11 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         
-          tools: [browserExecTool, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI, todoWriteOpenAI, webSearchOpenAI, scheduleTaskOpenAI, listScheduledOpenAI],
+          tools: [browserExecTool, browserNavigateOpenAI, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI, todoWriteOpenAI, webSearchOpenAI, scheduleTaskOpenAI, listScheduledOpenAI],
         
           functions: {
                 browser_action: browserExecTool.handler,
+            browser_navigate: browserNavigateHandler,
                 memory_search: memorySearchTool.handler,
                 spawn_agent: agentToolHandler,
                 create_background_task: taskCreateHandler,
@@ -43,7 +46,22 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
           Voce e um agente especializado em navegacao web (browser automation).
         
-          Usando a ferramenta 'browser_action' voce pode:
+          Usando a ferramenta 'browser_action' ou 'browser_navigate' voce pode:
+    
+              **browser_navigate** (recomendada para tarefas complexas):
+              Use esta ferramenta para executar MULTIPLOS passos em sequencia.
+              Passe um array 'steps' com as acoes: navigate, click, fill, select, wait,
+              press, scroll, hover, screenshot, extract, evaluate, close.
+              
+              Exemplo: { url: "https://site.com", steps: [
+                { type: "fill", selector: "#email", value: "user@email.com" },
+                { type: "fill", selector: "#password", value: "123456" },
+                { type: "click", selector: "button[type=submit]" },
+                { type: "wait", selector: ".dashboard" },
+                { type: "extract", selector: ".stats" }
+              ]}
+    
+              **browser_action** (para acoes simples/isoladas):
         
           1. **Navegar para uma URL**
              - Use action="navigate" com url="https://exemplo.com"

@@ -1,5 +1,6 @@
 // Logger estruturado (lightweight, sem dependencias externas)
     // Niveis: debug, info, warn, error
+    // Loga no console E em arquivo (logs/YYYY-MM-DD.log)
     
     type LogLevel = "debug" | "info" | "warn" | "error";
     
@@ -40,46 +41,55 @@
       };
     }
     
+    /** Escreve log em arquivo (transporte adicional persistente) */
+    function logToFile(level: string, message: string) {
+      try {
+        const fs = require("fs");
+        const path = require("path");
+        const logDir = path.join(process.cwd(), "logs");
+        if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
+        const date = new Date().toISOString().split("T")[0];
+        const line = "[" + new Date().toISOString() + "] [" + level.toUpperCase() + "] " + message + "\n";
+        fs.appendFileSync(path.join(logDir, date + ".log"), line, "utf8");
+      } catch { /* nao-critico */ }
+    }
+    
+    function logAndPersist(level: LogLevel, formatted: string) {
+      switch (level) {
+        case "error": console.error(formatted); break;
+        case "warn":  console.warn(formatted);  break;
+        case "info":  console.log(formatted);   break;
+        case "debug": console.debug(formatted); break;
+      }
+      logToFile(level, formatted);
+    }
+    
     export const logger = {
-
-  /** Escreve log em arquivo (transporte adicional) */
-  _logToFile(level: string, message: string) {
-    try {
-      const fs = require("fs");
-      const path = require("path");
-      const logDir = path.join(process.cwd(), "logs");
-      if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
-      const date = new Date().toISOString().split("T")[0];
-      const line = "[" + new Date().toISOString() + "] [" + level.toUpperCase() + "] " + message + "\n";
-      fs.appendFileSync(path.join(logDir, date + ".log"), line, "utf8");
-    } catch { /* nao-critico */ }
-  },
-
       debug(message: string, meta?: Record<string, any>) {
         if (shouldLog("debug")) {
           const entry = createEntry("debug", message, meta);
-          console.debug(formatEntry(entry));
+          logAndPersist("debug", formatEntry(entry));
         }
       },
     
       info(message: string, meta?: Record<string, any>) {
         if (shouldLog("info")) {
           const entry = createEntry("info", message, meta);
-          console.log(formatEntry(entry));
+          logAndPersist("info", formatEntry(entry));
         }
       },
     
       warn(message: string, meta?: Record<string, any>) {
         if (shouldLog("warn")) {
           const entry = createEntry("warn", message, meta);
-          console.warn(formatEntry(entry));
+          logAndPersist("warn", formatEntry(entry));
         }
       },
     
       error(message: string, meta?: Record<string, any>) {
         if (shouldLog("error")) {
           const entry = createEntry("error", message, meta);
-          console.error(formatEntry(entry));
+          logAndPersist("error", formatEntry(entry));
         }
       },
     };

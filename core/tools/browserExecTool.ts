@@ -14,13 +14,14 @@ import puppeteer, { Browser, Page } from "puppeteer";
     const SCREENSHOTS_DIR = path.join(process.cwd(), "src", "browser_data");
     const HEADLESS = process.env.PUPPETEER_HEADLESS !== "false"; // default: true
     
-    async function getPage(): Promise<Page> {
+    export async function getPage(headlessOverride?: boolean): Promise<Page> {
       if (!browserInstance || !browserInstance.isConnected()) {
-        logger.info("[BrowserTool] Iniciando navegador Puppeteer...", { headless: HEADLESS });
+        const effectiveHeadless = headlessOverride !== undefined ? headlessOverride : HEADLESS;
+        logger.info("[BrowserTool] Iniciando navegador Puppeteer...", { headless: effectiveHeadless });
     
         browserInstance = await puppeteer.launch({
           executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-          headless: HEADLESS ? "new" as any : false,
+          headless: effectiveHeadless ? "new" as any : false,
           args: [
             "--no-sandbox",
             "--disable-setuid-sandbox",
@@ -52,7 +53,7 @@ import puppeteer, { Browser, Page } from "puppeteer";
       return pageInstance;
     }
     
-    function ensureScreenshotsDir(): void {
+    export function ensureScreenshotsDir(): void {
       if (!fs.existsSync(SCREENSHOTS_DIR)) {
         fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
         logger.info(`[BrowserTool] Diretorio de screenshots criado: ${SCREENSHOTS_DIR}`);
@@ -95,7 +96,17 @@ import puppeteer, { Browser, Page } from "puppeteer";
     }
     
     
-export const browserExecTool = {
+
+    export async function closeBrowser(): Promise<void> {
+      if (browserInstance) {
+        try { await browserInstance.close(); } catch {}
+        browserInstance = null;
+        pageInstance = null;
+        logger.info("[BrowserTool] Navegador fechado via closeBrowser()");
+      }
+    }
+    
+    export const browserExecTool = {
       type: "function",
     
       function: {
