@@ -12,6 +12,7 @@
     import { logger } from "../utils/logger";
     import { getMemoryEngine } from "../memory/memory-engine";
     import { createDefaultClient } from "../llm/provider";
+    import { getTokenCounter } from "./token-counter";
     
     // ============================================================
     // Tipos
@@ -69,10 +70,10 @@
     
     /**
      * Estima o numero de tokens em um texto.
-     * Regra pratica: ~4 caracteres por token (media para texto em portugues)
+     * Usa tiktoken com fallback para chars/4.
      */
     export function estimateTokens(text: string): number {
-      return Math.ceil(text.length / 4);
+      return getTokenCounter().count(text);
     }
     
     /**
@@ -81,7 +82,7 @@
     function estimateMessageTokens(msg: ContextMessage): number {
       let total = estimateTokens(msg.content || "");
       if (msg.name) total += estimateTokens(msg.name);
-      if (msg.role) total += 2; // overhead do role
+      if (msg.role) total += 4; // overhead do role (tiktoken account)
       if (msg.reasoning_content) total += estimateTokens(msg.reasoning_content);
       return total;
     }

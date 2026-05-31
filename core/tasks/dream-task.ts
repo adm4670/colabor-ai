@@ -11,6 +11,7 @@
     import * as fs from "fs";
     import * as path from "path";
     import { logger } from "../utils/logger";
+    import { getMemoryExtractor } from "../memory/memory-extractor";
     import {
       loadRecentNotes,
       saveDailyNote,
@@ -80,66 +81,31 @@
       }
     
       private async consolidate(): Promise<string> {
-        const summaryLines: string[] = [];
-    
         try {
-          // 1. Coletar notas diarias recentes
-          // loadRecentNotes() returns a string with recent notes content
-          const recentNotesContent = loadRecentNotes();
-          if (!recentNotesContent || recentNotesContent.length < 10) {
+          // Usar MemoryExtractor para extracao com frontmatter + fallback heuristico
+          const extractor = getMemoryExtractor();
+          const result = extractor.run(7); // ultimos 7 dias
+    
+          if (result.extracted === 0) {
             return "No recent notes to consolidate.";
           }
     
-          // Split into individual note entries
-          const noteEntries = recentNotesContent
-            .split(/\n(?=### \d{4}-\d{2}-\d{2})/)
-            .filter((entry) => entry.trim().length > 0);
+          const summary = [
+            `## Consolidacao Automatica - ${new Date().toISOString().slice(0, 10)}`,
+            "",
+            `- ${result.extracted} memorias extraidas de notas diarias`,
+            `- ${result.added} novas memorias adicionadas ao MEMORY.md`,
+            `- ${result.extracted - result.added} duplicatas ignoradas`,
+            "",
+          ].join("\n");
     
-          if (noteEntries.length === 0) {
-            return "No recent notes to consolidate.";
-          }
-    
-          summaryLines.push(
-            `## Consolidacao Automatica - ${new Date().toISOString().slice(0, 10)}`
-          );
-          summaryLines.push("");
-    
-          // 2. Extrair topics recorrentes
-          const topicCounts = new Map<string, number>();
-          const allText: string[] = [];
-    
-          for (const entry of noteEntries) {
-            allText.push(entry);
-            // Extrair topicos mencionados
-            const topics = this.extractTopics(entry);
-            for (const topic of topics) {
-              topicCounts.set(topic, (topicCounts.get(topic) || 0) + 1);
-            }
-          }
-    
-          // 3. Identificar padroes (topicos que aparecem multiplas vezes)
-          const recurringTopics = Array.from(topicCounts.entries())
-            .filter(([_, count]) => count >= 2)
-            .sort(([_, a], [__, b]) => b - a)
-            .map(([topic]) => topic);
-    
-          if (recurringTopics.length > 0) {
-            summaryLines.push("### Temas Recorrentes");
-            for (const topic of recurringTopics.slice(0, 10)) {
-              summaryLines.push(`- ${topic} (${topicCounts.get(topic)} mencoes)`);
-            }
-            summaryLines.push("");
-          }
-    
-          // 4. Adicionar ao MEMORY.md
-          const consolidationEntry = summaryLines.join("\n") + "\n";
-          appendToMemory(consolidationEntry, "Consolidacao Automatica");
+          appendToMemory(summary, "Consolidacao Automatica");
     
           logger.info(
-            `[DreamTask] Consolidacao concluida: ${recurringTopics.length} topicos recorrentes, ${noteEntries.length} notas processadas`
+            `[DreamTask] Consolidacao concluida: ${result.added} novas memorias de ${result.extracted} extracoes`
           );
     
-          return `Memory consolidated: ${recurringTopics.length} recurring topics found across ${noteEntries.length} daily notes.`;
+          return `Memory consolidated: ${result.added} new memories from ${result.extracted} extractions.`;
         } catch (err: any) {
           logger.error(`[DreamTask] Erro na consolidacao: ${err?.message || err}`);
           return `Dream consolidation failed: ${err?.message || String(err)}`;

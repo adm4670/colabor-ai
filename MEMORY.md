@@ -113,3 +113,13 @@
 
 ## Aprendizados
 - [2026-05-31] O `claude-code` tem uma arquitetura **muito mais modular e robusta** para ferramentas, interface de terminal e gerenciamento de permissões
+
+## Preferencias
+- [2026-05-31] revisar algo antes?
+
+## Aprendizados
+- [2026-05-31] Se algo der errado, ele revisa o plano dinamicamente em vez de travar
+- [2026-05-31] Quer que eu já faça o push ou prefere revisar algo antes?
+
+## Preferencias
+- [2026-05-31] testar o que já foi feito primeiro?

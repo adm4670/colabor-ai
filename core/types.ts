@@ -63,3 +63,60 @@ export type MessageRole = "system" | "user" | "assistant" | "tool";
       durationMs: number;
     }
     
+    
+    // ============================================================
+    // Nivel 2 - Hook System types
+    // ============================================================
+    
+    export type HookEvent =
+      | "before_planner"
+      | "after_planner"
+      | "before_agent"
+      | "after_agent"
+      | "before_response"
+      | "after_response"
+      | "on_error";
+    
+    export interface HookContext {
+      input: string;
+      history?: string;
+      context?: string;
+      agentName?: string;
+      instruction?: string;
+      result?: string;
+      response?: string;
+      error?: Error;
+      metadata?: Record<string, unknown>;
+    }
+    
+    export interface Hook {
+      name: string;
+      priority?: number;
+      events?: HookEvent[];
+      handler: (event: HookEvent, context: HookContext) => Promise<HookContext> | HookContext;
+    }
+    
+    // ============================================================
+    // Nivel 2 - Memory Extraction types
+    // ============================================================
+    
+    export type MemoryType = "fact" | "decision" | "preference" | "learning";
+    
+    export interface FrontmatterMetadata {
+      title?: string;
+      type?: MemoryType;
+      tags?: string[];
+      date?: string;
+      context?: string;
+      [key: string]: unknown;
+    }
+    
+    export interface MemoryExtraction {
+      type: MemoryType;
+      content: string;
+      tags: string[];
+      sourceDate: string;
+      sourceFile: string;
+      confidence: number;
+    }
+    

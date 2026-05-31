@@ -31,6 +31,7 @@ import { Agent } from "../agent/agent";
         import { getPlanManager, PlanManager } from "../plan/plan-manager";
         import { getSubAgentRunner, SubAgentRunner } from "../agent/sub-agent-runner";
         import { getDreamTask, DreamTask } from "../tasks/dream-task";
+    import { getHookManager, HookManager } from "../hooks/hook-system";
     
         // Rate limiting - protecao contra uso excessivo (persistente)
         const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
@@ -114,6 +115,7 @@ import { Agent } from "../agent/agent";
           private planManager: PlanManager;
           private subAgentRunner: SubAgentRunner;
           private dreamTask: DreamTask;
+      private hookManager: HookManager;
     
           constructor(
             private planner: Agent,
@@ -128,6 +130,7 @@ import { Agent } from "../agent/agent";
             this.planManager = getPlanManager();
             this.subAgentRunner = getSubAgentRunner();
             this.dreamTask = getDreamTask();
+        this.hookManager = getHookManager();
     
             // Tentar carregar plano existente da sessao anterior
             try {
@@ -442,7 +445,21 @@ import { Agent } from "../agent/agent";
                   if (onProgress) {
                     onProgress("\u{1F5FA}\uFE0F Decidindo a melhor abordagem...").catch(() => {});
                   }
+              // === HOOK: before_planner ===
+              const hookContext = await this.hookManager.execute("before_planner", {
+                input,
+                history: formattedHistory,
+                context,
+              });
+    
               const decision = await this.planner.run(plannerPrompt);
+    
+              // === HOOK: after_planner ===
+              await this.hookManager.execute("after_planner", {
+                input,
+                result: decision,
+                context,
+              });
               this.eventStream.push(createEvent("text_delta", { content: "Planner respondeu." }));
     
               if (this.debug) {
@@ -560,6 +577,25 @@ import { Agent } from "../agent/agent";
                 this.contextEngine.addMessage({
                   role: "assistant",
                   content: lastResult || parsed.instruction || "Concluido.",
+                });
+    
+                // === HOOK: before_response ===
+                const hookResponse = await this.hookManager.execute("before_response", {
+                  input,
+                  response: lastResult || parsed.instruction || "Concluido.",
+                  context,
+                });
+    
+                // Usar resposta modificada pelo hook se existir
+                if (hookResponse.response && hookResponse.response !== (lastResult || parsed.instruction || "Concluido.")) {
+                  lastResult = hookResponse.response;
+                }
+    
+                // === HOOK: after_response ===
+                await this.hookManager.execute("after_response", {
+                  input,
+                  response: lastResult,
+                  context,
                 });
     
                 // Salvar nota diaria automaticamente ao finalizar
@@ -717,7 +753,24 @@ import { Agent } from "../agent/agent";
         ${memoryContext.slice(0, 1000)}
         `;
     
+              // === HOOK: before_agent ===
+              await this.hookManager.execute("before_agent", {
+                input,
+                agentName: parsed.agent,
+                instruction: parsed.instruction,
+                context,
+              });
+    
               const result = await target.agent.run(agentPrompt, onProgress);
+    
+              // === HOOK: after_agent ===
+              await this.hookManager.execute("after_agent", {
+                input,
+                agentName: parsed.agent,
+                instruction: parsed.instruction,
+                result,
+                context,
+              });
     
               this.eventStream.push(
                 createEvent("tool_call_end", {
