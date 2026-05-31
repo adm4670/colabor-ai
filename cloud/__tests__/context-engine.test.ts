@@ -22,7 +22,7 @@
         });
     
         it("should handle unicode text", () => {
-          const text = "Olá, mundo! Como vai você?";
+          const text = "OlÃ¡, mundo! Como vai vocÃª?";
           expect(estimateTokens(text)).toBeGreaterThan(0);
         });
       });

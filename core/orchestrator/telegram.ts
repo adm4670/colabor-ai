@@ -8,7 +8,7 @@ import { agentRegistry } from "../agents/agent-registry";
 import { logger } from "../utils/logger";
 
 // Importa o planner para garantir que ele seja registrado no agentRegistry
-// Ajuste o caminho de acordo com a localizaÃƒÂ§ÃƒÂ£o real do arquivo do planner
+// Ajuste o caminho de acordo com a localização real do arquivo do planner
 import "../agents/planner.agent";
 import "../agents/assistant.agent";
 import "../agents/python.agent";
@@ -62,7 +62,7 @@ function getHistory(chatId: number): Message[] {
 function addMessage(chatId: number, message: Message) {
   const history = getHistory(chatId);
   history.push(message);
-  // limitar histÃƒÂ³rico
+  // limitar histórico
   if (history.length > 20) {
     history.shift();
   }
@@ -137,7 +137,7 @@ async function startTelegramAgent() {
     try {
       await bot.sendChatAction(chatId, "typing");
 
-      // CASO 1: ÃƒÂUDIO / VOICE
+      // CASO 1: ÁUDIO / VOICE
       if (msg.voice || msg.audio) {
         const fileId = msg.voice?.file_id || msg.audio?.file_id;
         if (!fileId) return;
@@ -150,7 +150,7 @@ async function startTelegramAgent() {
 
       if (!text) return;
 
-      // HISTÃƒâ€œRICO
+      // HISTÓRICO
       addMessage(chatId, {
         role: "user",
         content: text,
@@ -230,7 +230,7 @@ async function startTelegramAgent() {
           )
         : null;
       console.error(err);
-      bot.sendMessage(chatId, "Ã¢ÂÅ’ Erro ao processar mensagem.");
+      bot.sendMessage(chatId, "❌ Erro ao processar mensagem.");
     }
   });
 }
