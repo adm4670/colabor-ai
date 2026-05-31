@@ -1,6 +1,10 @@
 import { Agent } from "../agent/agent";
 import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { memorySearchTool } from "../memory/memory_search";
+            import { agentToolOpenAI } from "../tools/agentTool";
+            import { taskCreateOpenAI, taskListOpenAI } from "../tools/taskCreateTool";
+            import { agentToolHandler } from "../tools/agentTool";
+            import { taskCreateHandler, taskListHandler } from "../tools/taskCreateTool";
     
     export const assistantAgent = new Agent({
       name: "assistant",
@@ -11,7 +15,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     
-      tools: [memorySearchTool],
+      tools: [memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI],
     
       functions: {
         memory_search: memorySearchTool.handler,

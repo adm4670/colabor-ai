@@ -1,7 +1,11 @@
 import { Agent } from "../agent/agent";
 import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { pythonExecTool } from "../tools/pythonExecTool";
+        import { agentToolOpenAI } from "../tools/agentTool";
+        import { taskCreateOpenAI, taskListOpenAI } from "../tools/taskCreateTool";
     import { memorySearchTool } from "../memory/memory_search";
+        import { agentToolHandler } from "../tools/agentTool";
+        import { taskCreateHandler, taskListHandler } from "../tools/taskCreateTool";
     
     export const pythonAgent = new Agent({
       name: "PythonAgent",
@@ -12,12 +16,15 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     
-      tools: [pythonExecTool, memorySearchTool],
+      tools: [pythonExecTool, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI],
     
       functions: {
-        execute_python: pythonExecTool.handler,
-        memory_search: memorySearchTool.handler,
-      },
+            execute_python: pythonExecTool.handler,
+            memory_search: memorySearchTool.handler,
+            spawn_agent: agentToolHandler,
+            create_background_task: taskCreateHandler,
+            list_background_tasks: taskListHandler,
+          },
     
       generalInstructions: `
         ${CORE_INSTRUCTIONS}

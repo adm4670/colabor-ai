@@ -1,5 +1,7 @@
 /**
- * AgentOrchestrator - Cloud edition v2
+ * AgentOrchestrator - Cloud edition v3
+ * 
+ * v3: Adicionado suporte a sub-agentes, planejamento persistente e background tasks.
  *
  * Coordena o fluxo: Planner -> Agent -> Reflection -> Response.
  * Suporta agentes CLOUD (executados no servidor) e agentes LOCAIS

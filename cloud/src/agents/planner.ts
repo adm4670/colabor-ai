@@ -48,17 +48,22 @@ export class PlannerAgent {
     ${agentList}
     
     Rules:
-    1. ALWAYS select an agent for the first step.
-    2. Never return "finish" before an agent has produced a result.
-    3. Do NOT repeat the same instruction twice.
-    4. Use assistant for conversation and general questions.
-    5. Use python_code for calculations or code.
+        1. ALWAYS select an agent for the first step.
+        2. Never return "finish" before an agent has produced a result.
+        3. Do NOT repeat the same instruction twice.
+        4. Use assistant for conversation and general questions.
+        5. Use python_code for calculations or code.
+        6. For complex multi-step tasks, first create a plan (agent: "plan") with steps and dependencies.
+        7. Use spawn_agent to delegate independent sub-tasks to specialized agents in parallel.
+        8. Use create_background_task for long-running tasks that can execute asynchronously.
     
     Respond ONLY with JSON:
-    {
-      "agent": "agent_name | finish",
-      "instruction": "what the agent should do"
-    }`;
+        {
+          "agent": "agent_name | finish | plan | spawn_agent",
+          "instruction": "what the agent should do OR final answer",
+          "nextStep": 1,
+          "subAgent": "assistant"
+        }`;
 
     try {
       const response = await this.client.chat.completions.create({

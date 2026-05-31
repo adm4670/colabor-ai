@@ -107,3 +107,9 @@
 
 ## Preferencias
 - [2026-05-30] - *A)* Commitar só o `memory/` + adicionar os artefatos ao `
+
+## Preferencias
+- [2026-05-31] iniciar por outra? Posso começar a implementar imediatamente
+
+## Aprendizados
+- [2026-05-31] O `claude-code` tem uma arquitetura **muito mais modular e robusta** para ferramentas, interface de terminal e gerenciamento de permissões
