@@ -13,7 +13,8 @@
   "scripts": {
     "test": "jest",
     "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
-    "dev": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts"
+    "dev": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "dotenv": "^17.3.1",
