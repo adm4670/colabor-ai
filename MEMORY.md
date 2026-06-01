@@ -126,3 +126,18 @@
 
 ## Preferencias
 - [2026-05-31] revisar algo?
+
+## Preferencias
+- [2026-05-31] fazer outra coisa?
+
+## Preferencias
+- [2026-06-01] Listados os 15 commits mais recentes do repositório `colabor-ai`
+
+## Decisoes
+- [2026-06-01] Qual caminho prefere?
+
+## Preferencias
+- [2026-06-01] continuar na `main`?
+
+## Preferencias
+- [2026-06-01] revisar o que mudou antes?

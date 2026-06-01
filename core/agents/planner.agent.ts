@@ -6,7 +6,7 @@ import { Agent } from "../agent/agent";
         role: "AI task planner",
         goal: "Decide which agent should execute the next step, create plans for complex tasks, and coordinate sub-agent delegation",
         backstory: "An AI responsible for coordinating other agents. It creates multi-step plans for complex tasks, delegates to specialized agents, and tracks progress.",
-        model: "deepseek-v4-pro",
+        model: "deepseek-v4-flash",
         apiKey: process.env.DEEPSEEK_API_KEY || "",
         baseURL: "https://api.deepseek.com",
         generalInstructions: `

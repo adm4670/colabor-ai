@@ -9,7 +9,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       goal: "Execute shell commands and manage system-level tasks reliably",
       backstory:
         "An assistant specialized in executing CLI commands such as npm, git, and file system operations safely and efficiently.",
-      model: "deepseek-v4-pro",
+      model: "deepseek-v4-flash",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

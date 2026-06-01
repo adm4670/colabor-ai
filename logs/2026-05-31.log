@@ -84,3 +84,89 @@
 [2026-05-31T21:02:09.589Z] [INFO] [2026-05-31T21:02:09.585Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 [2026-05-31T21:02:15.054Z] [INFO] [2026-05-31T21:02:15.053Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
 [2026-05-31T21:02:15.130Z] [INFO] [2026-05-31T21:02:15.129Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:07:26.246Z] [INFO] [2026-05-31T21:07:26.245Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:07:26.249Z] [INFO] [2026-05-31T21:07:26.248Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:07:27.602Z] [INFO] [2026-05-31T21:07:27.600Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:07:36.987Z] [INFO] [2026-05-31T21:07:36.987Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:07:45.801Z] [INFO] [2026-05-31T21:07:45.799Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:07:47.326Z] [INFO] [2026-05-31T21:07:47.321Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:07:52.491Z] [INFO] [2026-05-31T21:07:52.490Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T21:12:39.176Z] [INFO] [2026-05-31T21:12:39.176Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:12:39.177Z] [INFO] [2026-05-31T21:12:39.177Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:12:44.214Z] [INFO] [2026-05-31T21:12:44.213Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:12:45.807Z] [INFO] [2026-05-31T21:12:45.805Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:12:47.264Z] [INFO] [2026-05-31T21:12:47.262Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:12:55.078Z] [INFO] [2026-05-31T21:12:55.077Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T21:13:18.197Z] [INFO] [2026-05-31T21:13:18.197Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:13:18.200Z] [INFO] [2026-05-31T21:13:18.198Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:13:21.715Z] [INFO] [2026-05-31T21:13:21.715Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:13:23.857Z] [INFO] [2026-05-31T21:13:23.854Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:13:25.872Z] [INFO] [2026-05-31T21:13:25.869Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:13:36.150Z] [INFO] [2026-05-31T21:13:36.148Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T21:14:00.100Z] [INFO] [2026-05-31T21:14:00.098Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-05-31T21:14:00.102Z] [INFO] [2026-05-31T21:14:00.100Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-05-31T21:14:00.103Z] [INFO] [2026-05-31T21:14:00.102Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-05-31T21:14:00.103Z] [INFO] [2026-05-31T21:14:00.103Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-05-31T21:14:00.104Z] [INFO] [2026-05-31T21:14:00.104Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-05-31T21:14:00.105Z] [INFO] [2026-05-31T21:14:00.105Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-05-31T21:14:00.115Z] [INFO] [2026-05-31T21:14:00.115Z] [INFO] [Telegram] Multi-Agent iniciado.
+[2026-05-31T21:14:08.502Z] [INFO] [2026-05-31T21:14:08.501Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:14:08.504Z] [INFO] [2026-05-31T21:14:08.504Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:14:21.440Z] [INFO] [2026-05-31T21:14:21.437Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-05-31T21:14:21.511Z] [INFO] [2026-05-31T21:14:21.511Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:14:28.567Z] [INFO] [2026-05-31T21:14:28.566Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:14:30.413Z] [INFO] [2026-05-31T21:14:30.412Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:14:37.339Z] [INFO] [2026-05-31T21:14:37.337Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T21:15:55.623Z] [INFO] [2026-05-31T21:15:55.622Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:15:55.624Z] [INFO] [2026-05-31T21:15:55.624Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:16:16.432Z] [INFO] [2026-05-31T21:16:16.432Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:17:13.423Z] [INFO] [2026-05-31T21:17:13.423Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:17:13.425Z] [INFO] [2026-05-31T21:17:13.424Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:17:21.894Z] [INFO] [2026-05-31T21:17:21.893Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:17:33.217Z] [INFO] [2026-05-31T21:17:33.215Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:17:35.322Z] [INFO] [2026-05-31T21:17:35.322Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:17:41.244Z] [INFO] [2026-05-31T21:17:41.244Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:18:14.425Z] [INFO] [2026-05-31T21:18:14.420Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:18:14.429Z] [INFO] [2026-05-31T21:18:14.428Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:18:17.237Z] [INFO] [2026-05-31T21:18:17.236Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:18:24.019Z] [INFO] [2026-05-31T21:18:24.017Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T21:19:05.503Z] [INFO] [2026-05-31T21:19:05.499Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:19:05.504Z] [INFO] [2026-05-31T21:19:05.503Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:19:07.435Z] [INFO] [2026-05-31T21:19:07.434Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:19:08.177Z] [INFO] [2026-05-31T21:19:08.176Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:19:18.689Z] [INFO] [2026-05-31T21:19:18.688Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T21:19:31.815Z] [INFO] [2026-05-31T21:19:31.811Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:19:43.029Z] [INFO] [2026-05-31T21:19:43.027Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T21:19:43.031Z] [INFO] [2026-05-31T21:19:43.030Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T21:19:48.984Z] [INFO] [2026-05-31T21:19:48.984Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:56:13.879Z] [INFO] [2026-05-31T23:56:13.877Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-05-31T23:56:13.881Z] [INFO] [2026-05-31T23:56:13.881Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-05-31T23:56:13.882Z] [INFO] [2026-05-31T23:56:13.881Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-05-31T23:56:13.883Z] [INFO] [2026-05-31T23:56:13.882Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-05-31T23:56:13.883Z] [INFO] [2026-05-31T23:56:13.883Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-05-31T23:56:13.884Z] [INFO] [2026-05-31T23:56:13.884Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-05-31T23:56:13.900Z] [INFO] [2026-05-31T23:56:13.899Z] [INFO] [Telegram] Multi-Agent iniciado.
+[2026-05-31T23:56:43.423Z] [INFO] [2026-05-31T23:56:43.422Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T23:56:43.425Z] [INFO] [2026-05-31T23:56:43.424Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:56:56.237Z] [INFO] [2026-05-31T23:56:56.229Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-05-31T23:56:56.300Z] [INFO] [2026-05-31T23:56:56.299Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:57:00.546Z] [INFO] [2026-05-31T23:57:00.545Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:57:01.847Z] [INFO] [2026-05-31T23:57:01.845Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:57:17.982Z] [INFO] [2026-05-31T23:57:17.981Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T23:57:42.445Z] [INFO] [2026-05-31T23:57:42.444Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T23:57:42.448Z] [INFO] [2026-05-31T23:57:42.446Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:57:45.920Z] [INFO] [2026-05-31T23:57:45.920Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:57:50.011Z] [INFO] [2026-05-31T23:57:50.008Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:58:00.591Z] [INFO] [2026-05-31T23:58:00.588Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:58:08.008Z] [INFO] [2026-05-31T23:58:07.999Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:58:09.382Z] [INFO] [2026-05-31T23:58:09.378Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:58:22.915Z] [INFO] [2026-05-31T23:58:22.913Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md
+[2026-05-31T23:59:05.939Z] [INFO] [2026-05-31T23:59:05.936Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T23:59:05.941Z] [INFO] [2026-05-31T23:59:05.940Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:59:22.418Z] [INFO] [2026-05-31T23:59:22.417Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:59:33.278Z] [INFO] [2026-05-31T23:59:33.277Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:59:40.131Z] [INFO] [2026-05-31T23:59:40.130Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-05-31T23:59:40.133Z] [INFO] [2026-05-31T23:59:40.132Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:59:45.027Z] [INFO] [2026-05-31T23:59:45.022Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:59:46.247Z] [INFO] [2026-05-31T23:59:46.242Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-05-31T23:59:50.846Z] [INFO] [2026-05-31T23:59:50.844Z] [INFO] [Memory] Nota adicionada a 2026-05-31.md

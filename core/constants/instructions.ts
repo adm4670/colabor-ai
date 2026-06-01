@@ -51,7 +51,7 @@
     // Modelo default
     // ============================================================
     
-    export const DEFAULT_MODEL = "deepseek-v4-pro";
+    export const DEFAULT_MODEL = "deepseek-v4-flash";
     
     // ============================================================
     // Planner System Prompt (v2 - com plan-based thinking e sub-agents)
