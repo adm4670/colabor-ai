@@ -25,6 +25,15 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
       functions: {
         memory_search: memorySearchTool.handler,
+        spawn_agent: agentToolHandler,
+        create_background_task: taskCreateHandler,
+        list_background_tasks: taskListHandler,
+        cancel_background_task: cancelBgTaskHandler,
+        todo_write: todoWriteHandler,
+        web_search: webSearchHandler,
+        schedule_task: scheduleTaskHandler,
+        list_scheduled_tasks: listScheduledHandler,
+        delete_scheduled_task: deleteScheduledHandler,
       },
     
       goal: `
