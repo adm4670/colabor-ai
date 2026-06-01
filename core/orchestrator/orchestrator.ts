@@ -1,5 +1,7 @@
 import { Agent } from "../agent/agent";
-        import { logger } from "../utils/logger";
+        import { logger, createLogger } from "../utils/logger";
+
+const log = createLogger("ORCH");
         import { browserAgent } from "../agents/browser.agent";
     import { reflectorAgent } from "../agents/reflector.agent";
         import {
@@ -165,7 +167,7 @@ import { Agent } from "../agent/agent";
               agentName: task.agentName,
             });
           } catch (err: any) {
-            console.error(`[Orchestrator] Erro no scheduler callback: ${err?.message || err}`);
+            log.error(`Erro no scheduler callback: ${err?.message || err}`);
           }
         });
 
@@ -182,7 +184,7 @@ import { Agent } from "../agent/agent";
             try {
               const existingPlan = this.planManager.load();
               if (existingPlan && this.debug) {
-                console.log(`[Orchestrator] Plano carregado: ${existingPlan.steps.length} steps`);
+                log.info(`Plano carregado: ${existingPlan.steps.length} steps`);
               }
             } catch {
               // Plano nao disponivel - sessao nova
@@ -294,26 +296,26 @@ import { Agent } from "../agent/agent";
                   case "tool_call_start":
                     currentTool = event.toolName || "";
                     if (this.debug) {
-                      console.log(`  [EVENT] Tool call start: ${currentTool}`);
+                      log.debug(`[EVENT] Tool call start: ${currentTool}`);
                     }
                     break;
     
                   case "tool_call_end":
                     if (this.debug) {
-                      console.log(`  [EVENT] Tool call end: ${event.toolName || currentTool}`);
+                      log.debug(`[EVENT] Tool call end: ${event.toolName || currentTool}`);
                     }
                     break;
     
                   case "turn_end":
                     if (this.debug) {
-                      console.log(`  [EVENT] Turn completed`);
+                      log.debug(`[EVENT] Turn completed`);
                     }
                     break;
     
                   case "agent_end":
                     const duration = Date.now() - startTime;
                     if (this.debug) {
-                      console.log(`  [EVENT] Agent finished. Duration: ${duration}ms`);
+                      log.debug(`[EVENT] Agent finished. Duration: ${duration}ms`);
                     }
                     break;
                   case "progress":
@@ -343,10 +345,10 @@ import { Agent } from "../agent/agent";
             this.reflectionCount = 0;
     
             if (this.debug) {
-              console.log("\n==============================");
-              console.log("ORCHESTRATOR START");
-              console.log("User input:", input);
-              console.log("Session ID:", this.sessionId);
+              log.info("==============================");
+              log.info("ORCHESTRATOR START");
+              log.info("User input received", { input });
+              log.info("Session ID", { sessionId: this.sessionId });
             }
     
             // Check rate limit
@@ -360,7 +362,7 @@ import { Agent } from "../agent/agent";
             // Load persisted transcript
             const persistedMessages = loadSessionTranscript(this.sessionId);
             if (persistedMessages.length > 0 && this.debug) {
-              console.log(`Loaded ${persistedMessages.length} messages from transcript`);
+              log.debug(`Loaded ${persistedMessages.length} messages from transcript`);
             }
     
             // Save user message to transcript
@@ -381,7 +383,7 @@ import { Agent } from "../agent/agent";
             // Buscar memoria relevante ao contexto atual
             const memoryContext = this.memoryEngine.recall(input, formattedHistory);
             if (this.debug && memoryContext.length > 50) {
-              console.log("Memory context loaded:", memoryContext.slice(0, 100) + "...");
+              log.debug("Memory context loaded");
             }
     
             await onProgress?.("\u{1F4DA} Recuperando memorias relevantes...");
@@ -393,7 +395,7 @@ import { Agent } from "../agent/agent";
             if (this.planManager.hasPlan()) {
               planContext = this.planManager.getPlanForPrompt();
               if (this.debug) {
-                console.log("Plan loaded for context");
+                log.debug("Plan loaded for context");
               }
             }
     
@@ -422,7 +424,7 @@ import { Agent } from "../agent/agent";
               this.eventStream.push(createEvent("turn_start", { content: `Step ${steps + 1}/${maxSteps}` }));
     
               if (this.debug) {
-                console.log(`\nStep ${steps + 1}/${maxSteps}`);
+                log.info(`Step ${steps + 1}/${maxSteps}`);
               }
     
               const agentList = this.agents
@@ -509,8 +511,8 @@ import { Agent } from "../agent/agent";
               this.eventStream.push(createEvent("text_delta", { content: "Planner respondeu." }));
     
               if (this.debug) {
-                console.log("Planner raw decision:");
-                console.log(decision);
+                log.debug("Planner raw decision:");
+                log.debug(decision);
               }
     
               let parsed: any;
@@ -518,7 +520,7 @@ import { Agent } from "../agent/agent";
               try {
                 parsed = JSON.parse(decision);
               } catch {
-                console.warn("Planner returned invalid JSON");
+                log.warn("Planner returned invalid JSON");
                 this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
                 this.eventStream.push(createEvent("agent_end"));
                 this.eventStream.end();
@@ -526,7 +528,7 @@ import { Agent } from "../agent/agent";
               }
     
               if (this.debug) {
-                console.log("Parsed decision:", parsed);
+                log.debug("Parsed decision:", parsed);
               }
     
               // ============================================================
@@ -574,7 +576,7 @@ import { Agent } from "../agent/agent";
                   if (Array.isArray(planSteps) && planSteps.length > 0) {
                     this.planManager.addSteps(planSteps);
                     if (this.debug) {
-                      console.log(`Plan created with ${planSteps.length} steps`);
+                      log.info(`Plan created with ${planSteps.length} steps`);
                     }
                   }
                 } catch (err) {
@@ -591,7 +593,7 @@ import { Agent } from "../agent/agent";
               // Prevent finish before any agent ran
               if (parsed.agent === "finish" && !lastResult) {
                 if (this.debug) {
-                  console.warn("Planner tried to finish before any agent ran.");
+                  log.warn("Planner tried to finish before any agent ran.");
                 }
                 parsed.agent = this.agents[0].name;
                 parsed.instruction = input;
@@ -609,7 +611,7 @@ import { Agent } from "../agent/agent";
                       onProgress("\u{1F4DD} Preparando a resposta final...").catch(() => {});
                     }
                 if (this.debug) {
-                  console.log("\nORCHESTRATION FINISHED");
+                  log.info("ORCHESTRATION FINISHED");
                 }
     
                 // Save assistant response to transcript
@@ -671,7 +673,7 @@ import { Agent } from "../agent/agent";
                   this.dreamTask.registerSession();
                   const dreamResult = await this.dreamTask.maybeConsolidate();
                   if (dreamResult && this.debug) {
-                    console.log(`[DreamTask] ${dreamResult}`);
+                    log.info(`[DreamTask] ${dreamResult}`);
                   }
                 } catch (e) {
                   // Dream nao e critico
@@ -682,7 +684,7 @@ import { Agent } from "../agent/agent";
                 // ============================================================
                 if (this.planManager.hasPlan() && this.planManager.isComplete()) {
                   if (this.debug) {
-                    console.log("Plan completed successfully!");
+                    log.info("Plan completed successfully!");
                   }
                   this.planManager.destroy();
                 }
@@ -696,7 +698,7 @@ import { Agent } from "../agent/agent";
               // Protection against instruction loop
               if (parsed.instruction === lastInstruction) {
                 if (this.debug) {
-                  console.warn("Repeated instruction detected. Stopping loop.");
+                  log.warn("Repeated instruction detected. Stopping loop.");
                 }
                 this.eventStream.push(createEvent("agent_end"));
                 this.eventStream.end((lastResult || context) as any);
@@ -741,15 +743,15 @@ import { Agent } from "../agent/agent";
               const target = this.agents.find((a) => a.name === parsed.agent);
     
               if (!target) {
-                console.warn(`Agent not found: ${parsed.agent}`);
+                log.warn(`Agent not found: ${parsed.agent}`);
                 this.eventStream.push(createEvent("agent_end"));
                 this.eventStream.end();
                 return lastResult || `Erro: agente '${parsed.agent}' nao encontrado.`;
               }
     
               if (this.debug) {
-                console.log(`Executing agent: ${parsed.agent}`);
-                console.log("Instruction:", parsed.instruction);
+                log.info(`Executing agent: ${parsed.agent}`);
+                log.debug("Instruction:", parsed.instruction);
               }
     
               this.eventStream.push(
@@ -835,7 +837,7 @@ import { Agent } from "../agent/agent";
                   instruction: parsed.instruction,
                 });
                 if (this.debug) {
-                  console.log(`Plan step ${parsed.nextStep} marked as done`);
+                  log.info(`Plan step ${parsed.nextStep} marked as done`);
                 }
               }
     
@@ -852,10 +854,10 @@ import { Agent } from "../agent/agent";
                 );
     
                 if (this.debug) {
-                  console.log(`\n[Reflection #${this.reflectionCount}]`);
-                  console.log(`  Success: ${reflection.success}`);
-                  console.log(`  Complete: ${reflection.complete}`);
-                  console.log(`  Learning: ${reflection.learning}`);
+                  log.info(`[Reflection #${this.reflectionCount}]`);
+                  log.debug(`  Success: ${reflection.success}`);
+                  log.debug(`  Complete: ${reflection.complete}`);
+                  log.debug(`  Learning: ${reflection.learning}`);
                 }
     
                 // Se aprendeu algo, adicionar ao contexto
@@ -879,7 +881,7 @@ import { Agent } from "../agent/agent";
                     // Usar o prompt melhorado sugerido pelo reflector
                     parsed.instruction = retryPrompt;
                     if (this.debug) {
-                      console.log(`Reflection suggested retry prompt: "${retryPrompt.slice(0, 100)}"`);
+                      log.debug(`Reflection suggested retry prompt: "${retryPrompt.slice(0, 100)}"`);
                     }
                   } else {
                     delete parsed.instruction; // Forca nova instrucao
@@ -889,7 +891,7 @@ import { Agent } from "../agent/agent";
                   if (suggestedAgent && this.agents.find(a => a.name === suggestedAgent)) {
                     parsed.agent = suggestedAgent;
                     if (this.debug) {
-                      console.log(`Reflection suggests alternative agent: ${suggestedAgent}`);
+                      log.debug(`Reflection suggests alternative agent: ${suggestedAgent}`);
                     }
                   }
     
@@ -910,7 +912,7 @@ import { Agent } from "../agent/agent";
                   }
     
                   if (this.debug) {
-                    console.log("Reflection suggests retry with different approach");
+                    log.debug("Reflection suggests retry with different approach");
                   }
                 }
               }
@@ -918,8 +920,8 @@ import { Agent } from "../agent/agent";
               lastResult = result;
     
               if (this.debug) {
-                console.log(`Result from ${parsed.agent}:`);
-                console.log(result);
+                log.debug(`Result from ${parsed.agent}:`);
+                log.debug(result);
               }
     
               context += `\n\n${parsed.agent} result:\n${result}`;
@@ -934,7 +936,7 @@ import { Agent } from "../agent/agent";
             }
     
             if (this.debug) {
-              console.warn("\nMax steps reached. Returning last result.");
+              log.warn("Max steps reached. Returning last result.");
             }
     
             appendToTranscript(this.sessionId, {

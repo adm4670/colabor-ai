@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authenticate = void 0;
+exports.authenticate = authenticate;
 /**
  * Chat Routes - Chat and streaming endpoints
  */
@@ -11,6 +11,7 @@ const express_1 = require("express");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const orchestrator_1 = require("../orchestrator/orchestrator");
 const logger_1 = require("../utils/logger");
+const chatLog = (0, logger_1.createLogger)("CHAT");
 const router = (0, express_1.Router)();
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
 // Active sessions
@@ -38,7 +39,6 @@ function authenticate(req, res, next) {
         return res.status(401).json({ error: "Invalid or expired token" });
     }
 }
-exports.authenticate = authenticate;
 /**
  * POST /chat/message
  * Send a message and get the full response (non-streaming)
@@ -52,6 +52,7 @@ router.post("/message", authenticate, async (req, res) => {
     const sid = sessionId || user.sessionId;
     const orchestrator = getOrCreateSession(sid);
     try {
+        chatLog.info(`Message received from ${user.userId}`, { sessionId: sid, messageLen: message.length });
         const generator = await orchestrator.run(message);
         const responses = [];
         for await (const response of generator) {
@@ -62,6 +63,7 @@ router.post("/message", authenticate, async (req, res) => {
             responses,
             finalResponse: responses.filter((r) => r.type === "text" || r.type === "end").pop()?.content || "",
         });
+        chatLog.info("Response sent", { sessionId: sid, responsesCount: responses.length });
     }
     catch (err) {
         logger_1.logger.error(`[Chat] Erro: ${err.message}`);
@@ -74,6 +76,7 @@ router.post("/message", authenticate, async (req, res) => {
  */
 router.get("/stream/:sessionId", authenticate, (req, res) => {
     const { sessionId } = req.params;
+    chatLog.info("Stream info requested", { sessionId: req.params.sessionId });
     res.json({
         sessionId,
         wsEndpoint: `/ws?token=${req.headers.authorization?.slice(7)}&sessionId=${sessionId}`,
@@ -87,6 +90,7 @@ router.get("/stream/:sessionId", authenticate, (req, res) => {
 router.get("/sessions", authenticate, (req, res) => {
     const user = req.user;
     const userSessions = Array.from(sessions.keys()).filter((sid) => sid.includes(user.userId) || sid.includes(user.sessionId));
+    chatLog.info(`Sessions listed for ${user.userId}`, { count: userSessions.length });
     res.json({ sessions: userSessions, count: userSessions.length });
 });
 exports.default = router;

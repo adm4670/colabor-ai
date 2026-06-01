@@ -5,6 +5,9 @@ import { Router, type Request, type Response } from "express";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import type { AuthPayload } from "../types";
+import { createLogger } from "../utils/logger";
+
+const authLog = createLogger("AUTH");
 
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
@@ -45,6 +48,7 @@ router.post("/login", (req: Request, res: Response) => {
     sessionId,
     expiresIn: JWT_EXPIRES_IN,
   });
+  authLog.info("Login successful", { userId, sessionId });
 });
 
 /**
@@ -61,8 +65,10 @@ router.post("/verify", (req: Request, res: Response) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as AuthPayload;
     res.json({ valid: true, userId: decoded.userId, sessionId: decoded.sessionId });
+  authLog.info("Token verified", { valid: true, userId: decoded.userId });
   } catch {
-    res.status(401).json({ valid: false, error: "Invalid or expired token" });
+    
+  authLog.warn("Token verification failed");res.status(401).json({ valid: false, error: "Invalid or expired token" });
   }
 });
 

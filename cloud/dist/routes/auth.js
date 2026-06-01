@@ -9,6 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const uuid_1 = require("uuid");
+const logger_1 = require("../utils/logger");
+const authLog = (0, logger_1.createLogger)("AUTH");
 const router = (0, express_1.Router)();
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "24h";
@@ -41,6 +43,7 @@ router.post("/login", (req, res) => {
         sessionId,
         expiresIn: JWT_EXPIRES_IN,
     });
+    authLog.info("Login successful", { userId, sessionId });
 });
 /**
  * POST /auth/verify
@@ -54,8 +57,10 @@ router.post("/verify", (req, res) => {
     try {
         const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
         res.json({ valid: true, userId: decoded.userId, sessionId: decoded.sessionId });
+        authLog.info("Token verified", { valid: true, userId: decoded.userId });
     }
     catch {
+        authLog.warn("Token verification failed");
         res.status(401).json({ valid: false, error: "Invalid or expired token" });
     }
 });

@@ -5,7 +5,9 @@ import { Router, type Request, type Response } from "express";
 import jwt from "jsonwebtoken";
 import { AgentOrchestrator } from "../orchestrator/orchestrator";
 import type { AuthPayload, CloudMessage, ChatResponse } from "../types";
-import { logger } from "../utils/logger";
+import { logger, createLogger } from "../utils/logger";
+
+const chatLog = createLogger("CHAT");
 
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
@@ -54,7 +56,8 @@ router.post("/message", authenticate, async (req: Request, res: Response) => {
   const orchestrator = getOrCreateSession(sid);
 
   try {
-    const generator = await orchestrator.run(message);
+    
+  chatLog.info(`Message received from ${user.userId}`, { sessionId: sid, messageLen: message.length });const generator = await orchestrator.run(message);
     const responses: ChatResponse[] = [];
 
     for await (const response of generator) {
@@ -67,6 +70,7 @@ router.post("/message", authenticate, async (req: Request, res: Response) => {
       finalResponse:
         responses.filter((r) => r.type === "text" || r.type === "end").pop()?.content || "",
     });
+  chatLog.info("Response sent", { sessionId: sid, responsesCount: responses.length });
   } catch (err: any) {
     logger.error(`[Chat] Erro: ${err.message}`);
     res.status(500).json({ error: "Internal error", details: err.message });
@@ -79,7 +83,8 @@ router.post("/message", authenticate, async (req: Request, res: Response) => {
  */
 router.get("/stream/:sessionId", authenticate, (req: Request, res: Response) => {
   const { sessionId } = req.params;
-  res.json({
+  
+  chatLog.info("Stream info requested", { sessionId: req.params.sessionId });res.json({
     sessionId,
     wsEndpoint: `/ws?token=${req.headers.authorization?.slice(7)}&sessionId=${sessionId}`,
     status: "ready",
@@ -95,7 +100,8 @@ router.get("/sessions", authenticate, (req: Request, res: Response) => {
   const userSessions = Array.from(sessions.keys()).filter(
     (sid) => sid.includes(user.userId) || sid.includes(user.sessionId),
   );
-  res.json({ sessions: userSessions, count: userSessions.length });
+  
+  chatLog.info(`Sessions listed for ${user.userId}`, { count: userSessions.length });res.json({ sessions: userSessions, count: userSessions.length });
 });
 
 export { authenticate };

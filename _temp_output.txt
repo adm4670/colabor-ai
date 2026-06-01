@@ -1,0 +1,40 @@
+# Notas Diarias - 2026-06-01
+
+### 2026-06-01 19:11:56
+
+Conversa: Olá
+Resultado: Olá! 👋
+
+Na última sessão estávamos com um plano ativo para **acessar a página da Ouvidoria no site do Senac PE** (pe.senac.br) e extrair informações de lá. 
+
+Quer retomar esse plano ou prefere falar sobre outra coisa?
+
+### 2026-06-01 19:18:07
+
+Conversa: crie uma nova branch reescrevendo o código para melhorar o log e rastreio do que está acontecendo principalmente no cmd depois de executar o npm run dev
+Resultado: ✅ Tudo pronto! Branch criada e logs turbinados.
+
+A nova branch `feat/melhorias-log` já está no ar com as seguintes melhorias:
+
+- **Logger reescrito** com timestamps, cores e níveis (info/warn/error/debug)
+- **Contexto por componente** (agente, orchestrator, telegram, CLI, etc.)
+- **Timers de perform
+
+### 2026-06-01 19:34:02
+
+Conversa: o modelo está entrando em loop, segue o log para identificar: 
+
+
+[Agent] Executando tool:
+[Agent] Nome: spawn_agent
+[Agent] Args: {
+  agent: 'shell',
+  instruction: 'Execute EXATAMENTE este comando no
+Resultado: Analisando o log, o problema está bem claro. Vou direto ao ponto.
+
+## Causa Raiz do Loop
+
+O loop acontece porque:
+
+1. **`spawn_agent('shell')` é chamado** para executar `cat memory/2026-06-01.md`
+2. **O agente `shell` não existe** — o log mostra claramente: `[SubAgentRunner] Agente "shell" nao encon

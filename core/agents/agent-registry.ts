@@ -82,9 +82,24 @@
           if (key.toLowerCase() === lower) return entry;
         }
     
+
+        // Partial/fuzzy match: busca por substring case-insensitive
+        // Ex: "shell" encontra "ShellAgent", "python" encontra "PythonAgent"
+        for (const [key, entry] of this.agents) {
+          const keyLower = key.toLowerCase();
+          if (keyLower.includes(lower) || lower.includes(keyLower)) return entry;
+        }
+
+        // Match por prefixo (remove sufixos como "Agent")
+        const stripped = lower.replace(/agent$/, "").trim();
+        if (stripped !== lower) {
+          for (const [key, entry] of this.agents) {
+            if (key.toLowerCase().includes(stripped)) return entry;
+          }
+        }
+
         return undefined;
       }
-    
       /**
        * Retorna todos os agentes registrados (exceto planner).
        */

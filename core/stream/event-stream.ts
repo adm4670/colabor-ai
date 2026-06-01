@@ -6,7 +6,9 @@
      * do agente, e consumidos via async iteration.
      */
     
-    export type StreamEventType =
+    import { createLogger } from "../utils/logger";
+
+export type StreamEventType =
       | "agent_start"
       | "agent_end"
       | "turn_start"
@@ -40,7 +42,9 @@
      * EventStream: produtor-consumidor async iterable
      * Permite produzir eventos (push) e consumir via for-await-of
      */
-    export class EventStream<T extends StreamEvent = StreamEvent, R = void> {
+    const log = createLogger("STREAM");
+
+export class EventStream<T extends StreamEvent = StreamEvent, R = void> {
       private queue: T[] = [];
       private waiting: Array<(value: IteratorResult<T>) => void> = [];
       private done = false;
@@ -57,6 +61,10 @@
       /** Emite um evento para todos os consumidores */
       push(event: T): void {
         if (this.done) return;
+        // Log do evento
+        if (process.env.LOG_LEVEL === "debug") {
+          log.debug(`Event: ${event.type}${event.toolName ? " [" + event.toolName + "]" : ""}`);
+        }
         const waiter = this.waiting.shift();
         if (waiter) {
           waiter({ value: event, done: false });
@@ -67,6 +75,7 @@
     
       /** Finaliza o stream com um resultado opcional */
       end(result?: R): void {
+        log.debug("Stream ended");
         this.done = true;
         if (result !== undefined) {
           this.finalResult = result;

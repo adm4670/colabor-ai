@@ -172,3 +172,8 @@
     
     **Arquivo modificado:** `core/agent/agent.ts`
     
+## Preferencias
+- [2026-06-01] falar sobre outra coisa?
+
+## Preferencias
+- [2026-06-01] falar sobre outra coisa hoje?

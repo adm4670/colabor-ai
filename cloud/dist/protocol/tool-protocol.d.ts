@@ -4,7 +4,6 @@
  * Cloud sends tool_call to client, client executes and returns tool_result.
  * The orchestrator pauses until the result arrives.
  */
-/// <reference types="node" />
 export interface ToolCallMessage {
     type: "tool_call";
     /** Unique request ID for matching result */

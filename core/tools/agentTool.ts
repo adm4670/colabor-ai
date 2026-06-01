@@ -22,7 +22,7 @@
     export const agentTool: ToolDefinition<AgentToolArgs, string> = {
       name: "spawn_agent",
       description:
-        "Spawn a sub-agent to handle a specific task. Use for delegating complex sub-tasks to specialized agents. Available agents: assistant (general), python_code (code/calculations), browser (web navigation), shell (system commands), writer (text generation).",
+        "Spawn a sub-agent to handle a specific task. Use for delegating complex sub-tasks to specialized agents. Available agents: assistant (general), PythonAgent (code/calculations), browser (web navigation), ShellAgent (system commands), WriterAgent (text generation).",
       parameters: {
         type: "object",
         properties: {
@@ -34,7 +34,7 @@
           agent: {
             type: "string",
             description:
-              "Name of the specialized agent to use: assistant, python_code, browser, shell, writer. Defaults to assistant.",
+              "Name of the specialized agent to use: assistant, PythonAgent, browser, ShellAgent, WriterAgent. Defaults to assistant.",
           },
         },
         required: ["instruction"],

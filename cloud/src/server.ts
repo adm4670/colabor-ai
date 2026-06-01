@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from "uuid";
 import authRoutes from "./routes/auth";
 import chatRoutes, { authenticate } from "./routes/chat";
 import { AgentOrchestrator } from "./orchestrator/orchestrator";
-import { logger } from "./utils/logger";
+import { logger, createLogger } from "./utils/logger";
 import type { AuthPayload } from "./types";
 import type {
   ToolCallMessage,
@@ -41,7 +41,25 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/health", (_req, res) => {
+// Request logging middleware
+    const requestLog = createLogger("HTTP");
+    app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+      const start = Date.now();
+      requestLog.info(`${req.method} ${req.path}`, {
+        query: Object.keys(req.query).length > 0 ? req.query : undefined
+      });
+      
+      // Log response on finish
+      res.on("finish", () => {
+        const duration = Date.now() - start;
+        const level = res.statusCode >= 400 ? "warn" : "debug";
+        requestLog[level](`${req.method} ${req.path} -> ${res.statusCode}`, { duration: `${duration}ms` });
+      });
+      
+      next();
+    });
+    
+app.get("/health", (_req: express.Request, res: express.Response) => {
   res.json({ status: "ok", timestamp: new Date().toISOString(), version: "2.0.0" });
 });
 
@@ -124,7 +142,7 @@ function handleToolResult(msg: WSClientMessage, ws: WebSocket): void {
 
   const pending = pendingToolCalls.get(result.id);
   if (!pending) {
-    logger.warn(`[Tool] No pending call for id=${result.id} (maybe already timed out)`);
+    wsLog.warn(`No pending call for id=${result.id} (maybe already timed out)`);
     return;
   }
 
@@ -137,7 +155,9 @@ function handleToolResult(msg: WSClientMessage, ws: WebSocket): void {
   );
 }
 
-wss.on("connection", (ws: WebSocket, req) => {
+
+const wsLog = createLogger("WS");
+wss.on("connection", (ws: WebSocket, req: http.IncomingMessage) => {
   const url = new URL(req.url || "/", `http://${req.headers.host}`);
   const token = url.searchParams.get("token");
   const sessionId = url.searchParams.get("sessionId") || `ws_${uuidv4()}`;
@@ -154,7 +174,7 @@ wss.on("connection", (ws: WebSocket, req) => {
     }
   }
 
-  logger.info(`[WS] Connected: session=${sessionId} user=${user?.userId || "anonymous"}`);
+  wsLog.info(`Connected: session=${sessionId}`, { user: user?.userId || "anonymous" });
 
   // Track connection
   if (!wsConnections.has(sessionId)) {
@@ -235,14 +255,14 @@ wss.on("connection", (ws: WebSocket, req) => {
           );
       }
     } catch (err: any) {
-      logger.error(`[WS] Parse error: ${err.message}`);
+      wsLog.error(`Parse error: ${err.message}`);
       ws.send(JSON.stringify({ type: "error", payload: { message: err.message } }));
     }
   });
 
   // Handle disconnect
   ws.on("close", () => {
-    logger.info(`[WS] Disconnected: session=${sessionId}`);
+    wsLog.info(`Disconnected: session=${sessionId}`);
 
     // Reject all pending tool calls for this session
     for (const [id, pending] of pendingToolCalls) {
@@ -276,12 +296,12 @@ wss.on("connection", (ws: WebSocket, req) => {
 // Start
 // ============================================================
 server.listen(PORT, () => {
-  logger.info(`========================================`);
-  logger.info(`  colabor-ai Cloud Server v2`);
+  logger.info("========================================");
+  logger.info("  colabor-ai Cloud Server v2");
   logger.info(`  HTTP:  http://localhost:${PORT}`);
   logger.info(`  WS:    ws://localhost:${PORT}/ws`);
   logger.info(`  Tool timeout: ${TOOL_TIMEOUT_MS}ms`);
-  logger.info(`========================================`);
+  logger.info("========================================");
 });
 
 process.on("SIGTERM", () => {

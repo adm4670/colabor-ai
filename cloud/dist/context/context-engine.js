@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDefaultEngine = exports.ContextEngine = exports.estimateMessagesTokens = exports.estimateTokens = void 0;
+exports.ContextEngine = void 0;
+exports.estimateTokens = estimateTokens;
+exports.estimateMessagesTokens = estimateMessagesTokens;
+exports.getDefaultEngine = getDefaultEngine;
 const provider_1 = require("../llm/provider");
 const logger_1 = require("../utils/logger");
 const DEFAULT_CONFIG = {
@@ -14,7 +17,6 @@ const DEFAULT_CONFIG = {
 function estimateTokens(text) {
     return Math.ceil(text.length / 4);
 }
-exports.estimateTokens = estimateTokens;
 function estimateMessageTokens(msg) {
     let total = estimateTokens(msg.content || "");
     if (msg.name)
@@ -26,7 +28,6 @@ function estimateMessageTokens(msg) {
 function estimateMessagesTokens(messages) {
     return messages.reduce((acc, msg) => acc + estimateMessageTokens(msg), 0);
 }
-exports.estimateMessagesTokens = estimateMessagesTokens;
 class ContextEngine {
     config;
     rawHistory = [];
@@ -179,5 +180,4 @@ function getDefaultEngine() {
         defaultEngine = new ContextEngine();
     return defaultEngine;
 }
-exports.getDefaultEngine = getDefaultEngine;
 //# sourceMappingURL=context-engine.js.map

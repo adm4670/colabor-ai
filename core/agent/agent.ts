@@ -1,7 +1,9 @@
 import OpenAI from "openai";
 import { createLLMClient, getDefaultProvider } from "../llm/provider";
 import type { LLMProviderType } from "../types";
-    import { logger } from "../utils/logger";
+    import { logger, createLogger } from "../utils/logger";
+
+const log = createLogger("AGENT");
     
     export interface AgentOptions {
       name: string;
@@ -56,14 +58,14 @@ import type { LLMProviderType } from "../types";
           baseURL: options.baseURL ?? "https://api.deepseek.com",
         });
     
-        console.log(`[Agent] Agent '${this.name}' inicializado`);
-        console.log(`[Agent] Model: ${this.model}`);
-        console.log(`[Agent] Tools disponiveis: ${this.tools.length}`);
+        log.info(`Agent '${this.name}' inicializado`);
+        log.info(`Model: ${this.model}`);
+        log.info(`Tools disponiveis: ${this.tools.length}`);
       }
     
       resetHistory(): void {
         this.history = [];
-        console.log(`[Agent] Historico de ${this.name} resetado.`);
+        log.info(`Historico de ${this.name} resetado.`);
       }
     
       private async ensureSystemMessage(): Promise<void> {
@@ -210,7 +212,7 @@ import type { LLMProviderType } from "../types";
             const jitter = delay * 0.1 * (Math.random() * 2 - 1);
             const waitMs = Math.floor(delay + jitter);
             
-            console.log(`[Agent] Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
+            log.warn(`Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
             await new Promise(resolve => setTimeout(resolve, waitMs));
           }
         }
@@ -219,9 +221,9 @@ import type { LLMProviderType } from "../types";
       }
     
   async run(userMessage: string, onProgress?: (msg: string) => Promise<void>): Promise<string> {
-        console.log("\n==============================");
-        console.log(`[Agent] [${this.name}] User input:`);
-        console.log(userMessage);
+        log.info("==============================");
+        log.info(`User input:`);
+        log.debug(userMessage);
     
         await this.ensureSystemMessage();
     
@@ -232,8 +234,8 @@ import type { LLMProviderType } from "../types";
     
         try {
           while (true) {
-            console.log("\n[Agent] Enviando requisicao para o modelo...");
-            console.log(`[Agent] Historico atual: ${this.history.length} mensagens`);
+            log.info("Enviando requisicao para o modelo...");
+            log.debug(`Historico atual: ${this.history.length} mensagens`);
     
             const response = await this.retryWithBackoff(
               () => this.client.chat.completions.create({
@@ -247,14 +249,14 @@ import type { LLMProviderType } from "../types";
     
             const msg = (response as any).choices[0].message;
     
-            console.log("\n[Agent] Resposta do modelo recebida");
+            log.info("Resposta do modelo recebida");
     
             if (msg.content) {
-              console.log("[Agent] Conteudo:");
-              console.log(msg.content);
+              log.debug("Conteudo:");
+              log.debug(msg.content);
             }
             if ((msg as any).reasoning_content) {
-              console.log("[Agent] Conteudo do raciocinio recebido (sera preservado).");
+              log.debug("Conteudo do raciocinio recebido (sera preservado).");
             }
     
             const assistantEntry: Message = {
@@ -280,7 +282,7 @@ import type { LLMProviderType } from "../types";
                 }
     
             if (msg.tool_calls) {
-              console.log(`[Agent] Tool calls detectadas: ${msg.tool_calls.length}`);
+              log.info(`Tool calls detectadas: ${msg.tool_calls.length}`);
               // Filtra apenas function calls para evitar mismatch tool_calls/tool_messages
               const functionCalls = msg.tool_calls.filter((tc: any) => tc.type === "function");
               assistantEntry.tool_calls = functionCalls.length > 0 ? functionCalls : undefined;
@@ -289,7 +291,7 @@ import type { LLMProviderType } from "../types";
             this.history.push(assistantEntry);
     
             if (!assistantEntry.tool_calls) {
-              console.log("\n[Agent] Resposta final retornada ao usuario");
+              log.info("Resposta final retornada ao usuario");
               return msg.content ?? "";
             }
     
@@ -312,9 +314,9 @@ import type { LLMProviderType } from "../types";
                   })()
               
     
-              console.log("\n[Agent] Executando tool:");
-              console.log(`[Agent] Nome: ${toolName}`);
-              console.log(`[Agent] Args:`, args);
+              log.info("Executando tool:");
+              log.info(`Nome: ${toolName}`);
+              log.debug(`Args:`, args);
     
               const fn = this.functions[toolName];
     
@@ -324,16 +326,16 @@ import type { LLMProviderType } from "../types";
                 if (fn) {
                   const result = await fn(args);
                   toolResult = JSON.stringify(result, null, 2);
-                  console.log("[Agent] Resultado da tool:");
-                  console.log(toolResult);
+                  log.debug("Resultado da tool:");
+                  log.debug(toolResult);
                 } else {
                   toolResult = "Erro: Funcao nao encontrada.";
-                  console.log("[Agent] Tool nao encontrada");
+                  log.warn("Tool nao encontrada");
                 }
               } catch (e: any) {
                 toolResult = `Erro na execucao: ${e.message}`;
-                console.log("[Agent] Erro na execucao da tool:");
-                console.log(e.message);
+                log.error("Erro na execucao da tool:");
+                log.error(e.message);
               }
     
               this.history.push({
@@ -343,12 +345,12 @@ import type { LLMProviderType } from "../types";
                 content: toolResult,
               });
     
-              console.log("[Agent] Resultado adicionado ao historico");
+              log.debug("Resultado adicionado ao historico");
             }
           }
         } catch (e: any) {
-          console.log("[Agent] Erro no Agent:");
-          console.log(e);
+          log.error("Erro no Agent:");
+          log.error(e);
     
           return `[Erro no processamento: ${e.message}]`;
         }
