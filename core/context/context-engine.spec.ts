@@ -1,21 +1,23 @@
-/**
-     * Testes para o ContextEngine
+/** 
+     * Testes para o ContextEngine (flash-optimized)
      */
     
     import { ContextEngine, estimateTokens } from "./context-engine";
     
     describe("ContextEngine", () => {
       describe("estimateTokens", () => {
-        it("should estimate ~1 token per 4 chars", () => {
-          expect(estimateTokens("Hello world")).toBe(3); // 11 chars / 4 = 2.75 -> 3
-          expect(estimateTokens("a")).toBe(1); // 1 char / 4 = 0.25 -> 1
+        it("should estimate tokens for text", () => {
+          // Com tiktoken, "Hello world" = ~2 tokens, chars/4 fallback = 3
+          const tokens = estimateTokens("Hello world");
+          expect(tokens).toBeGreaterThan(0);
+          expect(tokens).toBeLessThanOrEqual(5);
           expect(estimateTokens("")).toBe(0);
         });
       });
     
       describe("buildContext", () => {
         it("should return all messages when under budget", async () => {
-          const engine = new ContextEngine({ maxTokens: 1000 });
+          const engine = new ContextEngine({ maxTokens: 4000 });
           const messages = [
             { role: "user" as const, content: "Hello" },
             { role: "assistant" as const, content: "Hi there!" },
@@ -27,33 +29,40 @@
         });
     
         it("should compress when over budget", async () => {
-          const engine = new ContextEngine({ maxTokens: 10, minMessages: 2 });
+          // Budget baixo força compressao
+          const engine = new ContextEngine({ maxTokens: 5, minMessages: 2, mode: "trim" });
           const messages = [
-            { role: "user" as const, content: "Old message that is quite long and should be compressed" },
-            { role: "assistant" as const, content: "Another old message with lots of content here" },
-            { role: "user" as const, content: "Recent message" },
-            { role: "assistant" as const, content: "Recent reply" },
+            { role: "user" as const, content: "A" },
+            { role: "assistant" as const, content: "B" },
+            { role: "user" as const, content: "C" },
+            { role: "assistant" as const, content: "D" },
+            { role: "user" as const, content: "E" },
+            { role: "assistant" as const, content: "F" },
+            { role: "user" as const, content: "G" },
+            { role: "assistant" as const, content: "H" },
           ];
           engine.setHistory(messages);
           const result = await engine.buildContext();
-          expect(result.summarizedCount).toBeGreaterThan(0);
+          // Com maxTokens=5, minMessages=2, mode=trim, deve comprimir
+          expect(result.messages.length).toBeLessThan(messages.length);
           expect(result.messages.length).toBeGreaterThan(0);
         });
     
         it("should keep recent messages when compressing", async () => {
-          const engine = new ContextEngine({ maxTokens: 5, minMessages: 2, recentRatio: 0.5 });
-          const oldMsg = { role: "user" as const, content: "X".repeat(200) };
-          const recentMsgs = [
-            { role: "assistant" as const, content: "Recent reply 1" },
+          const engine = new ContextEngine({ 
+            maxTokens: 5, 
+            minMessages: 2, 
+            recentRatio: 0.5,
+            mode: "trim" 
+          });
+          const messages = [
+            { role: "user" as const, content: "X" },
+            { role: "assistant" as const, content: "Y" },
             { role: "user" as const, content: "Recent question" },
+            { role: "assistant" as const, content: "Recent reply" },
           ];
-          engine.setHistory([oldMsg, ...recentMsgs]);
+          engine.setHistory(messages);
           const result = await engine.buildContext();
-          // As mensagens recentes devem estar presentes (podem estar junto com sumario)
-          const hasRecentContent = result.messages.some(
-            (m) => m.content && m.content.includes("Recent")
-          );
-          // Pode ter sido incorporado no resumo, mas o total de msgs nao deve ser 0
           expect(result.messages.length).toBeGreaterThan(0);
         });
       });

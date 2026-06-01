@@ -37,6 +37,7 @@ import { Agent } from "../agent/agent";
     import { getScheduler } from "../scheduler/scheduler";
     import { agentRegistry } from "../agents/agent-registry";
     import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+import { FEATURES, MODEL_TIERS, RATE_LIMIT } from "../config/config";
     
         // Rate limiting - protecao contra uso excessivo (persistente)
         const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
@@ -327,6 +328,35 @@ import { Agent } from "../agent/agent";
             })().catch(() => {});
           }
     
+
+      /**
+       * Detecta queries simples que nao precisam do planner (fast-path).
+       * Flash-optimized: evita gastar tokens com planner para perguntas triviais.
+       */
+      private isSimpleQuery(input: string): boolean {
+        const trimmed = input.trim().toLowerCase();
+        
+        // So ativa fast-path para queries CLARAMENTE conversacionais
+        // (evita interferir com comandos/tasks)
+        const conversationalPatterns = [
+          /^(ola|oi|hey|bom dia|boa tarde|boa noite)[\s!.,]*$/,
+          /^(obrigado|valeu|thanks|tchau|ate mais)[\s!.,]*$/,
+          /^(como (vai|esta|voce|vc))[\s?!.,]*$/,
+          /^(tudo bem|tudo bom)[\s?!.,]*$/,
+        ];
+        if (conversationalPatterns.some(p => p.test(trimmed))) return true;
+        
+        // Perguntas simples sobre o agente
+        const simpleQuestions = [
+          /^(o que (voce|vc) (e|faz|pode fazer))[\s?!.,]*$/,
+          /^(quem (e|sao) (voce|vc))[\s?!.,]*$/,
+          /^(qual (o|a) seu (nome|modelo))[\s?!.,]*$/,
+        ];
+        if (simpleQuestions.some(p => p.test(trimmed))) return true;
+        
+        return false;
+      }
+    
       async run(runInput: RunInput) {
             const { input, history = [], sessionId, onProgress } = runInput;
             if (sessionId) this.sessionId = sessionId;
@@ -407,7 +437,7 @@ import { Agent } from "../agent/agent";
         ${planContext}
     
         Recent memory context:
-        ${memoryContext.slice(0, 1500)}
+        ${memoryContext.slice(0, 800)}
         `;
     
             let steps = 0;
@@ -415,10 +445,30 @@ import { Agent } from "../agent/agent";
             let lastInstruction = "";
             let lastAgentName = "";
     
-            const maxSteps = 15; // Aumentado para suportar planos maiores
-            const maxReflections = 3;
+            const maxSteps = 10; // flash-optimized (was 15) // Aumentado para suportar planos maiores
+            const maxReflections = 2; // flash-optimized (was 3)
     
-            while (steps < maxSteps) {
+
+                // ============================================================
+                // FAST-PATH: queries simples pulam o planner (flash-optimized)
+                // ============================================================
+                if (FEATURES.fastPath && this.isSimpleQuery(input)) {
+                  if (this.debug) console.log("[FAST-PATH] Query simples detectada, usando assistant direto");
+                  const assistantEntry = this.agents.find(a => a.name === "assistant" || a.name === "AssistantAgent");
+                  if (assistantEntry) {
+                    try {
+                      const result = await assistantEntry.agent.run(input);
+                      this.eventStream.push(createEvent("agent_end", { content: result }));
+                      this.eventStream.end(result as any);
+                      return result;
+                    } catch (err: any) {
+                      // Fallback para fluxo normal
+                      if (this.debug) console.log("[FAST-PATH] Fallback para fluxo normal:", err?.message);
+                    }
+                  }
+                }
+    
+                while (steps < maxSteps) {
               this.eventStream.push(createEvent("turn_start", { content: `Step ${steps + 1}/${maxSteps}` }));
     
               if (this.debug) {

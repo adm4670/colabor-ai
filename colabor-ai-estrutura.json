@@ -1,0 +1,1664 @@
+{
+  "name": "colabor-ai",
+  "type": "directory",
+  "path": "C:\\Developer\\colabor-ai",
+  "children": [
+    {
+      "name": ".colabor-ai",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\.colabor-ai",
+      "children": [
+        {
+          "name": "background_tasks",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\.colabor-ai\\background_tasks",
+          "children": [],
+          "file_count": 0,
+          "total_size": 0
+        },
+        {
+          "name": "sessions",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\.colabor-ai\\sessions",
+          "children": [
+            {
+              "name": "orchestrator_1780338980069_6o4irz.jsonl",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\.colabor-ai\\sessions\\orchestrator_1780338980069_6o4irz.jsonl",
+              "size": 840
+            }
+          ],
+          "file_count": 1,
+          "total_size": 840
+        },
+        {
+          "name": "dream_state.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\.colabor-ai\\dream_state.json",
+          "size": 80
+        },
+        {
+          "name": "plan.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\.colabor-ai\\plan.md",
+          "size": 2717
+        }
+      ],
+      "file_count": 3,
+      "total_size": 3637
+    },
+    {
+      "name": "client",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\client",
+      "children": [
+        {
+          "name": "electron",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\client\\electron",
+          "children": [
+            {
+              "name": "agents",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents",
+              "children": [
+                {
+                  "name": "desktop.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents\\desktop.ts",
+                  "size": 3217
+                },
+                {
+                  "name": "file-system.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents\\file-system.ts",
+                  "size": 3165
+                },
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents\\index.ts",
+                  "size": 1472
+                },
+                {
+                  "name": "shell.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents\\shell.ts",
+                  "size": 2641
+                },
+                {
+                  "name": "tool-executor.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents\\tool-executor.ts",
+                  "size": 3444
+                },
+                {
+                  "name": "types.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\electron\\agents\\types.ts",
+                  "size": 339
+                }
+              ],
+              "file_count": 6,
+              "total_size": 14278
+            },
+            {
+              "name": "main.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\client\\electron\\main.ts",
+              "size": 11680
+            },
+            {
+              "name": "preload.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\client\\electron\\preload.ts",
+              "size": 4839
+            }
+          ],
+          "file_count": 8,
+          "total_size": 30797
+        },
+        {
+          "name": "src",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\client\\src",
+          "children": [
+            {
+              "name": "components",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\client\\src\\components",
+              "children": [
+                {
+                  "name": "Chat.tsx",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\src\\components\\Chat.tsx",
+                  "size": 9319
+                }
+              ],
+              "file_count": 1,
+              "total_size": 9319
+            },
+            {
+              "name": "styles",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\client\\src\\styles",
+              "children": [
+                {
+                  "name": "index.css",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\client\\src\\styles\\index.css",
+                  "size": 5680
+                }
+              ],
+              "file_count": 1,
+              "total_size": 5680
+            },
+            {
+              "name": "App.tsx",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\client\\src\\App.tsx",
+              "size": 2211
+            },
+            {
+              "name": "main.tsx",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\client\\src\\main.tsx",
+              "size": 293
+            },
+            {
+              "name": "vite-env.d.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\client\\src\\vite-env.d.ts",
+              "size": 43
+            }
+          ],
+          "file_count": 5,
+          "total_size": 17546
+        },
+        {
+          "name": ".gitignore",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\.gitignore",
+          "size": 61
+        },
+        {
+          "name": ".prettierrc",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\.prettierrc",
+          "size": 87
+        },
+        {
+          "name": "electron-builder.yml",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\electron-builder.yml",
+          "size": 621
+        },
+        {
+          "name": "eslint.config.js",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\eslint.config.js",
+          "size": 1211
+        },
+        {
+          "name": "index.html",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\index.html",
+          "size": 570
+        },
+        {
+          "name": "package-lock.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\package-lock.json",
+          "size": 128322
+        },
+        {
+          "name": "package.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\package.json",
+          "size": 1048
+        },
+        {
+          "name": "README.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\README.md",
+          "size": 3288
+        },
+        {
+          "name": "tsconfig.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\tsconfig.json",
+          "size": 675
+        },
+        {
+          "name": "vite.config.ts",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\client\\vite.config.ts",
+          "size": 355
+        }
+      ],
+      "file_count": 23,
+      "total_size": 184581
+    },
+    {
+      "name": "cloud",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\cloud",
+      "children": [
+        {
+          "name": "__tests__",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\__tests__",
+          "children": [
+            {
+              "name": "auth.test.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\__tests__\\auth.test.ts",
+              "size": 4053
+            },
+            {
+              "name": "context-engine.test.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\__tests__\\context-engine.test.ts",
+              "size": 8129
+            },
+            {
+              "name": "tool-protocol.test.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\__tests__\\tool-protocol.test.ts",
+              "size": 7874
+            }
+          ],
+          "file_count": 3,
+          "total_size": 20056
+        },
+        {
+          "name": "docs",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\docs",
+          "children": [
+            {
+              "name": "assets",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets",
+              "children": [
+                {
+                  "name": "highlight.css",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\highlight.css",
+                  "size": 2876
+                },
+                {
+                  "name": "icons.js",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\icons.js",
+                  "size": 15078
+                },
+                {
+                  "name": "icons.svg",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\icons.svg",
+                  "size": 14452
+                },
+                {
+                  "name": "main.js",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\main.js",
+                  "size": 42843
+                },
+                {
+                  "name": "navigation.js",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\navigation.js",
+                  "size": 1195
+                },
+                {
+                  "name": "search.js",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\search.js",
+                  "size": 7892
+                },
+                {
+                  "name": "style.css",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\assets\\style.css",
+                  "size": 36691
+                }
+              ],
+              "file_count": 7,
+              "total_size": 121027
+            },
+            {
+              "name": "classes",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\classes",
+              "children": [
+                {
+                  "name": "agents_planner.PlannerAgent.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\classes\\agents_planner.PlannerAgent.html",
+                  "size": 13527
+                },
+                {
+                  "name": "agents_python.PythonAgent.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\classes\\agents_python.PythonAgent.html",
+                  "size": 12234
+                },
+                {
+                  "name": "context_context_engine.ContextEngine.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\classes\\context_context_engine.ContextEngine.html",
+                  "size": 30346
+                },
+                {
+                  "name": "memory_memory_engine.MemoryEngine.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\classes\\memory_memory_engine.MemoryEngine.html",
+                  "size": 31574
+                },
+                {
+                  "name": "orchestrator_orchestrator.AgentOrchestrator.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\classes\\orchestrator_orchestrator.AgentOrchestrator.html",
+                  "size": 25219
+                }
+              ],
+              "file_count": 5,
+              "total_size": 112900
+            },
+            {
+              "name": "functions",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions",
+              "children": [
+                {
+                  "name": "context_context_engine.estimateMessagesTokens.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\context_context_engine.estimateMessagesTokens.html",
+                  "size": 6692
+                },
+                {
+                  "name": "context_context_engine.estimateTokens.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\context_context_engine.estimateTokens.html",
+                  "size": 6514
+                },
+                {
+                  "name": "context_context_engine.getDefaultEngine.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\context_context_engine.getDefaultEngine.html",
+                  "size": 6411
+                },
+                {
+                  "name": "llm_provider.createDefaultClient.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\llm_provider.createDefaultClient.html",
+                  "size": 6829
+                },
+                {
+                  "name": "llm_provider.createLLMClient.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\llm_provider.createLLMClient.html",
+                  "size": 7022
+                },
+                {
+                  "name": "llm_provider.getDefaultProvider.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\llm_provider.getDefaultProvider.html",
+                  "size": 6364
+                },
+                {
+                  "name": "memory_memory_engine.getMemoryEngine.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\memory_memory_engine.getMemoryEngine.html",
+                  "size": 6388
+                },
+                {
+                  "name": "routes_auth.default.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\routes_auth.default.html",
+                  "size": 58427
+                },
+                {
+                  "name": "routes_chat.authenticate.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\routes_chat.authenticate.html",
+                  "size": 9042
+                },
+                {
+                  "name": "routes_chat.default.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\routes_chat.default.html",
+                  "size": 58428
+                },
+                {
+                  "name": "server.app.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\functions\\server.app.html",
+                  "size": 192649
+                }
+              ],
+              "file_count": 11,
+              "total_size": 364766
+            },
+            {
+              "name": "interfaces",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces",
+              "children": [
+                {
+                  "name": "agents_planner.PlannerDecision.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\agents_planner.PlannerDecision.html",
+                  "size": 9113
+                },
+                {
+                  "name": "agents_planner.SubAgentInfo.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\agents_planner.SubAgentInfo.html",
+                  "size": 9075
+                },
+                {
+                  "name": "context_context_engine.ContextEngineConfig.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\context_context_engine.ContextEngineConfig.html",
+                  "size": 15940
+                },
+                {
+                  "name": "context_context_engine.ContextSummary.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\context_context_engine.ContextSummary.html",
+                  "size": 11983
+                },
+                {
+                  "name": "orchestrator_orchestrator.AgentEntry.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\orchestrator_orchestrator.AgentEntry.html",
+                  "size": 14137
+                },
+                {
+                  "name": "protocol_tool_protocol.PendingToolCall.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\protocol_tool_protocol.PendingToolCall.html",
+                  "size": 15761
+                },
+                {
+                  "name": "protocol_tool_protocol.StreamChunkMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\protocol_tool_protocol.StreamChunkMessage.html",
+                  "size": 11899
+                },
+                {
+                  "name": "protocol_tool_protocol.ToolCallMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\protocol_tool_protocol.ToolCallMessage.html",
+                  "size": 18130
+                },
+                {
+                  "name": "protocol_tool_protocol.ToolResultMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\protocol_tool_protocol.ToolResultMessage.html",
+                  "size": 15085
+                },
+                {
+                  "name": "types.AuthPayload.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.AuthPayload.html",
+                  "size": 11331
+                },
+                {
+                  "name": "types.ChatRequest.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.ChatRequest.html",
+                  "size": 10193
+                },
+                {
+                  "name": "types.ChatResponse.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.ChatResponse.html",
+                  "size": 12149
+                },
+                {
+                  "name": "types.CloudMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.CloudMessage.html",
+                  "size": 13245
+                },
+                {
+                  "name": "types.LLMProviderConfig.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.LLMProviderConfig.html",
+                  "size": 10294
+                },
+                {
+                  "name": "types.ToolCallRequest.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.ToolCallRequest.html",
+                  "size": 10598
+                },
+                {
+                  "name": "types.ToolCallResponse.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.ToolCallResponse.html",
+                  "size": 10238
+                },
+                {
+                  "name": "types.WSMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\interfaces\\types.WSMessage.html",
+                  "size": 9579
+                }
+              ],
+              "file_count": 17,
+              "total_size": 208750
+            },
+            {
+              "name": "modules",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules",
+              "children": [
+                {
+                  "name": "agents_planner.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\agents_planner.html",
+                  "size": 6504
+                },
+                {
+                  "name": "agents_python.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\agents_python.html",
+                  "size": 5926
+                },
+                {
+                  "name": "context_context_engine.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\context_context_engine.html",
+                  "size": 7418
+                },
+                {
+                  "name": "llm_provider.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\llm_provider.html",
+                  "size": 6389
+                },
+                {
+                  "name": "memory_memory_engine.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\memory_memory_engine.html",
+                  "size": 6326
+                },
+                {
+                  "name": "orchestrator_orchestrator.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\orchestrator_orchestrator.html",
+                  "size": 6727
+                },
+                {
+                  "name": "protocol_tool_protocol.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\protocol_tool_protocol.html",
+                  "size": 7307
+                },
+                {
+                  "name": "routes_auth.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\routes_auth.html",
+                  "size": 5903
+                },
+                {
+                  "name": "routes_chat.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\routes_chat.html",
+                  "size": 6109
+                },
+                {
+                  "name": "server.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\server.html",
+                  "size": 6790
+                },
+                {
+                  "name": "types.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\types.html",
+                  "size": 7707
+                },
+                {
+                  "name": "utils_logger.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\modules\\utils_logger.html",
+                  "size": 5907
+                }
+              ],
+              "file_count": 12,
+              "total_size": 79013
+            },
+            {
+              "name": "types",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\types",
+              "children": [
+                {
+                  "name": "orchestrator_orchestrator.LocalToolCallback.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\types\\orchestrator_orchestrator.LocalToolCallback.html",
+                  "size": 7795
+                },
+                {
+                  "name": "protocol_tool_protocol.WSClientMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\types\\protocol_tool_protocol.WSClientMessage.html",
+                  "size": 12060
+                },
+                {
+                  "name": "protocol_tool_protocol.WSServerMessage.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\types\\protocol_tool_protocol.WSServerMessage.html",
+                  "size": 18816
+                },
+                {
+                  "name": "types.LLMProviderType.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\types\\types.LLMProviderType.html",
+                  "size": 5801
+                }
+              ],
+              "file_count": 4,
+              "total_size": 44472
+            },
+            {
+              "name": "variables",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\variables",
+              "children": [
+                {
+                  "name": "server.pendingToolCalls.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\variables\\server.pendingToolCalls.html",
+                  "size": 6097
+                },
+                {
+                  "name": "server.server.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\variables\\server.server.html",
+                  "size": 6068
+                },
+                {
+                  "name": "server.wsConnections.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\variables\\server.wsConnections.html",
+                  "size": 6127
+                },
+                {
+                  "name": "server.wss.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\variables\\server.wss.html",
+                  "size": 6048
+                },
+                {
+                  "name": "utils_logger.logger.html",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\variables\\utils_logger.logger.html",
+                  "size": 13552
+                }
+              ],
+              "file_count": 5,
+              "total_size": 37892
+            },
+            {
+              "name": ".nojekyll",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\.nojekyll",
+              "size": 143
+            },
+            {
+              "name": "index.html",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\docs\\index.html",
+              "size": 21998
+            }
+          ],
+          "file_count": 63,
+          "total_size": 990961
+        },
+        {
+          "name": "src",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\src",
+          "children": [
+            {
+              "name": "agents",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\agents",
+              "children": [
+                {
+                  "name": "planner.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\agents\\planner.ts",
+                  "size": 2761
+                },
+                {
+                  "name": "python.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\agents\\python.ts",
+                  "size": 1275
+                }
+              ],
+              "file_count": 2,
+              "total_size": 4036
+            },
+            {
+              "name": "context",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\context",
+              "children": [
+                {
+                  "name": "context-engine.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\context\\context-engine.ts",
+                  "size": 7468
+                }
+              ],
+              "file_count": 1,
+              "total_size": 7468
+            },
+            {
+              "name": "llm",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\llm",
+              "children": [
+                {
+                  "name": "provider.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\llm\\provider.ts",
+                  "size": 1067
+                }
+              ],
+              "file_count": 1,
+              "total_size": 1067
+            },
+            {
+              "name": "memory",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\memory",
+              "children": [
+                {
+                  "name": "memory-engine.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\memory\\memory-engine.ts",
+                  "size": 7649
+                }
+              ],
+              "file_count": 1,
+              "total_size": 7649
+            },
+            {
+              "name": "orchestrator",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\orchestrator",
+              "children": [
+                {
+                  "name": "orchestrator.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\orchestrator\\orchestrator.ts",
+                  "size": 11601
+                }
+              ],
+              "file_count": 1,
+              "total_size": 11601
+            },
+            {
+              "name": "protocol",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\protocol",
+              "children": [
+                {
+                  "name": "tool-protocol.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\protocol\\tool-protocol.ts",
+                  "size": 2344
+                }
+              ],
+              "file_count": 1,
+              "total_size": 2344
+            },
+            {
+              "name": "routes",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\routes",
+              "children": [
+                {
+                  "name": "auth.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\routes\\auth.ts",
+                  "size": 2699
+                },
+                {
+                  "name": "chat.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\routes\\chat.ts",
+                  "size": 3132
+                }
+              ],
+              "file_count": 2,
+              "total_size": 5831
+            },
+            {
+              "name": "types",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\types",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\types\\index.ts",
+                  "size": 1209
+                }
+              ],
+              "file_count": 1,
+              "total_size": 1209
+            },
+            {
+              "name": "utils",
+              "type": "directory",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\utils",
+              "children": [
+                {
+                  "name": "logger.ts",
+                  "type": "file",
+                  "path": "C:\\Developer\\colabor-ai\\cloud\\src\\utils\\logger.ts",
+                  "size": 932
+                }
+              ],
+              "file_count": 1,
+              "total_size": 932
+            },
+            {
+              "name": "server.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\cloud\\src\\server.ts",
+              "size": 9511
+            }
+          ],
+          "file_count": 12,
+          "total_size": 51648
+        },
+        {
+          "name": ".env.example",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\.env.example",
+          "size": 315
+        },
+        {
+          "name": ".eslintignore",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\.eslintignore",
+          "size": 58
+        },
+        {
+          "name": ".gitignore",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\.gitignore",
+          "size": 95
+        },
+        {
+          "name": ".prettierrc",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\.prettierrc",
+          "size": 142
+        },
+        {
+          "name": "eslint.config.js",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\eslint.config.js",
+          "size": 1785
+        },
+        {
+          "name": "jest.config.js",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\jest.config.js",
+          "size": 484
+        },
+        {
+          "name": "jest_output.txt",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\jest_output.txt",
+          "size": 632
+        },
+        {
+          "name": "lint_errors.txt",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\lint_errors.txt",
+          "size": 2781
+        },
+        {
+          "name": "lint_final.txt",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\lint_final.txt",
+          "size": 50149
+        },
+        {
+          "name": "lint_fix_output.txt",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\lint_fix_output.txt",
+          "size": 2781
+        },
+        {
+          "name": "lint_output.txt",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\lint_output.txt",
+          "size": 515798
+        },
+        {
+          "name": "package-lock.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\package-lock.json",
+          "size": 273729
+        },
+        {
+          "name": "package.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\package.json",
+          "size": 1261
+        },
+        {
+          "name": "README.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\README.md",
+          "size": 4565
+        },
+        {
+          "name": "tsconfig.json",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\cloud\\tsconfig.json",
+          "size": 501
+        }
+      ],
+      "file_count": 93,
+      "total_size": 1917741
+    },
+    {
+      "name": "core",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\core",
+      "children": [
+        {
+          "name": "agent",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\agent",
+          "children": [
+            {
+              "name": "agent.spec.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agent\\agent.spec.ts",
+              "size": 7936
+            },
+            {
+              "name": "agent.test.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agent\\agent.test.ts",
+              "size": 1413
+            },
+            {
+              "name": "agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agent\\agent.ts",
+              "size": 14302
+            },
+            {
+              "name": "main.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agent\\main.ts",
+              "size": 1340
+            },
+            {
+              "name": "sub-agent-runner.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agent\\sub-agent-runner.ts",
+              "size": 5938
+            }
+          ],
+          "file_count": 5,
+          "total_size": 30929
+        },
+        {
+          "name": "agents",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\agents",
+          "children": [
+            {
+              "name": "agent-registry.spec.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\agent-registry.spec.ts",
+              "size": 4134
+            },
+            {
+              "name": "agent-registry.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\agent-registry.ts",
+              "size": 4594
+            },
+            {
+              "name": "answer.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\answer.agent.ts",
+              "size": 3216
+            },
+            {
+              "name": "assistant.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\assistant.agent.ts",
+              "size": 3575
+            },
+            {
+              "name": "browser.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\browser.agent.ts",
+              "size": 7037
+            },
+            {
+              "name": "planner.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\planner.agent.ts",
+              "size": 2694
+            },
+            {
+              "name": "python.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\python.agent.ts",
+              "size": 4453
+            },
+            {
+              "name": "reflector.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\reflector.agent.ts",
+              "size": 2772
+            },
+            {
+              "name": "shell.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\shell.agent.ts",
+              "size": 3411
+            },
+            {
+              "name": "task-manager.agent.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\agents\\task-manager.agent.ts",
+              "size": 1703
+            }
+          ],
+          "file_count": 10,
+          "total_size": 37589
+        },
+        {
+          "name": "config",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\config",
+          "children": [
+            {
+              "name": "config.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\config\\config.ts",
+              "size": 1868
+            }
+          ],
+          "file_count": 1,
+          "total_size": 1868
+        },
+        {
+          "name": "constants",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\constants",
+          "children": [
+            {
+              "name": "instructions.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\constants\\instructions.ts",
+              "size": 5149
+            }
+          ],
+          "file_count": 1,
+          "total_size": 5149
+        },
+        {
+          "name": "context",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\context",
+          "children": [
+            {
+              "name": "context-engine.spec.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\context\\context-engine.spec.ts",
+              "size": 3180
+            },
+            {
+              "name": "context-engine.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\context\\context-engine.ts",
+              "size": 17206
+            },
+            {
+              "name": "token-counter.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\context\\token-counter.ts",
+              "size": 5201
+            }
+          ],
+          "file_count": 3,
+          "total_size": 25587
+        },
+        {
+          "name": "hooks",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\hooks",
+          "children": [
+            {
+              "name": "hook-system.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\hooks\\hook-system.ts",
+              "size": 4914
+            }
+          ],
+          "file_count": 1,
+          "total_size": 4914
+        },
+        {
+          "name": "llm",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\llm",
+          "children": [
+            {
+              "name": "provider.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\llm\\provider.ts",
+              "size": 984
+            }
+          ],
+          "file_count": 1,
+          "total_size": 984
+        },
+        {
+          "name": "memory",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\memory",
+          "children": [
+            {
+              "name": "memory-engine.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\memory\\memory-engine.ts",
+              "size": 13619
+            },
+            {
+              "name": "memory-extractor.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\memory\\memory-extractor.ts",
+              "size": 12431
+            },
+            {
+              "name": "memory_search.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\memory\\memory_search.ts",
+              "size": 10251
+            }
+          ],
+          "file_count": 3,
+          "total_size": 36301
+        },
+        {
+          "name": "orchestrator",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\orchestrator",
+          "children": [
+            {
+              "name": "orchestrator.spec.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\orchestrator\\orchestrator.spec.ts",
+              "size": 3695
+            },
+            {
+              "name": "orchestrator.test.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\orchestrator\\orchestrator.test.ts",
+              "size": 2065
+            },
+            {
+              "name": "orchestrator.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\orchestrator\\orchestrator.ts",
+              "size": 37924
+            },
+            {
+              "name": "telegram.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\orchestrator\\telegram.ts",
+              "size": 11152
+            }
+          ],
+          "file_count": 4,
+          "total_size": 54836
+        },
+        {
+          "name": "permissions",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\permissions",
+          "children": [
+            {
+              "name": "permission-system.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\permissions\\permission-system.ts",
+              "size": 6582
+            }
+          ],
+          "file_count": 1,
+          "total_size": 6582
+        },
+        {
+          "name": "plan",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\plan",
+          "children": [
+            {
+              "name": "plan-manager.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\plan\\plan-manager.ts",
+              "size": 13734
+            }
+          ],
+          "file_count": 1,
+          "total_size": 13734
+        },
+        {
+          "name": "scheduler",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\scheduler",
+          "children": [
+            {
+              "name": "scheduler.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\scheduler\\scheduler.ts",
+              "size": 5682
+            }
+          ],
+          "file_count": 1,
+          "total_size": 5682
+        },
+        {
+          "name": "session",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\session",
+          "children": [
+            {
+              "name": "session.test.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\session\\session.test.ts",
+              "size": 6910
+            },
+            {
+              "name": "transcript.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\session\\transcript.ts",
+              "size": 10623
+            }
+          ],
+          "file_count": 2,
+          "total_size": 17533
+        },
+        {
+          "name": "skills",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\skills",
+          "children": [
+            {
+              "name": "skills-manager.spec.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\skills\\skills-manager.spec.ts",
+              "size": 3351
+            },
+            {
+              "name": "skills-manager.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\skills\\skills-manager.ts",
+              "size": 15399
+            }
+          ],
+          "file_count": 2,
+          "total_size": 18750
+        },
+        {
+          "name": "stream",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\stream",
+          "children": [
+            {
+              "name": "event-stream.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\stream\\event-stream.ts",
+              "size": 3335
+            }
+          ],
+          "file_count": 1,
+          "total_size": 3335
+        },
+        {
+          "name": "tasks",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\tasks",
+          "children": [
+            {
+              "name": "background-task-manager.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tasks\\background-task-manager.ts",
+              "size": 13803
+            },
+            {
+              "name": "dream-task.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tasks\\dream-task.ts",
+              "size": 6433
+            }
+          ],
+          "file_count": 2,
+          "total_size": 20236
+        },
+        {
+          "name": "tools",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\tools",
+          "children": [
+            {
+              "name": "agentTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\agentTool.ts",
+              "size": 2864
+            },
+            {
+              "name": "browserExecTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\browserExecTool.ts",
+              "size": 13643
+            },
+            {
+              "name": "browserNavigateTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\browserNavigateTool.ts",
+              "size": 20149
+            },
+            {
+              "name": "pythonExecTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\pythonExecTool.ts",
+              "size": 1533
+            },
+            {
+              "name": "ScheduleTaskTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\ScheduleTaskTool.ts",
+              "size": 7823
+            },
+            {
+              "name": "shellExecTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\shellExecTool.ts",
+              "size": 1566
+            },
+            {
+              "name": "task.tools.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\task.tools.ts",
+              "size": 3540
+            },
+            {
+              "name": "taskCreateTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\taskCreateTool.ts",
+              "size": 7895
+            },
+            {
+              "name": "TodoWriteTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\TodoWriteTool.ts",
+              "size": 5953
+            },
+            {
+              "name": "tool-search.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\tool-search.ts",
+              "size": 8556
+            },
+            {
+              "name": "toolDefinition.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\toolDefinition.ts",
+              "size": 382
+            },
+            {
+              "name": "toolRegistry.spec.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\toolRegistry.spec.ts",
+              "size": 610
+            },
+            {
+              "name": "toolRegistry.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\toolRegistry.ts",
+              "size": 868
+            },
+            {
+              "name": "WebSearchTool.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\tools\\WebSearchTool.ts",
+              "size": 4903
+            }
+          ],
+          "file_count": 14,
+          "total_size": 80285
+        },
+        {
+          "name": "utils",
+          "type": "directory",
+          "path": "C:\\Developer\\colabor-ai\\core\\utils",
+          "children": [
+            {
+              "name": "logger.ts",
+              "type": "file",
+              "path": "C:\\Developer\\colabor-ai\\core\\utils\\logger.ts",
+              "size": 3274
+            }
+          ],
+          "file_count": 1,
+          "total_size": 3274
+        },
+        {
+          "name": "types.ts",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\core\\types.ts",
+          "size": 6833
+        }
+      ],
+      "file_count": 55,
+      "total_size": 374401
+    },
+    {
+      "name": "docs",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\docs",
+      "children": [
+        {
+          "name": "DOCUMENTACAO.html",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\docs\\DOCUMENTACAO.html",
+          "size": 41747
+        }
+      ],
+      "file_count": 1,
+      "total_size": 41747
+    },
+    {
+      "name": "logs",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\logs",
+      "children": [
+        {
+          "name": "2026-05-31.log",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\logs\\2026-05-31.log",
+          "size": 26523
+        },
+        {
+          "name": "2026-06-01.log",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\logs\\2026-06-01.log",
+          "size": 114895
+        }
+      ],
+      "file_count": 2,
+      "total_size": 141418
+    },
+    {
+      "name": "memory",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\memory",
+      "children": [
+        {
+          "name": "2026-05-28.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\memory\\2026-05-28.md",
+          "size": 8889
+        },
+        {
+          "name": "2026-05-29.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\memory\\2026-05-29.md",
+          "size": 23521
+        },
+        {
+          "name": "2026-05-30.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\memory\\2026-05-30.md",
+          "size": 23101
+        },
+        {
+          "name": "2026-05-31.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\memory\\2026-05-31.md",
+          "size": 36265
+        },
+        {
+          "name": "2026-06-01.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\memory\\2026-06-01.md",
+          "size": 298
+        }
+      ],
+      "file_count": 5,
+      "total_size": 92074
+    },
+    {
+      "name": "skills",
+      "type": "directory",
+      "path": "C:\\Developer\\colabor-ai\\skills",
+      "children": [
+        {
+          "name": "communication.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\skills\\communication.md",
+          "size": 1127
+        },
+        {
+          "name": "python-dev.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\skills\\python-dev.md",
+          "size": 1105
+        },
+        {
+          "name": "web-search.md",
+          "type": "file",
+          "path": "C:\\Developer\\colabor-ai\\skills\\web-search.md",
+          "size": 1135
+        }
+      ],
+      "file_count": 3,
+      "total_size": 3367
+    },
+    {
+      "name": ".editorconfig",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\.editorconfig",
+      "size": 453
+    },
+    {
+      "name": ".env.example",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\.env.example",
+      "size": 721
+    },
+    {
+      "name": ".eslintrc.json",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\.eslintrc.json",
+      "size": 740
+    },
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\.gitignore",
+      "size": 104
+    },
+    {
+      "name": ".prettierrc",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\.prettierrc",
+      "size": 225
+    },
+    {
+      "name": "babel.config.js",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\babel.config.js",
+      "size": 136
+    },
+    {
+      "name": "Dockerfile",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\Dockerfile",
+      "size": 1097
+    },
+    {
+      "name": "jest.config.ts",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\jest.config.ts",
+      "size": 6615
+    },
+    {
+      "name": "MEMORY.md",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\MEMORY.md",
+      "size": 6711
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\package-lock.json",
+      "size": 405424
+    },
+    {
+      "name": "package.json",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\package.json",
+      "size": 892
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\README.md",
+      "size": 8921
+    },
+    {
+      "name": "tsconfig.json",
+      "type": "file",
+      "path": "C:\\Developer\\colabor-ai\\tsconfig.json",
+      "size": 710
+    }
+  ],
+  "file_count": 198,
+  "total_size": 3191715
+}

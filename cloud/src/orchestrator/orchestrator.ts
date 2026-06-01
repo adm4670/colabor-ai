@@ -104,7 +104,7 @@ export class AgentOrchestrator {
 
     let context = "";
     let lastResult = "";
-    const maxSteps = 10;
+    const maxSteps = 8; // flash-optimized (was 10)
 
     async function* runSteps(): AsyncGenerator<ChatResponse> {
       for (let step = 0; step < maxSteps; step++) {

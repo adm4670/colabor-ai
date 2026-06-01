@@ -1,104 +1,45 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+    import { CORE_INSTRUCTIONS, SLIM_SHELL_INSTRUCTIONS } from "../constants/instructions";
+    import { MODEL_TIERS } from "../config/config";
     import { shellExecTool } from "../tools/shellExecTool";
     import { memorySearchTool } from "../memory/memory_search";
     
     export const shellAgent = new Agent({
-      name: "ShellAgent",
-      role: "System command execution specialist",
-      goal: "Execute shell commands and manage system-level tasks reliably",
-      backstory:
-        "An assistant specialized in executing CLI commands such as npm, git, and file system operations safely and efficiently.",
-      model: "deepseek-v4-flash",
-      apiKey: process.env.DEEPSEEK_API_KEY || "",
-      baseURL: "https://api.deepseek.com",
+        name: "shell",
+        role: "Shell command execution specialist",
+        goal: "Execute shell commands safely and return results",
+        backstory: "Specialized in running CMD and PowerShell commands on Windows.",
     
-      tools: [shellExecTool, memorySearchTool],
+        model: MODEL_TIERS.executor,  // flash
+        apiKey: process.env.DEEPSEEK_API_KEY || "",
+        baseURL: "https://api.deepseek.com",
     
-      functions: {
-        execute_shell: shellExecTool.handler,
-        memory_search: memorySearchTool.handler,
-      },
+        // Apenas 2 tools essenciais
+        tools: [shellExecTool, memorySearchTool],
     
-      generalInstructions: `
-        ${CORE_INSTRUCTIONS}
+        functions: {
+            execute_command: shellExecTool.handler,
+            memory_search: memorySearchTool.handler,
+        },
     
-      You can execute system commands using the execute_shell tool.
-      You can search long-term memory using the memory_search tool.
+        generalInstructions: `
+            ${CORE_INSTRUCTIONS}
     
-      Use shell commands when:
-      - interacting with npm, node, or package managers
-      - managing files and directories (mkdir, rm, mv, etc.)
-      - running git commands
-      - setting up or running applications
-      - executing build tools or scripts
+            ${SLIM_SHELL_INSTRUCTIONS}
     
-      NEVER simulate command results always execute them using the tool.
-    
-      Workflow:
-      1. Identify the correct shell command.
-      2. Execute it using the execute_shell tool.
-      3. Use the result (stdout/stderr) to produce the final answer.
-    
-      Rules:
-      - Always run commands from the correct directory (use cwd if needed).
-      - If a command fails, analyze stderr and try to fix it if possible.
-      - Avoid dangerous commands (e.g., rm -rf /, shutdown).
-      - Prefer deterministic commands (avoid interactive prompts).
-    
-      Output Rules:
-      - ALWAYS return the final result of the command.
-      - If files or directories were created/modified, describe them.
-      - If dependencies were installed, list them briefly.
-      - If an error occurred, explain clearly.
-    
-      Return responses using this format:
-    
-      RESULT:
-      <clear description of what was done or produced>
-    
-      DETAILS:
-      (optional explanation if needed)
-    
-      Examples:
-    
-      Example 1
-    
-      RESULT:
-      The project was initialized successfully with a package.json file.
-    
-      DETAILS:
-      Command executed:
-      npm init -y
-    
-      Example 2
-    
-      RESULT:
-      Dependencies were installed successfully: express, typescript.
-    
-      DETAILS:
-      Command executed:
-      npm install express typescript
-    
-      Example 3
-    
-      RESULT:
-      The directory 'app21' was created successfully.
-    
-      DETAILS:
-      Command executed:
-      mkdir app21
-      
-        `,
+            Voce executa comandos shell no Windows.
+            Use execute_command para CMD e PowerShell.
+            Confirme operacoes destrutivas antes de executar.
+            `
     });
     
     // Registrar no AgentRegistry
     import { agentRegistry } from "./agent-registry";
     agentRegistry.register({
-      name: shellAgent.name,
-      description: "Shell command execution specialist. Can run npm, git, file operations, and system commands.",
-      agent: shellAgent,
-      role: "ShellAgent",
-      useWhen: ["npm", "git", "files", "system"],
+        name: shellAgent.name,
+        description: "Shell command execution. Run CMD/PowerShell commands.",
+        agent: shellAgent,
+        role: "shell",
+        useWhen: ["shell", "cmd", "powershell", "terminal", "system commands"],
     });
     

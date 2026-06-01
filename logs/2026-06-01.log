@@ -210,3 +210,1020 @@
 [2026-06-01T01:19:03.853Z] [INFO] [2026-06-01T01:19:03.851Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 [2026-06-01T01:19:11.952Z] [INFO] [2026-06-01T01:19:11.951Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 [2026-06-01T01:19:16.664Z] [INFO] [2026-06-01T01:19:16.663Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:13:40.540Z] [INFO] [2026-06-01T18:13:40.538Z] [INFO] [BackgroundTaskManager] 2 tasks carregadas do disco
+[2026-06-01T18:13:40.933Z] [INFO] [2026-06-01T18:13:40.930Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:13:40.936Z] [INFO] [2026-06-01T18:13:40.936Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:13:40.939Z] [INFO] [2026-06-01T18:13:40.938Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:13:40.941Z] [INFO] [2026-06-01T18:13:40.940Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:13:40.941Z] [INFO] [2026-06-01T18:13:40.941Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:13:40.942Z] [INFO] [2026-06-01T18:13:40.942Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:13:40.953Z] [INFO] [2026-06-01T18:13:40.953Z] [INFO] [Telegram] Multi-Agent iniciado.
+[2026-06-01T18:13:48.386Z] [INFO] [2026-06-01T18:13:48.386Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:13:48.387Z] [INFO] [2026-06-01T18:13:48.387Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:13:53.246Z] [INFO] [2026-06-01T18:13:53.246Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:13:53.263Z] [INFO] [2026-06-01T18:13:53.262Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:13:58.262Z] [INFO] [2026-06-01T18:13:58.262Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:00.047Z] [INFO] [2026-06-01T18:14:00.047Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:03.005Z] [INFO] [2026-06-01T18:14:03.004Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:06.245Z] [INFO] [2026-06-01T18:14:06.245Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:08.584Z] [INFO] [2026-06-01T18:14:08.583Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:12.337Z] [INFO] [2026-06-01T18:14:12.337Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:15.249Z] [INFO] [2026-06-01T18:14:15.249Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:16.668Z] [INFO] [2026-06-01T18:14:16.667Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:20.273Z] [INFO] [2026-06-01T18:14:20.272Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:14:20.273Z] [INFO] [2026-06-01T18:14:20.273Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:24.280Z] [INFO] [2026-06-01T18:14:24.280Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:14:28.506Z] [INFO] [2026-06-01T18:14:28.506Z] [INFO] [Memory] Novo arquivo de notas criado: 2026-06-01.md
+[2026-06-01T18:15:44.918Z] [INFO] [2026-06-01T18:15:44.918Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:15:44.919Z] [INFO] [2026-06-01T18:15:44.918Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:15:48.638Z] [INFO] [2026-06-01T18:15:48.638Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:15:54.636Z] [INFO] [2026-06-01T18:15:54.636Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337754636_imf6
+[2026-06-01T18:15:54.638Z] [INFO] [2026-06-01T18:15:54.637Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:15:54.640Z] [INFO] [2026-06-01T18:15:54.639Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:15:57.220Z] [INFO] [2026-06-01T18:15:57.220Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337757220_banc
+[2026-06-01T18:15:57.221Z] [INFO] [2026-06-01T18:15:57.221Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:15:57.222Z] [INFO] [2026-06-01T18:15:57.222Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:15:59.836Z] [INFO] [2026-06-01T18:15:59.835Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337759835_m6z9
+[2026-06-01T18:15:59.837Z] [INFO] [2026-06-01T18:15:59.836Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:15:59.838Z] [INFO] [2026-06-01T18:15:59.838Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:02.196Z] [INFO] [2026-06-01T18:16:02.196Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337762196_iisl
+[2026-06-01T18:16:02.196Z] [INFO] [2026-06-01T18:16:02.196Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:02.198Z] [INFO] [2026-06-01T18:16:02.198Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:04.861Z] [INFO] [2026-06-01T18:16:04.860Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337764860_kdsf
+[2026-06-01T18:16:04.861Z] [INFO] [2026-06-01T18:16:04.861Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:04.863Z] [INFO] [2026-06-01T18:16:04.863Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:06.728Z] [INFO] [2026-06-01T18:16:06.728Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337766728_fn54
+[2026-06-01T18:16:06.728Z] [INFO] [2026-06-01T18:16:06.728Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:06.730Z] [INFO] [2026-06-01T18:16:06.730Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:08.632Z] [INFO] [2026-06-01T18:16:08.631Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337768631_0se7
+[2026-06-01T18:16:08.632Z] [INFO] [2026-06-01T18:16:08.632Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:08.636Z] [INFO] [2026-06-01T18:16:08.633Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:10.359Z] [INFO] [2026-06-01T18:16:10.358Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337770358_q6lk
+[2026-06-01T18:16:10.360Z] [INFO] [2026-06-01T18:16:10.359Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:10.362Z] [INFO] [2026-06-01T18:16:10.361Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:12.248Z] [INFO] [2026-06-01T18:16:12.248Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337772248_nj45
+[2026-06-01T18:16:12.249Z] [INFO] [2026-06-01T18:16:12.249Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:12.251Z] [INFO] [2026-06-01T18:16:12.250Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:14.315Z] [INFO] [2026-06-01T18:16:14.315Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337774315_7ge5
+[2026-06-01T18:16:14.316Z] [INFO] [2026-06-01T18:16:14.316Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:14.318Z] [INFO] [2026-06-01T18:16:14.317Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:16.356Z] [INFO] [2026-06-01T18:16:16.355Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337776355_39n4
+[2026-06-01T18:16:16.356Z] [INFO] [2026-06-01T18:16:16.356Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:16.357Z] [INFO] [2026-06-01T18:16:16.357Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:16:16.358Z] [INFO] [2026-06-01T18:16:16.358Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:18.449Z] [INFO] [2026-06-01T18:16:18.449Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337778449_svi8
+[2026-06-01T18:16:18.450Z] [INFO] [2026-06-01T18:16:18.450Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:18.451Z] [INFO] [2026-06-01T18:16:18.451Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:20.725Z] [INFO] [2026-06-01T18:16:20.724Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337780724_s0he
+[2026-06-01T18:16:20.725Z] [INFO] [2026-06-01T18:16:20.725Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:20.727Z] [INFO] [2026-06-01T18:16:20.726Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:22.834Z] [INFO] [2026-06-01T18:16:22.834Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337782834_5y3d
+[2026-06-01T18:16:22.835Z] [INFO] [2026-06-01T18:16:22.835Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:22.836Z] [INFO] [2026-06-01T18:16:22.836Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:24.810Z] [INFO] [2026-06-01T18:16:24.808Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337784808_f3tx
+[2026-06-01T18:16:24.811Z] [INFO] [2026-06-01T18:16:24.810Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:24.814Z] [INFO] [2026-06-01T18:16:24.813Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:27.059Z] [INFO] [2026-06-01T18:16:27.059Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337787059_dysx
+[2026-06-01T18:16:27.059Z] [INFO] [2026-06-01T18:16:27.059Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:27.061Z] [INFO] [2026-06-01T18:16:27.060Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:29.135Z] [INFO] [2026-06-01T18:16:29.134Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337789134_im4b
+[2026-06-01T18:16:29.135Z] [INFO] [2026-06-01T18:16:29.135Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:29.136Z] [INFO] [2026-06-01T18:16:29.136Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:31.427Z] [INFO] [2026-06-01T18:16:31.427Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337791427_x13o
+[2026-06-01T18:16:31.427Z] [INFO] [2026-06-01T18:16:31.427Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:31.428Z] [INFO] [2026-06-01T18:16:31.428Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:33.586Z] [INFO] [2026-06-01T18:16:33.586Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337793586_krnz
+[2026-06-01T18:16:33.587Z] [INFO] [2026-06-01T18:16:33.587Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:33.588Z] [INFO] [2026-06-01T18:16:33.588Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:36.140Z] [INFO] [2026-06-01T18:16:36.139Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337796139_0nfm
+[2026-06-01T18:16:36.141Z] [INFO] [2026-06-01T18:16:36.140Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:36.143Z] [INFO] [2026-06-01T18:16:36.143Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:38.155Z] [INFO] [2026-06-01T18:16:38.154Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337798154_0a6h
+[2026-06-01T18:16:38.157Z] [INFO] [2026-06-01T18:16:38.156Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:38.163Z] [INFO] [2026-06-01T18:16:38.162Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:40.114Z] [INFO] [2026-06-01T18:16:40.113Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337800113_2nvn
+[2026-06-01T18:16:40.115Z] [INFO] [2026-06-01T18:16:40.115Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:40.117Z] [INFO] [2026-06-01T18:16:40.117Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:42.803Z] [INFO] [2026-06-01T18:16:42.802Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337802802_fvw3
+[2026-06-01T18:16:42.803Z] [INFO] [2026-06-01T18:16:42.803Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:42.812Z] [INFO] [2026-06-01T18:16:42.811Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:45.110Z] [INFO] [2026-06-01T18:16:45.110Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337805110_63bg
+[2026-06-01T18:16:45.111Z] [INFO] [2026-06-01T18:16:45.110Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:45.112Z] [INFO] [2026-06-01T18:16:45.112Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:47.060Z] [INFO] [2026-06-01T18:16:47.060Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337807060_tdd0
+[2026-06-01T18:16:47.061Z] [INFO] [2026-06-01T18:16:47.060Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:47.062Z] [INFO] [2026-06-01T18:16:47.062Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:16:47.062Z] [INFO] [2026-06-01T18:16:47.062Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:48.940Z] [INFO] [2026-06-01T18:16:48.939Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337808939_kufm
+[2026-06-01T18:16:48.942Z] [INFO] [2026-06-01T18:16:48.941Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:48.945Z] [INFO] [2026-06-01T18:16:48.945Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:50.859Z] [INFO] [2026-06-01T18:16:50.859Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337810859_9og6
+[2026-06-01T18:16:50.860Z] [INFO] [2026-06-01T18:16:50.860Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:50.861Z] [INFO] [2026-06-01T18:16:50.861Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:52.705Z] [INFO] [2026-06-01T18:16:52.704Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337812704_caaz
+[2026-06-01T18:16:52.706Z] [INFO] [2026-06-01T18:16:52.705Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:52.707Z] [INFO] [2026-06-01T18:16:52.707Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:54.886Z] [INFO] [2026-06-01T18:16:54.886Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337814886_jsof
+[2026-06-01T18:16:54.886Z] [INFO] [2026-06-01T18:16:54.886Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:54.887Z] [INFO] [2026-06-01T18:16:54.887Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:56.793Z] [INFO] [2026-06-01T18:16:56.792Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337816792_nevi
+[2026-06-01T18:16:56.793Z] [INFO] [2026-06-01T18:16:56.793Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:56.794Z] [INFO] [2026-06-01T18:16:56.794Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:16:58.611Z] [INFO] [2026-06-01T18:16:58.611Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337818611_op4y
+[2026-06-01T18:16:59.411Z] [INFO] [2026-06-01T18:16:59.410Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:16:59.416Z] [INFO] [2026-06-01T18:16:59.416Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:01.297Z] [INFO] [2026-06-01T18:17:01.297Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337821297_5udj
+[2026-06-01T18:17:01.298Z] [INFO] [2026-06-01T18:17:01.298Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:01.299Z] [INFO] [2026-06-01T18:17:01.299Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:03.775Z] [INFO] [2026-06-01T18:17:03.775Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337823775_3tkm
+[2026-06-01T18:17:03.776Z] [INFO] [2026-06-01T18:17:03.775Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:03.777Z] [INFO] [2026-06-01T18:17:03.777Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:05.795Z] [INFO] [2026-06-01T18:17:05.795Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337825795_lr08
+[2026-06-01T18:17:05.796Z] [INFO] [2026-06-01T18:17:05.796Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:05.797Z] [INFO] [2026-06-01T18:17:05.797Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:07.757Z] [INFO] [2026-06-01T18:17:07.757Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337827757_as68
+[2026-06-01T18:17:07.758Z] [INFO] [2026-06-01T18:17:07.758Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:07.761Z] [INFO] [2026-06-01T18:17:07.760Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:09.719Z] [INFO] [2026-06-01T18:17:09.719Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337829719_1rux
+[2026-06-01T18:17:09.720Z] [INFO] [2026-06-01T18:17:09.719Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:09.724Z] [INFO] [2026-06-01T18:17:09.723Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:11.864Z] [INFO] [2026-06-01T18:17:11.864Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337831864_18dp
+[2026-06-01T18:17:11.865Z] [INFO] [2026-06-01T18:17:11.865Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:11.868Z] [INFO] [2026-06-01T18:17:11.868Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:13.932Z] [INFO] [2026-06-01T18:17:13.932Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337833932_4lm9
+[2026-06-01T18:17:13.933Z] [INFO] [2026-06-01T18:17:13.933Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:13.936Z] [INFO] [2026-06-01T18:17:13.935Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:16.034Z] [INFO] [2026-06-01T18:17:16.033Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337836033_ypag
+[2026-06-01T18:17:16.035Z] [INFO] [2026-06-01T18:17:16.034Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:16.041Z] [INFO] [2026-06-01T18:17:16.040Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:17.958Z] [INFO] [2026-06-01T18:17:17.958Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337837958_sqsm
+[2026-06-01T18:17:17.959Z] [INFO] [2026-06-01T18:17:17.959Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:17.960Z] [INFO] [2026-06-01T18:17:17.960Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:17:17.960Z] [INFO] [2026-06-01T18:17:17.960Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:19.977Z] [INFO] [2026-06-01T18:17:19.977Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337839977_jnfi
+[2026-06-01T18:17:19.977Z] [INFO] [2026-06-01T18:17:19.977Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:19.979Z] [INFO] [2026-06-01T18:17:19.978Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:22.220Z] [INFO] [2026-06-01T18:17:22.220Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337842220_o4yn
+[2026-06-01T18:17:22.222Z] [INFO] [2026-06-01T18:17:22.221Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:22.225Z] [INFO] [2026-06-01T18:17:22.224Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:24.876Z] [INFO] [2026-06-01T18:17:24.876Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337844876_8w0l
+[2026-06-01T18:17:24.876Z] [INFO] [2026-06-01T18:17:24.876Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:24.878Z] [INFO] [2026-06-01T18:17:24.878Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:27.246Z] [INFO] [2026-06-01T18:17:27.245Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337847245_jt4w
+[2026-06-01T18:17:27.247Z] [INFO] [2026-06-01T18:17:27.246Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:27.248Z] [INFO] [2026-06-01T18:17:27.248Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:29.683Z] [INFO] [2026-06-01T18:17:29.683Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337849683_ki1n
+[2026-06-01T18:17:29.683Z] [INFO] [2026-06-01T18:17:29.683Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:29.685Z] [INFO] [2026-06-01T18:17:29.685Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:31.688Z] [INFO] [2026-06-01T18:17:31.688Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337851688_g6eh
+[2026-06-01T18:17:31.689Z] [INFO] [2026-06-01T18:17:31.688Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:31.692Z] [INFO] [2026-06-01T18:17:31.690Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:33.877Z] [INFO] [2026-06-01T18:17:33.876Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337853876_75af
+[2026-06-01T18:17:33.877Z] [INFO] [2026-06-01T18:17:33.877Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:33.879Z] [INFO] [2026-06-01T18:17:33.878Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:36.007Z] [INFO] [2026-06-01T18:17:36.007Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337856007_hu02
+[2026-06-01T18:17:36.008Z] [INFO] [2026-06-01T18:17:36.008Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:36.009Z] [INFO] [2026-06-01T18:17:36.009Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:38.000Z] [INFO] [2026-06-01T18:17:37.999Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337857999_bw5g
+[2026-06-01T18:17:38.000Z] [INFO] [2026-06-01T18:17:38.000Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:38.002Z] [INFO] [2026-06-01T18:17:38.002Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:40.275Z] [INFO] [2026-06-01T18:17:40.275Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337860275_r0eo
+[2026-06-01T18:17:40.278Z] [INFO] [2026-06-01T18:17:40.276Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:40.285Z] [INFO] [2026-06-01T18:17:40.283Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:42.042Z] [INFO] [2026-06-01T18:17:42.041Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337862041_4uyy
+[2026-06-01T18:17:42.042Z] [INFO] [2026-06-01T18:17:42.042Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:42.043Z] [INFO] [2026-06-01T18:17:42.043Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:44.089Z] [INFO] [2026-06-01T18:17:44.088Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337864088_zo0z
+[2026-06-01T18:17:44.090Z] [INFO] [2026-06-01T18:17:44.090Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:44.092Z] [INFO] [2026-06-01T18:17:44.092Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:46.028Z] [INFO] [2026-06-01T18:17:46.028Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337866028_kx3z
+[2026-06-01T18:17:46.028Z] [INFO] [2026-06-01T18:17:46.028Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:46.030Z] [INFO] [2026-06-01T18:17:46.029Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:48.560Z] [INFO] [2026-06-01T18:17:48.560Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337868560_w1b7
+[2026-06-01T18:17:48.561Z] [INFO] [2026-06-01T18:17:48.561Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:48.562Z] [INFO] [2026-06-01T18:17:48.562Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:17:48.564Z] [INFO] [2026-06-01T18:17:48.562Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:50.534Z] [INFO] [2026-06-01T18:17:50.532Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337870532_ykjh
+[2026-06-01T18:17:50.535Z] [INFO] [2026-06-01T18:17:50.535Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:50.539Z] [INFO] [2026-06-01T18:17:50.537Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:52.836Z] [INFO] [2026-06-01T18:17:52.836Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337872836_wd7f
+[2026-06-01T18:17:52.837Z] [INFO] [2026-06-01T18:17:52.837Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:52.838Z] [INFO] [2026-06-01T18:17:52.838Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:54.839Z] [INFO] [2026-06-01T18:17:54.839Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337874839_80le
+[2026-06-01T18:17:54.840Z] [INFO] [2026-06-01T18:17:54.840Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:54.841Z] [INFO] [2026-06-01T18:17:54.841Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:56.988Z] [INFO] [2026-06-01T18:17:56.987Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337876987_jbog
+[2026-06-01T18:17:56.988Z] [INFO] [2026-06-01T18:17:56.988Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:56.990Z] [INFO] [2026-06-01T18:17:56.989Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:17:59.162Z] [INFO] [2026-06-01T18:17:59.162Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337879162_5309
+[2026-06-01T18:17:59.162Z] [INFO] [2026-06-01T18:17:59.162Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:17:59.163Z] [INFO] [2026-06-01T18:17:59.163Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:01.389Z] [INFO] [2026-06-01T18:18:01.386Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337881386_4qjj
+[2026-06-01T18:18:01.390Z] [INFO] [2026-06-01T18:18:01.389Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:01.391Z] [INFO] [2026-06-01T18:18:01.391Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:03.567Z] [INFO] [2026-06-01T18:18:03.567Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337883567_56c3
+[2026-06-01T18:18:03.567Z] [INFO] [2026-06-01T18:18:03.567Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:03.569Z] [INFO] [2026-06-01T18:18:03.568Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:05.719Z] [INFO] [2026-06-01T18:18:05.718Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337885718_tusr
+[2026-06-01T18:18:05.719Z] [INFO] [2026-06-01T18:18:05.719Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:05.720Z] [INFO] [2026-06-01T18:18:05.720Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:08.013Z] [INFO] [2026-06-01T18:18:08.013Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337888013_st63
+[2026-06-01T18:18:08.014Z] [INFO] [2026-06-01T18:18:08.014Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:08.015Z] [INFO] [2026-06-01T18:18:08.015Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:10.278Z] [INFO] [2026-06-01T18:18:10.278Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337890278_zg2t
+[2026-06-01T18:18:10.279Z] [INFO] [2026-06-01T18:18:10.278Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:10.280Z] [INFO] [2026-06-01T18:18:10.280Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:12.326Z] [INFO] [2026-06-01T18:18:12.325Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337892325_wycm
+[2026-06-01T18:18:12.326Z] [INFO] [2026-06-01T18:18:12.326Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:12.327Z] [INFO] [2026-06-01T18:18:12.327Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:14.514Z] [INFO] [2026-06-01T18:18:14.514Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337894514_604d
+[2026-06-01T18:18:14.515Z] [INFO] [2026-06-01T18:18:14.515Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:14.517Z] [INFO] [2026-06-01T18:18:14.516Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:17.020Z] [INFO] [2026-06-01T18:18:17.020Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337897020_31dz
+[2026-06-01T18:18:17.021Z] [INFO] [2026-06-01T18:18:17.021Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:17.023Z] [INFO] [2026-06-01T18:18:17.023Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:19.375Z] [INFO] [2026-06-01T18:18:19.375Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337899375_gq4r
+[2026-06-01T18:18:19.375Z] [INFO] [2026-06-01T18:18:19.375Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:19.377Z] [INFO] [2026-06-01T18:18:19.377Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:18:19.378Z] [INFO] [2026-06-01T18:18:19.377Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:21.954Z] [INFO] [2026-06-01T18:18:21.953Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337901953_8yb5
+[2026-06-01T18:18:21.954Z] [INFO] [2026-06-01T18:18:21.954Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:21.955Z] [INFO] [2026-06-01T18:18:21.955Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:24.160Z] [INFO] [2026-06-01T18:18:24.160Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337904160_3vtl
+[2026-06-01T18:18:24.161Z] [INFO] [2026-06-01T18:18:24.160Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:24.163Z] [INFO] [2026-06-01T18:18:24.162Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:26.162Z] [INFO] [2026-06-01T18:18:26.162Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337906162_i5ty
+[2026-06-01T18:18:26.163Z] [INFO] [2026-06-01T18:18:26.162Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:26.164Z] [INFO] [2026-06-01T18:18:26.164Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:28.272Z] [INFO] [2026-06-01T18:18:28.272Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337908272_sy8f
+[2026-06-01T18:18:28.272Z] [INFO] [2026-06-01T18:18:28.272Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:28.273Z] [INFO] [2026-06-01T18:18:28.273Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:30.089Z] [INFO] [2026-06-01T18:18:30.088Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337910088_bk0z
+[2026-06-01T18:18:30.460Z] [INFO] [2026-06-01T18:18:30.460Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:30.463Z] [INFO] [2026-06-01T18:18:30.462Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:32.848Z] [INFO] [2026-06-01T18:18:32.848Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337912847_94au
+[2026-06-01T18:18:32.848Z] [INFO] [2026-06-01T18:18:32.848Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:32.849Z] [INFO] [2026-06-01T18:18:32.849Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:35.205Z] [INFO] [2026-06-01T18:18:35.204Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337915204_dbgg
+[2026-06-01T18:18:35.205Z] [INFO] [2026-06-01T18:18:35.205Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:35.207Z] [INFO] [2026-06-01T18:18:35.206Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:36.944Z] [INFO] [2026-06-01T18:18:36.944Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337916944_3prc
+[2026-06-01T18:18:37.089Z] [INFO] [2026-06-01T18:18:37.088Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:37.091Z] [INFO] [2026-06-01T18:18:37.091Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:38.891Z] [INFO] [2026-06-01T18:18:38.890Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337918890_kcgu
+[2026-06-01T18:18:38.891Z] [INFO] [2026-06-01T18:18:38.891Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:38.892Z] [INFO] [2026-06-01T18:18:38.892Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:40.979Z] [INFO] [2026-06-01T18:18:40.978Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337920978_6nyd
+[2026-06-01T18:18:40.979Z] [INFO] [2026-06-01T18:18:40.979Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:40.980Z] [INFO] [2026-06-01T18:18:40.980Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:42.896Z] [INFO] [2026-06-01T18:18:42.896Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337922896_yld3
+[2026-06-01T18:18:42.897Z] [INFO] [2026-06-01T18:18:42.896Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:42.898Z] [INFO] [2026-06-01T18:18:42.897Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:44.918Z] [INFO] [2026-06-01T18:18:44.918Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337924918_rlv5
+[2026-06-01T18:18:44.918Z] [INFO] [2026-06-01T18:18:44.918Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:44.920Z] [INFO] [2026-06-01T18:18:44.919Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:46.584Z] [INFO] [2026-06-01T18:18:46.584Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337926584_j5bo
+[2026-06-01T18:18:46.585Z] [INFO] [2026-06-01T18:18:46.584Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:46.586Z] [INFO] [2026-06-01T18:18:46.585Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:48.236Z] [INFO] [2026-06-01T18:18:48.236Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337928236_c4pk
+[2026-06-01T18:18:48.236Z] [INFO] [2026-06-01T18:18:48.236Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:48.237Z] [INFO] [2026-06-01T18:18:48.237Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:49.968Z] [INFO] [2026-06-01T18:18:49.967Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337929967_0h9o
+[2026-06-01T18:18:49.968Z] [INFO] [2026-06-01T18:18:49.968Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:49.970Z] [INFO] [2026-06-01T18:18:49.970Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:18:49.970Z] [INFO] [2026-06-01T18:18:49.970Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:51.978Z] [INFO] [2026-06-01T18:18:51.978Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337931978_eraw
+[2026-06-01T18:18:51.978Z] [INFO] [2026-06-01T18:18:51.978Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:51.980Z] [INFO] [2026-06-01T18:18:51.980Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:53.790Z] [INFO] [2026-06-01T18:18:53.789Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337933789_okze
+[2026-06-01T18:18:53.790Z] [INFO] [2026-06-01T18:18:53.790Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:53.792Z] [INFO] [2026-06-01T18:18:53.792Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:55.779Z] [INFO] [2026-06-01T18:18:55.778Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337935778_2k2h
+[2026-06-01T18:18:55.779Z] [INFO] [2026-06-01T18:18:55.779Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:55.780Z] [INFO] [2026-06-01T18:18:55.780Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:18:57.628Z] [INFO] [2026-06-01T18:18:57.628Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780337937628_vl2w
+[2026-06-01T18:18:57.628Z] [INFO] [2026-06-01T18:18:57.628Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:18:57.629Z] [INFO] [2026-06-01T18:18:57.629Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:19:02.337Z] [INFO] [2026-06-01T18:19:02.336Z] [INFO] [BackgroundTaskManager] 2 tasks carregadas do disco
+[2026-06-01T18:19:02.337Z] [INFO] [2026-06-01T18:19:02.337Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:19:02.338Z] [INFO] [2026-06-01T18:19:02.338Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:19:02.338Z] [INFO] [2026-06-01T18:19:02.338Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:19:02.338Z] [INFO] [2026-06-01T18:19:02.338Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:19:02.339Z] [INFO] [2026-06-01T18:19:02.339Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:19:02.339Z] [INFO] [2026-06-01T18:19:02.339Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:19:02.344Z] [INFO] [2026-06-01T18:19:02.343Z] [INFO] [Telegram] Multi-Agent iniciado.
+[2026-06-01T18:19:18.689Z] [INFO] [2026-06-01T18:19:18.688Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:19:18.690Z] [INFO] [2026-06-01T18:19:18.689Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:19:37.530Z] [INFO] [2026-06-01T18:19:37.529Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:19:37.545Z] [INFO] [2026-06-01T18:19:37.545Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:19:44.163Z] [INFO] [2026-06-01T18:19:44.162Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:19:45.565Z] [INFO] [2026-06-01T18:19:45.565Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:20:00.822Z] [INFO] [2026-06-01T18:20:00.821Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:20:30.371Z] [INFO] [2026-06-01T18:20:30.371Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:20:30.371Z] [INFO] [2026-06-01T18:20:30.371Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:20:42.055Z] [INFO] [2026-06-01T18:20:42.054Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:20:51.207Z] [INFO] [2026-06-01T18:20:51.207Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:20:52.751Z] [INFO] [2026-06-01T18:20:52.751Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:20:56.529Z] [INFO] [2026-06-01T18:20:56.529Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:22:25.768Z] [INFO] [2026-06-01T18:22:25.768Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:22:25.769Z] [INFO] [2026-06-01T18:22:25.768Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:22:31.317Z] [INFO] [2026-06-01T18:22:31.316Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:23:01.375Z] [INFO] [2026-06-01T18:23:01.375Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:23:01.376Z] [INFO] [2026-06-01T18:23:01.376Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:23:02.934Z] [INFO] [2026-06-01T18:23:02.934Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:23:18.289Z] [INFO] [2026-06-01T18:23:18.288Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:23:28.404Z] [INFO] [2026-06-01T18:23:28.404Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:23:29.766Z] [INFO] [2026-06-01T18:23:29.765Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:23:34.581Z] [INFO] [2026-06-01T18:23:34.580Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:23:35.095Z] [WARN] [2026-06-01T18:23:35.094Z] [WARN] [Telegram] Tentativa 1/3 falhou. Retry em 2000ms: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+[2026-06-01T18:23:37.292Z] [WARN] [2026-06-01T18:23:37.292Z] [WARN] [Telegram] Tentativa 2/3 falhou. Retry em 4000ms: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+[2026-06-01T18:23:41.505Z] [WARN] [2026-06-01T18:23:41.504Z] [WARN] [Telegram] Tentativa 3/3 falhou. Retry em 8000ms: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+[2026-06-01T18:23:41.506Z] [ERROR] [2026-06-01T18:23:41.505Z] [ERROR] [Telegram] Todas as 3 tentativas falharam: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+[2026-06-01T18:26:25.627Z] [INFO] [2026-06-01T18:26:25.627Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:26:25.628Z] [INFO] [2026-06-01T18:26:25.628Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:26:31.938Z] [INFO] [2026-06-01T18:26:31.937Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:26:54.780Z] [INFO] [2026-06-01T18:26:54.779Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:26:56.164Z] [INFO] [2026-06-01T18:26:56.163Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:26:56.164Z] [INFO] [2026-06-01T18:26:56.164Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:27:03.932Z] [INFO] [2026-06-01T18:27:03.932Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:27:17.636Z] [INFO] [2026-06-01T18:27:17.635Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:27:19.015Z] [INFO] [2026-06-01T18:27:19.015Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:27:25.511Z] [INFO] [2026-06-01T18:27:25.510Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:27:58.573Z] [INFO] [2026-06-01T18:27:58.572Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:27:58.573Z] [INFO] [2026-06-01T18:27:58.573Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:03.052Z] [INFO] [2026-06-01T18:28:03.052Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:31.440Z] [INFO] [2026-06-01T18:28:31.440Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:28:31.441Z] [INFO] [2026-06-01T18:28:31.441Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:32.979Z] [INFO] [2026-06-01T18:28:32.979Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:40.172Z] [INFO] [2026-06-01T18:28:40.172Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:49.519Z] [INFO] [2026-06-01T18:28:49.519Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:50.939Z] [INFO] [2026-06-01T18:28:50.938Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:28:55.838Z] [INFO] [2026-06-01T18:28:55.838Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:29:47.734Z] [INFO] [2026-06-01T18:29:47.734Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:29:47.735Z] [INFO] [2026-06-01T18:29:47.735Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:29:52.947Z] [INFO] [2026-06-01T18:29:52.947Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:32:20.686Z] [INFO] [2026-06-01T18:32:20.685Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:32:20.686Z] [INFO] [2026-06-01T18:32:20.686Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:32:22.825Z] [INFO] [2026-06-01T18:32:22.824Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:32:49.090Z] [INFO] [2026-06-01T18:32:49.090Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:32:56.117Z] [INFO] [2026-06-01T18:32:56.117Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338776117_ecp0
+[2026-06-01T18:32:56.119Z] [INFO] [2026-06-01T18:32:56.118Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:32:56.121Z] [INFO] [2026-06-01T18:32:56.120Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:32:56.121Z] [INFO] [2026-06-01T18:32:56.121Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:32:59.785Z] [INFO] [2026-06-01T18:32:59.784Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338779784_pz69
+[2026-06-01T18:32:59.787Z] [INFO] [2026-06-01T18:32:59.786Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:32:59.790Z] [INFO] [2026-06-01T18:32:59.789Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:03.084Z] [INFO] [2026-06-01T18:33:03.083Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338783083_oj3t
+[2026-06-01T18:33:03.085Z] [INFO] [2026-06-01T18:33:03.084Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:03.086Z] [INFO] [2026-06-01T18:33:03.086Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:05.970Z] [INFO] [2026-06-01T18:33:05.969Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338785969_ozqq
+[2026-06-01T18:33:05.972Z] [INFO] [2026-06-01T18:33:05.971Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:05.974Z] [INFO] [2026-06-01T18:33:05.974Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:09.280Z] [INFO] [2026-06-01T18:33:09.279Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338789279_2d7c
+[2026-06-01T18:33:09.281Z] [INFO] [2026-06-01T18:33:09.281Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:09.285Z] [INFO] [2026-06-01T18:33:09.284Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:12.815Z] [INFO] [2026-06-01T18:33:12.814Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338792814_ngos
+[2026-06-01T18:33:12.817Z] [INFO] [2026-06-01T18:33:12.816Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:12.819Z] [INFO] [2026-06-01T18:33:12.819Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:15.995Z] [INFO] [2026-06-01T18:33:15.994Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338795994_eyp2
+[2026-06-01T18:33:15.996Z] [INFO] [2026-06-01T18:33:15.995Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:15.997Z] [INFO] [2026-06-01T18:33:15.997Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:19.025Z] [INFO] [2026-06-01T18:33:19.024Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338799024_veju
+[2026-06-01T18:33:19.026Z] [INFO] [2026-06-01T18:33:19.026Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:19.028Z] [INFO] [2026-06-01T18:33:19.028Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:21.977Z] [INFO] [2026-06-01T18:33:21.976Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338801976_lc4h
+[2026-06-01T18:33:21.978Z] [INFO] [2026-06-01T18:33:21.978Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:21.981Z] [INFO] [2026-06-01T18:33:21.981Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:24.958Z] [INFO] [2026-06-01T18:33:24.958Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338804957_dn69
+[2026-06-01T18:33:24.960Z] [INFO] [2026-06-01T18:33:24.959Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:24.963Z] [INFO] [2026-06-01T18:33:24.963Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:28.385Z] [INFO] [2026-06-01T18:33:28.385Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338808385_zr0w
+[2026-06-01T18:33:28.387Z] [INFO] [2026-06-01T18:33:28.386Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:28.391Z] [INFO] [2026-06-01T18:33:28.391Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:33:28.392Z] [INFO] [2026-06-01T18:33:28.392Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:32.107Z] [INFO] [2026-06-01T18:33:32.107Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338812107_lb21
+[2026-06-01T18:33:32.109Z] [INFO] [2026-06-01T18:33:32.108Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:32.112Z] [INFO] [2026-06-01T18:33:32.111Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:35.740Z] [INFO] [2026-06-01T18:33:35.740Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338815740_6egm
+[2026-06-01T18:33:35.742Z] [INFO] [2026-06-01T18:33:35.741Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:35.747Z] [INFO] [2026-06-01T18:33:35.746Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:39.072Z] [INFO] [2026-06-01T18:33:39.072Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338819072_mb0b
+[2026-06-01T18:33:39.073Z] [INFO] [2026-06-01T18:33:39.072Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:39.075Z] [INFO] [2026-06-01T18:33:39.075Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:42.651Z] [INFO] [2026-06-01T18:33:42.650Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338822650_bujj
+[2026-06-01T18:33:42.651Z] [INFO] [2026-06-01T18:33:42.651Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:42.653Z] [INFO] [2026-06-01T18:33:42.653Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:45.360Z] [INFO] [2026-06-01T18:33:45.360Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338825360_ulnl
+[2026-06-01T18:33:45.361Z] [INFO] [2026-06-01T18:33:45.361Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:45.363Z] [INFO] [2026-06-01T18:33:45.363Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:48.452Z] [INFO] [2026-06-01T18:33:48.452Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338828452_vy9j
+[2026-06-01T18:33:48.453Z] [INFO] [2026-06-01T18:33:48.452Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:48.455Z] [INFO] [2026-06-01T18:33:48.454Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:51.371Z] [INFO] [2026-06-01T18:33:51.371Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338831371_ek3g
+[2026-06-01T18:33:51.372Z] [INFO] [2026-06-01T18:33:51.372Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:51.376Z] [INFO] [2026-06-01T18:33:51.375Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:54.033Z] [INFO] [2026-06-01T18:33:54.033Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338834033_w7ba
+[2026-06-01T18:33:54.034Z] [INFO] [2026-06-01T18:33:54.034Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:54.035Z] [INFO] [2026-06-01T18:33:54.035Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:56.878Z] [INFO] [2026-06-01T18:33:56.878Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338836878_riis
+[2026-06-01T18:33:56.880Z] [INFO] [2026-06-01T18:33:56.880Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:56.882Z] [INFO] [2026-06-01T18:33:56.882Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:33:59.848Z] [INFO] [2026-06-01T18:33:59.848Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338839848_pdpv
+[2026-06-01T18:33:59.849Z] [INFO] [2026-06-01T18:33:59.849Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:33:59.851Z] [INFO] [2026-06-01T18:33:59.851Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:33:59.852Z] [INFO] [2026-06-01T18:33:59.852Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:02.606Z] [INFO] [2026-06-01T18:34:02.605Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338842605_q5sd
+[2026-06-01T18:34:02.607Z] [INFO] [2026-06-01T18:34:02.607Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:02.610Z] [INFO] [2026-06-01T18:34:02.609Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:05.402Z] [INFO] [2026-06-01T18:34:05.402Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338845402_sj2h
+[2026-06-01T18:34:05.402Z] [INFO] [2026-06-01T18:34:05.402Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:05.404Z] [INFO] [2026-06-01T18:34:05.404Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:08.394Z] [INFO] [2026-06-01T18:34:08.393Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338848393_q5st
+[2026-06-01T18:34:08.395Z] [INFO] [2026-06-01T18:34:08.394Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:08.397Z] [INFO] [2026-06-01T18:34:08.396Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:11.780Z] [INFO] [2026-06-01T18:34:11.780Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338851780_wu2c
+[2026-06-01T18:34:11.781Z] [INFO] [2026-06-01T18:34:11.781Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:11.783Z] [INFO] [2026-06-01T18:34:11.782Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:15.246Z] [INFO] [2026-06-01T18:34:15.246Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338855245_a23f
+[2026-06-01T18:34:15.247Z] [INFO] [2026-06-01T18:34:15.247Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:15.249Z] [INFO] [2026-06-01T18:34:15.248Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:18.162Z] [INFO] [2026-06-01T18:34:18.161Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338858161_xbyk
+[2026-06-01T18:34:18.164Z] [INFO] [2026-06-01T18:34:18.163Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:18.168Z] [INFO] [2026-06-01T18:34:18.167Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:21.220Z] [INFO] [2026-06-01T18:34:21.219Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338861219_35fm
+[2026-06-01T18:34:21.221Z] [INFO] [2026-06-01T18:34:21.220Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:21.222Z] [INFO] [2026-06-01T18:34:21.222Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:24.243Z] [INFO] [2026-06-01T18:34:24.242Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338864242_8kpi
+[2026-06-01T18:34:24.245Z] [INFO] [2026-06-01T18:34:24.244Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:24.247Z] [INFO] [2026-06-01T18:34:24.247Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:27.297Z] [INFO] [2026-06-01T18:34:27.296Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338867296_9zf3
+[2026-06-01T18:34:27.299Z] [INFO] [2026-06-01T18:34:27.298Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:27.303Z] [INFO] [2026-06-01T18:34:27.303Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:30.081Z] [INFO] [2026-06-01T18:34:30.080Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338870080_7jm9
+[2026-06-01T18:34:30.082Z] [INFO] [2026-06-01T18:34:30.082Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:30.085Z] [INFO] [2026-06-01T18:34:30.085Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:34:30.086Z] [INFO] [2026-06-01T18:34:30.086Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:33.123Z] [INFO] [2026-06-01T18:34:33.123Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338873123_iq4t
+[2026-06-01T18:34:33.123Z] [INFO] [2026-06-01T18:34:33.123Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:33.125Z] [INFO] [2026-06-01T18:34:33.125Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:36.467Z] [INFO] [2026-06-01T18:34:36.467Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338876467_7q4q
+[2026-06-01T18:34:36.468Z] [INFO] [2026-06-01T18:34:36.468Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:36.472Z] [INFO] [2026-06-01T18:34:36.471Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:39.536Z] [INFO] [2026-06-01T18:34:39.535Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338879535_z2xm
+[2026-06-01T18:34:39.537Z] [INFO] [2026-06-01T18:34:39.536Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:39.539Z] [INFO] [2026-06-01T18:34:39.538Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:42.563Z] [INFO] [2026-06-01T18:34:42.563Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338882563_gsth
+[2026-06-01T18:34:42.563Z] [INFO] [2026-06-01T18:34:42.563Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:42.565Z] [INFO] [2026-06-01T18:34:42.564Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:46.151Z] [INFO] [2026-06-01T18:34:46.151Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338886151_pqm5
+[2026-06-01T18:34:46.152Z] [INFO] [2026-06-01T18:34:46.152Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:46.153Z] [INFO] [2026-06-01T18:34:46.153Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:49.083Z] [INFO] [2026-06-01T18:34:49.083Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338889083_xv5l
+[2026-06-01T18:34:49.085Z] [INFO] [2026-06-01T18:34:49.084Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:49.087Z] [INFO] [2026-06-01T18:34:49.086Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:52.256Z] [INFO] [2026-06-01T18:34:52.255Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338892255_j559
+[2026-06-01T18:34:52.257Z] [INFO] [2026-06-01T18:34:52.256Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:52.259Z] [INFO] [2026-06-01T18:34:52.259Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:55.313Z] [INFO] [2026-06-01T18:34:55.312Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338895312_nzrg
+[2026-06-01T18:34:55.314Z] [INFO] [2026-06-01T18:34:55.314Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:55.317Z] [INFO] [2026-06-01T18:34:55.317Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:34:58.567Z] [INFO] [2026-06-01T18:34:58.566Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338898566_7tnf
+[2026-06-01T18:34:58.569Z] [INFO] [2026-06-01T18:34:58.568Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:34:58.572Z] [INFO] [2026-06-01T18:34:58.571Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:01.908Z] [INFO] [2026-06-01T18:35:01.908Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338901908_m0lk
+[2026-06-01T18:35:01.909Z] [INFO] [2026-06-01T18:35:01.909Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:01.911Z] [INFO] [2026-06-01T18:35:01.911Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:35:01.911Z] [INFO] [2026-06-01T18:35:01.911Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:04.745Z] [INFO] [2026-06-01T18:35:04.744Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338904744_fxud
+[2026-06-01T18:35:04.745Z] [INFO] [2026-06-01T18:35:04.745Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:04.746Z] [INFO] [2026-06-01T18:35:04.746Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:07.662Z] [INFO] [2026-06-01T18:35:07.661Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338907661_i7l5
+[2026-06-01T18:35:07.663Z] [INFO] [2026-06-01T18:35:07.662Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:07.665Z] [INFO] [2026-06-01T18:35:07.665Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:10.939Z] [INFO] [2026-06-01T18:35:10.939Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338910939_tz1v
+[2026-06-01T18:35:10.940Z] [INFO] [2026-06-01T18:35:10.940Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:10.942Z] [INFO] [2026-06-01T18:35:10.942Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:13.981Z] [INFO] [2026-06-01T18:35:13.981Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338913980_2ii0
+[2026-06-01T18:35:13.983Z] [INFO] [2026-06-01T18:35:13.982Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:13.986Z] [INFO] [2026-06-01T18:35:13.985Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:18.193Z] [INFO] [2026-06-01T18:35:18.193Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338918193_udyq
+[2026-06-01T18:35:18.195Z] [INFO] [2026-06-01T18:35:18.194Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:18.197Z] [INFO] [2026-06-01T18:35:18.196Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:35:21.027Z] [INFO] [2026-06-01T18:35:21.027Z] [INFO] [AgentTool] Spawnando sub-agente "shell" para task sub_1780338921027_sj1a
+[2026-06-01T18:35:21.028Z] [INFO] [2026-06-01T18:35:21.028Z] [INFO] [SubAgentRunner] Agente "shell" nao encontrado, usando assistant
+[2026-06-01T18:35:21.030Z] [INFO] [2026-06-01T18:35:21.030Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:36:20.071Z] [INFO] [2026-06-01T18:36:20.070Z] [INFO] [PlanManager] Diretorio .colabor-ai criado
+[2026-06-01T18:36:20.072Z] [INFO] [2026-06-01T18:36:20.072Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:36:20.072Z] [INFO] [2026-06-01T18:36:20.072Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:36:20.073Z] [INFO] [2026-06-01T18:36:20.072Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:36:20.073Z] [INFO] [2026-06-01T18:36:20.073Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:36:20.073Z] [INFO] [2026-06-01T18:36:20.073Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:36:20.073Z] [INFO] [2026-06-01T18:36:20.073Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:36:20.077Z] [INFO] [2026-06-01T18:36:20.077Z] [INFO] [Telegram] Multi-Agent iniciado.
+[2026-06-01T18:36:29.760Z] [INFO] [2026-06-01T18:36:29.760Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:36:29.761Z] [INFO] [2026-06-01T18:36:29.760Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:36:40.961Z] [INFO] [2026-06-01T18:36:40.961Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:36:40.975Z] [INFO] [2026-06-01T18:36:40.975Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:36:46.474Z] [INFO] [2026-06-01T18:36:46.474Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:36:47.771Z] [INFO] [2026-06-01T18:36:47.770Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:36:59.026Z] [INFO] [2026-06-01T18:36:59.025Z] [INFO] [Memory] Novo arquivo de notas criado: 2026-06-01.md
+[2026-06-01T18:38:56.291Z] [INFO] [2026-06-01T18:38:56.291Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:38:56.292Z] [INFO] [2026-06-01T18:38:56.292Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:39:06.965Z] [INFO] [2026-06-01T18:39:06.964Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:39:42.073Z] [INFO] [2026-06-01T18:39:42.072Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:39:42.073Z] [INFO] [2026-06-01T18:39:42.073Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:39:48.910Z] [INFO] [2026-06-01T18:39:48.910Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:44:33.132Z] [INFO] [2026-06-01T18:44:33.132Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:44:33.133Z] [INFO] [2026-06-01T18:44:33.133Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:44:35.384Z] [INFO] [2026-06-01T18:44:35.383Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:44:58.727Z] [INFO] [2026-06-01T18:44:58.727Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:45:03.233Z] [INFO] [2026-06-01T18:45:03.233Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:45:03.234Z] [INFO] [2026-06-01T18:45:03.234Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:45:19.072Z] [INFO] [2026-06-01T18:45:19.072Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:45:35.011Z] [INFO] [2026-06-01T18:45:35.011Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:45:35.012Z] [INFO] [2026-06-01T18:45:35.012Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:45:36.604Z] [INFO] [2026-06-01T18:45:36.603Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:45:41.298Z] [INFO] [2026-06-01T18:45:41.298Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:47:38.700Z] [INFO] [2026-06-01T18:47:38.700Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:47:38.701Z] [INFO] [2026-06-01T18:47:38.701Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:47:48.124Z] [INFO] [2026-06-01T18:47:48.123Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:48:14.072Z] [INFO] [2026-06-01T18:48:14.072Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:48:14.074Z] [INFO] [2026-06-01T18:48:14.073Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:48:19.291Z] [INFO] [2026-06-01T18:48:19.290Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:52:26.584Z] [INFO] [2026-06-01T18:52:26.583Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:52:26.585Z] [INFO] [2026-06-01T18:52:26.584Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:52:28.114Z] [INFO] [2026-06-01T18:52:28.114Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:52:35.120Z] [INFO] [2026-06-01T18:52:35.120Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:52:47.895Z] [INFO] [2026-06-01T18:52:47.895Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:53:01.623Z] [INFO] [2026-06-01T18:53:01.622Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:53:01.623Z] [INFO] [2026-06-01T18:53:01.623Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T18:56:07.630Z] [INFO] [2026-06-01T18:56:07.625Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:56:07.634Z] [INFO] [2026-06-01T18:56:07.633Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:56:07.636Z] [INFO] [2026-06-01T18:56:07.635Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:56:07.640Z] [INFO] [2026-06-01T18:56:07.639Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:56:07.644Z] [INFO] [2026-06-01T18:56:07.643Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:56:07.645Z] [INFO] [2026-06-01T18:56:07.645Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T18:56:07.646Z] [INFO] [2026-06-01T18:56:07.646Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T18:56:07.648Z] [INFO] [2026-06-01T18:56:07.648Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:56:07.926Z] [INFO] [2026-06-01T18:56:07.915Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:56:08.122Z] [INFO] [2026-06-01T18:56:08.119Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:08.122Z] [INFO] [2026-06-01T18:56:08.122Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:08.123Z] [INFO] [2026-06-01T18:56:08.123Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:08.123Z] [INFO] [2026-06-01T18:56:08.123Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:08.124Z] [INFO] [2026-06-01T18:56:08.123Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:08.124Z] [INFO] [2026-06-01T18:56:08.124Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:08.139Z] [INFO] [2026-06-01T18:56:08.130Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:08.139Z] [INFO] [2026-06-01T18:56:08.139Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:08.140Z] [INFO] [2026-06-01T18:56:08.139Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:08.140Z] [INFO] [2026-06-01T18:56:08.140Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:08.141Z] [INFO] [2026-06-01T18:56:08.140Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:08.141Z] [INFO] [2026-06-01T18:56:08.141Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:08.144Z] [INFO] [2026-06-01T18:56:08.144Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:08.145Z] [INFO] [2026-06-01T18:56:08.144Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:08.145Z] [INFO] [2026-06-01T18:56:08.145Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:08.146Z] [INFO] [2026-06-01T18:56:08.145Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:08.146Z] [INFO] [2026-06-01T18:56:08.146Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:08.146Z] [INFO] [2026-06-01T18:56:08.146Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:08.170Z] [INFO] [2026-06-01T18:56:08.170Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:08.171Z] [INFO] [2026-06-01T18:56:08.171Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:08.172Z] [INFO] [2026-06-01T18:56:08.171Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:08.172Z] [INFO] [2026-06-01T18:56:08.172Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:08.172Z] [INFO] [2026-06-01T18:56:08.172Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:08.173Z] [INFO] [2026-06-01T18:56:08.173Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:08.282Z] [INFO] [2026-06-01T18:56:08.261Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:56:11.035Z] [INFO] [2026-06-01T18:56:11.032Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:56:11.039Z] [INFO] [2026-06-01T18:56:11.039Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:11.040Z] [INFO] [2026-06-01T18:56:11.039Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:11.040Z] [INFO] [2026-06-01T18:56:11.040Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:11.040Z] [INFO] [2026-06-01T18:56:11.040Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:11.041Z] [INFO] [2026-06-01T18:56:11.041Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:11.041Z] [INFO] [2026-06-01T18:56:11.041Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:11.243Z] [INFO] [2026-06-01T18:56:11.238Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:56:13.795Z] [INFO] [2026-06-01T18:56:13.795Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:56:13.798Z] [INFO] [2026-06-01T18:56:13.797Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:13.798Z] [INFO] [2026-06-01T18:56:13.798Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:13.798Z] [INFO] [2026-06-01T18:56:13.798Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:13.799Z] [INFO] [2026-06-01T18:56:13.799Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:13.799Z] [INFO] [2026-06-01T18:56:13.799Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:13.800Z] [INFO] [2026-06-01T18:56:13.799Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:13.806Z] [INFO] [2026-06-01T18:56:13.805Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:13.806Z] [INFO] [2026-06-01T18:56:13.806Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:13.806Z] [INFO] [2026-06-01T18:56:13.806Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:13.807Z] [INFO] [2026-06-01T18:56:13.807Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:13.807Z] [INFO] [2026-06-01T18:56:13.807Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:13.808Z] [INFO] [2026-06-01T18:56:13.807Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:28.599Z] [INFO] [2026-06-01T18:56:28.593Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:56:36.695Z] [INFO] [2026-06-01T18:56:36.692Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:56:36.698Z] [INFO] [2026-06-01T18:56:36.697Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:56:36.699Z] [INFO] [2026-06-01T18:56:36.698Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:56:36.701Z] [INFO] [2026-06-01T18:56:36.701Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:56:36.704Z] [INFO] [2026-06-01T18:56:36.704Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:56:36.705Z] [INFO] [2026-06-01T18:56:36.705Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T18:56:36.706Z] [INFO] [2026-06-01T18:56:36.705Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T18:56:36.707Z] [INFO] [2026-06-01T18:56:36.706Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:56:36.920Z] [INFO] [2026-06-01T18:56:36.904Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:56:37.256Z] [INFO] [2026-06-01T18:56:37.248Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:37.256Z] [INFO] [2026-06-01T18:56:37.256Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:37.257Z] [INFO] [2026-06-01T18:56:37.257Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:37.257Z] [INFO] [2026-06-01T18:56:37.257Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:37.258Z] [INFO] [2026-06-01T18:56:37.257Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:37.258Z] [INFO] [2026-06-01T18:56:37.258Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:37.260Z] [INFO] [2026-06-01T18:56:37.260Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:37.261Z] [INFO] [2026-06-01T18:56:37.261Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:37.261Z] [INFO] [2026-06-01T18:56:37.261Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:37.262Z] [INFO] [2026-06-01T18:56:37.262Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:37.262Z] [INFO] [2026-06-01T18:56:37.262Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:37.263Z] [INFO] [2026-06-01T18:56:37.263Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:37.296Z] [INFO] [2026-06-01T18:56:37.295Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:37.297Z] [INFO] [2026-06-01T18:56:37.296Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:37.297Z] [INFO] [2026-06-01T18:56:37.297Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:37.295Z] [INFO] [2026-06-01T18:56:37.292Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:37.297Z] [INFO] [2026-06-01T18:56:37.297Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:37.296Z] [INFO] [2026-06-01T18:56:37.295Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:37.298Z] [INFO] [2026-06-01T18:56:37.298Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:37.296Z] [INFO] [2026-06-01T18:56:37.296Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:37.299Z] [INFO] [2026-06-01T18:56:37.298Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:37.297Z] [INFO] [2026-06-01T18:56:37.296Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:37.297Z] [INFO] [2026-06-01T18:56:37.297Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:37.298Z] [INFO] [2026-06-01T18:56:37.297Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:37.395Z] [INFO] [2026-06-01T18:56:37.390Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:56:39.435Z] [INFO] [2026-06-01T18:56:39.433Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:56:39.952Z] [INFO] [2026-06-01T18:56:39.930Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:56:39.956Z] [INFO] [2026-06-01T18:56:39.956Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:39.956Z] [INFO] [2026-06-01T18:56:39.956Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:39.957Z] [INFO] [2026-06-01T18:56:39.956Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:39.957Z] [INFO] [2026-06-01T18:56:39.957Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:39.958Z] [INFO] [2026-06-01T18:56:39.957Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:39.958Z] [INFO] [2026-06-01T18:56:39.958Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:42.322Z] [INFO] [2026-06-01T18:56:42.322Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:56:42.325Z] [INFO] [2026-06-01T18:56:42.324Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:42.325Z] [INFO] [2026-06-01T18:56:42.325Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:42.326Z] [INFO] [2026-06-01T18:56:42.326Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:42.326Z] [INFO] [2026-06-01T18:56:42.326Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:42.327Z] [INFO] [2026-06-01T18:56:42.326Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:42.327Z] [INFO] [2026-06-01T18:56:42.327Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:42.333Z] [INFO] [2026-06-01T18:56:42.333Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:56:42.333Z] [INFO] [2026-06-01T18:56:42.333Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:56:42.334Z] [INFO] [2026-06-01T18:56:42.334Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:56:42.334Z] [INFO] [2026-06-01T18:56:42.334Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:56:42.335Z] [INFO] [2026-06-01T18:56:42.334Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:56:42.335Z] [INFO] [2026-06-01T18:56:42.335Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:56:51.796Z] [INFO] [2026-06-01T18:56:51.791Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:57:02.441Z] [INFO] [2026-06-01T18:57:02.438Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:57:02.443Z] [INFO] [2026-06-01T18:57:02.443Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:57:02.445Z] [INFO] [2026-06-01T18:57:02.444Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:57:02.447Z] [INFO] [2026-06-01T18:57:02.447Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:57:02.450Z] [INFO] [2026-06-01T18:57:02.450Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:57:02.451Z] [INFO] [2026-06-01T18:57:02.451Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T18:57:02.452Z] [INFO] [2026-06-01T18:57:02.452Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T18:57:02.453Z] [INFO] [2026-06-01T18:57:02.453Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:57:02.685Z] [INFO] [2026-06-01T18:57:02.670Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:57:46.958Z] [INFO] [2026-06-01T18:57:46.955Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:57:46.960Z] [INFO] [2026-06-01T18:57:46.960Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:57:46.962Z] [INFO] [2026-06-01T18:57:46.961Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:57:46.964Z] [INFO] [2026-06-01T18:57:46.964Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:57:46.967Z] [INFO] [2026-06-01T18:57:46.966Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:57:46.967Z] [INFO] [2026-06-01T18:57:46.967Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T18:57:46.968Z] [INFO] [2026-06-01T18:57:46.968Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T18:57:46.969Z] [INFO] [2026-06-01T18:57:46.969Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:57:47.189Z] [INFO] [2026-06-01T18:57:47.178Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:57:58.469Z] [INFO] [2026-06-01T18:57:58.450Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:58:28.201Z] [INFO] [2026-06-01T18:58:28.197Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:58:28.205Z] [INFO] [2026-06-01T18:58:28.204Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:58:28.207Z] [INFO] [2026-06-01T18:58:28.206Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T18:58:28.210Z] [INFO] [2026-06-01T18:58:28.210Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:58:28.215Z] [INFO] [2026-06-01T18:58:28.214Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:58:28.216Z] [INFO] [2026-06-01T18:58:28.215Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T18:58:28.217Z] [INFO] [2026-06-01T18:58:28.216Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T18:58:28.219Z] [INFO] [2026-06-01T18:58:28.218Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T18:58:28.579Z] [INFO] [2026-06-01T18:58:28.564Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:58:28.903Z] [INFO] [2026-06-01T18:58:28.895Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:28.903Z] [INFO] [2026-06-01T18:58:28.903Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:28.904Z] [INFO] [2026-06-01T18:58:28.903Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:28.904Z] [INFO] [2026-06-01T18:58:28.904Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:28.904Z] [INFO] [2026-06-01T18:58:28.904Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:28.905Z] [INFO] [2026-06-01T18:58:28.905Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:28.919Z] [INFO] [2026-06-01T18:58:28.917Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:28.920Z] [INFO] [2026-06-01T18:58:28.920Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:28.920Z] [INFO] [2026-06-01T18:58:28.920Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:28.921Z] [INFO] [2026-06-01T18:58:28.921Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:28.921Z] [INFO] [2026-06-01T18:58:28.921Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:28.922Z] [INFO] [2026-06-01T18:58:28.921Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:28.924Z] [INFO] [2026-06-01T18:58:28.924Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:28.925Z] [INFO] [2026-06-01T18:58:28.924Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:28.925Z] [INFO] [2026-06-01T18:58:28.925Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:28.926Z] [INFO] [2026-06-01T18:58:28.925Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:28.926Z] [INFO] [2026-06-01T18:58:28.926Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:28.926Z] [INFO] [2026-06-01T18:58:28.926Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:28.960Z] [INFO] [2026-06-01T18:58:28.960Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:28.961Z] [INFO] [2026-06-01T18:58:28.960Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:28.961Z] [INFO] [2026-06-01T18:58:28.961Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:28.961Z] [INFO] [2026-06-01T18:58:28.961Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:28.962Z] [INFO] [2026-06-01T18:58:28.962Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:28.962Z] [INFO] [2026-06-01T18:58:28.962Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:29.049Z] [INFO] [2026-06-01T18:58:29.048Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:58:31.564Z] [INFO] [2026-06-01T18:58:31.561Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:58:31.568Z] [INFO] [2026-06-01T18:58:31.568Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:31.569Z] [INFO] [2026-06-01T18:58:31.568Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:31.569Z] [INFO] [2026-06-01T18:58:31.569Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:31.570Z] [INFO] [2026-06-01T18:58:31.569Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:31.570Z] [INFO] [2026-06-01T18:58:31.570Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:31.570Z] [INFO] [2026-06-01T18:58:31.570Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:31.772Z] [INFO] [2026-06-01T18:58:31.767Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:58:34.239Z] [INFO] [2026-06-01T18:58:34.238Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:58:34.241Z] [INFO] [2026-06-01T18:58:34.240Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:34.241Z] [INFO] [2026-06-01T18:58:34.241Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:34.242Z] [INFO] [2026-06-01T18:58:34.241Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:34.242Z] [INFO] [2026-06-01T18:58:34.242Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:34.243Z] [INFO] [2026-06-01T18:58:34.242Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:34.243Z] [INFO] [2026-06-01T18:58:34.243Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:34.248Z] [INFO] [2026-06-01T18:58:34.248Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:34.249Z] [INFO] [2026-06-01T18:58:34.248Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:34.249Z] [INFO] [2026-06-01T18:58:34.249Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:34.250Z] [INFO] [2026-06-01T18:58:34.249Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:34.250Z] [INFO] [2026-06-01T18:58:34.250Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:34.250Z] [INFO] [2026-06-01T18:58:34.250Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:45.246Z] [INFO] [2026-06-01T18:58:45.242Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:58:56.140Z] [INFO] [2026-06-01T18:58:56.136Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:56.141Z] [INFO] [2026-06-01T18:58:56.140Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:56.142Z] [INFO] [2026-06-01T18:58:56.141Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:56.143Z] [INFO] [2026-06-01T18:58:56.142Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:56.144Z] [INFO] [2026-06-01T18:58:56.144Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:56.145Z] [INFO] [2026-06-01T18:58:56.144Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:56.148Z] [INFO] [2026-06-01T18:58:56.147Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:56.149Z] [INFO] [2026-06-01T18:58:56.148Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:56.150Z] [INFO] [2026-06-01T18:58:56.149Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:56.151Z] [INFO] [2026-06-01T18:58:56.150Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:56.151Z] [INFO] [2026-06-01T18:58:56.151Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:56.152Z] [INFO] [2026-06-01T18:58:56.152Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:56.187Z] [INFO] [2026-06-01T18:58:56.186Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:56.188Z] [INFO] [2026-06-01T18:58:56.187Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:56.188Z] [INFO] [2026-06-01T18:58:56.188Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:56.189Z] [INFO] [2026-06-01T18:58:56.188Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:56.190Z] [INFO] [2026-06-01T18:58:56.189Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:56.191Z] [INFO] [2026-06-01T18:58:56.190Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:58:56.279Z] [INFO] [2026-06-01T18:58:56.277Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:58:58.646Z] [INFO] [2026-06-01T18:58:58.642Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:58:58.651Z] [INFO] [2026-06-01T18:58:58.650Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:58:58.652Z] [INFO] [2026-06-01T18:58:58.651Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:58:58.653Z] [INFO] [2026-06-01T18:58:58.652Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:58:58.654Z] [INFO] [2026-06-01T18:58:58.653Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:58:58.655Z] [INFO] [2026-06-01T18:58:58.654Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:58:58.656Z] [INFO] [2026-06-01T18:58:58.655Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:00.826Z] [INFO] [2026-06-01T18:59:00.826Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:59:00.829Z] [INFO] [2026-06-01T18:59:00.828Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:00.830Z] [INFO] [2026-06-01T18:59:00.829Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:00.831Z] [INFO] [2026-06-01T18:59:00.830Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:00.832Z] [INFO] [2026-06-01T18:59:00.831Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:00.832Z] [INFO] [2026-06-01T18:59:00.832Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:00.833Z] [INFO] [2026-06-01T18:59:00.833Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:00.848Z] [INFO] [2026-06-01T18:59:00.848Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:00.849Z] [INFO] [2026-06-01T18:59:00.849Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:00.850Z] [INFO] [2026-06-01T18:59:00.850Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:00.852Z] [INFO] [2026-06-01T18:59:00.851Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:00.852Z] [INFO] [2026-06-01T18:59:00.852Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:00.853Z] [INFO] [2026-06-01T18:59:00.853Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:49.176Z] [INFO] [2026-06-01T18:59:49.173Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:49.177Z] [INFO] [2026-06-01T18:59:49.176Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:49.178Z] [INFO] [2026-06-01T18:59:49.177Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:49.179Z] [INFO] [2026-06-01T18:59:49.178Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:49.180Z] [INFO] [2026-06-01T18:59:49.179Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:49.181Z] [INFO] [2026-06-01T18:59:49.180Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:49.184Z] [INFO] [2026-06-01T18:59:49.183Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:49.185Z] [INFO] [2026-06-01T18:59:49.184Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:49.186Z] [INFO] [2026-06-01T18:59:49.185Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:49.187Z] [INFO] [2026-06-01T18:59:49.186Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:49.188Z] [INFO] [2026-06-01T18:59:49.187Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:49.189Z] [INFO] [2026-06-01T18:59:49.188Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:49.211Z] [INFO] [2026-06-01T18:59:49.210Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:49.212Z] [INFO] [2026-06-01T18:59:49.211Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:49.213Z] [INFO] [2026-06-01T18:59:49.212Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:49.214Z] [INFO] [2026-06-01T18:59:49.214Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:49.215Z] [INFO] [2026-06-01T18:59:49.215Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:49.216Z] [INFO] [2026-06-01T18:59:49.215Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:49.323Z] [INFO] [2026-06-01T18:59:49.321Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T18:59:51.409Z] [INFO] [2026-06-01T18:59:51.408Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:59:51.414Z] [INFO] [2026-06-01T18:59:51.413Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:51.415Z] [INFO] [2026-06-01T18:59:51.414Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:51.416Z] [INFO] [2026-06-01T18:59:51.415Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:51.417Z] [INFO] [2026-06-01T18:59:51.416Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:51.418Z] [INFO] [2026-06-01T18:59:51.417Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:51.419Z] [INFO] [2026-06-01T18:59:51.418Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:53.729Z] [INFO] [2026-06-01T18:59:53.729Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T18:59:53.733Z] [INFO] [2026-06-01T18:59:53.732Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:53.735Z] [INFO] [2026-06-01T18:59:53.734Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:53.736Z] [INFO] [2026-06-01T18:59:53.735Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:53.738Z] [INFO] [2026-06-01T18:59:53.736Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:53.739Z] [INFO] [2026-06-01T18:59:53.738Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:53.740Z] [INFO] [2026-06-01T18:59:53.739Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T18:59:53.762Z] [INFO] [2026-06-01T18:59:53.761Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T18:59:53.764Z] [INFO] [2026-06-01T18:59:53.763Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T18:59:53.765Z] [INFO] [2026-06-01T18:59:53.764Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T18:59:53.766Z] [INFO] [2026-06-01T18:59:53.765Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T18:59:53.767Z] [INFO] [2026-06-01T18:59:53.766Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T18:59:53.767Z] [INFO] [2026-06-01T18:59:53.767Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:06.747Z] [INFO] [2026-06-01T19:00:06.744Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:06.748Z] [INFO] [2026-06-01T19:00:06.747Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:06.749Z] [INFO] [2026-06-01T19:00:06.748Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:06.750Z] [INFO] [2026-06-01T19:00:06.749Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:06.751Z] [INFO] [2026-06-01T19:00:06.750Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:06.752Z] [INFO] [2026-06-01T19:00:06.751Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:42.678Z] [INFO] [2026-06-01T19:00:42.674Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:00:42.682Z] [INFO] [2026-06-01T19:00:42.682Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:00:42.684Z] [INFO] [2026-06-01T19:00:42.683Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:00:42.688Z] [INFO] [2026-06-01T19:00:42.687Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:00:42.691Z] [INFO] [2026-06-01T19:00:42.690Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:00:42.692Z] [INFO] [2026-06-01T19:00:42.691Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T19:00:42.692Z] [INFO] [2026-06-01T19:00:42.692Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T19:00:42.694Z] [INFO] [2026-06-01T19:00:42.693Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:00:42.963Z] [INFO] [2026-06-01T19:00:42.954Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:00:43.313Z] [INFO] [2026-06-01T19:00:43.302Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.313Z] [INFO] [2026-06-01T19:00:43.313Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.314Z] [INFO] [2026-06-01T19:00:43.313Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.314Z] [INFO] [2026-06-01T19:00:43.314Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.315Z] [INFO] [2026-06-01T19:00:43.314Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.315Z] [INFO] [2026-06-01T19:00:43.315Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:43.372Z] [INFO] [2026-06-01T19:00:43.368Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.372Z] [INFO] [2026-06-01T19:00:43.372Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.373Z] [INFO] [2026-06-01T19:00:43.372Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.373Z] [INFO] [2026-06-01T19:00:43.373Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.374Z] [INFO] [2026-06-01T19:00:43.373Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.374Z] [INFO] [2026-06-01T19:00:43.374Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:43.377Z] [INFO] [2026-06-01T19:00:43.377Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.377Z] [INFO] [2026-06-01T19:00:43.377Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.378Z] [INFO] [2026-06-01T19:00:43.378Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.378Z] [INFO] [2026-06-01T19:00:43.378Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.379Z] [INFO] [2026-06-01T19:00:43.379Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.379Z] [INFO] [2026-06-01T19:00:43.379Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:43.475Z] [INFO] [2026-06-01T19:00:43.474Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:00:43.495Z] [INFO] [2026-06-01T19:00:43.492Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:00:43.498Z] [INFO] [2026-06-01T19:00:43.498Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.501Z] [INFO] [2026-06-01T19:00:43.498Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.501Z] [INFO] [2026-06-01T19:00:43.501Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.502Z] [INFO] [2026-06-01T19:00:43.502Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.502Z] [INFO] [2026-06-01T19:00:43.502Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.503Z] [INFO] [2026-06-01T19:00:43.502Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:43.514Z] [INFO] [2026-06-01T19:00:43.514Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:00:43.516Z] [INFO] [2026-06-01T19:00:43.516Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.516Z] [INFO] [2026-06-01T19:00:43.516Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.517Z] [INFO] [2026-06-01T19:00:43.516Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.517Z] [INFO] [2026-06-01T19:00:43.517Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.518Z] [INFO] [2026-06-01T19:00:43.517Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.518Z] [INFO] [2026-06-01T19:00:43.518Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:43.528Z] [INFO] [2026-06-01T19:00:43.528Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:00:43.530Z] [INFO] [2026-06-01T19:00:43.529Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.530Z] [INFO] [2026-06-01T19:00:43.530Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.531Z] [INFO] [2026-06-01T19:00:43.530Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.531Z] [INFO] [2026-06-01T19:00:43.531Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.531Z] [INFO] [2026-06-01T19:00:43.531Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.532Z] [INFO] [2026-06-01T19:00:43.532Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:43.537Z] [INFO] [2026-06-01T19:00:43.536Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:00:43.537Z] [INFO] [2026-06-01T19:00:43.537Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:00:43.538Z] [INFO] [2026-06-01T19:00:43.537Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:00:43.538Z] [INFO] [2026-06-01T19:00:43.538Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:00:43.538Z] [INFO] [2026-06-01T19:00:43.538Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:00:43.541Z] [INFO] [2026-06-01T19:00:43.539Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:00:45.514Z] [INFO] [2026-06-01T19:00:45.507Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:01:06.441Z] [INFO] [2026-06-01T19:01:06.433Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:01:16.333Z] [INFO] [2026-06-01T19:01:16.317Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:16.334Z] [INFO] [2026-06-01T19:01:16.333Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:16.335Z] [INFO] [2026-06-01T19:01:16.334Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:16.336Z] [INFO] [2026-06-01T19:01:16.335Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:16.337Z] [INFO] [2026-06-01T19:01:16.336Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:16.338Z] [INFO] [2026-06-01T19:01:16.337Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:16.341Z] [INFO] [2026-06-01T19:01:16.340Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:16.342Z] [INFO] [2026-06-01T19:01:16.341Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:16.344Z] [INFO] [2026-06-01T19:01:16.343Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:16.345Z] [INFO] [2026-06-01T19:01:16.344Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:16.346Z] [INFO] [2026-06-01T19:01:16.345Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:16.346Z] [INFO] [2026-06-01T19:01:16.346Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:16.448Z] [INFO] [2026-06-01T19:01:16.446Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:01:16.475Z] [INFO] [2026-06-01T19:01:16.473Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:01:16.479Z] [INFO] [2026-06-01T19:01:16.478Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:16.480Z] [INFO] [2026-06-01T19:01:16.479Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:16.481Z] [INFO] [2026-06-01T19:01:16.480Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:16.481Z] [INFO] [2026-06-01T19:01:16.481Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:16.482Z] [INFO] [2026-06-01T19:01:16.482Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:16.483Z] [INFO] [2026-06-01T19:01:16.483Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:16.502Z] [INFO] [2026-06-01T19:01:16.502Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:01:16.505Z] [INFO] [2026-06-01T19:01:16.504Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:16.506Z] [INFO] [2026-06-01T19:01:16.505Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:16.507Z] [INFO] [2026-06-01T19:01:16.506Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:16.508Z] [INFO] [2026-06-01T19:01:16.507Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:16.509Z] [INFO] [2026-06-01T19:01:16.508Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:16.510Z] [INFO] [2026-06-01T19:01:16.509Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:16.527Z] [INFO] [2026-06-01T19:01:16.526Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:01:16.530Z] [INFO] [2026-06-01T19:01:16.529Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:16.531Z] [INFO] [2026-06-01T19:01:16.530Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:16.534Z] [INFO] [2026-06-01T19:01:16.531Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:16.535Z] [INFO] [2026-06-01T19:01:16.534Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:16.536Z] [INFO] [2026-06-01T19:01:16.535Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:16.537Z] [INFO] [2026-06-01T19:01:16.536Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:16.550Z] [INFO] [2026-06-01T19:01:16.549Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:16.551Z] [INFO] [2026-06-01T19:01:16.550Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:16.552Z] [INFO] [2026-06-01T19:01:16.551Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:16.553Z] [INFO] [2026-06-01T19:01:16.552Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:16.554Z] [INFO] [2026-06-01T19:01:16.553Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:16.554Z] [INFO] [2026-06-01T19:01:16.554Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:38.212Z] [INFO] [2026-06-01T19:01:38.196Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:01:38.213Z] [INFO] [2026-06-01T19:01:38.212Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:01:38.214Z] [INFO] [2026-06-01T19:01:38.213Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:01:38.215Z] [INFO] [2026-06-01T19:01:38.214Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:01:38.217Z] [INFO] [2026-06-01T19:01:38.216Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:01:38.217Z] [INFO] [2026-06-01T19:01:38.217Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:01:38.316Z] [INFO] [2026-06-01T19:01:38.315Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:02:15.361Z] [INFO] [2026-06-01T19:02:15.358Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:02:15.365Z] [INFO] [2026-06-01T19:02:15.364Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:02:15.367Z] [INFO] [2026-06-01T19:02:15.366Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:02:15.369Z] [INFO] [2026-06-01T19:02:15.369Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:02:15.373Z] [INFO] [2026-06-01T19:02:15.373Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:02:15.374Z] [INFO] [2026-06-01T19:02:15.374Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T19:02:15.375Z] [INFO] [2026-06-01T19:02:15.375Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T19:02:15.377Z] [INFO] [2026-06-01T19:02:15.376Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:02:15.711Z] [INFO] [2026-06-01T19:02:15.700Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:02:16.041Z] [INFO] [2026-06-01T19:02:16.032Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:16.041Z] [INFO] [2026-06-01T19:02:16.041Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:16.042Z] [INFO] [2026-06-01T19:02:16.042Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:16.042Z] [INFO] [2026-06-01T19:02:16.042Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:16.043Z] [INFO] [2026-06-01T19:02:16.043Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:16.043Z] [INFO] [2026-06-01T19:02:16.043Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:02:16.069Z] [INFO] [2026-06-01T19:02:16.066Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:16.069Z] [INFO] [2026-06-01T19:02:16.069Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:16.070Z] [INFO] [2026-06-01T19:02:16.070Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:16.070Z] [INFO] [2026-06-01T19:02:16.070Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:16.071Z] [INFO] [2026-06-01T19:02:16.071Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:16.071Z] [INFO] [2026-06-01T19:02:16.071Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:02:16.074Z] [INFO] [2026-06-01T19:02:16.073Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:16.074Z] [INFO] [2026-06-01T19:02:16.074Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:16.075Z] [INFO] [2026-06-01T19:02:16.074Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:16.075Z] [INFO] [2026-06-01T19:02:16.075Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:16.076Z] [INFO] [2026-06-01T19:02:16.075Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:16.076Z] [INFO] [2026-06-01T19:02:16.076Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:02:16.084Z] [INFO] [2026-06-01T19:02:16.084Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:16.085Z] [INFO] [2026-06-01T19:02:16.085Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:16.085Z] [INFO] [2026-06-01T19:02:16.085Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:16.086Z] [INFO] [2026-06-01T19:02:16.086Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:16.086Z] [INFO] [2026-06-01T19:02:16.086Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:16.087Z] [INFO] [2026-06-01T19:02:16.086Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:02:17.903Z] [INFO] [2026-06-01T19:02:17.897Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:02:33.263Z] [INFO] [2026-06-01T19:02:33.255Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:02:43.909Z] [INFO] [2026-06-01T19:02:43.907Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:43.912Z] [INFO] [2026-06-01T19:02:43.910Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:43.914Z] [INFO] [2026-06-01T19:02:43.913Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:43.915Z] [INFO] [2026-06-01T19:02:43.914Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:43.916Z] [INFO] [2026-06-01T19:02:43.915Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:43.917Z] [INFO] [2026-06-01T19:02:43.916Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:02:43.920Z] [INFO] [2026-06-01T19:02:43.919Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:43.922Z] [INFO] [2026-06-01T19:02:43.921Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:43.923Z] [INFO] [2026-06-01T19:02:43.922Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:43.924Z] [INFO] [2026-06-01T19:02:43.923Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:43.924Z] [INFO] [2026-06-01T19:02:43.924Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:43.926Z] [INFO] [2026-06-01T19:02:43.925Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:02:43.933Z] [INFO] [2026-06-01T19:02:43.932Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:02:43.934Z] [INFO] [2026-06-01T19:02:43.933Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:02:43.935Z] [INFO] [2026-06-01T19:02:43.934Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:02:43.936Z] [INFO] [2026-06-01T19:02:43.935Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:02:43.937Z] [INFO] [2026-06-01T19:02:43.936Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:02:43.938Z] [INFO] [2026-06-01T19:02:43.937Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:03:11.665Z] [INFO] [2026-06-01T19:03:11.660Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:03:11.670Z] [INFO] [2026-06-01T19:03:11.669Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:03:11.673Z] [INFO] [2026-06-01T19:03:11.672Z] [INFO] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
+[2026-06-01T19:03:11.680Z] [INFO] [2026-06-01T19:03:11.679Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:03:11.685Z] [INFO] [2026-06-01T19:03:11.684Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:03:11.686Z] [INFO] [2026-06-01T19:03:11.685Z] [INFO] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
+[2026-06-01T19:03:11.687Z] [INFO] [2026-06-01T19:03:11.687Z] [INFO] [SkillsManager] Skills relevantes: web-search (score: 0.55)
+[2026-06-01T19:03:11.689Z] [INFO] [2026-06-01T19:03:11.689Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:03:12.034Z] [INFO] [2026-06-01T19:03:12.020Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:03:12.391Z] [INFO] [2026-06-01T19:03:12.381Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:03:12.391Z] [INFO] [2026-06-01T19:03:12.391Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:03:12.392Z] [INFO] [2026-06-01T19:03:12.391Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:03:12.392Z] [INFO] [2026-06-01T19:03:12.392Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:03:12.393Z] [INFO] [2026-06-01T19:03:12.392Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:03:12.393Z] [INFO] [2026-06-01T19:03:12.393Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:03:12.395Z] [INFO] [2026-06-01T19:03:12.395Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:03:12.396Z] [INFO] [2026-06-01T19:03:12.396Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:03:12.396Z] [INFO] [2026-06-01T19:03:12.396Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:03:12.397Z] [INFO] [2026-06-01T19:03:12.397Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:03:12.397Z] [INFO] [2026-06-01T19:03:12.397Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:03:12.398Z] [INFO] [2026-06-01T19:03:12.397Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:03:12.400Z] [INFO] [2026-06-01T19:03:12.400Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:03:12.402Z] [INFO] [2026-06-01T19:03:12.400Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:03:12.403Z] [INFO] [2026-06-01T19:03:12.402Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:03:12.403Z] [INFO] [2026-06-01T19:03:12.403Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:03:12.404Z] [INFO] [2026-06-01T19:03:12.403Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:03:12.404Z] [INFO] [2026-06-01T19:03:12.404Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:03:12.410Z] [INFO] [2026-06-01T19:03:12.408Z] [INFO] [Permissions] Agent "assistant" level set to network
+[2026-06-01T19:03:12.411Z] [INFO] [2026-06-01T19:03:12.411Z] [INFO] [Permissions] Agent "python_code" level set to file_write
+[2026-06-01T19:03:12.411Z] [INFO] [2026-06-01T19:03:12.411Z] [INFO] [Permissions] Agent "browser" level set to network
+[2026-06-01T19:03:12.412Z] [INFO] [2026-06-01T19:03:12.412Z] [INFO] [Permissions] Agent "shell" level set to shell
+[2026-06-01T19:03:12.412Z] [INFO] [2026-06-01T19:03:12.412Z] [INFO] [Permissions] Agent "writer" level set to file_write
+[2026-06-01T19:03:12.413Z] [INFO] [2026-06-01T19:03:12.412Z] [INFO] [Permissions] Agent "task_manager" level set to file_write
+[2026-06-01T19:03:15.540Z] [INFO] [2026-06-01T19:03:15.538Z] [INFO] [TokenCounter] Encoder 'cl100k_base' inicializado
+[2026-06-01T19:03:28.824Z] [INFO] [2026-06-01T19:03:28.819Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:03:46.719Z] [INFO] [2026-06-01T19:03:46.718Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:03:46.720Z] [INFO] [2026-06-01T19:03:46.719Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T19:03:48.275Z] [INFO] [2026-06-01T19:03:48.275Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T19:04:10.849Z] [INFO] [2026-06-01T19:04:10.849Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
+[2026-06-01T19:04:45.874Z] [INFO] [2026-06-01T19:04:45.874Z] [INFO] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+[2026-06-01T19:04:45.875Z] [INFO] [2026-06-01T19:04:45.875Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+[2026-06-01T19:04:51.893Z] [INFO] [2026-06-01T19:04:51.893Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)

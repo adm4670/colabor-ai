@@ -172,3 +172,5 @@
     
     **Arquivo modificado:** `core/agent/agent.ts`
     
+## Aprendizados
+- [2026-06-01] registrados durante a execução (o que funcionou, o que deu errado, etc

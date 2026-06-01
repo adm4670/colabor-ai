@@ -11,6 +11,7 @@
     "git-commit-msg-linter": "^5.0.8",
     "jest": "^30.2.0",
     "puppeteer": "^25.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   },
   "scripts": {

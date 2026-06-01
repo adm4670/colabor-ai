@@ -1,50 +1,37 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
-import { taskTools, taskFunctions } from "../tools/task.tools";
-import { memorySearchTool } from "../memory/memory_search";
-import { memoryAppendTool } from "../memory/memory_search";
+    import { CORE_INSTRUCTIONS, SLIM_TASK_MANAGER_INSTRUCTIONS } from "../constants/instructions";
+    import { MODEL_TIERS } from "../config/config";
+    import { taskTools, taskFunctions } from "../tools/task.tools";
     
     export const taskManagerAgent = new Agent({
-      name: "task_manager",
-      role: "Activity management agent",
-      model: process.env.MODEL || DEFAULT_MODEL,
-      apiKey: process.env.DEEPSEEK_API_KEY || "",
-      baseURL: "https://api.deepseek.com",
+        name: "task_manager",
+        role: "Activity management agent",
+        goal: "Gerenciar atividades do usuario: criar, consultar e excluir tarefas.",
+        backstory: "Assistente especializado em organizacao de tarefas e agenda.",
     
-      goal: `
-    Gerenciar atividades do usuario: criar, consultar e excluir tarefas.
-    `,
+        model: MODEL_TIERS.executor,  // flash
+        apiKey: process.env.DEEPSEEK_API_KEY || "",
+        baseURL: "https://api.deepseek.com",
     
-      backstory: `
-    Voce e um assistente especializado em organizacao de tarefas.
-    Voce ajuda o usuario a registrar atividades, consultar agendas
-    e manter tudo organizado.
-    `,
+        tools: taskTools,
+        functions: taskFunctions,
     
-      generalInstructions: `
-        ${CORE_INSTRUCTIONS}
+        generalInstructions: `
+            ${CORE_INSTRUCTIONS}
     
-    - Responda em PT-BR.
-    - Sempre use as ferramentas quando o usuario pedir para:
-      - criar atividades
-      - listar atividades
-      - excluir atividades
-    - Nunca invente atividades que nao estejam no sistema.
-    - Sempre confirme acoes importantes.
+            ${SLIM_TASK_MANAGER_INSTRUCTIONS}
     
-        `,
-    
-      tools: taskTools,
-      functions: taskFunctions
+            Responda em PT-BR. Nao invente atividades. Confirme acoes importantes.
+            `
     });
     
     // Registrar no AgentRegistry
     import { agentRegistry } from "./agent-registry";
     agentRegistry.register({
-      name: taskManagerAgent.name,
-      description: "Task and activity management. Can create, list, and delete tasks/activities.",
-      agent: taskManagerAgent,
-      role: "task_manager",
-      useWhen: ["tasks", "activities", "schedule"],
+        name: taskManagerAgent.name,
+        description: "Task management. Create, list, delete tasks/activities.",
+        agent: taskManagerAgent,
+        role: "task_manager",
+        useWhen: ["tasks", "activities", "schedule"],
     });
     
