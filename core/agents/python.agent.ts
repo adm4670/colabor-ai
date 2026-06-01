@@ -18,7 +18,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
       role: "Python execution specialist",
       goal: "Solve tasks using Python and return the result clearly",
       backstory: "An assistant specialized in writing and executing Python code to solve problems.",
-      model: "deepseek-v4-flash",
+      model: "deepseek-v4-pro",
       fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",

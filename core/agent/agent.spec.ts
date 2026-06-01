@@ -27,7 +27,7 @@ describe('Agent', () => {
     backstory:
       'CollaboratorBot was designed to help developers automate repetitive tasks and improve team productivity.',
     generalInstructions: 'Always follow best practices when automating tasks.',
-    model: 'deepseek-v4-flash',
+    model: 'deepseek-v4-pro',
   })
 
   it('should throw an error if name is not provided', () => {

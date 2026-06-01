@@ -9,7 +9,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
       goal: "Execute shell commands and manage system-level tasks reliably",
       backstory:
         "An assistant specialized in executing CLI commands such as npm, git, and file system operations safely and efficiently.",
-      model: "deepseek-v4-flash",
+      model: "deepseek-v4-pro",
       fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",

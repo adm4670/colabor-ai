@@ -17,7 +17,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
     
       role: "General conversation agent",
     
-      model: "deepseek-v4-flash",
+      model: "deepseek-v4-pro",
       fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",

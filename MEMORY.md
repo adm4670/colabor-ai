@@ -177,3 +177,9 @@
 
 ## Preferencias
 - [2026-06-01] falar sobre outra coisa hoje?
+
+## Preferencias
+- [2026-06-01] fazer manualmente? 👍
+
+## Preferencias
+- [2026-06-01] começar algo novo?

@@ -51,7 +51,7 @@
     // Modelo default
     // ============================================================
     
-    export const DEFAULT_MODEL = "deepseek-v4-flash";
+    export const DEFAULT_MODEL = "deepseek-v4-pro";
     export const FALLBACK_MODEL = "deepseek-v4-pro";
     
     // ============================================================
