@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
 import { memorySearchTool } from "../memory/memory_search";
 import { memoryAppendTool } from "../memory/memory_search";
 
@@ -17,6 +17,7 @@ export const answerAgent = new Agent({
   `,
 
   model: "deepseek-v4-flash",
+      fallbackModel: FALLBACK_MODEL,
   apiKey: process.env.DEEPSEEK_API_KEY || "",
   baseURL: "https://api.deepseek.com",
 

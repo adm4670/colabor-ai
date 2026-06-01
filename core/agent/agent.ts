@@ -11,6 +11,7 @@ const log = createLogger("AGENT");
       goal: string;
       backstory: string;
       model?: string;
+      fallbackModel?: string;
       generalInstructions?: string;
       baseURL?: string;
       apiKey?: string;
@@ -33,6 +34,7 @@ const log = createLogger("AGENT");
       public goal: string;
       public backstory: string;
       public model: string;
+      public fallbackModel: string;
       public generalInstructions: string;
     
       private client: OpenAI;
@@ -47,6 +49,7 @@ const log = createLogger("AGENT");
         this.backstory = options.backstory;
     
         this.model = options.model ?? "deepseek-chat";
+        this.fallbackModel = options.fallbackModel ?? "";
         this.generalInstructions =
           options.generalInstructions ?? "- Responda em PT-BR.\n";
     
@@ -237,15 +240,40 @@ const log = createLogger("AGENT");
             log.info("Enviando requisicao para o modelo...");
             log.debug(`Historico atual: ${this.history.length} mensagens`);
     
-            const response = await this.retryWithBackoff(
-              () => this.client.chat.completions.create({
-                model: this.model,
-                messages: this.history as any,
-                tools: this.tools.length ? this.tools : undefined,
-                tool_choice: this.tools.length ? "auto" : undefined,
-              } as any),
-              3 // maxRetries
-            );
+            let response;
+            try {
+              response = await this.retryWithBackoff(
+                () => this.client.chat.completions.create({
+                  model: this.model,
+                  messages: this.history as any,
+                  tools: this.tools.length ? this.tools : undefined,
+                  tool_choice: this.tools.length ? "auto" : undefined,
+                } as any),
+                3 // maxRetries
+              );
+            } catch (primaryError: any) {
+              if (this.fallbackModel) {
+                log.warn(`Modelo primario '${this.model}' falhou. Tentando fallback '${this.fallbackModel}'...`);
+                log.warn(`Erro: ${primaryError.message}`);
+                try {
+                  response = await this.retryWithBackoff(
+                    () => this.client.chat.completions.create({
+                      model: this.fallbackModel,
+                      messages: this.history as any,
+                      tools: this.tools.length ? this.tools : undefined,
+                      tool_choice: this.tools.length ? "auto" : undefined,
+                    } as any),
+                    2 // maxRetries (menos tentativas no fallback)
+                  );
+                    log.info(`Fallback para '${this.fallbackModel}' bem-sucedido.`);
+                } catch (fallbackError: any) {
+                  log.error(`Fallback '${this.fallbackModel}' tambem falhou: ${fallbackError.message}`);
+                  throw fallbackError;
+                }
+              } else {
+                throw primaryError;
+              }
+            }
     
             const msg = (response as any).choices[0].message;
     

@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
     import { shellExecTool } from "../tools/shellExecTool";
     import { memorySearchTool } from "../memory/memory_search";
     
@@ -10,6 +10,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       backstory:
         "An assistant specialized in executing CLI commands such as npm, git, and file system operations safely and efficiently.",
       model: "deepseek-v4-flash",
+      fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

@@ -38,7 +38,7 @@ const log = createLogger("ORCH");
     import { getBackgroundTaskManager } from "../tasks/background-task-manager";
     import { getScheduler } from "../scheduler/scheduler";
     import { agentRegistry } from "../agents/agent-registry";
-    import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+    import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
     
         // Rate limiting - protecao contra uso excessivo (persistente)
         const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
@@ -152,6 +152,7 @@ const log = createLogger("ORCH");
             goal: "helper",
             backstory: "",
             model: DEFAULT_MODEL,
+            fallbackModel: FALLBACK_MODEL,
             generalInstructions: CORE_INSTRUCTIONS,
           });
         });
