@@ -95,35 +95,40 @@
     
         this.queue.push(fullTask);
         this.saveState();
+
+        // Se tem delayMs, programa para execucao futura - NAO processa agora
+        if (task.delayMs && task.delayMs > 0) {
+          logger.info(
+            `[BackgroundTaskManager] Task ${fullTask.id} agendada com delay de ${task.delayMs}ms`
+          );
+          setTimeout(() => {
+            logger.info(`[BackgroundTaskManager] Executando task ${fullTask.id} apos delay de ${task.delayMs}ms`);
+            this.processQueue();
+          }, task.delayMs);
+          return fullTask;
+        }
+
+        // Se tem scheduledAt futuro, programa para executar no horario agendado
+        if (task.scheduledAt && task.scheduledAt > Date.now()) {
+          const delay = task.scheduledAt - Date.now();
+          logger.info(
+            `[BackgroundTaskManager] Task ${fullTask.id} agendada para ${new Date(task.scheduledAt!).toISOString()}`
+          );
+          setTimeout(() => {
+            logger.info(`[BackgroundTaskManager] Executando task ${fullTask.id} agendada`);
+            fullTask.status = 'pending';
+            this.saveState();
+            this.processQueue();
+          }, delay);
+          return fullTask;
+        }
+
         this.processQueue();
-    
+
         logger.info(
           `[BackgroundTaskManager] Task ${fullTask.id} enfileirada: "${task.description.slice(0, 80)}"`
         );
-    
-        // Se tem delayMs, programa para execucao futura
-            if (task.delayMs && task.delayMs > 0) {
-              setTimeout(() => {
-                logger.info(`[BackgroundTaskManager] Task ${fullTask.id} agendada com delay de ${task.delayMs}ms`);
-                this.processQueue();
-              }, task.delayMs);
-            }
-            
-            // Se tem scheduledAt, verifica se e no futuro
-            if (task.scheduledAt && task.scheduledAt > Date.now()) {
-              const delay = task.scheduledAt - Date.now();
-              setTimeout(() => {
-                logger.info(`[BackgroundTaskManager] Task ${fullTask.id} agendada para ${new Date(task.scheduledAt!).toISOString()}`);
-                fullTask.status = 'pending';
-                this.processQueue();
-              }, delay);
-              // Marca como pending mas nao processa ainda
-              fullTask.status = 'pending';
-              this.saveState();
-              return fullTask;
-            }
-            
-            return fullTask;
+        return fullTask;
       }
     
       /** Retorna todas as tarefas (ativas e concluidas) */
