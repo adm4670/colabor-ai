@@ -3,17 +3,17 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         import { browserExecTool, ensureBrowserAlive } from "../tools/browserExecTool";
     import { browserNavigateOpenAI } from "../tools/browserNavigateTool";
             import { agentToolOpenAI } from "../tools/agentTool";
-            import { taskCreateOpenAI, taskListOpenAI } from "../tools/taskCreateTool";
+            import { taskCreateOpenAI, taskListOpenAI, cancelBgTaskOpenAI } from "../tools/taskCreateTool";
     import { todoWriteOpenAI } from "../tools/TodoWriteTool";
     import { webSearchOpenAI } from "../tools/WebSearchTool";
-    import { scheduleTaskOpenAI, listScheduledOpenAI } from "../tools/ScheduleTaskTool";
+    import { scheduleTaskOpenAI, listScheduledOpenAI, deleteScheduledTaskOpenAI } from "../tools/ScheduleTaskTool";
         import { memorySearchTool } from "../memory/memory_search";
             import { agentToolHandler } from "../tools/agentTool";
-            import { taskCreateHandler, taskListHandler } from "../tools/taskCreateTool";
+            import { taskCreateHandler, taskListHandler, cancelBgTaskHandler } from "../tools/taskCreateTool";
     import { todoWriteHandler } from "../tools/TodoWriteTool";
     import { browserNavigateHandler } from "../tools/browserNavigateTool";
     import { webSearchHandler } from "../tools/WebSearchTool";
-    import { scheduleTaskHandler, listScheduledHandler } from "../tools/ScheduleTaskTool";
+    import { scheduleTaskHandler, listScheduledHandler, deleteScheduledHandler } from "../tools/ScheduleTaskTool";
         
         export const browserAgent = new Agent({
           name: "browser",
@@ -26,7 +26,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         
-          tools: [browserExecTool, browserNavigateOpenAI, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI, todoWriteOpenAI, webSearchOpenAI, scheduleTaskOpenAI, listScheduledOpenAI],
+          tools: [browserExecTool, browserNavigateOpenAI, memorySearchTool, agentToolOpenAI, taskCreateOpenAI, taskListOpenAI, todoWriteOpenAI, webSearchOpenAI, scheduleTaskOpenAI, listScheduledOpenAI, cancelBgTaskOpenAI, deleteScheduledTaskOpenAI],
         
           functions: {
                 browser_action: browserExecTool.handler,

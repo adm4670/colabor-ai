@@ -33,6 +33,10 @@ import { Agent } from "../agent/agent";
         import { getDreamTask, DreamTask } from "../tasks/dream-task";
     import { getHookManager, HookManager } from "../hooks/hook-system";
     import { getPermissionSystem, PermissionSystem } from "../permissions/permission-system";
+    import { getBackgroundTaskManager } from "../tasks/background-task-manager";
+    import { getScheduler } from "../scheduler/scheduler";
+    import { agentRegistry } from "../agents/agent-registry";
+    import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
         // Rate limiting - protecao contra uso excessivo (persistente)
         const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
@@ -134,6 +138,37 @@ import { Agent } from "../agent/agent";
             this.dreamTask = getDreamTask();
         this.hookManager = getHookManager();
         this.permissionSystem = getPermissionSystem();
+
+        // Inicializar BackgroundTaskManager com agentFactory
+        getBackgroundTaskManager((name: string) => {
+          const found = agentRegistry.find(name);
+          if (found) return found.agent;
+          // fallback: cria agente generico
+          return new Agent({
+            name,
+            role: "assistant",
+            goal: "helper",
+            backstory: "",
+            model: DEFAULT_MODEL,
+            generalInstructions: CORE_INSTRUCTIONS,
+          });
+        });
+
+        // Inicializar Scheduler e conectar ao BackgroundTaskManager
+        const scheduler = getScheduler();
+        scheduler.onTrigger((task) => {
+          try {
+            const bgManager = getBackgroundTaskManager();
+            bgManager.enqueue({
+              description: `[Scheduled] ${task.description}`,
+              instruction: task.instruction,
+              agentName: task.agentName,
+            });
+          } catch (err: any) {
+            console.error(`[Orchestrator] Erro no scheduler callback: ${err?.message || err}`);
+          }
+        });
+
         
         // Configure agent permission levels
         this.permissionSystem.setAgentLevel("assistant", "network");

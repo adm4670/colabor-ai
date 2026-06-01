@@ -167,4 +167,62 @@
     
     export const scheduleTaskHandler: Function = scheduleTaskTool.execute;
     export const listScheduledHandler: Function = listScheduledTasksTool.execute;
+    // ========================================
+    // DeleteScheduledTaskTool - Remover tarefa agendada
+    // ========================================
+    
+    interface DeleteScheduledTaskArgs {
+      name: string;
+    }
+    
+    export const deleteScheduledTaskTool: ToolDefinition<DeleteScheduledTaskArgs, any> = {
+      name: "delete_scheduled_task",
+      description: "Remove/delete a previously scheduled cron task by its name. Use list_scheduled_tasks to see all tasks and their names.",
+      parameters: {
+        type: "object",
+        properties: {
+          name: {
+            type: "string",
+            description: "Name of the scheduled task to delete/remove",
+          },
+        },
+        required: ["name"],
+      },
+    
+      execute: async (args: DeleteScheduledTaskArgs, _ctx: ToolContext): Promise<any> => {
+        try {
+          const scheduler = getScheduler();
+          const ok = scheduler.unschedule(args.name);
+    
+          if (ok) {
+            return {
+              success: true,
+              message: `Scheduled task "${args.name}" deleted successfully.`,
+            };
+          } else {
+            return {
+              success: false,
+              error: `Scheduled task "${args.name}" not found.`,
+            };
+          }
+        } catch (err: any) {
+          return {
+            success: false,
+            error: err?.message || "Failed to delete scheduled task",
+          };
+        }
+      },
+    };
+    
+    export const deleteScheduledTaskOpenAI = {
+      type: "function" as const,
+      function: {
+        name: deleteScheduledTaskTool.name,
+        description: deleteScheduledTaskTool.description,
+        parameters: deleteScheduledTaskTool.parameters,
+      },
+    };
+    
+    export const deleteScheduledHandler: Function = deleteScheduledTaskTool.execute;
+    
     

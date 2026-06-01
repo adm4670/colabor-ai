@@ -41,6 +41,10 @@
       error?: string;
       /** Timestamp de criacao */
       createdAt: number;
+            /** Timestamp agendado para execucao futura (opcional) */
+            scheduledAt?: number;
+            /** Delay em ms a partir do enqueue (opcional) */
+            delayMs?: number;
       /** Timestamp de quando iniciou */
       startedAt?: number;
       /** Timestamp de quando terminou */
@@ -97,7 +101,29 @@
           `[BackgroundTaskManager] Task ${fullTask.id} enfileirada: "${task.description.slice(0, 80)}"`
         );
     
-        return fullTask;
+        // Se tem delayMs, programa para execucao futura
+            if (task.delayMs && task.delayMs > 0) {
+              setTimeout(() => {
+                logger.info(`[BackgroundTaskManager] Task ${fullTask.id} agendada com delay de ${task.delayMs}ms`);
+                this.processQueue();
+              }, task.delayMs);
+            }
+            
+            // Se tem scheduledAt, verifica se e no futuro
+            if (task.scheduledAt && task.scheduledAt > Date.now()) {
+              const delay = task.scheduledAt - Date.now();
+              setTimeout(() => {
+                logger.info(`[BackgroundTaskManager] Task ${fullTask.id} agendada para ${new Date(task.scheduledAt!).toISOString()}`);
+                fullTask.status = 'pending';
+                this.processQueue();
+              }, delay);
+              // Marca como pending mas nao processa ainda
+              fullTask.status = 'pending';
+              this.saveState();
+              return fullTask;
+            }
+            
+            return fullTask;
       }
     
       /** Retorna todas as tarefas (ativas e concluidas) */
@@ -218,7 +244,50 @@
         this.processQueue();
       }
     
-      private cleanupOldTasks(): void {
+      /** Deleta/remove uma tarefa pelo nome (busca por description) */
+          deleteByDescription(name: string): boolean {
+            const index = this.queue.findIndex((t) => 
+              t.description.toLowerCase().includes(name.toLowerCase())
+            );
+            if (index >= 0) {
+              const removed = this.queue.splice(index, 1)[0];
+              // Se esta rodando, remover do running set
+              if (this.running.has(removed.id)) {
+                this.running.delete(removed.id);
+              }
+              this.saveState();
+              logger.info(`[BackgroundTaskManager] Task removida: "${removed.description}"`);
+              return true;
+            }
+            return false;
+          }
+    
+          /** Deleta/remove uma tarefa pelo ID */
+          deleteById(id: string): boolean {
+            const index = this.queue.findIndex((t) => t.id === id);
+            if (index >= 0) {
+              const removed = this.queue.splice(index, 1)[0];
+              if (this.running.has(removed.id)) {
+                this.running.delete(removed.id);
+              }
+              this.saveState();
+              return true;
+            }
+            return false;
+          }
+    
+          /** Enfileira uma tarefa com delay (atalho) */
+          enqueueDelayed(
+            task: Omit<BackgroundTask, "id" | "status" | "createdAt">,
+            delayMs: number
+          ): BackgroundTask {
+            return this.enqueue({
+              ...task,
+              delayMs,
+            });
+          }
+    
+          private cleanupOldTasks(): void {
         const now = Date.now();
         const maxAge = 24 * 60 * 60 * 1000; // 24 horas
         this.queue = this.queue.filter((t) => {
