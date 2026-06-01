@@ -141,3 +141,34 @@
 
 ## Preferencias
 - [2026-06-01] revisar o que mudou antes?
+
+## Preferencias
+- [2026-06-01] Me fala aí que eu resolvo rapidinho
+
+## Preferencias
+- [2026-06-01] que eu busque o resumo das notícias de PE direto aqui?
+
+
+# Correcoes
+
+## 2026-06-01 - Bug: Background tasks falhando com erro 400 (tool_calls mismatch)
+    
+    **Problema:** Tarefas agendadas via `create_background_task` falhavam com erro:
+    ```
+    BadRequestError: 400 An assistant message with 'tool_calls' must be followed 
+    by tool messages responding to each 'tool_call_id'.
+    ```
+    
+    **Causa raiz:** No `agent.ts` (método `run()`), o código adicionava TODOS os `tool_calls` 
+    retornados pela API ao histórico do assistente, mas no loop de processamento pulava 
+    tool_calls com `type !== "function"` via `continue`, sem adicionar tool messages 
+    correspondentes. Isso criava um mismatch: o assistant message referenciava tool_call_ids 
+    que não tinham tool messages no histórico.
+    
+    **Correção:** 
+    1. Filtrar apenas `function` calls antes de adicionar ao `assistantEntry.tool_calls`
+    2. Se após o filtro não houver tool_calls, tratar como resposta final
+    3. Iterar apenas sobre os function calls filtrados (removido o `continue` desnecessário)
+    
+    **Arquivo modificado:** `core/agent/agent.ts`
+    

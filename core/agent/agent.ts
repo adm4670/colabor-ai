@@ -281,18 +281,19 @@ import type { LLMProviderType } from "../types";
     
             if (msg.tool_calls) {
               console.log(`[Agent] Tool calls detectadas: ${msg.tool_calls.length}`);
-              assistantEntry.tool_calls = msg.tool_calls;
+              // Filtra apenas function calls para evitar mismatch tool_calls/tool_messages
+              const functionCalls = msg.tool_calls.filter((tc: any) => tc.type === "function");
+              assistantEntry.tool_calls = functionCalls.length > 0 ? functionCalls : undefined;
             }
     
             this.history.push(assistantEntry);
     
-            if (!msg.tool_calls) {
+            if (!assistantEntry.tool_calls) {
               console.log("\n[Agent] Resposta final retornada ao usuario");
               return msg.content ?? "";
             }
     
-            for (const toolCall of msg.tool_calls) {
-              if (toolCall.type !== "function") continue;
+            for (const toolCall of assistantEntry.tool_calls) {
     
               const toolName = toolCall.function.name;
               const args = JSON.parse(toolCall.function.arguments || "{}");

@@ -34,6 +34,8 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         web_search: webSearchHandler,
         schedule_task: scheduleTaskHandler,
         list_scheduled_tasks: listScheduledHandler,
+        cancel_background_task: cancelBgTaskHandler,
+        delete_scheduled_task: deleteScheduledHandler,
           },
     
       generalInstructions: `
