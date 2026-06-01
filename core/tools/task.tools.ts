@@ -1,5 +1,6 @@
 import fs from "fs";
     import path from "path";
+import { logger } from "../utils/logger";
     
     const TASKS_FILE = path.join(process.cwd(), "tasks.json");
     
@@ -18,8 +19,8 @@ import fs from "fs";
           const data = fs.readFileSync(TASKS_FILE, "utf-8");
           return JSON.parse(data);
         }
-      } catch (e) {
-        console.error("[TaskTools] Erro ao carregar tarefas:", e);
+      } catch (e: any) {
+        logger.error("Erro ao carregar tarefas: " + (e?.message || e), "TASKTOOLS");
       }
       return [];
     }
@@ -27,8 +28,8 @@ import fs from "fs";
     function saveTasks(tasks: Task[]): void {
       try {
         fs.writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2), "utf-8");
-      } catch (e) {
-        console.error("[TaskTools] Erro ao salvar tarefas:", e);
+      } catch (e: any) {
+        logger.error("Erro ao salvar tarefas: " + (e?.message || e), "TASKTOOLS");
       }
     }
     

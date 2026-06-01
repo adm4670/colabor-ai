@@ -1,6 +1,7 @@
 import readline from "readline";
     import { Agent } from "./agent";
     import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+import { logger } from "../utils/logger";
     
     async function startConsoleAgent() {
     
@@ -18,7 +19,7 @@ import readline from "readline";
         output: process.stdout
       });
     
-      console.log("Agent iniciado. Digite 'exit' para sair.\n");
+      logger.info("Agent iniciado. Digite 'exit' para sair.", "CLI");
     
       while (true) {
     
@@ -34,11 +35,11 @@ import readline from "readline";
     
           const response = await agent.run(userInput);
     
-          console.log("\nAgent >", response, "\n");
+          logger.info("Agent > " + (response || ""), "CLI");
     
         } catch (err) {
     
-          console.error("Erro ao executar agent:", err);
+          logger.error("Erro ao executar agent: " + String(err), "CLI");
     
         }
     

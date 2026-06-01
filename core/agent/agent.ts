@@ -1,6 +1,6 @@
 import OpenAI from "openai";
-import { createLLMClient, getDefaultProvider } from "../llm/provider";
-import type { LLMProviderType } from "../types";
+    import { createLLMClient, getDefaultProvider } from "../llm/provider";
+    import type { LLMProviderType } from "../types";
     import { logger } from "../utils/logger";
     
     export interface AgentOptions {
@@ -37,6 +37,7 @@ import type { LLMProviderType } from "../types";
       private history: Message[] = [];
       private tools: any[];
       private functions: Record<string, Function>;
+      private log: ReturnType<typeof logger.withContext>;
     
       constructor(options: AgentOptions) {
         this.name = options.name;
@@ -56,14 +57,16 @@ import type { LLMProviderType } from "../types";
           baseURL: options.baseURL ?? "https://api.deepseek.com",
         });
     
-        console.log(`[Agent] Agent '${this.name}' inicializado`);
-        console.log(`[Agent] Model: ${this.model}`);
-        console.log(`[Agent] Tools disponiveis: ${this.tools.length}`);
+        // Logger com contexto fixo do agente
+        this.log = logger.withContext(this.name);
+    
+        this.log.info("Agente inicializado");
+        this.log.info("Modelo: " + this.model, { tools: this.tools.length });
       }
     
       resetHistory(): void {
         this.history = [];
-        console.log(`[Agent] Historico de ${this.name} resetado.`);
+        this.log.info("Historico resetado");
       }
     
       private async ensureSystemMessage(): Promise<void> {
@@ -98,7 +101,7 @@ import type { LLMProviderType } from "../types";
           // Skills manager nao disponivel
         }
     
-        // === MEMORY CAPABILITIES (NOVO) ===
+        // === MEMORY CAPABILITIES ===
         let memoryInstructions = "";
         const hasMemorySearch = this.functions["memory_search"];
         const hasMemoryAppend = this.functions["memory_append"];
@@ -128,7 +131,7 @@ import type { LLMProviderType } from "../types";
           memoryInstructions += "  -> [use results in analysis]\n";
         }
     
-        // Notas diarias recentes - usa modulo seguro
+        // Notas diarias recentes
         let dailyContext = "";
         try {
           const { getRecentDailyNotes } = await import("../memory/memory_search");
@@ -144,7 +147,7 @@ import type { LLMProviderType } from "../types";
               "\n";
           }
         } catch (e) {
-          // Notas nao disponiveis - nao critico
+          // Notas nao disponiveis
         }
     
         return (
@@ -172,10 +175,8 @@ import type { LLMProviderType } from "../types";
         }
       }
     
-    
       /**
        * Retry wrapper com exponential backoff + jitter.
-       * So retry em erros de rede ou rate limit (429/5xx).
        */
       private async retryWithBackoff<T>(
         fn: () => Promise<T>,
@@ -190,11 +191,10 @@ import type { LLMProviderType } from "../types";
           } catch (error: any) {
             lastError = error;
             
-            // Verificar se deve retry
             const status = error?.status || error?.response?.status;
             const shouldRetry = 
-              status === 429 || // rate limit
-              (status && status >= 500) || // server error
+              status === 429 ||
+              (status && status >= 500) ||
               error?.code === 'ECONNRESET' ||
               error?.code === 'ETIMEDOUT' ||
               error?.code === 'ENOTFOUND' ||
@@ -205,12 +205,11 @@ import type { LLMProviderType } from "../types";
               throw lastError;
             }
             
-            // Exponential backoff com �10% jitter
             const delay = baseDelay * Math.pow(2, attempt);
             const jitter = delay * 0.1 * (Math.random() * 2 - 1);
             const waitMs = Math.floor(delay + jitter);
             
-            console.log(`[Agent] Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
+            this.log.warn("Retry " + (attempt + 1) + "/" + maxRetries + " em " + waitMs + "ms: " + error.message);
             await new Promise(resolve => setTimeout(resolve, waitMs));
           }
         }
@@ -218,11 +217,16 @@ import type { LLMProviderType } from "../types";
         throw lastError;
       }
     
-  async run(userMessage: string, onProgress?: (msg: string) => Promise<void>): Promise<string> {
-        console.log("\n==============================");
-        console.log(`[Agent] [${this.name}] User input:`);
-        console.log(userMessage);
+      async run(userMessage: string, onProgress?: (msg: string) => Promise<void>): Promise<string> {
+        logger.separator(this.name);
     
+        const truncatedMsg = userMessage.length > 120
+          ? userMessage.substring(0, 120) + "..."
+          : userMessage;
+        this.log.info("Input: " + truncatedMsg);
+        this.log.debug("Input completo", { length: userMessage.length });
+    
+        logger.startTimer("execucao." + this.name, this.name);
         await this.ensureSystemMessage();
     
         this.history.push({
@@ -232,8 +236,7 @@ import type { LLMProviderType } from "../types";
     
         try {
           while (true) {
-            console.log("\n[Agent] Enviando requisicao para o modelo...");
-            console.log(`[Agent] Historico atual: ${this.history.length} mensagens`);
+            this.log.info("Enviando requisicao para o modelo...", { historico: this.history.length + " mensagens" });
     
             const response = await this.retryWithBackoff(
               () => this.client.chat.completions.create({
@@ -242,19 +245,22 @@ import type { LLMProviderType } from "../types";
                 tools: this.tools.length ? this.tools : undefined,
                 tool_choice: this.tools.length ? "auto" : undefined,
               } as any),
-              3 // maxRetries
+              3
             );
     
             const msg = (response as any).choices[0].message;
     
-            console.log("\n[Agent] Resposta do modelo recebida");
+            this.log.info("Resposta do modelo recebida");
     
             if (msg.content) {
-              console.log("[Agent] Conteudo:");
-              console.log(msg.content);
+              const preview = msg.content.length > 200
+                ? msg.content.substring(0, 200) + "..."
+                : msg.content;
+              this.log.debug("Conteudo: " + preview);
             }
             if ((msg as any).reasoning_content) {
-              console.log("[Agent] Conteudo do raciocinio recebido (sera preservado).");
+              const preview = (msg as any).reasoning_content.substring(0, 100);
+              this.log.debug("Raciocinio recebido: " + preview + "...");
             }
     
             const assistantEntry: Message = {
@@ -265,7 +271,7 @@ import type { LLMProviderType } from "../types";
             if ((msg as any).reasoning_content) {
                   assistantEntry.reasoning_content = (msg as any).reasoning_content;
                   
-                  // Forward reasoning as dynamic progress messages (like DeepSeek thinking)
+                  // Forward reasoning as dynamic progress messages
                   const reasoning = (msg as any).reasoning_content as string;
                   if (reasoning && onProgress) {
                     const thoughts = reasoning
@@ -280,8 +286,7 @@ import type { LLMProviderType } from "../types";
                 }
     
             if (msg.tool_calls) {
-              console.log(`[Agent] Tool calls detectadas: ${msg.tool_calls.length}`);
-              // Filtra apenas function calls para evitar mismatch tool_calls/tool_messages
+              this.log.info("Tool calls detectadas: " + msg.tool_calls.length);
               const functionCalls = msg.tool_calls.filter((tc: any) => tc.type === "function");
               assistantEntry.tool_calls = functionCalls.length > 0 ? functionCalls : undefined;
             }
@@ -289,7 +294,8 @@ import type { LLMProviderType } from "../types";
             this.history.push(assistantEntry);
     
             if (!assistantEntry.tool_calls) {
-              console.log("\n[Agent] Resposta final retornada ao usuario");
+              const duration = logger.endTimer("execucao." + this.name);
+              this.log.info("Resposta final retornada. Duracao: " + (duration ?? "?") + "ms");
               return msg.content ?? "";
             }
     
@@ -312,10 +318,10 @@ import type { LLMProviderType } from "../types";
                   })()
               
     
-              console.log("\n[Agent] Executando tool:");
-              console.log(`[Agent] Nome: ${toolName}`);
-              console.log(`[Agent] Args:`, args);
+              this.log.info("Executando tool: " + toolName);
+              this.log.debug("Args: " + JSON.stringify(args));
     
+              logger.startTimer("tool." + toolName, this.name + ":tool");
               const fn = this.functions[toolName];
     
               let toolResult = "";
@@ -324,16 +330,21 @@ import type { LLMProviderType } from "../types";
                 if (fn) {
                   const result = await fn(args);
                   toolResult = JSON.stringify(result, null, 2);
-                  console.log("[Agent] Resultado da tool:");
-                  console.log(toolResult);
+                  const duration = logger.endTimer("tool." + toolName);
+                  const preview = toolResult.length > 200
+                    ? toolResult.substring(0, 200) + "..."
+                    : toolResult;
+                  this.log.info("Tool " + toolName + " concluida (" + (duration ?? "?") + "ms)");
+                  this.log.debug("Resultado: " + preview);
                 } else {
                   toolResult = "Erro: Funcao nao encontrada.";
-                  console.log("[Agent] Tool nao encontrada");
+                  logger.endTimer("tool." + toolName);
+                  this.log.error("Tool nao encontrada: " + toolName);
                 }
               } catch (e: any) {
-                toolResult = `Erro na execucao: ${e.message}`;
-                console.log("[Agent] Erro na execucao da tool:");
-                console.log(e.message);
+                toolResult = "Erro na execucao: " + e.message;
+                logger.endTimer("tool." + toolName);
+                this.log.error("Erro na execucao da tool " + toolName + ": " + e.message);
               }
     
               this.history.push({
@@ -343,14 +354,15 @@ import type { LLMProviderType } from "../types";
                 content: toolResult,
               });
     
-              console.log("[Agent] Resultado adicionado ao historico");
+              this.log.debug("Resultado adicionado ao historico");
             }
           }
         } catch (e: any) {
-          console.log("[Agent] Erro no Agent:");
-          console.log(e);
+          logger.endTimer("execucao." + this.name);
+          this.log.error("Erro no processamento: " + e.message);
+          this.log.debug("Stack: " + (e.stack || ""));
     
-          return `[Erro no processamento: ${e.message}]`;
+          return "[Erro no processamento: " + e.message + "]";
         }
       }
     }

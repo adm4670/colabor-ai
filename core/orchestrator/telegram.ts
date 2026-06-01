@@ -163,7 +163,7 @@ import TelegramBot from "node-telegram-bot-api";
     async function startTelegramAgent() {
       const planner = agentRegistry.getPlanner();
       if (!planner) {
-        console.error("[Telegram] Planner agent nao registrado!");
+        logger.error("Planner agent nao registrado!", "TELEGRAM");
         process.exit(1);
       }
       const orchestrator = new AgentOrchestrator(
@@ -176,7 +176,7 @@ import TelegramBot from "node-telegram-bot-api";
       });
     
       logger?.info("[Telegram] Multi-Agent iniciado.");
-      console.log("Telegram Multi-Agent iniciado.");
+      logger.info("Telegram Multi-Agent iniciado.", "TELEGRAM");
     
       bot.on("message", async (msg) => {
         const chatId = msg.chat.id;
@@ -272,7 +272,7 @@ import TelegramBot from "node-telegram-bot-api";
         } catch (err) {
           const errMsg = err instanceof Error ? err.message : String(err);
           logger?.error("[Telegram] Erro ao processar mensagem: " + errMsg);
-          console.error("[Telegram]", err);
+          logger.error("Erro ao processar: " + (err?.message || err), "TELEGRAM");
     
           // Determinar mensagem amigavel baseada no tipo de erro
           let userMessage = "❌ Erro ao processar mensagem.";
@@ -295,7 +295,7 @@ import TelegramBot from "node-telegram-bot-api";
           try {
             await bot.sendMessage(chatId, userMessage);
           } catch {
-            console.error("[Telegram] Falha ate ao enviar mensagem de erro");
+            logger.error("Falha ate ao enviar mensagem de erro", "TELEGRAM");
           }
         }
       });
@@ -303,7 +303,7 @@ import TelegramBot from "node-telegram-bot-api";
     
     // Iniciar o agente com tratamento de erro para promessa rejeitada
     startTelegramAgent().catch((err) => {
-      console.error("Falha ao iniciar o bot Telegram:", err);
+      logger.error("Falha ao iniciar o bot Telegram: " + (err?.message || err), "TELEGRAM");
       process.exit(1);
     });
     

@@ -8,6 +8,7 @@
      */
     
     import type { Agent } from "../agent/agent";
+import { logger } from "../utils/logger";
     
     // ============================================================
     // Tipos
@@ -40,7 +41,7 @@
        */
       register(entry: AgentRegistryEntry): void {
         if (this.agents.has(entry.name)) {
-          console.warn(
+          logger.warn(
             `[AgentRegistry] Agent '${entry.name}' ja registrado. Sobrescrevendo.`
           );
         }

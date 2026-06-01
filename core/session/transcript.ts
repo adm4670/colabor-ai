@@ -17,6 +17,8 @@
     
     import * as fs from "fs";
     import * as path from "path";
+import { logger } from "../utils/logger";
+
     
     // ============================================================
     // Tipos
@@ -176,7 +178,7 @@
       if (header) {
         // Se for header, pular a primeira linha
         if (header.version > SESSION_VERSION) {
-          console.warn(
+          logger.warn(
             `[Transcript] Session ${sessionId} has version ${header.version} (current: ${SESSION_VERSION}). ` +
             `Attempting to read anyway - some fields may be missing.`
           );
