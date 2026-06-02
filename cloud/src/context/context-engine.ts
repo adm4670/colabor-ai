@@ -160,7 +160,7 @@ export class ContextEngine {
 
     try {
       const response = await this.llmClient.chat.completions.create({
-        model: this.config.summaryModel || "deepseek-chat",
+        model: this.config.summaryModel || "deepseek-v4-pro",
         messages: [
           { role: "system", content: "You are a precise context summarizer." },
           { role: "user", content: prompt },

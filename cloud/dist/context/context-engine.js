@@ -118,7 +118,7 @@ class ContextEngine {
         const prompt = `Summarize this conversation. Preserve decisions, facts, preferences. Output in Portuguese (PT-BR), 3-8 sentences.\n\n${transcript.slice(0, 6000)}\n\nSummary:`;
         try {
             const response = await this.llmClient.chat.completions.create({
-                model: this.config.summaryModel || "deepseek-chat",
+                model: this.config.summaryModel || "deepseek-v4-pro",
                 messages: [
                     { role: "system", content: "You are a precise context summarizer." },
                     { role: "user", content: prompt },

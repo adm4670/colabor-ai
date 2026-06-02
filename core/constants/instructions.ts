@@ -52,7 +52,7 @@
     // ============================================================
     
     export const DEFAULT_MODEL = "deepseek-v4-pro";
-    export const FALLBACK_MODEL = "deepseek-v4-pro";
+    export const FALLBACK_MODEL = process.env.DEEPSEEK_FALLBACK_MODEL || "deepseek-v4-pro";
     
     // ============================================================
     // Planner System Prompt (v2 - com plan-based thinking e sub-agents)

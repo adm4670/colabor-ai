@@ -7,7 +7,7 @@ export function createLLMClient(provider: LLMProviderType, config?: Partial<LLMP
     openai: { type: "openai", apiKey: config?.apiKey || process.env.OPENAI_API_KEY || "", baseURL: config?.baseURL || "https://api.openai.com/v1" },
   };
   const resolved = { ...defaults[provider], ...config };
-  return new OpenAI({ apiKey: resolved.apiKey, baseURL: resolved.baseURL });
+  return new OpenAI({ apiKey: resolved.apiKey, baseURL: resolved.baseURL, timeout: 120000, maxRetries: 2 });
 }
 
 export function getDefaultProvider(): LLMProviderType {

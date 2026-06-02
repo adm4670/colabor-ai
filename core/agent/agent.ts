@@ -48,7 +48,7 @@ const log = createLogger("AGENT");
         this.goal = options.goal;
         this.backstory = options.backstory;
     
-        this.model = options.model ?? "deepseek-chat";
+        this.model = options.model ?? "deepseek-v4-pro";
         this.fallbackModel = options.fallbackModel ?? "";
         this.generalInstructions =
           options.generalInstructions ?? "- Responda em PT-BR.\n";

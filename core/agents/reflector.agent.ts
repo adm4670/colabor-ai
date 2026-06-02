@@ -20,7 +20,7 @@ import { Agent } from "../agent/agent";
         "An AI specialized in evaluating whether other agents completed their tasks successfully. " +
         "It identifies missing information and suggests whether a different approach is needed.",
     
-      model: process.env.REFLECTOR_MODEL || "deepseek-chat",
+      model: process.env.REFLECTOR_MODEL || "deepseek-v4-pro",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

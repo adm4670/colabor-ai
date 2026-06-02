@@ -2,6 +2,136 @@ import { Agent } from "../agent/agent";
         import { logger, createLogger } from "../utils/logger";
 
 const log = createLogger("ORCH");
+
+    // ============================================================
+    // Robust JSON extraction from LLM responses
+    // Handles: markdown code fences, extra text before/after JSON,
+    // trailing commas, and other common LLM formatting quirks.
+    // ============================================================
+    function extractJSON(raw: string, context: string = "unknown"): any {
+      let cleaned = raw.trim();
+    
+      // Strategy 1: Strip markdown code fences (```json ... ``` or ``` ... ```)
+      const fenceMatch = cleaned.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
+      if (fenceMatch) {
+        cleaned = fenceMatch[1].trim();
+      }
+    
+      // Strategy 2: Extract first JSON object { ... } with balanced braces
+      if (cleaned.startsWith("{")) {
+        let depth = 0;
+        let inString = false;
+        let escape = false;
+        let end = -1;
+        for (let i = 0; i < cleaned.length; i++) {
+          const ch = cleaned[i];
+          if (escape) { escape = false; continue; }
+          if (ch === "\\") { escape = true; continue; }
+          if (ch === "\"") { inString = !inString; continue; }
+          if (inString) continue;
+          if (ch === "{") depth++;
+          if (ch === "}") { depth--; if (depth === 0) { end = i + 1; break; } }
+        }
+        if (end > 0) {
+          cleaned = cleaned.substring(0, end);
+        }
+      }
+    
+      // Strategy 3: Extract first JSON array [ ... ] with balanced brackets
+      if (cleaned.startsWith("[")) {
+        let depth = 0;
+        let inString = false;
+        let escape = false;
+        let end = -1;
+        for (let i = 0; i < cleaned.length; i++) {
+          const ch = cleaned[i];
+          if (escape) { escape = false; continue; }
+          if (ch === "\\") { escape = true; continue; }
+          if (ch === "\"") { inString = !inString; continue; }
+          if (inString) continue;
+          if (ch === "[") depth++;
+          if (ch === "]") { depth--; if (depth === 0) { end = i + 1; break; } }
+        }
+        if (end > 0) {
+          cleaned = cleaned.substring(0, end);
+        }
+      }
+    
+      // Strategy 4: Find JSON in text with balanced braces/brackets
+      if (!cleaned.startsWith("{") && !cleaned.startsWith("[")) {
+        const firstBrace = cleaned.indexOf("{");
+        const firstBracket = cleaned.indexOf("[");
+        let start = -1;
+        let isObject = true;
+
+        if (firstBrace === -1 && firstBracket === -1) {
+          start = -1;
+        } else if (firstBrace === -1) {
+          start = firstBracket;
+          isObject = false;
+        } else if (firstBracket === -1) {
+          start = firstBrace;
+          isObject = true;
+        } else {
+          start = Math.min(firstBrace, firstBracket);
+          isObject = start === firstBrace;
+        }
+
+        if (start >= 0) {
+          const openChar = isObject ? "{" : "[";
+          const closeChar = isObject ? "}" : "]";
+          let depth = 0;
+          let inString = false;
+          let escape = false;
+          let end = -1;
+
+          for (let i = start; i < cleaned.length; i++) {
+            const ch = cleaned[i];
+            if (escape) { escape = false; continue; }
+            if (ch === "\\") { escape = true; continue; }
+            if (ch === '"') { inString = !inString; continue; }
+            if (inString) continue;
+            if (ch === openChar) depth++;
+            if (ch === closeChar) { depth--; if (depth === 0) { end = i + 1; break; } }
+          }
+
+          if (end > 0) {
+            cleaned = cleaned.substring(start, end);
+          }
+        }
+      }
+    
+      // Pre-processing: remove common LLM artifacts
+      // Remove // comments
+      cleaned = cleaned.replace(/\/\/.*$/gm, "");
+      // Remove /* */ comments
+      cleaned = cleaned.replace(/\/\*[\s\S]*?\*\//g, "");
+      // Convert NaN/Infinity to null (invalid in JSON)
+      cleaned = cleaned.replace(/:\s*(NaN|Infinity|-Infinity)\s*([,}\]])/g, ": null$2");
+      // Convert single-quoted keys/values to double-quoted (simple heuristic)
+      // Only apply if the JSON looks like it uses single quotes
+      if (cleaned.includes("'") && !cleaned.includes('"')) {
+        cleaned = cleaned.replace(/'/g, '"');
+      }
+
+      // Attempt to parse
+      try {
+        return JSON.parse(cleaned);
+      } catch (err1) {
+        // Try removing trailing commas (common LLM mistake)
+        try {
+          const noTrailingCommas = cleaned.replace(/,(\s*[}\]])/g, "$1");
+          return JSON.parse(noTrailingCommas);
+        } catch (err2) {
+          // Last resort: log the raw content for debugging
+          log.warn(`extractJSON FAILED [${context}] — raw (first 500 chars): ${raw.substring(0, 500)}`);
+          log.warn(`extractJSON FAILED [${context}] — cleaned (first 500 chars): ${cleaned.substring(0, 500)}`);
+          throw new Error(`JSON extraction failed for ${context}`);
+        }
+      }
+    }
+    
+    
         import { browserAgent } from "../agents/browser.agent";
     import { reflectorAgent } from "../agents/reflector.agent";
         import {
@@ -262,7 +392,7 @@ const log = createLogger("ORCH");
     
             try {
               const reflectionRaw = await reflectorAgent.run(reflectionPrompt);
-              const parsed = JSON.parse(reflectionRaw);
+              const parsed = extractJSON(reflectionRaw, "reflector");
               return {
                 success: parsed.success || "partial",
                 complete: parsed.complete ?? true,
@@ -519,9 +649,9 @@ const log = createLogger("ORCH");
               let parsed: any;
     
               try {
-                parsed = JSON.parse(decision);
+                parsed = extractJSON(decision, "planner");
               } catch {
-                log.warn("Planner returned invalid JSON");
+                log.warn("Planner returned invalid JSON — raw decision (first 800 chars): " + decision.substring(0, 800));
                 this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
                 this.eventStream.push(createEvent("agent_end"));
                 this.eventStream.end();
@@ -573,7 +703,7 @@ const log = createLogger("ORCH");
     
                 try {
                   const planRaw = await this.planner.run(planGenerationPrompt);
-                  const planSteps = JSON.parse(planRaw);
+                  const planSteps = extractJSON(planRaw, "plan-steps");
                   if (Array.isArray(planSteps) && planSteps.length > 0) {
                     this.planManager.addSteps(planSteps);
                     if (this.debug) {
