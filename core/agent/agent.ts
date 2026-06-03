@@ -28,7 +28,128 @@ const log = createLogger("AGENT");
       tool_calls?: any;
     };
     
-    export class Agent {
+    
+    /**
+     * Valida e sanitiza o array de mensagens antes de enviar para API.
+     * Remove tool messages orfas que nao tem assistant com tool_calls correspondente.
+     * Aplica safe truncation se o total de tokens exceder o limite.
+     */
+    function sanitizeMessages(
+      messages: Message[],
+      maxTokens: number = 8000
+    ): Message[] {
+      if (messages.length === 0) return messages;
+    
+      // === Passo 1: Construir set de tool_call_ids validos ===
+      const validToolCallIds = new Set<string>();
+      for (const msg of messages) {
+        if (msg.role === "assistant" && msg.tool_calls && Array.isArray(msg.tool_calls)) {
+          for (const tc of msg.tool_calls) {
+            if (tc.id) validToolCallIds.add(tc.id);
+          }
+        }
+      }
+    
+      // === Passo 2: Remover tool messages orfas ===
+      let cleaned = messages.filter((msg, idx) => {
+        if (msg.role === "tool" && msg.tool_call_id) {
+          if (!validToolCallIds.has(msg.tool_call_id)) {
+            return false; // orfa, remove
+          }
+        }
+        return true;
+      });
+    
+      // === Passo 3: Estimar tokens ===
+      let totalTokens = 0;
+      for (const msg of cleaned) {
+        totalTokens += Math.ceil((msg.content || "").length / 4) + 4;
+        if (msg.tool_calls) {
+          totalTokens += JSON.stringify(msg.tool_calls).length / 4;
+        }
+      }
+    
+      // === Passo 4: Safe truncation se exceder limite ===
+      if (totalTokens > maxTokens && cleaned.length > 6) {
+        // Encontrar indice seguro de corte
+        const systemMessages = cleaned.filter(m => m.role === "system");
+        const nonSystem = cleaned.filter(m => m.role !== "system");
+        
+        if (nonSystem.length <= 6) return cleaned;
+        
+        // Manter ultimas mensagens que cabem no orcamento
+        let keptTokens = 0;
+        let keepCount = 0;
+        const budget = Math.floor(maxTokens * 0.7); // 70% para mensagens recentes
+        
+        for (let i = nonSystem.length - 1; i >= 0; i--) {
+          const mt = Math.ceil((nonSystem[i].content || "").length / 4) + 4;
+          if (nonSystem[i].tool_calls) {
+            // tool_calls messages must keep their paired tool responses
+            // Count tokens for all subsequent tool messages too
+          }
+          if (keptTokens + mt > budget && keepCount >= 4) break;
+          keptTokens += mt;
+          keepCount++;
+        }
+        
+        // Aplicar findSafeTruncationIndex
+        let startIdx = Math.max(0, nonSystem.length - keepCount);
+        startIdx = findSafeTruncationIndex(nonSystem, startIdx);
+        
+        cleaned = [...systemMessages, ...nonSystem.slice(startIdx)];
+      }
+    
+      return cleaned;
+    }
+    
+    /**
+     * Encontra indice seguro para truncagem que nao quebra pares
+     * assistant(tool_calls) -> tool.
+     */
+    function findSafeTruncationIndex(
+      messages: Message[],
+      desiredStart: number
+    ): number {
+      if (desiredStart <= 0) return 0;
+      
+      let safeStart = desiredStart;
+      
+      for (let i = desiredStart; i < messages.length; i++) {
+        const msg = messages[i];
+        
+        if (msg.role === "tool" && msg.tool_call_id) {
+          let foundAssistant = false;
+          
+          for (let j = i - 1; j >= 0; j--) {
+            const candidate = messages[j];
+            if (
+              candidate.role === "assistant" &&
+              candidate.tool_calls &&
+              Array.isArray(candidate.tool_calls)
+            ) {
+              const hasMatchingCall = candidate.tool_calls.some(
+                (tc: any) => tc.id === msg.tool_call_id
+              );
+              if (hasMatchingCall) {
+                if (j < safeStart) safeStart = j;
+                foundAssistant = true;
+                break;
+              }
+            }
+          }
+          
+          if (!foundAssistant && i >= safeStart) {
+            safeStart = i + 1;
+          }
+        }
+      }
+      
+      return safeStart;
+    }
+    
+    
+export class Agent {
       public name: string;
       public role: string;
       public goal: string;
@@ -245,7 +366,7 @@ const log = createLogger("AGENT");
               response = await this.retryWithBackoff(
                 () => this.client.chat.completions.create({
                   model: this.model,
-                  messages: this.history as any,
+                  messages: sanitizeMessages(this.history) as any,
                   tools: this.tools.length ? this.tools : undefined,
                   tool_choice: this.tools.length ? "auto" : undefined,
                 } as any),
@@ -259,7 +380,7 @@ const log = createLogger("AGENT");
                   response = await this.retryWithBackoff(
                     () => this.client.chat.completions.create({
                       model: this.fallbackModel,
-                      messages: this.history as any,
+                      messages: sanitizeMessages(this.history) as any,
                       tools: this.tools.length ? this.tools : undefined,
                       tool_choice: this.tools.length ? "auto" : undefined,
                     } as any),

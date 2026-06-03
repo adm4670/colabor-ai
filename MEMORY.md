@@ -295,3 +295,9 @@
 - 75 novas memorias adicionadas ao MEMORY.md
 - 2 duplicatas ignoradas
 
+
+## Fatos
+- [2026-06-02] rodar, confirme que as variáveis de ambiente `DEEPSEEK_API_KEY` e `GEMINI_API_KEY` estão definidas e que os pacotes do `requirements` foram instalados
+
+## Preferencias
+- [2026-06-03] fazer mais algum ajuste?

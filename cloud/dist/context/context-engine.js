@@ -28,6 +28,44 @@ function estimateMessageTokens(msg) {
 function estimateMessagesTokens(messages) {
     return messages.reduce((acc, msg) => acc + estimateMessageTokens(msg), 0);
 }
+// ============================================================
+// Safe Truncation Helper - evita tool messages orfas
+// ============================================================
+/**
+ * Encontra um indice de truncagem seguro que nao quebra pares
+ * assistant(tool_calls) -> tool.
+ */
+function findSafeTruncationIndex(messages, desiredStart) {
+    if (desiredStart <= 0)
+        return 0;
+    let safeStart = desiredStart;
+    for (let i = desiredStart; i < messages.length; i++) {
+        const msg = messages[i];
+        if (msg.role === "tool" && msg.tool_call_id) {
+            let foundAssistant = false;
+            for (let j = i - 1; j >= 0; j--) {
+                const candidate = messages[j];
+                if (candidate.role === "assistant" &&
+                    candidate.tool_calls &&
+                    Array.isArray(candidate.tool_calls)) {
+                    const hasMatch = candidate.tool_calls.some((tc) => tc.id === msg.tool_call_id);
+                    if (hasMatch) {
+                        if (j < safeStart)
+                            safeStart = j;
+                        foundAssistant = true;
+                        break;
+                    }
+                }
+            }
+            if (!foundAssistant && i >= safeStart) {
+                logger_1.logger.warn(`[ContextEngine] Tool message orfa detectada (tool_call_id=${msg.tool_call_id}). ` +
+                    `Pulando para evitar erro 400 da API.`);
+                safeStart = i + 1;
+            }
+        }
+    }
+    return safeStart;
+}
 class ContextEngine {
     config;
     rawHistory = [];
@@ -73,9 +111,12 @@ class ContextEngine {
                 estimatedTokens: estimateMessagesTokens(history),
             };
         }
-        const zone1 = nonSystemMessages.slice(-keepRecentIntact);
-        const zone2Start = Math.max(0, nonSystemMessages.length - keepRecentIntact - summarizeZoneSize);
-        const zone2 = nonSystemMessages.slice(zone2Start, nonSystemMessages.length - keepRecentIntact);
+        // Safe truncation: garante pares assistant(tool_calls) -> tool
+        const rawZone1Start = Math.max(0, nonSystemMessages.length - keepRecentIntact);
+        const safeZone1Start = findSafeTruncationIndex(nonSystemMessages, rawZone1Start);
+        const zone1 = nonSystemMessages.slice(safeZone1Start);
+        const zone2Start = Math.max(0, safeZone1Start - summarizeZoneSize);
+        const zone2 = nonSystemMessages.slice(zone2Start, safeZone1Start);
         const allToSummarize = [...nonSystemMessages.slice(0, zone2Start), ...zone2];
         if (allToSummarize.length === 0) {
             const result = [...systemMessages, ...zone1];
@@ -148,8 +189,10 @@ class ContextEngine {
             recentTokens += t;
             recentCount++;
         }
-        const kept = history.slice(-recentCount);
-        const summarized = history.length - recentCount;
+        const rawStart = Math.max(0, history.length - recentCount);
+        const safeStart = findSafeTruncationIndex(history, rawStart);
+        const kept = history.slice(safeStart);
+        const summarized = history.length - kept.length;
         const summary = summarized > 0 ? this.generateSimpleSummary(history.slice(0, summarized)) : "";
         return {
             messages: summary ? [{ role: "system", content: summary }, ...kept] : kept,

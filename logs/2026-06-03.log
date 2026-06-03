@@ -1,0 +1,2261 @@
+21:38:35.997  INFO   [ORCH] ==============================
+21:38:35.998  INFO   [ORCH] ORCHESTRATOR START
+21:38:35.998  INFO   [ORCH] User input received  {"input":"Olá"}
+21:38:35.999  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780437510896_0uz7n8"}
+21:38:36.018  INFO   [ORCH] Step 1/15
+21:38:36.019  INFO   [AGENT] ==============================
+21:38:36.019  INFO   [AGENT] User input:
+21:38:36.021  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+21:38:36.021  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+21:38:36.023  INFO   [AGENT] Enviando requisicao para o modelo...
+21:38:44.585  INFO   [AGENT] Resposta do modelo recebida
+21:38:44.586  INFO   [AGENT] Resposta final retornada ao usuario
+21:38:44.586  INFO   [ORCH] Executing agent: WriterAgent
+21:38:44.595  INFO   [AGENT] ==============================
+21:38:44.596  INFO   [AGENT] User input:
+21:38:44.599  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+21:38:44.600  INFO   [AGENT] Enviando requisicao para o modelo...
+21:38:51.996  INFO   [AGENT] Resposta do modelo recebida
+21:38:52.684  INFO   [AGENT] Resposta final retornada ao usuario
+21:38:52.686  INFO   [AGENT] ==============================
+21:38:52.687  INFO   [AGENT] User input:
+21:38:52.689  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+21:38:52.690  INFO   [AGENT] Enviando requisicao para o modelo...
+21:38:53.930  ERROR  [AGENT] Erro no Agent:
+21:38:53.931  ERROR  [AGENT] Error: 400 Failed to parse the request body as JSON: messages[33].content: unexpected end of hex escape at line 1 column 71219
+21:38:53.932  WARN   [ORCH] extractJSON FAILED [reflector] — raw (first 500 chars): [Erro no processamento: 400 Failed to parse the request body as JSON: messages[33].content: unexpected end of hex escape at line 1 column 71219]
+21:38:53.932  WARN   [ORCH] extractJSON FAILED [reflector] — cleaned (first 500 chars): [Erro no processamento: 400 Failed to parse the request body as JSON: messages[33].content: unexpected end of hex escape at line 1 column 71219]
+21:38:53.932  INFO   [ORCH] [Reflection #1]
+21:38:53.933  INFO   [ORCH] Step 2/15
+21:38:53.933  INFO   [AGENT] ==============================
+21:38:53.934  INFO   [AGENT] User input:
+21:38:53.935  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+21:38:53.936  INFO   [AGENT] Enviando requisicao para o modelo...
+21:39:02.931  INFO   [AGENT] Resposta do modelo recebida
+21:39:02.932  INFO   [AGENT] Resposta final retornada ao usuario
+21:39:02.933  WARN   [ORCH] extractJSON FAILED [planner] — raw (first 500 chars): Olá! Esta conversa está com problemas técnicos. O trabalho principal foi concluído - scripts V1 e V2 estão no GitHub.
+
+Para continuar, **inicie uma nova conversa**. É a única forma de resolver os erros.
+21:39:02.933  WARN   [ORCH] extractJSON FAILED [planner] — cleaned (first 500 chars): Olá! Esta conversa está com problemas técnicos. O trabalho principal foi concluído - scripts V1 e V2 estão no GitHub.
+
+Para continuar, **inicie uma nova conversa**. É a única forma de resolver os erros.
+21:39:02.933  WARN   [ORCH] Planner returned invalid JSON — raw decision (first 800 chars): Olá! Esta conversa está com problemas técnicos. O trabalho principal foi concluído - scripts V1 e V2 estão no GitHub.
+
+Para continuar, **inicie uma nova conversa**. É a única forma de resolver os erros.
+21:43:33.101  INFO   [ORCH] ==============================
+21:43:33.102  INFO   [ORCH] ORCHESTRATOR START
+21:43:33.104  INFO   [ORCH] User input received  {"input":"Como resolver esse problema com a arquitetura da colabor-ai?"}
+21:43:33.104  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780437510896_0uz7n8"}
+21:43:33.134  INFO   [ORCH] Step 1/15
+21:43:33.135  INFO   [AGENT] ==============================
+21:43:33.135  INFO   [AGENT] User input:
+21:43:33.137  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+21:43:33.137  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+21:43:33.139  INFO   [AGENT] Enviando requisicao para o modelo...
+21:43:50.157  INFO   [AGENT] Resposta do modelo recebida
+21:43:50.158  INFO   [AGENT] Resposta final retornada ao usuario
+21:43:50.159  WARN   [ORCH] extractJSON FAILED [planner] — raw (first 500 chars): Entendo a frustração. Como arquiteto do colabor-ai, posso sugerir melhorias para evitar esse problema:
+
+**Causa raiz:**  
+O histórico de conversas cresce indefinidamente, sobrecarregando o token limit e corrompendo mensagens na serialização JSON.
+
+**Soluções arquiteturais:**
+
+1. **Janela deslizante de contexto**  
+   Manter apenas as últimas N mensagens (ex: 20) + um resumo automático do histórico antigo.
+
+2. **Compressão de histórico**  
+   Um agente `SummarizerAgent` que periodicamente condens
+21:43:50.160  WARN   [ORCH] extractJSON FAILED [planner] — cleaned (first 500 chars): Entendo a frustração. Como arquiteto do colabor-ai, posso sugerir melhorias para evitar esse problema:
+
+**Causa raiz:**  
+O histórico de conversas cresce indefinidamente, sobrecarregando o token limit e corrompendo mensagens na serialização JSON.
+
+**Soluções arquiteturais:**
+
+1. **Janela deslizante de contexto**  
+   Manter apenas as últimas N mensagens (ex: 20) + um resumo automático do histórico antigo.
+
+2. **Compressão de histórico**  
+   Um agente `SummarizerAgent` que periodicamente condens
+21:43:50.160  WARN   [ORCH] Planner returned invalid JSON — raw decision (first 800 chars): Entendo a frustração. Como arquiteto do colabor-ai, posso sugerir melhorias para evitar esse problema:
+
+**Causa raiz:**  
+O histórico de conversas cresce indefinidamente, sobrecarregando o token limit e corrompendo mensagens na serialização JSON.
+
+**Soluções arquiteturais:**
+
+1. **Janela deslizante de contexto**  
+   Manter apenas as últimas N mensagens (ex: 20) + um resumo automático do histórico antigo.
+
+2. **Compressão de histórico**  
+   Um agente `SummarizerAgent` que periodicamente condensa a conversa em tópicos e decisões.
+
+3. **Chunking de mensagens longas**  
+   Dividir mensagens que excedam X tokens antes de enviar à API.
+
+4. **Auto-recuperação de erros 400**  
+   Se detectar `unexpected end of hex escape`, truncar o histórico pela metade e reenviar.
+
+5. **Persistência externa** 
+22:23:26.511  INFO   [ORCH] ==============================
+22:23:26.511  INFO   [ORCH] ORCHESTRATOR START
+22:23:26.512  INFO   [ORCH] User input received  {"input":"Olá"}
+22:23:26.513  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780437510896_0uz7n8"}
+22:23:26.536  INFO   [ORCH] Step 1/15
+22:23:26.537  INFO   [AGENT] ==============================
+22:23:26.537  INFO   [AGENT] User input:
+22:23:26.538  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+22:23:26.539  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+22:23:26.540  INFO   [AGENT] Enviando requisicao para o modelo...
+22:23:39.563  INFO   [AGENT] Resposta do modelo recebida
+22:23:39.564  INFO   [AGENT] Resposta final retornada ao usuario
+22:23:39.565  WARN   [ORCH] extractJSON FAILED [planner] — raw (first 500 chars): Parece que você está tentando reiniciar a conversa, mas ainda estamos na mesma sessão sobrecarregada da API — por isso continua falhando.
+
+O trabalho já foi concluído com sucesso (scripts V1 e V2 corrigidos e no GitHub). A única pendência são os arquivos de configuração que precisam de commit.
+
+Por favor, **inicie uma nova conversa** e diga "commitar arquivos pendentes". Em 2 minutos resolvemos isso sem erros.
+22:23:39.565  WARN   [ORCH] extractJSON FAILED [planner] — cleaned (first 500 chars): Parece que você está tentando reiniciar a conversa, mas ainda estamos na mesma sessão sobrecarregada da API — por isso continua falhando.
+
+O trabalho já foi concluído com sucesso (scripts V1 e V2 corrigidos e no GitHub). A única pendência são os arquivos de configuração que precisam de commit.
+
+Por favor, **inicie uma nova conversa** e diga "commitar arquivos pendentes". Em 2 minutos resolvemos isso sem erros.
+22:23:39.566  WARN   [ORCH] Planner returned invalid JSON — raw decision (first 800 chars): Parece que você está tentando reiniciar a conversa, mas ainda estamos na mesma sessão sobrecarregada da API — por isso continua falhando.
+
+O trabalho já foi concluído com sucesso (scripts V1 e V2 corrigidos e no GitHub). A única pendência são os arquivos de configuração que precisam de commit.
+
+Por favor, **inicie uma nova conversa** e diga "commitar arquivos pendentes". Em 2 minutos resolvemos isso sem erros.
+09:00:02.903  INFO   [ORCH] ==============================
+09:00:02.905  INFO   [ORCH] ORCHESTRATOR START
+09:00:02.907  INFO   [ORCH] User input received  {"input":"Olá"}
+09:00:02.908  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780437510896_0uz7n8"}
+09:00:02.970  INFO   [ORCH] Step 1/15
+09:00:02.971  INFO   [AGENT] ==============================
+09:00:02.971  INFO   [AGENT] User input:
+09:00:02.989  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+09:00:02.990  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+09:00:02.992  INFO   [AGENT] Enviando requisicao para o modelo...
+09:00:14.036  INFO   [AGENT] Resposta do modelo recebida
+09:00:14.037  INFO   [AGENT] Resposta final retornada ao usuario
+09:00:14.039  WARN   [ORCH] extractJSON FAILED [planner] — raw (first 500 chars): Esta conversa está sobrecarregada e não vai voltar a funcionar. É técnico, não tem o que fazer aqui dentro.
+
+**O trabalho está pronto:**
+- Scripts V1 e V2: corrigidos e no GitHub
+- Commit `36d9bac` confirmado
+
+**A única pendência** é commitar `.gitignore`, `README.md` e `requirements.txt`.
+
+Para resolver, **inicie uma nova conversa** e diga:  
+"commitar arquivos pendentes clareiaai"
+
+2 minutos e está feito.
+09:00:14.040  WARN   [ORCH] extractJSON FAILED [planner] — cleaned (first 500 chars): Esta conversa está sobrecarregada e não vai voltar a funcionar. É técnico, não tem o que fazer aqui dentro.
+
+**O trabalho está pronto:**
+- Scripts V1 e V2: corrigidos e no GitHub
+- Commit `36d9bac` confirmado
+
+**A única pendência** é commitar `.gitignore`, `README.md` e `requirements.txt`.
+
+Para resolver, **inicie uma nova conversa** e diga:  
+"commitar arquivos pendentes clareiaai"
+
+2 minutos e está feito.
+09:00:14.041  WARN   [ORCH] Planner returned invalid JSON — raw decision (first 800 chars): Esta conversa está sobrecarregada e não vai voltar a funcionar. É técnico, não tem o que fazer aqui dentro.
+
+**O trabalho está pronto:**
+- Scripts V1 e V2: corrigidos e no GitHub
+- Commit `36d9bac` confirmado
+
+**A única pendência** é commitar `.gitignore`, `README.md` e `requirements.txt`.
+
+Para resolver, **inicie uma nova conversa** e diga:  
+"commitar arquivos pendentes clareiaai"
+
+2 minutos e está feito.
+11:42:27.748  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
+11:42:27.749  INFO   [AGENT] Model: deepseek-v4-pro
+11:42:27.750  INFO   [AGENT] Tools disponiveis: 0
+11:42:28.261  INFO   [AGENT] Agent 'PlannerAgent' inicializado
+11:42:28.262  INFO   [AGENT] Model: deepseek-v4-pro
+11:42:28.262  INFO   [AGENT] Tools disponiveis: 0
+11:42:28.317  INFO   [AGENT] Agent 'assistant' inicializado
+11:42:28.318  INFO   [AGENT] Model: deepseek-v4-pro
+11:42:28.318  INFO   [AGENT] Tools disponiveis: 10
+11:42:28.342  INFO   [AGENT] Agent 'PythonAgent' inicializado
+11:42:28.342  INFO   [AGENT] Model: deepseek-v4-pro
+11:42:28.343  INFO   [AGENT] Tools disponiveis: 11
+11:42:28.352  INFO   [AGENT] Agent 'WriterAgent' inicializado
+11:42:28.352  INFO   [AGENT] Model: deepseek-v4-pro
+11:42:28.353  INFO   [AGENT] Tools disponiveis: 0
+11:42:28.369  INFO   [AGENT] Agent 'task_manager' inicializado
+11:42:28.370  INFO   [AGENT] Model: deepseek-v4-flash
+11:42:28.370  INFO   [AGENT] Tools disponiveis: 3
+11:42:28.379  INFO   [APP] [BackgroundTaskManager] 7 tasks carregadas do disco
+11:42:28.379  INFO   [APP] [Permissions] Agent "assistant" level set to network
+11:42:28.380  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
+11:42:28.380  INFO   [APP] [Permissions] Agent "browser" level set to network
+11:42:28.381  INFO   [APP] [Permissions] Agent "shell" level set to shell
+11:42:28.381  INFO   [APP] [Permissions] Agent "writer" level set to file_write
+11:42:28.381  INFO   [APP] [Permissions] Agent "task_manager" level set to file_write
+11:42:28.386  INFO   [ORCH] Plano carregado: 5 steps
+11:42:28.389  INFO   [APP] [Telegram] Multi-Agent iniciado.
+11:45:08.200  INFO   [ORCH] ==============================
+11:45:08.203  INFO   [ORCH] ORCHESTRATOR START
+11:45:08.204  INFO   [ORCH] User input received  {"input":"Olá"}
+11:45:08.205  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780497748371_8wwggu"}
+11:45:08.225  INFO   [ORCH] Step 1/15
+11:45:08.227  INFO   [AGENT] ==============================
+11:45:08.227  INFO   [AGENT] User input:
+11:45:08.259  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:45:08.261  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:45:08.273  INFO   [AGENT] Enviando requisicao para o modelo...
+11:45:20.743  INFO   [AGENT] Resposta do modelo recebida
+11:45:20.744  INFO   [AGENT] Resposta final retornada ao usuario
+11:45:20.745  INFO   [ORCH] Executing agent: assistant
+11:45:20.808  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
+11:45:20.823  INFO   [AGENT] ==============================
+11:45:20.823  INFO   [AGENT] User input:
+11:45:20.825  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:45:20.827  INFO   [AGENT] Enviando requisicao para o modelo...
+11:45:27.652  INFO   [AGENT] Resposta do modelo recebida
+11:45:28.277  INFO   [AGENT] Resposta final retornada ao usuario
+11:45:28.280  INFO   [AGENT] ==============================
+11:45:28.281  INFO   [AGENT] User input:
+11:45:28.283  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:45:28.285  INFO   [AGENT] Enviando requisicao para o modelo...
+11:45:41.157  INFO   [AGENT] Resposta do modelo recebida
+11:45:41.158  INFO   [AGENT] Resposta final retornada ao usuario
+11:45:41.160  INFO   [ORCH] [Reflection #1]
+11:45:41.161  INFO   [ORCH] Step 2/15
+11:45:41.162  INFO   [AGENT] ==============================
+11:45:41.163  INFO   [AGENT] User input:
+11:45:41.164  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:45:41.165  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:45:41.166  INFO   [AGENT] Enviando requisicao para o modelo...
+11:45:50.342  INFO   [AGENT] Resposta do modelo recebida
+11:45:50.344  INFO   [AGENT] Resposta final retornada ao usuario
+11:45:50.346  INFO   [ORCH] ORCHESTRATION FINISHED
+11:45:50.350  INFO   [APP] [Memory] Novo arquivo de notas criado: 2026-06-03.md
+11:48:40.582  INFO   [ORCH] ==============================
+11:48:40.583  INFO   [ORCH] ORCHESTRATOR START
+11:48:40.584  INFO   [ORCH] User input received  {"input":"o projeto colabor-ai está constantemente apresentando os seguintes erros: \n\nErro ao interpretar resposta do planner.\n[Erro no processamento: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls']\n\nprovavelmente quando o histórico fica grande demais causando erros de processamento"}
+11:48:40.584  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780497748371_8wwggu"}
+11:48:40.603  INFO   [ORCH] Step 1/15
+11:48:40.604  INFO   [AGENT] ==============================
+11:48:40.604  INFO   [AGENT] User input:
+11:48:40.606  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:48:40.606  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:48:40.608  INFO   [AGENT] Enviando requisicao para o modelo...
+11:48:53.326  INFO   [AGENT] Resposta do modelo recebida
+11:48:53.327  INFO   [AGENT] Resposta final retornada ao usuario
+11:48:53.327  INFO   [ORCH] Executing agent: PythonAgent
+11:48:53.337  INFO   [AGENT] ==============================
+11:48:53.338  INFO   [AGENT] User input:
+11:48:53.339  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:48:53.340  INFO   [AGENT] Enviando requisicao para o modelo...
+11:49:02.738  INFO   [AGENT] Resposta do modelo recebida
+11:49:03.901  INFO   [AGENT] Tool calls detectadas: 1
+11:49:03.902  INFO   [AGENT] Executando tool:
+11:49:03.905  INFO   [AGENT] Nome: execute_python
+11:49:33.933  INFO   [AGENT] Enviando requisicao para o modelo...
+11:49:47.537  INFO   [AGENT] Resposta do modelo recebida
+11:49:48.161  INFO   [AGENT] Tool calls detectadas: 1
+11:49:48.162  INFO   [AGENT] Executando tool:
+11:49:48.163  INFO   [AGENT] Nome: execute_python
+11:49:48.309  INFO   [AGENT] Enviando requisicao para o modelo...
+11:50:11.210  INFO   [AGENT] Resposta do modelo recebida
+11:50:11.832  INFO   [AGENT] Tool calls detectadas: 1
+11:50:11.833  INFO   [AGENT] Executando tool:
+11:50:11.834  INFO   [AGENT] Nome: execute_python
+11:50:11.980  INFO   [AGENT] Enviando requisicao para o modelo...
+11:50:16.616  INFO   [AGENT] Resposta do modelo recebida
+11:50:17.259  INFO   [AGENT] Tool calls detectadas: 1
+11:50:17.260  INFO   [AGENT] Executando tool:
+11:50:17.261  INFO   [AGENT] Nome: execute_python
+11:50:17.424  INFO   [AGENT] Enviando requisicao para o modelo...
+11:50:24.856  INFO   [AGENT] Resposta do modelo recebida
+11:50:25.174  INFO   [AGENT] Tool calls detectadas: 1
+11:50:25.175  INFO   [AGENT] Executando tool:
+11:50:25.176  INFO   [AGENT] Nome: execute_python
+11:50:25.319  INFO   [AGENT] Enviando requisicao para o modelo...
+11:51:22.616  INFO   [AGENT] Resposta do modelo recebida
+11:51:23.240  INFO   [AGENT] Tool calls detectadas: 1
+11:51:23.241  INFO   [AGENT] Executando tool:
+11:51:23.241  INFO   [AGENT] Nome: execute_python
+11:51:23.393  INFO   [AGENT] Enviando requisicao para o modelo...
+11:52:12.345  INFO   [AGENT] Resposta do modelo recebida
+11:52:12.981  INFO   [AGENT] Tool calls detectadas: 4
+11:52:12.982  INFO   [AGENT] Executando tool:
+11:52:12.983  INFO   [AGENT] Nome: todo_write
+11:52:13.002  INFO   [AGENT] Executando tool:
+11:52:13.003  INFO   [AGENT] Nome: todo_write
+11:52:13.004  INFO   [AGENT] Executando tool:
+11:52:13.005  INFO   [AGENT] Nome: todo_write
+11:52:13.006  INFO   [AGENT] Executando tool:
+11:52:13.007  INFO   [AGENT] Nome: todo_write
+11:52:13.008  INFO   [AGENT] Enviando requisicao para o modelo...
+11:52:18.054  INFO   [AGENT] Resposta do modelo recebida
+11:52:18.748  INFO   [AGENT] Tool calls detectadas: 1
+11:52:18.751  INFO   [AGENT] Executando tool:
+11:52:18.752  INFO   [AGENT] Nome: todo_write
+11:52:18.756  INFO   [AGENT] Enviando requisicao para o modelo...
+11:52:23.329  INFO   [AGENT] Resposta do modelo recebida
+11:52:23.671  INFO   [AGENT] Tool calls detectadas: 1
+11:52:23.671  INFO   [AGENT] Executando tool:
+11:52:23.672  INFO   [AGENT] Nome: execute_python
+11:52:23.807  INFO   [AGENT] Enviando requisicao para o modelo...
+11:52:52.051  INFO   [AGENT] Resposta do modelo recebida
+11:52:52.674  INFO   [AGENT] Tool calls detectadas: 1
+11:52:52.675  INFO   [AGENT] Executando tool:
+11:52:52.676  INFO   [AGENT] Nome: execute_python
+11:52:52.820  INFO   [AGENT] Enviando requisicao para o modelo...
+11:52:58.406  INFO   [AGENT] Resposta do modelo recebida
+11:52:59.028  INFO   [AGENT] Tool calls detectadas: 1
+11:52:59.029  INFO   [AGENT] Executando tool:
+11:52:59.029  INFO   [AGENT] Nome: execute_python
+11:52:59.189  INFO   [AGENT] Enviando requisicao para o modelo...
+11:53:04.560  INFO   [AGENT] Resposta do modelo recebida
+11:53:05.272  INFO   [AGENT] Tool calls detectadas: 1
+11:53:05.275  INFO   [AGENT] Executando tool:
+11:53:05.276  INFO   [AGENT] Nome: execute_python
+11:53:05.456  INFO   [AGENT] Enviando requisicao para o modelo...
+11:53:13.854  INFO   [AGENT] Resposta do modelo recebida
+11:53:14.485  INFO   [AGENT] Tool calls detectadas: 1
+11:53:14.486  INFO   [AGENT] Executando tool:
+11:53:14.487  INFO   [AGENT] Nome: execute_python
+11:53:14.625  INFO   [AGENT] Enviando requisicao para o modelo...
+11:53:22.794  INFO   [AGENT] Resposta do modelo recebida
+11:53:23.438  INFO   [AGENT] Tool calls detectadas: 1
+11:53:23.440  INFO   [AGENT] Executando tool:
+11:53:23.441  INFO   [AGENT] Nome: execute_python
+11:53:23.589  INFO   [AGENT] Enviando requisicao para o modelo...
+11:53:31.803  INFO   [AGENT] Resposta do modelo recebida
+11:53:32.476  INFO   [AGENT] Tool calls detectadas: 4
+11:53:32.477  INFO   [AGENT] Executando tool:
+11:53:32.478  INFO   [AGENT] Nome: todo_write
+11:53:32.480  INFO   [AGENT] Executando tool:
+11:53:32.480  INFO   [AGENT] Nome: todo_write
+11:53:32.482  INFO   [AGENT] Executando tool:
+11:53:32.482  INFO   [AGENT] Nome: todo_write
+11:53:32.484  INFO   [AGENT] Executando tool:
+11:53:32.484  INFO   [AGENT] Nome: todo_write
+11:53:32.485  INFO   [AGENT] Enviando requisicao para o modelo...
+11:53:46.269  INFO   [AGENT] Resposta do modelo recebida
+11:53:46.970  INFO   [AGENT] Tool calls detectadas: 1
+11:53:46.971  INFO   [AGENT] Executando tool:
+11:53:46.972  INFO   [AGENT] Nome: execute_python
+11:53:47.136  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:03.392  INFO   [AGENT] Resposta do modelo recebida
+11:54:04.084  INFO   [AGENT] Tool calls detectadas: 1
+11:54:04.085  INFO   [AGENT] Executando tool:
+11:54:04.086  INFO   [AGENT] Nome: execute_python
+11:54:04.239  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:11.838  INFO   [AGENT] Resposta do modelo recebida
+11:54:12.525  INFO   [AGENT] Tool calls detectadas: 1
+11:54:12.526  INFO   [AGENT] Executando tool:
+11:54:12.527  INFO   [AGENT] Nome: execute_python
+11:54:12.727  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:24.239  INFO   [AGENT] Resposta do modelo recebida
+11:54:24.940  INFO   [AGENT] Tool calls detectadas: 1
+11:54:24.941  INFO   [AGENT] Executando tool:
+11:54:24.942  INFO   [AGENT] Nome: execute_python
+11:54:25.079  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:29.632  INFO   [AGENT] Resposta do modelo recebida
+11:54:30.313  INFO   [AGENT] Tool calls detectadas: 1
+11:54:30.315  INFO   [AGENT] Executando tool:
+11:54:30.316  INFO   [AGENT] Nome: execute_python
+11:54:34.013  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:41.161  INFO   [AGENT] Resposta do modelo recebida
+11:54:41.869  INFO   [AGENT] Tool calls detectadas: 1
+11:54:41.871  INFO   [AGENT] Executando tool:
+11:54:41.872  INFO   [AGENT] Nome: execute_python
+11:54:42.015  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:49.940  INFO   [AGENT] Resposta do modelo recebida
+11:54:50.645  INFO   [AGENT] Tool calls detectadas: 1
+11:54:50.646  INFO   [AGENT] Executando tool:
+11:54:50.647  INFO   [AGENT] Nome: execute_python
+11:54:50.804  INFO   [AGENT] Enviando requisicao para o modelo...
+11:54:58.501  INFO   [AGENT] Resposta do modelo recebida
+11:54:59.190  INFO   [AGENT] Tool calls detectadas: 1
+11:54:59.191  INFO   [AGENT] Executando tool:
+11:54:59.192  INFO   [AGENT] Nome: execute_python
+11:54:59.356  INFO   [AGENT] Enviando requisicao para o modelo...
+11:55:04.257  INFO   [AGENT] Resposta do modelo recebida
+11:55:04.939  INFO   [AGENT] Tool calls detectadas: 1
+11:55:04.939  INFO   [AGENT] Executando tool:
+11:55:04.940  INFO   [AGENT] Nome: execute_python
+11:55:05.090  INFO   [AGENT] Enviando requisicao para o modelo...
+11:55:28.784  INFO   [AGENT] Resposta do modelo recebida
+11:55:29.485  INFO   [AGENT] Tool calls detectadas: 1
+11:55:29.489  INFO   [AGENT] Executando tool:
+11:55:29.491  INFO   [AGENT] Nome: execute_python
+11:55:29.649  INFO   [AGENT] Enviando requisicao para o modelo...
+11:55:39.506  INFO   [AGENT] Resposta do modelo recebida
+11:55:40.233  INFO   [AGENT] Tool calls detectadas: 1
+11:55:40.235  INFO   [AGENT] Executando tool:
+11:55:40.235  INFO   [AGENT] Nome: execute_python
+11:55:40.394  INFO   [AGENT] Enviando requisicao para o modelo...
+11:55:49.375  INFO   [AGENT] Resposta do modelo recebida
+11:55:49.719  INFO   [AGENT] Tool calls detectadas: 1
+11:55:49.721  INFO   [AGENT] Executando tool:
+11:55:49.722  INFO   [AGENT] Nome: execute_python
+11:55:51.148  INFO   [AGENT] Enviando requisicao para o modelo...
+11:56:04.677  INFO   [AGENT] Resposta do modelo recebida
+11:56:05.416  INFO   [AGENT] Tool calls detectadas: 1
+11:56:05.417  INFO   [AGENT] Executando tool:
+11:56:05.418  INFO   [AGENT] Nome: execute_python
+11:56:05.589  INFO   [AGENT] Enviando requisicao para o modelo...
+11:56:13.077  INFO   [AGENT] Resposta do modelo recebida
+11:56:13.780  INFO   [AGENT] Tool calls detectadas: 1
+11:56:13.782  INFO   [AGENT] Executando tool:
+11:56:13.783  INFO   [AGENT] Nome: execute_python
+11:56:18.381  INFO   [AGENT] Enviando requisicao para o modelo...
+11:56:24.016  INFO   [AGENT] Resposta do modelo recebida
+11:56:24.721  INFO   [AGENT] Tool calls detectadas: 1
+11:56:24.723  INFO   [AGENT] Executando tool:
+11:56:24.725  INFO   [AGENT] Nome: todo_write
+11:56:24.732  INFO   [AGENT] Enviando requisicao para o modelo...
+11:56:35.643  INFO   [AGENT] Resposta do modelo recebida
+11:56:35.988  INFO   [AGENT] Resposta final retornada ao usuario
+11:56:35.990  INFO   [AGENT] ==============================
+11:56:35.991  INFO   [AGENT] User input:
+11:56:35.994  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:56:35.995  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:56:35.996  INFO   [AGENT] Enviando requisicao para o modelo...
+11:56:49.339  INFO   [AGENT] Resposta do modelo recebida
+11:56:49.341  INFO   [AGENT] Resposta final retornada ao usuario
+11:56:49.341  INFO   [ORCH] [Reflection #1]
+11:56:49.343  INFO   [ORCH] Step 2/15
+11:56:49.343  INFO   [AGENT] ==============================
+11:56:49.344  INFO   [AGENT] User input:
+11:56:49.345  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:56:49.347  INFO   [AGENT] Enviando requisicao para o modelo...
+11:56:59.655  INFO   [AGENT] Resposta do modelo recebida
+11:56:59.657  INFO   [AGENT] Resposta final retornada ao usuario
+11:56:59.658  INFO   [ORCH] Executing agent: WriterAgent
+11:56:59.671  INFO   [AGENT] ==============================
+11:56:59.672  INFO   [AGENT] User input:
+11:56:59.674  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:56:59.675  INFO   [AGENT] Enviando requisicao para o modelo...
+11:57:08.587  INFO   [AGENT] Resposta do modelo recebida
+11:57:09.323  INFO   [AGENT] Resposta final retornada ao usuario
+11:57:09.325  INFO   [AGENT] ==============================
+11:57:09.327  INFO   [AGENT] User input:
+11:57:09.330  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:57:09.332  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:57:09.335  INFO   [AGENT] Enviando requisicao para o modelo...
+11:57:19.437  INFO   [AGENT] Resposta do modelo recebida
+11:57:19.439  INFO   [AGENT] Resposta final retornada ao usuario
+11:57:19.440  INFO   [ORCH] [Reflection #2]
+11:57:19.442  INFO   [ORCH] Step 3/15
+11:57:19.443  INFO   [AGENT] ==============================
+11:57:19.444  INFO   [AGENT] User input:
+11:57:19.446  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:57:19.447  INFO   [AGENT] Enviando requisicao para o modelo...
+11:57:27.490  INFO   [AGENT] Resposta do modelo recebida
+11:57:27.490  INFO   [AGENT] Resposta final retornada ao usuario
+11:57:27.491  INFO   [ORCH] ORCHESTRATION FINISHED
+11:57:27.494  INFO   [APP] [Memory] Nota adicionada a 2026-06-03.md
+11:58:19.806  INFO   [ORCH] ==============================
+11:58:19.808  INFO   [ORCH] ORCHESTRATOR START
+11:58:19.809  INFO   [ORCH] User input received  {"input":"execute o build para garantir que está tudo correto, faça o commit e push"}
+11:58:19.810  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780497748371_8wwggu"}
+11:58:19.834  INFO   [ORCH] Step 1/15
+11:58:19.834  INFO   [AGENT] ==============================
+11:58:19.835  INFO   [AGENT] User input:
+11:58:19.836  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:58:19.837  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:58:19.838  INFO   [AGENT] Enviando requisicao para o modelo...
+11:58:28.656  INFO   [AGENT] Resposta do modelo recebida
+11:58:28.657  INFO   [AGENT] Resposta final retornada ao usuario
+11:58:28.658  INFO   [ORCH] Executing agent: PythonAgent
+11:58:28.671  INFO   [AGENT] ==============================
+11:58:28.671  INFO   [AGENT] User input:
+11:58:28.672  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:58:28.673  INFO   [AGENT] Enviando requisicao para o modelo...
+11:58:39.804  INFO   [AGENT] Resposta do modelo recebida
+11:58:40.529  INFO   [AGENT] Tool calls detectadas: 1
+11:58:40.531  INFO   [AGENT] Executando tool:
+11:58:40.532  INFO   [AGENT] Nome: spawn_agent
+11:58:40.533  INFO   [APP] [AgentTool] Spawnando sub-agente "shell" para task sub_1780498720533_09c0
+11:58:40.534  ERROR  [APP] [SubAgentRunner] Agente "shell" nao encontrado. Disponiveis: ReflectorAgent, assistant, PythonAgent, WriterAgent, task_manager
+11:58:40.537  INFO   [AGENT] Enviando requisicao para o modelo...
+11:58:49.817  INFO   [AGENT] Resposta do modelo recebida
+11:58:50.524  INFO   [AGENT] Tool calls detectadas: 1
+11:58:50.525  INFO   [AGENT] Executando tool:
+11:58:50.526  INFO   [AGENT] Nome: spawn_agent
+11:58:50.527  INFO   [APP] [AgentTool] Spawnando sub-agente "ShellAgent" para task sub_1780498730527_hwxn
+11:58:50.528  ERROR  [APP] [SubAgentRunner] Agente "ShellAgent" nao encontrado. Disponiveis: ReflectorAgent, assistant, PythonAgent, WriterAgent, task_manager
+11:58:50.528  INFO   [AGENT] Enviando requisicao para o modelo...
+11:58:57.651  INFO   [AGENT] Resposta do modelo recebida
+11:58:58.346  INFO   [AGENT] Tool calls detectadas: 1
+11:58:58.347  INFO   [AGENT] Executando tool:
+11:58:58.348  INFO   [AGENT] Nome: execute_python
+11:59:00.102  INFO   [AGENT] Enviando requisicao para o modelo...
+11:59:08.538  INFO   [AGENT] Resposta do modelo recebida
+11:59:08.539  INFO   [AGENT] Tool calls detectadas: 1
+11:59:08.539  INFO   [AGENT] Executando tool:
+11:59:08.540  INFO   [AGENT] Nome: execute_python
+11:59:10.619  INFO   [AGENT] Enviando requisicao para o modelo...
+11:59:24.116  INFO   [AGENT] Resposta do modelo recebida
+11:59:24.832  INFO   [AGENT] Tool calls detectadas: 1
+11:59:24.833  INFO   [AGENT] Executando tool:
+11:59:24.834  INFO   [AGENT] Nome: execute_python
+11:59:28.423  INFO   [AGENT] Enviando requisicao para o modelo...
+11:59:34.109  INFO   [AGENT] Resposta do modelo recebida
+11:59:34.801  INFO   [AGENT] Resposta final retornada ao usuario
+11:59:34.803  INFO   [AGENT] ==============================
+11:59:34.803  INFO   [AGENT] User input:
+11:59:34.807  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+11:59:34.808  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:59:34.810  INFO   [AGENT] Enviando requisicao para o modelo...
+11:59:42.563  INFO   [AGENT] Resposta do modelo recebida
+11:59:42.563  INFO   [AGENT] Resposta final retornada ao usuario
+11:59:42.564  INFO   [ORCH] [Reflection #1]
+11:59:42.565  INFO   [ORCH] Step 2/15
+11:59:42.565  INFO   [AGENT] ==============================
+11:59:42.565  INFO   [AGENT] User input:
+11:59:42.566  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:59:42.567  INFO   [AGENT] Enviando requisicao para o modelo...
+11:59:50.019  INFO   [AGENT] Resposta do modelo recebida
+11:59:50.019  INFO   [AGENT] Resposta final retornada ao usuario
+11:59:50.020  INFO   [ORCH] Executing agent: WriterAgent
+11:59:50.031  INFO   [AGENT] ==============================
+11:59:50.032  INFO   [AGENT] User input:
+11:59:50.033  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:59:50.034  INFO   [AGENT] Enviando requisicao para o modelo...
+11:59:56.801  INFO   [AGENT] Resposta do modelo recebida
+11:59:57.493  INFO   [AGENT] Resposta final retornada ao usuario
+11:59:57.494  INFO   [AGENT] ==============================
+11:59:57.495  INFO   [AGENT] User input:
+11:59:57.497  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+11:59:57.499  INFO   [AGENT] Enviando requisicao para o modelo...
+12:00:02.275  INFO   [AGENT] Resposta do modelo recebida
+12:00:02.276  INFO   [AGENT] Resposta final retornada ao usuario
+12:00:02.277  INFO   [ORCH] [Reflection #2]
+12:00:02.278  INFO   [ORCH] Step 3/15
+12:00:02.279  INFO   [AGENT] ==============================
+12:00:02.279  INFO   [AGENT] User input:
+12:00:02.281  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:00:02.283  INFO   [AGENT] Enviando requisicao para o modelo...
+12:00:12.499  INFO   [AGENT] Resposta do modelo recebida
+12:00:12.501  INFO   [AGENT] Resposta final retornada ao usuario
+12:00:12.502  INFO   [ORCH] Executing agent: PythonAgent
+12:00:12.515  INFO   [AGENT] ==============================
+12:00:12.516  INFO   [AGENT] User input:
+12:00:12.517  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:00:12.518  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:00:12.519  INFO   [AGENT] Enviando requisicao para o modelo...
+12:00:20.953  INFO   [AGENT] Resposta do modelo recebida
+12:00:21.649  INFO   [AGENT] Tool calls detectadas: 1
+12:00:21.651  INFO   [AGENT] Executando tool:
+12:00:21.652  INFO   [AGENT] Nome: execute_python
+12:00:51.685  INFO   [AGENT] Enviando requisicao para o modelo...
+12:00:56.432  INFO   [AGENT] Resposta do modelo recebida
+12:00:57.126  INFO   [AGENT] Tool calls detectadas: 1
+12:00:57.127  INFO   [AGENT] Executando tool:
+12:00:57.128  INFO   [AGENT] Nome: execute_python
+12:01:27.195  INFO   [AGENT] Enviando requisicao para o modelo...
+12:01:36.213  INFO   [AGENT] Resposta do modelo recebida
+12:01:36.955  INFO   [AGENT] Tool calls detectadas: 1
+12:01:36.956  INFO   [AGENT] Executando tool:
+12:01:36.956  INFO   [AGENT] Nome: execute_python
+12:01:37.139  INFO   [AGENT] Enviando requisicao para o modelo...
+12:01:45.634  INFO   [AGENT] Resposta do modelo recebida
+12:01:46.322  INFO   [AGENT] Tool calls detectadas: 1
+12:01:46.323  INFO   [AGENT] Executando tool:
+12:01:46.323  INFO   [AGENT] Nome: execute_python
+12:01:46.463  INFO   [AGENT] Enviando requisicao para o modelo...
+12:01:51.741  INFO   [AGENT] Resposta do modelo recebida
+12:01:52.424  INFO   [AGENT] Tool calls detectadas: 1
+12:01:52.425  INFO   [AGENT] Executando tool:
+12:01:52.425  INFO   [AGENT] Nome: execute_python
+12:01:52.567  INFO   [AGENT] Enviando requisicao para o modelo...
+12:01:59.052  INFO   [AGENT] Resposta do modelo recebida
+12:01:59.750  INFO   [AGENT] Tool calls detectadas: 1
+12:01:59.751  INFO   [AGENT] Executando tool:
+12:01:59.751  INFO   [AGENT] Nome: execute_python
+12:01:59.899  INFO   [AGENT] Enviando requisicao para o modelo...
+12:02:07.055  INFO   [AGENT] Resposta do modelo recebida
+12:02:07.766  INFO   [AGENT] Tool calls detectadas: 3
+12:02:07.766  INFO   [AGENT] Executando tool:
+12:02:07.767  INFO   [AGENT] Nome: todo_write
+12:02:07.768  INFO   [AGENT] Executando tool:
+12:02:07.768  INFO   [AGENT] Nome: todo_write
+12:02:07.769  INFO   [AGENT] Executando tool:
+12:02:07.769  INFO   [AGENT] Nome: todo_write
+12:02:07.770  INFO   [AGENT] Enviando requisicao para o modelo...
+12:02:43.972  INFO   [AGENT] Resposta do modelo recebida
+12:02:44.359  INFO   [AGENT] Tool calls detectadas: 1
+12:02:44.360  INFO   [AGENT] Executando tool:
+12:02:44.361  INFO   [AGENT] Nome: execute_python
+12:02:44.523  INFO   [AGENT] Enviando requisicao para o modelo...
+12:03:12.281  INFO   [AGENT] Resposta do modelo recebida
+12:03:12.989  INFO   [AGENT] Tool calls detectadas: 1
+12:03:12.992  INFO   [AGENT] Executando tool:
+12:03:12.993  INFO   [AGENT] Nome: execute_python
+12:03:13.164  INFO   [AGENT] Enviando requisicao para o modelo...
+12:03:19.434  INFO   [AGENT] Resposta do modelo recebida
+12:03:19.760  INFO   [AGENT] Tool calls detectadas: 3
+12:03:19.762  INFO   [AGENT] Executando tool:
+12:03:19.763  INFO   [AGENT] Nome: todo_write
+12:03:19.765  INFO   [AGENT] Executando tool:
+12:03:19.766  INFO   [AGENT] Nome: todo_write
+12:03:19.768  INFO   [AGENT] Executando tool:
+12:03:19.768  INFO   [AGENT] Nome: todo_write
+12:03:19.770  INFO   [AGENT] Enviando requisicao para o modelo...
+12:03:25.315  INFO   [AGENT] Resposta do modelo recebida
+12:03:25.317  INFO   [AGENT] Tool calls detectadas: 1
+12:03:25.318  INFO   [AGENT] Executando tool:
+12:03:25.320  INFO   [AGENT] Nome: execute_python
+12:03:25.748  INFO   [AGENT] Enviando requisicao para o modelo...
+12:03:34.546  INFO   [AGENT] Resposta do modelo recebida
+12:03:35.232  INFO   [AGENT] Tool calls detectadas: 1
+12:03:35.234  INFO   [AGENT] Executando tool:
+12:03:35.236  INFO   [AGENT] Nome: execute_python
+12:03:35.442  INFO   [AGENT] Enviando requisicao para o modelo...
+12:03:51.695  INFO   [AGENT] Resposta do modelo recebida
+12:03:52.406  INFO   [AGENT] Tool calls detectadas: 1
+12:03:52.409  INFO   [AGENT] Executando tool:
+12:03:52.410  INFO   [AGENT] Nome: execute_python
+12:03:52.570  INFO   [AGENT] Enviando requisicao para o modelo...
+12:04:03.842  INFO   [AGENT] Resposta do modelo recebida
+12:04:04.191  INFO   [AGENT] Tool calls detectadas: 1
+12:04:04.192  INFO   [AGENT] Executando tool:
+12:04:04.193  INFO   [AGENT] Nome: execute_python
+12:04:04.372  INFO   [AGENT] Enviando requisicao para o modelo...
+12:04:14.942  INFO   [AGENT] Resposta do modelo recebida
+12:04:15.296  INFO   [AGENT] Tool calls detectadas: 1
+12:04:15.298  INFO   [AGENT] Executando tool:
+12:04:15.300  INFO   [AGENT] Nome: execute_python
+12:04:15.584  INFO   [AGENT] Enviando requisicao para o modelo...
+12:04:20.055  INFO   [AGENT] Resposta do modelo recebida
+12:04:20.851  INFO   [AGENT] Tool calls detectadas: 1
+12:04:20.853  INFO   [AGENT] Executando tool:
+12:04:20.855  INFO   [AGENT] Nome: execute_python
+12:04:21.082  INFO   [AGENT] Enviando requisicao para o modelo...
+12:04:24.873  INFO   [AGENT] Resposta do modelo recebida
+12:04:25.599  INFO   [AGENT] Tool calls detectadas: 1
+12:04:25.601  INFO   [AGENT] Executando tool:
+12:04:25.602  INFO   [AGENT] Nome: execute_python
+12:04:25.780  INFO   [AGENT] Enviando requisicao para o modelo...
+12:04:44.227  INFO   [AGENT] Resposta do modelo recebida
+12:04:44.924  INFO   [AGENT] Tool calls detectadas: 1
+12:04:44.926  INFO   [AGENT] Executando tool:
+12:04:44.927  INFO   [AGENT] Nome: execute_python
+12:04:45.172  INFO   [AGENT] Enviando requisicao para o modelo...
+12:04:49.714  INFO   [AGENT] Resposta do modelo recebida
+12:04:50.070  INFO   [AGENT] Tool calls detectadas: 1
+12:04:50.071  INFO   [AGENT] Executando tool:
+12:04:50.072  INFO   [AGENT] Nome: execute_python
+12:04:50.239  INFO   [AGENT] Enviando requisicao para o modelo...
+12:05:05.696  INFO   [AGENT] Resposta do modelo recebida
+12:05:06.479  INFO   [AGENT] Tool calls detectadas: 1
+12:05:06.481  INFO   [AGENT] Executando tool:
+12:05:06.482  INFO   [AGENT] Nome: execute_python
+12:05:06.719  INFO   [AGENT] Enviando requisicao para o modelo...
+12:05:19.966  INFO   [AGENT] Resposta do modelo recebida
+12:05:20.679  INFO   [AGENT] Tool calls detectadas: 1
+12:05:20.680  INFO   [AGENT] Executando tool:
+12:05:20.680  INFO   [AGENT] Nome: execute_python
+12:05:21.020  INFO   [AGENT] Enviando requisicao para o modelo...
+12:05:27.652  INFO   [AGENT] Resposta do modelo recebida
+12:05:28.355  INFO   [AGENT] Tool calls detectadas: 1
+12:05:28.357  INFO   [AGENT] Executando tool:
+12:05:28.358  INFO   [AGENT] Nome: execute_python
+12:05:28.511  INFO   [AGENT] Enviando requisicao para o modelo...
+12:05:56.946  INFO   [AGENT] Resposta do modelo recebida
+12:05:57.733  INFO   [AGENT] Tool calls detectadas: 1
+12:05:57.735  INFO   [AGENT] Executando tool:
+12:05:57.737  INFO   [AGENT] Nome: execute_python
+12:05:58.002  INFO   [AGENT] Enviando requisicao para o modelo...
+12:06:03.795  INFO   [AGENT] Resposta do modelo recebida
+12:06:04.566  INFO   [AGENT] Tool calls detectadas: 1
+12:06:04.568  INFO   [AGENT] Executando tool:
+12:06:04.569  INFO   [AGENT] Nome: execute_python
+12:06:04.719  INFO   [AGENT] Enviando requisicao para o modelo...
+12:06:38.852  INFO   [AGENT] Resposta do modelo recebida
+12:06:39.557  INFO   [AGENT] Tool calls detectadas: 1
+12:06:39.560  INFO   [AGENT] Executando tool:
+12:06:39.561  INFO   [AGENT] Nome: execute_python
+12:06:39.933  INFO   [AGENT] Enviando requisicao para o modelo...
+12:06:46.009  INFO   [AGENT] Resposta do modelo recebida
+12:06:46.737  INFO   [AGENT] Tool calls detectadas: 1
+12:06:46.739  INFO   [AGENT] Executando tool:
+12:06:46.740  INFO   [AGENT] Nome: execute_python
+12:06:46.908  INFO   [AGENT] Enviando requisicao para o modelo...
+12:07:23.676  INFO   [AGENT] Resposta do modelo recebida
+12:07:24.428  INFO   [AGENT] Tool calls detectadas: 1
+12:07:24.430  INFO   [AGENT] Executando tool:
+12:07:24.431  INFO   [AGENT] Nome: execute_python
+12:07:24.862  INFO   [AGENT] Enviando requisicao para o modelo...
+12:07:50.365  INFO   [AGENT] Resposta do modelo recebida
+12:07:51.060  INFO   [AGENT] Tool calls detectadas: 1
+12:07:51.062  INFO   [AGENT] Executando tool:
+12:07:51.062  INFO   [AGENT] Nome: execute_python
+12:07:51.312  INFO   [AGENT] Enviando requisicao para o modelo...
+12:07:57.517  INFO   [AGENT] Resposta do modelo recebida
+12:07:58.233  INFO   [AGENT] Tool calls detectadas: 1
+12:07:58.236  INFO   [AGENT] Executando tool:
+12:07:58.237  INFO   [AGENT] Nome: execute_python
+12:07:58.407  INFO   [AGENT] Enviando requisicao para o modelo...
+12:08:29.463  INFO   [AGENT] Resposta do modelo recebida
+12:08:30.179  INFO   [AGENT] Tool calls detectadas: 1
+12:08:30.180  INFO   [AGENT] Executando tool:
+12:08:30.180  INFO   [AGENT] Nome: execute_python
+12:08:30.356  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:00.178  INFO   [AGENT] Resposta do modelo recebida
+12:09:00.865  INFO   [AGENT] Tool calls detectadas: 1
+12:09:00.866  INFO   [AGENT] Executando tool:
+12:09:00.866  INFO   [AGENT] Nome: execute_python
+12:09:01.220  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:08.815  INFO   [AGENT] Resposta do modelo recebida
+12:09:09.511  INFO   [AGENT] Tool calls detectadas: 1
+12:09:09.513  INFO   [AGENT] Executando tool:
+12:09:09.513  INFO   [AGENT] Nome: execute_python
+12:09:09.726  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:18.268  INFO   [AGENT] Resposta do modelo recebida
+12:09:19.007  INFO   [AGENT] Tool calls detectadas: 1
+12:09:19.009  INFO   [AGENT] Executando tool:
+12:09:19.011  INFO   [AGENT] Nome: execute_python
+12:09:19.249  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:22.854  INFO   [AGENT] Resposta do modelo recebida
+12:09:23.556  INFO   [AGENT] Tool calls detectadas: 1
+12:09:23.557  INFO   [AGENT] Executando tool:
+12:09:23.558  INFO   [AGENT] Nome: todo_write
+12:09:23.559  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:30.254  INFO   [AGENT] Resposta do modelo recebida
+12:09:30.255  INFO   [AGENT] Resposta final retornada ao usuario
+12:09:30.255  INFO   [ORCH] Plan step 3 marked as done
+12:09:30.256  INFO   [AGENT] ==============================
+12:09:30.256  INFO   [AGENT] User input:
+12:09:30.258  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:09:30.258  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:09:30.259  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:34.260  INFO   [AGENT] Resposta do modelo recebida
+12:09:34.260  INFO   [AGENT] Resposta final retornada ao usuario
+12:09:34.261  INFO   [ORCH] [Reflection #3]
+12:09:34.262  INFO   [ORCH] Step 4/15
+12:09:34.262  INFO   [AGENT] ==============================
+12:09:34.262  INFO   [AGENT] User input:
+12:09:34.263  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:09:34.264  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:48.599  INFO   [AGENT] Resposta do modelo recebida
+12:09:48.603  INFO   [AGENT] Resposta final retornada ao usuario
+12:09:48.604  INFO   [ORCH] Executing agent: PythonAgent
+12:09:48.619  INFO   [AGENT] ==============================
+12:09:48.619  INFO   [AGENT] User input:
+12:09:48.621  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:09:48.622  INFO   [AGENT] Enviando requisicao para o modelo...
+12:09:59.955  INFO   [AGENT] Resposta do modelo recebida
+12:10:00.649  INFO   [AGENT] Tool calls detectadas: 1
+12:10:00.650  INFO   [AGENT] Executando tool:
+12:10:00.651  INFO   [AGENT] Nome: execute_python
+12:10:00.816  INFO   [AGENT] Enviando requisicao para o modelo...
+12:10:05.959  INFO   [AGENT] Resposta do modelo recebida
+12:10:06.302  INFO   [AGENT] Tool calls detectadas: 1
+12:10:06.303  INFO   [AGENT] Executando tool:
+12:10:06.303  INFO   [AGENT] Nome: execute_python
+12:10:06.446  INFO   [AGENT] Enviando requisicao para o modelo...
+12:10:21.452  INFO   [AGENT] Resposta do modelo recebida
+12:10:22.188  INFO   [AGENT] Tool calls detectadas: 3
+12:10:22.190  INFO   [AGENT] Executando tool:
+12:10:22.190  INFO   [AGENT] Nome: todo_write
+12:10:22.191  INFO   [AGENT] Executando tool:
+12:10:22.192  INFO   [AGENT] Nome: todo_write
+12:10:22.192  INFO   [AGENT] Executando tool:
+12:10:22.193  INFO   [AGENT] Nome: todo_write
+12:10:22.194  INFO   [AGENT] Enviando requisicao para o modelo...
+12:10:27.044  INFO   [AGENT] Resposta do modelo recebida
+12:10:27.389  INFO   [AGENT] Tool calls detectadas: 1
+12:10:27.389  INFO   [AGENT] Executando tool:
+12:10:27.390  INFO   [AGENT] Nome: execute_python
+12:10:27.537  INFO   [AGENT] Enviando requisicao para o modelo...
+12:10:34.460  INFO   [AGENT] Resposta do modelo recebida
+12:10:35.153  INFO   [AGENT] Tool calls detectadas: 1
+12:10:35.154  INFO   [AGENT] Executando tool:
+12:10:35.154  INFO   [AGENT] Nome: todo_write
+12:10:35.155  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:04.704  INFO   [AGENT] Resposta do modelo recebida
+12:11:04.705  INFO   [AGENT] Tool calls detectadas: 1
+12:11:04.706  INFO   [AGENT] Executando tool:
+12:11:04.706  INFO   [AGENT] Nome: execute_python
+12:11:04.853  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:17.638  INFO   [AGENT] Resposta do modelo recebida
+12:11:18.335  INFO   [AGENT] Tool calls detectadas: 1
+12:11:18.335  INFO   [AGENT] Executando tool:
+12:11:18.336  INFO   [AGENT] Nome: execute_python
+12:11:18.489  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:26.296  INFO   [AGENT] Resposta do modelo recebida
+12:11:26.677  INFO   [AGENT] Tool calls detectadas: 3
+12:11:26.678  INFO   [AGENT] Executando tool:
+12:11:26.678  INFO   [AGENT] Nome: todo_write
+12:11:26.679  INFO   [AGENT] Executando tool:
+12:11:26.680  INFO   [AGENT] Nome: todo_write
+12:11:26.681  INFO   [AGENT] Executando tool:
+12:11:26.681  INFO   [AGENT] Nome: todo_write
+12:11:26.682  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:35.311  INFO   [AGENT] Resposta do modelo recebida
+12:11:35.312  INFO   [AGENT] Tool calls detectadas: 1
+12:11:35.312  INFO   [AGENT] Executando tool:
+12:11:35.313  INFO   [AGENT] Nome: execute_python
+12:11:35.540  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:39.996  INFO   [AGENT] Resposta do modelo recebida
+12:11:40.656  INFO   [AGENT] Tool calls detectadas: 1
+12:11:40.656  INFO   [AGENT] Executando tool:
+12:11:40.657  INFO   [AGENT] Nome: execute_python
+12:11:40.790  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:49.188  INFO   [AGENT] Resposta do modelo recebida
+12:11:49.891  INFO   [AGENT] Tool calls detectadas: 1
+12:11:49.892  INFO   [AGENT] Executando tool:
+12:11:49.893  INFO   [AGENT] Nome: execute_python
+12:11:50.123  INFO   [AGENT] Enviando requisicao para o modelo...
+12:11:55.700  INFO   [AGENT] Resposta do modelo recebida
+12:11:56.421  INFO   [AGENT] Tool calls detectadas: 1
+12:11:56.422  INFO   [AGENT] Executando tool:
+12:11:56.423  INFO   [AGENT] Nome: execute_python
+12:11:56.531  INFO   [AGENT] Enviando requisicao para o modelo...
+12:13:13.603  INFO   [AGENT] Resposta do modelo recebida
+12:13:14.337  INFO   [AGENT] Tool calls detectadas: 1
+12:13:14.338  INFO   [AGENT] Executando tool:
+12:13:14.339  INFO   [AGENT] Nome: execute_python
+12:13:14.692  INFO   [AGENT] Enviando requisicao para o modelo...
+12:13:19.122  INFO   [AGENT] Resposta do modelo recebida
+12:13:19.481  INFO   [AGENT] Tool calls detectadas: 1
+12:13:19.482  INFO   [AGENT] Executando tool:
+12:13:19.483  INFO   [AGENT] Nome: execute_python
+12:13:19.629  INFO   [AGENT] Enviando requisicao para o modelo...
+12:13:32.344  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
+12:13:32.345  INFO   [AGENT] Model: deepseek-v4-pro
+12:13:32.346  INFO   [AGENT] Tools disponiveis: 0
+12:13:32.538  INFO   [AGENT] Agent 'PlannerAgent' inicializado
+12:13:32.538  INFO   [AGENT] Model: deepseek-v4-pro
+12:13:32.539  INFO   [AGENT] Tools disponiveis: 0
+12:13:32.546  INFO   [AGENT] Agent 'assistant' inicializado
+12:13:32.547  INFO   [AGENT] Model: deepseek-v4-pro
+12:13:32.547  INFO   [AGENT] Tools disponiveis: 10
+12:13:32.550  INFO   [AGENT] Agent 'PythonAgent' inicializado
+12:13:32.550  INFO   [AGENT] Model: deepseek-v4-pro
+12:13:32.551  INFO   [AGENT] Tools disponiveis: 11
+12:13:32.552  INFO   [AGENT] Agent 'WriterAgent' inicializado
+12:13:32.553  INFO   [AGENT] Model: deepseek-v4-pro
+12:13:32.553  INFO   [AGENT] Tools disponiveis: 0
+12:13:32.555  INFO   [AGENT] Agent 'task_manager' inicializado
+12:13:32.556  INFO   [AGENT] Model: deepseek-v4-flash
+12:13:32.556  INFO   [AGENT] Tools disponiveis: 3
+12:13:32.558  INFO   [APP] [BackgroundTaskManager] 7 tasks carregadas do disco
+12:13:32.559  INFO   [APP] [Permissions] Agent "assistant" level set to network
+12:13:32.559  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
+12:13:32.559  INFO   [APP] [Permissions] Agent "browser" level set to network
+12:13:32.560  INFO   [APP] [Permissions] Agent "shell" level set to shell
+12:13:32.560  INFO   [APP] [Permissions] Agent "writer" level set to file_write
+12:13:32.561  INFO   [APP] [Permissions] Agent "task_manager" level set to file_write
+12:13:32.562  INFO   [ORCH] Plano carregado: 5 steps
+12:13:32.565  INFO   [APP] [Telegram] Multi-Agent iniciado.
+12:13:35.949  INFO   [ORCH] ==============================
+12:13:35.950  INFO   [ORCH] ORCHESTRATOR START
+12:13:35.951  INFO   [ORCH] User input received  {"input":"Olá"}
+12:13:35.951  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780499612557_0jl5ty"}
+12:13:35.956  INFO   [ORCH] Step 1/15
+12:13:35.957  INFO   [AGENT] ==============================
+12:13:35.958  INFO   [AGENT] User input:
+12:13:35.965  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:13:35.966  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:13:35.970  INFO   [AGENT] Enviando requisicao para o modelo...
+12:13:45.793  INFO   [AGENT] Resposta do modelo recebida
+12:13:45.795  INFO   [AGENT] Resposta final retornada ao usuario
+12:13:45.796  INFO   [ORCH] Executing agent: assistant
+12:13:45.859  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
+12:13:45.877  INFO   [AGENT] ==============================
+12:13:45.877  INFO   [AGENT] User input:
+12:13:45.880  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:13:45.882  INFO   [AGENT] Enviando requisicao para o modelo...
+12:13:52.695  INFO   [AGENT] Resposta do modelo recebida
+12:13:53.317  INFO   [AGENT] Resposta final retornada ao usuario
+12:13:53.318  INFO   [AGENT] ==============================
+12:13:53.318  INFO   [AGENT] User input:
+12:13:53.320  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:13:53.321  INFO   [AGENT] Enviando requisicao para o modelo...
+12:14:16.058  INFO   [AGENT] Resposta do modelo recebida
+12:14:16.059  INFO   [AGENT] Resposta final retornada ao usuario
+12:14:16.060  INFO   [ORCH] [Reflection #1]
+12:14:16.061  INFO   [ORCH] Step 2/15
+12:14:16.061  INFO   [AGENT] ==============================
+12:14:16.062  INFO   [AGENT] User input:
+12:14:16.063  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:14:16.064  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:14:16.065  INFO   [AGENT] Enviando requisicao para o modelo...
+12:14:24.937  INFO   [AGENT] Resposta do modelo recebida
+12:14:24.938  INFO   [AGENT] Resposta final retornada ao usuario
+12:14:24.938  INFO   [ORCH] Executing agent: PythonAgent
+12:14:24.948  INFO   [AGENT] ==============================
+12:14:24.949  INFO   [AGENT] User input:
+12:14:24.950  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:14:24.951  INFO   [AGENT] Enviando requisicao para o modelo...
+12:14:28.887  INFO   [AGENT] Resposta do modelo recebida
+12:14:29.505  INFO   [AGENT] Tool calls detectadas: 1
+12:14:29.506  INFO   [AGENT] Executando tool:
+12:14:29.507  INFO   [AGENT] Nome: memory_search
+12:14:29.512  INFO   [AGENT] Enviando requisicao para o modelo...
+12:14:36.181  INFO   [AGENT] Resposta do modelo recebida
+12:14:36.968  INFO   [AGENT] Tool calls detectadas: 1
+12:14:36.969  INFO   [AGENT] Executando tool:
+12:14:36.970  INFO   [AGENT] Nome: execute_python
+12:14:37.146  INFO   [AGENT] Enviando requisicao para o modelo...
+12:14:40.070  INFO   [AGENT] Resposta do modelo recebida
+12:14:40.684  INFO   [AGENT] Tool calls detectadas: 1
+12:14:40.685  INFO   [AGENT] Executando tool:
+12:14:40.686  INFO   [AGENT] Nome: execute_python
+12:14:40.861  INFO   [AGENT] Enviando requisicao para o modelo...
+12:14:43.738  INFO   [AGENT] Resposta do modelo recebida
+12:14:44.046  INFO   [AGENT] Tool calls detectadas: 1
+12:14:44.048  INFO   [AGENT] Executando tool:
+12:14:44.049  INFO   [AGENT] Nome: execute_python
+12:14:44.217  INFO   [AGENT] Enviando requisicao para o modelo...
+12:15:47.527  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
+12:15:47.529  INFO   [AGENT] Model: deepseek-v4-pro
+12:15:47.530  INFO   [AGENT] Tools disponiveis: 0
+12:15:47.598  INFO   [AGENT] Agent 'PlannerAgent' inicializado
+12:15:47.599  INFO   [AGENT] Model: deepseek-v4-pro
+12:15:47.599  INFO   [AGENT] Tools disponiveis: 0
+12:15:47.606  INFO   [AGENT] Agent 'assistant' inicializado
+12:15:47.606  INFO   [AGENT] Model: deepseek-v4-pro
+12:15:47.607  INFO   [AGENT] Tools disponiveis: 10
+12:15:47.609  INFO   [AGENT] Agent 'PythonAgent' inicializado
+12:15:47.610  INFO   [AGENT] Model: deepseek-v4-pro
+12:15:47.610  INFO   [AGENT] Tools disponiveis: 11
+12:15:47.611  INFO   [AGENT] Agent 'WriterAgent' inicializado
+12:15:47.612  INFO   [AGENT] Model: deepseek-v4-pro
+12:15:47.612  INFO   [AGENT] Tools disponiveis: 0
+12:15:47.614  INFO   [AGENT] Agent 'task_manager' inicializado
+12:15:47.615  INFO   [AGENT] Model: deepseek-v4-flash
+12:15:47.615  INFO   [AGENT] Tools disponiveis: 3
+12:15:47.616  INFO   [APP] [BackgroundTaskManager] 7 tasks carregadas do disco
+12:15:47.617  INFO   [APP] [Permissions] Agent "assistant" level set to network
+12:15:47.617  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
+12:15:47.618  INFO   [APP] [Permissions] Agent "browser" level set to network
+12:15:47.618  INFO   [APP] [Permissions] Agent "shell" level set to shell
+12:15:47.618  INFO   [APP] [Permissions] Agent "writer" level set to file_write
+12:15:47.619  INFO   [APP] [Permissions] Agent "task_manager" level set to file_write
+12:15:47.620  INFO   [ORCH] Plano carregado: 5 steps
+12:15:47.623  INFO   [APP] [Telegram] Multi-Agent iniciado.
+12:15:48.522  INFO   [ORCH] ==============================
+12:15:48.523  INFO   [ORCH] ORCHESTRATOR START
+12:15:48.523  INFO   [ORCH] User input received  {"input":"cls"}
+12:15:48.524  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780499747616_m514hq"}
+12:15:48.528  INFO   [ORCH] Step 1/15
+12:15:48.529  INFO   [AGENT] ==============================
+12:15:48.529  INFO   [AGENT] User input:
+12:15:48.535  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:15:48.535  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:15:48.538  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:01.739  INFO   [ORCH] ==============================
+12:16:01.740  INFO   [ORCH] ORCHESTRATOR START
+12:16:01.740  INFO   [ORCH] User input received  {"input":"Olá não execute nenhum plano pendente"}
+12:16:01.741  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780499747616_m514hq"}
+12:16:01.746  INFO   [ORCH] Step 1/15
+12:16:01.747  INFO   [AGENT] ==============================
+12:16:01.747  INFO   [AGENT] User input:
+12:16:01.748  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:01.750  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:06.907  INFO   [AGENT] Resposta do modelo recebida
+12:16:06.907  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:06.908  INFO   [ORCH] Executing agent: assistant
+12:16:06.970  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
+12:16:06.988  INFO   [AGENT] ==============================
+12:16:06.990  INFO   [AGENT] User input:
+12:16:06.996  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:06.998  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:13.213  INFO   [AGENT] Resposta do modelo recebida
+12:16:13.856  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:13.857  INFO   [AGENT] ==============================
+12:16:13.858  INFO   [AGENT] User input:
+12:16:13.859  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:13.861  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:20.625  INFO   [AGENT] Resposta do modelo recebida
+12:16:20.626  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:20.626  INFO   [ORCH] Executing agent: assistant
+12:16:20.635  INFO   [AGENT] ==============================
+12:16:20.636  INFO   [AGENT] User input:
+12:16:20.638  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:16:20.639  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:20.640  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:22.658  INFO   [AGENT] Resposta do modelo recebida
+12:16:22.658  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:22.659  INFO   [ORCH] [Reflection #1]
+12:16:22.660  INFO   [ORCH] Step 2/15
+12:16:22.660  INFO   [AGENT] ==============================
+12:16:22.661  INFO   [AGENT] User input:
+12:16:22.662  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:22.663  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:24.815  INFO   [AGENT] Resposta do modelo recebida
+12:16:25.439  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:25.439  INFO   [AGENT] ==============================
+12:16:25.440  INFO   [AGENT] User input:
+12:16:25.441  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:25.443  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:34.596  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
+12:16:34.598  INFO   [AGENT] Model: deepseek-v4-pro
+12:16:34.598  INFO   [AGENT] Tools disponiveis: 0
+12:16:34.664  INFO   [AGENT] Agent 'PlannerAgent' inicializado
+12:16:34.665  INFO   [AGENT] Model: deepseek-v4-pro
+12:16:34.666  INFO   [AGENT] Tools disponiveis: 0
+12:16:34.673  INFO   [AGENT] Agent 'assistant' inicializado
+12:16:34.673  INFO   [AGENT] Model: deepseek-v4-pro
+12:16:34.674  INFO   [AGENT] Tools disponiveis: 10
+12:16:34.676  INFO   [AGENT] Agent 'PythonAgent' inicializado
+12:16:34.676  INFO   [AGENT] Model: deepseek-v4-pro
+12:16:34.677  INFO   [AGENT] Tools disponiveis: 11
+12:16:34.678  INFO   [AGENT] Agent 'WriterAgent' inicializado
+12:16:34.679  INFO   [AGENT] Model: deepseek-v4-pro
+12:16:34.679  INFO   [AGENT] Tools disponiveis: 0
+12:16:34.681  INFO   [AGENT] Agent 'task_manager' inicializado
+12:16:34.682  INFO   [AGENT] Model: deepseek-v4-flash
+12:16:34.682  INFO   [AGENT] Tools disponiveis: 3
+12:16:34.684  INFO   [APP] [BackgroundTaskManager] 7 tasks carregadas do disco
+12:16:34.684  INFO   [APP] [Permissions] Agent "assistant" level set to network
+12:16:34.685  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
+12:16:34.685  INFO   [APP] [Permissions] Agent "browser" level set to network
+12:16:34.685  INFO   [APP] [Permissions] Agent "shell" level set to shell
+12:16:34.686  INFO   [APP] [Permissions] Agent "writer" level set to file_write
+12:16:34.686  INFO   [APP] [Permissions] Agent "task_manager" level set to file_write
+12:16:34.687  INFO   [ORCH] Plano carregado: 5 steps
+12:16:34.690  INFO   [APP] [Telegram] Multi-Agent iniciado.
+12:16:46.303  INFO   [ORCH] ==============================
+12:16:46.304  INFO   [ORCH] ORCHESTRATOR START
+12:16:46.304  INFO   [ORCH] User input received  {"input":"Olá não execute nenhum plano pendente"}
+12:16:46.304  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780499794683_dob2aw"}
+12:16:46.310  INFO   [ORCH] Step 1/15
+12:16:46.311  INFO   [AGENT] ==============================
+12:16:46.312  INFO   [AGENT] User input:
+12:16:46.318  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:16:46.319  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:46.322  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:54.897  INFO   [AGENT] Resposta do modelo recebida
+12:16:54.898  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:54.899  INFO   [ORCH] Executing agent: assistant
+12:16:54.960  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
+12:16:54.975  INFO   [AGENT] ==============================
+12:16:54.976  INFO   [AGENT] User input:
+12:16:54.979  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:54.983  INFO   [AGENT] Enviando requisicao para o modelo...
+12:16:59.030  INFO   [AGENT] Resposta do modelo recebida
+12:16:59.738  INFO   [AGENT] Resposta final retornada ao usuario
+12:16:59.739  INFO   [AGENT] ==============================
+12:16:59.740  INFO   [AGENT] User input:
+12:16:59.741  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:16:59.742  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:07.420  INFO   [AGENT] Resposta do modelo recebida
+12:17:07.421  INFO   [AGENT] Resposta final retornada ao usuario
+12:17:07.421  INFO   [ORCH] [Reflection #1]
+12:17:07.422  INFO   [ORCH] Step 2/15
+12:17:07.423  INFO   [AGENT] ==============================
+12:17:07.424  INFO   [AGENT] User input:
+12:17:07.425  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:17:07.426  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:14.104  INFO   [AGENT] Resposta do modelo recebida
+12:17:14.104  INFO   [AGENT] Resposta final retornada ao usuario
+12:17:14.105  INFO   [ORCH] ORCHESTRATION FINISHED
+12:17:14.106  INFO   [APP] [Memory] Nota adicionada a 2026-06-03.md
+12:17:32.169  INFO   [ORCH] ==============================
+12:17:32.170  INFO   [ORCH] ORCHESTRATOR START
+12:17:32.170  INFO   [ORCH] User input received  {"input":"pode excluir qualquer plano pendente"}
+12:17:32.171  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780499794683_dob2aw"}
+12:17:32.179  INFO   [ORCH] Step 1/15
+12:17:32.179  INFO   [AGENT] ==============================
+12:17:32.180  INFO   [AGENT] User input:
+12:17:32.181  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:17:32.182  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:17:32.183  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:37.177  INFO   [AGENT] Resposta do modelo recebida
+12:17:37.178  INFO   [AGENT] Resposta final retornada ao usuario
+12:17:37.179  INFO   [AGENT] ==============================
+12:17:37.179  INFO   [AGENT] User input:
+12:17:37.180  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:17:37.181  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:44.830  INFO   [AGENT] Resposta do modelo recebida
+12:17:44.831  INFO   [AGENT] Resposta final retornada ao usuario
+12:17:44.832  INFO   [ORCH] Plan created with 1 steps
+12:17:44.832  INFO   [ORCH] Step 2/15
+12:17:44.833  INFO   [AGENT] ==============================
+12:17:44.833  INFO   [AGENT] User input:
+12:17:44.835  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:17:44.837  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:51.906  INFO   [AGENT] Resposta do modelo recebida
+12:17:51.907  INFO   [AGENT] Resposta final retornada ao usuario
+12:17:51.907  INFO   [ORCH] Executing agent: PythonAgent
+12:17:51.917  INFO   [AGENT] ==============================
+12:17:51.917  INFO   [AGENT] User input:
+12:17:51.919  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:17:51.921  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:55.208  INFO   [AGENT] Resposta do modelo recebida
+12:17:55.841  INFO   [AGENT] Tool calls detectadas: 1
+12:17:55.842  INFO   [AGENT] Executando tool:
+12:17:55.842  INFO   [AGENT] Nome: execute_python
+12:17:56.156  INFO   [AGENT] Enviando requisicao para o modelo...
+12:17:59.719  INFO   [AGENT] Resposta do modelo recebida
+12:18:00.345  INFO   [AGENT] Tool calls detectadas: 1
+12:18:00.346  INFO   [AGENT] Executando tool:
+12:18:00.347  INFO   [AGENT] Nome: execute_python
+12:18:00.510  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:06.325  INFO   [AGENT] Resposta do modelo recebida
+12:18:06.968  INFO   [AGENT] Tool calls detectadas: 1
+12:18:06.969  INFO   [AGENT] Executando tool:
+12:18:06.969  INFO   [AGENT] Nome: execute_python
+12:18:07.133  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:10.619  INFO   [AGENT] Resposta do modelo recebida
+12:18:11.255  INFO   [AGENT] Tool calls detectadas: 1
+12:18:11.256  INFO   [AGENT] Executando tool:
+12:18:11.256  INFO   [AGENT] Nome: execute_python
+12:18:11.444  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:15.094  INFO   [AGENT] Resposta do modelo recebida
+12:18:15.732  INFO   [AGENT] Tool calls detectadas: 1
+12:18:15.733  INFO   [AGENT] Executando tool:
+12:18:15.733  INFO   [AGENT] Nome: execute_python
+12:18:15.894  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:19.986  INFO   [AGENT] Resposta do modelo recebida
+12:18:20.611  INFO   [AGENT] Tool calls detectadas: 1
+12:18:20.612  INFO   [AGENT] Executando tool:
+12:18:20.613  INFO   [AGENT] Nome: execute_python
+12:18:20.772  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:27.442  INFO   [AGENT] Resposta do modelo recebida
+12:18:28.080  INFO   [AGENT] Tool calls detectadas: 1
+12:18:28.080  INFO   [AGENT] Executando tool:
+12:18:28.081  INFO   [AGENT] Nome: execute_python
+12:18:28.272  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:37.022  INFO   [AGENT] Resposta do modelo recebida
+12:18:37.640  INFO   [AGENT] Resposta final retornada ao usuario
+12:18:37.642  INFO   [ORCH] Plan step 1 marked as done
+12:18:37.642  INFO   [AGENT] ==============================
+12:18:37.643  INFO   [AGENT] User input:
+12:18:37.645  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:18:37.645  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:18:37.646  INFO   [AGENT] Enviando requisicao para o modelo...
+12:18:58.310  INFO   [AGENT] Resposta do modelo recebida
+12:18:58.311  INFO   [AGENT] Resposta final retornada ao usuario
+12:18:58.312  INFO   [ORCH] [Reflection #1]
+12:18:58.314  INFO   [ORCH] Step 3/15
+12:18:58.315  INFO   [AGENT] ==============================
+12:18:58.315  INFO   [AGENT] User input:
+12:18:58.318  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:18:58.320  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:04.752  INFO   [AGENT] Resposta do modelo recebida
+12:19:04.753  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:04.754  INFO   [ORCH] Executing agent: WriterAgent
+12:19:04.763  INFO   [AGENT] ==============================
+12:19:04.765  INFO   [AGENT] User input:
+12:19:04.766  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:04.768  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:16.627  INFO   [AGENT] Resposta do modelo recebida
+12:19:17.273  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:17.275  INFO   [ORCH] Plan step 1 marked as done
+12:19:17.275  INFO   [AGENT] ==============================
+12:19:17.276  INFO   [AGENT] User input:
+12:19:17.277  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:19:17.277  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:17.279  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:22.507  INFO   [AGENT] Resposta do modelo recebida
+12:19:22.508  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:22.509  INFO   [ORCH] [Reflection #2]
+12:19:22.509  INFO   [ORCH] Step 4/15
+12:19:22.510  INFO   [AGENT] ==============================
+12:19:22.510  INFO   [AGENT] User input:
+12:19:22.512  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:22.513  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:28.117  INFO   [AGENT] Resposta do modelo recebida
+12:19:28.118  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:28.118  INFO   [ORCH] Executing agent: PythonAgent
+12:19:28.127  INFO   [AGENT] ==============================
+12:19:28.128  INFO   [AGENT] User input:
+12:19:28.130  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:28.131  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:33.160  INFO   [AGENT] Resposta do modelo recebida
+12:19:33.783  INFO   [AGENT] Tool calls detectadas: 1
+12:19:33.784  INFO   [AGENT] Executando tool:
+12:19:33.785  INFO   [AGENT] Nome: execute_python
+12:19:33.985  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:38.385  INFO   [AGENT] Resposta do modelo recebida
+12:19:39.010  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:39.011  INFO   [ORCH] Plan step 1 marked as done
+12:19:39.012  INFO   [AGENT] ==============================
+12:19:39.012  INFO   [AGENT] User input:
+12:19:39.014  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:39.015  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:44.076  INFO   [AGENT] Resposta do modelo recebida
+12:19:44.077  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:44.078  INFO   [ORCH] [Reflection #3]
+12:19:44.078  INFO   [ORCH] Step 5/15
+12:19:44.079  INFO   [AGENT] ==============================
+12:19:44.079  INFO   [AGENT] User input:
+12:19:44.080  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:44.082  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:49.989  INFO   [AGENT] Resposta do modelo recebida
+12:19:49.990  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:49.991  INFO   [ORCH] Executing agent: WriterAgent
+12:19:50.001  INFO   [AGENT] ==============================
+12:19:50.002  INFO   [AGENT] User input:
+12:19:50.003  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:19:50.004  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:50.005  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:54.723  INFO   [AGENT] Resposta do modelo recebida
+12:19:55.396  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:55.397  INFO   [ORCH] Plan step 1 marked as done
+12:19:55.397  INFO   [ORCH] Step 6/15
+12:19:55.398  INFO   [AGENT] ==============================
+12:19:55.398  INFO   [AGENT] User input:
+12:19:55.399  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:19:55.400  INFO   [AGENT] Enviando requisicao para o modelo...
+12:19:59.651  INFO   [AGENT] Resposta do modelo recebida
+12:19:59.652  INFO   [AGENT] Resposta final retornada ao usuario
+12:19:59.653  INFO   [ORCH] ORCHESTRATION FINISHED
+12:19:59.654  INFO   [APP] [Memory] Nota adicionada a 2026-06-03.md
+12:19:59.655  INFO   [ORCH] Plan completed successfully!
+12:21:40.600  INFO   [ORCH] ==============================
+12:21:40.601  INFO   [ORCH] ORCHESTRATOR START
+12:21:40.601  INFO   [ORCH] User input received  {"input":"vamos trabalhar no colabor-ai, quando o agente atinge o link de contexto do LLM começa a levantar mensagem como: [Erro no processamento: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls']\n\ncomo trabalhar melhor o contexto para não perder desempenho mas também não estourar o contexto das apis"}
+12:21:40.602  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780499794683_dob2aw"}
+12:21:40.620  INFO   [ORCH] Step 1/15
+12:21:40.621  INFO   [AGENT] ==============================
+12:21:40.621  INFO   [AGENT] User input:
+12:21:40.623  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:21:40.624  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:21:40.625  INFO   [AGENT] Enviando requisicao para o modelo...
+12:21:56.997  INFO   [AGENT] Resposta do modelo recebida
+12:21:56.998  INFO   [AGENT] Resposta final retornada ao usuario
+12:21:56.999  INFO   [AGENT] ==============================
+12:21:57.000  INFO   [AGENT] User input:
+12:21:57.001  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:21:57.003  INFO   [AGENT] Enviando requisicao para o modelo...
+12:22:25.696  INFO   [AGENT] Resposta do modelo recebida
+12:22:25.697  INFO   [AGENT] Resposta final retornada ao usuario
+12:22:25.698  INFO   [ORCH] Plan created with 5 steps
+12:22:25.698  INFO   [ORCH] Step 2/15
+12:22:25.699  INFO   [AGENT] ==============================
+12:22:25.699  INFO   [AGENT] User input:
+12:22:25.701  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:22:25.702  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:22:25.703  INFO   [AGENT] Enviando requisicao para o modelo...
+12:22:34.670  INFO   [AGENT] Resposta do modelo recebida
+12:22:34.670  INFO   [AGENT] Resposta final retornada ao usuario
+12:22:34.671  INFO   [ORCH] Executing agent: PythonAgent
+12:22:34.679  INFO   [AGENT] ==============================
+12:22:34.680  INFO   [AGENT] User input:
+12:22:34.681  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:22:34.682  INFO   [AGENT] Enviando requisicao para o modelo...
+12:22:41.885  INFO   [AGENT] Resposta do modelo recebida
+12:22:42.523  INFO   [AGENT] Tool calls detectadas: 3
+12:22:42.524  INFO   [AGENT] Executando tool:
+12:22:42.525  INFO   [AGENT] Nome: todo_write
+12:22:42.527  INFO   [AGENT] Executando tool:
+12:22:42.527  INFO   [AGENT] Nome: todo_write
+12:22:42.528  INFO   [AGENT] Executando tool:
+12:22:42.529  INFO   [AGENT] Nome: todo_write
+12:22:42.530  INFO   [AGENT] Enviando requisicao para o modelo...
+12:22:52.059  INFO   [AGENT] Resposta do modelo recebida
+12:22:52.679  INFO   [AGENT] Tool calls detectadas: 2
+12:22:52.680  INFO   [AGENT] Executando tool:
+12:22:52.681  INFO   [AGENT] Nome: todo_write
+12:22:52.683  INFO   [AGENT] Executando tool:
+12:22:52.684  INFO   [AGENT] Nome: execute_python
+12:22:53.347  INFO   [AGENT] Enviando requisicao para o modelo...
+12:23:00.940  INFO   [AGENT] Resposta do modelo recebida
+12:23:01.567  INFO   [AGENT] Tool calls detectadas: 1
+12:23:01.568  INFO   [AGENT] Executando tool:
+12:23:01.568  INFO   [AGENT] Nome: execute_python
+12:23:02.035  INFO   [AGENT] Enviando requisicao para o modelo...
+12:23:07.356  INFO   [AGENT] Resposta do modelo recebida
+12:23:07.669  INFO   [AGENT] Tool calls detectadas: 1
+12:23:07.669  INFO   [AGENT] Executando tool:
+12:23:07.670  INFO   [AGENT] Nome: execute_python
+12:23:07.840  INFO   [AGENT] Enviando requisicao para o modelo...
+12:23:11.984  INFO   [AGENT] Resposta do modelo recebida
+12:23:12.603  INFO   [AGENT] Tool calls detectadas: 1
+12:23:12.604  INFO   [AGENT] Executando tool:
+12:23:12.604  INFO   [AGENT] Nome: execute_python
+12:23:12.773  INFO   [AGENT] Enviando requisicao para o modelo...
+12:23:17.125  INFO   [AGENT] Resposta do modelo recebida
+12:23:17.434  INFO   [AGENT] Tool calls detectadas: 1
+12:23:17.435  INFO   [AGENT] Executando tool:
+12:23:17.435  INFO   [AGENT] Nome: execute_python
+12:23:17.585  INFO   [AGENT] Enviando requisicao para o modelo...
+12:24:06.850  INFO   [AGENT] Resposta do modelo recebida
+12:24:07.469  INFO   [AGENT] Tool calls detectadas: 1
+12:24:07.470  INFO   [AGENT] Executando tool:
+12:24:07.471  INFO   [AGENT] Nome: execute_python
+12:24:07.634  INFO   [AGENT] Enviando requisicao para o modelo...
+12:24:13.568  INFO   [AGENT] Resposta do modelo recebida
+12:24:14.189  INFO   [AGENT] Tool calls detectadas: 2
+12:24:14.190  INFO   [AGENT] Executando tool:
+12:24:14.190  INFO   [AGENT] Nome: todo_write
+12:24:14.192  INFO   [AGENT] Executando tool:
+12:24:14.192  INFO   [AGENT] Nome: todo_write
+12:24:14.193  INFO   [AGENT] Enviando requisicao para o modelo...
+12:24:31.667  INFO   [AGENT] Resposta do modelo recebida
+12:24:31.977  INFO   [AGENT] Resposta final retornada ao usuario
+12:24:31.978  INFO   [ORCH] Plan step 1 marked as done
+12:24:31.978  INFO   [AGENT] ==============================
+12:24:31.979  INFO   [AGENT] User input:
+12:24:31.980  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:24:31.980  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:24:31.982  INFO   [AGENT] Enviando requisicao para o modelo...
+12:24:43.731  INFO   [AGENT] Resposta do modelo recebida
+12:24:43.732  INFO   [AGENT] Resposta final retornada ao usuario
+12:24:43.732  INFO   [ORCH] [Reflection #1]
+12:24:43.733  INFO   [ORCH] Step 3/15
+12:24:43.734  INFO   [AGENT] ==============================
+12:24:43.734  INFO   [AGENT] User input:
+12:24:43.735  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:24:43.736  INFO   [AGENT] Enviando requisicao para o modelo...
+12:24:53.746  INFO   [AGENT] Resposta do modelo recebida
+12:24:53.748  INFO   [AGENT] Resposta final retornada ao usuario
+12:24:53.750  INFO   [ORCH] Executing agent: PythonAgent
+12:24:53.761  INFO   [AGENT] ==============================
+12:24:53.762  INFO   [AGENT] User input:
+12:24:53.763  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:24:53.766  INFO   [AGENT] Enviando requisicao para o modelo...
+12:25:09.193  INFO   [AGENT] Resposta do modelo recebida
+12:25:09.880  INFO   [AGENT] Tool calls detectadas: 2
+12:25:09.882  INFO   [AGENT] Executando tool:
+12:25:09.882  INFO   [AGENT] Nome: todo_write
+12:25:09.883  INFO   [AGENT] Executando tool:
+12:25:09.883  INFO   [AGENT] Nome: todo_write
+12:25:09.884  INFO   [AGENT] Enviando requisicao para o modelo...
+12:25:27.089  INFO   [AGENT] Resposta do modelo recebida
+12:25:27.725  INFO   [AGENT] Tool calls detectadas: 1
+12:25:27.726  INFO   [AGENT] Executando tool:
+12:25:27.726  INFO   [AGENT] Nome: execute_python
+12:25:27.887  INFO   [AGENT] Enviando requisicao para o modelo...
+12:25:54.813  INFO   [AGENT] Resposta do modelo recebida
+12:25:55.437  INFO   [AGENT] Tool calls detectadas: 1
+12:25:55.438  INFO   [AGENT] Executando tool:
+12:25:55.438  INFO   [AGENT] Nome: spawn_agent
+12:25:55.439  INFO   [APP] [AgentTool] Spawnando sub-agente "PythonAgent" para task sub_1780500355439_x5wk
+12:25:55.439  INFO   [AGENT] Historico de PythonAgent resetado.
+12:25:55.440  INFO   [APP] [SubAgentRunner] Usando agente "PythonAgent" para task sub_1780500355439_x5wk (depth 1)
+12:25:55.440  INFO   [AGENT] ==============================
+12:25:55.441  INFO   [AGENT] User input:
+12:25:55.442  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:25:55.443  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:25:55.445  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:01.073  INFO   [AGENT] Resposta do modelo recebida
+12:26:01.074  INFO   [AGENT] Tool calls detectadas: 3
+12:26:01.075  INFO   [AGENT] Executando tool:
+12:26:01.075  INFO   [AGENT] Nome: todo_write
+12:26:01.076  INFO   [AGENT] Executando tool:
+12:26:01.076  INFO   [AGENT] Nome: todo_write
+12:26:01.077  INFO   [AGENT] Executando tool:
+12:26:01.078  INFO   [AGENT] Nome: todo_write
+12:26:01.079  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:03.559  INFO   [AGENT] Resposta do modelo recebida
+12:26:03.559  INFO   [AGENT] Tool calls detectadas: 1
+12:26:03.560  INFO   [AGENT] Executando tool:
+12:26:03.560  INFO   [AGENT] Nome: todo_write
+12:26:03.561  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:07.363  INFO   [AGENT] Resposta do modelo recebida
+12:26:07.364  INFO   [AGENT] Tool calls detectadas: 1
+12:26:07.365  INFO   [AGENT] Executando tool:
+12:26:07.365  INFO   [AGENT] Nome: execute_python
+12:26:07.534  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:10.913  INFO   [AGENT] Resposta do modelo recebida
+12:26:10.913  INFO   [AGENT] Tool calls detectadas: 1
+12:26:10.914  INFO   [AGENT] Executando tool:
+12:26:10.914  INFO   [AGENT] Nome: execute_python
+12:26:11.068  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:14.975  INFO   [AGENT] Resposta do modelo recebida
+12:26:14.976  INFO   [AGENT] Tool calls detectadas: 1
+12:26:14.977  INFO   [AGENT] Executando tool:
+12:26:14.977  INFO   [AGENT] Nome: execute_python
+12:26:15.134  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:20.077  INFO   [AGENT] Resposta do modelo recebida
+12:26:20.078  INFO   [AGENT] Tool calls detectadas: 1
+12:26:20.079  INFO   [AGENT] Executando tool:
+12:26:20.079  INFO   [AGENT] Nome: execute_python
+12:26:20.246  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:30.464  INFO   [AGENT] Resposta do modelo recebida
+12:26:30.464  INFO   [AGENT] Tool calls detectadas: 2
+12:26:30.465  INFO   [AGENT] Executando tool:
+12:26:30.465  INFO   [AGENT] Nome: todo_write
+12:26:30.466  INFO   [AGENT] Executando tool:
+12:26:30.466  INFO   [AGENT] Nome: todo_write
+12:26:30.467  INFO   [AGENT] Enviando requisicao para o modelo...
+12:26:54.591  INFO   [AGENT] Resposta do modelo recebida
+12:26:54.592  INFO   [AGENT] Tool calls detectadas: 1
+12:26:54.592  INFO   [AGENT] Executando tool:
+12:26:54.593  INFO   [AGENT] Nome: execute_python
+12:26:54.747  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:01.837  INFO   [AGENT] Resposta do modelo recebida
+12:27:01.838  INFO   [AGENT] Tool calls detectadas: 1
+12:27:01.839  INFO   [AGENT] Executando tool:
+12:27:01.839  INFO   [AGENT] Nome: execute_python
+12:27:01.992  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:11.368  INFO   [AGENT] Resposta do modelo recebida
+12:27:11.369  INFO   [AGENT] Tool calls detectadas: 1
+12:27:11.370  INFO   [AGENT] Executando tool:
+12:27:11.370  INFO   [AGENT] Nome: execute_python
+12:27:11.537  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:17.788  INFO   [AGENT] Resposta do modelo recebida
+12:27:17.789  INFO   [AGENT] Tool calls detectadas: 2
+12:27:17.789  INFO   [AGENT] Executando tool:
+12:27:17.790  INFO   [AGENT] Nome: todo_write
+12:27:17.791  INFO   [AGENT] Executando tool:
+12:27:17.791  INFO   [AGENT] Nome: todo_write
+12:27:17.792  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:23.945  INFO   [AGENT] Resposta do modelo recebida
+12:27:23.945  INFO   [AGENT] Resposta final retornada ao usuario
+12:27:23.946  INFO   [APP] [SubAgentRunner] Task sub_1780500355439_x5wk concluida em 88507ms via PythonAgent (depth 1)
+12:27:23.946  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:24.977  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+12:27:24.978  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:27:25.793  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:27:25.794  ERROR  [AGENT] Erro no Agent:
+12:27:25.794  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:27:25.795  INFO   [ORCH] Plan step 4 marked as done
+12:27:25.796  INFO   [AGENT] ==============================
+12:27:25.796  INFO   [AGENT] User input:
+12:27:25.797  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:27:25.798  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:27:25.799  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:39.358  INFO   [AGENT] Resposta do modelo recebida
+12:27:39.359  INFO   [AGENT] Resposta final retornada ao usuario
+12:27:39.359  INFO   [ORCH] [Reflection #2]
+12:27:39.361  INFO   [ORCH] Step 4/15
+12:27:39.362  INFO   [AGENT] ==============================
+12:27:39.362  INFO   [AGENT] User input:
+12:27:39.363  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:27:39.364  INFO   [AGENT] Enviando requisicao para o modelo...
+12:27:50.303  INFO   [AGENT] Resposta do modelo recebida
+12:27:50.304  INFO   [AGENT] Resposta final retornada ao usuario
+12:27:50.305  INFO   [ORCH] Executing agent: WriterAgent
+12:27:50.316  INFO   [AGENT] ==============================
+12:27:50.316  INFO   [AGENT] User input:
+12:27:50.318  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:27:50.319  INFO   [AGENT] Enviando requisicao para o modelo...
+12:28:00.291  INFO   [AGENT] Resposta do modelo recebida
+12:28:00.909  INFO   [AGENT] Resposta final retornada ao usuario
+12:28:00.910  INFO   [AGENT] ==============================
+12:28:00.910  INFO   [AGENT] User input:
+12:28:00.912  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:28:00.912  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:28:00.914  INFO   [AGENT] Enviando requisicao para o modelo...
+12:28:14.376  INFO   [AGENT] Resposta do modelo recebida
+12:28:14.377  INFO   [AGENT] Resposta final retornada ao usuario
+12:28:14.378  INFO   [ORCH] [Reflection #3]
+12:28:14.378  INFO   [ORCH] Step 5/15
+12:28:14.379  INFO   [AGENT] ==============================
+12:28:14.379  INFO   [AGENT] User input:
+12:28:14.381  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:28:14.382  INFO   [AGENT] Enviando requisicao para o modelo...
+12:28:23.528  INFO   [AGENT] Resposta do modelo recebida
+12:28:23.529  INFO   [AGENT] Resposta final retornada ao usuario
+12:28:23.529  INFO   [ORCH] Executing agent: PythonAgent
+12:28:23.542  INFO   [AGENT] ==============================
+12:28:23.542  INFO   [AGENT] User input:
+12:28:23.544  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:28:23.545  INFO   [AGENT] Enviando requisicao para o modelo...
+12:28:24.301  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+12:28:24.302  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:28:25.397  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:28:25.398  ERROR  [AGENT] Erro no Agent:
+12:28:25.399  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:28:25.399  INFO   [ORCH] Plan step 4 marked as done
+12:28:25.400  INFO   [ORCH] Step 6/15
+12:28:25.400  INFO   [AGENT] ==============================
+12:28:25.400  INFO   [AGENT] User input:
+12:28:25.402  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:28:25.403  INFO   [AGENT] Enviando requisicao para o modelo...
+12:28:36.627  INFO   [AGENT] Resposta do modelo recebida
+12:28:36.628  INFO   [AGENT] Resposta final retornada ao usuario
+12:28:36.629  INFO   [ORCH] ORCHESTRATION FINISHED
+12:28:36.631  INFO   [APP] [Memory] Nota adicionada a 2026-06-03.md
+12:28:52.504  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
+12:28:52.506  INFO   [AGENT] Model: deepseek-v4-pro
+12:28:52.506  INFO   [AGENT] Tools disponiveis: 0
+12:28:52.572  INFO   [AGENT] Agent 'PlannerAgent' inicializado
+12:28:52.573  INFO   [AGENT] Model: deepseek-v4-pro
+12:28:52.573  INFO   [AGENT] Tools disponiveis: 0
+12:28:52.579  INFO   [AGENT] Agent 'assistant' inicializado
+12:28:52.580  INFO   [AGENT] Model: deepseek-v4-pro
+12:28:52.580  INFO   [AGENT] Tools disponiveis: 10
+12:28:52.583  INFO   [AGENT] Agent 'PythonAgent' inicializado
+12:28:52.583  INFO   [AGENT] Model: deepseek-v4-pro
+12:28:52.583  INFO   [AGENT] Tools disponiveis: 11
+12:28:52.585  INFO   [AGENT] Agent 'WriterAgent' inicializado
+12:28:52.585  INFO   [AGENT] Model: deepseek-v4-pro
+12:28:52.586  INFO   [AGENT] Tools disponiveis: 0
+12:28:52.588  INFO   [AGENT] Agent 'task_manager' inicializado
+12:28:52.588  INFO   [AGENT] Model: deepseek-v4-flash
+12:28:52.588  INFO   [AGENT] Tools disponiveis: 3
+12:28:52.590  INFO   [APP] [BackgroundTaskManager] 7 tasks carregadas do disco
+12:28:52.590  INFO   [APP] [Permissions] Agent "assistant" level set to network
+12:28:52.591  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
+12:28:52.591  INFO   [APP] [Permissions] Agent "browser" level set to network
+12:28:52.591  INFO   [APP] [Permissions] Agent "shell" level set to shell
+12:28:52.592  INFO   [APP] [Permissions] Agent "writer" level set to file_write
+12:28:52.592  INFO   [APP] [Permissions] Agent "task_manager" level set to file_write
+12:28:52.593  INFO   [ORCH] Plano carregado: 5 steps
+12:28:52.596  INFO   [APP] [Telegram] Multi-Agent iniciado.
+12:29:45.525  INFO   [ORCH] ==============================
+12:29:45.526  INFO   [ORCH] ORCHESTRATOR START
+12:29:45.527  INFO   [ORCH] User input received  {"input":"Corrija logo pois qualquer coisa está ocasionando o seguinte erro: [Erro no processamento: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls']\n\nou seja você não tem muitas interações para resolver o problema"}
+12:29:45.528  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780500532589_0nltty"}
+12:29:45.547  INFO   [ORCH] Step 1/15
+12:29:45.549  INFO   [AGENT] ==============================
+12:29:45.550  INFO   [AGENT] User input:
+12:29:45.561  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:29:45.563  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:29:45.567  INFO   [AGENT] Enviando requisicao para o modelo...
+12:30:31.552  INFO   [AGENT] Resposta do modelo recebida
+12:30:31.553  INFO   [AGENT] Resposta final retornada ao usuario
+12:30:31.554  INFO   [ORCH] Executing agent: PythonAgent
+12:30:31.615  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
+12:30:31.629  INFO   [AGENT] ==============================
+12:30:31.631  INFO   [AGENT] User input:
+12:30:31.634  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:30:31.635  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:30:31.636  INFO   [AGENT] Enviando requisicao para o modelo...
+12:30:37.406  INFO   [AGENT] Resposta do modelo recebida
+12:30:38.081  INFO   [AGENT] Tool calls detectadas: 1
+12:30:38.084  INFO   [AGENT] Executando tool:
+12:30:38.085  INFO   [AGENT] Nome: memory_search
+12:30:38.094  INFO   [AGENT] Enviando requisicao para o modelo...
+12:30:41.126  INFO   [AGENT] Resposta do modelo recebida
+12:30:41.470  INFO   [AGENT] Tool calls detectadas: 1
+12:30:41.471  INFO   [AGENT] Executando tool:
+12:30:41.472  INFO   [AGENT] Nome: memory_search
+12:30:41.477  INFO   [AGENT] Enviando requisicao para o modelo...
+12:30:47.393  INFO   [AGENT] Resposta do modelo recebida
+12:30:47.740  INFO   [AGENT] Tool calls detectadas: 1
+12:30:47.742  INFO   [AGENT] Executando tool:
+12:30:47.743  INFO   [AGENT] Nome: execute_python
+12:31:08.633  INFO   [AGENT] Enviando requisicao para o modelo...
+12:31:12.722  INFO   [AGENT] Resposta do modelo recebida
+12:31:13.401  INFO   [AGENT] Tool calls detectadas: 1
+12:31:13.402  INFO   [AGENT] Executando tool:
+12:31:13.403  INFO   [AGENT] Nome: execute_python
+12:31:13.620  INFO   [AGENT] Enviando requisicao para o modelo...
+12:31:17.512  INFO   [AGENT] Resposta do modelo recebida
+12:31:17.856  INFO   [AGENT] Tool calls detectadas: 1
+12:31:17.857  INFO   [AGENT] Executando tool:
+12:31:17.858  INFO   [AGENT] Nome: execute_python
+12:31:18.045  INFO   [AGENT] Enviando requisicao para o modelo...
+12:31:23.722  INFO   [AGENT] Resposta do modelo recebida
+12:31:24.418  INFO   [AGENT] Tool calls detectadas: 1
+12:31:24.419  INFO   [AGENT] Executando tool:
+12:31:24.419  INFO   [AGENT] Nome: execute_python
+12:31:39.603  INFO   [AGENT] Enviando requisicao para o modelo...
+12:31:45.951  INFO   [AGENT] Resposta do modelo recebida
+12:31:46.630  INFO   [AGENT] Tool calls detectadas: 1
+12:31:46.631  INFO   [AGENT] Executando tool:
+12:31:46.631  INFO   [AGENT] Nome: execute_python
+12:31:47.089  INFO   [AGENT] Enviando requisicao para o modelo...
+12:31:53.554  INFO   [AGENT] Resposta do modelo recebida
+12:31:54.236  INFO   [AGENT] Tool calls detectadas: 1
+12:31:54.237  INFO   [AGENT] Executando tool:
+12:31:54.237  INFO   [AGENT] Nome: execute_python
+12:31:54.415  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:03.304  INFO   [AGENT] Resposta do modelo recebida
+12:32:03.996  INFO   [AGENT] Tool calls detectadas: 1
+12:32:03.997  INFO   [AGENT] Executando tool:
+12:32:03.997  INFO   [AGENT] Nome: execute_python
+12:32:04.272  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:10.624  INFO   [AGENT] Resposta do modelo recebida
+12:32:11.430  INFO   [AGENT] Tool calls detectadas: 1
+12:32:11.431  INFO   [AGENT] Executando tool:
+12:32:11.432  INFO   [AGENT] Nome: execute_python
+12:32:11.726  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:18.348  INFO   [AGENT] Resposta do modelo recebida
+12:32:19.036  INFO   [AGENT] Tool calls detectadas: 1
+12:32:19.037  INFO   [AGENT] Executando tool:
+12:32:19.038  INFO   [AGENT] Nome: execute_python
+12:32:19.200  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:23.504  INFO   [AGENT] Resposta do modelo recebida
+12:32:23.505  INFO   [AGENT] Tool calls detectadas: 1
+12:32:23.506  INFO   [AGENT] Executando tool:
+12:32:23.507  INFO   [AGENT] Nome: execute_python
+12:32:23.670  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:29.560  INFO   [AGENT] Resposta do modelo recebida
+12:32:30.241  INFO   [AGENT] Tool calls detectadas: 1
+12:32:30.241  INFO   [AGENT] Executando tool:
+12:32:30.242  INFO   [AGENT] Nome: execute_python
+12:32:30.415  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:34.101  INFO   [AGENT] Resposta do modelo recebida
+12:32:34.439  INFO   [AGENT] Tool calls detectadas: 1
+12:32:34.440  INFO   [AGENT] Executando tool:
+12:32:34.440  INFO   [AGENT] Nome: execute_python
+12:32:34.616  INFO   [AGENT] Enviando requisicao para o modelo...
+12:32:38.919  INFO   [AGENT] Resposta do modelo recebida
+12:32:39.270  INFO   [AGENT] Tool calls detectadas: 2
+12:32:39.271  INFO   [AGENT] Executando tool:
+12:32:39.272  INFO   [AGENT] Nome: execute_python
+12:32:39.438  INFO   [AGENT] Executando tool:
+12:32:39.439  INFO   [AGENT] Nome: execute_python
+12:32:39.602  INFO   [AGENT] Enviando requisicao para o modelo...
+12:33:12.115  INFO   [AGENT] Resposta do modelo recebida
+12:33:12.782  INFO   [AGENT] Resposta final retornada ao usuario
+12:33:12.786  INFO   [ORCH] Plan step 4 marked as done
+12:33:12.788  INFO   [AGENT] ==============================
+12:33:12.789  INFO   [AGENT] User input:
+12:33:12.791  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:33:12.792  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:33:12.793  INFO   [AGENT] Enviando requisicao para o modelo...
+12:33:19.739  INFO   [AGENT] Resposta do modelo recebida
+12:33:19.740  INFO   [AGENT] Resposta final retornada ao usuario
+12:33:19.740  INFO   [ORCH] [Reflection #1]
+12:33:19.742  INFO   [ORCH] Step 2/15
+12:33:19.742  INFO   [AGENT] ==============================
+12:33:19.743  INFO   [AGENT] User input:
+12:33:19.744  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:33:19.745  INFO   [AGENT] Enviando requisicao para o modelo...
+12:33:59.007  INFO   [AGENT] Resposta do modelo recebida
+12:33:59.009  INFO   [AGENT] Resposta final retornada ao usuario
+12:33:59.010  INFO   [ORCH] Executing agent: PythonAgent
+12:33:59.027  INFO   [AGENT] ==============================
+12:33:59.027  INFO   [AGENT] User input:
+12:33:59.029  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:33:59.030  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:33:59.031  INFO   [AGENT] Enviando requisicao para o modelo...
+12:34:04.000  INFO   [AGENT] Resposta do modelo recebida
+12:34:04.667  INFO   [AGENT] Tool calls detectadas: 1
+12:34:04.669  INFO   [AGENT] Executando tool:
+12:34:04.669  INFO   [AGENT] Nome: execute_python
+12:34:04.833  INFO   [AGENT] Enviando requisicao para o modelo...
+12:37:55.525  INFO   [AGENT] Resposta do modelo recebida
+12:37:56.187  INFO   [AGENT] Tool calls detectadas: 1
+12:37:56.188  INFO   [AGENT] Executando tool:
+12:37:56.189  INFO   [AGENT] Nome: execute_python
+12:37:56.520  INFO   [AGENT] Enviando requisicao para o modelo...
+12:38:56.701  INFO   [AGENT] Resposta do modelo recebida
+12:38:57.363  INFO   [AGENT] Tool calls detectadas: 1
+12:38:57.366  INFO   [AGENT] Executando tool:
+12:38:57.367  INFO   [AGENT] Nome: execute_python
+12:38:57.557  INFO   [AGENT] Enviando requisicao para o modelo...
+12:41:16.339  INFO   [AGENT] Resposta do modelo recebida
+12:41:17.014  INFO   [AGENT] Tool calls detectadas: 1
+12:41:17.015  INFO   [AGENT] Executando tool:
+12:41:17.015  INFO   [AGENT] Nome: execute_python
+12:41:17.391  INFO   [AGENT] Enviando requisicao para o modelo...
+12:42:36.297  INFO   [AGENT] Resposta do modelo recebida
+12:42:36.957  INFO   [AGENT] Tool calls detectadas: 1
+12:42:36.959  INFO   [AGENT] Executando tool:
+12:42:36.960  INFO   [AGENT] Nome: execute_python
+12:42:37.140  INFO   [AGENT] Enviando requisicao para o modelo...
+12:43:42.256  INFO   [AGENT] Resposta do modelo recebida
+12:43:42.935  INFO   [AGENT] Tool calls detectadas: 1
+12:43:42.937  INFO   [AGENT] Executando tool:
+12:43:42.937  INFO   [AGENT] Nome: execute_python
+12:43:43.103  INFO   [AGENT] Enviando requisicao para o modelo...
+12:44:02.508  INFO   [AGENT] Resposta do modelo recebida
+12:44:03.169  INFO   [AGENT] Tool calls detectadas: 1
+12:44:03.170  INFO   [AGENT] Executando tool:
+12:44:03.171  INFO   [AGENT] Nome: execute_python
+12:44:07.880  INFO   [AGENT] Enviando requisicao para o modelo...
+12:44:34.029  INFO   [AGENT] Resposta do modelo recebida
+12:44:34.706  INFO   [AGENT] Tool calls detectadas: 1
+12:44:34.707  INFO   [AGENT] Executando tool:
+12:44:34.708  INFO   [AGENT] Nome: execute_python
+12:44:34.883  INFO   [AGENT] Enviando requisicao para o modelo...
+12:44:53.918  INFO   [AGENT] Resposta do modelo recebida
+12:44:54.589  INFO   [AGENT] Resposta final retornada ao usuario
+12:44:54.592  INFO   [ORCH] Plan step 4 marked as done
+12:44:54.595  INFO   [AGENT] ==============================
+12:44:54.597  INFO   [AGENT] User input:
+12:44:54.601  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:44:54.603  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:44:54.606  INFO   [AGENT] Enviando requisicao para o modelo...
+12:45:01.922  INFO   [AGENT] Resposta do modelo recebida
+12:45:01.924  INFO   [AGENT] Resposta final retornada ao usuario
+12:45:01.924  INFO   [ORCH] [Reflection #2]
+12:45:01.927  INFO   [ORCH] Step 3/15
+12:45:01.928  INFO   [AGENT] ==============================
+12:45:01.928  INFO   [AGENT] User input:
+12:45:01.930  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:45:01.932  INFO   [AGENT] Enviando requisicao para o modelo...
+12:45:16.447  INFO   [AGENT] Resposta do modelo recebida
+12:45:16.448  INFO   [AGENT] Resposta final retornada ao usuario
+12:45:16.450  WARN   [ORCH] extractJSON FAILED [planner] — raw (first 500 chars): {
+  "agent": "PythonAgent",
+  "instruction": "Crie e execute um script Python que:\n1. Leia o arquivo `agente/core/context.ts` (ou `src/context/ContextEngine.ts`) do projeto colabor-ai\n2. Localize a função `findSafeTruncationIndex`\n3. Adicione o seguinte bloco logo antes do `return safeStart;` ao final da função:\n\n```python\n# Bloco a ser inserido (em TypeScript):\n  // Se safeStart recuou, verificar range [safeStart, desiredStart)\n  let changed = true;\n  while (changed) {\n    changed = f
+12:45:16.451  WARN   [ORCH] extractJSON FAILED [planner] — cleaned (first 500 chars): python\n# Bloco a ser inserido (em TypeScript):\n  
+12:45:16.452  WARN   [ORCH] Planner returned invalid JSON — raw decision (first 800 chars): {
+  "agent": "PythonAgent",
+  "instruction": "Crie e execute um script Python que:\n1. Leia o arquivo `agente/core/context.ts` (ou `src/context/ContextEngine.ts`) do projeto colabor-ai\n2. Localize a função `findSafeTruncationIndex`\n3. Adicione o seguinte bloco logo antes do `return safeStart;` ao final da função:\n\n```python\n# Bloco a ser inserido (em TypeScript):\n  // Se safeStart recuou, verificar range [safeStart, desiredStart)\n  let changed = true;\n  while (changed) {\n    changed = false;\n    for (let i = safeStart; i < desiredStart; i++) {\n      const msg = messages[i];\n      if (msg.role === 'tool' && msg.tool_call_id) {\n        for (let j = i - 1; j >= 0; j--) {\n          const candidate = messages[j];\n          if (candidate.role === 'assistant' && candidate.tool_call
+12:45:16.777  WARN   [APP] [Telegram] Mensagem longa (4028 chars) - dividindo em partes
+12:46:47.161  INFO   [ORCH] ==============================
+12:46:47.162  INFO   [ORCH] ORCHESTRATOR START
+12:46:47.162  INFO   [ORCH] User input received  {"input":"Acesse o código C:\\Developer\\colabor-ai\\ \ne utilize o python para realizar as modificações necessárias"}
+12:46:47.163  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780500532589_0nltty"}
+12:46:47.195  INFO   [ORCH] Step 1/15
+12:46:47.196  INFO   [AGENT] ==============================
+12:46:47.196  INFO   [AGENT] User input:
+12:46:47.198  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:46:47.198  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:46:47.199  INFO   [AGENT] Enviando requisicao para o modelo...
+12:47:20.943  INFO   [AGENT] Resposta do modelo recebida
+12:47:20.944  INFO   [AGENT] Resposta final retornada ao usuario
+12:47:20.946  WARN   [ORCH] extractJSON FAILED [planner] — raw (first 500 chars): {
+  "agent": "PythonAgent",
+  "instruction": "Crie e execute um script Python que:\n1. Acesse o diretório C:\\Developer\\colabor-ai\\ e encontre recursivamente todos os arquivos .ts que contenham a string 'findSafeTruncationIndex'.\n2. Leia o arquivo que contém a função, localize o final dela (a linha 'return safeStart;') e insira o seguinte bloco de código TypeScript logo antes dessa linha, mantendo a indentação do contexto local (provavelmente 2 espaços):\n\n```typescript\n  // Correção: verif
+12:47:20.946  WARN   [ORCH] extractJSON FAILED [planner] — cleaned (first 500 chars): typescript\n  
+12:47:20.947  WARN   [ORCH] Planner returned invalid JSON — raw decision (first 800 chars): {
+  "agent": "PythonAgent",
+  "instruction": "Crie e execute um script Python que:\n1. Acesse o diretório C:\\Developer\\colabor-ai\\ e encontre recursivamente todos os arquivos .ts que contenham a string 'findSafeTruncationIndex'.\n2. Leia o arquivo que contém a função, localize o final dela (a linha 'return safeStart;') e insira o seguinte bloco de código TypeScript logo antes dessa linha, mantendo a indentação do contexto local (provavelmente 2 espaços):\n\n```typescript\n  // Correção: verificar tool messages órfãs no range [safeStart, desiredStart)\n  let changed = true;\n  while (changed) {\n    changed = false;\n    for (let i = safeStart; i < desiredStart; i++) {\n      const msg = messages[i];\n      if (msg.role === 'tool' && msg.tool_call_id) {\n        for (let j = i - 1; j >= 
+12:47:33.208  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
+12:47:33.210  INFO   [AGENT] Model: deepseek-v4-pro
+12:47:33.210  INFO   [AGENT] Tools disponiveis: 0
+12:47:33.277  INFO   [AGENT] Agent 'PlannerAgent' inicializado
+12:47:33.277  INFO   [AGENT] Model: deepseek-v4-pro
+12:47:33.278  INFO   [AGENT] Tools disponiveis: 0
+12:47:33.284  INFO   [AGENT] Agent 'assistant' inicializado
+12:47:33.285  INFO   [AGENT] Model: deepseek-v4-pro
+12:47:33.285  INFO   [AGENT] Tools disponiveis: 10
+12:47:33.288  INFO   [AGENT] Agent 'PythonAgent' inicializado
+12:47:33.288  INFO   [AGENT] Model: deepseek-v4-pro
+12:47:33.289  INFO   [AGENT] Tools disponiveis: 11
+12:47:33.290  INFO   [AGENT] Agent 'WriterAgent' inicializado
+12:47:33.290  INFO   [AGENT] Model: deepseek-v4-pro
+12:47:33.291  INFO   [AGENT] Tools disponiveis: 0
+12:47:33.293  INFO   [AGENT] Agent 'task_manager' inicializado
+12:47:33.293  INFO   [AGENT] Model: deepseek-v4-flash
+12:47:33.294  INFO   [AGENT] Tools disponiveis: 3
+12:47:33.295  INFO   [APP] [BackgroundTaskManager] 7 tasks carregadas do disco
+12:47:33.296  INFO   [APP] [Permissions] Agent "assistant" level set to network
+12:47:33.296  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
+12:47:33.296  INFO   [APP] [Permissions] Agent "browser" level set to network
+12:47:33.297  INFO   [APP] [Permissions] Agent "shell" level set to shell
+12:47:33.297  INFO   [APP] [Permissions] Agent "writer" level set to file_write
+12:47:33.297  INFO   [APP] [Permissions] Agent "task_manager" level set to file_write
+12:47:33.298  INFO   [ORCH] Plano carregado: 5 steps
+12:47:33.301  INFO   [APP] [Telegram] Multi-Agent iniciado.
+12:47:40.552  INFO   [ORCH] ==============================
+12:47:40.552  INFO   [ORCH] ORCHESTRATOR START
+12:47:40.553  INFO   [ORCH] User input received  {"input":"Acesse o código C:\\Developer\\colabor-ai\\ \ne utilize o python para realizar as modificações necessárias"}
+12:47:40.553  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780501653294_a6rf0u"}
+12:47:40.560  INFO   [ORCH] Step 1/15
+12:47:40.560  INFO   [AGENT] ==============================
+12:47:40.561  INFO   [AGENT] User input:
+12:47:40.567  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:47:40.568  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:47:40.570  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:16.909  INFO   [AGENT] Resposta do modelo recebida
+12:48:16.911  INFO   [AGENT] Resposta final retornada ao usuario
+12:48:16.912  INFO   [ORCH] Executing agent: PythonAgent
+12:48:16.971  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
+12:48:16.986  INFO   [AGENT] ==============================
+12:48:16.987  INFO   [AGENT] User input:
+12:48:16.991  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:48:16.992  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:48:16.994  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:23.707  INFO   [AGENT] Resposta do modelo recebida
+12:48:24.341  INFO   [AGENT] Tool calls detectadas: 2
+12:48:24.343  INFO   [AGENT] Executando tool:
+12:48:24.343  INFO   [AGENT] Nome: memory_search
+12:48:24.349  INFO   [AGENT] Executando tool:
+12:48:24.350  INFO   [AGENT] Nome: execute_python
+12:48:24.909  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:30.292  INFO   [AGENT] Resposta do modelo recebida
+12:48:30.928  INFO   [AGENT] Tool calls detectadas: 1
+12:48:30.930  INFO   [AGENT] Executando tool:
+12:48:30.932  INFO   [AGENT] Nome: execute_python
+12:48:31.107  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:36.333  INFO   [AGENT] Resposta do modelo recebida
+12:48:36.961  INFO   [AGENT] Tool calls detectadas: 1
+12:48:36.963  INFO   [AGENT] Executando tool:
+12:48:36.963  INFO   [AGENT] Nome: execute_python
+12:48:37.136  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:41.329  INFO   [AGENT] Resposta do modelo recebida
+12:48:41.955  INFO   [AGENT] Tool calls detectadas: 2
+12:48:41.956  INFO   [AGENT] Executando tool:
+12:48:41.957  INFO   [AGENT] Nome: execute_python
+12:48:42.129  INFO   [AGENT] Executando tool:
+12:48:42.129  INFO   [AGENT] Nome: execute_python
+12:48:42.297  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:46.846  INFO   [AGENT] Resposta do modelo recebida
+12:48:47.484  INFO   [AGENT] Tool calls detectadas: 2
+12:48:47.486  INFO   [AGENT] Executando tool:
+12:48:47.488  INFO   [AGENT] Nome: execute_python
+12:48:47.668  INFO   [AGENT] Executando tool:
+12:48:47.669  INFO   [AGENT] Nome: execute_python
+12:48:47.819  INFO   [AGENT] Enviando requisicao para o modelo...
+12:48:58.329  INFO   [AGENT] Resposta do modelo recebida
+12:48:58.954  INFO   [AGENT] Tool calls detectadas: 1
+12:48:58.955  INFO   [AGENT] Executando tool:
+12:48:58.956  INFO   [AGENT] Nome: execute_python
+12:48:59.140  INFO   [AGENT] Enviando requisicao para o modelo...
+12:49:09.574  INFO   [AGENT] Resposta do modelo recebida
+12:49:10.203  INFO   [AGENT] Tool calls detectadas: 1
+12:49:10.206  INFO   [AGENT] Executando tool:
+12:49:10.207  INFO   [AGENT] Nome: execute_python
+12:49:10.372  INFO   [AGENT] Enviando requisicao para o modelo...
+12:49:38.801  INFO   [AGENT] Resposta do modelo recebida
+12:49:39.437  INFO   [AGENT] Tool calls detectadas: 1
+12:49:39.438  INFO   [AGENT] Executando tool:
+12:49:39.439  INFO   [AGENT] Nome: todo_write
+12:49:39.440  INFO   [AGENT] Enviando requisicao para o modelo...
+12:49:59.176  INFO   [AGENT] Resposta do modelo recebida
+12:49:59.824  INFO   [AGENT] Tool calls detectadas: 1
+12:49:59.825  INFO   [AGENT] Executando tool:
+12:49:59.825  INFO   [AGENT] Nome: todo_write
+12:49:59.826  INFO   [AGENT] Enviando requisicao para o modelo...
+12:50:50.323  INFO   [AGENT] Resposta do modelo recebida
+12:50:51.012  INFO   [AGENT] Tool calls detectadas: 1
+12:50:51.013  INFO   [AGENT] Executando tool:
+12:50:51.013  INFO   [AGENT] Nome: execute_python
+12:50:51.195  INFO   [AGENT] Enviando requisicao para o modelo...
+12:51:29.261  INFO   [AGENT] Resposta do modelo recebida
+12:51:29.896  INFO   [AGENT] Tool calls detectadas: 1
+12:51:29.897  INFO   [AGENT] Executando tool:
+12:51:29.898  INFO   [AGENT] Nome: execute_python
+12:51:30.074  INFO   [AGENT] Enviando requisicao para o modelo...
+12:51:35.428  INFO   [AGENT] Resposta do modelo recebida
+12:51:36.103  INFO   [AGENT] Tool calls detectadas: 1
+12:51:36.105  INFO   [AGENT] Executando tool:
+12:51:36.106  INFO   [AGENT] Nome: execute_python
+12:51:36.288  INFO   [AGENT] Enviando requisicao para o modelo...
+12:51:43.147  INFO   [AGENT] Resposta do modelo recebida
+12:51:43.788  INFO   [AGENT] Tool calls detectadas: 1
+12:51:43.789  INFO   [AGENT] Executando tool:
+12:51:43.789  INFO   [AGENT] Nome: execute_python
+12:51:43.966  INFO   [AGENT] Enviando requisicao para o modelo...
+12:51:48.791  INFO   [AGENT] Resposta do modelo recebida
+12:51:49.421  INFO   [AGENT] Tool calls detectadas: 1
+12:51:49.423  INFO   [AGENT] Executando tool:
+12:51:49.424  INFO   [AGENT] Nome: execute_python
+12:51:49.617  INFO   [AGENT] Enviando requisicao para o modelo...
+12:51:54.009  INFO   [AGENT] Resposta do modelo recebida
+12:51:54.324  INFO   [AGENT] Tool calls detectadas: 1
+12:51:54.327  INFO   [AGENT] Executando tool:
+12:51:54.328  INFO   [AGENT] Nome: execute_python
+12:51:54.501  INFO   [AGENT] Enviando requisicao para o modelo...
+12:52:04.245  INFO   [AGENT] Resposta do modelo recebida
+12:52:04.879  INFO   [AGENT] Tool calls detectadas: 1
+12:52:04.881  INFO   [AGENT] Executando tool:
+12:52:04.882  INFO   [AGENT] Nome: execute_python
+12:52:05.094  INFO   [AGENT] Enviando requisicao para o modelo...
+12:52:22.208  INFO   [AGENT] Resposta do modelo recebida
+12:52:22.835  INFO   [AGENT] Tool calls detectadas: 1
+12:52:22.836  INFO   [AGENT] Executando tool:
+12:52:22.837  INFO   [AGENT] Nome: execute_python
+12:52:23.005  INFO   [AGENT] Enviando requisicao para o modelo...
+12:52:40.355  INFO   [AGENT] Resposta do modelo recebida
+12:52:40.982  INFO   [AGENT] Resposta final retornada ao usuario
+12:52:40.985  INFO   [ORCH] Plan step 4 marked as done
+12:52:40.986  INFO   [AGENT] ==============================
+12:52:40.987  INFO   [AGENT] User input:
+12:52:40.990  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:52:40.990  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:52:40.992  INFO   [AGENT] Enviando requisicao para o modelo...
+12:53:04.888  INFO   [AGENT] Resposta do modelo recebida
+12:53:04.890  INFO   [AGENT] Resposta final retornada ao usuario
+12:53:04.892  INFO   [ORCH] [Reflection #1]
+12:53:04.894  INFO   [ORCH] Step 2/15
+12:53:04.896  INFO   [AGENT] ==============================
+12:53:04.898  INFO   [AGENT] User input:
+12:53:04.900  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:53:04.903  INFO   [AGENT] Enviando requisicao para o modelo...
+12:53:38.709  INFO   [AGENT] Resposta do modelo recebida
+12:53:38.711  INFO   [AGENT] Resposta final retornada ao usuario
+12:53:38.712  INFO   [ORCH] Executing agent: PythonAgent
+12:53:38.724  INFO   [AGENT] ==============================
+12:53:38.725  INFO   [AGENT] User input:
+12:53:38.726  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+12:53:38.727  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+12:53:38.728  INFO   [AGENT] Enviando requisicao para o modelo...
+12:53:43.699  INFO   [AGENT] Resposta do modelo recebida
+12:53:44.323  INFO   [AGENT] Tool calls detectadas: 1
+12:53:44.325  INFO   [AGENT] Executando tool:
+12:53:44.326  INFO   [AGENT] Nome: execute_python
+12:53:44.514  INFO   [AGENT] Enviando requisicao para o modelo...
+12:53:51.125  INFO   [AGENT] Resposta do modelo recebida
+12:53:51.749  INFO   [AGENT] Tool calls detectadas: 1
+12:53:51.751  INFO   [AGENT] Executando tool:
+12:53:51.752  INFO   [AGENT] Nome: execute_python
+12:53:51.924  INFO   [AGENT] Enviando requisicao para o modelo...
+12:53:58.645  INFO   [AGENT] Resposta do modelo recebida
+12:53:59.268  INFO   [AGENT] Tool calls detectadas: 1
+12:53:59.269  INFO   [AGENT] Executando tool:
+12:53:59.269  INFO   [AGENT] Nome: execute_python
+12:53:59.469  INFO   [AGENT] Enviando requisicao para o modelo...
+12:54:09.661  INFO   [AGENT] Resposta do modelo recebida
+12:54:10.296  INFO   [AGENT] Tool calls detectadas: 1
+12:54:10.298  INFO   [AGENT] Executando tool:
+12:54:10.299  INFO   [AGENT] Nome: execute_python
+12:54:10.462  INFO   [AGENT] Enviando requisicao para o modelo...
+12:54:17.589  INFO   [AGENT] Resposta do modelo recebida
+12:54:18.221  INFO   [AGENT] Tool calls detectadas: 1
+12:54:18.221  INFO   [AGENT] Executando tool:
+12:54:18.222  INFO   [AGENT] Nome: execute_python
+12:54:18.389  INFO   [AGENT] Enviando requisicao para o modelo...
+12:54:26.264  INFO   [AGENT] Resposta do modelo recebida
+12:54:26.888  INFO   [AGENT] Tool calls detectadas: 1
+12:54:26.889  INFO   [AGENT] Executando tool:
+12:54:26.890  INFO   [AGENT] Nome: execute_python
+12:54:27.050  INFO   [AGENT] Enviando requisicao para o modelo...
+12:54:35.366  INFO   [AGENT] Resposta do modelo recebida
+12:54:36.070  INFO   [AGENT] Tool calls detectadas: 1
+12:54:36.071  INFO   [AGENT] Executando tool:
+12:54:36.071  INFO   [AGENT] Nome: execute_python
+12:54:36.228  INFO   [AGENT] Enviando requisicao para o modelo...
+12:55:47.666  INFO   [AGENT] Resposta do modelo recebida
+12:55:48.291  INFO   [AGENT] Tool calls detectadas: 1
+12:55:48.292  INFO   [AGENT] Executando tool:
+12:55:48.293  INFO   [AGENT] Nome: execute_python
+12:55:48.458  INFO   [AGENT] Enviando requisicao para o modelo...
+12:55:56.139  INFO   [AGENT] Resposta do modelo recebida
+12:55:56.452  INFO   [AGENT] Tool calls detectadas: 1
+12:55:56.453  INFO   [AGENT] Executando tool:
+12:55:56.454  INFO   [AGENT] Nome: execute_python
+12:55:56.821  INFO   [AGENT] Enviando requisicao para o modelo...
+12:56:02.563  INFO   [AGENT] Resposta do modelo recebida
+12:56:03.188  INFO   [AGENT] Tool calls detectadas: 1
+12:56:03.188  INFO   [AGENT] Executando tool:
+12:56:03.189  INFO   [AGENT] Nome: execute_python
+12:56:03.336  INFO   [AGENT] Enviando requisicao para o modelo...
+12:56:49.730  INFO   [AGENT] Resposta do modelo recebida
+12:56:50.350  INFO   [AGENT] Tool calls detectadas: 1
+12:56:50.352  INFO   [AGENT] Executando tool:
+12:56:50.354  INFO   [AGENT] Nome: execute_python
+12:56:50.529  INFO   [AGENT] Enviando requisicao para o modelo...
+12:56:55.464  INFO   [AGENT] Resposta do modelo recebida
+12:56:56.084  INFO   [AGENT] Tool calls detectadas: 1
+12:56:56.086  INFO   [AGENT] Executando tool:
+12:56:56.087  INFO   [AGENT] Nome: execute_python
+12:56:56.331  INFO   [AGENT] Enviando requisicao para o modelo...
+12:57:00.374  INFO   [AGENT] Resposta do modelo recebida
+12:57:00.996  INFO   [AGENT] Tool calls detectadas: 1
+12:57:00.997  INFO   [AGENT] Executando tool:
+12:57:00.998  INFO   [AGENT] Nome: execute_python
+12:57:01.236  INFO   [AGENT] Enviando requisicao para o modelo...
+12:57:04.646  INFO   [AGENT] Resposta do modelo recebida
+12:57:05.285  INFO   [AGENT] Tool calls detectadas: 1
+12:57:05.286  INFO   [AGENT] Executando tool:
+12:57:05.287  INFO   [AGENT] Nome: execute_python
+12:57:05.452  INFO   [AGENT] Enviando requisicao para o modelo...
+12:57:57.334  INFO   [AGENT] Resposta do modelo recebida
+12:57:58.015  INFO   [AGENT] Tool calls detectadas: 1
+12:57:58.017  INFO   [AGENT] Executando tool:
+12:57:58.018  INFO   [AGENT] Nome: execute_python
+12:57:58.191  INFO   [AGENT] Enviando requisicao para o modelo...
+12:58:03.810  INFO   [AGENT] Resposta do modelo recebida
+12:58:04.120  INFO   [AGENT] Tool calls detectadas: 1
+12:58:04.122  INFO   [AGENT] Executando tool:
+12:58:04.122  INFO   [AGENT] Nome: execute_python
+12:58:04.299  INFO   [AGENT] Enviando requisicao para o modelo...
+12:58:12.110  INFO   [AGENT] Resposta do modelo recebida
+12:58:12.737  INFO   [AGENT] Tool calls detectadas: 1
+12:58:12.738  INFO   [AGENT] Executando tool:
+12:58:12.739  INFO   [AGENT] Nome: execute_python
+12:58:12.971  INFO   [AGENT] Enviando requisicao para o modelo...
+12:58:32.522  INFO   [AGENT] Resposta do modelo recebida
+12:58:33.138  INFO   [AGENT] Tool calls detectadas: 1
+12:58:33.139  INFO   [AGENT] Executando tool:
+12:58:33.140  INFO   [AGENT] Nome: execute_python
+12:58:33.367  INFO   [AGENT] Enviando requisicao para o modelo...
+12:59:03.920  INFO   [AGENT] Resposta do modelo recebida
+12:59:04.553  INFO   [AGENT] Tool calls detectadas: 1
+12:59:04.555  INFO   [AGENT] Executando tool:
+12:59:04.555  INFO   [AGENT] Nome: execute_python
+12:59:04.740  INFO   [AGENT] Enviando requisicao para o modelo...
+13:00:34.569  INFO   [AGENT] Resposta do modelo recebida
+13:00:35.187  INFO   [AGENT] Tool calls detectadas: 1
+13:00:35.188  INFO   [AGENT] Executando tool:
+13:00:35.188  INFO   [AGENT] Nome: execute_python
+13:00:35.363  INFO   [AGENT] Enviando requisicao para o modelo...
+13:00:38.961  INFO   [AGENT] Resposta do modelo recebida
+13:00:39.275  INFO   [AGENT] Tool calls detectadas: 1
+13:00:39.277  INFO   [AGENT] Executando tool:
+13:00:39.278  INFO   [AGENT] Nome: execute_python
+13:00:39.533  INFO   [AGENT] Enviando requisicao para o modelo...
+13:01:01.540  INFO   [AGENT] Resposta do modelo recebida
+13:01:01.847  INFO   [AGENT] Tool calls detectadas: 1
+13:01:01.848  INFO   [AGENT] Executando tool:
+13:01:01.849  INFO   [AGENT] Nome: execute_python
+13:01:02.069  INFO   [AGENT] Enviando requisicao para o modelo...
+13:01:35.626  INFO   [AGENT] Resposta do modelo recebida
+13:01:36.251  INFO   [AGENT] Tool calls detectadas: 1
+13:01:36.253  INFO   [AGENT] Executando tool:
+13:01:36.254  INFO   [AGENT] Nome: execute_python
+13:01:36.435  INFO   [AGENT] Enviando requisicao para o modelo...
+13:01:42.650  INFO   [AGENT] Resposta do modelo recebida
+13:01:43.267  INFO   [AGENT] Tool calls detectadas: 1
+13:01:43.269  INFO   [AGENT] Executando tool:
+13:01:43.270  INFO   [AGENT] Nome: execute_python
+13:01:43.451  INFO   [AGENT] Enviando requisicao para o modelo...
+13:01:51.455  INFO   [AGENT] Resposta do modelo recebida
+13:01:51.458  INFO   [AGENT] Resposta final retornada ao usuario
+13:01:51.459  INFO   [ORCH] Plan step 4 marked as done
+13:01:51.459  INFO   [AGENT] ==============================
+13:01:51.462  INFO   [AGENT] User input:
+13:01:51.464  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:01:51.466  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:01:51.468  INFO   [AGENT] Enviando requisicao para o modelo...
+13:02:13.982  INFO   [AGENT] Resposta do modelo recebida
+13:02:13.983  INFO   [AGENT] Resposta final retornada ao usuario
+13:02:13.985  INFO   [ORCH] [Reflection #2]
+13:02:13.986  INFO   [ORCH] Step 3/15
+13:02:13.987  INFO   [AGENT] ==============================
+13:02:13.988  INFO   [AGENT] User input:
+13:02:13.990  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:02:13.991  INFO   [AGENT] Enviando requisicao para o modelo...
+13:02:31.875  INFO   [AGENT] Resposta do modelo recebida
+13:02:31.877  INFO   [AGENT] Resposta final retornada ao usuario
+13:02:31.878  INFO   [ORCH] Executing agent: PythonAgent
+13:02:31.891  INFO   [AGENT] ==============================
+13:02:31.892  INFO   [AGENT] User input:
+13:02:31.894  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:02:31.894  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:02:31.896  INFO   [AGENT] Enviando requisicao para o modelo...
+13:02:41.482  INFO   [AGENT] Resposta do modelo recebida
+13:02:42.101  INFO   [AGENT] Tool calls detectadas: 1
+13:02:42.102  INFO   [AGENT] Executando tool:
+13:02:42.102  INFO   [AGENT] Nome: execute_python
+13:02:42.279  INFO   [AGENT] Enviando requisicao para o modelo...
+13:02:54.800  INFO   [AGENT] Resposta do modelo recebida
+13:02:55.433  INFO   [AGENT] Tool calls detectadas: 1
+13:02:55.434  INFO   [AGENT] Executando tool:
+13:02:55.435  INFO   [AGENT] Nome: execute_python
+13:02:55.666  INFO   [AGENT] Enviando requisicao para o modelo...
+13:03:33.438  INFO   [AGENT] Resposta do modelo recebida
+13:03:34.053  INFO   [AGENT] Tool calls detectadas: 1
+13:03:34.055  INFO   [AGENT] Executando tool:
+13:03:34.056  INFO   [AGENT] Nome: execute_python
+13:03:34.237  INFO   [AGENT] Enviando requisicao para o modelo...
+13:04:46.506  INFO   [AGENT] Resposta do modelo recebida
+13:04:47.136  INFO   [AGENT] Tool calls detectadas: 1
+13:04:47.137  INFO   [AGENT] Executando tool:
+13:04:47.138  INFO   [AGENT] Nome: todo_write
+13:04:47.139  INFO   [AGENT] Enviando requisicao para o modelo...
+13:04:57.003  INFO   [AGENT] Resposta do modelo recebida
+13:04:57.318  INFO   [AGENT] Tool calls detectadas: 1
+13:04:57.320  INFO   [AGENT] Executando tool:
+13:04:57.321  INFO   [AGENT] Nome: execute_python
+13:04:57.495  INFO   [AGENT] Enviando requisicao para o modelo...
+13:05:24.098  INFO   [AGENT] Resposta do modelo recebida
+13:05:24.725  INFO   [AGENT] Tool calls detectadas: 1
+13:05:24.726  INFO   [AGENT] Executando tool:
+13:05:24.727  INFO   [AGENT] Nome: execute_python
+13:05:24.970  INFO   [AGENT] Enviando requisicao para o modelo...
+13:05:43.916  INFO   [AGENT] Resposta do modelo recebida
+13:05:44.542  INFO   [AGENT] Tool calls detectadas: 1
+13:05:44.543  INFO   [AGENT] Executando tool:
+13:05:44.544  INFO   [AGENT] Nome: execute_python
+13:05:44.742  INFO   [AGENT] Enviando requisicao para o modelo...
+13:06:15.856  INFO   [AGENT] Resposta do modelo recebida
+13:06:16.487  INFO   [AGENT] Tool calls detectadas: 1
+13:06:16.488  INFO   [AGENT] Executando tool:
+13:06:16.488  INFO   [AGENT] Nome: execute_python
+13:06:16.675  INFO   [AGENT] Enviando requisicao para o modelo...
+13:06:27.317  INFO   [AGENT] Resposta do modelo recebida
+13:06:56.748  INFO   [AGENT] Tool calls detectadas: 1
+13:06:56.750  INFO   [AGENT] Executando tool:
+13:06:56.751  INFO   [AGENT] Nome: execute_python
+13:06:56.949  INFO   [AGENT] Enviando requisicao para o modelo...
+13:07:07.218  INFO   [AGENT] Resposta do modelo recebida
+13:07:07.845  INFO   [AGENT] Tool calls detectadas: 1
+13:07:07.846  INFO   [AGENT] Executando tool:
+13:07:07.846  INFO   [AGENT] Nome: execute_python
+13:07:08.042  INFO   [AGENT] Enviando requisicao para o modelo...
+13:07:15.729  INFO   [AGENT] Resposta do modelo recebida
+13:07:16.375  INFO   [AGENT] Tool calls detectadas: 1
+13:07:16.377  INFO   [AGENT] Executando tool:
+13:07:16.377  INFO   [AGENT] Nome: execute_python
+13:07:16.635  INFO   [AGENT] Enviando requisicao para o modelo...
+13:07:20.192  INFO   [AGENT] Resposta do modelo recebida
+13:07:20.194  INFO   [AGENT] Tool calls detectadas: 1
+13:07:20.196  INFO   [AGENT] Executando tool:
+13:07:20.197  INFO   [AGENT] Nome: todo_write
+13:07:20.200  INFO   [AGENT] Enviando requisicao para o modelo...
+13:07:28.292  INFO   [AGENT] Resposta do modelo recebida
+13:07:28.924  INFO   [AGENT] Tool calls detectadas: 1
+13:07:28.926  INFO   [AGENT] Executando tool:
+13:07:28.926  INFO   [AGENT] Nome: execute_python
+13:07:29.190  INFO   [AGENT] Enviando requisicao para o modelo...
+13:07:41.324  INFO   [AGENT] Resposta do modelo recebida
+13:07:41.326  INFO   [AGENT] Resposta final retornada ao usuario
+13:07:41.328  INFO   [ORCH] Plan step 4 marked as done
+13:07:41.330  INFO   [AGENT] ==============================
+13:07:41.330  INFO   [AGENT] User input:
+13:07:41.333  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:07:41.333  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:07:41.335  INFO   [AGENT] Enviando requisicao para o modelo...
+13:08:03.805  INFO   [AGENT] Resposta do modelo recebida
+13:08:03.805  INFO   [AGENT] Resposta final retornada ao usuario
+13:08:03.806  INFO   [ORCH] [Reflection #3]
+13:08:03.807  INFO   [ORCH] Step 4/15
+13:08:03.808  INFO   [AGENT] ==============================
+13:08:03.808  INFO   [AGENT] User input:
+13:08:03.809  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:08:03.811  INFO   [AGENT] Enviando requisicao para o modelo...
+13:08:14.525  INFO   [AGENT] Resposta do modelo recebida
+13:08:14.526  INFO   [AGENT] Resposta final retornada ao usuario
+13:08:14.526  INFO   [ORCH] Executing agent: PythonAgent
+13:08:14.539  INFO   [AGENT] ==============================
+13:08:14.540  INFO   [AGENT] User input:
+13:08:14.541  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:08:14.542  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:08:14.543  INFO   [AGENT] Enviando requisicao para o modelo...
+13:08:22.157  INFO   [AGENT] Resposta do modelo recebida
+13:08:22.819  INFO   [AGENT] Tool calls detectadas: 1
+13:08:22.820  INFO   [AGENT] Executando tool:
+13:08:22.821  INFO   [AGENT] Nome: execute_python
+13:08:22.978  INFO   [AGENT] Enviando requisicao para o modelo...
+13:09:53.188  INFO   [AGENT] Resposta do modelo recebida
+13:09:53.817  INFO   [AGENT] Tool calls detectadas: 1
+13:09:53.817  INFO   [AGENT] Executando tool:
+13:09:53.818  INFO   [AGENT] Nome: execute_python
+13:09:53.973  INFO   [AGENT] Enviando requisicao para o modelo...
+13:09:57.420  INFO   [AGENT] Resposta do modelo recebida
+13:09:57.829  INFO   [AGENT] Tool calls detectadas: 1
+13:09:57.832  INFO   [AGENT] Executando tool:
+13:09:57.833  INFO   [AGENT] Nome: execute_python
+13:09:58.064  INFO   [AGENT] Enviando requisicao para o modelo...
+13:10:02.071  INFO   [AGENT] Resposta do modelo recebida
+13:10:02.700  INFO   [AGENT] Tool calls detectadas: 1
+13:10:02.701  INFO   [AGENT] Executando tool:
+13:10:02.702  INFO   [AGENT] Nome: execute_python
+13:10:10.036  INFO   [AGENT] Enviando requisicao para o modelo...
+13:10:15.023  INFO   [AGENT] Resposta do modelo recebida
+13:10:15.024  INFO   [AGENT] Tool calls detectadas: 1
+13:10:15.026  INFO   [AGENT] Executando tool:
+13:10:15.027  INFO   [AGENT] Nome: execute_python
+13:10:24.579  INFO   [AGENT] Enviando requisicao para o modelo...
+13:10:30.154  INFO   [AGENT] Resposta do modelo recebida
+13:10:30.783  INFO   [AGENT] Tool calls detectadas: 1
+13:10:30.784  INFO   [AGENT] Executando tool:
+13:10:30.784  INFO   [AGENT] Nome: execute_python
+13:10:30.943  INFO   [AGENT] Enviando requisicao para o modelo...
+13:11:37.172  INFO   [AGENT] Resposta do modelo recebida
+13:11:37.799  INFO   [AGENT] Tool calls detectadas: 1
+13:11:37.800  INFO   [AGENT] Executando tool:
+13:11:37.800  INFO   [AGENT] Nome: execute_python
+13:11:37.981  INFO   [AGENT] Enviando requisicao para o modelo...
+13:11:45.720  INFO   [AGENT] Resposta do modelo recebida
+13:11:46.345  INFO   [AGENT] Tool calls detectadas: 1
+13:11:46.347  INFO   [AGENT] Executando tool:
+13:11:46.348  INFO   [AGENT] Nome: execute_python
+13:11:48.183  INFO   [AGENT] Enviando requisicao para o modelo...
+13:11:54.814  INFO   [AGENT] Resposta do modelo recebida
+13:11:55.433  INFO   [AGENT] Tool calls detectadas: 1
+13:11:55.435  INFO   [AGENT] Executando tool:
+13:11:55.437  INFO   [AGENT] Nome: todo_write
+13:11:55.440  INFO   [AGENT] Enviando requisicao para o modelo...
+13:12:07.901  INFO   [AGENT] Resposta do modelo recebida
+13:12:07.903  INFO   [AGENT] Resposta final retornada ao usuario
+13:12:07.905  INFO   [ORCH] Plan step 5 marked as done
+13:12:07.906  INFO   [ORCH] Step 5/15
+13:12:07.907  INFO   [AGENT] ==============================
+13:12:07.908  INFO   [AGENT] User input:
+13:12:07.910  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:12:07.910  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:12:07.912  INFO   [AGENT] Enviando requisicao para o modelo...
+13:12:31.666  INFO   [AGENT] Resposta do modelo recebida
+13:12:31.667  INFO   [AGENT] Resposta final retornada ao usuario
+13:12:31.667  INFO   [ORCH] Executing agent: WriterAgent
+13:12:31.681  INFO   [AGENT] ==============================
+13:12:31.682  INFO   [AGENT] User input:
+13:12:31.684  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:12:31.686  INFO   [AGENT] Enviando requisicao para o modelo...
+13:12:43.214  INFO   [AGENT] Resposta do modelo recebida
+13:12:43.827  INFO   [AGENT] Resposta final retornada ao usuario
+13:12:43.828  INFO   [ORCH] Step 6/15
+13:12:43.829  INFO   [AGENT] ==============================
+13:12:43.829  INFO   [AGENT] User input:
+13:12:43.831  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:12:43.831  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:12:43.832  INFO   [AGENT] Enviando requisicao para o modelo...
+13:13:08.687  INFO   [AGENT] Resposta do modelo recebida
+13:13:08.689  INFO   [AGENT] Resposta final retornada ao usuario
+13:13:08.692  INFO   [AGENT] ==============================
+13:13:08.693  INFO   [AGENT] User input:
+13:13:08.695  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:13:08.696  INFO   [AGENT] Enviando requisicao para o modelo...
+13:13:20.541  INFO   [AGENT] Resposta do modelo recebida
+13:13:20.542  INFO   [AGENT] Resposta final retornada ao usuario
+13:13:20.545  INFO   [ORCH] Plan created with 1 steps
+13:13:20.546  INFO   [ORCH] Step 7/15
+13:13:20.547  INFO   [AGENT] ==============================
+13:13:20.548  INFO   [AGENT] User input:
+13:13:20.550  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:13:20.551  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:13:20.553  INFO   [AGENT] Enviando requisicao para o modelo...
+13:13:39.490  INFO   [AGENT] Resposta do modelo recebida
+13:13:39.492  INFO   [AGENT] Resposta final retornada ao usuario
+13:13:39.493  INFO   [ORCH] Executing agent: PythonAgent
+13:13:39.513  INFO   [AGENT] ==============================
+13:13:39.513  INFO   [AGENT] User input:
+13:13:39.515  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:13:39.516  INFO   [AGENT] Enviando requisicao para o modelo...
+13:13:43.032  INFO   [AGENT] Resposta do modelo recebida
+13:13:43.344  INFO   [AGENT] Tool calls detectadas: 1
+13:13:43.344  INFO   [AGENT] Executando tool:
+13:13:43.345  INFO   [AGENT] Nome: execute_python
+13:13:43.514  INFO   [AGENT] Enviando requisicao para o modelo...
+13:13:52.515  INFO   [AGENT] Resposta do modelo recebida
+13:13:53.161  INFO   [AGENT] Tool calls detectadas: 1
+13:13:53.162  INFO   [AGENT] Executando tool:
+13:13:53.162  INFO   [AGENT] Nome: execute_python
+13:13:53.317  INFO   [AGENT] Enviando requisicao para o modelo...
+13:14:17.032  INFO   [AGENT] Resposta do modelo recebida
+13:14:17.661  INFO   [AGENT] Tool calls detectadas: 1
+13:14:17.662  INFO   [AGENT] Executando tool:
+13:14:17.663  INFO   [AGENT] Nome: execute_python
+13:14:17.817  INFO   [AGENT] Enviando requisicao para o modelo...
+13:14:21.915  INFO   [AGENT] Resposta do modelo recebida
+13:14:22.227  INFO   [AGENT] Resposta final retornada ao usuario
+13:14:22.228  INFO   [ORCH] Plan step 1 marked as done
+13:14:22.228  INFO   [ORCH] Step 8/15
+13:14:22.229  INFO   [AGENT] ==============================
+13:14:22.229  INFO   [AGENT] User input:
+13:14:22.230  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:14:22.231  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:14:22.232  INFO   [AGENT] Enviando requisicao para o modelo...
+13:14:29.403  INFO   [AGENT] Resposta do modelo recebida
+13:14:29.405  INFO   [AGENT] Resposta final retornada ao usuario
+13:14:29.407  INFO   [ORCH] ORCHESTRATION FINISHED
+13:14:29.413  INFO   [APP] [Memory] Nota adicionada a 2026-06-03.md
+13:14:29.416  INFO   [ORCH] Plan completed successfully!
+13:14:30.447  WARN   [APP] [Telegram] Tentativa 1/3 falhou. Retry em 2000ms: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+13:14:32.641  WARN   [APP] [Telegram] Tentativa 2/3 falhou. Retry em 4000ms: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+13:14:36.842  WARN   [APP] [Telegram] Tentativa 3/3 falhou. Retry em 8000ms: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+13:14:36.844  ERROR  [APP] [Telegram] Todas as 3 tentativas falharam: ETELEGRAM: 400 Bad Request: can't parse entities: Character '.' is reserved and must be escaped with the preceding '\'
+13:19:24.256  INFO   [ORCH] ==============================
+13:19:24.257  INFO   [ORCH] ORCHESTRATOR START
+13:19:24.257  INFO   [ORCH] User input received  {"input":"execute o build se não ocorrer error faça o commit e o push"}
+13:19:24.258  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780501653294_a6rf0u"}
+13:19:24.268  INFO   [ORCH] Step 1/15
+13:19:24.269  INFO   [AGENT] ==============================
+13:19:24.269  INFO   [AGENT] User input:
+13:19:24.271  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
+13:19:24.272  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:19:24.273  INFO   [AGENT] Enviando requisicao para o modelo...
+13:19:43.862  INFO   [AGENT] Resposta do modelo recebida
+13:19:43.863  INFO   [AGENT] Resposta final retornada ao usuario
+13:19:43.863  INFO   [ORCH] Executing agent: PythonAgent
+13:19:43.869  INFO   [AGENT] ==============================
+13:19:43.869  INFO   [AGENT] User input:
+13:19:43.870  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
+13:19:43.871  INFO   [AGENT] Enviando requisicao para o modelo...
+13:19:49.777  INFO   [AGENT] Resposta do modelo recebida
+13:19:50.749  INFO   [AGENT] Tool calls detectadas: 1
+13:19:50.751  INFO   [AGENT] Executando tool:
+13:19:50.751  INFO   [AGENT] Nome: execute_python
+13:19:51.131  INFO   [AGENT] Enviando requisicao para o modelo...
+13:19:54.997  INFO   [AGENT] Resposta do modelo recebida
+13:19:55.644  INFO   [AGENT] Tool calls detectadas: 1
+13:19:55.645  INFO   [AGENT] Executando tool:
+13:19:55.646  INFO   [AGENT] Nome: execute_python
+13:19:55.827  INFO   [AGENT] Enviando requisicao para o modelo...
+13:19:59.517  INFO   [AGENT] Resposta do modelo recebida
+13:20:00.165  INFO   [AGENT] Tool calls detectadas: 1
+13:20:00.167  INFO   [AGENT] Executando tool:
+13:20:00.168  INFO   [AGENT] Nome: execute_python
+13:20:02.183  INFO   [AGENT] Enviando requisicao para o modelo...
+13:20:09.970  INFO   [AGENT] Resposta do modelo recebida
+13:20:10.623  INFO   [AGENT] Tool calls detectadas: 1
+13:20:10.624  INFO   [AGENT] Executando tool:
+13:20:10.624  INFO   [AGENT] Nome: execute_python
+13:20:10.919  INFO   [AGENT] Enviando requisicao para o modelo...
+13:20:20.712  INFO   [AGENT] Resposta do modelo recebida
+13:20:21.526  INFO   [AGENT] Tool calls detectadas: 1
+13:20:21.527  INFO   [AGENT] Executando tool:
+13:20:21.528  INFO   [AGENT] Nome: execute_python
