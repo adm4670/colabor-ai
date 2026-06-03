@@ -65,12 +65,10 @@
         }`;
     
         try {
-          const response = await this.client.chat.completions.create({
-            model: this.model,
-            messages: [{ role: "user", content: prompt }],
-            max_tokens: 500,
-            temperature: 0.3,
-          });
+          const response = await this.retryCreate(
+            { role: "user", content: prompt },
+            3
+          );
     
           const raw = response.choices[0]?.message?.content?.trim() || "{}";
           // Extract JSON from possible markdown wrapper
@@ -84,6 +82,33 @@
         } catch (err) {
           logger.error(`[PlannerAgent] Erro: ${err}`);
           return { agent: "assistant", instruction: input };
+        }
+      }
+
+      private async retryCreate(
+        message: { role: string; content: string },
+        maxRetries: number,
+        attempt = 0,
+      ): Promise<any> {
+        try {
+          return await this.client.chat.completions.create({
+            model: this.model,
+            messages: [message],
+            max_tokens: 500,
+            temperature: 0.3,
+          });
+        } catch (err: any) {
+          const isRateLimit = err?.status === 429 || err?.status === 503 || err?.status === 502;
+          if (!isRateLimit || attempt >= maxRetries) throw err;
+          const retryAfterHeader = err?.response?.headers?.['retry-after'];
+          const waitMs = retryAfterHeader
+            ? parseInt(retryAfterHeader, 10) * 1000
+            : Math.min(1000 * Math.pow(2, attempt), 8000);
+          logger.warn(
+            `[PlannerAgent] Retry ${attempt + 1}/${maxRetries} apos ${waitMs}ms`,
+          );
+          await new Promise((r) => setTimeout(r, waitMs));
+          return this.retryCreate(message, maxRetries, attempt + 1);
         }
       }
     }

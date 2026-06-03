@@ -1,0 +1,879 @@
+================================================================================
+ANALISE COMPLETA DA ESTRUTURA - colabor-ai
+================================================================================
+
+
+[(raiz)]
+------------------------------------------------------------
+  .editorconfig                                                               0.4 KB  (binario/ignorado)
+  .env                                                                        0.3 KB  5 linhas [CONFIG]
+  .env.example                                                                0.7 KB  26 linhas [CONFIG]
+  .eslintrc.json                                                              0.7 KB  26 linhas [CONFIG]
+  .gitignore                                                                  0.1 KB  11 linhas [CONFIG]
+  .prettierrc                                                                 0.2 KB  11 linhas [CONFIG]
+  Dockerfile                                                                  1.1 KB  41 linhas [CONFIG]
+  MEMORY.md                                                                  14.4 KB  306 linhas
+  README.md                                                                   8.7 KB  228 linhas
+  _agent_files.txt                                                           14.0 KB  400 linhas
+  _temp_output.txt                                                            1.4 KB  40 linhas
+  analise_estrutura.txt                                                      57.3 KB  879 linhas
+  babel.config.js                                                             0.1 KB  6 linhas
+  jest.config.ts                                                              6.5 KB  201 linhas [CONFIG]
+  package-lock.json                                                         395.9 KB  10817 linhas
+  package.json                                                                0.9 KB  31 linhas [CONFIG]
+  tsconfig.json                                                               0.7 KB  33 linhas [CONFIG]
+
+[.colabor-ai]
+------------------------------------------------------------
+  .colabor-ai\dream_state.json                                                0.1 KB  4 linhas
+  .colabor-ai\plan.md                                                         2.7 KB  46 linhas
+  .colabor-ai\todos.json                                                     14.6 KB  471 linhas
+
+[.colabor-ai\background_tasks]
+------------------------------------------------------------
+  .colabor-ai\background_tasks\state.json                                     8.7 KB  86 linhas
+
+[.colabor-ai\sessions]
+------------------------------------------------------------
+  .colabor-ai\sessions\orchestrator_1780338980069_6o4irz.jsonl                5.0 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340168118_fyrebw.jsonl                0.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340168144_r48e2z.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340168170_4s89x6.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340171039_yzzt5d.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340173797_kb5xuo.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340173805_w55sc8.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340197260_m751u9.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340197291_8jw1rq.jsonl                0.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340197295_jbr58x.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340199956_6142t8.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340202324_zh1ekb.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340202333_404o4d.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340308894_cl997u.jsonl                0.4 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340308924_gfzpks.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340308960_5xuaef.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340311568_2xfl0t.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340314240_n3vfcx.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340314248_palgp8.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340336147_4cja3v.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340336186_olf51q.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340338650_58m8xi.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340340828_b9dj8c.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340340848_d0cqma.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340389183_olys2s.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340389210_p8mpz9.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340391413_x3xuxr.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340393732_3o5q7j.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340393761_9j8xuh.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340406743_a4wcbc.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340443301_qhf5kj.jsonl                0.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340443377_9pkavc.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340443498_vahusy.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340443516_9q5rm2.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340443529_abj81o.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340443536_jlhrcf.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340476340_qhj32m.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340476478_6rov30.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340476504_vw2ogj.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340476529_vwyp3z.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340476549_2rn3nx.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340498194_bys4ea.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340536031_sni480.jsonl                0.6 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340592407_h6fi90.jsonl                0.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780340828092_sw0zky.jsonl                1.4 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780341096413_cy3y67.jsonl                1.6 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780341847256_hiatlz.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780342190689_ar9ric.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780342388976_2rf8nf.jsonl                7.8 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780342540549_v3xr3f.jsonl                2.4 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780343077912_s7d7xh.jsonl                3.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780343707468_lgxq7k.jsonl                1.8 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780344308798_cww4y7.jsonl                7.0 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780345043378_19ml1e.jsonl               11.0 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780346691678_glcrk9.jsonl               30.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780412117545_2pyo06.jsonl               44.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780418637406_rxcbd6.jsonl               48.1 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430191533_0fc3ah.jsonl                3.6 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430928121_urzq1r.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430928147_e2orgn.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430928192_wkxla5.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430930537_c11hg5.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430932427_ifco8x.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430932445_8r91ad.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430961947_8glayh.jsonl                0.6 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430961955_0ru20x.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430962000_i5psxf.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430964353_tdrs7k.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430966547_kcl37x.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430966564_8fcdm9.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430997049_koa70d.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430997067_2q6che.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430997078_483h5f.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780430998883_smcms8.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431000683_zpa1it.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431000693_p8yo63.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431196571_rbflxa.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431196596_yfz2ih.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431196628_us4bu8.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431198863_mojyab.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431200874_irafpb.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431200884_c4tm3h.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431222875_vfnumz.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431222883_o3ej3x.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431222911_dm8o89.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431224717_j98eqk.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431226629_knv207.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431226639_kvkcoi.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431274470_cfvagr.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431274478_5ipwfs.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431274506_8o7w4j.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431276565_solxws.jsonl                0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431278362_pdd07a.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780431278372_me08ii.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780433463339_b8dg6g.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780433563170_z2lez1.jsonl                1.8 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780434159689_9f40fo.jsonl               29.4 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780437510896_0uz7n8.jsonl               24.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780497748371_8wwggu.jsonl                2.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780499612557_0jl5ty.jsonl                0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780499747616_m514hq.jsonl                0.4 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780499794683_dob2aw.jsonl                1.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780500532589_0nltty.jsonl                0.7 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780501653294_a6rf0u.jsonl                1.5 KB  (binario/ignorado)
+  .colabor-ai\sessions\orchestrator_1780503701484_et27u9.jsonl                0.9 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780340167692_bb89c3.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780340196689_1h3vbz.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780340308326_kvykqn.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780340442805_3m0iep.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780340535462_y7lj49.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780340591754_r3d44x.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780430961802_agh10e.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780430996890_okyzoo.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_old_1780431196213_zp00gb.jsonl                    0.2 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780340167691_cauijf.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780340196688_z17wse.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780340308325_vat415.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780340442804_nztym7.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780340535462_6uvmtu.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780340591754_n1tv2x.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780430961802_sfvgqe.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780430996890_zccyux.jsonl                     0.3 KB  (binario/ignorado)
+  .colabor-ai\sessions\test_v2_1780431196213_oolsxi.jsonl                     0.3 KB  (binario/ignorado)
+
+[.pytest_cache]
+------------------------------------------------------------
+  .pytest_cache\.gitignore                                                    0.0 KB  2 linhas [CONFIG]
+  .pytest_cache\CACHEDIR.TAG                                                  0.2 KB  (binario/ignorado)
+  .pytest_cache\README.md                                                     0.3 KB  8 linhas
+
+[client]
+------------------------------------------------------------
+  client\.gitignore                                                           0.1 KB  6 linhas [CONFIG]
+  client\.prettierrc                                                          0.1 KB  1 linhas [CONFIG]
+  client\README.md                                                            3.2 KB  107 linhas
+  client\electron-builder.yml                                                 0.6 KB  24 linhas
+  client\eslint.config.js                                                     1.2 KB  33 linhas
+  client\index.html                                                           0.6 KB  14 linhas
+  client\package-lock.json                                                  125.3 KB  3635 linhas
+  client\package.json                                                         1.0 KB  35 linhas [CONFIG]
+  client\tsconfig.json                                                        0.7 KB  36 linhas [CONFIG]
+  client\vite.config.ts                                                       0.3 KB  16 linhas
+
+[client\electron]
+------------------------------------------------------------
+  client\electron\main.ts                                                    11.4 KB  348 linhas
+  client\electron\preload.ts                                                  4.7 KB  136 linhas
+
+[client\electron\agents]
+------------------------------------------------------------
+  client\electron\agents\desktop.ts                                           3.1 KB  73 linhas
+  client\electron\agents\file-system.ts                                       3.1 KB  75 linhas
+  client\electron\agents\index.ts                                             1.4 KB  39 linhas
+  client\electron\agents\shell.ts                                             2.6 KB  66 linhas
+  client\electron\agents\tool-executor.ts                                     3.4 KB  116 linhas
+  client\electron\agents\types.ts                                             0.3 KB  15 linhas
+
+[client\src]
+------------------------------------------------------------
+  client\src\App.tsx                                                          2.2 KB  54 linhas
+  client\src\main.tsx                                                         0.3 KB  11 linhas
+  client\src\vite-env.d.ts                                                    0.0 KB  2 linhas
+
+[client\src\components]
+------------------------------------------------------------
+  client\src\components\Chat.tsx                                              9.1 KB  272 linhas
+
+[client\src\styles]
+------------------------------------------------------------
+  client\src\styles\index.css                                                 5.5 KB  251 linhas
+
+[cloud]
+------------------------------------------------------------
+  cloud\.env.example                                                          0.3 KB  16 linhas [CONFIG]
+  cloud\.eslintignore                                                         0.1 KB  (binario/ignorado)
+  cloud\.gitignore                                                            0.1 KB  8 linhas [CONFIG]
+  cloud\.prettierrc                                                           0.1 KB  8 linhas [CONFIG]
+  cloud\README.md                                                             4.5 KB  136 linhas
+  cloud\eslint.config.js                                                      1.7 KB  55 linhas
+  cloud\jest.config.js                                                        0.5 KB  14 linhas [CONFIG]
+  cloud\jest_output.txt                                                       0.6 KB  21 linhas
+  cloud\lint_errors.txt                                                       2.7 KB  38 linhas
+  cloud\lint_final.txt                                                       49.0 KB  571 linhas
+  cloud\lint_fix_output.txt                                                   2.7 KB  38 linhas
+  cloud\lint_output.txt                                                     503.7 KB  1597 linhas
+  cloud\package-lock.json                                                   267.3 KB  7350 linhas
+  cloud\package.json                                                          1.2 KB  46 linhas [CONFIG]
+  cloud\tsconfig.json                                                         0.5 KB  26 linhas [CONFIG]
+
+[cloud\__tests__]
+------------------------------------------------------------
+  cloud\__tests__\auth.test.ts                                                4.0 KB  110 linhas
+  cloud\__tests__\context-engine.test.ts                                      7.9 KB  213 linhas
+  cloud\__tests__\tool-protocol.test.ts                                       7.7 KB  254 linhas
+
+[cloud\docs]
+------------------------------------------------------------
+  cloud\docs\.nojekyll                                                        0.1 KB  (binario/ignorado)
+  cloud\docs\index.html                                                      21.5 KB  411 linhas
+
+[cloud\docs\assets]
+------------------------------------------------------------
+  cloud\docs\assets\highlight.css                                             2.8 KB  99 linhas
+  cloud\docs\assets\icons.js                                                 14.7 KB  15 linhas
+  cloud\docs\assets\icons.svg                                                14.1 KB  1 linhas
+  cloud\docs\assets\main.js                                                  41.8 KB  59 linhas
+  cloud\docs\assets\navigation.js                                             1.2 KB  1 linhas
+  cloud\docs\assets\search.js                                                 7.7 KB  1 linhas
+  cloud\docs\assets\style.css                                                35.8 KB  1412 linhas
+
+[cloud\docs\classes]
+------------------------------------------------------------
+  cloud\docs\classes\agents_planner.PlannerAgent.html                        13.2 KB  5 linhas
+  cloud\docs\classes\agents_python.PythonAgent.html                          11.9 KB  5 linhas
+  cloud\docs\classes\context_context_engine.ContextEngine.html               29.6 KB  14 linhas
+  cloud\docs\classes\memory_memory_engine.MemoryEngine.html                  30.8 KB  14 linhas
+  cloud\docs\classes\orchestrator_orchestrator.AgentOrchestrator.html        24.6 KB  15 linhas
+
+[cloud\docs\functions]
+------------------------------------------------------------
+  cloud\docs\functions\context_context_engine.estimateMessagesTokens.html      6.5 KB  1 linhas
+  cloud\docs\functions\context_context_engine.estimateTokens.html             6.4 KB  1 linhas
+  cloud\docs\functions\context_context_engine.getDefaultEngine.html           6.3 KB  1 linhas
+  cloud\docs\functions\llm_provider.createDefaultClient.html                  6.7 KB  1 linhas
+  cloud\docs\functions\llm_provider.createLLMClient.html                      6.9 KB  1 linhas
+  cloud\docs\functions\llm_provider.getDefaultProvider.html                   6.2 KB  1 linhas
+  cloud\docs\functions\memory_memory_engine.getMemoryEngine.html              6.2 KB  1 linhas
+  cloud\docs\functions\routes_auth.default.html                              57.1 KB  50 linhas
+  cloud\docs\functions\routes_chat.authenticate.html                          8.8 KB  1 linhas
+  cloud\docs\functions\routes_chat.default.html                              57.1 KB  50 linhas
+  cloud\docs\functions\server.app.html                                      188.1 KB  270 linhas
+
+[cloud\docs\interfaces]
+------------------------------------------------------------
+  cloud\docs\interfaces\agents_planner.PlannerDecision.html                   8.9 KB  3 linhas
+  cloud\docs\interfaces\agents_planner.SubAgentInfo.html                      8.9 KB  3 linhas
+  cloud\docs\interfaces\context_context_engine.ContextEngineConfig.html      15.6 KB  8 linhas
+  cloud\docs\interfaces\context_context_engine.ContextSummary.html           11.7 KB  5 linhas
+  cloud\docs\interfaces\orchestrator_orchestrator.AgentEntry.html            13.8 KB  6 linhas
+  cloud\docs\interfaces\protocol_tool_protocol.PendingToolCall.html          15.4 KB  7 linhas
+  cloud\docs\interfaces\protocol_tool_protocol.StreamChunkMessage.html       11.6 KB  6 linhas
+  cloud\docs\interfaces\protocol_tool_protocol.ToolCallMessage.html          17.7 KB  19 linhas
+  cloud\docs\interfaces\protocol_tool_protocol.ToolResultMessage.html        14.7 KB  12 linhas
+  cloud\docs\interfaces\types.AuthPayload.html                               11.1 KB  5 linhas
+  cloud\docs\interfaces\types.ChatRequest.html                               10.0 KB  4 linhas
+  cloud\docs\interfaces\types.ChatResponse.html                              11.9 KB  5 linhas
+  cloud\docs\interfaces\types.CloudMessage.html                              12.9 KB  6 linhas
+  cloud\docs\interfaces\types.LLMProviderConfig.html                         10.1 KB  4 linhas
+  cloud\docs\interfaces\types.ToolCallRequest.html                           10.3 KB  4 linhas
+  cloud\docs\interfaces\types.ToolCallResponse.html                          10.0 KB  4 linhas
+  cloud\docs\interfaces\types.WSMessage.html                                  9.4 KB  3 linhas
+
+[cloud\docs\modules]
+------------------------------------------------------------
+  cloud\docs\modules\agents_planner.html                                      6.4 KB  4 linhas
+  cloud\docs\modules\agents_python.html                                       5.8 KB  2 linhas
+  cloud\docs\modules\context_context_engine.html                              7.2 KB  7 linhas
+  cloud\docs\modules\llm_provider.html                                        6.2 KB  4 linhas
+  cloud\docs\modules\memory_memory_engine.html                                6.2 KB  3 linhas
+  cloud\docs\modules\orchestrator_orchestrator.html                           6.6 KB  4 linhas
+  cloud\docs\modules\protocol_tool_protocol.html                              7.1 KB  7 linhas
+  cloud\docs\modules\routes_auth.html                                         5.8 KB  2 linhas
+  cloud\docs\modules\routes_chat.html                                         6.0 KB  3 linhas
+  cloud\docs\modules\server.html                                              6.6 KB  6 linhas
+  cloud\docs\modules\types.html                                               7.5 KB  10 linhas
+  cloud\docs\modules\utils_logger.html                                        5.8 KB  2 linhas
+
+[cloud\docs\types]
+------------------------------------------------------------
+  cloud\docs\types\orchestrator_orchestrator.LocalToolCallback.html           7.6 KB  2 linhas
+  cloud\docs\types\protocol_tool_protocol.WSClientMessage.html               11.8 KB  1 linhas
+  cloud\docs\types\protocol_tool_protocol.WSServerMessage.html               18.4 KB  1 linhas
+  cloud\docs\types\types.LLMProviderType.html                                 5.7 KB  1 linhas
+
+[cloud\docs\variables]
+------------------------------------------------------------
+  cloud\docs\variables\server.pendingToolCalls.html                           6.0 KB  1 linhas
+  cloud\docs\variables\server.server.html                                     5.9 KB  1 linhas
+  cloud\docs\variables\server.wsConnections.html                              6.0 KB  1 linhas
+  cloud\docs\variables\server.wss.html                                        5.9 KB  1 linhas
+  cloud\docs\variables\utils_logger.logger.html                              13.2 KB  1 linhas
+
+[cloud\src]
+------------------------------------------------------------
+  cloud\src\server.ts                                                        10.0 KB  326 linhas
+
+[cloud\src\agents]
+------------------------------------------------------------
+  cloud\src\agents\planner.ts                                                 3.0 KB  90 linhas
+  cloud\src\agents\planner.ts.bak                                             2.7 KB  (binario/ignorado)
+  cloud\src\agents\python.ts                                                  1.2 KB  45 linhas
+
+[cloud\src\context]
+------------------------------------------------------------
+  cloud\src\context\context-engine.ts                                         9.3 KB  284 linhas
+
+[cloud\src\llm]
+------------------------------------------------------------
+  cloud\src\llm\provider.ts                                                   1.0 KB  30 linhas
+
+[cloud\src\memory]
+------------------------------------------------------------
+  cloud\src\memory\memory-engine.ts                                           7.5 KB  244 linhas
+
+[cloud\src\orchestrator]
+------------------------------------------------------------
+  cloud\src\orchestrator\orchestrator.ts                                     13.2 KB  356 linhas
+  cloud\src\orchestrator\orchestrator.ts.bak                                 11.3 KB  (binario/ignorado)
+
+[cloud\src\protocol]
+------------------------------------------------------------
+  cloud\src\protocol\tool-protocol.ts                                         2.3 KB  72 linhas
+
+[cloud\src\routes]
+------------------------------------------------------------
+  cloud\src\routes\auth.ts                                                    2.9 KB  97 linhas
+  cloud\src\routes\chat.ts                                                    3.5 KB  108 linhas
+
+[cloud\src\types]
+------------------------------------------------------------
+  cloud\src\types\index.ts                                                    1.2 KB  56 linhas
+
+[cloud\src\utils]
+------------------------------------------------------------
+  cloud\src\utils\logger.ts                                                   3.9 KB  116 linhas
+
+[core]
+------------------------------------------------------------
+  core\types.ts                                                               6.7 KB  217 linhas
+
+[core\agent]
+------------------------------------------------------------
+  core\agent\agent.spec.ts                                                    7.8 KB  356 linhas
+  core\agent\agent.test.ts                                                    1.4 KB  54 linhas
+  core\agent\agent.ts                                                        19.2 KB  508 linhas
+  core\agent\main.ts                                                          1.3 KB  51 linhas
+  core\agent\sub-agent-runner.ts                                              7.9 KB  557 linhas
+
+[core\agents]
+------------------------------------------------------------
+  core\agents\agent-registry.spec.ts                                          4.0 KB  135 linhas
+  core\agents\agent-registry.ts                                               5.1 KB  172 linhas
+  core\agents\answer.agent.ts                                                 3.2 KB  126 linhas
+  core\agents\assistant.agent.ts                                              3.5 KB  82 linhas
+  core\agents\browser.agent.ts                                                6.9 KB  133 linhas
+  core\agents\planner.agent.ts                                                2.7 KB  49 linhas
+  core\agents\python.agent.ts                                                 4.4 KB  111 linhas
+  core\agents\reflector.agent.ts                                              2.7 KB  70 linhas
+  core\agents\shell.agent.ts                                                  3.4 KB  105 linhas
+  core\agents\task-manager.agent.ts                                           1.7 KB  50 linhas
+
+[core\config]
+------------------------------------------------------------
+  core\config\config.ts                                                       1.9 KB  45 linhas
+
+[core\constants]
+------------------------------------------------------------
+  core\constants\instructions.ts                                              5.1 KB  113 linhas
+
+[core\context]
+------------------------------------------------------------
+  core\context\context-engine.spec.ts                                         3.1 KB  70 linhas
+  core\context\context-engine.ts                                             19.7 KB  567 linhas
+  core\context\token-counter.ts                                               5.1 KB  162 linhas
+
+[core\hooks]
+------------------------------------------------------------
+  core\hooks\hook-system.ts                                                   4.8 KB  145 linhas
+
+[core\llm]
+------------------------------------------------------------
+  core\llm\provider.ts                                                        1.0 KB  19 linhas
+
+[core\memory]
+------------------------------------------------------------
+  core\memory\memory-engine.ts                                               13.3 KB  411 linhas
+  core\memory\memory-extractor.ts                                            12.1 KB  372 linhas
+  core\memory\memory_search.ts                                               10.0 KB  290 linhas
+
+[core\orchestrator]
+------------------------------------------------------------
+  core\orchestrator\orchestrator.spec.ts                                      3.6 KB  164 linhas
+  core\orchestrator\orchestrator.test.ts                                      2.0 KB  77 linhas
+  core\orchestrator\orchestrator.ts                                          42.0 KB  1094 linhas
+  core\orchestrator\telegram.ts                                              10.9 KB  309 linhas
+
+[core\permissions]
+------------------------------------------------------------
+  core\permissions\permission-system.ts                                       6.4 KB  211 linhas
+
+[core\plan]
+------------------------------------------------------------
+  core\plan\plan-manager.ts                                                  13.4 KB  403 linhas
+
+[core\scheduler]
+------------------------------------------------------------
+  core\scheduler\scheduler.ts                                                 5.5 KB  186 linhas
+
+[core\session]
+------------------------------------------------------------
+  core\session\session.test.ts                                                6.7 KB  178 linhas
+  core\session\transcript.ts                                                 11.6 KB  342 linhas
+
+[core\skills]
+------------------------------------------------------------
+  core\skills\skills-manager.spec.ts                                          3.3 KB  82 linhas
+  core\skills\skills-manager.ts                                              15.0 KB  454 linhas
+
+[core\stream]
+------------------------------------------------------------
+  core\stream\event-stream.ts                                                 3.6 KB  123 linhas
+
+[core\tasks]
+------------------------------------------------------------
+  core\tasks\background-task-manager.ts                                      13.5 KB  398 linhas
+  core\tasks\dream-task.ts                                                    6.3 KB  189 linhas
+
+[core\tools]
+------------------------------------------------------------
+  core\tools\ScheduleTaskTool.ts                                              7.6 KB  228 linhas
+  core\tools\TodoWriteTool.ts                                                 5.8 KB  166 linhas
+  core\tools\WebSearchTool.ts                                                 4.8 KB  151 linhas
+  core\tools\agentTool.ts                                                     2.8 KB  80 linhas
+  core\tools\browserExecTool.ts                                              13.3 KB  372 linhas
+  core\tools\browserNavigateTool.ts                                          19.7 KB  527 linhas
+  core\tools\pythonExecTool.ts                                                1.5 KB  68 linhas
+  core\tools\shellExecTool.ts                                                 1.5 KB  69 linhas
+  core\tools\task.tools.ts                                                    3.5 KB  115 linhas
+  core\tools\taskCreateTool.ts                                                7.7 KB  204 linhas
+  core\tools\tool-search.ts                                                   8.4 KB  240 linhas
+  core\tools\toolDefinition.ts                                                0.4 KB  20 linhas
+  core\tools\toolRegistry.spec.ts                                             0.6 KB  33 linhas
+  core\tools\toolRegistry.ts                                                  0.8 KB  46 linhas
+
+[core\utils]
+------------------------------------------------------------
+  core\utils\logger.ts                                                        5.1 KB  145 linhas
+
+[coverage]
+------------------------------------------------------------
+  coverage\clover.xml                                                       333.5 KB  6808 linhas
+  coverage\coverage-final.json                                              649.0 KB  23 linhas
+  coverage\lcov.info                                                         77.0 KB  (binario/ignorado)
+
+[coverage\lcov-report]
+------------------------------------------------------------
+  coverage\lcov-report\base.css                                               5.3 KB  224 linhas
+  coverage\lcov-report\block-navigation.js                                    2.6 KB  87 linhas
+  coverage\lcov-report\favicon.png                                            0.4 KB  (binario/ignorado)
+  coverage\lcov-report\index.html                                            14.4 KB  341 linhas
+  coverage\lcov-report\prettify.css                                           0.7 KB  1 linhas
+  coverage\lcov-report\prettify.js                                           17.2 KB  2 linhas
+  coverage\lcov-report\sort-arrow-sprite.png                                  0.1 KB  (binario/ignorado)
+  coverage\lcov-report\sorter.js                                              6.6 KB  210 linhas
+
+[coverage\lcov-report\agent]
+------------------------------------------------------------
+  coverage\lcov-report\agent\agent.ts.html                                   61.7 KB  1243 linhas
+  coverage\lcov-report\agent\index.html                                       5.0 KB  131 linhas
+  coverage\lcov-report\agent\sub-agent-runner.ts.html                        79.3 KB  1753 linhas
+
+[coverage\lcov-report\agents]
+------------------------------------------------------------
+  coverage\lcov-report\agents\agent-registry.ts.html                         27.0 KB  598 linhas
+  coverage\lcov-report\agents\index.html                                      5.1 KB  131 linhas
+  coverage\lcov-report\agents\reflector.agent.ts.html                        11.4 KB  292 linhas
+
+[coverage\lcov-report\cloud\src\context]
+------------------------------------------------------------
+  coverage\lcov-report\cloud\src\context\context-engine.ts.html              31.9 KB  757 linhas
+  coverage\lcov-report\cloud\src\context\index.html                           4.4 KB  116 linhas
+
+[coverage\lcov-report\cloud\src\llm]
+------------------------------------------------------------
+  coverage\lcov-report\cloud\src\llm\index.html                               4.4 KB  116 linhas
+  coverage\lcov-report\cloud\src\llm\provider.ts.html                         7.0 KB  175 linhas
+
+[coverage\lcov-report\cloud\src\utils]
+------------------------------------------------------------
+  coverage\lcov-report\cloud\src\utils\index.html                             4.4 KB  116 linhas
+  coverage\lcov-report\cloud\src\utils\logger.ts.html                         7.0 KB  178 linhas
+
+[coverage\lcov-report\config]
+------------------------------------------------------------
+  coverage\lcov-report\config\config.ts.html                                 14.7 KB  364 linhas
+  coverage\lcov-report\config\index.html                                      4.3 KB  116 linhas
+
+[coverage\lcov-report\constants]
+------------------------------------------------------------
+  coverage\lcov-report\constants\index.html                                   4.3 KB  116 linhas
+  coverage\lcov-report\constants\instructions.ts.html                        17.7 KB  421 linhas
+
+[coverage\lcov-report\context]
+------------------------------------------------------------
+  coverage\lcov-report\context\context-engine.ts.html                        77.8 KB  1552 linhas
+  coverage\lcov-report\context\index.html                                     5.1 KB  131 linhas
+  coverage\lcov-report\context\token-counter.ts.html                         26.8 KB  568 linhas
+
+[coverage\lcov-report\core\agent]
+------------------------------------------------------------
+  coverage\lcov-report\core\agent\agent.ts.html                              44.8 KB  1000 linhas
+  coverage\lcov-report\core\agent\index.html                                  5.1 KB  131 linhas
+  coverage\lcov-report\core\agent\sub-agent-runner.ts.html                   29.0 KB  592 linhas
+
+[coverage\lcov-report\core\agents]
+------------------------------------------------------------
+  coverage\lcov-report\core\agents\agent-registry.ts.html                    20.8 KB  553 linhas
+  coverage\lcov-report\core\agents\index.html                                 5.1 KB  131 linhas
+  coverage\lcov-report\core\agents\reflector.agent.ts.html                    9.0 KB  232 linhas
+
+[coverage\lcov-report\core\config]
+------------------------------------------------------------
+  coverage\lcov-report\core\config\config.ts.html                            14.7 KB  364 linhas
+  coverage\lcov-report\core\config\index.html                                 4.3 KB  116 linhas
+
+[coverage\lcov-report\core\constants]
+------------------------------------------------------------
+  coverage\lcov-report\core\constants\index.html                              4.4 KB  116 linhas
+  coverage\lcov-report\core\constants\instructions.ts.html                   16.1 KB  385 linhas
+
+[coverage\lcov-report\core\context]
+------------------------------------------------------------
+  coverage\lcov-report\core\context\context-engine.ts.html                   73.1 KB  1552 linhas
+  coverage\lcov-report\core\context\index.html                                5.1 KB  131 linhas
+  coverage\lcov-report\core\context\token-counter.ts.html                    26.8 KB  568 linhas
+
+[coverage\lcov-report\core\hooks]
+------------------------------------------------------------
+  coverage\lcov-report\core\hooks\hook-system.ts.html                        22.2 KB  517 linhas
+  coverage\lcov-report\core\hooks\index.html                                  4.4 KB  116 linhas
+
+[coverage\lcov-report\core\llm]
+------------------------------------------------------------
+  coverage\lcov-report\core\llm\index.html                                    4.3 KB  116 linhas
+  coverage\lcov-report\core\llm\provider.ts.html                              6.0 KB  142 linhas
+
+[coverage\lcov-report\core\memory]
+------------------------------------------------------------
+  coverage\lcov-report\core\memory\index.html                                 5.8 KB  146 linhas
+  coverage\lcov-report\core\memory\memory-engine.ts.html                     58.7 KB  1315 linhas
+  coverage\lcov-report\core\memory\memory-extractor.ts.html                  64.0 KB  1198 linhas
+  coverage\lcov-report\core\memory\memory_search.ts.html                     43.4 KB  952 linhas
+
+[coverage\lcov-report\core\orchestrator]
+------------------------------------------------------------
+  coverage\lcov-report\core\orchestrator\index.html                           4.4 KB  116 linhas
+  coverage\lcov-report\core\orchestrator\orchestrator.ts.html               151.4 KB  3115 linhas
+
+[coverage\lcov-report\core\permissions]
+------------------------------------------------------------
+  coverage\lcov-report\core\permissions\index.html                            4.4 KB  116 linhas
+  coverage\lcov-report\core\permissions\permission-system.ts.html            32.3 KB  715 linhas
+
+[coverage\lcov-report\core\plan]
+------------------------------------------------------------
+  coverage\lcov-report\core\plan\index.html                                   4.4 KB  116 linhas
+  coverage\lcov-report\core\plan\plan-manager.ts.html                        67.4 KB  1291 linhas
+
+[coverage\lcov-report\core\scheduler]
+------------------------------------------------------------
+  coverage\lcov-report\core\scheduler\index.html                              4.4 KB  116 linhas
+  coverage\lcov-report\core\scheduler\scheduler.ts.html                      31.3 KB  640 linhas
+
+[coverage\lcov-report\core\session]
+------------------------------------------------------------
+  coverage\lcov-report\core\session\index.html                                4.4 KB  116 linhas
+  coverage\lcov-report\core\session\transcript.ts.html                       43.8 KB  1033 linhas
+
+[coverage\lcov-report\core\skills]
+------------------------------------------------------------
+  coverage\lcov-report\core\skills\index.html                                 4.4 KB  116 linhas
+  coverage\lcov-report\core\skills\skills-manager.ts.html                    63.7 KB  1444 linhas
+
+[coverage\lcov-report\core\stream]
+------------------------------------------------------------
+  coverage\lcov-report\core\stream\event-stream.ts.html                      15.9 KB  424 linhas
+  coverage\lcov-report\core\stream\index.html                                 4.4 KB  116 linhas
+
+[coverage\lcov-report\core\tasks]
+------------------------------------------------------------
+  coverage\lcov-report\core\tasks\background-task-manager.ts.html            66.0 KB  1276 linhas
+  coverage\lcov-report\core\tasks\dream-task.ts.html                         30.1 KB  649 linhas
+  coverage\lcov-report\core\tasks\index.html                                  5.1 KB  131 linhas
+
+[coverage\lcov-report\core\tools]
+------------------------------------------------------------
+  coverage\lcov-report\core\tools\index.html                                  4.4 KB  116 linhas
+  coverage\lcov-report\core\tools\toolRegistry.ts.html                        9.0 KB  220 linhas
+
+[coverage\lcov-report\core\utils]
+------------------------------------------------------------
+  coverage\lcov-report\core\utils\index.html                                  4.4 KB  116 linhas
+  coverage\lcov-report\core\utils\logger.ts.html                             15.6 KB  370 linhas
+
+[coverage\lcov-report\hooks]
+------------------------------------------------------------
+  coverage\lcov-report\hooks\hook-system.ts.html                             22.2 KB  517 linhas
+  coverage\lcov-report\hooks\index.html                                       4.3 KB  116 linhas
+
+[coverage\lcov-report\llm]
+------------------------------------------------------------
+  coverage\lcov-report\llm\index.html                                         4.3 KB  116 linhas
+  coverage\lcov-report\llm\provider.ts.html                                   6.0 KB  142 linhas
+
+[coverage\lcov-report\memory]
+------------------------------------------------------------
+  coverage\lcov-report\memory\index.html                                      5.8 KB  146 linhas
+  coverage\lcov-report\memory\memory-engine.ts.html                          58.5 KB  1315 linhas
+  coverage\lcov-report\memory\memory-extractor.ts.html                       64.0 KB  1198 linhas
+  coverage\lcov-report\memory\memory_search.ts.html                          45.6 KB  952 linhas
+
+[coverage\lcov-report\orchestrator]
+------------------------------------------------------------
+  coverage\lcov-report\orchestrator\index.html                                4.4 KB  116 linhas
+  coverage\lcov-report\orchestrator\orchestrator.ts.html                    160.9 KB  3364 linhas
+
+[coverage\lcov-report\permissions]
+------------------------------------------------------------
+  coverage\lcov-report\permissions\index.html                                 4.4 KB  116 linhas
+  coverage\lcov-report\permissions\permission-system.ts.html                 32.2 KB  715 linhas
+
+[coverage\lcov-report\plan]
+------------------------------------------------------------
+  coverage\lcov-report\plan\index.html                                        4.4 KB  116 linhas
+  coverage\lcov-report\plan\plan-manager.ts.html                             54.9 KB  1291 linhas
+
+[coverage\lcov-report\scheduler]
+------------------------------------------------------------
+  coverage\lcov-report\scheduler\index.html                                   4.3 KB  116 linhas
+  coverage\lcov-report\scheduler\scheduler.ts.html                           31.3 KB  640 linhas
+
+[coverage\lcov-report\session]
+------------------------------------------------------------
+  coverage\lcov-report\session\index.html                                     4.4 KB  116 linhas
+  coverage\lcov-report\session\transcript.ts.html                            46.2 KB  1033 linhas
+
+[coverage\lcov-report\skills]
+------------------------------------------------------------
+  coverage\lcov-report\skills\index.html                                      4.4 KB  116 linhas
+  coverage\lcov-report\skills\skills-manager.ts.html                         63.8 KB  1444 linhas
+
+[coverage\lcov-report\stream]
+------------------------------------------------------------
+  coverage\lcov-report\stream\event-stream.ts.html                           17.4 KB  451 linhas
+  coverage\lcov-report\stream\index.html                                      4.4 KB  116 linhas
+
+[coverage\lcov-report\tasks]
+------------------------------------------------------------
+  coverage\lcov-report\tasks\background-task-manager.ts.html                 65.4 KB  1276 linhas
+  coverage\lcov-report\tasks\dream-task.ts.html                              30.1 KB  649 linhas
+  coverage\lcov-report\tasks\index.html                                       5.1 KB  131 linhas
+
+[coverage\lcov-report\utils]
+------------------------------------------------------------
+  coverage\lcov-report\utils\index.html                                       4.3 KB  116 linhas
+  coverage\lcov-report\utils\logger.ts.html                                  22.2 KB  517 linhas
+
+[docs]
+------------------------------------------------------------
+  docs\DOCUMENTACAO.html                                                     40.8 KB  894 linhas
+
+[logs]
+------------------------------------------------------------
+  logs\2026-05-31.log                                                        25.9 KB  (binario/ignorado)
+  logs\2026-06-01.log                                                       432.3 KB  (binario/ignorado)
+  logs\2026-06-02.log                                                       674.9 KB  (binario/ignorado)
+  logs\2026-06-03.log                                                       159.2 KB  (binario/ignorado)
+
+[memory]
+------------------------------------------------------------
+  memory\2026-05-28.md                                                        8.7 KB  268 linhas
+  memory\2026-05-29.md                                                       23.0 KB  769 linhas
+  memory\2026-05-30.md                                                       22.6 KB  690 linhas
+  memory\2026-05-31.md                                                       35.4 KB  1213 linhas
+  memory\2026-06-01.md                                                       13.6 KB  449 linhas
+  memory\2026-06-02.md                                                       30.0 KB  911 linhas
+  memory\2026-06-03.md                                                        3.0 KB  93 linhas
+
+[skills]
+------------------------------------------------------------
+  skills\communication.md                                                     1.1 KB  42 linhas
+  skills\python-dev.md                                                        1.1 KB  41 linhas
+  skills\web-search.md                                                        1.1 KB  40 linhas
+
+[src]
+------------------------------------------------------------
+  src\context_manager.py                                                     14.7 KB  434 linhas
+
+[src\core]
+------------------------------------------------------------
+  src\core\logger.ts                                                          3.9 KB  116 linhas
+
+[tests]
+------------------------------------------------------------
+  tests\test_context_manager.py                                              21.9 KB  549 linhas
+
+
+================================================================================
+RESUMO
+================================================================================
+Total de arquivos: 437
+Tamanho total: 8,082.8 KB (7.9 MB)
+Total de linhas (arquivos texto): 108,355
+Arquivos de configuracao: 20
+Diretorios (excluindo ignorados): 101
+
+--- Diretorios principais ---
+  (raiz)
+  .colabor-ai
+    .colabor-ai\background_tasks
+    .colabor-ai\sessions
+  .pytest_cache
+    .pytest_cache\v
+  client
+    client\electron
+      client\electron\agents
+    client\src
+      client\src\components
+      client\src\styles
+  cloud
+    cloud\__tests__
+    cloud\docs
+      cloud\docs\assets
+      cloud\docs\classes
+      cloud\docs\functions
+      cloud\docs\interfaces
+      cloud\docs\modules
+      cloud\docs\types
+      cloud\docs\variables
+    cloud\src
+      cloud\src\agents
+      cloud\src\context
+      cloud\src\llm
+      cloud\src\memory
+      cloud\src\orchestrator
+      cloud\src\protocol
+      cloud\src\routes
+      cloud\src\types
+      cloud\src\utils
+  core
+    core\agent
+    core\agents
+    core\config
+    core\constants
+    core\context
+    core\hooks
+    core\llm
+    core\memory
+    core\orchestrator
+    core\permissions
+    core\plan
+    core\scheduler
+    core\session
+    core\skills
+    core\stream
+    core\tasks
+    core\tools
+    core\utils
+  coverage
+    coverage\lcov-report
+      coverage\lcov-report\agent
+      coverage\lcov-report\agents
+      coverage\lcov-report\cloud
+        coverage\lcov-report\cloud\src
+          coverage\lcov-report\cloud\src\context
+          coverage\lcov-report\cloud\src\llm
+          coverage\lcov-report\cloud\src\utils
+      coverage\lcov-report\config
+      coverage\lcov-report\constants
+      coverage\lcov-report\context
+      coverage\lcov-report\core
+        coverage\lcov-report\core\agent
+        coverage\lcov-report\core\agents
+        coverage\lcov-report\core\config
+        coverage\lcov-report\core\constants
+        coverage\lcov-report\core\context
+        coverage\lcov-report\core\hooks
+        coverage\lcov-report\core\llm
+        coverage\lcov-report\core\memory
+        coverage\lcov-report\core\orchestrator
+        coverage\lcov-report\core\permissions
+        coverage\lcov-report\core\plan
+        coverage\lcov-report\core\scheduler
+        coverage\lcov-report\core\session
+        coverage\lcov-report\core\skills
+        coverage\lcov-report\core\stream
+        coverage\lcov-report\core\tasks
+        coverage\lcov-report\core\tools
+        coverage\lcov-report\core\utils
+      coverage\lcov-report\hooks
+      coverage\lcov-report\llm
+      coverage\lcov-report\memory
+      coverage\lcov-report\orchestrator
+      coverage\lcov-report\permissions
+      coverage\lcov-report\plan
+      coverage\lcov-report\scheduler
+      coverage\lcov-report\session
+      coverage\lcov-report\skills
+      coverage\lcov-report\stream
+      coverage\lcov-report\tasks
+      coverage\lcov-report\utils
+  docs
+  logs
+  memory
+  skills
+  src
+    src\core
+  tests
+
+--- 15 maiores arquivos (por linhas) ---
+  package-lock.json                                                        10,817 linhas
+  cloud\package-lock.json                                                   7,350 linhas
+  coverage\clover.xml                                                       6,808 linhas
+  client\package-lock.json                                                  3,635 linhas
+  coverage\lcov-report\orchestrator\orchestrator.ts.html                    3,364 linhas
+  coverage\lcov-report\core\orchestrator\orchestrator.ts.html               3,115 linhas
+  coverage\lcov-report\agent\sub-agent-runner.ts.html                       1,753 linhas
+  cloud\lint_output.txt                                                     1,597 linhas
+  coverage\lcov-report\context\context-engine.ts.html                       1,552 linhas
+  coverage\lcov-report\core\context\context-engine.ts.html                  1,552 linhas
+  coverage\lcov-report\core\skills\skills-manager.ts.html                   1,444 linhas
+  coverage\lcov-report\skills\skills-manager.ts.html                        1,444 linhas
+  cloud\docs\assets\style.css                                               1,412 linhas
+  coverage\lcov-report\core\memory\memory-engine.ts.html                    1,315 linhas
+  coverage\lcov-report\memory\memory-engine.ts.html                         1,315 linhas
+
+--- 15 maiores arquivos (por tamanho) ---
+  logs\2026-06-02.log                                                       674.9 KB
+  coverage\coverage-final.json                                              649.0 KB
+  cloud\lint_output.txt                                                     503.7 KB
+  logs\2026-06-01.log                                                       432.3 KB
+  package-lock.json                                                         395.9 KB
+  coverage\clover.xml                                                       333.5 KB
+  cloud\package-lock.json                                                   267.3 KB
+  cloud\docs\functions\server.app.html                                      188.1 KB
+  coverage\lcov-report\orchestrator\orchestrator.ts.html                    160.9 KB
+  logs\2026-06-03.log                                                       159.2 KB
+  coverage\lcov-report\core\orchestrator\orchestrator.ts.html               151.4 KB
+  client\package-lock.json                                                  125.3 KB
+  coverage\lcov-report\agent\sub-agent-runner.ts.html                        79.3 KB
+  coverage\lcov-report\context\context-engine.ts.html                        77.8 KB
+  coverage\lcov.info                                                         77.0 KB

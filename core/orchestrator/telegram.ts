@@ -136,6 +136,7 @@ import TelegramBot from "node-telegram-bot-api";
         url,
         method: "GET",
         responseType: "stream",
+        timeout: 30000,
       });
     
       await new Promise((resolve, reject) => {

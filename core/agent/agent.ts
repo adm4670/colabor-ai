@@ -2,6 +2,8 @@ import OpenAI from "openai";
 import { createLLMClient, getDefaultProvider } from "../llm/provider";
 import type { LLMProviderType } from "../types";
     import { logger, createLogger } from "../utils/logger";
+import { getLLMCache } from "../utils/cache";
+import { getRateLimiter } from "../utils/rateLimiter";
 
 const log = createLogger("AGENT");
     
@@ -180,6 +182,7 @@ export class Agent {
         this.client = new OpenAI({
           apiKey: options.apiKey ?? process.env.DEEPSEEK_API_KEY,
           baseURL: options.baseURL ?? "https://api.deepseek.com",
+          timeout: 60000,
         });
     
         log.info(`Agent '${this.name}' inicializado`);
@@ -303,6 +306,22 @@ export class Agent {
        * Retry wrapper com exponential backoff + jitter.
        * So retry em erros de rede ou rate limit (429/5xx).
        */
+      
+          /**
+           * Gera chave de cache baseada no hash da request (model + messages + tools)
+           * Usado para evitar chamadas identicas a API
+           */
+          private buildCacheKey(model: string, messages: any[], tools: any[] | undefined): string {
+            const crypto = require("crypto");
+            const payload = JSON.stringify({
+              model,
+              messages: messages.map(m => ({ role: m.role, content: (m.content || "").slice(0, 500) })),
+              toolsCount: tools?.length || 0,
+              toolNames: tools?.map(t => t.function?.name).sort().join(",") || "",
+            });
+            return crypto.createHash("md5").update(payload).digest("hex");
+          }
+    
       private async retryWithBackoff<T>(
         fn: () => Promise<T>,
         maxRetries: number = 3,
@@ -331,10 +350,18 @@ export class Agent {
               throw lastError;
             }
             
-            // Exponential backoff com �10% jitter
-            const delay = baseDelay * Math.pow(2, attempt);
-            const jitter = delay * 0.1 * (Math.random() * 2 - 1);
-            const waitMs = Math.floor(delay + jitter);
+            // Respeitar Retry-After header se presente (ex: 429 rate limit)
+            const retryAfterHeader = error?.response?.headers?.['retry-after'];
+            let waitMs: number;
+            if (retryAfterHeader) {
+              const retryAfterSec = parseInt(retryAfterHeader, 10);
+              waitMs = (!isNaN(retryAfterSec) ? retryAfterSec : 5) * 1000;
+            } else {
+              // Exponential backoff com 10% jitter
+              const delay = baseDelay * Math.pow(2, attempt);
+              const jitter = delay * 0.1 * (Math.random() * 2 - 1);
+              waitMs = Math.floor(delay + jitter);
+            }
             
             log.warn(`Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
             await new Promise(resolve => setTimeout(resolve, waitMs));
@@ -360,33 +387,64 @@ export class Agent {
           while (true) {
             log.info("Enviando requisicao para o modelo...");
             log.debug(`Historico atual: ${this.history.length} mensagens`);
-    
+            
             let response;
+            let cacheHit = false;
+            const sanitizedMessages = sanitizeMessages(this.history);
+            const cacheKey = this.buildCacheKey(this.model, sanitizedMessages, this.tools.length ? this.tools : undefined);
+            const cache = getLLMCache();
+            const cachedResponse = cache.get(cacheKey);
+            
             try {
-              response = await this.retryWithBackoff(
-                () => this.client.chat.completions.create({
-                  model: this.model,
-                  messages: sanitizeMessages(this.history) as any,
-                  tools: this.tools.length ? this.tools : undefined,
-                  tool_choice: this.tools.length ? "auto" : undefined,
-                } as any),
-                3 // maxRetries
-              );
+              if (cachedResponse) {
+                response = cachedResponse;
+                cacheHit = true;
+                log.info(`Cache hit para modelo primario (hit rate: ${cache.stats().hitRate})`);
+              } else {
+                response = await getRateLimiter().run(() =>
+                  this.retryWithBackoff(
+                    () => this.client.chat.completions.create({
+                      model: this.model,
+                      messages: sanitizedMessages as any,
+                      tools: this.tools.length ? this.tools : undefined,
+                      tool_choice: this.tools.length ? "auto" : undefined,
+                    } as any),
+                    3 // maxRetries
+                  )
+                );
+                if (!response?.choices?.[0]?.message?.tool_calls) {
+                  cache.set(cacheKey, response);
+                }
+              }
             } catch (primaryError: any) {
               if (this.fallbackModel) {
                 log.warn(`Modelo primario '${this.model}' falhou. Tentando fallback '${this.fallbackModel}'...`);
                 log.warn(`Erro: ${primaryError.message}`);
                 try {
-                  response = await this.retryWithBackoff(
-                    () => this.client.chat.completions.create({
-                      model: this.fallbackModel,
-                      messages: sanitizeMessages(this.history) as any,
-                      tools: this.tools.length ? this.tools : undefined,
-                      tool_choice: this.tools.length ? "auto" : undefined,
-                    } as any),
-                    2 // maxRetries (menos tentativas no fallback)
-                  );
-                    log.info(`Fallback para '${this.fallbackModel}' bem-sucedido.`);
+                  const fallbackCacheKey = this.buildCacheKey(this.fallbackModel!, sanitizedMessages, this.tools.length ? this.tools : undefined);
+                  const fallbackCached = cache.get(fallbackCacheKey);
+                  
+                  if (fallbackCached) {
+                    response = fallbackCached;
+                    cacheHit = true;
+                    log.info("Cache hit para modelo fallback");
+                  } else {
+                    response = await getRateLimiter().run(() =>
+                      this.retryWithBackoff(
+                        () => this.client.chat.completions.create({
+                          model: this.fallbackModel!,
+                          messages: sanitizedMessages as any,
+                          tools: this.tools.length ? this.tools : undefined,
+                          tool_choice: this.tools.length ? "auto" : undefined,
+                        } as any),
+                        2 // maxRetries (menos tentativas no fallback)
+                      )
+                    );
+                    if (!response?.choices?.[0]?.message?.tool_calls) {
+                      cache.set(fallbackCacheKey, response);
+                    }
+                  }
+                  log.info(`Fallback para '${this.fallbackModel}' bem-sucedido.`);
                 } catch (fallbackError: any) {
                   log.error(`Fallback '${this.fallbackModel}' tambem falhou: ${fallbackError.message}`);
                   throw fallbackError;

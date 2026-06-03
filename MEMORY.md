@@ -301,3 +301,31 @@
 
 ## Preferencias
 - [2026-06-03] fazer mais algum ajuste?
+
+## Preferencias
+- [2026-06-03] fazer algo novo?
+
+## Preferencias
+- [2026-06-03] já partir pra implementação de uma delas?
+
+## Extracoes Automaticas
+- [2026-06-03] 
+## Extracoes Automaticas (2026-06-03)
+- [2026-06-02] **Preferencia**: Resultado: ## O que sei sobre a **Clareia
+- [2026-06-02] **Fato** [limpeza-concluida-—-19-arquivos-+-1-diretorio-removidos-da-raiz]: Limpeza concluida — 19 arquivos + 1 diretorio removidos da raiz
+- [2026-06-02] **Fato** [limpeza-final-concluida]: Limpeza final concluida
+- [2026-06-02] **Fato** [resumo-das-alteracoes]: Resumo das alteracoes
+- [2026-06-02] **Fato** [diagnostico-do-erro]: Diagnostico do erro
+- [2026-06-02] **Fato** [resumo-do-que-ficou-pronto-hoje:]: Resumo do que ficou pronto hoje:
+- [2026-06-02] **Fato** [🎯-visão-geral]: 🎯 Visão Geral
+- [2026-06-02] **Fato** [🔴-o-erro-`erro-ao-interpretar-resposta-do-planner`]: 🔴 O erro `Erro ao interpretar resposta do planner`
+- [2026-06-02] **Fato** [resumo-das-correções-de-hoje]: Resumo das correções de hoje
+
+
+## Consolidacao Automatica
+- [2026-06-03] ## Consolidacao Automatica - 2026-06-03
+
+- 87 memorias extraidas de notas diarias
+- 9 novas memorias adicionadas ao MEMORY.md
+- 78 duplicatas ignoradas
+

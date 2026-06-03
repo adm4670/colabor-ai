@@ -18,7 +18,7 @@ export function createLLMClient(
     },
   };
   const resolved = { ...defaults[provider], ...config };
-  return new OpenAI({ apiKey: resolved.apiKey, baseURL: resolved.baseURL });
+  return new OpenAI({ apiKey: resolved.apiKey, baseURL: resolved.baseURL, timeout: 60000 });
 }
 
 export function getDefaultProvider(): LLMProviderType {
