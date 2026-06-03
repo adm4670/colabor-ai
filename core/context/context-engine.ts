@@ -94,6 +94,78 @@
       return messages.reduce((acc, msg) => acc + estimateMessageTokens(msg), 0);
     }
     
+    
+    // ============================================================
+    // Safe Truncation Helper - evita tool messages orfas
+    // ============================================================
+    
+    /**
+     * Encontra um indice de truncagem seguro que nao quebra pares
+     * assistant(tool_calls) -> tool.
+     * 
+     * Se o slice [startIndex, end) incluir mensagens "tool" cujo
+     * "assistant" com tool_calls correspondente ficou fora, recua
+     * o startIndex para incluir esse assistant.
+     * 
+     * Isso evita o erro 400 da API:
+     * "Messages with role 'tool' must be a response to a preceding
+     *  message with 'tool_calls'"
+     */
+    function findSafeTruncationIndex(
+      messages: ContextMessage[],
+      desiredStart: number
+    ): number {
+      if (desiredStart <= 0) return 0;
+      
+      let safeStart = desiredStart;
+      
+      // Varre as mensagens a partir do start desejado
+      for (let i = desiredStart; i < messages.length; i++) {
+        const msg = messages[i];
+        
+        // Se for uma tool message, precisa garantir que o assistant
+        // que gerou o tool_call esta incluso
+        if (msg.role === "tool" && msg.tool_call_id) {
+          let foundAssistant = false;
+          
+          // Procura o assistant com o tool_call correspondente
+          for (let j = i - 1; j >= 0; j--) {
+            const candidate = messages[j];
+            if (
+              candidate.role === "assistant" &&
+              candidate.tool_calls &&
+              Array.isArray(candidate.tool_calls)
+            ) {
+              const hasMatchingCall = candidate.tool_calls.some(
+                (tc: any) => tc.id === msg.tool_call_id
+              );
+              if (hasMatchingCall) {
+                // Recua o start para incluir este assistant
+                if (j < safeStart) {
+                  safeStart = j;
+                }
+                foundAssistant = true;
+                break;
+              }
+            }
+          }
+          
+          // Se nao encontrou o assistant em lugar nenhum, esta tool
+          // e realmente orfa - empurra o start para depois dela
+          if (!foundAssistant && i >= safeStart) {
+            logger.warn(
+              `[ContextEngine] Tool message orfa detectada (tool_call_id=${msg.tool_call_id}). ` +
+              `Pulando para evitar erro 400 da API.`
+            );
+            safeStart = i + 1;
+          }
+        }
+      }
+      
+      return safeStart;
+    }
+    
+    
     // ============================================================
     // ContextEngine v3
     // ============================================================
@@ -282,8 +354,10 @@
         }
     
         // Zona 1: ultimas N mensagens intactas
-        const zone1Start = Math.max(0, nonSystemMessages.length - keepRecentIntact);
-        const zone1 = nonSystemMessages.slice(zone1Start);
+        // Zona 1: ultimas N mensagens intactas (com safe truncation)
+            const rawZone1Start = Math.max(0, nonSystemMessages.length - keepRecentIntact);
+            const zone1Start = findSafeTruncationIndex(nonSystemMessages, rawZone1Start);
+            const zone1 = nonSystemMessages.slice(zone1Start);
     
         // Zona 2: proximas M mensagens para sumarizar
         const zone2Start = Math.max(0, zone1Start - summarizeZoneSize);
@@ -431,8 +505,11 @@
           recentCount++;
         }
     
-        const kept = history.slice(-recentCount);
-        const summarized = history.length - recentCount;
+        // Aplicar safe truncation para evitar tool messages orfas
+        const rawStart = Math.max(0, history.length - recentCount);
+        const safeStart = findSafeTruncationIndex(history, rawStart);
+        const kept = history.slice(safeStart);
+        const summarized = history.length - kept.length;
     
         let summary = "";
         if (summarized > 0) {

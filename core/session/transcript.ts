@@ -248,22 +248,47 @@
      * e preserva o header da sessao.
      */
     export function compactTranscript(
-      sessionId: string,
-      keepCount: number = 30
-    ): { kept: number; compacted: number } {
-      const all = loadSessionTranscript(sessionId);
-      if (all.length <= keepCount + 5) {
-        return { kept: all.length, compacted: 0 };
-      }
-      const toKeep = all.slice(-keepCount);
-      const compacted = all.length - toKeep.length;
+          sessionId: string,
+          keepCount: number = 30
+        ): { kept: number; compacted: number } {
+          const all = loadSessionTranscript(sessionId);
+          if (all.length <= keepCount + 5) {
+            return { kept: all.length, compacted: 0 };
+          }
+          
+          // Safe truncation: garante que tool messages nao fiquem orfas
+          // Se o slice incluir tool messages, recua para incluir o
+          // assistant que gerou os tool_calls (tool messages sempre
+          // seguem imediatamente o assistant que as gerou)
+          let startIdx = Math.max(0, all.length - keepCount);
+          
+          // Se a primeira mensagem do slice for "tool", recua ate encontrar
+          // o "assistant" que a precede (pulando outras tool messages)
+          if (startIdx < all.length && all[startIdx]?.role === "tool") {
+            let scanIdx = startIdx - 1;
+            while (scanIdx >= 0 && all[scanIdx]?.role === "tool") {
+              scanIdx--;
+            }
+            // scanIdx agora aponta para o assistant (ou -1 se nao encontrou)
+            if (scanIdx >= 0 && all[scanIdx]?.role === "assistant") {
+              startIdx = scanIdx;
+            } else {
+              // Assistant nao encontrado - pular tool messages orfas
+              while (startIdx < all.length && all[startIdx]?.role === "tool") {
+                startIdx++;
+              }
+            }
+          }
+          
+          const toKeep = all.slice(startIdx);
+          const compacted = all.length - toKeep.length;
     
-      // Preservar o header original
-      const existingHeader = getSessionHeader(sessionId);
-      saveSessionTranscript(sessionId, toKeep, existingHeader?.parentSession);
-      return { kept: toKeep.length, compacted };
-    }
-    
+          // Preservar o header original
+          const existingHeader = getSessionHeader(sessionId);
+          saveSessionTranscript(sessionId, toKeep, existingHeader?.parentSession);
+          return { kept: toKeep.length, compacted };
+        }
+        
     /**
      * Gera um ID de sessao baseado em timestamp + random.
      */
