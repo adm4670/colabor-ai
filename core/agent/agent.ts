@@ -102,6 +102,14 @@ const log = createLogger("AGENT");
         cleaned = [...systemMessages, ...nonSystem.slice(startIdx)];
       }
     
+
+      // === Passo 5: Truncar conteudos individuais muito grandes ===
+      const MAX_CONTENT_LENGTH = 50000;
+      cleaned = cleaned.map(msg => ({
+        ...msg,
+        content: msg.content ? safeTruncate(msg.content, MAX_CONTENT_LENGTH) : msg.content,
+      }));
+
       return cleaned;
     }
     
@@ -150,6 +158,18 @@ const log = createLogger("AGENT");
       return safeStart;
     }
     
+    /**
+     * Corta string de forma segura, garantindo que nao quebre
+     * codificacao Unicode (evita surrogates orfaos, etc.)
+     * que poderiam causar erros de parse no lado do modelo.
+     */
+    function safeTruncate(str: string, maxLen: number): string {
+      if (!str || str.length <= maxLen) return str;
+      // Corta no limite seguro (sem quebrar surrogate pairs)
+      const truncated = str.slice(0, maxLen).replace(/[\uD800-\uDBFF]$/, "");
+      return truncated;
+    }
+
     
 export class Agent {
       public name: string;
@@ -315,7 +335,7 @@ export class Agent {
           private buildCacheKey(model: string, messages: any[], tools: any[] | undefined): string {
             const payload = JSON.stringify({
               model,
-              messages: messages.map(m => ({ role: m.role, content: (m.content || "").slice(0, 500) })),
+              messages: messages.map(m => ({ role: m.role, content: safeTruncate(m.content || "", 500) })),
               toolsCount: tools?.length || 0,
               toolNames: tools?.map(t => t.function?.name).sort().join(",") || "",
             });

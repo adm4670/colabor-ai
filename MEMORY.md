@@ -96,3 +96,6 @@ Este arquivo armazena fatos duradouros, preferências, decisões e aprendizados 
 
 ## Aprendizados
 - [2026-06-04] | 6 | Modelo em `instructions
+
+## Preferencias
+- [2026-06-04] escolher outra prioridade da lista (ex: paralelismo DAG, otimização de prompts, etc
