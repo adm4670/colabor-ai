@@ -304,8 +304,8 @@
       }
     
       /** Consolida extracoes no MEMORY.md, evitando duplicacao */
-      async consolidate(extractions: MemoryExtraction[]): Promise<number> {
-        const existingMemory = await readMemoryFile();
+      consolidate(extractions: MemoryExtraction[]): number {
+        const existingMemory = readMemoryFile();
         const existingLower = existingMemory.toLowerCase();
     
         let added = 0;
@@ -340,7 +340,7 @@
     
         if (entries.length > 0) {
           const section = `\n## Extracoes Automaticas (${new Date().toISOString().slice(0, 10)})\n${entries.join("\n")}\n`;
-          await appendToMemory(section, "Extracoes Automaticas");
+          appendToMemory(section, "Extracoes Automaticas");
           logger.info(
             `[MemoryExtractor] ${added} novas memorias adicionadas (${extractions.length - added} duplicatas puladas)`
           );
@@ -350,9 +350,9 @@
       }
     
       /** Pipeline completo: extrai e consolida */
-      async run(daysBack: number = 7): Promise<{ extracted: number; added: number }> {
+      run(daysBack: number = 7): { extracted: number; added: number } {
         const extractions = this.extractFromDailyNotes(daysBack);
-        const added = await this.consolidate(extractions);
+        const added = this.consolidate(extractions);
         return { extracted: extractions.length, added };
       }
     }

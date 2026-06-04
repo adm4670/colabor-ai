@@ -281,7 +281,7 @@ export class Agent {
         let dailyContext = "";
         try {
           const { getRecentDailyNotes } = await import("../memory/memory_search");
-          const notes = getRecentDailyNotes(2);
+          const notes = await getRecentDailyNotes(2);
           if (notes.size > 0) {
             const recentNotes: string[] = [];
             notes.forEach((content, date) => {

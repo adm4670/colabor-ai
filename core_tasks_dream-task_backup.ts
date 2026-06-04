@@ -84,7 +84,7 @@
         try {
           // Usar MemoryExtractor para extracao com frontmatter + fallback heuristico
           const extractor = getMemoryExtractor();
-          const result = await extractor.run(7); // ultimos 7 dias
+          const result = extractor.run(7); // ultimos 7 dias
     
           if (result.extracted === 0) {
             return "No recent notes to consolidate.";
@@ -99,7 +99,7 @@
             "",
           ].join("\n");
     
-          await appendToMemory(summary, "Consolidacao Automatica");
+          appendToMemory(summary, "Consolidacao Automatica");
     
           logger.info(
             `[DreamTask] Consolidacao concluida: ${result.added} novas memorias de ${result.extracted} extracoes`
