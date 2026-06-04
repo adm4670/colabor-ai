@@ -9,3 +9,9 @@
 *_analysis.txt
   
 _agent_files.txt 
+
+/temp/
+/logs/
+/docs/
+/interview/
+.memory/
