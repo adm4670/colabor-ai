@@ -1,0 +1,17 @@
+[
+  {
+    "file": "core\\memory\\summarizer.ts",
+    "size_bytes": 20322,
+    "ext": ".ts"
+  },
+  {
+    "file": "context_manager.py",
+    "size_bytes": 15079,
+    "ext": ".py"
+  },
+  {
+    "file": "core\\logger.ts",
+    "size_bytes": 4010,
+    "ext": ".ts"
+  }
+]

@@ -74,28 +74,65 @@ Este arquivo armazena fatos duradouros, preferências, decisões e aprendizados 
 ## Aprendizados
 - `claude-code` tem arquitetura muito mais modular e robusta para ferramentas, interface de terminal e gerenciamento de permissões — serve como referência
 - Se algo der errado, revisar o plano dinamicamente é melhor que travar (padrão de replanning do Claude)
-- Tarefas agendadas em background precisam de tratamento cuidadoso de tool_calls (ver correção 2026-06-01)
+- Tarefas agendadas em background precisam de tratamento cuidadoso
 
-## Preferencias
-- [2026-06-04] outra coisa?
+## Arquitetura de Sub-Agentes
 
-## Preferencias
-- [2026-06-04] Mantive apenas o conteúdo realmente útil e bem estruturado
+### SubAgentRunner (`core/agent/sub-agent-runner.ts`)
 
-## Aprendizados
-- [2026-06-04] no `MEMORY
+**Proposito:** Permite que o agente principal dispare sub-agentes para delegar tarefas, inspirado no AgentTool do claude-code.
 
-## Fatos
-- [2026-06-04] acontece numa reunião palavra por palavra, e depois cortar páginas aleatórias quando o caderno fica grosso demais
+### Caracteristicas principais
 
-## Preferencias
-- [2026-06-04] fazer outra coisa?
+1. **Sub-agentes limpos** — cada sub-agente recebe um contexto novo com sua propria instrucao
+2. **Execucao paralela** — multiplos sub-agentes podem rodar simultaneamente (max. 5)
+3. **Selecao de agente** — escolhe o agente especializado ou usa o padrao "assistant"
 
-## Preferencias
-- [2026-06-04] fazer outra coisa? 😊
+### Arquitetura
 
-## Aprendizados
-- [2026-06-04] | 6 | Modelo em `instructions
+- **Classe:** `SubAgentRunner` com `maxParallel` (padrao 5) e `defaultAgentName` (padrao "assistant") no construtor
+- **Singleton:** acessado via `getSubAgentRunner()`
 
-## Preferencias
-- [2026-06-04] escolher outra prioridade da lista (ex: paralelismo DAG, otimização de prompts, etc
+### Metodos
+
+| Metodo | Descricao |
+|--------|-----------|
+| `runSingle(task)` | Executa uma tarefa em um sub-agente. Recebe `{ instruction, agentName?, taskId }`. Retorna `{ taskId, agentName, result, success, error?, durationMs }` |
+| `runBatch(tasks)` | Processa multiplas tarefas em lotes respeitando `maxParallel`. Usa `Promise.all` para paralelismo |
+| `formatResultsForContext(results)` | Formata os resultados para o contexto do agente principal |
+
+### Fluxo do `runSingle`
+
+1. Busca o agente no `agentRegistry` (`core/agents/agent-registry.ts`)
+2. O registry tenta: correspondencia exata -> case-insensitive -> fuzzy/substring -> prefix-stripped (remove sufixo "Agent")
+3. Se encontrado: chama `agent.run(instruction)` e retorna o resultado
+4. Se nao encontrado: retorna erro com lista de agentes disponiveis
+5. **Detecao de loop:** contador estatico `SubAgentRunner.currentDepth`, profundidade maxima = 3
+
+### Agentes Registrados (`agentRegistry`)
+
+| Nome | Descricao | Uso |
+|------|-----------|-----|
+| assistant | Conversa geral, perguntas, explicacoes | conversas, saudacoes, perguntas gerais |
+| PythonAgent | Execucao de Python | calculos, analise de dados, codigo, scripts |
+| browser | Navegacao web e automacao | web, internet, scraping |
+| ShellAgent | Execucao de comandos shell | npm, git, arquivos, sistema |
+| answer | (registrado) | — |
+| reflector | (registrado) | — |
+| task-manager | (registrado) | — |
+
+### Detalhes do AgentRegistry
+
+- Singleton: `export const agentRegistry = new AgentRegistry()`
+- Cada agente se registra via `agentRegistry.register({...})` ao final de seu arquivo
+- Metodo `find(name)` tenta:
+1. Correspondencia exata
+2. Case-insensitive
+3. Parcial/fuzzy substring
+4. Prefix-stripped (remove sufixo "Agent")
+
+### Limite de profundidade
+
+- Contador estatico: `SubAgentRunner.currentDepth`
+- Profundidade maxima: **3** (evita loops infinitos)
+- Mensagem de erro se excedido: _"Max spawn depth exceeded"_

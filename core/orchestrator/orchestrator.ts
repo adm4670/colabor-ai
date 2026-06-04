@@ -195,21 +195,23 @@ const log = createLogger("ORCH");
         }
     
         function restoreRateLimit(sessionId: string): void {
-          try {
-            const messages = loadSessionTranscript(sessionId);
-            let maxCount = 0;
-            for (const msg of messages) {
-              if (msg.content && msg.content.startsWith("rate_limit:")) {
-                const count = parseInt(msg.content.split(":")[1], 10);
-                if (count > maxCount) maxCount = count;
+          (async () => {
+            try {
+              const messages = await loadSessionTranscript(sessionId);
+              let maxCount = 0;
+              for (const msg of messages) {
+                if (msg.content && msg.content.startsWith("rate_limit:")) {
+                  const count = parseInt(msg.content.split(":")[1], 10);
+                  if (count > maxCount) maxCount = count;
+                }
               }
+              if (maxCount > 0) {
+                messageCounts.set(sessionId, maxCount);
+              }
+            } catch {
+              // Fallback: comeca do zero
             }
-            if (maxCount > 0) {
-              messageCounts.set(sessionId, maxCount);
-            }
-          } catch {
-            // Fallback: comeca do zero
-          }
+          })();
         }
     
         type SubAgent = {
@@ -240,9 +242,9 @@ const log = createLogger("ORCH");
         }
     
         export class AgentOrchestrator {
-          private sessionId: string;
+          private sessionId!: string;
           public eventStream: EventStream;
-          private contextEngine: ContextEngine;
+          private contextEngine!: ContextEngine;
           private memoryEngine = getMemoryEngine();
           private reflectionCount: number = 0;
     
@@ -322,23 +324,25 @@ const log = createLogger("ORCH");
             }
     
             // Carregar transcript da sessao anterior se existir
-            try {
-              const existingMessages = loadSessionTranscript(this.sessionId);
-              if (existingMessages.length > 0) {
-                this.contextEngine.loadFromTranscript(
-                  existingMessages.map((m) => ({
-                    role: m.role as "system" | "user" | "assistant" | "tool",
-                    content: m.content,
-                    name: m.name,
-                    tool_call_id: m.tool_call_id,
-                  }))
-                );
-                // Restaurar rate limit
-                restoreRateLimit(this.sessionId);
+            (async () => {
+              try {
+                const existingMessages = await loadSessionTranscript(this.sessionId);
+                if (existingMessages.length > 0) {
+                  this.contextEngine.loadFromTranscript(
+                    existingMessages.map((m) => ({
+                      role: m.role as "system" | "user" | "assistant" | "tool",
+                      content: m.content,
+                      name: m.name,
+                      tool_call_id: m.tool_call_id,
+                    }))
+                  );
+                  // Restaurar rate limit
+                  restoreRateLimit(this.sessionId);
+                }
+              } catch {
+                // Transcript nao disponivel - sessao nova
               }
-            } catch {
-              // Transcript nao disponivel - sessao nova
-            }
+            })();
           }
     
           // Sliding window: max 15 interações (30 mensagens) mantidas no histórico formatado
@@ -492,7 +496,7 @@ const log = createLogger("ORCH");
             }
     
             // Load persisted transcript
-            const persistedMessages = loadSessionTranscript(this.sessionId);
+            const persistedMessages = await loadSessionTranscript(this.sessionId);
             if (persistedMessages.length > 0 && this.debug) {
               log.debug(`Loaded ${persistedMessages.length} messages from transcript`);
             }
