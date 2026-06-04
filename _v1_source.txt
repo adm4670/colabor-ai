@@ -1,0 +1,431 @@
+#!/usr/bin/env python3
+"""
+gerar_video_enem.py - Gerador automatico de videos educacionais estilo NotebookLM
+
+Pipeline:
+  1. DeepSeek (deepseek-v4-flash) -> Gera roteiro didatico dividido em secoes
+  2. Gemini 3.1 Flash Image -> Gera ilustracoes leves/ludicas para cada secao
+  3. Edge-TTS (pt-BR-FranciscaNeural) -> Narracao em portugues
+  4. MoviePy -> Montagem do video final com transicoes
+
+Uso:
+  python gerar_video_enem.py "Equacao de segundo grau"
+  python gerar_video_enem.py "Genetica mendeliana" --duracao 3
+"""
+
+import os
+import sys
+import json
+import time
+import asyncio
+import tempfile
+import argparse
+import traceback
+import textwrap as _textwrap
+from pathlib import Path
+from datetime import datetime
+from typing import Optional
+
+# ------------------------------------------------------------
+# Configuracao de caminhos
+# ------------------------------------------------------------
+PROJECT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = PROJECT_DIR / "videos"
+OUTPUT_DIR.mkdir(exist_ok=True)
+
+# ------------------------------------------------------------
+# Constantes
+# ------------------------------------------------------------
+PALAVRAS_POR_MINUTO = 150
+SEGUNDOS_POR_PALAVRA = 60 / PALAVRAS_POR_MINUTO
+DEEPSEEK_MODEL = "deepseek-v4-flash"
+GEMINI_IMAGE_MODEL = "models/gemini-3.1-flash-image"
+EDGE_TTS_VOICE = "pt-BR-FranciscaNeural"
+FPS = 24
+VIDEO_SIZE = (1920, 1080)
+FADE_DURATION = 0.5
+
+
+# ------------------------------------------------------------
+# Utilitarios
+# ------------------------------------------------------------
+def log(msg: str, level: str = "INFO"):
+    ts = datetime.now().strftime("%H:%M:%S")
+    emoji = {"INFO": "..", "OK": "OK", "ERR": "ERRO", "GEN": ">>", "AUD": ">>", "VID": ">>"}.get(level, "..")
+    print(f"[{ts}] {emoji} {msg}")
+
+
+def estimar_duracao_texto(texto: str) -> float:
+    palavras = len(texto.split())
+    return max(3.0, palavras * SEGUNDOS_POR_PALAVRA)
+
+
+
+def clean_json(raw: str) -> str:
+    """Remove markdown code fences e extrai apenas o objeto JSON da resposta."""
+    raw = raw.strip()
+    # Remove fences ```json ... ```
+    if raw.startswith("```"):
+        lines = raw.split("\n")
+        if lines[0].startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        raw = "\n".join(lines).strip()
+    return raw
+
+
+# ------------------------------------------------------------
+# 1. GERACAO DE ROTEIRO (DeepSeek)
+# ------------------------------------------------------------
+def gerar_roteiro(topico: str, duracao_minutos: int = 5) -> dict:
+    log(f"Gerando roteiro para: '{topico}' (alvo: {duracao_minutos} min)...", "GEN")
+
+    palavras_alvo = duracao_minutos * PALAVRAS_POR_MINUTO
+    num_secoes = max(4, min(8, duracao_minutos * 2))
+
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    if not api_key:
+        raise RuntimeError("DEEPSEEK_API_KEY nao encontrada nas variaveis de ambiente.")
+
+    from openai import OpenAI
+    client = OpenAI(
+        api_key=api_key,
+        base_url="https://api.deepseek.com/v1",
+    )
+
+    system_prompt = _textwrap.dedent(f"""            Voce e um roteirista educacional especializado em conteudo para o ENEM.
+        Crie um roteiro para um video explicativo de aproximadamente {duracao_minutos} minutos
+        ({palavras_alvo} palavras no total) sobre o topico: "{topico}".
+
+        O video tera ilustracoes mudando a cada secao. Cada secao precisa de:
+        - Um titulo curto e atraente
+        - Texto de narracao fluido, coloquial e didatico (como se estivesse conversando com o estudante)
+        - Uma descricao detalhada para gerar uma ilustracao didatica/ludica (em portugues)
+
+        Regras:
+        - Tom leve, amigavel, como um professor querido
+        - Divida em {num_secoes} secoes
+        - Inclua exemplos praticos
+        - Use analogias do cotidiano quando possivel
+        - A descricao da imagem deve ser rica em detalhes visuais: cores, composicao, elementos
+        - As imagens devem ter estilo didatico, ludico, com cores suaves, como ilustracao de livro escolar
+
+        Responda APENAS com JSON valido, sem markdown ou comentarios.""")
+
+    user_prompt = f'Topico: "{topico}"\n\nGere o roteiro com {num_secoes} secoes.'
+
+    current_max_tokens = 16384
+    MAX_TOKENS_CEILING = 32768
+
+    for tentativa in range(3):
+        try:
+            response = client.chat.completions.create(
+                model=DEEPSEEK_MODEL,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=0.7,
+                max_tokens=current_max_tokens,
+                response_format={"type": "json_object"},
+            )
+
+            finish_reason = response.choices[0].finish_reason
+            raw = response.choices[0].message.content
+            log(f"Resposta bruta ({len(raw)} chars, finish_reason={finish_reason})", "GEN")
+
+            # Se truncado, dobra max_tokens e tenta de novo (ate o teto)
+            if finish_reason == "length":
+                novo = min(current_max_tokens * 2, MAX_TOKENS_CEILING)
+                if novo > current_max_tokens:
+                    log(f"Resposta truncada! Aumentando max_tokens: {current_max_tokens} -> {novo}", "ERR")
+                    current_max_tokens = novo
+                    continue
+                else:
+                    log("Resposta truncada mas ja no teto de tokens, tentando mesmo assim...", "ERR")
+
+            # Limpa markdown fences e faz parse
+            raw = clean_json(raw)
+            roteiro = json.loads(raw)
+
+            if "secoes" not in roteiro:
+                if isinstance(roteiro, list):
+                    roteiro = {"titulo": topico, "secoes": roteiro}
+                else:
+                    raise ValueError("JSON nao contem 'secoes'")
+
+            secoes = roteiro["secoes"]
+            titulo = roteiro.get("titulo", topico)
+            palavras_total = sum(len(s["narracao"].split()) for s in secoes)
+            log(f"Roteiro gerado: {len(secoes)} secoes, ~{palavras_total} palavras, titulo: '{titulo}'", "OK")
+            return roteiro
+
+        except (json.JSONDecodeError, KeyError, ValueError) as e:
+            log(f"Tentativa {tentativa+1}/3 falhou: {e}", "ERR")
+            if tentativa == 2:
+                raise RuntimeError(f"Falha ao gerar roteiro apos 3 tentativas: {e}")
+            time.sleep(2)
+
+    raise RuntimeError("Falha inesperada ao gerar roteiro.")
+    
+    
+
+
+# ------------------------------------------------------------
+# 2. GERACAO DE IMAGENS (Gemini 3.1 Flash Image)
+# ------------------------------------------------------------
+def gerar_imagem(descricao: str, output_path: Path) -> Path:
+    log(f"Gerando imagem: {descricao[:80]}...", "GEN")
+
+    import google.generativeai as genai
+    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+    prompt_imagem = (
+        "Ilustracao educacional didatica e ludica, estilo de livro escolar, "
+        "cores suaves, tracos amigaveis, ambiente acolhedor. "
+        f"Cena: {descricao}. "
+        "Sem texto na imagem. Estilo flat illustration, clean, minimalista."
+    )
+
+    model = genai.GenerativeModel(GEMINI_IMAGE_MODEL)
+
+    for tentativa in range(3):
+        try:
+            response = model.generate_content(
+                prompt_imagem,
+                generation_config=genai.GenerationConfig(
+                    temperature=0.6,
+                    max_output_tokens=4096,
+                ),
+                request_options={"timeout": 90},
+            )
+
+            for candidate in response.candidates:
+                for part in candidate.content.parts:
+                    if hasattr(part, "inline_data") and part.inline_data:
+                        mime = part.inline_data.mime_type
+                        ext = mime.split("/")[-1] if "/" in mime else "png"
+                        img_path = Path(str(output_path).rsplit(".", 1)[0] + f".{ext}")
+                        img_path.write_bytes(part.inline_data.data)
+                        log(f"Imagem salva: {img_path.name} ({len(part.inline_data.data)//1024}KB)", "OK")
+                        return img_path
+
+            log(f"Tentativa {tentativa+1}: resposta sem imagem, tentando novamente...", "ERR")
+
+        except Exception as e:
+            log(f"Tentativa {tentativa+1}/3 falhou: {type(e).__name__}: {e}", "ERR")
+            if tentativa == 2:
+                raise RuntimeError(f"Falha ao gerar imagem apos 3 tentativas: {e}")
+            time.sleep(3)
+
+    raise RuntimeError("Falha ao gerar imagem: nenhuma resposta com inline_data.")
+
+
+# ------------------------------------------------------------
+# 3. SINTESE DE AUDIO (Edge-TTS)
+# ------------------------------------------------------------
+async def gerar_audio(texto: str, output_path: Path) -> float:
+    log(f"Gerando audio para texto de {len(texto.split())} palavras...", "AUD")
+
+    import edge_tts
+
+    communicate = edge_tts.Communicate(
+        text=texto,
+        voice=EDGE_TTS_VOICE,
+        rate="+5%",
+        pitch="-2Hz",
+    )
+
+    await communicate.save(str(output_path))
+
+    duracao = estimar_duracao_texto(texto)
+    log(f"Audio salvo: {output_path.name} (~{duracao:.0f}s)", "OK")
+    return duracao
+
+
+# ------------------------------------------------------------
+# 4. MONTAGEM DO VIDEO (MoviePy)
+# ------------------------------------------------------------
+def criar_video(roteiro: dict, imagens: list, audios: list, output_path: Path) -> Path:
+    log("Montando video final...", "VID")
+
+    try:
+        from moviepy import (
+            ImageClip, AudioFileClip, concatenate_videoclips,
+            CompositeVideoClip, TextClip
+        )
+    except ImportError:
+        from moviepy.editor import (
+            ImageClip, AudioFileClip, concatenate_videoclips,
+            CompositeVideoClip, TextClip
+        )
+
+    clips = []
+    secoes = roteiro["secoes"]
+
+    for i, secao in enumerate(secoes):
+        img_path = imagens[i]
+        aud_path = audios[i]
+        titulo = secao.get("titulo", f"Parte {i+1}")
+
+        log(f"  Secao {i+1}/{len(secoes)}: '{titulo}'", "VID")
+
+        audio_clip = AudioFileClip(str(aud_path))
+        duracao = audio_clip.duration
+
+        img_clip = ImageClip(str(img_path)).with_duration(duracao)
+
+        try:
+            img_clip = img_clip.resized(height=VIDEO_SIZE[1])
+            if img_clip.w > VIDEO_SIZE[0]:
+                img_clip = img_clip.resized(width=VIDEO_SIZE[0])
+        except Exception:
+            img_clip = img_clip.resized(new_size=VIDEO_SIZE)
+
+        try:
+            txt_clip = TextClip(
+                text=titulo,
+                font_size=48,
+                color="white",
+                font="Arial",
+                stroke_color="black",
+                stroke_width=2,
+            ).with_position(("center", 40)).with_duration(duracao)
+
+            clip = CompositeVideoClip([img_clip, txt_clip]).with_audio(audio_clip)
+        except Exception:
+            clip = img_clip.with_audio(audio_clip)
+
+        clips.append(clip)
+
+    if len(clips) == 1:
+        final = clips[0]
+    else:
+        final = concatenate_videoclips(
+            clips,
+            method="compose",
+            padding=-FADE_DURATION,
+        )
+
+    log(f"Exportando video: {output_path}...", "VID")
+    final.write_videofile(
+        str(output_path),
+        fps=FPS,
+        codec="libx264",
+        audio_codec="aac",
+        preset="medium",
+        threads=4,
+        logger=None,
+    )
+
+    final.close()
+    for c in clips:
+        c.close()
+
+    tamanho_mb = output_path.stat().st_size / (1024 * 1024)
+    log(f"Video finalizado: {output_path.name} ({tamanho_mb:.1f} MB)", "OK")
+    return output_path
+
+
+# ------------------------------------------------------------
+# 5. ORQUESTRACAO PRINCIPAL
+# ------------------------------------------------------------
+async def gerar_video_enem(topico: str, duracao_minutos: int = 5, output_name: Optional[str] = None):
+    inicio = time.time()
+    barra = "=" * 60
+    log(barra)
+    log("INICIANDO GERACAO DE VIDEO")
+    log(f"Topico: '{topico}' | Duracao alvo: {duracao_minutos} min")
+    log(barra)
+
+    if output_name is None:
+        import re
+        output_name = re.sub(r"[^a-z0-9]+", "_", topico.lower().strip())[:60]
+
+    output_path = OUTPUT_DIR / f"{output_name}.mp4"
+    
+    # Pasta temp no projeto (persiste para inspecao)
+    import uuid as _uuid
+    tmp = PROJECT_DIR / "temp" / f"video_enem_{_uuid.uuid4().hex[:8]}"
+    tmp.mkdir(parents=True, exist_ok=True)
+    log(f"Diretorio de trabalho: {tmp}")
+    
+    try:
+        log("--- ETAPA 1/4: GERANDO ROTEIRO ---", "GEN")
+        roteiro = gerar_roteiro(topico, duracao_minutos)
+        secoes = roteiro["secoes"]
+    
+        log(f"--- ETAPA 2/4: GERANDO {len(secoes)} IMAGENS ---", "GEN")
+        imagens = []
+        for i, secao in enumerate(secoes):
+            img_path = tmp / f"img_{i:02d}.png"
+            desc = secao.get("descricao_imagem", secao.get("titulo", f"ilustracao sobre {topico}"))
+            img = gerar_imagem(desc, img_path)
+            imagens.append(img)
+    
+        log(f"--- ETAPA 3/4: GERANDO {len(secoes)} AUDIOS ---", "AUD")
+        audios = []
+        for i, secao in enumerate(secoes):
+            aud_path = tmp / f"aud_{i:02d}.mp3"
+            narracao = secao["narracao"]
+            await gerar_audio(narracao, aud_path)
+            audios.append(aud_path)
+    
+        log("--- ETAPA 4/4: MONTANDO VIDEO ---", "VID")
+        criar_video(roteiro, imagens, audios, output_path)
+    
+        elapsed = time.time() - inicio
+        log(barra)
+        log("VIDEO GERADO COM SUCESSO!", "OK")
+        log(f"Arquivo: {output_path}")
+        log(f"Tempo total: {elapsed:.1f}s ({elapsed/60:.1f} min)")
+        log(f"Secoes: {len(secoes)}")
+        log(barra)
+        return str(output_path)
+    
+    except Exception as e:
+        log(f"FALHA NA GERACAO: {type(e).__name__}: {e}", "ERR")
+        traceback.print_exc()
+        raise
+    
+    
+
+
+# ------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------
+def main():
+    parser = argparse.ArgumentParser(
+        description="Gerador automatico de videos educacionais estilo NotebookLM",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="Exemplos:\n"
+               '  python gerar_video_enem.py "Equacao de segundo grau"\n'
+               '  python gerar_video_enem.py "Genetica mendeliana" --duracao 3',
+    )
+    parser.add_argument("topico", help="Topico do ENEM a ser explicado")
+    parser.add_argument("--duracao", type=int, default=5, help="Duracao alvo em minutos (padrao: 5)")
+    parser.add_argument("--output", type=str, default=None, help="Nome do arquivo de saida sem extensao")
+    args = parser.parse_args()
+
+    erros = []
+    if not os.environ.get("DEEPSEEK_API_KEY"):
+        erros.append("DEEPSEEK_API_KEY")
+    if not os.environ.get("GEMINI_API_KEY"):
+        erros.append("GEMINI_API_KEY")
+    if erros:
+        print(f"ERRO: Variaveis de ambiente ausentes: {', '.join(erros)}")
+        print("   Defina-as antes de executar:")
+        print("   set DEEPSEEK_API_KEY=sk-...")
+        print("   set GEMINI_API_KEY=AIza...")
+        sys.exit(1)
+
+    asyncio.run(gerar_video_enem(
+        topico=args.topico,
+        duracao_minutos=args.duracao,
+        output_name=args.output,
+    ))
+
+
+if __name__ == "__main__":
+    main()

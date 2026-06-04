@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
+import { DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
     import { shellExecTool } from "../tools/shellExecTool";
     import { memorySearchTool } from "../memory/memory_search";
     
@@ -9,7 +9,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
       goal: "Execute shell commands and manage system-level tasks reliably",
       backstory:
         "An assistant specialized in executing CLI commands such as npm, git, and file system operations safely and efficiently.",
-      model: "deepseek-v4-pro",
+      model: "deepseek-v4-flash",
       fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
@@ -22,7 +22,6 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
       },
     
       generalInstructions: `
-        ${CORE_INSTRUCTIONS}
     
       You can execute system commands using the execute_shell tool.
       You can search long-term memory using the memory_search tool.

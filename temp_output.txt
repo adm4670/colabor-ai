@@ -1,3 +1,6 @@
+============================================================
+ARQUIVO: 2026-06-03.md
+============================================================
 # Notas Diarias - 2026-06-03
 
 ### 2026-06-03 14:45:50
@@ -247,3 +250,66 @@ O que temos hoje é **burro**:
 
 ```
 Conversa longa → dump bruto no arquivo
+
+
+============================================================
+ARQUIVO: 2026-06-04.md
+============================================================
+# Notas Diarias - 2026-06-04
+
+### 2026-06-04 04:02:13
+
+Conversa: Retorne o plano
+Resultado: ## 📋 Plano: MemorySummarizer + TokenGuard + Resiliência
+
+**Goal:** Substituir o dump bruto de conversa por memória curada por LLM, com limites de tokens e handlers para shutdown forçado do CMD.
+
+| Step | Descrição | Status |
+|------|-----------|--------|
+| 1 | Definir templates de nota diária e MEM
+
+### 2026-06-04 04:10:43
+
+Conversa: Olá
+Resultado: Olá de novo! 👋
+
+O plano **MemorySummarizer + TokenGuard** continua ativo, mas temos que ser honestos: o **Step 3** ainda não foi realmente implementado. A verificação anterior só confirmou que o arquivo `memorySummarizer.ts` **não existe** — nenhuma linha de código foi escrita.
+
+**Situação real:**
+
+### 2026-06-04 14:03:47
+
+Conversa: Olá
+Resultado: Olá! 👋
+
+Sei que a conversa deu umas voltas... Vamos ser diretos:
+
+O **Step 3** do plano MemorySummarizer é a única coisa travando o progresso. É só criar o arquivo `memorySummarizer.ts`.
+
+**Duas opções rápidas:**
+
+- **Continuar** — tento criar o arquivo agora (sem delegar ao agente Python que ficou
+
+### 2026-06-04 14:27:45
+
+Conversa: Olá
+Resultado: Olá! 👋
+
+O plano **MemorySummarizer + TokenGuard** continua ativo. Dos 8 steps, já concluímos 4:
+
+- ✅ Step 1: Mapeamento dos pontos de integração
+- ✅ Step 2: Design das templates e interfaces
+- ✅ Step 3: Criação do `summarizer.ts`
+- ✅ Step 4: Modificação do `orchestrator.ts`
+
+Restam **4 steps penden
+
+### 2026-06-04 15:37:48
+
+Conversa: Olá
+Resultado: Olá! 👋
+
+Bom te ver de novo!
+
+Temos um plano ativo da sessão anterior: **corrigir problemas no SYS_PROMPT.md e agent.ts**. Já concluímos os Steps 1 e 2 (análise e diagnóstico), e o que falta é o **Step 3: consolidar todas as correções em um documento final** com diffs exatos e instruções de aplicaçã
+

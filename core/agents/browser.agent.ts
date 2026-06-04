@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+import { DEFAULT_MODEL } from "../constants/instructions";
         import { browserExecTool, ensureBrowserAlive } from "../tools/browserExecTool";
     import { browserNavigateOpenAI } from "../tools/browserNavigateTool";
             import { agentToolOpenAI } from "../tools/agentTool";
@@ -44,7 +44,6 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
               },
         
           generalInstructions: `
-        ${CORE_INSTRUCTIONS}
     
           Voce e um agente especializado em navegacao web (browser automation).
         

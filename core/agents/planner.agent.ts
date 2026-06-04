@@ -1,17 +1,16 @@
 import { Agent } from "../agent/agent";
-    import { CORE_INSTRUCTIONS, FORMAT_RESPONSE_JSON, DEFAULT_MODEL, FALLBACK_MODEL, PLANNER_SYSTEM_PROMPT, PLANNER_RESPONSE_FORMAT } from "../constants/instructions";
+    import { FORMAT_RESPONSE_JSON, DEFAULT_MODEL, FALLBACK_MODEL, PLANNER_SYSTEM_PROMPT, PLANNER_RESPONSE_FORMAT } from "../constants/instructions";
     
     export const plannerAgent = new Agent({
         name: "PlannerAgent",
         role: "AI task planner",
         goal: "Decide which agent should execute the next step, create plans for complex tasks, and coordinate sub-agent delegation",
         backstory: "An AI responsible for coordinating other agents. It creates multi-step plans for complex tasks, delegates to specialized agents, and tracks progress.",
-        model: "deepseek-v4-pro",
+        model: "deepseek-v4-flash",
       fallbackModel: FALLBACK_MODEL,
         apiKey: process.env.DEEPSEEK_API_KEY || "",
         baseURL: "https://api.deepseek.com",
         generalInstructions: `
-            ${CORE_INSTRUCTIONS}
     
             You are responsible for selecting the best agent AND creating execution plans.
     

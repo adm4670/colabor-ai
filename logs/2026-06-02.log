@@ -1,20 +1,20 @@
 11:55:17.420  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-11:55:17.422  INFO   [AGENT] Model: deepseek-v4-pro
+11:55:17.422  INFO   [AGENT] Model: deepseek-v4-flash
 11:55:17.422  INFO   [AGENT] Tools disponiveis: 0
 11:55:17.521  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-11:55:17.521  INFO   [AGENT] Model: deepseek-v4-pro
+11:55:17.521  INFO   [AGENT] Model: deepseek-v4-flash
 11:55:17.522  INFO   [AGENT] Tools disponiveis: 0
 11:55:17.532  INFO   [AGENT] Agent 'assistant' inicializado
-11:55:17.533  INFO   [AGENT] Model: deepseek-v4-pro
+11:55:17.533  INFO   [AGENT] Model: deepseek-v4-flash
 11:55:17.533  INFO   [AGENT] Tools disponiveis: 10
 11:55:17.536  INFO   [AGENT] Agent 'PythonAgent' inicializado
-11:55:17.537  INFO   [AGENT] Model: deepseek-v4-pro
+11:55:17.537  INFO   [AGENT] Model: deepseek-v4-flash
 11:55:17.537  INFO   [AGENT] Tools disponiveis: 11
 11:55:17.539  INFO   [AGENT] Agent 'WriterAgent' inicializado
-11:55:17.540  INFO   [AGENT] Model: deepseek-v4-pro
+11:55:17.540  INFO   [AGENT] Model: deepseek-v4-flash
 11:55:17.540  INFO   [AGENT] Tools disponiveis: 0
 11:55:17.544  INFO   [AGENT] Agent 'task_manager' inicializado
-11:55:17.544  INFO   [AGENT] Model: deepseek-v4-pro
+11:55:17.544  INFO   [AGENT] Model: deepseek-v4-flash
 11:55:17.544  INFO   [AGENT] Tools disponiveis: 3
 11:55:17.546  INFO   [APP] [Permissions] Agent "assistant" level set to network
 11:55:17.546  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
@@ -629,7 +629,7 @@
 12:43:45.088  INFO   [AGENT] Nome: create_background_task
 12:43:45.092  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780415025089_6vdtfv
 12:43:45.094  INFO   [AGENT] Agent 'shell' inicializado
-12:43:45.095  INFO   [AGENT] Model: deepseek-v4-pro
+12:43:45.095  INFO   [AGENT] Model: deepseek-v4-flash
 12:43:45.095  INFO   [AGENT] Tools disponiveis: 0
 12:43:45.096  INFO   [AGENT] Historico de shell resetado.
 12:43:45.096  INFO   [AGENT] ==============================
@@ -703,9 +703,9 @@
 12:44:20.688  INFO   [AGENT] Resposta final retornada ao usuario
 12:44:20.689  INFO   [APP] [SubAgentRunner] Task sub_1780415016294_73bq concluida em 44394ms via assistant (depth 3)
 12:44:20.690  INFO   [AGENT] Enviando requisicao para o modelo...
-12:44:21.258  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+12:44:21.258  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 12:44:21.258  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-12:44:21.910  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:44:21.910  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:44:21.912  ERROR  [AGENT] Erro no Agent:
 12:44:21.912  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:44:21.913  INFO   [APP] [SubAgentRunner] Task sub_1780415006722_bc80 concluida em 55190ms via assistant (depth 2)
@@ -882,9 +882,9 @@
 12:54:24.776  INFO   [AGENT] Resposta final retornada ao usuario
 12:54:24.777  INFO   [APP] [SubAgentRunner] Task sub_1780414718143_q5ur concluida em 946633ms via PythonAgent (depth 1)
 12:54:24.777  INFO   [AGENT] Enviando requisicao para o modelo...
-12:54:26.133  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+12:54:26.133  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 12:54:26.134  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-12:54:28.283  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:54:28.283  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:54:28.284  ERROR  [AGENT] Erro no Agent:
 12:54:28.285  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:54:28.287  INFO   [ORCH] Plan step 1 marked as done
@@ -908,9 +908,9 @@
 12:54:41.860  INFO   [AGENT] User input:
 12:54:41.861  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 12:54:41.862  INFO   [AGENT] Enviando requisicao para o modelo...
-12:54:43.671  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+12:54:43.671  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 12:54:43.673  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-12:54:45.154  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:54:45.154  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:54:45.155  ERROR  [AGENT] Erro no Agent:
 12:54:45.156  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:54:45.157  INFO   [ORCH] Plan step 1 marked as done
@@ -970,9 +970,9 @@
 12:56:29.855  INFO   [AGENT] User input:
 12:56:29.858  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 12:56:29.860  INFO   [AGENT] Enviando requisicao para o modelo...
-12:56:31.361  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+12:56:31.361  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 12:56:31.362  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-12:56:33.171  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+12:56:33.171  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:56:33.173  ERROR  [AGENT] Erro no Agent:
 12:56:33.174  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 12:56:33.176  INFO   [ORCH] Plan step 1 marked as done
@@ -1107,9 +1107,9 @@
 13:07:13.749  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 13:07:13.750  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 13:07:13.751  INFO   [AGENT] Enviando requisicao para o modelo...
-13:07:14.913  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+13:07:14.913  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 13:07:14.914  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-13:07:15.870  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+13:07:15.870  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 13:07:15.871  ERROR  [AGENT] Erro no Agent:
 13:07:15.872  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 13:07:15.874  INFO   [ORCH] Plan step 3 marked as done
@@ -1295,9 +1295,9 @@
 13:23:48.327  INFO   [AGENT] User input:
 13:23:48.329  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 13:23:48.330  INFO   [AGENT] Enviando requisicao para o modelo...
-13:23:50.274  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+13:23:50.274  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 13:23:50.275  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-13:23:51.774  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+13:23:51.774  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 13:23:51.775  ERROR  [AGENT] Erro no Agent:
 13:23:51.775  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 13:23:51.777  INFO   [ORCH] Plan step 1 marked as done
@@ -1406,22 +1406,22 @@
 13:43:42.481  INFO   [AGENT] Resposta final retornada ao usuario
 13:43:42.481  WARN   [ORCH] Planner returned invalid JSON
 13:43:56.689  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-13:43:56.691  INFO   [AGENT] Model: deepseek-v4-pro
+13:43:56.691  INFO   [AGENT] Model: deepseek-v4-flash
 13:43:56.691  INFO   [AGENT] Tools disponiveis: 0
 13:43:57.284  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-13:43:57.285  INFO   [AGENT] Model: deepseek-v4-pro
+13:43:57.285  INFO   [AGENT] Model: deepseek-v4-flash
 13:43:57.285  INFO   [AGENT] Tools disponiveis: 0
 13:43:57.348  INFO   [AGENT] Agent 'assistant' inicializado
-13:43:57.348  INFO   [AGENT] Model: deepseek-v4-pro
+13:43:57.348  INFO   [AGENT] Model: deepseek-v4-flash
 13:43:57.349  INFO   [AGENT] Tools disponiveis: 10
 13:43:57.371  INFO   [AGENT] Agent 'PythonAgent' inicializado
-13:43:57.372  INFO   [AGENT] Model: deepseek-v4-pro
+13:43:57.372  INFO   [AGENT] Model: deepseek-v4-flash
 13:43:57.372  INFO   [AGENT] Tools disponiveis: 11
 13:43:57.383  INFO   [AGENT] Agent 'WriterAgent' inicializado
-13:43:57.384  INFO   [AGENT] Model: deepseek-v4-pro
+13:43:57.384  INFO   [AGENT] Model: deepseek-v4-flash
 13:43:57.384  INFO   [AGENT] Tools disponiveis: 0
 13:43:57.404  INFO   [AGENT] Agent 'task_manager' inicializado
-13:43:57.405  INFO   [AGENT] Model: deepseek-v4-pro
+13:43:57.405  INFO   [AGENT] Model: deepseek-v4-flash
 13:43:57.405  INFO   [AGENT] Tools disponiveis: 3
 13:43:57.407  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
 13:43:57.408  INFO   [APP] [Permissions] Agent "assistant" level set to network
@@ -1831,9 +1831,9 @@
 14:06:35.713  INFO   [AGENT] Executando tool:
 14:06:35.714  INFO   [AGENT] Nome: execute_python
 14:06:36.287  INFO   [AGENT] Enviando requisicao para o modelo...
-14:06:49.822  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+14:06:49.822  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 14:06:49.826  WARN   [AGENT] Erro: terminated
-14:06:51.087  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: Connection error.
+14:06:51.087  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: Connection error.
 14:06:51.088  ERROR  [AGENT] Erro no Agent:
 14:06:51.088  ERROR  [AGENT] Error: Connection error.
 14:06:51.090  INFO   [ORCH] Plan step 1 marked as done
@@ -1850,9 +1850,9 @@
 14:06:52.450  INFO   [AGENT] User input:
 14:06:52.452  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 14:06:52.454  INFO   [AGENT] Enviando requisicao para o modelo...
-14:07:04.429  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+14:07:04.429  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 14:07:04.429  WARN   [AGENT] Erro: Request timed out.
-14:07:17.829  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: Connection error.
+14:07:17.829  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: Connection error.
 14:07:17.829  ERROR  [AGENT] Erro no Agent:
 14:07:17.830  ERROR  [AGENT] Error: Connection error.
 14:07:17.830  WARN   [ORCH] Planner returned invalid JSON
@@ -1899,7 +1899,7 @@
 14:10:08.496  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 14:10:58.762  INFO   [ORCH] ==============================
 14:10:58.763  INFO   [ORCH] ORCHESTRATOR START
-14:10:58.764  INFO   [ORCH] User input received  {"input":"o código da colabor-ai está apresentando o seguinte erro: \n\n14:06:36.287  INFO   [AGENT] Enviando requisicao para o modelo...\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: read ECONNRESET\"}\n14:06:49.822  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...\n14:06:49.826  WARN   [AGENT] Erro: terminated\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:06:51.087  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: Connection error.\n14:06:51.088  ERROR  [AGENT] Erro no Agent:\n14:06:51.088  ERROR  [AGENT] Error: Connection error.\n14:06:51.090  INFO   [ORCH] Plan step 1 marked as done\n14:06:51.090  INFO   [AGENT] ==============================\n14:06:51.091  INFO   [AGENT] User input:\n14:06:51.094  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\\Developer\\colabor-ai\\skills\n14:06:51.095  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)\n14:06:51.097  INFO   [AGENT] Enviando requisicao para o modelo...\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:06:52.448  ERROR  [AGENT] Erro no Agent:\n14:06:52.449  ERROR  [AGENT] Error: Connection error.\n14:06:52.449  INFO   [ORCH] [Reflection #1]\n14:06:52.450  INFO   [ORCH] Step 3/15\n14:06:52.450  INFO   [AGENT] ==============================\n14:06:52.450  INFO   [AGENT] User input:\n14:06:52.452  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)\n14:06:52.454  INFO   [AGENT] Enviando requisicao para o modelo...\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:07:04.429  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...\n14:07:04.429  WARN   [AGENT] Erro: Request timed out.\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:07:17.829  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: Connection error.\n14:07:17.829  ERROR  [AGENT] Erro no Agent:\n14:07:17.830  ERROR  [AGENT] Error: Connection error.\n14:07:17.830  WARN   [ORCH] Planner returned invalid JSON\n14:07:17.833  WARN   [APP] [Telegram] Tentativa 1/3 falhou. Retry em 2000ms: EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:07:19.840  WARN   [APP] [Telegram] Tentativa 2/3 falhou. Retry em 4000ms: EFATAL: Error: getaddrinfo ENOTFOUND"}
+14:10:58.764  INFO   [ORCH] User input received  {"input":"o código da colabor-ai está apresentando o seguinte erro: \n\n14:06:36.287  INFO   [AGENT] Enviando requisicao para o modelo...\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: read ECONNRESET\"}\n14:06:49.822  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...\n14:06:49.826  WARN   [AGENT] Erro: terminated\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:06:51.087  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: Connection error.\n14:06:51.088  ERROR  [AGENT] Erro no Agent:\n14:06:51.088  ERROR  [AGENT] Error: Connection error.\n14:06:51.090  INFO   [ORCH] Plan step 1 marked as done\n14:06:51.090  INFO   [AGENT] ==============================\n14:06:51.091  INFO   [AGENT] User input:\n14:06:51.094  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\\Developer\\colabor-ai\\skills\n14:06:51.095  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)\n14:06:51.097  INFO   [AGENT] Enviando requisicao para o modelo...\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:06:52.448  ERROR  [AGENT] Erro no Agent:\n14:06:52.449  ERROR  [AGENT] Error: Connection error.\n14:06:52.449  INFO   [ORCH] [Reflection #1]\n14:06:52.450  INFO   [ORCH] Step 3/15\n14:06:52.450  INFO   [AGENT] ==============================\n14:06:52.450  INFO   [AGENT] User input:\n14:06:52.452  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)\n14:06:52.454  INFO   [AGENT] Enviando requisicao para o modelo...\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:07:04.429  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...\n14:07:04.429  WARN   [AGENT] Erro: Request timed out.\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:07:17.829  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: Connection error.\n14:07:17.829  ERROR  [AGENT] Erro no Agent:\n14:07:17.830  ERROR  [AGENT] Error: Connection error.\n14:07:17.830  WARN   [ORCH] Planner returned invalid JSON\n14:07:17.833  WARN   [APP] [Telegram] Tentativa 1/3 falhou. Retry em 2000ms: EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\nerror: [polling_error] {\"code\":\"EFATAL\",\"message\":\"EFATAL: Error: getaddrinfo ENOTFOUND api.telegram.org\"}\n14:07:19.840  WARN   [APP] [Telegram] Tentativa 2/3 falhou. Retry em 4000ms: EFATAL: Error: getaddrinfo ENOTFOUND"}
 14:10:58.765  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780418637406_rxcbd6"}
 14:10:58.879  INFO   [ORCH] Step 1/15
 14:10:58.880  INFO   [AGENT] ==============================
@@ -4108,22 +4108,22 @@
 16:55:42.751  INFO   [AGENT] Resposta final retornada ao usuario
 16:55:42.751  WARN   [ORCH] Planner returned invalid JSON
 16:56:30.784  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-16:56:30.785  INFO   [AGENT] Model: deepseek-v4-pro
+16:56:30.785  INFO   [AGENT] Model: deepseek-v4-flash
 16:56:30.786  INFO   [AGENT] Tools disponiveis: 0
 16:56:31.405  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-16:56:31.406  INFO   [AGENT] Model: deepseek-v4-pro
+16:56:31.406  INFO   [AGENT] Model: deepseek-v4-flash
 16:56:31.406  INFO   [AGENT] Tools disponiveis: 0
 16:56:31.474  INFO   [AGENT] Agent 'assistant' inicializado
-16:56:31.474  INFO   [AGENT] Model: deepseek-v4-pro
+16:56:31.474  INFO   [AGENT] Model: deepseek-v4-flash
 16:56:31.475  INFO   [AGENT] Tools disponiveis: 10
 16:56:31.498  INFO   [AGENT] Agent 'PythonAgent' inicializado
-16:56:31.498  INFO   [AGENT] Model: deepseek-v4-pro
+16:56:31.498  INFO   [AGENT] Model: deepseek-v4-flash
 16:56:31.499  INFO   [AGENT] Tools disponiveis: 11
 16:56:31.510  INFO   [AGENT] Agent 'WriterAgent' inicializado
-16:56:31.510  INFO   [AGENT] Model: deepseek-v4-pro
+16:56:31.510  INFO   [AGENT] Model: deepseek-v4-flash
 16:56:31.511  INFO   [AGENT] Tools disponiveis: 0
 16:56:31.531  INFO   [AGENT] Agent 'task_manager' inicializado
-16:56:31.531  INFO   [AGENT] Model: deepseek-v4-pro
+16:56:31.531  INFO   [AGENT] Model: deepseek-v4-flash
 16:56:31.532  INFO   [AGENT] Tools disponiveis: 3
 16:56:31.538  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
 16:56:31.539  INFO   [APP] [Permissions] Agent "assistant" level set to network
@@ -4381,11 +4381,11 @@
 17:01:54.623  INFO   [AGENT] Resposta final retornada ao usuario
 17:01:54.623  INFO   [APP] [SubAgentRunner] Task sub_1780430424352_lkeu concluida em 90270ms via assistant (depth 1)
 17:01:54.624  INFO   [AGENT] Enviando requisicao para o modelo...
-17:01:55.311  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'gpt-4o-mini'...
+17:01:55.311  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'gpt-4o-mini'...
 17:01:55.312  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-17:01:56.028  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:01:56.028  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:01:56.028  ERROR  [AGENT] Erro no Agent:
-17:01:56.029  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:01:56.029  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:01:56.030  INFO   [ORCH] Plan step 1 marked as done
 17:01:56.031  INFO   [AGENT] ==============================
 17:01:56.031  INFO   [AGENT] User input:
@@ -4422,11 +4422,11 @@
 17:02:48.827  INFO   [AGENT] User input:
 17:02:48.829  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 17:02:48.830  INFO   [AGENT] Enviando requisicao para o modelo...
-17:02:49.517  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'gpt-4o-mini'...
+17:02:49.517  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'gpt-4o-mini'...
 17:02:49.518  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-17:02:50.258  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:02:50.258  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:02:50.259  ERROR  [AGENT] Erro no Agent:
-17:02:50.260  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:02:50.260  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:02:50.261  INFO   [ORCH] Plan step 1 marked as done
 17:02:50.261  INFO   [AGENT] ==============================
 17:02:50.262  INFO   [AGENT] User input:
@@ -4680,18 +4680,18 @@
 17:08:40.731  INFO   [AGENT] Nome: execute_python
 17:08:47.785  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
 17:08:47.780  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:08:47.856  INFO   [AGENT] Model: deepseek-v4-pro
-17:08:47.856  INFO   [AGENT] Model: deepseek-v4-pro
+17:08:47.856  INFO   [AGENT] Model: deepseek-v4-flash
+17:08:47.856  INFO   [AGENT] Model: deepseek-v4-flash
 17:08:47.858  INFO   [AGENT] Tools disponiveis: 0
 17:08:47.858  INFO   [AGENT] Tools disponiveis: 0
 17:08:48.110  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:08:48.112  INFO   [AGENT] Model: deepseek-v4-pro
+17:08:48.112  INFO   [AGENT] Model: deepseek-v4-flash
 17:08:48.113  INFO   [AGENT] Tools disponiveis: 0
 17:08:48.114  INFO   [AGENT] Agent 'MathAgent' inicializado
-17:08:48.115  INFO   [AGENT] Model: deepseek-v4-pro
+17:08:48.115  INFO   [AGENT] Model: deepseek-v4-flash
 17:08:48.116  INFO   [AGENT] Tools disponiveis: 0
 17:08:48.118  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:08:48.119  INFO   [AGENT] Model: deepseek-v4-pro
+17:08:48.119  INFO   [AGENT] Model: deepseek-v4-flash
 17:08:48.120  INFO   [AGENT] Tools disponiveis: 0
 17:08:48.122  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
 17:08:48.118  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
@@ -4850,57 +4850,57 @@
 17:09:21.833  INFO   [APP] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
 17:09:21.835  INFO   [APP] [SkillsManager] Skills relevantes: web-search (score: 0.55)
 17:09:21.801  INFO   [AGENT] Agent '' inicializado
-17:09:21.838  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.838  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.840  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:21.840  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.852  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.854  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.854  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.855  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.857  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.858  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.858  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.859  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.830  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
 17:09:21.863  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.865  INFO   [AGENT] Model: deepseek-v4-pro
-17:09:21.867  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.865  INFO   [AGENT] Model: deepseek-v4-flash
+17:09:21.867  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.867  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.868  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.870  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.871  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.871  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.873  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.875  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.841  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:09:21.876  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.876  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.877  INFO   [AGENT] Tools disponiveis: 0
-17:09:21.876  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.876  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.878  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.879  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.843  INFO   [AGENT] Agent 'IntegrationBot' inicializado
-17:09:21.880  INFO   [AGENT] Model: deepseek-v4-pro
-17:09:21.880  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.880  INFO   [AGENT] Model: deepseek-v4-flash
+17:09:21.880  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.881  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.881  INFO   [AGENT] Tools disponiveis: 1
 17:09:21.883  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.884  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.884  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.885  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.887  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.887  INFO   [AGENT] ==============================
-17:09:21.888  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.888  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.889  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.888  INFO   [AGENT] User input:
 17:09:21.890  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.891  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.891  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.893  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.895  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.894  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
-17:09:21.896  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.896  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.897  INFO   [APP] [SkillsManager] Skills relevantes: python-dev (score: 0.25), web-search (score: 0.25), communication (score: 0.10)
 17:09:21.898  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.902  INFO   [AGENT] Enviando requisicao para o modelo...
 17:09:21.905  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:21.907  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:09:21.913  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.914  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.914  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.915  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.917  INFO   [AGENT] ==============================
 17:09:21.918  INFO   [AGENT] User input:
@@ -4909,29 +4909,29 @@
 17:09:21.922  INFO   [AGENT] Resposta do modelo recebida
 17:09:21.922  INFO   [AGENT] Resposta final retornada ao usuario
 17:09:21.924  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.925  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.925  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.926  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.927  INFO   [AGENT] Historico de CollaboratorBot resetado.
 17:09:21.929  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.930  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.930  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.931  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.933  INFO   [AGENT] Historico de CollaboratorBot resetado.
 17:09:21.935  INFO   [AGENT] Agent 'PlannerAgent' inicializado
 17:09:21.938  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.937  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.937  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.939  INFO   [AGENT] Tools disponiveis: 0
-17:09:21.939  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.939  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.940  INFO   [AGENT] Agent 'MathAgent' inicializado
 17:09:21.940  INFO   [AGENT] Tools disponiveis: 0
-17:09:21.941  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.941  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.942  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:09:21.940  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
 17:09:21.942  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.944  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.944  INFO   [AGENT] Agent 'WriterAgent' inicializado
 17:09:21.943  INFO   [APP] [Permissions] Agent "assistant" level set to network
-17:09:21.945  INFO   [AGENT] Model: deepseek-v4-pro
-17:09:21.945  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.945  INFO   [AGENT] Model: deepseek-v4-flash
+17:09:21.945  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.945  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
 17:09:21.946  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.947  INFO   [AGENT] Tools disponiveis: undefined
@@ -4958,7 +4958,7 @@
 17:09:21.957  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.956  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
 17:09:21.957  INFO   [ORCH] Plano carregado: 5 steps
-17:09:21.958  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.958  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.957  INFO   [APP] [Permissions] Agent "browser" level set to network
 17:09:21.959  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.959  INFO   [APP] [Permissions] Agent "shell" level set to shell
@@ -4981,14 +4981,14 @@
 17:09:21.970  ERROR  [AGENT] Error: openai error
 17:09:21.971  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780430961955_0ru20x"}
 17:09:21.972  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:21.973  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.973  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.974  INFO   [AGENT] Tools disponiveis: 0
 17:09:21.975  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:09:21.976  INFO   [ORCH] Step 1/15
 17:09:21.976  INFO   [ORCH] Step 1/15
 17:09:21.977  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:21.977  INFO   [AGENT] ==============================
-17:09:21.978  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:21.978  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:21.978  INFO   [AGENT] User input:
 17:09:21.979  INFO   [AGENT] Tools disponiveis: undefined
 17:09:21.980  INFO   [AGENT] ==============================
@@ -5151,50 +5151,50 @@
 17:09:53.531  INFO   [AGENT] Executando tool:
 17:09:53.531  INFO   [AGENT] Nome: execute_python
 17:09:56.892  INFO   [AGENT] Agent '' inicializado
-17:09:56.900  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.900  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.901  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.912  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
 17:09:56.906  INFO   [APP] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
-17:09:56.913  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.913  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.914  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.915  INFO   [APP] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
 17:09:56.916  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.917  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.917  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.917  INFO   [APP] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
 17:09:56.918  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.920  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:56.921  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.922  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.922  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.923  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.925  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.925  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.925  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.925  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:56.926  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.926  INFO   [APP] [SkillsManager] Skills relevantes: python-dev (score: 0.85)
 17:09:56.927  INFO   [APP] [SkillsManager] Skills relevantes: web-search (score: 0.55)
 17:09:56.930  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:56.930  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.931  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.931  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.932  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.933  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.933  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.933  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.934  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.936  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.937  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.937  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.937  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.938  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.939  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.939  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.939  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.940  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.941  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.941  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.941  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.942  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.943  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.943  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.943  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.950  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:56.953  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:09:56.960  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.961  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.961  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.961  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.962  INFO   [AGENT] ==============================
 17:09:56.963  INFO   [AGENT] User input:
@@ -5203,23 +5203,23 @@
 17:09:56.965  INFO   [AGENT] Resposta do modelo recebida
 17:09:56.966  INFO   [AGENT] Resposta final retornada ao usuario
 17:09:56.966  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.967  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.967  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.967  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.968  INFO   [AGENT] Historico de CollaboratorBot resetado.
 17:09:56.969  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.970  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.970  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.970  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.971  INFO   [AGENT] Historico de CollaboratorBot resetado.
 17:09:56.972  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.972  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.972  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.973  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.973  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:09:56.975  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.975  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.975  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.976  INFO   [AGENT] Tools disponiveis: undefined
 17:09:56.966  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
 17:09:56.976  INFO   [AGENT] ==============================
-17:09:56.976  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.976  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.977  INFO   [AGENT] User input:
 17:09:56.976  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.977  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
@@ -5229,9 +5229,9 @@
 17:09:56.980  INFO   [AGENT] Resposta final retornada ao usuario
 17:09:56.977  INFO   [AGENT] Agent 'IntegrationBot' inicializado
 17:09:56.981  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.982  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.982  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.982  INFO   [AGENT] Tools disponiveis: 1
-17:09:56.982  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.982  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.986  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.986  INFO   [AGENT] ==============================
 17:09:56.987  INFO   [AGENT] User input:
@@ -5241,12 +5241,12 @@
 17:09:56.989  ERROR  [AGENT] Erro no Agent:
 17:09:56.990  ERROR  [AGENT] Error: openai error
 17:09:56.991  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.992  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.992  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.989  INFO   [AGENT] User input:
 17:09:56.992  INFO   [AGENT] Tools disponiveis: 0
 17:09:56.993  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:09:56.995  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:09:56.995  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:56.995  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:56.996  INFO   [AGENT] Tools disponiveis: undefined
 17:09:56.996  INFO   [AGENT] ==============================
 17:09:56.997  INFO   [AGENT] User input:
@@ -5258,7 +5258,7 @@
 17:09:56.998  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:09:56.992  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
 17:09:57.000  INFO   [APP] [SkillsManager] Skills relevantes: python-dev (score: 0.25), web-search (score: 0.25), communication (score: 0.10)
-17:09:57.000  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:57.000  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:57.001  INFO   [AGENT] Tools disponiveis: 0
 17:09:57.005  INFO   [AGENT] Enviando requisicao para o modelo...
 17:09:57.038  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
@@ -5281,15 +5281,15 @@
 17:09:57.056  INFO   [ORCH] User input received  {"input":"Test task"}
 17:09:57.056  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780430997049_koa70d"}
 17:09:57.061  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:09:57.062  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:57.062  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:57.062  INFO   [AGENT] Tools disponiveis: 0
 17:09:57.063  INFO   [AGENT] Agent 'MathAgent' inicializado
-17:09:57.063  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:57.063  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:57.064  INFO   [ORCH] Step 1/15
 17:09:57.064  INFO   [AGENT] Tools disponiveis: 0
 17:09:57.065  INFO   [AGENT] Agent 'WriterAgent' inicializado
 17:09:57.065  WARN   [ORCH] Planner tried to finish before any agent ran.
-17:09:57.065  INFO   [AGENT] Model: deepseek-v4-pro
+17:09:57.065  INFO   [AGENT] Model: deepseek-v4-flash
 17:09:57.066  INFO   [AGENT] Tools disponiveis: 0
 17:09:57.068  INFO   [APP] [BackgroundTaskManager] 1 tasks carregadas do disco
 17:09:57.070  INFO   [APP] [Permissions] Agent "assistant" level set to network
@@ -5489,7 +5489,7 @@
 17:11:16.306  INFO   [AGENT] Nome: create_background_task
 17:11:16.308  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780431076307_mlg5do
 17:11:16.309  INFO   [AGENT] Agent 'shell' inicializado
-17:11:16.310  INFO   [AGENT] Model: deepseek-v4-pro
+17:11:16.310  INFO   [AGENT] Model: deepseek-v4-flash
 17:11:16.310  INFO   [AGENT] Tools disponiveis: 0
 17:11:16.310  INFO   [AGENT] Historico de shell resetado.
 17:11:16.310  INFO   [AGENT] ==============================
@@ -5542,7 +5542,7 @@
 17:11:41.650  INFO   [AGENT] Nome: create_background_task
 17:11:41.652  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780431101651_3dsj03
 17:11:41.652  INFO   [AGENT] Agent 'shell' inicializado
-17:11:41.652  INFO   [AGENT] Model: deepseek-v4-pro
+17:11:41.652  INFO   [AGENT] Model: deepseek-v4-flash
 17:11:41.653  INFO   [AGENT] Tools disponiveis: 0
 17:11:41.653  INFO   [AGENT] Historico de shell resetado.
 17:11:41.653  INFO   [AGENT] ==============================
@@ -5601,7 +5601,7 @@
 17:12:16.327  INFO   [AGENT] Nome: create_background_task
 17:12:16.328  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780431136328_hfr5h8
 17:12:16.329  INFO   [AGENT] Agent 'shell' inicializado
-17:12:16.329  INFO   [AGENT] Model: deepseek-v4-pro
+17:12:16.329  INFO   [AGENT] Model: deepseek-v4-flash
 17:12:16.329  INFO   [AGENT] Tools disponiveis: 0
 17:12:16.330  INFO   [AGENT] Historico de shell resetado.
 17:12:16.330  INFO   [AGENT] ==============================
@@ -5649,7 +5649,7 @@
 17:12:43.167  INFO   [AGENT] Nome: create_background_task
 17:12:43.168  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780431163167_dhdmh1
 17:12:43.168  INFO   [AGENT] Agent 'python_code' inicializado
-17:12:43.168  INFO   [AGENT] Model: deepseek-v4-pro
+17:12:43.168  INFO   [AGENT] Model: deepseek-v4-flash
 17:12:43.169  INFO   [AGENT] Tools disponiveis: 0
 17:12:43.169  INFO   [AGENT] Historico de python_code resetado.
 17:12:43.169  INFO   [AGENT] ==============================
@@ -5690,11 +5690,11 @@
 17:13:00.670  INFO   [AGENT] Resposta do modelo recebida
 17:13:00.670  INFO   [AGENT] Resposta final retornada ao usuario
 17:13:00.671  INFO   [APP] [BackgroundTaskManager] Task bg_1780431136328_hfr5h8 concluida em 44343ms
-17:13:00.898  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'gpt-4o-mini'...
+17:13:00.898  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'gpt-4o-mini'...
 17:13:00.898  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-17:13:01.626  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:13:01.626  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:13:01.627  ERROR  [AGENT] Erro no Agent:
-17:13:01.627  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:13:01.627  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:13:01.627  INFO   [APP] [SubAgentRunner] Task sub_1780431036112_8jbo concluida em 145514ms via assistant (depth 2)
 17:13:01.628  INFO   [AGENT] Enviando requisicao para o modelo...
 17:13:12.452  INFO   [AGENT] Resposta do modelo recebida
@@ -5705,7 +5705,7 @@
 17:13:16.180  INFO   [APP] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
 17:13:16.182  INFO   [APP] [SkillsManager] 0 skills carregadas de /tmp/nonexistent-skills-test
 17:13:16.178  INFO   [AGENT] Agent '' inicializado
-17:13:16.186  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.186  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.186  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:13:16.186  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.190  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
@@ -5713,37 +5713,37 @@
 17:13:16.191  INFO   [APP] [SkillsManager] Skills relevantes: web-search (score: 0.55)
 17:13:16.195  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 17:13:16.196  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.197  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.197  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.197  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.199  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.200  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.200  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.201  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.206  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.207  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.207  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.208  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.209  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.211  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.211  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.212  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.213  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.214  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.214  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.214  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.215  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.216  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.216  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.216  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.218  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.218  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.218  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.219  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.220  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.221  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.221  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.221  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.222  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.223  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.223  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.223  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.224  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.225  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.225  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.225  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.216  INFO   [AGENT] Agent 'IntegrationBot' inicializado
-17:13:16.228  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.228  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.229  INFO   [AGENT] Tools disponiveis: 1
 17:13:16.233  INFO   [AGENT] ==============================
 17:13:16.234  INFO   [AGENT] User input:
@@ -5753,7 +5753,7 @@
 17:13:16.249  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:13:16.261  INFO   [AGENT] Enviando requisicao para o modelo...
 17:13:16.262  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.262  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.262  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.263  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.264  INFO   [AGENT] ==============================
 17:13:16.264  INFO   [AGENT] User input:
@@ -5762,19 +5762,19 @@
 17:13:16.267  INFO   [AGENT] Resposta do modelo recebida
 17:13:16.267  INFO   [AGENT] Resposta final retornada ao usuario
 17:13:16.268  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.269  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.269  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.270  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.271  INFO   [AGENT] Historico de CollaboratorBot resetado.
 17:13:16.272  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.273  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.273  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.274  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.274  INFO   [AGENT] Historico de CollaboratorBot resetado.
 17:13:16.275  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.276  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.276  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.277  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.278  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:13:16.279  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.280  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.280  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.280  INFO   [AGENT] Tools disponiveis: undefined
 17:13:16.281  INFO   [AGENT] ==============================
 17:13:16.281  INFO   [AGENT] User input:
@@ -5784,7 +5784,7 @@
 17:13:16.287  INFO   [AGENT] Tool calls detectadas: 1
 17:13:16.288  INFO   [AGENT] Resposta final retornada ao usuario
 17:13:16.289  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.290  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.290  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.291  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.291  INFO   [AGENT] ==============================
 17:13:16.292  INFO   [AGENT] User input:
@@ -5794,13 +5794,13 @@
 17:13:16.294  ERROR  [AGENT] Error: openai error
 17:13:16.290  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
 17:13:16.295  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.295  INFO   [AGENT] Model: deepseek-v4-pro
-17:13:16.295  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.295  INFO   [AGENT] Model: deepseek-v4-flash
+17:13:16.295  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.295  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.296  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.297  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.30)
 17:13:16.298  INFO   [AGENT] Agent 'CollaboratorBot' inicializado
-17:13:16.299  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.299  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.299  INFO   [AGENT] Tools disponiveis: undefined
 17:13:16.300  INFO   [AGENT] ==============================
 17:13:16.300  INFO   [AGENT] User input:
@@ -5810,17 +5810,17 @@
 17:13:16.303  INFO   [AGENT] Tool calls detectadas: 1
 17:13:16.303  INFO   [AGENT] Resposta final retornada ao usuario
 17:13:16.294  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:13:16.310  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.310  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.311  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.406  INFO   [APP] [TokenCounter] Encoder 'cl100k_base' inicializado
 17:13:16.565  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:13:16.566  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.566  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.567  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.567  INFO   [AGENT] Agent 'MathAgent' inicializado
-17:13:16.568  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.568  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.568  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.569  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:13:16.570  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:16.570  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:16.570  INFO   [AGENT] Tools disponiveis: 0
 17:13:16.572  INFO   [APP] [BackgroundTaskManager] 4 tasks carregadas do disco
 17:13:16.573  INFO   [APP] [Permissions] Agent "assistant" level set to network
@@ -5967,19 +5967,19 @@
 17:13:39.781  INFO   [AGENT] Executando tool:
 17:13:39.782  INFO   [AGENT] Nome: execute_python
 17:13:42.806  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:13:42.815  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:42.815  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:42.816  INFO   [AGENT] Tools disponiveis: 0
 17:13:42.808  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:13:42.817  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:42.817  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:42.818  INFO   [AGENT] Tools disponiveis: 0
 17:13:42.870  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:13:42.871  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:42.871  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:42.871  INFO   [AGENT] Tools disponiveis: 0
 17:13:42.872  INFO   [AGENT] Agent 'MathAgent' inicializado
-17:13:42.872  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:42.872  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:42.873  INFO   [AGENT] Tools disponiveis: 0
 17:13:42.873  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:13:42.874  INFO   [AGENT] Model: deepseek-v4-pro
+17:13:42.874  INFO   [AGENT] Model: deepseek-v4-flash
 17:13:42.874  INFO   [AGENT] Tools disponiveis: 0
 17:13:42.876  INFO   [APP] [BackgroundTaskManager] 4 tasks carregadas do disco
 17:13:42.875  INFO   [APP] [BackgroundTaskManager] 4 tasks carregadas do disco
@@ -6156,18 +6156,18 @@
 17:14:31.355  INFO   [AGENT] Nome: execute_python
 17:14:34.403  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
 17:14:34.401  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:14:34.409  INFO   [AGENT] Model: deepseek-v4-pro
-17:14:34.410  INFO   [AGENT] Model: deepseek-v4-pro
+17:14:34.409  INFO   [AGENT] Model: deepseek-v4-flash
+17:14:34.410  INFO   [AGENT] Model: deepseek-v4-flash
 17:14:34.410  INFO   [AGENT] Tools disponiveis: 0
 17:14:34.410  INFO   [AGENT] Tools disponiveis: 0
 17:14:34.465  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:14:34.466  INFO   [AGENT] Model: deepseek-v4-pro
+17:14:34.466  INFO   [AGENT] Model: deepseek-v4-flash
 17:14:34.466  INFO   [AGENT] Tools disponiveis: 0
 17:14:34.467  INFO   [AGENT] Agent 'MathAgent' inicializado
-17:14:34.467  INFO   [AGENT] Model: deepseek-v4-pro
+17:14:34.467  INFO   [AGENT] Model: deepseek-v4-flash
 17:14:34.468  INFO   [AGENT] Tools disponiveis: 0
 17:14:34.468  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:14:34.469  INFO   [AGENT] Model: deepseek-v4-pro
+17:14:34.469  INFO   [AGENT] Model: deepseek-v4-flash
 17:14:34.469  INFO   [AGENT] Tools disponiveis: 0
 17:14:34.470  INFO   [APP] [BackgroundTaskManager] 4 tasks carregadas do disco
 17:14:34.470  INFO   [APP] [BackgroundTaskManager] 4 tasks carregadas do disco
@@ -6317,11 +6317,11 @@
 17:15:17.041  INFO   [AGENT] Resposta final retornada ao usuario
 17:15:17.041  INFO   [APP] [SubAgentRunner] Task sub_1780430873538_25xr concluida em 443502ms via PythonAgent (depth 1)
 17:15:17.042  INFO   [AGENT] Enviando requisicao para o modelo...
-17:15:17.917  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'gpt-4o-mini'...
+17:15:17.917  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'gpt-4o-mini'...
 17:15:17.918  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-17:15:18.984  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:15:18.984  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:15:18.984  ERROR  [AGENT] Erro no Agent:
-17:15:18.985  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:15:18.985  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:15:18.986  INFO   [ORCH] Plan step 1 marked as done
 17:15:18.986  INFO   [AGENT] ==============================
 17:15:18.986  INFO   [AGENT] User input:
@@ -6342,7 +6342,7 @@
 17:15:43.343  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 17:16:14.317  INFO   [ORCH] ==============================
 17:16:14.318  INFO   [ORCH] ORCHESTRATOR START
-17:16:14.318  INFO   [ORCH] User input received  {"input":"[Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.]"}
+17:16:14.318  INFO   [ORCH] User input received  {"input":"[Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]"}
 17:16:14.319  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780430191533_0fc3ah"}
 17:16:14.340  INFO   [ORCH] Step 1/15
 17:16:14.340  INFO   [AGENT] ==============================
@@ -6538,11 +6538,11 @@
 17:20:37.198  INFO   [AGENT] Resposta final retornada ao usuario
 17:20:37.199  INFO   [APP] [SubAgentRunner] Task sub_1780431496866_v9iu concluida em 140332ms via assistant (depth 2)
 17:20:37.199  INFO   [AGENT] Enviando requisicao para o modelo...
-17:20:37.855  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'gpt-4o-mini'...
+17:20:37.855  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'gpt-4o-mini'...
 17:20:37.856  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-17:20:38.773  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:20:38.773  ERROR  [AGENT] Fallback 'gpt-4o-mini' tambem falhou: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:20:38.774  ERROR  [AGENT] Erro no Agent:
-17:20:38.775  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.
+17:20:38.775  ERROR  [AGENT] Error: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.
 17:20:38.776  INFO   [APP] [SubAgentRunner] Task step_1_1780431480918 concluida em 157858ms via assistant (depth 1)
 17:20:38.777  INFO   [ORCH] Step 3/15
 17:20:38.778  INFO   [AGENT] ==============================
@@ -6555,7 +6555,7 @@
 17:21:02.074  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 17:38:50.100  INFO   [ORCH] ==============================
 17:38:50.101  INFO   [ORCH] ORCHESTRATOR START
-17:38:50.102  INFO   [ORCH] User input received  {"input":"[Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.]"}
+17:38:50.102  INFO   [ORCH] User input received  {"input":"[Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]"}
 17:38:50.102  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780430191533_0fc3ah"}
 17:38:50.152  INFO   [ORCH] Step 1/15
 17:38:50.153  INFO   [AGENT] ==============================
@@ -6590,22 +6590,22 @@
 17:39:31.705  INFO   [ORCH] ORCHESTRATION FINISHED
 17:39:31.707  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 17:51:02.646  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:51:02.648  INFO   [AGENT] Model: deepseek-v4-pro
+17:51:02.648  INFO   [AGENT] Model: deepseek-v4-flash
 17:51:02.648  INFO   [AGENT] Tools disponiveis: 0
 17:51:03.225  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:51:03.225  INFO   [AGENT] Model: deepseek-v4-pro
+17:51:03.225  INFO   [AGENT] Model: deepseek-v4-flash
 17:51:03.226  INFO   [AGENT] Tools disponiveis: 0
 17:51:03.283  INFO   [AGENT] Agent 'assistant' inicializado
-17:51:03.284  INFO   [AGENT] Model: deepseek-v4-pro
+17:51:03.284  INFO   [AGENT] Model: deepseek-v4-flash
 17:51:03.284  INFO   [AGENT] Tools disponiveis: 10
 17:51:03.307  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:51:03.307  INFO   [AGENT] Model: deepseek-v4-pro
+17:51:03.307  INFO   [AGENT] Model: deepseek-v4-flash
 17:51:03.308  INFO   [AGENT] Tools disponiveis: 11
 17:51:03.319  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:51:03.319  INFO   [AGENT] Model: deepseek-v4-pro
+17:51:03.319  INFO   [AGENT] Model: deepseek-v4-flash
 17:51:03.320  INFO   [AGENT] Tools disponiveis: 0
 17:51:03.338  INFO   [AGENT] Agent 'task_manager' inicializado
-17:51:03.338  INFO   [AGENT] Model: deepseek-v4-pro
+17:51:03.338  INFO   [AGENT] Model: deepseek-v4-flash
 17:51:03.339  INFO   [AGENT] Tools disponiveis: 3
 17:51:03.345  INFO   [APP] [BackgroundTaskManager] 4 tasks carregadas do disco
 17:51:03.345  INFO   [APP] [Permissions] Agent "assistant" level set to network
@@ -6660,19 +6660,19 @@
 17:52:37.063  INFO   [AGENT] Nome: execute_python
 17:52:38.162  INFO   [AGENT] Enviando requisicao para o modelo...
 17:52:43.079  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:52:43.081  INFO   [AGENT] Model: deepseek-v4-pro
+17:52:43.081  INFO   [AGENT] Model: deepseek-v4-flash
 17:52:43.081  INFO   [AGENT] Tools disponiveis: 0
 17:52:43.152  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:52:43.153  INFO   [AGENT] Model: deepseek-v4-pro
+17:52:43.153  INFO   [AGENT] Model: deepseek-v4-flash
 17:52:43.153  INFO   [AGENT] Tools disponiveis: 0
 17:52:43.160  INFO   [AGENT] Agent 'assistant' inicializado
-17:52:43.160  INFO   [AGENT] Model: deepseek-v4-pro
+17:52:43.160  INFO   [AGENT] Model: deepseek-v4-flash
 17:52:43.161  INFO   [AGENT] Tools disponiveis: 10
 17:52:43.163  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:52:43.164  INFO   [AGENT] Model: deepseek-v4-pro
+17:52:43.164  INFO   [AGENT] Model: deepseek-v4-flash
 17:52:43.164  INFO   [AGENT] Tools disponiveis: 11
 17:52:43.165  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:52:43.166  INFO   [AGENT] Model: deepseek-v4-pro
+17:52:43.166  INFO   [AGENT] Model: deepseek-v4-flash
 17:52:43.166  INFO   [AGENT] Tools disponiveis: 0
 17:52:43.168  INFO   [AGENT] Agent 'task_manager' inicializado
 17:52:43.168  INFO   [AGENT] Model: deepseek-v4-flash
@@ -6782,7 +6782,7 @@
 17:54:37.570  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 17:56:13.546  INFO   [ORCH] ==============================
 17:56:13.547  INFO   [ORCH] ORCHESTRATOR START
-17:56:13.547  INFO   [ORCH] User input received  {"input":"verifique se isso foi corrigido: [Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-flash, but you passed gpt-4o-mini.]"}
+17:56:13.547  INFO   [ORCH] User input received  {"input":"verifique se isso foi corrigido: [Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]"}
 17:56:13.548  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780433563170_z2lez1"}
 17:56:13.559  INFO   [ORCH] Step 1/15
 17:56:13.559  INFO   [AGENT] ==============================
@@ -6966,19 +6966,19 @@
 18:00:31.906  INFO   [ORCH] ORCHESTRATION FINISHED
 18:00:31.907  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 18:02:39.577  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-18:02:39.579  INFO   [AGENT] Model: deepseek-v4-pro
+18:02:39.579  INFO   [AGENT] Model: deepseek-v4-flash
 18:02:39.579  INFO   [AGENT] Tools disponiveis: 0
 18:02:39.668  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-18:02:39.669  INFO   [AGENT] Model: deepseek-v4-pro
+18:02:39.669  INFO   [AGENT] Model: deepseek-v4-flash
 18:02:39.670  INFO   [AGENT] Tools disponiveis: 0
 18:02:39.677  INFO   [AGENT] Agent 'assistant' inicializado
-18:02:39.678  INFO   [AGENT] Model: deepseek-v4-pro
+18:02:39.678  INFO   [AGENT] Model: deepseek-v4-flash
 18:02:39.678  INFO   [AGENT] Tools disponiveis: 10
 18:02:39.681  INFO   [AGENT] Agent 'PythonAgent' inicializado
-18:02:39.682  INFO   [AGENT] Model: deepseek-v4-pro
+18:02:39.682  INFO   [AGENT] Model: deepseek-v4-flash
 18:02:39.682  INFO   [AGENT] Tools disponiveis: 11
 18:02:39.684  INFO   [AGENT] Agent 'WriterAgent' inicializado
-18:02:39.685  INFO   [AGENT] Model: deepseek-v4-pro
+18:02:39.685  INFO   [AGENT] Model: deepseek-v4-flash
 18:02:39.685  INFO   [AGENT] Tools disponiveis: 0
 18:02:39.687  INFO   [AGENT] Agent 'task_manager' inicializado
 18:02:39.688  INFO   [AGENT] Model: deepseek-v4-flash
@@ -7146,7 +7146,7 @@
 18:09:16.746  INFO   [APP] [Memory] Nota adicionada a 2026-06-02.md
 18:27:50.738  INFO   [ORCH] ==============================
 18:27:50.740  INFO   [ORCH] ORCHESTRATOR START
-18:27:50.740  INFO   [ORCH] User input received  {"input":"crie um script para geração automática de vídeo e para teste crie um vídeo de aproximadamente 5 minutos explicando equação de segundo grau, utilize o modelo gemini-3.1-flash-image para geração de imagens a GEMINI_API_KEY já está em nas variáveis de ambiente, para geração de texto utilize o deepseek-v4-pro. as imagens crie com um style bem leve didático e lúdico."}
+18:27:50.740  INFO   [ORCH] User input received  {"input":"crie um script para geração automática de vídeo e para teste crie um vídeo de aproximadamente 5 minutos explicando equação de segundo grau, utilize o modelo gemini-3.1-flash-image para geração de imagens a GEMINI_API_KEY já está em nas variáveis de ambiente, para geração de texto utilize o deepseek-v4-flash. as imagens crie com um style bem leve didático e lúdico."}
 18:27:50.741  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780434159689_9f40fo"}
 18:27:50.812  INFO   [ORCH] Step 1/15
 18:27:50.813  INFO   [AGENT] ==============================
@@ -7320,11 +7320,11 @@
 18:35:37.610  INFO   [APP] [SkillsManager] 3 skills carregadas de C:\Developer\colabor-ai\skills
 18:35:37.610  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 18:35:37.612  INFO   [AGENT] Enviando requisicao para o modelo...
-18:35:38.094  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+18:35:38.094  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 18:35:38.094  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-18:35:38.308  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+18:35:38.308  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 18:35:38.309  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-18:35:38.681  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+18:35:38.681  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:35:38.681  ERROR  [AGENT] Erro no Agent:
 18:35:38.682  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:35:38.683  INFO   [ORCH] Plan step 1 marked as done
@@ -7332,7 +7332,7 @@
 18:35:38.684  INFO   [AGENT] User input:
 18:35:38.685  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 18:35:38.686  INFO   [AGENT] Enviando requisicao para o modelo...
-18:35:38.873  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+18:35:38.873  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:35:38.873  ERROR  [AGENT] Erro no Agent:
 18:35:38.874  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:35:38.874  INFO   [APP] [BackgroundTaskManager] Task bg_1780436137604_oiyqyo concluida em 1269ms
@@ -7351,9 +7351,9 @@
 18:36:00.551  INFO   [AGENT] User input:
 18:36:00.552  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 18:36:00.553  INFO   [AGENT] Enviando requisicao para o modelo...
-18:36:01.104  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+18:36:01.104  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 18:36:01.105  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-18:36:01.726  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+18:36:01.726  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:36:01.727  ERROR  [AGENT] Erro no Agent:
 18:36:01.727  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:36:01.728  INFO   [ORCH] Plan step 1 marked as done
@@ -7400,9 +7400,9 @@
 18:37:37.623  INFO   [AGENT] User input:
 18:37:37.625  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 18:37:37.628  INFO   [AGENT] Enviando requisicao para o modelo...
-18:37:38.258  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+18:37:38.258  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 18:37:38.259  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-18:37:38.872  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+18:37:38.872  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:37:38.873  ERROR  [AGENT] Erro no Agent:
 18:37:38.874  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:37:38.875  INFO   [ORCH] Plan step 2 marked as done
@@ -7600,9 +7600,9 @@ python gerar_video_enem.py "Equação de segundo grau" --duracao 5 --output ./vi
 18:53:26.686  INFO   [AGENT] User input:
 18:53:26.688  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 18:53:26.691  INFO   [AGENT] Enviando requisicao para o modelo...
-18:53:27.481  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+18:53:27.481  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 18:53:27.482  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-18:53:28.272  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+18:53:28.272  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:53:28.273  ERROR  [AGENT] Erro no Agent:
 18:53:28.274  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:53:28.275  INFO   [AGENT] ==============================
@@ -7700,9 +7700,9 @@ python gerar_video_enem.py "Equação de segundo grau" --duracao 5 --output ./vi
 18:57:14.921  INFO   [AGENT] User input:
 18:57:14.924  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 18:57:14.926  INFO   [AGENT] Enviando requisicao para o modelo...
-18:57:15.988  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+18:57:15.988  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 18:57:15.989  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-18:57:17.119  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+18:57:17.119  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:57:17.120  ERROR  [AGENT] Erro no Agent:
 18:57:17.121  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 18:57:17.122  INFO   [AGENT] ==============================
@@ -7730,19 +7730,19 @@ python gerar_video_enem.py "Equação de segundo grau" --duracao 5 --output ./vi
 18:57:36.162  INFO   [AGENT] Resposta final retornada ao usuario
 18:57:36.163  WARN   [ORCH] Repeated instruction detected. Stopping loop.
 18:58:30.807  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-18:58:30.809  INFO   [AGENT] Model: deepseek-v4-pro
+18:58:30.809  INFO   [AGENT] Model: deepseek-v4-flash
 18:58:30.809  INFO   [AGENT] Tools disponiveis: 0
 18:58:30.877  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-18:58:30.877  INFO   [AGENT] Model: deepseek-v4-pro
+18:58:30.877  INFO   [AGENT] Model: deepseek-v4-flash
 18:58:30.878  INFO   [AGENT] Tools disponiveis: 0
 18:58:30.885  INFO   [AGENT] Agent 'assistant' inicializado
-18:58:30.886  INFO   [AGENT] Model: deepseek-v4-pro
+18:58:30.886  INFO   [AGENT] Model: deepseek-v4-flash
 18:58:30.886  INFO   [AGENT] Tools disponiveis: 10
 18:58:30.889  INFO   [AGENT] Agent 'PythonAgent' inicializado
-18:58:30.889  INFO   [AGENT] Model: deepseek-v4-pro
+18:58:30.889  INFO   [AGENT] Model: deepseek-v4-flash
 18:58:30.890  INFO   [AGENT] Tools disponiveis: 11
 18:58:30.891  INFO   [AGENT] Agent 'WriterAgent' inicializado
-18:58:30.891  INFO   [AGENT] Model: deepseek-v4-pro
+18:58:30.891  INFO   [AGENT] Model: deepseek-v4-flash
 18:58:30.892  INFO   [AGENT] Tools disponiveis: 0
 18:58:30.894  INFO   [AGENT] Agent 'task_manager' inicializado
 18:58:30.895  INFO   [AGENT] Model: deepseek-v4-flash
@@ -7911,7 +7911,7 @@ python gerar_video_enem.py "Equação de segundo grau" --duracao 5 --output ./vi
 19:07:59.946  INFO   [AGENT] Nome: create_background_task
 19:07:59.950  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780438079948_tnnly4
 19:07:59.952  INFO   [AGENT] Agent 'ShellAgent' inicializado
-19:07:59.952  INFO   [AGENT] Model: deepseek-v4-pro
+19:07:59.952  INFO   [AGENT] Model: deepseek-v4-flash
 19:07:59.953  INFO   [AGENT] Tools disponiveis: 0
 19:07:59.954  INFO   [AGENT] Historico de ShellAgent resetado.
 19:07:59.954  INFO   [AGENT] ==============================
@@ -9122,7 +9122,7 @@ Para continuar sem esse problema, o ideal é iniciar uma nova conversa.
 20:31:46.767  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780443103752_4o59t7 apos delay de 3000ms
 20:31:46.769  INFO   [APP] [BackgroundTaskManager] Executando task bg_1780443103752_4o59t7
 20:31:46.769  INFO   [AGENT] Agent 'ShellAgent' inicializado
-20:31:46.770  INFO   [AGENT] Model: deepseek-v4-pro
+20:31:46.770  INFO   [AGENT] Model: deepseek-v4-flash
 20:31:46.770  INFO   [AGENT] Tools disponiveis: 0
 20:31:46.771  INFO   [AGENT] Historico de ShellAgent resetado.
 20:31:46.771  INFO   [AGENT] ==============================
@@ -9274,16 +9274,16 @@ Para continuar sem esse problema, o ideal é iniciar uma nova conversa.
 20:37:20.179  INFO   [AGENT] Enviando requisicao para o modelo...
 20:37:20.182  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 20:37:20.184  INFO   [AGENT] Enviando requisicao para o modelo...
-20:37:20.681  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+20:37:20.681  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 20:37:20.682  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-20:37:20.806  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+20:37:20.806  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 20:37:20.807  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-20:37:21.285  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+20:37:21.285  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:37:21.286  ERROR  [AGENT] Erro no Agent:
 20:37:21.286  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:37:21.286  INFO   [APP] [SubAgentRunner] Task sub_1780443413185_ujfk concluida em 28100ms via assistant (depth 3)
 20:37:21.287  INFO   [AGENT] Enviando requisicao para o modelo...
-20:37:21.376  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+20:37:21.376  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:37:21.377  ERROR  [AGENT] Erro no Agent:
 20:37:21.378  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:37:21.379  INFO   [APP] [BackgroundTaskManager] Task bg_1780443440176_rdesj4 concluida em 1202ms
@@ -9540,16 +9540,16 @@ Só travou na hora de commitar **tudo junto** porque a pasta `videos_enem/` tem 
 20:46:18.935  INFO   [AGENT] Resposta final retornada ao usuario
 20:46:18.935  INFO   [APP] [SubAgentRunner] Task sub_1780443237675_g0kn concluida em 741259ms via PythonAgent (depth 2)
 20:46:18.935  INFO   [AGENT] Enviando requisicao para o modelo...
-20:46:19.553  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+20:46:19.553  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 20:46:19.554  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-20:46:20.210  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+20:46:20.210  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:46:20.211  ERROR  [AGENT] Erro no Agent:
 20:46:20.211  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:46:20.212  INFO   [APP] [SubAgentRunner] Task sub_1780443221715_00d2 concluida em 758496ms via assistant (depth 1)
 20:46:20.212  INFO   [AGENT] Enviando requisicao para o modelo...
-20:46:22.579  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+20:46:22.579  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 20:46:22.580  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-20:46:24.558  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+20:46:24.558  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:46:24.559  ERROR  [AGENT] Erro no Agent:
 20:46:24.559  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:46:24.560  INFO   [AGENT] ==============================
@@ -9574,9 +9574,9 @@ Só travou na hora de commitar **tudo junto** porque a pasta `videos_enem/` tem 
 20:46:38.741  INFO   [AGENT] User input:
 20:46:38.742  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 20:46:38.743  INFO   [AGENT] Enviando requisicao para o modelo...
-20:46:39.697  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+20:46:39.697  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 20:46:39.698  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-20:46:40.736  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+20:46:40.736  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:46:40.736  ERROR  [AGENT] Erro no Agent:
 20:46:40.737  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:46:40.738  INFO   [AGENT] ==============================
@@ -9633,9 +9633,9 @@ Para resolver os erros de renderização, por favor, **inicie uma nova conversa*
 20:47:41.004  INFO   [AGENT] User input:
 20:47:41.006  INFO   [APP] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 20:47:41.008  INFO   [AGENT] Enviando requisicao para o modelo...
-20:47:41.572  WARN   [AGENT] Modelo primario 'deepseek-v4-pro' falhou. Tentando fallback 'deepseek-v4-pro'...
+20:47:41.572  WARN   [AGENT] Modelo primario 'deepseek-v4-flash' falhou. Tentando fallback 'deepseek-v4-flash'...
 20:47:41.573  WARN   [AGENT] Erro: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
-20:47:42.222  ERROR  [AGENT] Fallback 'deepseek-v4-pro' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
+20:47:42.222  ERROR  [AGENT] Fallback 'deepseek-v4-flash' tambem falhou: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:47:42.222  ERROR  [AGENT] Erro no Agent:
 20:47:42.223  ERROR  [AGENT] Error: 400 Messages with role 'tool' must be a response to a preceding message with 'tool_calls'
 20:47:42.224  INFO   [AGENT] ==============================

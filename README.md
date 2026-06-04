@@ -153,7 +153,7 @@ colabor-ai/
 |-------|------------|
 | **Linguagem** | TypeScript (ES2020, CommonJS) |
 | **Runtime** | Node.js (tsx) |
-| **LLM** | DeepSeek (deepseek-v4-pro) / OpenAI |
+| **LLM** | DeepSeek (deepseek-v4-flash) / OpenAI |
 | **Canais** | Telegram Bot, Terminal, REST API |
 | **Desktop** | Electron + React + Vite |
 | **Testes** | Jest (30.x) |

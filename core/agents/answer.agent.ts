@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
+import { DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
 import { memorySearchTool } from "../memory/memory_search";
 import { memoryAppendTool } from "../memory/memory_search";
 
@@ -16,13 +16,12 @@ export const answerAgent = new Agent({
   simples, escaneáveis e naturais para aplicativos de chat como WhatsApp e Telegram.
   `,
 
-  model: "deepseek-v4-pro",
+  model: "deepseek-v4-flash",
       fallbackModel: FALLBACK_MODEL,
   apiKey: process.env.DEEPSEEK_API_KEY || "",
   baseURL: "https://api.deepseek.com",
 
   generalInstructions: `
-        ${CORE_INSTRUCTIONS}
     
   Você é responsável pela resposta final que o usuário verá.
 

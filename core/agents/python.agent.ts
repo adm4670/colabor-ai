@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
+import { DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
     import { pythonExecTool } from "../tools/pythonExecTool";
         import { agentToolOpenAI } from "../tools/agentTool";
         import { taskCreateOpenAI, taskListOpenAI, cancelBgTaskOpenAI } from "../tools/taskCreateTool";
@@ -18,7 +18,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
       role: "Python execution specialist",
       goal: "Solve tasks using Python and return the result clearly",
       backstory: "An assistant specialized in writing and executing Python code to solve problems.",
-      model: "deepseek-v4-pro",
+      model: "deepseek-v4-flash",
       fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
@@ -40,8 +40,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
           },
     
       generalInstructions: `
-        ${CORE_INSTRUCTIONS}
-    
+            
       You can write and execute Python code using the execute_python tool.
       You can search long-term memory using the memory_search tool.
     

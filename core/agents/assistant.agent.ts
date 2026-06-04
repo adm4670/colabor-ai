@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
+import { DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
     import { memorySearchTool } from "../memory/memory_search";
             import { agentToolOpenAI } from "../tools/agentTool";
             import { taskCreateOpenAI, taskListOpenAI, cancelBgTaskOpenAI } from "../tools/taskCreateTool";
@@ -17,7 +17,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
     
       role: "General conversation agent",
     
-      model: "deepseek-v4-pro",
+      model: "deepseek-v4-flash",
       fallbackModel: FALLBACK_MODEL,
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
@@ -56,8 +56,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/i
     `,
     
       generalInstructions: `
-        ${CORE_INSTRUCTIONS}
-    
+            
     - Responda sempre em PT-BR.
     - Seja claro e direto.
     - Explique conceitos quando necessario.

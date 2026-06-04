@@ -1,0 +1,934 @@
+{
+  "nodes": [
+    "cloud\\src\\agents\\planner.ts",
+    "cloud\\src\\agents\\python.ts",
+    "cloud\\src\\context\\context-engine.ts",
+    "cloud\\src\\llm\\provider.ts",
+    "cloud\\src\\memory\\memory-engine.ts",
+    "cloud\\src\\orchestrator\\orchestrator.ts",
+    "cloud\\src\\protocol\\tool-protocol.ts",
+    "cloud\\src\\routes\\auth.ts",
+    "cloud\\src\\routes\\chat.ts",
+    "cloud\\src\\server.ts",
+    "cloud\\src\\types\\index.ts",
+    "cloud\\src\\utils\\logger.ts",
+    "core\\agent\\agent.spec.ts",
+    "core\\agent\\agent.test.ts",
+    "core\\agent\\agent.ts",
+    "core\\agent\\main.ts",
+    "core\\agent\\sub-agent-runner.ts",
+    "core\\agents\\agent-registry.spec.ts",
+    "core\\agents\\agent-registry.ts",
+    "core\\agents\\answer.agent.ts",
+    "core\\agents\\assistant.agent.ts",
+    "core\\agents\\browser.agent.ts",
+    "core\\agents\\planner.agent.ts",
+    "core\\agents\\python.agent.ts",
+    "core\\agents\\reflector.agent.ts",
+    "core\\agents\\shell.agent.ts",
+    "core\\agents\\task-manager.agent.ts",
+    "core\\config\\config.ts",
+    "core\\constants\\instructions.ts",
+    "core\\context\\context-engine.spec.ts",
+    "core\\context\\context-engine.ts",
+    "core\\context\\token-counter.ts",
+    "core\\hooks\\hook-system.ts",
+    "core\\llm\\provider.ts",
+    "core\\memory\\memory-engine.ts",
+    "core\\memory\\memory-extractor.ts",
+    "core\\memory\\memory_search.ts",
+    "core\\orchestrator\\orchestrator.spec.ts",
+    "core\\orchestrator\\orchestrator.test.ts",
+    "core\\orchestrator\\orchestrator.ts",
+    "core\\orchestrator\\telegram.ts",
+    "core\\permissions\\permission-system.ts",
+    "core\\plan\\plan-manager.ts",
+    "core\\scheduler\\scheduler.ts",
+    "core\\session\\session.test.ts",
+    "core\\session\\transcript.ts",
+    "core\\skills\\skills-manager.spec.ts",
+    "core\\skills\\skills-manager.ts",
+    "core\\stream\\event-stream.ts",
+    "core\\tasks\\background-task-manager.ts",
+    "core\\tasks\\dream-task.ts",
+    "core\\tools\\ScheduleTaskTool.ts",
+    "core\\tools\\TodoWriteTool.ts",
+    "core\\tools\\WebSearchTool.ts",
+    "core\\tools\\agentTool.ts",
+    "core\\tools\\browserExecTool.ts",
+    "core\\tools\\browserNavigateTool.ts",
+    "core\\tools\\pythonExecTool.ts",
+    "core\\tools\\shellExecTool.ts",
+    "core\\tools\\task.tools.ts",
+    "core\\tools\\taskCreateTool.ts",
+    "core\\tools\\tool-search.ts",
+    "core\\tools\\toolDefinition.ts",
+    "core\\tools\\toolRegistry.spec.ts",
+    "core\\tools\\toolRegistry.ts",
+    "core\\types.ts",
+    "core\\utils\\cache.ts",
+    "core\\utils\\logger.ts",
+    "core\\utils\\rateLimiter.ts"
+  ],
+  "edges": [
+    {
+      "from": "cloud\\src\\agents\\planner.ts",
+      "to": "cloud\\src\\llm\\provider.ts"
+    },
+    {
+      "from": "cloud\\src\\agents\\planner.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\agents\\python.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\context\\context-engine.ts",
+      "to": "cloud\\src\\llm\\provider.ts"
+    },
+    {
+      "from": "cloud\\src\\context\\context-engine.ts",
+      "to": "cloud\\src\\types\\index.ts"
+    },
+    {
+      "from": "cloud\\src\\context\\context-engine.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\llm\\provider.ts",
+      "to": "cloud\\src\\types\\index.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\agents\\python.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\context\\context-engine.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\memory\\memory-engine.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\types\\index.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\protocol\\tool-protocol.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\agents\\planner.ts"
+    },
+    {
+      "from": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\routes\\auth.ts",
+      "to": "cloud\\src\\types\\index.ts"
+    },
+    {
+      "from": "cloud\\src\\routes\\auth.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\routes\\chat.ts",
+      "to": "cloud\\src\\orchestrator\\orchestrator.ts"
+    },
+    {
+      "from": "cloud\\src\\routes\\chat.ts",
+      "to": "cloud\\src\\types\\index.ts"
+    },
+    {
+      "from": "cloud\\src\\routes\\chat.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\server.ts",
+      "to": "cloud\\src\\types\\index.ts"
+    },
+    {
+      "from": "cloud\\src\\server.ts",
+      "to": "cloud\\src\\routes\\auth.ts"
+    },
+    {
+      "from": "cloud\\src\\server.ts",
+      "to": "cloud\\src\\orchestrator\\orchestrator.ts"
+    },
+    {
+      "from": "cloud\\src\\server.ts",
+      "to": "cloud\\src\\utils\\logger.ts"
+    },
+    {
+      "from": "cloud\\src\\server.ts",
+      "to": "cloud\\src\\protocol\\tool-protocol.ts"
+    },
+    {
+      "from": "cloud\\src\\server.ts",
+      "to": "cloud\\src\\routes\\chat.ts"
+    },
+    {
+      "from": "core\\agent\\agent.spec.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agent\\agent.test.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agent\\agent.ts",
+      "to": "core\\llm\\provider.ts"
+    },
+    {
+      "from": "core\\agent\\agent.ts",
+      "to": "core\\types.ts"
+    },
+    {
+      "from": "core\\agent\\agent.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\agent\\agent.ts",
+      "to": "core\\utils\\cache.ts"
+    },
+    {
+      "from": "core\\agent\\agent.ts",
+      "to": "core\\utils\\rateLimiter.ts"
+    },
+    {
+      "from": "core\\agent\\main.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agent\\main.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agent\\sub-agent-runner.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agent\\sub-agent-runner.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agent\\sub-agent-runner.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\agents\\agent-registry.spec.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\agent-registry.spec.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\agent-registry.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\answer.agent.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\agents\\answer.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\answer.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\answer.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\tools\\WebSearchTool.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\tools\\ScheduleTaskTool.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\tools\\taskCreateTool.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\tools\\TodoWriteTool.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\tools\\agentTool.ts"
+    },
+    {
+      "from": "core\\agents\\assistant.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\WebSearchTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\browserExecTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\ScheduleTaskTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\browserNavigateTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\taskCreateTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\TodoWriteTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\tools\\agentTool.ts"
+    },
+    {
+      "from": "core\\agents\\browser.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\planner.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\planner.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\planner.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\tools\\WebSearchTool.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\tools\\ScheduleTaskTool.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\tools\\pythonExecTool.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\tools\\taskCreateTool.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\tools\\TodoWriteTool.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\tools\\agentTool.ts"
+    },
+    {
+      "from": "core\\agents\\python.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\reflector.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\reflector.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\reflector.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\shell.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\shell.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\shell.agent.ts",
+      "to": "core\\tools\\shellExecTool.ts"
+    },
+    {
+      "from": "core\\agents\\shell.agent.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\agents\\shell.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\agents\\task-manager.agent.ts",
+      "to": "core\\tools\\task.tools.ts"
+    },
+    {
+      "from": "core\\agents\\task-manager.agent.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\agents\\task-manager.agent.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\agents\\task-manager.agent.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\agents\\task-manager.agent.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\context\\context-engine.spec.ts",
+      "to": "core\\context\\context-engine.ts"
+    },
+    {
+      "from": "core\\context\\context-engine.ts",
+      "to": "core\\llm\\provider.ts"
+    },
+    {
+      "from": "core\\context\\context-engine.ts",
+      "to": "core\\memory\\memory-engine.ts"
+    },
+    {
+      "from": "core\\context\\context-engine.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\context\\context-engine.ts",
+      "to": "core\\context\\token-counter.ts"
+    },
+    {
+      "from": "core\\context\\token-counter.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\hooks\\hook-system.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\llm\\provider.ts",
+      "to": "core\\types.ts"
+    },
+    {
+      "from": "core\\memory\\memory-extractor.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\memory\\memory-extractor.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\memory\\memory_search.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.spec.ts",
+      "to": "core\\orchestrator\\orchestrator.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.spec.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.test.ts",
+      "to": "core\\orchestrator\\orchestrator.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.test.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\plan\\plan-manager.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\agents\\browser.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\skills\\skills-manager.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\memory\\memory-engine.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\agent\\sub-agent-runner.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\hooks\\hook-system.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\scheduler\\scheduler.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\agents\\reflector.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\stream\\event-stream.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\session\\transcript.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\tasks\\dream-task.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\context\\context-engine.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\tasks\\background-task-manager.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\constants\\instructions.ts"
+    },
+    {
+      "from": "core\\orchestrator\\orchestrator.ts",
+      "to": "core\\permissions\\permission-system.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\answer.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\assistant.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\python.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\planner.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\shell.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\task-manager.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\browser.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\orchestrator\\orchestrator.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\reflector.agent.ts"
+    },
+    {
+      "from": "core\\orchestrator\\telegram.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\permissions\\permission-system.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\plan\\plan-manager.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\scheduler\\scheduler.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\session\\session.test.ts",
+      "to": "core\\stream\\event-stream.ts"
+    },
+    {
+      "from": "core\\session\\session.test.ts",
+      "to": "core\\session\\transcript.ts"
+    },
+    {
+      "from": "core\\session\\session.test.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\skills\\skills-manager.spec.ts",
+      "to": "core\\skills\\skills-manager.ts"
+    },
+    {
+      "from": "core\\skills\\skills-manager.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\stream\\event-stream.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tasks\\background-task-manager.ts",
+      "to": "core\\agent\\agent.ts"
+    },
+    {
+      "from": "core\\tasks\\background-task-manager.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tasks\\dream-task.ts",
+      "to": "core\\memory\\memory-extractor.ts"
+    },
+    {
+      "from": "core\\tasks\\dream-task.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tasks\\dream-task.ts",
+      "to": "core\\memory\\memory_search.ts"
+    },
+    {
+      "from": "core\\tools\\ScheduleTaskTool.ts",
+      "to": "core\\tasks\\background-task-manager.ts"
+    },
+    {
+      "from": "core\\tools\\ScheduleTaskTool.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\tools\\ScheduleTaskTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\ScheduleTaskTool.ts",
+      "to": "core\\scheduler\\scheduler.ts"
+    },
+    {
+      "from": "core\\tools\\TodoWriteTool.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\tools\\TodoWriteTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\WebSearchTool.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\tools\\WebSearchTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\agentTool.ts",
+      "to": "core\\agent\\sub-agent-runner.ts"
+    },
+    {
+      "from": "core\\tools\\agentTool.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\tools\\agentTool.ts",
+      "to": "core\\agents\\agent-registry.ts"
+    },
+    {
+      "from": "core\\tools\\agentTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\browserExecTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\browserNavigateTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\browserNavigateTool.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\tools\\browserNavigateTool.ts",
+      "to": "core\\tools\\browserExecTool.ts"
+    },
+    {
+      "from": "core\\tools\\pythonExecTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\taskCreateTool.ts",
+      "to": "core\\tasks\\background-task-manager.ts"
+    },
+    {
+      "from": "core\\tools\\taskCreateTool.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\tools\\taskCreateTool.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\tool-search.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\tools\\toolRegistry.spec.ts",
+      "to": "core\\tools\\toolRegistry.ts"
+    },
+    {
+      "from": "core\\tools\\toolRegistry.ts",
+      "to": "core\\tools\\toolDefinition.ts"
+    },
+    {
+      "from": "core\\utils\\cache.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\utils\\cache.ts",
+      "to": "core\\utils\\cache.ts"
+    },
+    {
+      "from": "core\\utils\\logger.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\utils\\rateLimiter.ts",
+      "to": "core\\utils\\logger.ts"
+    },
+    {
+      "from": "core\\utils\\rateLimiter.ts",
+      "to": "core\\utils\\rateLimiter.ts"
+    }
+  ],
+  "circular_dependencies": [
+    [
+      "core\\utils\\logger.ts",
+      "core\\agent\\agent.spec.ts",
+      "core\\agent\\agent.ts",
+      "core\\utils\\logger.ts"
+    ],
+    [
+      "core\\utils\\cache.ts",
+      "core\\agent\\agent.spec.ts",
+      "core\\agent\\agent.ts",
+      "core\\utils\\cache.ts"
+    ],
+    [
+      "core\\utils\\rateLimiter.ts",
+      "core\\agent\\agent.spec.ts",
+      "core\\agent\\agent.ts",
+      "core\\utils\\rateLimiter.ts"
+    ]
+  ],
+  "high_fan_out": [
+    {
+      "file": "core\\orchestrator\\orchestrator.ts",
+      "count": 19
+    },
+    {
+      "file": "core\\agents\\browser.agent.ts",
+      "count": 11
+    },
+    {
+      "file": "core\\orchestrator\\telegram.ts",
+      "count": 11
+    },
+    {
+      "file": "core\\agents\\python.agent.ts",
+      "count": 10
+    },
+    {
+      "file": "core\\agents\\assistant.agent.ts",
+      "count": 9
+    },
+    {
+      "file": "cloud\\src\\orchestrator\\orchestrator.ts",
+      "count": 7
+    },
+    {
+      "file": "cloud\\src\\server.ts",
+      "count": 6
+    },
+    {
+      "file": "core\\agent\\agent.ts",
+      "count": 5
+    },
+    {
+      "file": "core\\agents\\shell.agent.ts",
+      "count": 5
+    },
+    {
+      "file": "core\\agents\\task-manager.agent.ts",
+      "count": 5
+    },
+    {
+      "file": "core\\agents\\answer.agent.ts",
+      "count": 4
+    },
+    {
+      "file": "core\\context\\context-engine.ts",
+      "count": 4
+    },
+    {
+      "file": "core\\tools\\ScheduleTaskTool.ts",
+      "count": 4
+    },
+    {
+      "file": "core\\tools\\agentTool.ts",
+      "count": 4
+    },
+    {
+      "file": "cloud\\src\\context\\context-engine.ts",
+      "count": 3
+    }
+  ],
+  "high_fan_in": [
+    {
+      "file": "core\\utils\\logger.ts",
+      "count": 28
+    },
+    {
+      "file": "core\\agent\\agent.ts",
+      "count": 18
+    },
+    {
+      "file": "core\\agents\\agent-registry.ts",
+      "count": 13
+    },
+    {
+      "file": "core\\constants\\instructions.ts",
+      "count": 10
+    },
+    {
+      "file": "core\\memory\\memory_search.ts",
+      "count": 10
+    },
+    {
+      "file": "cloud\\src\\utils\\logger.ts",
+      "count": 7
+    },
+    {
+      "file": "core\\tools\\toolDefinition.ts",
+      "count": 7
+    },
+    {
+      "file": "cloud\\src\\types\\index.ts",
+      "count": 6
+    },
+    {
+      "file": "core\\tools\\WebSearchTool.ts",
+      "count": 3
+    },
+    {
+      "file": "core\\tools\\ScheduleTaskTool.ts",
+      "count": 3
+    },
+    {
+      "file": "core\\tools\\taskCreateTool.ts",
+      "count": 3
+    },
+    {
+      "file": "core\\tools\\TodoWriteTool.ts",
+      "count": 3
+    },
+    {
+      "file": "core\\tools\\agentTool.ts",
+      "count": 3
+    },
+    {
+      "file": "core\\orchestrator\\orchestrator.ts",
+      "count": 3
+    },
+    {
+      "file": "core\\tasks\\background-task-manager.ts",
+      "count": 3
+    }
+  ],
+  "cross_edges": [],
+  "summary": {
+    "total_nodes": 69,
+    "total_edges": 177,
+    "circular_deps_count": 3,
+    "cross_core_cloud_edges": 0
+  }
+}

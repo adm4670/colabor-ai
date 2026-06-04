@@ -341,6 +341,7 @@ const log = createLogger("ORCH");
             }
           }
     
+          // Sliding window: max 15 interações (30 mensagens) mantidas no histórico formatado
           private formatHistory(history: Message[] = []) {
             if (!history.length) return "No conversation history.";
             return history
@@ -509,7 +510,8 @@ const log = createLogger("ORCH");
               content: input,
             });
     
-            const formattedHistory = this.formatHistory(history);
+            // Slice para 30 mensagens = 15 interações (user+assistant pair) no sliding window
+            const formattedHistory = this.formatHistory(history.slice(-30));
     
             // Buscar memoria relevante ao contexto atual
             const memoryContext = this.memoryEngine.recall(input, formattedHistory);
@@ -650,7 +652,8 @@ const log = createLogger("ORCH");
     
               try {
                 parsed = extractJSON(decision, "planner");
-              } catch {
+              } catch(ex) {
+                console.log(ex);
                 log.warn("Planner returned invalid JSON — raw decision (first 800 chars): " + decision.substring(0, 800));
                 this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
                 this.eventStream.push(createEvent("agent_end"));
@@ -871,7 +874,7 @@ const log = createLogger("ORCH");
                 continue;
               }
     
-              const target = this.agents.find((a) => a.name === parsed.agent);
+              const target = agentRegistry.find(parsed.agent);
     
               if (!target) {
                 log.warn(`Agent not found: ${parsed.agent}`);

@@ -237,17 +237,17 @@
 [2026-06-01T19:18:04.674Z] [INFO] [2026-06-01T19:18:04.673Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 [2026-06-01T19:18:07.876Z] [INFO] [2026-06-01T19:18:07.876Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
 [2026-06-01T19:24:07.151Z] [INFO] [INFO] [ReflectorAgent] Agente inicializado
-[2026-06-01T19:24:07.151Z] [INFO] [INFO] [ReflectorAgent] Modelo: deepseek-v4-pro
+[2026-06-01T19:24:07.151Z] [INFO] [INFO] [ReflectorAgent] Modelo: deepseek-v4-flash
 [2026-06-01T19:24:07.234Z] [INFO] [INFO] [PlannerAgent] Agente inicializado
-[2026-06-01T19:24:07.235Z] [INFO] [INFO] [PlannerAgent] Modelo: deepseek-v4-pro
+[2026-06-01T19:24:07.235Z] [INFO] [INFO] [PlannerAgent] Modelo: deepseek-v4-flash
 [2026-06-01T19:24:07.242Z] [INFO] [INFO] [assistant] Agente inicializado
-[2026-06-01T19:24:07.243Z] [INFO] [INFO] [assistant] Modelo: deepseek-v4-pro
+[2026-06-01T19:24:07.243Z] [INFO] [INFO] [assistant] Modelo: deepseek-v4-flash
 [2026-06-01T19:24:07.246Z] [INFO] [INFO] [PythonAgent] Agente inicializado
-[2026-06-01T19:24:07.246Z] [INFO] [INFO] [PythonAgent] Modelo: deepseek-v4-pro
+[2026-06-01T19:24:07.246Z] [INFO] [INFO] [PythonAgent] Modelo: deepseek-v4-flash
 [2026-06-01T19:24:07.248Z] [INFO] [INFO] [WriterAgent] Agente inicializado
-[2026-06-01T19:24:07.249Z] [INFO] [INFO] [WriterAgent] Modelo: deepseek-v4-pro
+[2026-06-01T19:24:07.249Z] [INFO] [INFO] [WriterAgent] Modelo: deepseek-v4-flash
 [2026-06-01T19:24:07.254Z] [INFO] [INFO] [task_manager] Agente inicializado
-[2026-06-01T19:24:07.255Z] [INFO] [INFO] [task_manager] Modelo: deepseek-v4-pro
+[2026-06-01T19:24:07.255Z] [INFO] [INFO] [task_manager] Modelo: deepseek-v4-flash
 [2026-06-01T19:24:07.257Z] [INFO] [INFO] [Permissions] Agent "assistant" level set to network
 [2026-06-01T19:24:07.257Z] [INFO] [INFO] [Permissions] Agent "python_code" level set to file_write
 [2026-06-01T19:24:07.258Z] [INFO] [INFO] [Permissions] Agent "browser" level set to network
@@ -2377,22 +2377,22 @@ test...
 [2026-06-01T20:02:57.979Z] [INFO] [2026-06-01T20:02:57.979Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 [2026-06-01T20:03:01.526Z] [INFO] [2026-06-01T20:03:01.526Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 17:03:45.885  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:03:45.887  INFO   [AGENT] Model: deepseek-v4-pro
+17:03:45.887  INFO   [AGENT] Model: deepseek-v4-flash
 17:03:45.887  INFO   [AGENT] Tools disponiveis: 0
 17:03:45.967  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:03:45.967  INFO   [AGENT] Model: deepseek-v4-pro
+17:03:45.967  INFO   [AGENT] Model: deepseek-v4-flash
 17:03:45.968  INFO   [AGENT] Tools disponiveis: 0
 17:03:45.975  INFO   [AGENT] Agent 'assistant' inicializado
-17:03:45.975  INFO   [AGENT] Model: deepseek-v4-pro
+17:03:45.975  INFO   [AGENT] Model: deepseek-v4-flash
 17:03:45.976  INFO   [AGENT] Tools disponiveis: 10
 17:03:45.978  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:03:45.979  INFO   [AGENT] Model: deepseek-v4-pro
+17:03:45.979  INFO   [AGENT] Model: deepseek-v4-flash
 17:03:45.979  INFO   [AGENT] Tools disponiveis: 11
 17:03:45.980  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:03:45.981  INFO   [AGENT] Model: deepseek-v4-pro
+17:03:45.981  INFO   [AGENT] Model: deepseek-v4-flash
 17:03:45.981  INFO   [AGENT] Tools disponiveis: 0
 17:03:45.983  INFO   [AGENT] Agent 'task_manager' inicializado
-17:03:45.984  INFO   [AGENT] Model: deepseek-v4-pro
+17:03:45.984  INFO   [AGENT] Model: deepseek-v4-flash
 17:03:45.984  INFO   [AGENT] Tools disponiveis: 3
 17:03:45.986  INFO   [APP] [Permissions] Agent "assistant" level set to network
 17:03:45.986  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
@@ -2403,22 +2403,22 @@ test...
 17:03:45.988  INFO   [ORCH] Plano carregado: 5 steps
 17:03:45.992  INFO   [APP] [Telegram] Multi-Agent iniciado.
 17:04:10.500  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:04:10.501  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:10.501  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:10.502  INFO   [AGENT] Tools disponiveis: 0
 17:04:10.580  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:04:10.581  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:10.581  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:10.581  INFO   [AGENT] Tools disponiveis: 0
 17:04:10.589  INFO   [AGENT] Agent 'assistant' inicializado
-17:04:10.589  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:10.589  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:10.589  INFO   [AGENT] Tools disponiveis: 10
 17:04:10.592  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:04:10.592  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:10.592  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:10.593  INFO   [AGENT] Tools disponiveis: 11
 17:04:10.594  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:04:10.595  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:10.595  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:10.595  INFO   [AGENT] Tools disponiveis: 0
 17:04:10.598  INFO   [AGENT] Agent 'task_manager' inicializado
-17:04:10.599  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:10.599  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:10.599  INFO   [AGENT] Tools disponiveis: 3
 17:04:10.601  INFO   [APP] [Permissions] Agent "assistant" level set to network
 17:04:10.601  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
@@ -2429,22 +2429,22 @@ test...
 17:04:10.603  INFO   [ORCH] Plano carregado: 5 steps
 17:04:10.607  INFO   [APP] [Telegram] Multi-Agent iniciado.
 17:04:28.639  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:04:28.640  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:28.640  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:28.641  INFO   [AGENT] Tools disponiveis: 0
 17:04:28.716  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:04:28.716  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:28.716  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:28.716  INFO   [AGENT] Tools disponiveis: 0
 17:04:28.724  INFO   [AGENT] Agent 'assistant' inicializado
-17:04:28.725  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:28.725  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:28.725  INFO   [AGENT] Tools disponiveis: 10
 17:04:28.728  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:04:28.728  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:28.728  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:28.728  INFO   [AGENT] Tools disponiveis: 11
 17:04:28.730  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:04:28.730  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:28.730  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:28.730  INFO   [AGENT] Tools disponiveis: 0
 17:04:28.733  INFO   [AGENT] Agent 'task_manager' inicializado
-17:04:28.733  INFO   [AGENT] Model: deepseek-v4-pro
+17:04:28.733  INFO   [AGENT] Model: deepseek-v4-flash
 17:04:28.734  INFO   [AGENT] Tools disponiveis: 3
 17:04:28.736  INFO   [APP] [Permissions] Agent "assistant" level set to network
 17:04:28.736  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
@@ -2460,22 +2460,22 @@ test...
 [2026-06-01T20:04:54.715Z] [INFO] [2026-06-01T20:04:54.714Z] [INFO] [SkillsManager] Skills relevantes: communication (score: 0.35), web-search (score: 0.25), python-dev (score: 0.20)
 [2026-06-01T20:04:58.093Z] [INFO] [2026-06-01T20:04:58.092Z] [INFO] [Memory] Nota adicionada a 2026-06-01.md
 17:05:08.700  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:05:08.702  INFO   [AGENT] Model: deepseek-v4-pro
+17:05:08.702  INFO   [AGENT] Model: deepseek-v4-flash
 17:05:08.703  INFO   [AGENT] Tools disponiveis: 0
 17:05:08.777  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:05:08.778  INFO   [AGENT] Model: deepseek-v4-pro
+17:05:08.778  INFO   [AGENT] Model: deepseek-v4-flash
 17:05:08.778  INFO   [AGENT] Tools disponiveis: 0
 17:05:08.786  INFO   [AGENT] Agent 'assistant' inicializado
-17:05:08.786  INFO   [AGENT] Model: deepseek-v4-pro
+17:05:08.786  INFO   [AGENT] Model: deepseek-v4-flash
 17:05:08.787  INFO   [AGENT] Tools disponiveis: 10
 17:05:08.790  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:05:08.790  INFO   [AGENT] Model: deepseek-v4-pro
+17:05:08.790  INFO   [AGENT] Model: deepseek-v4-flash
 17:05:08.791  INFO   [AGENT] Tools disponiveis: 11
 17:05:08.792  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:05:08.793  INFO   [AGENT] Model: deepseek-v4-pro
+17:05:08.793  INFO   [AGENT] Model: deepseek-v4-flash
 17:05:08.793  INFO   [AGENT] Tools disponiveis: 0
 17:05:08.796  INFO   [AGENT] Agent 'task_manager' inicializado
-17:05:08.796  INFO   [AGENT] Model: deepseek-v4-pro
+17:05:08.796  INFO   [AGENT] Model: deepseek-v4-flash
 17:05:08.797  INFO   [AGENT] Tools disponiveis: 3
 17:05:08.799  INFO   [APP] [Permissions] Agent "assistant" level set to network
 17:05:08.800  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
@@ -2599,7 +2599,7 @@ test...
 17:06:42.181  INFO   [APP] [Memory] Nota adicionada a 2026-06-01.md
 17:07:30.014  INFO   [ORCH] ==============================
 17:07:30.015  INFO   [ORCH] ORCHESTRATOR START
-17:07:30.016  INFO   [ORCH] User input received  {"input":"se eu alterar o modelo principal de deepseek-v4-pro para  deepseek-v4-pro"}
+17:07:30.016  INFO   [ORCH] User input received  {"input":"se eu alterar o modelo principal de deepseek-v4-flash para  deepseek-v4-flash"}
 17:07:30.016  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780344308798_cww4y7"}
 17:07:30.029  INFO   [ORCH] Step 1/15
 17:07:30.030  INFO   [AGENT] ==============================
@@ -3206,22 +3206,22 @@ test...
 17:17:00.597  INFO   [ORCH] ORCHESTRATION FINISHED
 17:17:00.598  INFO   [APP] [Memory] Nota adicionada a 2026-06-01.md
 17:17:23.270  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:17:23.272  INFO   [AGENT] Model: deepseek-v4-pro
+17:17:23.272  INFO   [AGENT] Model: deepseek-v4-flash
 17:17:23.273  INFO   [AGENT] Tools disponiveis: 0
 17:17:23.352  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:17:23.352  INFO   [AGENT] Model: deepseek-v4-pro
+17:17:23.352  INFO   [AGENT] Model: deepseek-v4-flash
 17:17:23.353  INFO   [AGENT] Tools disponiveis: 0
 17:17:23.362  INFO   [AGENT] Agent 'assistant' inicializado
-17:17:23.363  INFO   [AGENT] Model: deepseek-v4-pro
+17:17:23.363  INFO   [AGENT] Model: deepseek-v4-flash
 17:17:23.363  INFO   [AGENT] Tools disponiveis: 10
 17:17:23.368  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:17:23.368  INFO   [AGENT] Model: deepseek-v4-pro
+17:17:23.368  INFO   [AGENT] Model: deepseek-v4-flash
 17:17:23.369  INFO   [AGENT] Tools disponiveis: 11
 17:17:23.373  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:17:23.373  INFO   [AGENT] Model: deepseek-v4-pro
+17:17:23.373  INFO   [AGENT] Model: deepseek-v4-flash
 17:17:23.373  INFO   [AGENT] Tools disponiveis: 0
 17:17:23.376  INFO   [AGENT] Agent 'task_manager' inicializado
-17:17:23.377  INFO   [AGENT] Model: deepseek-v4-pro
+17:17:23.377  INFO   [AGENT] Model: deepseek-v4-flash
 17:17:23.377  INFO   [AGENT] Tools disponiveis: 3
 17:17:23.379  INFO   [APP] [Permissions] Agent "assistant" level set to network
 17:17:23.380  INFO   [APP] [Permissions] Agent "python_code" level set to file_write
@@ -3983,22 +3983,22 @@ test...
 17:42:41.109  INFO   [ORCH] ORCHESTRATION FINISHED
 17:42:41.111  INFO   [APP] [Memory] Nota adicionada a 2026-06-01.md
 17:44:51.531  INFO   [AGENT] Agent 'ReflectorAgent' inicializado
-17:44:51.533  INFO   [AGENT] Model: deepseek-v4-pro
+17:44:51.533  INFO   [AGENT] Model: deepseek-v4-flash
 17:44:51.534  INFO   [AGENT] Tools disponiveis: 0
 17:44:51.626  INFO   [AGENT] Agent 'PlannerAgent' inicializado
-17:44:51.626  INFO   [AGENT] Model: deepseek-v4-pro
+17:44:51.626  INFO   [AGENT] Model: deepseek-v4-flash
 17:44:51.627  INFO   [AGENT] Tools disponiveis: 0
 17:44:51.645  INFO   [AGENT] Agent 'assistant' inicializado
-17:44:51.646  INFO   [AGENT] Model: deepseek-v4-pro
+17:44:51.646  INFO   [AGENT] Model: deepseek-v4-flash
 17:44:51.646  INFO   [AGENT] Tools disponiveis: 10
 17:44:51.660  INFO   [AGENT] Agent 'PythonAgent' inicializado
-17:44:51.660  INFO   [AGENT] Model: deepseek-v4-pro
+17:44:51.660  INFO   [AGENT] Model: deepseek-v4-flash
 17:44:51.661  INFO   [AGENT] Tools disponiveis: 11
 17:44:51.672  INFO   [AGENT] Agent 'WriterAgent' inicializado
-17:44:51.673  INFO   [AGENT] Model: deepseek-v4-pro
+17:44:51.673  INFO   [AGENT] Model: deepseek-v4-flash
 17:44:51.674  INFO   [AGENT] Tools disponiveis: 0
 17:44:51.676  INFO   [AGENT] Agent 'task_manager' inicializado
-17:44:51.677  INFO   [AGENT] Model: deepseek-v4-pro
+17:44:51.677  INFO   [AGENT] Model: deepseek-v4-flash
 17:44:51.677  INFO   [AGENT] Tools disponiveis: 3
 17:44:51.679  INFO   [APP] [Permissions] Agent "assistant" level set to network
 17:44:51.680  INFO   [APP] [Permissions] Agent "python_code" level set to file_write

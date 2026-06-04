@@ -1,0 +1,235 @@
+{
+  "root_package": {
+    "name": null,
+    "version": null,
+    "description": null,
+    "dependencies": {
+      "axios": "^1.16.1",
+      "dotenv": "^17.3.1",
+      "node-cron": "^4.2.1",
+      "node-telegram-bot-api": "^0.63.0",
+      "openai": "^6.27.0",
+      "tiktoken": "^1.0.22",
+      "tsx": "^4.21.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.29.0",
+      "@babel/preset-env": "^7.29.0",
+      "@babel/preset-typescript": "^7.28.5",
+      "@types/axios": "^0.9.36",
+      "@types/jest": "^30.0.0",
+      "@types/node-telegram-bot-api": "^0.64.14",
+      "babel-jest": "^30.2.0",
+      "dotenv-cli": "^11.0.0",
+      "git-commit-msg-linter": "^5.0.8",
+      "jest": "^30.2.0",
+      "puppeteer": "^25.1.0",
+      "typescript": "^6.0.3"
+    },
+    "scripts": {
+      "test": "jest",
+      "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
+      "dev": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
+      "build": "tsc"
+    },
+    "engines": {}
+  },
+  "root_tsconfig": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "rootDir": ".",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "moduleResolution": "node"
+    },
+    "include": [
+      "core/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.test.ts",
+      "**/__tests__/**",
+      "node_modules",
+      "dist",
+      "core/orchestrator/telegram.ts",
+      "core/tools/browserExecTool.ts"
+    ]
+  },
+  "client_package": {
+    "name": "colabor-ai-client",
+    "version": "1.0.0",
+    "dependencies": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "ws": "^8.16.0"
+    },
+    "devDependencies": {
+      "@types/react": "^18.2.48",
+      "@types/react-dom": "^18.2.18",
+      "@vitejs/plugin-react": "^4.2.1",
+      "typescript": "~5.4.5",
+      "vite": "^5.0.12",
+      "@types/ws": "^8.5.10",
+      "eslint": "^8.57.0",
+      "@typescript-eslint/parser": "^7.0.0",
+      "@typescript-eslint/eslint-plugin": "^7.0.0",
+      "prettier": "^3.2.0",
+      "eslint-config-prettier": "^9.1.0",
+      "eslint-plugin-prettier": "^5.1.0"
+    },
+    "scripts": {
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "electron:dev": "vite build && electron .",
+      "electron:build": "vite build && electron-builder",
+      "preview": "vite preview",
+      "lint": "eslint src/ electron/",
+      "lint:fix": "eslint src/ electron/ --fix",
+      "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"electron/**/*.ts\""
+    }
+  },
+  "client_tsconfig": {
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "ESNext",
+      "lib": [
+        "ES2022",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "jsx": "react-jsx",
+      "moduleResolution": "bundler",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "outDir": "./dist",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": [
+          "src/*"
+        ]
+      }
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "dist-electron",
+      "electron/**/*"
+    ]
+  },
+  "cloud_package": {
+    "name": "colabor-ai-cloud",
+    "version": "1.0.0",
+    "dependencies": {
+      "cors": "^2.8.5",
+      "dotenv": "^16.4.1",
+      "express": "^4.18.2",
+      "jsonwebtoken": "^9.0.2",
+      "openai": "^4.28.0",
+      "uuid": "^9.0.0",
+      "ws": "^8.16.0"
+    },
+    "devDependencies": {
+      "@types/cors": "^2.8.17",
+      "@types/express": "^4.17.21",
+      "@types/jest": "^29.5.14",
+      "@types/jsonwebtoken": "^9.0.5",
+      "@types/node": "^20.11.0",
+      "@types/supertest": "^6.0.3",
+      "@types/uuid": "^9.0.7",
+      "@types/ws": "^8.5.10",
+      "@typescript-eslint/eslint-plugin": "^7.18.0",
+      "@typescript-eslint/parser": "^7.18.0",
+      "eslint": "^8.57.1",
+      "eslint-config-prettier": "^9.1.2",
+      "eslint-plugin-prettier": "^5.5.6",
+      "jest": "^29.7.0",
+      "prettier": "^3.8.3",
+      "supertest": "^6.3.4",
+      "ts-jest": "^29.4.11",
+      "ts-node": "^10.9.2",
+      "typedoc": "^0.25.13",
+      "typescript": "^5.3.3"
+    },
+    "scripts": {
+      "build": "tsc",
+      "dev": "ts-node src/server.ts",
+      "start": "node dist/server.js",
+      "lint": "eslint src/",
+      "lint:fix": "eslint src/ --fix",
+      "format": "prettier --write \"src/**/*.ts\"",
+      "docs": "typedoc --out docs src",
+      "test": "jest"
+    }
+  },
+  "cloud_tsconfig": {
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "commonjs",
+      "lib": [
+        "ES2022"
+      ],
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
+  },
+  "env_variables": [
+    "OPENAI_API_KEY",
+    "MODEL",
+    "TELEGRAM_TOKEN",
+    "DEEPSEEK_API_KEY",
+    "DEEPSEEK_FALLBACK_MODEL"
+  ],
+  "env_example_variables": [
+    "OPENAI_API_KEY",
+    "DEEPSEEK_API_KEY",
+    "MODEL",
+    "TELEGRAM_TOKEN",
+    "PYTHON_TIMEOUT",
+    "MAX_MESSAGES_PER_SESSION",
+    "MONGODB_URI",
+    "PUPPETEER_HEADLESS"
+  ],
+  "cloud_env_example_variables": [
+    "PORT",
+    "NODE_ENV",
+    "JWT_SECRET",
+    "JWT_EXPIRES_IN",
+    "LLM_PROVIDER",
+    "DEEPSEEK_API_KEY",
+    "OPENAI_API_KEY",
+    "MEMORY_DIR"
+  ],
+  "dockerfile": "# ============================================\n    # Dockerfile - colabor-ai-core (Multi-stage)\n    # ============================================\n    \n    # --- Stage 1: Build ---\n    FROM node:23-alpine AS builder\n    \n    WORKDIR /app\n    \n    # Instalar Python para execucao de scripts Python\n    RUN apk add --no-cache python3 py3-pip\n    \n    COPY package.json package-lock.json ./\n    RUN npm ci\n    \n    COPY . .\n    RUN npm run build\n    \n    # --- Stage 2: Production ---\n    FROM node:23-alpine AS production\n    \n    WORKDIR /app\n    \n    # Instalar Python para execucao de scripts Python\n    RUN apk add --no-cache python3 py3-pip\n    \n    ENV NODE_ENV=production\n    \n    COPY package.json package-lock.json ./\n    RUN npm ci --omit=dev\n    \n    COPY --from=builder /app/dist ./dist\n    COPY --from=builder /app/src ./src\n    COPY --from=builder /app/core ./core\n    COPY --from=builder /app/tsconfig.json ./\n    \n    EXPOSE 4000\n    \n    # Comando padrao: iniciar o orquestrador via CLI\n    CMD [\"node\", \"dist/core/orchestrator/main.js\"]\n    ",
+  "gitignore": "/node_modules/\n/coverage/\n.env\n/dist/\n/tmp/\n.colabor-ai/\n\n# Temp analysis files\n*_analysis.txt\n  \n_agent_files.txt \n"
+}

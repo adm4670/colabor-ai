@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-    import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+    import { DEFAULT_MODEL } from "../constants/instructions";
     
     /**
      * ReflectorAgent - Avalia resultados de execucao dos agentes.
@@ -20,12 +20,11 @@ import { Agent } from "../agent/agent";
         "An AI specialized in evaluating whether other agents completed their tasks successfully. " +
         "It identifies missing information and suggests whether a different approach is needed.",
     
-      model: process.env.REFLECTOR_MODEL || "deepseek-v4-pro",
+      model: process.env.REFLECTOR_MODEL || "deepseek-v4-flash",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     
       generalInstructions: `
-            ${CORE_INSTRUCTIONS}
     
       You are an execution evaluator. Your job is to evaluate the result of an agent's work.
     

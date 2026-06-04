@@ -1,0 +1,3845 @@
+
+================================================================================
+FILE: MEMORY.md (15358 chars)
+================================================================================
+
+# MEMORY.md - Memoria de Longo Prazo
+    
+    Este arquivo armazena fatos duradouros, preferencias, decisoes e
+    aprendizados que devem ser preservados entre sessoes.
+    
+    ## Sobre o Projeto
+    - Nome: colabor-ai
+    - Descricao: Plataforma multi-agente com orquestrador inteligente
+    - Stack: Node.js, TypeScript, OpenAI API, DeepSeek API
+    - Arquitetura: Planner-Worker (orquestrador decide qual agente executar)
+    
+    ## Agentes Disponiveis
+    - **PlannerAgent**: Decide qual agente executar (cerebro do sistema)
+    - **AssistantAgent**: Conversa geral, perguntas simples
+    - **PythonAgent**: Executa codigo Python
+    - **BrowserAgent**: Automacao web (navegar, clicar, screenshots)
+    - **ShellAgent**: Comandos shell (npm, git, fs)
+    - **TaskManagerAgent**: CRUD de tarefas
+    - **AnswerAgent**: Formata resposta final (WriterAgent)
+    
+    ## Preferencias do Usuario
+    - Respostas devem ser em PT-BR
+    - Seja claro e direto
+    - Evite "filler phrases" como "Great question!" ou "I'd be happy to help"
+    - Tenha opinioes - nao seja um robo corporativo
+    
+    ## Decisoes de Arquitetura
+    - 2025: Adotado padrao Planner-Worker
+    - 2025: Adicionado suporte a Telegram via polling
+    - 2026: Iniciada migracao para session transcript em JSONL
+    - 2026: Adicionado EventStream para streaming de eventos
+    
+    
+    ## Alteracoes Realizadas (09/03/2026)
+    - **Corrigido erro "Agent not found: ShellAgent"**: Adicionado `shellAgent` na lista de subAgents do `core/orchestrator/main.ts`
+    - **Criado `core/constants/instructions.ts`**: Arquivo com `CORE_INSTRUCTIONS` e `FORMAT_RESPONSE_JSON` para centralizar instrucoes compartilhadas entre agentes
+    - **Refatorado `planner.agent.ts`**: Substituido bloco de identidade duplicado por import de `CORE_INSTRUCTIONS`
+    - **Refatorado `orchestrator/main.ts`**: Substituido bloco de identidade duplicado por import de `CORE_INSTRUCTIONS`
+    - **Atualizados agentes**: Todos os agentes agora importam `CORE_INSTRUCTIONS` como prefixo em suas `generalInstructions`
+    - **Removido `core/tools/cmdExecTool.ts`**: Arquivo duplicado do `shellExecTool.ts` (nao era importado por nenhum outro arquivo)
+    
+## Fatos
+- [2026-05-29] tínhamos conversado antes, e na época eu não encontrei nenhum registro de conversas anteriores substanciais
+
+## Preferencias
+- [2026-05-29] que eu comece a implementar alguma das melhorias?** Posso atacar os problemas por prioridade — começando pelos críticos
+
+## Preferencias
+- [2026-05-29] revisar algum arquivo específico?
+
+## Preferencias
+- [2026-05-29] - `src/tools/manageObjectivesTool
+
+## Aprendizados
+- [2026-05-29] - `src/telegram/bot
+
+## Preferencias
+- [2026-05-29] Confirme que a variável `MONGO_URI` está configurada no painel do Render (*Environment → Environment Variables*)
+- [2026-05-29] A *Shell* é mais segura pra testar, a *automática* é melhor pra produção 🚀
+
+## Preferencias
+- [2026-05-29] ajustar algo no design? Posso mexer nas cores, textos, seções ou adicionar animações novas 😊
+
+## Aprendizados
+- [2026-05-29] - *Relatório semanal de procrastinação:* quantas tarefas adiadas, quantas concluídas, padrões (ex: "você sempre adia reuniões às segundas")
+
+## Aprendizados
+- [2026-05-30] 🚀 Próximo passo: 22h14, já era
+- [2026-05-30] 🚀 Próximo passo: 22h15
+
+## Fatos
+- [2026-05-30] rebuild + deploy para ativar tudo
+
+## Preferencias
+- [2026-05-30] - `src/agents/profileExtractor
+- [2026-05-30] objetivos, etc
+
+## Aprendizados
+- [2026-05-30] Quer se aprofundar em algum desses tópicos ou ver algo mais específico?
+
+## Preferencias
+- [2026-05-30] revisar algum ponto antes?
+
+## Fatos
+- [2026-05-30] você achar importantes
+
+## Preferencias
+- [2026-05-30] - **Integração com action4
+
+## Preferencias
+- [2026-05-30] discutir algum detalhe da arquitetura primeiro?
+
+## Preferencias
+- [2026-05-30] começar já pela implementação da base?
+
+## Preferencias
+- [2026-05-30] testar o que já está no ar?
+
+## Preferencias
+- [2026-05-30] falar de outra coisa?
+
+## Preferencias
+- [2026-05-30] algo diferente 😊
+
+## Preferencias
+- [2026-05-30] fazer algum ajuste no conteúdo?
+
+## Preferencias
+- [2026-05-30] - *A)* Commitar só o `memory/` + adicionar os artefatos ao `
+
+## Preferencias
+- [2026-05-31] iniciar por outra? Posso começar a implementar imediatamente
+
+## Aprendizados
+- [2026-05-31] O `claude-code` tem uma arquitetura **muito mais modular e robusta** para ferramentas, interface de terminal e gerenciamento de permissões
+
+## Preferencias
+- [2026-05-31] revisar algo antes?
+
+## Aprendizados
+- [2026-05-31] Se algo der errado, ele revisa o plano dinamicamente em vez de travar
+- [2026-05-31] Quer que eu já faça o push ou prefere revisar algo antes?
+
+## Preferencias
+- [2026-05-31] testar o que já foi feito primeiro?
+
+## Preferencias
+- [2026-05-31] revisar algo?
+
+## Preferencias
+- [2026-05-31] fazer outra coisa?
+
+## Preferencias
+- [2026-06-01] Listados os 15 commits mais recentes do repositório `colabor-ai`
+
+## Decisoes
+- [2026-06-01] Qual caminho prefere?
+
+## Preferencias
+- [2026-06-01] continuar na `main`?
+
+## Preferencias
+- [2026-06-01] revisar o que mudou antes?
+
+## Preferencias
+- [2026-06-01] Me fala aí que eu resolvo rapidinho
+
+## Preferencias
+- [2026-06-01] que eu busque o resumo das notícias de PE direto aqui?
+
+
+# Correcoes
+
+## 2026-06-01 - Bug: Background tasks falhando com erro 400 (tool_calls mismatch)
+    
+    **Problema:** Tarefas agendadas via `create_background_task` falhavam com erro:
+    ```
+    BadRequestError: 400 An assistant message with 'tool_calls' must be followed 
+    by tool messages responding to each 'tool_call_id'.
+    ```
+    
+    **Causa raiz:** No `agent.ts` (método `run()`), o código adicionava TODOS os `tool_calls` 
+    retornados pela API ao histórico do assistente, mas no loop de processamento pulava 
+    tool_calls com `type !== "function"` via `continue`, sem adicionar tool messages 
+    correspondentes. Isso criava um mismatch: o assistant message referenciava tool_call_ids 
+    que não tinham tool messages no histórico.
+    
+    **Correção:** 
+    1. Filtrar apenas `function` calls antes de adicionar ao `assistantEntry.tool_calls`
+    2. Se após o filtro não houver tool_calls, tratar como resposta final
+    3. Iterar apenas sobre os function calls filtrados (removido o `continue` desnecessário)
+    
+    **Arquivo modificado:** `core/agent/agent.ts`
+    
+## Preferencias
+- [2026-06-01] falar sobre outra coisa?
+
+## Preferencias
+- [2026-06-01] falar sobre outra coisa hoje?
+
+## Preferencias
+- [2026-06-01] fazer manualmente? 👍
+
+## Preferencias
+- [2026-06-01] começar algo novo?
+
+## Preferencias
+- [2026-06-02] seguir com outra coisa?
+
+## Preferencias
+- [2026-06-02] o `item_XX
+
+## Preferencias
+- [2026-06-02] discutir os detalhes de integração com o LLM primeiro?
+
+## Preferencias
+- [2026-06-02] revisar algo do código?
+
+## Preferencias
+- [2026-06-02] testar algo antes?
+
+## Preferencias
+- [2026-06-02] tratar de outro assunto?
+
+## Preferencias
+- [2026-06-02] tratar de outra coisa no projeto?
+
+## Fatos
+- [2026-06-02] o dataset vai crescer naturalmente
+
+## Extracoes Automaticas
+- [2026-06-02] 
+## Extracoes Automaticas (2026-06-02)
+- [2026-06-02] **Preferencia**: - Não aparece no `requirements
+- [2026-06-02] **Preferencia** [analise]: Conversa: analise o processar_provas
+- [2026-06-02] **Fato** [etapa-1:-pré-processamento-com-pymupdf]: Etapa 1: Pré-processamento com PyMuPDF
+- [2026-06-02] **Fato** [📊-resumo-dos-4-erros]: 📊 Resumo dos 4 erros
+- [2026-06-02] **Fato** [resumo-das-alterações:]: Resumo das alterações:
+- [2026-06-02] **Fato** [script-criado:-`processar_provas_auto.py`]: Script criado: `processar_provas_auto.py`
+- [2026-06-02] **Fato** [resultado-do-teste-(enem-2013-d1-azul):]: Resultado do teste (ENEM 2013 D1 AZUL):
+- [2026-06-02] **Fato** [1.-abra-o-terminal-e-navegue-até-o-projeto:]: 1. Abra o terminal e navegue até o projeto:
+- [2026-06-02] **Fato** [2.-ative-o-ambiente-virtual:]: 2. Ative o ambiente virtual:
+- [2026-06-02] **Fato** [3.-execute-o-script:]: 3. Execute o script:
+- [2026-06-02] **Fato** [✅-a-ideia-do-yolo-é-excelente,-mas...]: ✅ A ideia do YOLO é excelente, mas...
+- [2026-06-02] **Fato** [🧩-visão-clareia.ai-↔-projeto-atual]: 🧩 Visão Clareia.ai ↔ Projeto atual
+- [2026-06-01] **Preferencia**: Resultado: ✅ Tudo pronto
+- [2026-06-01] **Preferencia**: O trabalho de *reescrita do logging* foi concluído com sucesso
+- [2026-06-01] **Fato** [🚀-flash-(mais-rápido-e-barato)]: 🚀 Flash (mais rápido e barato)
+- [2026-06-01] **Fato** [📁-arquivos-que-referenciam-o-model]: 📁 Arquivos que referenciam o model
+- [2026-06-01] **Fato** [📁-arquivos-que-hoje-usam-`deepseek-v4-flash`]: 📁 Arquivos que HOJE usam `deepseek-v4-flash`
+- [2026-06-01] **Fato** [⚙️-lógica]: ⚙️ Lógica
+- [2026-06-01] **Fato** [📁-7-arquivos-alterados]: 📁 7 arquivos alterados
+- [2026-06-01] **Fato** [🔍-causa-mais-provável]: 🔍 Causa mais provável
+- [2026-06-01] **Fato** [📊-resumo-do-commit]: 📊 Resumo do commit
+- [2026-06-01] **Fato** [📊-o-cenário-atual]: 📊 O cenário atual
+- [2026-06-01] **Fato** [conteúdo-da-página:]: Conteúdo da página:
+- [2026-06-01] **Fato** [🧬-o-que-é]: 🧬 O que é
+- [2026-05-31] **Preferencia**: Resultado: Beleza
+- [2026-05-31] **Decisao**: Resultado: ✅ Branch *lightweight* criada com sucesso
+- [2026-05-31] **Aprendizado** [erro]: Conversa: Enviei novamente a resposta pois chegou apenas o erro pra mim: Ã¢ÂÅ’ Erro ao processar mensagem
+- [2026-05-31] **Fato** [🔥-em-que-estamos-trabalhando]: 🔥 Em que estamos trabalhando
+- [2026-05-31] **Fato** [📌-o-que-é]: 📌 O que é
+- [2026-05-31] **Fato** [🧪-tecnologias]: 🧪 Tecnologias
+- [2026-05-31] **Fato** [📊-métricas-do-código-atual]: 📊 Métricas do Código Atual
+- [2026-05-31] **Fato** [o-que-está-bem-pensado]: O que está bem pensado
+- [2026-05-31] **Fato** [typescript-(`npx-tsc---noemit`)]: TypeScript (`npx tsc --noEmit`)
+- [2026-05-31] **Fato** [testes-(`npm-test`)]: Testes (`npm test`)
+- [2026-05-31] **Fato** [scripts-do-`package.json`-—-antes-vs-depois]: Scripts do `package.json` — Antes vs Depois
+- [2026-05-31] **Fato** [🔴-(a)-problemas-críticos]: 🔴 (A) Problemas Críticos
+- [2026-05-31] **Fato** [arquivos/diretórios-removidos]: Arquivos/Diretórios removidos
+- [2026-05-31] **Fato** [scripts-do-`package.json`]: Scripts do `package.json`
+- [2026-05-31] **Fato** [`c:\developer\claude-code\`-—-estrutura]: `C:\Developer\claude-code\` — Estrutura
+- [2026-05-31] **Fato** [o-que-a-página-contém:]: O que a página contém:
+- [2026-05-31] **Fato** [🎯-propósitos:-não-são-concorrentes,-são-complementares]: 🎯 Propósitos: não são concorrentes, são complementares
+- [2026-05-31] **Fato** [1.-engine:-playwright-+-browser-isolado]: 1. Engine: Playwright + Browser isolado
+- [2026-05-31] **Fato** [🚨-segurança]: 🚨 Segurança
+- [2026-05-31] **Fato** [arquivos-chave-do-sistema-de-agendamento]: Arquivos-chave do sistema de agendamento
+- [2026-05-30] **Preferencia**: Resultado: ✅ *Build e commit concluídos
+- [2026-05-30] **Preferencia**: Resultado: Posso te ajudar de várias formas
+- [2026-05-30] **Fato** [📋-resumo-das-alterações]: 📋 Resumo das Alterações
+- [2026-05-30] **Fato** [🧠-**responder-dúvidas-e-explicar-conceitos**]: 🧠 **Responder dúvidas e explicar conceitos**
+- [2026-05-30] **Fato** [🔍-**buscar-informaçõ]: 🔍 **Buscar informaçõ
+- [2026-05-30] **Fato** [📍-localização]: 📍 Localização
+- [2026-05-30] **Fato** [1.-🔁-sistema-de-fallback-e-retry-inteligente]: 1. 🔁 Sistema de fallback e retry inteligente
+- [2026-05-30] **Fato** [📊-status-atual-do-context-engine]: 📊 Status Atual do Context Engine
+- [2026-05-30] **Fato** [o-que-é]: O que é
+- [2026-05-30] **Fato** [posicionamento-na-arquitetura]: Posicionamento na Arquitetura
+- [2026-05-30] **Fato** [📄-1.-documentação-do-projeto]: 📄 1. Documentação do Projeto
+- [2026-05-30] **Fato** [💬-conversa-e-explicações]: 💬 Conversa e Explicações
+- [2026-05-30] **Fato** [🌐-pesquisa-na-web]: 🌐 Pesquisa na Web
+- [2026-05-29] **Preferencia**: Resultado: Olá
+- [2026-05-29] **Fato** [🟢-esforço-mínimo-(≤5-min-cada)]: 🟢 Esforço Mínimo (≤5 min cada)
+- [2026-05-29] **Fato** [🧹-1.-limpeza-e-organização]: 🧹 1. Limpeza e Organização
+- [2026-05-29] **Fato** [📊-análise-da-arquitetura-—-projeto-colabor-ai]: 📊 Análise da Arquitetura — Projeto colabor-ai
+- [2026-05-29] **Fato** [📝-arquivo-criado]: 📝 Arquivo Criado
+- [2026-05-29] **Fato** [`core/agents/reflector.agent.ts`-(novo)]: `core/agents/reflector.agent.ts` (novo)
+- [2026-05-29] **Fato** [🎨-mudanças-realizadas-(apenas-css,-conteúdo-intacto)]: 🎨 Mudanças realizadas (apenas CSS, conteúdo intacto)
+- [2026-05-29] **Fato** [🌓-tema-dual]: 🌓 Tema Dual
+- [2026-05-29] **Fato** [🎨-badges-de-tecno]: 🎨 Badges de Tecno
+- [2026-05-29] **Fato** [✅-fase-1-—-fundação:-**concluída**]: ✅ Fase 1 — Fundação: **CONCLUÍDA**
+- [2026-05-29] **Fato** [📊-diagnóstico]: 📊 Diagnóstico
+- [2026-05-28] **Fato** [1.-sumarização-automática-(compaction-com-llm)]: 1. Sumarização automática (Compaction com LLM)
+- [2026-05-28] **Fato** [✅-context-engine---**implementado,-mas-incompleto**]: ✅ Context Engine - **Implementado, mas incompleto**
+- [2026-05-28] **Fato** [1️⃣-context-engine-incompleto]: 1️⃣ Context Engine incompleto
+- [2026-05-28] **Fato** [🚨-prioridade-imediata-(baixo-esforço,-alto-impacto)]: 🚨 Prioridade Imediata (baixo esforço, alto impacto)
+- [2026-05-28] **Fato** [1.-model-failover-(`src/agents/model-fallback.ts`-—-50.713-chars)]: 1. MODEL FAILOVER (`src/agents/model-fallback.ts` — 50.713 chars)
+- [2026-05-28] **Fato** [1.-criar-a-pasta-e-iniciar-o-projeto]: 1. Criar a pasta e iniciar o projeto
+- [2026-05-28] **Fato** [✅-servidor-ativo-em-http://localhost:3000]: ✅ Servidor ativo em http://localhost:3000
+
+
+## Consolidacao Automatica
+- [2026-06-02] ## Consolidacao Automatica - 2026-06-02
+
+- 77 memorias extraidas de notas diarias
+- 75 novas memorias adicionadas ao MEMORY.md
+- 2 duplicatas ignoradas
+
+
+## Fatos
+- [2026-06-02] rodar, confirme que as variáveis de ambiente `DEEPSEEK_API_KEY` e `GEMINI_API_KEY` estão definidas e que os pacotes do `requirements` foram instalados
+
+## Preferencias
+- [2026-06-03] fazer mais algum ajuste?
+
+## Preferencias
+- [2026-06-03] fazer algo novo?
+
+## Preferencias
+- [2026-06-03] já partir pra implementação de uma delas?
+
+## Extracoes Automaticas
+- [2026-06-03] 
+## Extracoes Automaticas (2026-06-03)
+- [2026-06-02] **Preferencia**: Resultado: ## O que sei sobre a **Clareia
+- [2026-06-02] **Fato** [limpeza-concluida-—-19-arquivos-+-1-diretorio-removidos-da-raiz]: Limpeza concluida — 19 arquivos + 1 diretorio removidos da raiz
+- [2026-06-02] **Fato** [limpeza-final-concluida]: Limpeza final concluida
+- [2026-06-02] **Fato** [resumo-das-alteracoes]: Resumo das alteracoes
+- [2026-06-02] **Fato** [diagnostico-do-erro]: Diagnostico do erro
+- [2026-06-02] **Fato** [resumo-do-que-ficou-pronto-hoje:]: Resumo do que ficou pronto hoje:
+- [2026-06-02] **Fato** [🎯-visão-geral]: 🎯 Visão Geral
+- [2026-06-02] **Fato** [🔴-o-erro-`erro-ao-interpretar-resposta-do-planner`]: 🔴 O erro `Erro ao interpretar resposta do planner`
+- [2026-06-02] **Fato** [resumo-das-correções-de-hoje]: Resumo das correções de hoje
+
+
+## Consolidacao Automatica
+- [2026-06-03] ## Consolidacao Automatica - 2026-06-03
+
+- 87 memorias extraidas de notas diarias
+- 9 novas memorias adicionadas ao MEMORY.md
+- 78 duplicatas ignoradas
+
+
+## Fatos
+- [2026-06-03] onde paramos (Step 3), ou prefere fazer outra coisa hoje?
+
+## Preferencias
+- [2026-06-03] fazer outra coisa hoje?
+
+
+
+================================================================================
+FILE: .colabor-ai/plan.md (4809 chars)
+================================================================================
+
+# Plan
+
+**Goal:** Criar um plano para analisar a arquitetura do projeto colabor-ai (C:\Developer\colabor-ai) e identificar possíveis melhorias. O plano deve incluir etapas como: examinar a estrutura de diretórios, arquivos de configuração, fluxo de execução dos agentes, dependências, arquitetura de comunicação, e gerar um relatório final com recomendações de melhorias (performance, segurança, manutenibilidade, escalabilidade). Após criado o plano, execute a primeira etapa.
+**Session:** orchestrator_1780514308497_7fjxf4
+**Created:** 2026-06-03T19:38:00.932Z
+**Updated:** 2026-06-03T19:41:51.142Z
+
+## Success Criteria
+
+## Steps
+### Step 1: Mapear toda a estrutura de diretórios e arquivos do projeto (C:\Developer\colabor-ai), gerando um arquivo JSON com a árvore completa, tamanhos e datas de modificação. [DONE]
+- **Agent:** PythonAgent
+- **Instruction:** Mapear toda a estrutura de diretórios e arquivos do projeto C:\Developer\colabor-ai, gerando um arquivo JSON (C:\Developer\colabor-ai\temp\structure.json) com a árvore completa incluindo tamanhos (em bytes) e datas de modificação. Use os.walk() ou pathlib. Limite a profundidade a 6 níveis e ignore node_modules, .git, dist.
+- **Result:** Agora tenho uma visão completa. Vou compilar a análise.
+
+---
+
+## Análise Arquitetural — `colabor-ai`
+
+### Resumo Geral
+
+| Métrica | Valor |
+|---|---|
+| Total de arquivos | **449** |
+| Total de diretórios | **103** |
+| Tamanho total | **~10 MB** |
+| Excluídos | `node_modules`, `.git`, `dist` |
+
+---
+
+### 8 Problemas Encontrados
+
+#### 1. 🔴 `core/agent/` e `core/agents/` — nome quase idêntico
+
+`core/agent/` contém a classe base (`agent.ts`, `sub-agent-runner.ts`, testes), enquanto `core/agents/` co
+
+### Step 2: Analisar os arquivos de configuração (package.json, tsconfig.json, docker-compose.yml, .env, etc.) e extrair informações sobre dependências, scripts e variáveis de ambiente. [DONE] (depends on: 1)
+- **Agent:** PythonAgent
+- **Instruction:** Analisar os arquivos de configuração do projeto C:\Developer\colabor-ai e extrair informações estruturadas. Siga estas etapas:
+
+1. Escreva um script Python que:
+   - Leia e parseie os seguintes arquivos (se existirem): package.json, tsconfig.json, docker-compose.yml, .env (apenas liste as variáveis, sem valores), .env.example
+   - Extraia: dependências (nome e versão), devDependencies, scripts npm, configurações do TypeScript (target, module, outDir, includes, excludes), variáveis de ambiente declaradas
+
+2. Execute o script e salve o resultado em C:\Developer\colabor-ai\temp\config_analysis.json (crie o diretório temp se não existir).
+
+3. Retorne um resumo claro dos achados: versão do Node esperada, principais dependências, scripts disponíveis, variáveis de ambiente necessárias, e quaisquer inconsistências ou problemas encontrados.
+
+IMPORTANTE: Confirme no output que o arquivo JSON foi gerado em temp/config_analysis.json.
+- **Result:** ## Configuração do **colabor-ai** — Análise Completa
+
+O arquivo JSON com todos os dados foi salvo em `temp/config_analysis.json` (7.4 KB). Segue o resumo:
+
+---
+
+### Estrutura do Projeto
+
+```
+colabor-ai/
+├── package.json          → core (orquestrador)
+├── tsconfig.json         → core
+├── client/               → interface (React + Vite + Electron)
+│   ├── package.json
+│   └── tsconfig.json
+├── cloud/                → backend (Express)
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .env.example
+
+### Step 3: Analisar o fluxo de execução dos agentes no orquestrador, examinando os arquivos principais (core/orchestrator/telegram.ts, core/agent/AgentRunner.ts, etc.) para entender o roteamento de tarefas e identificar ineficiências. [PENDING] (depends on: 1)
+- **Agent:** assistant
+
+### Step 4: Gerar um grafo de dependências entre os módulos TypeScript, analisando os imports em core/ e cloud/, identificando acoplamento e dependências circulares. [PENDING] (depends on: 1)
+- **Agent:** PythonAgent
+
+### Step 5: Analisar a arquitetura de comunicação (HTTP, WebSocket) em cloud/ e client/electron/, avaliando segurança, tratamento de erros e performance. [PENDING] (depends on: 1)
+- **Agent:** assistant
+
+### Step 6: Compilar uma lista preliminar de recomendações de melhorias nas categorias performance, segurança, manutenibilidade e escalabilidade, com base nas análises anteriores. [PENDING] (depends on: 2, 3, 4, 5)
+- **Agent:** assistant
+
+### Step 7: Gerar um relatório final claro e acionável para o usuário, com recomendações priorizadas. [PENDING] (depends on: 6)
+- **Agent:** WriterAgent
+
+## Learnings
+- [PythonAgent]: O agente entregou uma análise arquitetural com problemas identificados, mas não evidenciou a criação do JSON intermediário solicitado na instrução.
+- [PythonAgent]: A extração de configurações é útil, mas o usuário esperava uma análise de melhorias, que não foi entregue.
+
+
+================================================================================
+FILE: docs/orquestracao.md (12610 chars)
+================================================================================
+
+# Documentação da Orquestração — Colabor-AI
+    
+    ## 1. Visão Geral da Arquitetura
+    
+    ```
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                       USER INPUT                                │
+    │  (chat, Telegram, webhook, via sub-agente, etc.)                │
+    └───────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                    ENTRY POINTS                                 │
+    │                                                                 │
+    │  webhook.ts ─────────────► agent.run(input)                     │
+    │  telegram.ts ────────────► manager.sendMessage() ─► agent.run() │
+    │  sub-agent-runner.ts ────► agent.run(instruction)               │
+    │  background-task-runner ─► agent.run(instruction)               │
+    │  cron-runner ────────────► agent.run(instruction)               │
+    └───────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                     AGENT (core/agent/agent.ts)                 │
+    │                                                                 │
+    │  agent.run(userMessage):                                        │
+    │    ┌──────────────────────────────────────────────────────┐     │
+    │    │ 1. Monta system prompt (personalidade + tools +      │     │
+    │    │    skills + memory)                                  │     │
+    │    │ 2. Loop de turnos LLM ←→ Tools                      │     │
+    │    │    ├─ buildMessages() → [{role, content}, ...]       │     │
+    │    │    ├─ llmService.chat(messages) → AssistantMessage   │     │
+    │    │    ├─ text → acumula no buffer de resposta           │     │
+    │    │    ├─ tool_use → DispatchService.dispatch(tool)      │     │
+    │    │    ├─ tool_result → insere no histórico              │     │
+    │    │    └─ nextAssistantMessage → volta ao LLM            │     │
+    │    │ 3. Fim de loop: retorna buffer de texto              │     │
+    │    └──────────────────────────────────────────────────────┘     │
+    └───────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │              DISPATCH SERVICE (core/dispatch/)                   │
+    │                                                                 │
+    │  dispatch(toolUse):                                             │
+    │    ├─ execute_python → PythonTool.execute(code)                 │
+    │    ├─ memory_search → MemoryTool.search(query)                  │
+    │    ├─ spawn_agent   → SubAgentRunner.runSingle(task)            │
+    │    ├─ web_search    → WebSearchTool.search(query)               │
+    │    ├─ create_background_task → BackgroundTaskManager.add()      │
+    │    ├─ list_background_tasks → BackgroundTaskManager.list()      │
+    │    ├─ cancel_background_task → BackgroundTaskManager.cancel()   │
+    │    ├─ schedule_task → CronScheduler.add()                       │
+    │    ├─ list_scheduled_tasks → CronScheduler.list()               │
+    │    ├─ delete_scheduled_task → CronScheduler.delete()            │
+    │    └─ todo_write → TodoManager.execute()                        │
+    │                                                                 │
+    │  SubAgentRunner.runSingle(task):                                │
+    │    ├─ Busca agente no agentRegistry                             │
+    │    ├─ agent.resetHistory()  ← HISTÓRICO LIMPO                  │
+    │    ├─ agent.run(task.instruction)                               │
+    │    │    └─ Sub-agente tem seu PRÓPRIO loop LLM↔Tools            │
+    │    └─ Retorna resultado ao agente pai                           │
+    │                                                                 │
+    │  Loop detection: profundidade máxima = 3 níveis                │
+    └─────────────────────────────────────────────────────────────────┘
+    ```
+    
+    ## 2. Diferença Entre `agent.run()` E Orquestração
+    
+    **NÃO há um "orquestrador" separado no fluxo normal.** O arquivo `core/orchestrator/orchestrator.ts` é um **orquestrador multi-agente experimental** (`AgentOrchestrator`) que usa um modelo planner + workers. Ele foi testado mas **não está conectado ao fluxo principal do chat.**
+    
+    O fluxo real de "orquestração" que acontece quando o usuário manda uma mensagem é este:
+    
+    ### Fluxo Real (agent.run)
+    
+    ```
+    Usuário: "Cria um script que analisa vendas.csv"
+    
+    agent.run("Cria um script que analisa vendas.csv")
+      │
+      ├─ Turno 1:
+      │   LLM → tool_use: execute_python("import os; print(os.listdir())")
+      │   Dispatch → PythonTool → tool_result: "['vendas.csv', ...]"
+      │
+      ├─ Turno 2:
+      │   LLM → tool_use: execute_python("import pandas; df = pandas.read_csv...")
+      │   Dispatch → PythonTool → tool_result: "colunas: data, valor, ..."
+      │
+      ├─ Turno 3:
+      │   LLM → tool_use: execute_python("... script completo ...")
+      │   Dispatch → PythonTool → tool_result: "Análise concluída..."
+      │
+      ├─ Turno 4:
+      │   LLM → text: "Criei o script! Aqui está o resultado..."
+      │
+      └─ Retorna: "Criei o script! Aqui está o resultado..."
+    ```
+    
+    O agente decide **sozinho** quais ferramentas chamar e em que ordem. Não há planner externo decidindo por ele.
+    
+    ### Fluxo com spawn_agent
+    
+    ```
+    Usuário: "Pesquisa o preço do Bitcoin e analisa o CSV em paralelo"
+    
+    agent.run("Pesquisa o preço do Bitcoin e analisa o CSV em paralelo")
+      │
+      ├─ Turno 1:
+      │   LLM → tool_use: spawn_agent(agent="browser", instruction="Busca preço BTC")
+      │   LLM → tool_use: spawn_agent(agent="PythonAgent", instruction="Analisa vendas.csv")
+      │
+      │   SubAgentRunner.runSingle("browser", "Busca preço BTC")
+      │     └─ browserAgent.resetHistory()
+      │     └─ browserAgent.run("Busca preço BTC")
+      │         └─ (loop LLM↔Tools próprio do browserAgent)
+      │         └─ retorna: "BTC: $67,000"
+      │
+      │   SubAgentRunner.runSingle("PythonAgent", "Analisa vendas.csv")
+      │     └─ pythonAgent.resetHistory()
+      │     └─ pythonAgent.run("Analisa vendas.csv")
+      │         └─ (loop LLM↔Tools próprio do pythonAgent)
+      │         └─ retorna: "Receita total: R$50.000"
+      │
+      │   tool_result (spawn_agent): "=== SUB-AGENT RESULTS === ..."
+      │
+      ├─ Turno 2:
+      │   LLM → text: "Bitcoin está a $67,000. A receita total é R$50.000."
+      │
+      └─ Retorna: "Bitcoin está a $67,000..."
+    ```
+    
+    ## 3. O AgentOrchestrator Experimental
+    
+    Arquivo: `core/orchestrator/orchestrator.ts`
+    
+    ```
+    ╔═══════════════════════════════════════════════════════════╗
+    ║              AgentOrchestrator                            ║
+    ║                                                           ║
+    ║  ┌──────────┐     ┌──────────┐     ┌──────────┐          ║
+    ║  │ PLANNER  │────▶│ CONTEXT  │────▶│ PLANNER  │ (loop)   ║
+    ║  │ Agent    │     │ Builder  │     │ Agent    │          ║
+    ║  └──────────┘     └──────────┘     └──────────┘          ║
+    ║       │                                  │               ║
+    ║       │ "Qual worker?"                   │               ║
+    ║       ▼                                  │               ║
+    ║  ┌──────────────────────────────────────┐│               ║
+    ║  │ Workers: [                            │               ║
+    ║  │   { name: "codeAgent", agent, desc },  │               ║
+    ║  │   { name: "browserAgent", agent, desc }│               ║
+    ║  │ ]                                     │               ║
+    ║  └──────────────────────────────────────┘│               ║
+    ║                                          │               ║
+    ║  Planner decide:                         │               ║
+    ║  - {"agent": "codeAgent", "instruction": "..."}          ║
+    ║  - {"agent": "finish", "instruction": "resumo"}          ║
+    ║                                                           ║
+    ║  Loop para quando planner retorna agent="finish"          ║
+    ║  ou atinge maxSteps (default: 10)                         ║
+    ╚═══════════════════════════════════════════════════════════╝
+    ```
+    
+    **IMPORTANTE**: Este orquestrador **não está ativo** no fluxo de chat. Ele foi testado (ver `orchestrator.test.ts` e `orchestrator.spec.ts`) mas não há código que o instancie e use nas rotas de chat. É um experimento/alternativa.
+    
+    ## 4. Sub-Agent Runner (spawn_agent)
+    
+    Arquivo: `core/agent/sub-agent-runner.ts`
+    
+    ### Como funciona:
+    
+    1. O agente principal chama `spawn_agent(agent="PythonAgent", instruction="...")`
+    2. O `DispatchService` cria um `SubAgentTask` com ID único
+    3. O `SubAgentRunner.runSingle(task)`:
+       - Busca o agente no `agentRegistry` pelo nome
+       - Se encontrado: `agent.resetHistory()` (histórico LIMPO)
+       - Chama `agent.run(task.instruction)` → o sub-agente tem seu próprio loop LLM↔Tools
+       - Retorna o resultado formatado
+       - Se não encontrado: retorna erro
+    4. Detecção de loops: profundidade máxima de 3 níveis de spawn
+    5. Execução paralela: `runBatch()` processa chunks de `maxParallel=5`
+    
+    ### Agentes disponíveis:
+    - `assistant` (default)
+    - `PythonAgent`
+    - `browser`
+    - `ShellAgent`
+    - `WriterAgent`
+    
+    ## 5. Fluxos de Entrada Possíveis
+    
+    ### 5.1 Chat via Telegram
+    ```
+    Telegram API → manager.onMessage() → agent.run(texto) → resposta → manager.sendMessage()
+    ```
+    
+    ### 5.2 Webhook HTTP
+    ```
+    POST /api/chat → webhookHandler → agent.run(body.message) → JSON response
+    ```
+    
+    ### 5.3 Background Task
+    ```
+    create_background_task → BackgroundTaskManager.add() → (async) agent.run(instruction)
+    ```
+    
+    ### 5.4 Cron Job
+    ```
+    schedule_task → CronScheduler.add() → (no horário) agent.run(instruction)
+    ```
+    
+    ### 5.5 Sub-agente (spawn_agent)
+    ```
+    Agente pai chama spawn_agent → SubAgentRunner → agent.run(instruction)
+    ```
+    
+    **Todos convergem para `agent.run()`.** Não há orquestrador intermediário.
+    
+    ## 6. Estrutura de Diretórios Relevante
+    
+    ```
+    core/
+    ├── agent/
+    │   ├── agent.ts              ← Coração: classe Agent, loop LLM↔Tools
+    │   ├── agent-registry.ts     ← Registro global de agentes
+    │   └── sub-agent-runner.ts   ← spawn_agent: cria sub-agentes
+    │
+    ├── orchestrator/
+    │   ├── orchestrator.ts       ← AgentOrchestrator experimental (não ativo)
+    │   ├── orchestrator.test.ts
+    │   ├── orchestrator.spec.ts
+    │   └── telegram.ts           ← Integração Telegram
+    │
+    ├── dispatch/
+    │   └── dispatch-service.ts   ← Roteador de tool_use → implementação
+    │
+    ├── tools/
+    │   ├── python-tool.ts        ← execute_python
+    │   ├── memory-tool.ts        ← memory_search
+    │   ├── web-search-tool.ts    ← web_search
+    │   ├── spawn-agent-tool.ts   ← spawn_agent (chama SubAgentRunner)
+    │   ├── background-task-tool.ts
+    │   ├── cron-tool.ts
+    │   └── todo-tool.ts
+    │
+    ├── agents/
+    │   ├── python.agent.ts       ← PythonAgent
+    │   ├── browser.agent.ts      ← browser
+    │   ├── shell.agent.ts        ← ShellAgent
+    │   ├── writer.agent.ts       ← WriterAgent
+    │   └── default.agent.ts      ← assistant (default)
+    │
+    ├── skills/
+    │   ├── communication.md
+    │   ├── web-search.md
+    │   └── python-dev.md
+    │
+    └── memory/
+        └── (notas diarias, MEMORY.md)
+    ```
+    
+    ## 7. Resumo: Quem Orquestra Quem?
+    
+    | Situação | Quem decide os passos? |
+    |---|---|
+    | Chat normal | O próprio agente (`agent.run`), via loop LLM↔Tools |
+    | spawn_agent | O agente pai decide spawnar; o sub-agente decide seus passos |
+    | AgentOrchestrator (experimental) | Um planner agent decide qual worker chamar a cada passo |
+    | Background task | O agente executor decide seus passos |
+    | Cron job | O agente executor decide seus passos |
+    
+    **Conclusão**: O projeto segue o padrão de **agente autônomo com ferramentas**, não um orquestrador centralizado. O agente decide tudo sozinho via raciocínio do LLM.
+    
+    ---
+    
+    *Gerado em: 2026-06-04. Versão 2.0 — Completa e Definitiva.*
+    
+
+
+================================================================================
+FILE: core/orchestrator/orchestrator.ts (41939 chars)
+================================================================================
+
+import { Agent } from "../agent/agent";
+        import { logger, createLogger } from "../utils/logger";
+
+const log = createLogger("ORCH");
+
+    // ============================================================
+    // Robust JSON extraction from LLM responses
+    // Handles: markdown code fences, extra text before/after JSON,
+    // trailing commas, and other common LLM formatting quirks.
+    // ============================================================
+    function extractJSON(raw: string, context: string = "unknown"): any {
+      let cleaned = raw.trim();
+    
+      // Strategy 1: Strip markdown code fences (```json ... ``` or ``` ... ```)
+      const fenceMatch = cleaned.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
+      if (fenceMatch) {
+        cleaned = fenceMatch[1].trim();
+      }
+    
+      // Strategy 2: Extract first JSON object { ... } with balanced braces
+      if (cleaned.startsWith("{")) {
+        let depth = 0;
+        let inString = false;
+        let escape = false;
+        let end = -1;
+        for (let i = 0; i < cleaned.length; i++) {
+          const ch = cleaned[i];
+          if (escape) { escape = false; continue; }
+          if (ch === "\\") { escape = true; continue; }
+          if (ch === "\"") { inString = !inString; continue; }
+          if (inString) continue;
+          if (ch === "{") depth++;
+          if (ch === "}") { depth--; if (depth === 0) { end = i + 1; break; } }
+        }
+        if (end > 0) {
+          cleaned = cleaned.substring(0, end);
+        }
+      }
+    
+      // Strategy 3: Extract first JSON array [ ... ] with balanced brackets
+      if (cleaned.startsWith("[")) {
+        let depth = 0;
+        let inString = false;
+        let escape = false;
+        let end = -1;
+        for (let i = 0; i < cleaned.length; i++) {
+          const ch = cleaned[i];
+          if (escape) { escape = false; continue; }
+          if (ch === "\\") { escape = true; continue; }
+          if (ch === "\"") { inString = !inString; continue; }
+          if (inString) continue;
+          if (ch === "[") depth++;
+          if (ch === "]") { depth--; if (depth === 0) { end = i + 1; break; } }
+        }
+        if (end > 0) {
+          cleaned = cleaned.substring(0, end);
+        }
+      }
+    
+      // Strategy 4: Find JSON in text with balanced braces/brackets
+      if (!cleaned.startsWith("{") && !cleaned.startsWith("[")) {
+        const firstBrace = cleaned.indexOf("{");
+        const firstBracket = cleaned.indexOf("[");
+        let start = -1;
+        let isObject = true;
+
+        if (firstBrace === -1 && firstBracket === -1) {
+          start = -1;
+        } else if (firstBrace === -1) {
+          start = firstBracket;
+          isObject = false;
+        } else if (firstBracket === -1) {
+          start = firstBrace;
+          isObject = true;
+        } else {
+          start = Math.min(firstBrace, firstBracket);
+          isObject = start === firstBrace;
+        }
+
+        if (start >= 0) {
+          const openChar = isObject ? "{" : "[";
+          const closeChar = isObject ? "}" : "]";
+          let depth = 0;
+          let inString = false;
+          let escape = false;
+          let end = -1;
+
+          for (let i = start; i < cleaned.length; i++) {
+            const ch = cleaned[i];
+            if (escape) { escape = false; continue; }
+            if (ch === "\\") { escape = true; continue; }
+            if (ch === '"') { inString = !inString; continue; }
+            if (inString) continue;
+            if (ch === openChar) depth++;
+            if (ch === closeChar) { depth--; if (depth === 0) { end = i + 1; break; } }
+          }
+
+          if (end > 0) {
+            cleaned = cleaned.substring(start, end);
+          }
+        }
+      }
+    
+      // Pre-processing: remove common LLM artifacts
+      // Remove // comments
+      cleaned = cleaned.replace(/\/\/.*$/gm, "");
+      // Remove /* */ comments
+      cleaned = cleaned.replace(/\/\*[\s\S]*?\*\//g, "");
+      // Convert NaN/Infinity to null (invalid in JSON)
+      cleaned = cleaned.replace(/:\s*(NaN|Infinity|-Infinity)\s*([,}\]])/g, ": null$2");
+      // Convert single-quoted keys/values to double-quoted (simple heuristic)
+      // Only apply if the JSON looks like it uses single quotes
+      if (cleaned.includes("'") && !cleaned.includes('"')) {
+        cleaned = cleaned.replace(/'/g, '"');
+      }
+
+      // Attempt to parse
+      try {
+        return JSON.parse(cleaned);
+      } catch (err1) {
+        // Try removing trailing commas (common LLM mistake)
+        try {
+          const noTrailingCommas = cleaned.replace(/,(\s*[}\]])/g, "$1");
+          return JSON.parse(noTrailingCommas);
+        } catch (err2) {
+          // Last resort: log the raw content for debugging
+          log.warn(`extractJSON FAILED [${context}] — raw (first 500 chars): ${raw.substring(0, 500)}`);
+          log.warn(`extractJSON FAILED [${context}] — cleaned (first 500 chars): ${cleaned.substring(0, 500)}`);
+          throw new Error(`JSON extraction failed for ${context}`);
+        }
+      }
+    }
+    
+    
+        import { browserAgent } from "../agents/browser.agent";
+    import { reflectorAgent } from "../agents/reflector.agent";
+        import {
+          appendToTranscript,
+          loadSessionTranscript,
+          generateSessionId,
+          getRecentMessages,
+          type TranscriptMessage,
+        } from "../session/transcript";
+        import {
+          memorySearchTool,
+          readMemoryFile,
+          appendToMemory,
+          saveDailyNote,
+          loadRecentNotes,
+        } from "../memory/memory_search";
+        import { getMemoryEngine } from "../memory/memory-engine";
+        import {
+          EventStream,
+          createEvent,
+          type StreamEvent,
+        } from "../stream/event-stream";
+        import { ContextEngine, getDefaultEngine } from "../context/context-engine";
+        import { getSkillsManager } from "../skills/skills-manager";
+    
+        // ============================================================
+        // NOVOS IMPORTS - Melhorias Agenticas
+        // ============================================================
+        import { getPlanManager, PlanManager } from "../plan/plan-manager";
+        import { getSubAgentRunner, SubAgentRunner } from "../agent/sub-agent-runner";
+        import { getDreamTask, DreamTask } from "../tasks/dream-task";
+    import { getHookManager, HookManager } from "../hooks/hook-system";
+    import { getPermissionSystem, PermissionSystem } from "../permissions/permission-system";
+    import { getBackgroundTaskManager } from "../tasks/background-task-manager";
+    import { getScheduler } from "../scheduler/scheduler";
+    import { agentRegistry } from "../agents/agent-registry";
+    import { CORE_INSTRUCTIONS, DEFAULT_MODEL, FALLBACK_MODEL } from "../constants/instructions";
+    
+        // Rate limiting - protecao contra uso excessivo (persistente)
+        const MAX_MESSAGES_PER_SESSION = parseInt(process.env.MAX_MESSAGES_PER_SESSION || "100", 10);
+        const messageCounts: Map<string, number> = new Map();
+    
+        function checkRateLimit(sessionId: string): boolean {
+          const count = messageCounts.get(sessionId) || 0;
+          if (count >= MAX_MESSAGES_PER_SESSION) {
+            return false;
+          }
+          messageCounts.set(sessionId, count + 1);
+    
+          // Persistir no transcript
+          try {
+            appendToTranscript(sessionId, {
+              role: "system" as const,
+              content: `rate_limit:${count + 1}`,
+              timestamp: Date.now(),
+            });
+          } catch {
+            // Persistencia nao-critica
+          }
+          return true;
+        }
+    
+        function restoreRateLimit(sessionId: string): void {
+          try {
+            const messages = loadSessionTranscript(sessionId);
+            let maxCount = 0;
+            for (const msg of messages) {
+              if (msg.content && msg.content.startsWith("rate_limit:")) {
+                const count = parseInt(msg.content.split(":")[1], 10);
+                if (count > maxCount) maxCount = count;
+              }
+            }
+            if (maxCount > 0) {
+              messageCounts.set(sessionId, maxCount);
+            }
+          } catch {
+            // Fallback: comeca do zero
+          }
+        }
+    
+        type SubAgent = {
+          name: string;
+          description: string;
+          agent: Agent;
+        };
+    
+        export type Message = {
+          role: "system" | "user" | "assistant" | "tool";
+          content: string;
+          name?: string;
+        };
+    
+        type RunInput = {
+          input: string;
+          history?: Message[];
+          sessionId?: string;
+          /** Callback para feedback de progresso ao usuario */
+          onProgress?: (message: string) => Promise<void>;
+        };
+        interface ReflectionResult {
+          success: "yes" | "partial" | "no";
+          complete: boolean;
+          missingInfo: string[];
+          retryDifferent: boolean;
+          learning: string;
+        }
+    
+        export class AgentOrchestrator {
+          private sessionId: string;
+          public eventStream: EventStream;
+          private contextEngine: ContextEngine;
+          private memoryEngine = getMemoryEngine();
+          private reflectionCount: number = 0;
+    
+          // ============================================================
+          // NOVOS CAMPOS - Melhorias Agenticas
+          // ============================================================
+          private planManager: PlanManager;
+          private subAgentRunner: SubAgentRunner;
+          private dreamTask: DreamTask;
+      private hookManager: HookManager;
+      private permissionSystem: PermissionSystem;
+    
+          constructor(
+            private planner: Agent,
+            private agents: SubAgent[],
+            private debug = true
+          ) {
+            this.sessionId = generateSessionId("orchestrator");
+            this.eventStream = new EventStream();
+            this.contextEngine = getDefaultEngine();
+    
+            // Inicializar novos componentes
+            this.planManager = getPlanManager();
+            this.subAgentRunner = getSubAgentRunner();
+            this.dreamTask = getDreamTask();
+        this.hookManager = getHookManager();
+        this.permissionSystem = getPermissionSystem();
+
+        // Inicializar BackgroundTaskManager com agentFactory
+        getBackgroundTaskManager((name: string) => {
+          const found = agentRegistry.find(name);
+          if (found) return found.agent;
+          // fallback: cria agente generico
+          return new Agent({
+            name,
+            role: "assistant",
+            goal: "helper",
+            backstory: "",
+            model: DEFAULT_MODEL,
+            fallbackModel: FALLBACK_MODEL,
+            generalInstructions: CORE_INSTRUCTIONS,
+          });
+        });
+
+        // Inicializar Scheduler e conectar ao BackgroundTaskManager
+        const scheduler = getScheduler();
+        scheduler.onTrigger((task) => {
+          try {
+            const bgManager = getBackgroundTaskManager();
+            bgManager.enqueue({
+              description: `[Scheduled] ${task.description}`,
+              instruction: task.instruction,
+              agentName: task.agentName,
+            });
+          } catch (err: any) {
+            log.error(`Erro no scheduler callback: ${err?.message || err}`);
+          }
+        });
+
+        
+        // Configure agent permission levels
+        this.permissionSystem.setAgentLevel("assistant", "network");
+        this.permissionSystem.setAgentLevel("python_code", "file_write");
+        this.permissionSystem.setAgentLevel("browser", "network");
+        this.permissionSystem.setAgentLevel("shell", "shell");
+        this.permissionSystem.setAgentLevel("writer", "file_write");
+        this.permissionSystem.setAgentLevel("task_manager", "file_write");
+    
+            // Tentar carregar plano existente da sessao anterior
+            try {
+              const existingPlan = this.planManager.load();
+              if (existingPlan && this.debug) {
+                log.info(`Plano carregado: ${existingPlan.steps.length} steps`);
+              }
+            } catch {
+              // Plano nao disponivel - sessao nova
+            }
+    
+            // Carregar transcript da sessao anterior se existir
+            try {
+              const existingMessages = loadSessionTranscript(this.sessionId);
+              if (existingMessages.length > 0) {
+                this.contextEngine.loadFromTranscript(
+                  existingMessages.map((m) => ({
+                    role: m.role as "system" | "user" | "assistant" | "tool",
+                    content: m.content,
+                    name: m.name,
+                    tool_call_id: m.tool_call_id,
+                  }))
+                );
+                // Restaurar rate limit
+                restoreRateLimit(this.sessionId);
+              }
+            } catch {
+              // Transcript nao disponivel - sessao nova
+            }
+          }
+    
+          private formatHistory(history: Message[] = []) {
+            if (!history.length) return "No conversation history.";
+            return history
+              .map((m) => {
+                if (m.role === "tool") {
+                  return `tool(${m.name}): ${m.content}`;
+                }
+                return `${m.role}: ${m.content}`;
+              })
+              .join("\n");
+          }
+    
+          /**
+           * Reflection step: avalia o resultado da execucao do agente.
+           * Usa ReflectorAgent (agente separado) para avaliar resultados.
+           */
+          private async reflectOnResult(
+            input: string,
+            agentName: string,
+            instruction: string,
+            result: string
+          ): Promise<ReflectionResult> {
+            this.reflectionCount++;
+    
+            const reflectionPrompt = `
+        Evaluate the agent execution result honestly.
+    
+        Task: ${input.slice(0, 300)}
+        Agent used: ${agentName}
+        Instruction given: ${instruction.slice(0, 300)}
+        Result produced: ${result.slice(0, 500)}
+    
+        Answer these questions:
+        1. Did the agent succeed? (yes / partial / no)
+        2. Is the result complete for the user's request? (yes / no)
+        3. Is there missing information? If so, what?
+        4. Should we try a different approach? (yes / no)
+        5. What did we learn from this execution? (one sentence in portuguese)
+    
+        Respond ONLY with JSON:
+        {
+          "success": "yes | partial | no",
+          "complete": true/false,
+          "missingInfo": ["item1", "item2"],
+          "retryDifferent": true/false,
+          "learning": "one sentence in portuguese"
+        }
+        `;
+    
+            try {
+              const reflectionRaw = await reflectorAgent.run(reflectionPrompt);
+              const parsed = extractJSON(reflectionRaw, "reflector");
+              return {
+                success: parsed.success || "partial",
+                complete: parsed.complete ?? true,
+                missingInfo: parsed.missingInfo || [],
+                retryDifferent: parsed.retryDifferent ?? false,
+                learning: parsed.learning || "",
+              };
+            } catch {
+              // Fallback: assume success if we can't reflect
+              return {
+                success: "partial",
+                complete: true,
+                missingInfo: [],
+                retryDifferent: false,
+                learning: "",
+              };
+            }
+          }
+    
+    
+          /**
+           * Consome o EventStream para telemetria e logging.
+           * Loga tool calls, erros, e steps completados.
+           */
+          private consumeEventStream(onProgress?: (msg: string) => Promise<void>): void {
+            const startTime = Date.now();
+            let currentTool = "";
+    
+            (async () => {
+              for await (const event of this.eventStream) {
+                switch (event.type) {
+                  case "tool_call_start":
+                    currentTool = event.toolName || "";
+                    if (this.debug) {
+                      log.debug(`[EVENT] Tool call start: ${currentTool}`);
+                    }
+                    break;
+    
+                  case "tool_call_end":
+                    if (this.debug) {
+                      log.debug(`[EVENT] Tool call end: ${event.toolName || currentTool}`);
+                    }
+                    break;
+    
+                  case "turn_end":
+                    if (this.debug) {
+                      log.debug(`[EVENT] Turn completed`);
+                    }
+                    break;
+    
+                  case "agent_end":
+                    const duration = Date.now() - startTime;
+                    if (this.debug) {
+                      log.debug(`[EVENT] Agent finished. Duration: ${duration}ms`);
+                    }
+                    break;
+                  case "progress":
+                    onProgress?.(event.content || "");
+                    break;
+    
+                  default:
+                    break;
+                }
+              }
+            })().catch(() => {});
+          }
+    
+      async run(runInput: RunInput) {
+            const { input, history = [], sessionId, onProgress } = runInput;
+            if (sessionId) this.sessionId = sessionId;
+    
+            this.eventStream.push(createEvent("agent_start"));
+    
+                // Feedback inicial para o usuario
+                if (onProgress) {
+                  onProgress("\u{1F4A1} Entendendo: \"" + input.slice(0, 70) + (input.length > 70 ? "\u2026" : "") + "\"").catch(() => {});
+                }
+    
+            // === EventStream consumer (telemetria) ===
+            this.consumeEventStream(onProgress);
+            this.reflectionCount = 0;
+    
+            if (this.debug) {
+              log.info("==============================");
+              log.info("ORCHESTRATOR START");
+              log.info("User input received", { input });
+              log.info("Session ID", { sessionId: this.sessionId });
+            }
+    
+            // Check rate limit
+            if (!checkRateLimit(this.sessionId)) {
+              const errorMsg = "Limite de mensagens excedido para esta sessao.";
+              this.eventStream.push(createEvent("agent_end", { content: errorMsg }));
+              this.eventStream.end(errorMsg as any);
+              return errorMsg;
+            }
+    
+            // Load persisted transcript
+            const persistedMessages = loadSessionTranscript(this.sessionId);
+            if (persistedMessages.length > 0 && this.debug) {
+              log.debug(`Loaded ${persistedMessages.length} messages from transcript`);
+            }
+    
+            // Save user message to transcript
+            appendToTranscript(this.sessionId, {
+              role: "user",
+              content: input,
+              timestamp: Date.now(),
+            });
+    
+            // Alimentar ContextEngine com input do usuario
+            this.contextEngine.addMessage({
+              role: "user",
+              content: input,
+            });
+    
+            const formattedHistory = this.formatHistory(history);
+    
+            // Buscar memoria relevante ao contexto atual
+            const memoryContext = this.memoryEngine.recall(input, formattedHistory);
+            if (this.debug && memoryContext.length > 50) {
+              log.debug("Memory context loaded");
+            }
+    
+            await onProgress?.("\u{1F4DA} Recuperando memorias relevantes...");
+    
+            // ============================================================
+            // PLAN-BASED CONTEXT (NOVO)
+            // ============================================================
+            let planContext = "";
+            if (this.planManager.hasPlan()) {
+              planContext = this.planManager.getPlanForPrompt();
+              if (this.debug) {
+                log.debug("Plan loaded for context");
+              }
+            }
+    
+            let context = `
+        User request:
+        ${input}
+    
+        Conversation history:
+        ${formattedHistory}
+    
+        ${planContext}
+    
+        Recent memory context:
+        ${memoryContext.slice(0, 1500)}
+        `;
+    
+            let steps = 0;
+            let lastResult = "";
+            let lastInstruction = "";
+            let lastAgentName = "";
+    
+            const maxSteps = 15; // Aumentado para suportar planos maiores
+            const maxReflections = 3;
+    
+            while (steps < maxSteps) {
+              this.eventStream.push(createEvent("turn_start", { content: `Step ${steps + 1}/${maxSteps}` }));
+    
+              if (this.debug) {
+                log.info(`Step ${steps + 1}/${maxSteps}`);
+              }
+    
+              const agentList = this.agents
+                .map((a) => `${a.name}: ${a.description}`)
+                .join("\n");
+    
+              // ============================================================
+              // PLAN-AWARE PLANNER PROMPT (MODIFICADO)
+              // ============================================================
+              const planGuide = this.planManager.hasPlan()
+                ? `
+        ACTIVE PLAN:
+        ${this.planManager.getPlanForPrompt()}
+    
+        Follow the plan above. Execute the next pending step, or update step status.
+        `
+                : `
+        If this task is complex (multiple steps), consider creating a plan first
+        by setting agent: "plan" with instruction describing the overall goal.
+        `;
+    
+              const plannerPrompt = `
+        User request:
+        ${input}
+    
+        Conversation history:
+        ${formattedHistory}
+    
+        Current context:
+        ${context}
+    
+        ${planGuide}
+    
+        Available agents:
+        ${agentList}
+    
+        You can also use:
+        - spawn_agent: delegate a sub-task to a specialized agent
+        - create_background_task: schedule async background work
+        - list_background_tasks: check status of background tasks
+    
+        Rules:
+    
+        1. ALWAYS select an agent for the first step.
+        2. Never return "finish" before an agent has produced a result.
+        3. Do NOT repeat the same instruction twice.
+        4. Use assistant for conversation and general questions.
+        5. Use python_code for calculations or code.
+        6. Use writer to produce the final response shown to the user.
+    
+        For complex tasks:
+        - Use "plan" agent to create a multi-step plan first
+        - Use spawn_agent to run independent sub-tasks in parallel
+        - Follow the active plan if one exists
+    
+        Respond ONLY with JSON:
+    
+        {
+          "agent": "agent_name | finish | plan",
+          "instruction": "what the agent should do",
+          "nextStep": 1
+        }
+        `;
+    
+              this.eventStream.push(createEvent("text_start", { content: "Consultando planner..." }));
+                  if (onProgress) {
+                    onProgress("\u{1F5FA}\uFE0F Decidindo a melhor abordagem...").catch(() => {});
+                  }
+              // === HOOK: before_planner ===
+              const hookContext = await this.hookManager.execute("before_planner", {
+                input,
+                history: formattedHistory,
+                context,
+              });
+    
+              const decision = await this.planner.run(plannerPrompt);
+    
+              // === HOOK: after_planner ===
+              await this.hookManager.execute("after_planner", {
+                input,
+                result: decision,
+                context,
+              });
+              this.eventStream.push(createEvent("text_delta", { content: "Planner respondeu." }));
+    
+              if (this.debug) {
+                log.debug("Planner raw decision:");
+                log.debug(decision);
+              }
+    
+              let parsed: any;
+    
+              try {
+                parsed = extractJSON(decision, "planner");
+              } catch {
+                log.warn("Planner returned invalid JSON — raw decision (first 800 chars): " + decision.substring(0, 800));
+                this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
+                this.eventStream.push(createEvent("agent_end"));
+                this.eventStream.end();
+                return lastResult || "Erro ao interpretar resposta do planner.";
+              }
+    
+              if (this.debug) {
+                log.debug("Parsed decision:", parsed);
+              }
+    
+              // ============================================================
+              // PLAN CREATION (NOVO)
+              // ============================================================
+              if (parsed.agent === "plan") {
+                if (onProgress) {
+                  onProgress("\u{1F4CB} Criando plano de acao...").catch(() => {});
+                }
+    
+                // Criar um plano multi-step
+                this.planManager.create(
+                  parsed.instruction || input,
+                  this.sessionId
+                );
+    
+                // Usar o planner para gerar os steps do plano
+                const planGenerationPrompt = `
+        Create a multi-step plan for this task:
+        ${parsed.instruction || input}
+    
+        Available agents: ${this.agents.map(a => a.name).join(", ")}
+    
+        For each step, specify:
+        - Step number
+        - Description
+        - Which agent should execute it
+        - Dependencies on other steps (if any)
+    
+        Respond ONLY with JSON array:
+        [
+          {
+            "number": 1,
+            "description": "...",
+            "agent": "agent_name",
+            "dependsOn": []
+          },
+          ...
+        ]
+        `;
+    
+                try {
+                  const planRaw = await this.planner.run(planGenerationPrompt);
+                  const planSteps = extractJSON(planRaw, "plan-steps");
+                  if (Array.isArray(planSteps) && planSteps.length > 0) {
+                    this.planManager.addSteps(planSteps);
+                    if (this.debug) {
+                      log.info(`Plan created with ${planSteps.length} steps`);
+                    }
+                  }
+                } catch (err) {
+                  logger.warn(`[Orchestrator] Erro ao gerar steps do plano: ${err}`);
+                }
+    
+                // Atualizar contexto com o plano
+                planContext = this.planManager.getPlanForPrompt();
+                context += `\n\n${planContext}`;
+                steps++;
+                continue;
+              }
+    
+              // Prevent finish before any agent ran
+              if (parsed.agent === "finish" && !lastResult) {
+                if (this.debug) {
+                  log.warn("Planner tried to finish before any agent ran.");
+                }
+                parsed.agent = this.agents[0].name;
+                parsed.instruction = input;
+              }
+    
+              // Check for memory_search requests embedded in instruction
+              if (parsed.instruction && parsed.instruction.toLowerCase().includes("memory_search")) {
+                const memoryResults = this.memoryEngine.recall(input, context);
+                context += `\n\nMemory search results:\n${memoryResults}`;
+              }
+    
+              // Stop condition
+                  if (parsed.agent === "finish") {
+                    if (onProgress) {
+                      onProgress("\u{1F4DD} Preparando a resposta final...").catch(() => {});
+                    }
+                if (this.debug) {
+                  log.info("ORCHESTRATION FINISHED");
+                }
+    
+                // Save assistant response to transcript
+                appendToTranscript(this.sessionId, {
+                  role: "assistant",
+                  content: lastResult || parsed.instruction || "Concluido.",
+                  timestamp: Date.now(),
+                });
+    
+                // Registrar resposta final no ContextEngine
+                this.contextEngine.addMessage({
+                  role: "assistant",
+                  content: lastResult || parsed.instruction || "Concluido.",
+                });
+    
+                // === HOOK: before_response ===
+                const hookResponse = await this.hookManager.execute("before_response", {
+                  input,
+                  response: lastResult || parsed.instruction || "Concluido.",
+                  context,
+                });
+    
+                // Usar resposta modificada pelo hook se existir
+                if (hookResponse.response && hookResponse.response !== (lastResult || parsed.instruction || "Concluido.")) {
+                  lastResult = hookResponse.response;
+                }
+    
+                // === HOOK: after_response ===
+                await this.hookManager.execute("after_response", {
+                  input,
+                  response: lastResult,
+                  context,
+                });
+    
+                // Salvar nota diaria automaticamente ao finalizar
+                try {
+                  const noteContent = "Conversa: " + (input || "").substring(0, 200) + "\n" +
+                    "Resultado: " + ((lastResult || parsed.instruction || "Concluido.")).substring(0, 300);
+                  saveDailyNote(noteContent);
+                } catch (e) {
+                  // Nota diaria nao e critica
+                }
+    
+                // Consolidar aprendizado
+                try {
+                  const allMessages = [
+                    { role: "user" as const, content: input },
+                    { role: "assistant" as const, content: lastResult || parsed.instruction || "" },
+                  ];
+                  this.memoryEngine.consolidate(allMessages);
+                } catch (e) {
+                  // Consolidacao nao e critica
+                }
+    
+                // ============================================================
+                // DREAM CONSOLIDATION (NOVO)
+                // ============================================================
+                try {
+                  this.dreamTask.registerSession();
+                  const dreamResult = await this.dreamTask.maybeConsolidate();
+                  if (dreamResult && this.debug) {
+                    log.info(`[DreamTask] ${dreamResult}`);
+                  }
+                } catch (e) {
+                  // Dream nao e critico
+                }
+    
+                // ============================================================
+                // PLAN MANAGER: Marcar plano como completo (NOVO)
+                // ============================================================
+                if (this.planManager.hasPlan() && this.planManager.isComplete()) {
+                  if (this.debug) {
+                    log.info("Plan completed successfully!");
+                  }
+                  this.planManager.destroy();
+                }
+    
+                this.eventStream.push(createEvent("turn_end", { content: lastResult }));
+                this.eventStream.push(createEvent("agent_end"));
+                this.eventStream.end(lastResult as any);
+                return lastResult || parsed.instruction || "Concluido.";
+              }
+    
+              // Protection against instruction loop
+              if (parsed.instruction === lastInstruction) {
+                if (this.debug) {
+                  log.warn("Repeated instruction detected. Stopping loop.");
+                }
+                this.eventStream.push(createEvent("agent_end"));
+                this.eventStream.end((lastResult || context) as any);
+                return lastResult || context;
+              }
+    
+              lastInstruction = parsed.instruction;
+              lastAgentName = parsed.agent;
+    
+              // ============================================================
+              // HANDLE SPAWN_AGENT (NOVO)
+              // ============================================================
+              if (parsed.agent === "spawn_agent") {
+                if (onProgress) {
+                  onProgress("\u{1F465} Delegando para sub-agente...").catch(() => {});
+                }
+    
+                const subResult = await this.subAgentRunner.runSingle({
+                  instruction: parsed.instruction,
+                  agentName: parsed.subAgent, // optional specialized agent
+                  taskId: `step_${steps}_${Date.now()}`,
+                });
+    
+                lastResult = subResult.success
+                  ? subResult.result
+                  : `Sub-agent failed: ${subResult.error}`;
+    
+                context += `\n\nSub-agent (${subResult.agentName}) result:\n${lastResult}`;
+    
+                // Update plan step if applicable
+                if (parsed.nextStep && this.planManager.hasPlan()) {
+                  this.planManager.updateStep(parsed.nextStep, {
+                    status: subResult.success ? "done" : "failed",
+                    result: lastResult.slice(0, 500),
+                  });
+                }
+    
+                steps++;
+                continue;
+              }
+    
+              const target = this.agents.find((a) => a.name === parsed.agent);
+    
+              if (!target) {
+                log.warn(`Agent not found: ${parsed.agent}`);
+                this.eventStream.push(createEvent("agent_end"));
+                this.eventStream.end();
+                return lastResult || `Erro: agente '${parsed.agent}' nao encontrado.`;
+              }
+    
+              if (this.debug) {
+                log.info(`Executing agent: ${parsed.agent}`);
+                log.debug("Instruction:", parsed.instruction);
+              }
+    
+              this.eventStream.push(
+                    createEvent("tool_call_start", {
+                      toolName: parsed.agent,
+                      content: parsed.instruction,
+                    })
+                  );
+    
+                  if (onProgress) {
+                    (() => {
+                        const instructionPreview = parsed.instruction
+                          ? parsed.instruction.slice(0, 80)
+                          : '';
+                        const dispatchMsg = instructionPreview
+                          ? '\u{1F9E0} ' + parsed.agent + ' \u2192 "' + instructionPreview + (parsed.instruction && parsed.instruction.length > 80 ? '\u2026' : '') + '"'
+                          : '\u{1F9E0} Acionando ' + parsed.agent + '...';
+                        onProgress(dispatchMsg).catch(() => {});
+                      })();
+                  }
+    
+              // Usar ContextEngine para gerenciar o prompt do agente
+              const contextMessages = context
+                .split("\n")
+                .filter(Boolean)
+                .map((line) => ({
+                  role: "system" as const,
+                  content: line,
+                }));
+    
+              this.contextEngine.setHistory(contextMessages);
+    
+              const agentPrompt = `
+        User request:
+        ${input}
+    
+        Conversation history:
+        ${formattedHistory}
+    
+        Instruction:
+        ${parsed.instruction}
+    
+        Context so far:
+        ${(await this.contextEngine.buildContext()).summary || context.slice(0, 3000)}
+    
+        Recent memory:
+        ${memoryContext.slice(0, 1000)}
+        `;
+    
+              // === HOOK: before_agent ===
+              await this.hookManager.execute("before_agent", {
+                input,
+                agentName: parsed.agent,
+                instruction: parsed.instruction,
+                context,
+              });
+    
+              const result = await target.agent.run(agentPrompt, onProgress);
+    
+              // === HOOK: after_agent ===
+              await this.hookManager.execute("after_agent", {
+                input,
+                agentName: parsed.agent,
+                instruction: parsed.instruction,
+                result,
+                context,
+              });
+    
+              this.eventStream.push(
+                createEvent("tool_call_end", {
+                  toolName: parsed.agent,
+                  content: result,
+                })
+              );
+    
+              // ============================================================
+              // PLAN STEP UPDATE (NOVO)
+              // ============================================================
+              if (parsed.nextStep && this.planManager.hasPlan()) {
+                this.planManager.updateStep(parsed.nextStep, {
+                  status: "done",
+                  result: result.slice(0, 500),
+                  instruction: parsed.instruction,
+                });
+                if (this.debug) {
+                  log.info(`Plan step ${parsed.nextStep} marked as done`);
+                }
+              }
+    
+              // === REFLECTION STEP ===
+                  if (onProgress && this.reflectionCount < maxReflections) {
+                    onProgress("\u{1F50E} Revisando se a resposta ficou boa...").catch(() => {});
+                  }
+              if (this.reflectionCount < maxReflections) {
+                const reflection = await this.reflectOnResult(
+                  input,
+                  parsed.agent,
+                  parsed.instruction,
+                  result
+                );
+    
+                if (this.debug) {
+                  log.info(`[Reflection #${this.reflectionCount}]`);
+                  log.debug(`  Success: ${reflection.success}`);
+                  log.debug(`  Complete: ${reflection.complete}`);
+                  log.debug(`  Learning: ${reflection.learning}`);
+                }
+    
+                // Se aprendeu algo, adicionar ao contexto
+                if (reflection.learning) {
+                  context += `\n\n[Learning from ${parsed.agent}]: ${reflection.learning}`;
+                  // Tambem adicionar ao plano se existir
+                  if (this.planManager.hasPlan()) {
+                    this.planManager.addLearning(
+                      `[${parsed.agent}]: ${reflection.learning}`
+                    );
+                  }
+                }
+    
+                // Se falhou e deve tentar abordagem diferente
+                if (reflection.success === "no" && reflection.retryDifferent) {
+                  // Usar retryPrompt sugerido pelo reflector se existir
+                  const retryPrompt = (reflection as any).retryPrompt;
+                  const suggestedAgent = (reflection as any).suggestedAgent;
+                  
+                  if (retryPrompt) {
+                    // Usar o prompt melhorado sugerido pelo reflector
+                    parsed.instruction = retryPrompt;
+                    if (this.debug) {
+                      log.debug(`Reflection suggested retry prompt: "${retryPrompt.slice(0, 100)}"`);
+                    }
+                  } else {
+                    delete parsed.instruction; // Forca nova instrucao
+                  }
+    
+                  // Se sugeriu agente alternativo, usar ele
+                  if (suggestedAgent && this.agents.find(a => a.name === suggestedAgent)) {
+                    parsed.agent = suggestedAgent;
+                    if (this.debug) {
+                      log.debug(`Reflection suggests alternative agent: ${suggestedAgent}`);
+                    }
+                  }
+    
+                  context += `\n\nPrevious attempt with ${parsed.agent} failed: ${result.slice(0, 300)}`;
+                  context += `\nMissing: ${reflection.missingInfo.join(", ")}`;
+                  
+                  const altApproach = (reflection as any).alternativeApproach;
+                  if (altApproach) {
+                    context += `\nAlternative approach: ${altApproach}`;
+                  }
+    
+                  // Update plan step as failed
+                  if (parsed.nextStep && this.planManager.hasPlan()) {
+                    this.planManager.updateStep(parsed.nextStep, {
+                      status: "failed",
+                      result: result.slice(0, 500),
+                    });
+                  }
+    
+                  if (this.debug) {
+                    log.debug("Reflection suggests retry with different approach");
+                  }
+                }
+              }
+    
+              lastResult = result;
+    
+              if (this.debug) {
+                log.debug(`Result from ${parsed.agent}:`);
+                log.debug(result);
+              }
+    
+              context += `\n\n${parsed.agent} result:\n${result}`;
+    
+              // Alimentar o ContextEngine com o resultado do agente
+              this.contextEngine.addMessage({
+                role: "assistant",
+                content: `[${parsed.agent}]: ${result.slice(0, 2000)}`,
+              });
+    
+              steps++;
+            }
+    
+            if (this.debug) {
+              log.warn("Max steps reached. Returning last result.");
+            }
+    
+            appendToTranscript(this.sessionId, {
+              role: "assistant",
+              content: lastResult || "Nao foi possivel concluir a tarefa.",
+              timestamp: Date.now(),
+            });
+    
+            this.eventStream.push(createEvent("agent_end"));
+            this.eventStream.end(lastResult as any);
+            return lastResult || "Nao foi possivel concluir a tarefa.";
+          }
+    
+          /** Get current session ID */
+          getSessionId(): string {
+            return this.sessionId;
+          }
+    
+          /** Reset session with a new ID */
+          resetSession(): void {
+            this.sessionId = generateSessionId("orchestrator");
+          }
+        }
+    
+
+
+================================================================================
+FILE: core/agent/agent.ts (21907 chars)
+================================================================================
+
+import OpenAI from "openai";
+import { createLLMClient, getDefaultProvider } from "../llm/provider";
+import type { LLMProviderType } from "../types";
+    import { logger, createLogger } from "../utils/logger";
+import { getLLMCache } from "../utils/cache";
+import { getRateLimiter } from "../utils/rateLimiter";
+
+const log = createLogger("AGENT");
+    
+    export interface AgentOptions {
+      name: string;
+      role: string;
+      goal: string;
+      backstory: string;
+      model?: string;
+      fallbackModel?: string;
+      generalInstructions?: string;
+      baseURL?: string;
+      apiKey?: string;
+      tools?: any[];
+      functions?: Record<string, Function>;
+    }
+    
+    type Message = {
+      role: "system" | "user" | "assistant" | "tool";
+      content?: string | null;
+      reasoning_content?: string;
+      tool_call_id?: string;
+      name?: string;
+      tool_calls?: any;
+    };
+    
+    
+    /**
+     * Valida e sanitiza o array de mensagens antes de enviar para API.
+     * Remove tool messages orfas que nao tem assistant com tool_calls correspondente.
+     * Aplica safe truncation se o total de tokens exceder o limite.
+     */
+    function sanitizeMessages(
+      messages: Message[],
+      maxTokens: number = 8000
+    ): Message[] {
+      if (messages.length === 0) return messages;
+    
+      // === Passo 1: Construir set de tool_call_ids validos ===
+      const validToolCallIds = new Set<string>();
+      for (const msg of messages) {
+        if (msg.role === "assistant" && msg.tool_calls && Array.isArray(msg.tool_calls)) {
+          for (const tc of msg.tool_calls) {
+            if (tc.id) validToolCallIds.add(tc.id);
+          }
+        }
+      }
+    
+      // === Passo 2: Remover tool messages orfas ===
+      let cleaned = messages.filter((msg, idx) => {
+        if (msg.role === "tool" && msg.tool_call_id) {
+          if (!validToolCallIds.has(msg.tool_call_id)) {
+            return false; // orfa, remove
+          }
+        }
+        return true;
+      });
+    
+      // === Passo 3: Estimar tokens ===
+      let totalTokens = 0;
+      for (const msg of cleaned) {
+        totalTokens += Math.ceil((msg.content || "").length / 4) + 4;
+        if (msg.tool_calls) {
+          totalTokens += JSON.stringify(msg.tool_calls).length / 4;
+        }
+      }
+    
+      // === Passo 4: Safe truncation se exceder limite ===
+      if (totalTokens > maxTokens && cleaned.length > 6) {
+        // Encontrar indice seguro de corte
+        const systemMessages = cleaned.filter(m => m.role === "system");
+        const nonSystem = cleaned.filter(m => m.role !== "system");
+        
+        if (nonSystem.length <= 6) return cleaned;
+        
+        // Manter ultimas mensagens que cabem no orcamento
+        let keptTokens = 0;
+        let keepCount = 0;
+        const budget = Math.floor(maxTokens * 0.7); // 70% para mensagens recentes
+        
+        for (let i = nonSystem.length - 1; i >= 0; i--) {
+          const mt = Math.ceil((nonSystem[i].content || "").length / 4) + 4;
+          if (nonSystem[i].tool_calls) {
+            // tool_calls messages must keep their paired tool responses
+            // Count tokens for all subsequent tool messages too
+          }
+          if (keptTokens + mt > budget && keepCount >= 4) break;
+          keptTokens += mt;
+          keepCount++;
+        }
+        
+        // Aplicar findSafeTruncationIndex
+        let startIdx = Math.max(0, nonSystem.length - keepCount);
+        startIdx = findSafeTruncationIndex(nonSystem, startIdx);
+        
+        cleaned = [...systemMessages, ...nonSystem.slice(startIdx)];
+      }
+    
+      return cleaned;
+    }
+    
+    /**
+     * Encontra indice seguro para truncagem que nao quebra pares
+     * assistant(tool_calls) -> tool.
+     */
+    function findSafeTruncationIndex(
+      messages: Message[],
+      desiredStart: number
+    ): number {
+      if (desiredStart <= 0) return 0;
+      
+      let safeStart = desiredStart;
+      
+      for (let i = desiredStart; i < messages.length; i++) {
+        const msg = messages[i];
+        
+        if (msg.role === "tool" && msg.tool_call_id) {
+          let foundAssistant = false;
+          
+          for (let j = i - 1; j >= 0; j--) {
+            const candidate = messages[j];
+            if (
+              candidate.role === "assistant" &&
+              candidate.tool_calls &&
+              Array.isArray(candidate.tool_calls)
+            ) {
+              const hasMatchingCall = candidate.tool_calls.some(
+                (tc: any) => tc.id === msg.tool_call_id
+              );
+              if (hasMatchingCall) {
+                if (j < safeStart) safeStart = j;
+                foundAssistant = true;
+                break;
+              }
+            }
+          }
+          
+          if (!foundAssistant && i >= safeStart) {
+            safeStart = i + 1;
+          }
+        }
+      }
+      
+      return safeStart;
+    }
+    
+    
+export class Agent {
+      public name: string;
+      public role: string;
+      public goal: string;
+      public backstory: string;
+      public model: string;
+      public fallbackModel: string;
+      public generalInstructions: string;
+    
+      private client: OpenAI;
+      private history: Message[] = [];
+      private tools: any[];
+      private functions: Record<string, Function>;
+    
+      constructor(options: AgentOptions) {
+        this.name = options.name;
+        this.role = options.role;
+        this.goal = options.goal;
+        this.backstory = options.backstory;
+    
+        this.model = options.model ?? "deepseek-v4-flash";
+        this.fallbackModel = options.fallbackModel ?? "";
+        this.generalInstructions =
+          options.generalInstructions ?? "- Responda em PT-BR.\n";
+    
+        this.tools = options.tools ?? [];
+        this.functions = options.functions ?? {};
+    
+        this.client = new OpenAI({
+          apiKey: options.apiKey ?? process.env.DEEPSEEK_API_KEY,
+          baseURL: options.baseURL ?? "https://api.deepseek.com",
+          timeout: 60000,
+        });
+    
+        log.info(`Agent '${this.name}' inicializado`);
+        log.info(`Model: ${this.model}`);
+        log.info(`Tools disponiveis: ${this.tools.length}`);
+      }
+    
+      resetHistory(): void {
+        this.history = [];
+        log.info(`Historico de ${this.name} resetado.`);
+      }
+    
+      private async ensureSystemMessage(): Promise<void> {
+        const systemPrompt = await this.buildSystemPrompt();
+        if (this.history.length > 0 && this.history[0].role === "system") {
+          this.history[0].content = systemPrompt;
+        } else {
+          this.history.unshift({ role: "system", content: systemPrompt });
+        }
+      }
+    
+      public async buildSystemPrompt(): Promise<string> {
+        const toolsDescription = this.tools.length
+          ? "\n      Ferramentas disponiveis:\n      " +
+            this.tools.map(t => "- " + t.function.name + ": " + t.function.description).join("\n") +
+            "\n\n      Use essas ferramentas quando precisar de dados externos ou executar acoes.\n      Se uma ferramenta for necessaria, utilize-a antes de responder ao usuario.\n      "
+          : "";
+    
+        // Carregar skills relevantes (import dinamico evita crash se o modulo nao existir)
+        let skillsInstructions = "";
+        try {
+          const { getSkillsManager } = await import("../skills/skills-manager");
+          const contextHint = this.generalInstructions.substring(0, 200);
+          const relevantSkills = getSkillsManager().loadRelevantSkills(contextHint);
+          if (relevantSkills.length > 0) {
+            skillsInstructions = "\n\n=== SKILLS DISPONIVEIS ===\n" +
+              "Voce tem acesso as seguintes habilidades especializadas:\n\n" +
+              relevantSkills.join("\n\n---\n\n") +
+              "\n\nCarregue estas skills quando o contexto da conversa for relevante para elas.\n";
+          }
+        } catch (e) {
+          // Skills manager nao disponivel
+        }
+    
+        // === MEMORY CAPABILITIES (NOVO) ===
+        let memoryInstructions = "";
+        const hasMemorySearch = this.functions["memory_search"];
+        const hasMemoryAppend = this.functions["memory_append"];
+        
+        if (hasMemorySearch || hasMemoryAppend) {
+          memoryInstructions = "\n\n=== MEMORY CAPABILITIES ===\n";
+          memoryInstructions += "You have access to a persistent memory system. Use it proactively:\n\n";
+          
+          if (hasMemorySearch) {
+            memoryInstructions += "BEFORE responding to the user:\n";
+            memoryInstructions += "- Use memory_search to recall relevant past conversations, preferences, and decisions\n";
+            memoryInstructions += "- If the user mentions something you should remember, search for it\n\n";
+          }
+          
+          if (hasMemoryAppend) {
+            memoryInstructions += "AFTER completing a task:\n";
+            memoryInstructions += "- If you learned something new about the user, use memory_append to save it\n";
+            memoryInstructions += "- If the user expressed a preference, record it\n";
+            memoryInstructions += "- If you made a decision, document the reasoning\n\n";
+          }
+          
+          memoryInstructions += "EXAMPLES:\n";
+          memoryInstructions += '- User: "Remember I prefer dark mode"\n';
+          memoryInstructions += '  -> memory_append("User prefers dark mode", "Preferencias")\n';
+          memoryInstructions += '- User: "Analyze this project"\n';
+          memoryInstructions += '  -> memory_search("project architecture decisions")\n';
+          memoryInstructions += "  -> [use results in analysis]\n";
+        }
+    
+        // Notas diarias recentes - usa modulo seguro
+        let dailyContext = "";
+        try {
+          const { getRecentDailyNotes } = await import("../memory/memory_search");
+          const notes = getRecentDailyNotes(3);
+          if (notes.size > 0) {
+            const recentNotes: string[] = [];
+            notes.forEach((content, date) => {
+              recentNotes.push(`[${date}]: ${content.slice(0, 200)}`);
+            });
+            dailyContext = "\n\n=== NOTAS RECENTES ===\n" +
+              "Aqui estao anotacoes de sessoes anteriores que podem ser uteis:\n" +
+              recentNotes.join("\n").substring(0, 800) +
+              "\n";
+          }
+        } catch (e) {
+          // Notas nao disponiveis - nao critico
+        }
+    
+        return (
+          "Voce e o agente '" + this.name + "'.\n" +
+          "Seu papel: " + this.role + "\n" +
+          "Seu objetivo: " + this.goal + "\n" +
+          "Contexto: " + this.backstory + "\n\n" +
+          toolsDescription +
+          skillsInstructions +
+          memoryInstructions +
+          dailyContext +
+          "Instrucoes:\n" + this.generalInstructions
+        );
+      }
+    
+      /**
+       * Carrega skills relevantes para um determinado contexto
+       */
+      public async getRelevantSkills(context: string): Promise<string[]> {
+        try {
+          const { getSkillsManager } = await import("../skills/skills-manager");
+          return getSkillsManager().loadRelevantSkills(context);
+        } catch {
+          return [];
+        }
+      }
+    
+    
+      /**
+       * Retry wrapper com exponential backoff + jitter.
+       * So retry em erros de rede ou rate limit (429/5xx).
+       */
+      
+          /**
+           * Gera chave de cache baseada no hash da request (model + messages + tools)
+           * Usado para evitar chamadas identicas a API
+           */
+          private buildCacheKey(model: string, messages: any[], tools: any[] | undefined): string {
+            const crypto = require("crypto");
+            const payload = JSON.stringify({
+              model,
+              messages: messages.map(m => ({ role: m.role, content: (m.content || "").slice(0, 500) })),
+              toolsCount: tools?.length || 0,
+              toolNames: tools?.map(t => t.function?.name).sort().join(",") || "",
+            });
+            return crypto.createHash("md5").update(payload).digest("hex");
+          }
+    
+      private async retryWithBackoff<T>(
+        fn: () => Promise<T>,
+        maxRetries: number = 3,
+        baseDelay: number = 1000
+      ): Promise<T> {
+        let lastError: any;
+        
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+          try {
+            return await fn();
+          } catch (error: any) {
+            lastError = error;
+            
+            // Verificar se deve retry
+            const status = error?.status || error?.response?.status;
+            const shouldRetry = 
+              status === 429 || // rate limit
+              (status && status >= 500) || // server error
+              error?.code === 'ECONNRESET' ||
+              error?.code === 'ETIMEDOUT' ||
+              error?.code === 'ENOTFOUND' ||
+              error?.message?.includes('timeout') ||
+              error?.message?.includes('rate');
+            
+            if (!shouldRetry || attempt === maxRetries) {
+              throw lastError;
+            }
+            
+            // Respeitar Retry-After header se presente (ex: 429 rate limit)
+            const retryAfterHeader = error?.response?.headers?.['retry-after'];
+            let waitMs: number;
+            if (retryAfterHeader) {
+              const retryAfterSec = parseInt(retryAfterHeader, 10);
+              waitMs = (!isNaN(retryAfterSec) ? retryAfterSec : 5) * 1000;
+            } else {
+              // Exponential backoff com 10% jitter
+              const delay = baseDelay * Math.pow(2, attempt);
+              const jitter = delay * 0.1 * (Math.random() * 2 - 1);
+              waitMs = Math.floor(delay + jitter);
+            }
+            
+            log.warn(`Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
+            await new Promise(resolve => setTimeout(resolve, waitMs));
+          }
+        }
+        
+        throw lastError;
+      }
+    
+  async run(userMessage: string, onProgress?: (msg: string) => Promise<void>): Promise<string> {
+        log.info("==============================");
+        log.info(`User input:`);
+        log.debug(userMessage);
+    
+        await this.ensureSystemMessage();
+    
+        this.history.push({
+          role: "user",
+          content: userMessage,
+        });
+    
+        try {
+          while (true) {
+            log.info("Enviando requisicao para o modelo...");
+            log.debug(`Historico atual: ${this.history.length} mensagens`);
+            
+            let response;
+            let cacheHit = false;
+            const sanitizedMessages = sanitizeMessages(this.history);
+            const cacheKey = this.buildCacheKey(this.model, sanitizedMessages, this.tools.length ? this.tools : undefined);
+            const cache = getLLMCache();
+            const cachedResponse = cache.get(cacheKey);
+            
+            try {
+              if (cachedResponse) {
+                response = cachedResponse;
+                cacheHit = true;
+                log.info(`Cache hit para modelo primario (hit rate: ${cache.stats().hitRate})`);
+              } else {
+                response = await getRateLimiter().run(() =>
+                  this.retryWithBackoff(
+                    () => this.client.chat.completions.create({
+                      model: this.model,
+                      messages: sanitizedMessages as any,
+                      tools: this.tools.length ? this.tools : undefined,
+                      tool_choice: this.tools.length ? "auto" : undefined,
+                    } as any),
+                    3 // maxRetries
+                  )
+                );
+                if (!response?.choices?.[0]?.message?.tool_calls) {
+                  cache.set(cacheKey, response);
+                }
+              }
+            } catch (primaryError: any) {
+              if (this.fallbackModel) {
+                log.warn(`Modelo primario '${this.model}' falhou. Tentando fallback '${this.fallbackModel}'...`);
+                log.warn(`Erro: ${primaryError.message}`);
+                try {
+                  const fallbackCacheKey = this.buildCacheKey(this.fallbackModel!, sanitizedMessages, this.tools.length ? this.tools : undefined);
+                  const fallbackCached = cache.get(fallbackCacheKey);
+                  
+                  if (fallbackCached) {
+                    response = fallbackCached;
+                    cacheHit = true;
+                    log.info("Cache hit para modelo fallback");
+                  } else {
+                    response = await getRateLimiter().run(() =>
+                      this.retryWithBackoff(
+                        () => this.client.chat.completions.create({
+                          model: this.fallbackModel!,
+                          messages: sanitizedMessages as any,
+                          tools: this.tools.length ? this.tools : undefined,
+                          tool_choice: this.tools.length ? "auto" : undefined,
+                        } as any),
+                        2 // maxRetries (menos tentativas no fallback)
+                      )
+                    );
+                    if (!response?.choices?.[0]?.message?.tool_calls) {
+                      cache.set(fallbackCacheKey, response);
+                    }
+                  }
+                  log.info(`Fallback para '${this.fallbackModel}' bem-sucedido.`);
+                } catch (fallbackError: any) {
+                  log.error(`Fallback '${this.fallbackModel}' tambem falhou: ${fallbackError.message}`);
+                  throw fallbackError;
+                }
+              } else {
+                throw primaryError;
+              }
+            }
+    
+            const msg = (response as any).choices[0].message;
+    
+            log.info("Resposta do modelo recebida");
+    
+            if (msg.content) {
+              log.debug("Conteudo:");
+              log.debug(msg.content);
+            }
+            if ((msg as any).reasoning_content) {
+              log.debug("Conteudo do raciocinio recebido (sera preservado).");
+            }
+    
+            const assistantEntry: Message = {
+              role: "assistant",
+              content: msg.content,
+            };
+    
+            if ((msg as any).reasoning_content) {
+                  assistantEntry.reasoning_content = (msg as any).reasoning_content;
+                  
+                  // Forward reasoning as dynamic progress messages (like DeepSeek thinking)
+                  const reasoning = (msg as any).reasoning_content as string;
+                  if (reasoning && onProgress) {
+                    const thoughts = reasoning
+                      .replace(/\n+/g, ' ')
+                      .split(/(?<=[.!?])\s+/)
+                      .filter((t: string) => t.trim().length > 10)
+                      .slice(0, 2);
+                    for (const thought of thoughts) {
+                      await onProgress('\u{1F4AD} ' + thought.trim().slice(0, 120));
+                    }
+                  }
+                }
+    
+            if (msg.tool_calls) {
+              log.info(`Tool calls detectadas: ${msg.tool_calls.length}`);
+              // Filtra apenas function calls para evitar mismatch tool_calls/tool_messages
+              const functionCalls = msg.tool_calls.filter((tc: any) => tc.type === "function");
+              assistantEntry.tool_calls = functionCalls.length > 0 ? functionCalls : undefined;
+            }
+    
+            this.history.push(assistantEntry);
+    
+            if (!assistantEntry.tool_calls) {
+              log.info("Resposta final retornada ao usuario");
+              return msg.content ?? "";
+            }
+    
+            for (const toolCall of assistantEntry.tool_calls) {
+    
+              const toolName = toolCall.function.name;
+              const args = JSON.parse(toolCall.function.arguments || "{}");
+              (() => {
+                    const argsDesc = args && typeof args === 'object'
+                      ? Object.entries(args as Record<string,unknown>)
+                          .filter(([,v]) => v !== undefined && v !== null)
+                          .map(([k, v]) => typeof v === 'string' ? v.slice(0, 40) : '')
+                          .filter(Boolean)
+                          .join(', ')
+                      : '';
+                    const msg = argsDesc
+                      ? '\u{1F527} ' + toolName + ': "' + argsDesc + '"'
+                      : '\u{1F527} ' + toolName + '...';
+                    onProgress?.(msg);
+                  })()
+              
+    
+              log.info("Executando tool:");
+              log.info(`Nome: ${toolName}`);
+              log.debug(`Args:`, args);
+    
+              const fn = this.functions[toolName];
+    
+              let toolResult = "";
+    
+              try {
+                if (fn) {
+                  const result = await fn(args);
+                  toolResult = JSON.stringify(result, null, 2);
+                  log.debug("Resultado da tool:");
+                  log.debug(toolResult);
+                } else {
+                  toolResult = "Erro: Funcao nao encontrada.";
+                  log.warn("Tool nao encontrada");
+                }
+              } catch (e: any) {
+                toolResult = `Erro na execucao: ${e.message}`;
+                log.error("Erro na execucao da tool:");
+                log.error(e.message);
+              }
+    
+              this.history.push({
+                role: "tool",
+                tool_call_id: toolCall.id,
+                name: toolName,
+                content: toolResult,
+              });
+    
+              log.debug("Resultado adicionado ao historico");
+            }
+          }
+        } catch (e: any) {
+          log.error("Erro no Agent:");
+          log.error(e);
+    
+          return `[Erro no processamento: ${e.message}]`;
+        }
+      }
+    }
+    
+
+
+================================================================================
+FILE: core/context/context-engine.ts (19581 chars)
+================================================================================
+
+/**
+     * ContextEngine - Gerenciamento inteligente de contexto
+     *
+     * Controla o orcamento de tokens do historico de conversa,
+     * sumariza mensagens antigas usando LLM quando necessario e mantem
+     * apenas o contexto relevante para o modelo.
+     *
+     * v3: Sumarizacao real com LLM + estrategia hibrida de 3 zonas.
+     */
+    
+    import OpenAI from "openai";
+    import { logger } from "../utils/logger";
+    import { getMemoryEngine } from "../memory/memory-engine";
+    import { createDefaultClient } from "../llm/provider";
+    import { getTokenCounter } from "./token-counter";
+    
+    // ============================================================
+    // Tipos
+    // ============================================================
+    
+    export interface ContextMessage {
+      role: "system" | "user" | "assistant" | "tool";
+      content: string;
+      name?: string;
+      tool_call_id?: string;
+      reasoning_content?: string;
+      tool_calls?: any;
+    }
+    
+    export interface ContextEngineConfig {
+      /** Token budget maximo (default: 8000 tokens) */
+      maxTokens: number;
+      /** Proporcao do budget reservada para mensagens recentes (default: 0.6 = 60%) */
+      recentRatio: number;
+      /** Numero minimo de mensagens a manter apos sumarizacao (default: 6) */
+      minMessages: number;
+      /** Modo de operacao: "trim" (corta) ou "summarize" (sumariza inteligente com LLM) */
+      mode: "trim" | "summarize";
+      /** Numero de mensagens recentes a manter intactas na zona 1 (default: 5) */
+      keepRecentIntact: number;
+      /** Numero maximo de mensagens na zona 2 (sumarizacao) (default: 10) */
+      summarizeZoneSize: number;
+      /** Modelo LLM para sumarizacao (default: usa o provider padrao) */
+      summaryModel?: string;
+    }
+    
+    export interface ContextSummary {
+      /** Mensagens processadas (prontas para enviar ao modelo) */
+      messages: ContextMessage[];
+      /** Quantas mensagens foram sumarizadas/removidas */
+      summarizedCount: number;
+      /** Estimativa de tokens no resultado final */
+      estimatedTokens: number;
+      /** Resumo gerado (se mode=summarize) */
+      summary?: string;
+    }
+    
+    // ============================================================
+    // Utilitarios de token
+    // ============================================================
+    
+    const DEFAULT_CONFIG: ContextEngineConfig = {
+      maxTokens: 8000,
+      recentRatio: 0.6,
+      minMessages: 6,
+      mode: "summarize",
+      keepRecentIntact: 5,
+      summarizeZoneSize: 10,
+    };
+    
+    /**
+     * Estima o numero de tokens em um texto.
+     * Usa tiktoken com fallback para chars/4.
+     */
+    export function estimateTokens(text: string): number {
+      return getTokenCounter().count(text);
+    }
+    
+    /**
+     * Estima tokens de uma mensagem
+     */
+    function estimateMessageTokens(msg: ContextMessage): number {
+      let total = estimateTokens(msg.content || "");
+      if (msg.name) total += estimateTokens(msg.name);
+      if (msg.role) total += 4; // overhead do role (tiktoken account)
+      if (msg.reasoning_content) total += estimateTokens(msg.reasoning_content);
+      return total;
+    }
+    
+    /**
+     * Estima tokens de um array de mensagens
+     */
+    export function estimateMessagesTokens(messages: ContextMessage[]): number {
+      return messages.reduce((acc, msg) => acc + estimateMessageTokens(msg), 0);
+    }
+    
+    
+    // ============================================================
+    // Safe Truncation Helper - evita tool messages orfas
+    // ============================================================
+    
+    /**
+     * Encontra um indice de truncagem seguro que nao quebra pares
+     * assistant(tool_calls) -> tool.
+     * 
+     * Se o slice [startIndex, end) incluir mensagens "tool" cujo
+     * "assistant" com tool_calls correspondente ficou fora, recua
+     * o startIndex para incluir esse assistant.
+     * 
+     * Isso evita o erro 400 da API:
+     * "Messages with role 'tool' must be a response to a preceding
+     *  message with 'tool_calls'"
+     */
+    function findSafeTruncationIndex(
+      messages: ContextMessage[],
+      desiredStart: number
+    ): number {
+      if (desiredStart <= 0) return 0;
+      
+      let safeStart = desiredStart;
+      
+      // Varre as mensagens a partir do start desejado
+      for (let i = desiredStart; i < messages.length; i++) {
+        const msg = messages[i];
+        
+        // Se for uma tool message, precisa garantir que o assistant
+        // que gerou o tool_call esta incluso
+        if (msg.role === "tool" && msg.tool_call_id) {
+          let foundAssistant = false;
+          
+          // Procura o assistant com o tool_call correspondente
+          for (let j = i - 1; j >= 0; j--) {
+            const candidate = messages[j];
+            if (
+              candidate.role === "assistant" &&
+              candidate.tool_calls &&
+              Array.isArray(candidate.tool_calls)
+            ) {
+              const hasMatchingCall = candidate.tool_calls.some(
+                (tc: any) => tc.id === msg.tool_call_id
+              );
+              if (hasMatchingCall) {
+                // Recua o start para incluir este assistant
+                if (j < safeStart) {
+                  safeStart = j;
+                }
+                foundAssistant = true;
+                break;
+              }
+            }
+          }
+          
+          // Se nao encontrou o assistant em lugar nenhum, esta tool
+          // e realmente orfa - empurra o start para depois dela
+          if (!foundAssistant && i >= safeStart) {
+            logger.warn(
+              `[ContextEngine] Tool message orfa detectada (tool_call_id=${msg.tool_call_id}). ` +
+              `Pulando para evitar erro 400 da API.`
+            );
+            safeStart = i + 1;
+          }
+        }
+      }
+      
+      return safeStart;
+    }
+    
+    
+    // ============================================================
+    // ContextEngine v3
+    // ============================================================
+    
+    export class ContextEngine {
+      private config: ContextEngineConfig;
+      private systemPrompt: string = "";
+      private rawHistory: ContextMessage[] = [];
+      private compressed: ContextSummary | null = null;
+      private memoryEngine = getMemoryEngine();
+      private llmClient: OpenAI | null = null;
+      private summaryCache: Map<string, string> = new Map();
+    
+      constructor(config?: Partial<ContextEngineConfig>) {
+        this.config = { ...DEFAULT_CONFIG, ...config };
+        // Inicializar cliente LLM para sumarizacao (lazy)
+        try {
+          this.llmClient = createDefaultClient();
+        } catch {
+          logger.warn("[ContextEngine] Nao foi possivel criar cliente LLM para sumarizacao. Usando fallback.");
+        }
+      }
+    
+      /**
+       * Define o system prompt (nao conta no budget de mensagens)
+       */
+      setSystemPrompt(prompt: string): void {
+        this.systemPrompt = prompt;
+      }
+    
+      /**
+       * Atualiza o historico bruto
+       */
+    
+      /**
+       * Carrega mensagens do transcript da sessao.
+       * Util para restaurar contexto entre sessoes.
+       */
+      loadFromTranscript(messages: ContextMessage[]): void {
+        this.rawHistory = [...messages];
+        this.compressed = null;
+        if (messages.length > 0) {
+          logger.info(
+            `[ContextEngine] Carregadas ${messages.length} mensagens do transcript`
+          );
+        }
+      }
+    
+      setHistory(messages: ContextMessage[]): void {
+        this.rawHistory = [...messages];
+        this.compressed = null; // invalida cache
+      }
+    
+      /**
+       * Adiciona uma mensagem ao historico
+       */
+      addMessage(message: ContextMessage): void {
+        this.rawHistory.push(message);
+        this.compressed = null;
+      }
+    
+      /**
+       * Retorna o historico bruto atual
+       */
+      getRawHistory(): ContextMessage[] {
+        return [...this.rawHistory];
+      }
+    
+      /**
+       * Processa o contexto: aplica compressao se necessario.
+       * 
+       * Se mode="summarize", usa LLM para sumarizacao inteligente
+       * que preserva decisoes, preferencias e fatos importantes.
+       */
+      async buildContext(): Promise<ContextSummary> {
+        const history = [...this.rawHistory];
+        const totalTokens = estimateMessagesTokens(history);
+    
+        // Se esta dentro do budget, retorna como esta
+        if (totalTokens <= this.config.maxTokens || history.length <= this.config.minMessages) {
+          const result: ContextSummary = {
+            messages: history,
+            summarizedCount: 0,
+            estimatedTokens: totalTokens,
+          };
+          this.compressed = result;
+          return result;
+        }
+    
+        // Modo summarize: usar LLM para compressao inteligente
+        if (this.config.mode === "summarize") {
+          return await this.summarizeIntelligently(history);
+        }
+    
+        // Modo trim: compressao simples
+        return this.compress(history);
+      }
+    
+      /**
+       * Formatacao rapida para prompt do planner/agente.
+       * Inclui user input, history e context summary.
+       */
+      async formatForPrompt(userInput: string, history?: string): Promise<string> {
+        const context = await this.buildContext();
+    
+        let result = `User request:
+    ${userInput}
+    `;
+    
+        if (history) {
+          result += `
+    Conversation history:
+    ${history}
+    `;
+        }
+    
+        if (context.summary) {
+          result += `
+    Summary of earlier context:
+    ${context.summary}
+    `;
+        }
+    
+        if (context.summarizedCount > 0) {
+          result += `
+    [${context.summarizedCount} mensagens anteriores foram compactadas]
+    `;
+        }
+    
+        result += `
+    Estimated tokens: ${context.estimatedTokens}
+    `;
+    
+        return result;
+      }
+    
+      /**
+       * Busca na memoria por contexto relevante ao input atual
+       */
+      recallMemory(query: string): string {
+        return this.memoryEngine.recall(query);
+      }
+    
+      /**
+       * Consolida aprendizado apos finalizar uma sessao
+       */
+      async consolidateLearning(messages: ContextMessage[]): Promise<void> {
+        const facts = this.memoryEngine.consolidate(
+          messages.map((m) => ({ role: m.role, content: m.content || "" }))
+        );
+        if (facts.length > 0) {
+          logger.info(
+            `[ContextEngine] Consolidou ${facts.length} fatos na memoria`
+          );
+        }
+      }
+    
+      // ============================================================
+      // Metodos privados
+      // ============================================================
+    
+      /**
+       * Estrategia hibrida de 3 zonas para compressao de contexto:
+       * 
+       * Zona 1 (ultimas N mensagens): mantidas INTACTAS
+       * Zona 2 (proximas M mensagens): SUMARIZADAS com LLM
+       * Zona 3 (restante): DESCARTADAS apos sumarizacao da zona 2
+       * 
+       * Preserva sempre: system prompt, tool definitions, ultima interacao.
+       */
+      private async summarizeIntelligently(history: ContextMessage[]): Promise<ContextSummary> {
+        const { keepRecentIntact, summarizeZoneSize, minMessages } = this.config;
+    
+        // Separar system messages (sempre preservadas)
+        const systemMessages = history.filter((m) => m.role === "system");
+        const nonSystemMessages = history.filter((m) => m.role !== "system");
+    
+        if (nonSystemMessages.length <= keepRecentIntact) {
+          // Nem precisa sumarizar - muito poucas mensagens
+          const tokens = estimateMessagesTokens(history);
+          return {
+            messages: history,
+            summarizedCount: 0,
+            estimatedTokens: tokens,
+          };
+        }
+    
+        // Zona 1: ultimas N mensagens intactas
+        // Zona 1: ultimas N mensagens intactas (com safe truncation)
+            const rawZone1Start = Math.max(0, nonSystemMessages.length - keepRecentIntact);
+            const zone1Start = findSafeTruncationIndex(nonSystemMessages, rawZone1Start);
+            const zone1 = nonSystemMessages.slice(zone1Start);
+    
+        // Zona 2: proximas M mensagens para sumarizar
+        const zone2Start = Math.max(0, zone1Start - summarizeZoneSize);
+        const zone2 = nonSystemMessages.slice(zone2Start, zone1Start);
+    
+        // Zona 3: o resto (sera descartado apos sumarizacao)
+        const zone3 = nonSystemMessages.slice(0, zone2Start);
+    
+        if (zone2.length === 0 && zone3.length === 0) {
+          const result = [...systemMessages, ...zone1];
+          return {
+            messages: result,
+            summarizedCount: 0,
+            estimatedTokens: estimateMessagesTokens(result),
+          };
+        }
+    
+        // Sumarizar zonas 2 e 3 juntas usando LLM
+        const allToSummarize = [...zone2, ...zone3];
+        let summary = "";
+    
+        // Tentar sumarizacao com LLM
+        if (this.llmClient) {
+          summary = await this.summarizeWithLLM(allToSummarize);
+        }
+    
+        // Fallback: sumario simples (MemoryEngine)
+        if (!summary || summary.length < 20) {
+          const compactMessages = allToSummarize.map((m) => ({
+            role: m.role,
+            content: m.content || "",
+          }));
+          const managed = this.memoryEngine.manageWorkingMemory(
+            compactMessages,
+            Math.floor(this.config.maxTokens * 0.3)
+          );
+          const summaryMsg = managed.find((m) => m.role === "system");
+          summary = summaryMsg?.content || this.generateSimpleSummary(allToSummarize);
+        }
+    
+        // Criar mensagem de sumario
+        const totalSummarized = zone2.length + zone3.length;
+        const summaryMessage: ContextMessage = {
+          role: "system",
+          content: `[Contexto anterior resumido - ${totalSummarized} mensagens]:
+    ${summary}`,
+        };
+    
+        // Montar resultado: system messages + summary + zona 1 (intacta)
+        const result = [...systemMessages, summaryMessage, ...zone1];
+        const estimatedTokens = estimateMessagesTokens(result);
+    
+        // Consolidar aprendizados das mensagens sumarizadas
+        const toConsolidate = allToSummarize.map((m) => ({
+          role: m.role,
+          content: m.content || "",
+        }));
+        this.memoryEngine.consolidate(toConsolidate);
+    
+        logger.info(
+          `[ContextEngine] Sumarizacao hibrida: ${zone1.length} intactas, ${totalSummarized} sumarizadas (${estimatedTokens} tokens)`
+        );
+    
+        return {
+          messages: result,
+          summarizedCount: totalSummarized,
+          estimatedTokens,
+          summary,
+        };
+      }
+    
+      /**
+       * Sumarizacao com LLM.
+       * Envia mensagens antigas para o modelo pedindo um sumario
+       * estruturado que preserve decisoes, contexto e fatos importantes.
+       */
+      private async summarizeWithLLM(messages: ContextMessage[]): Promise<string> {
+        if (!this.llmClient || messages.length === 0) return "";
+    
+        // Construir o texto a ser sumarizado
+        const transcript = messages
+          .map((m) => `[${m.role}]: ${(m.content || "").slice(0, 500)}`)
+          .join("\n");
+    
+        // Cache key simples (hash do transcript)
+        const cacheKey = transcript.slice(0, 200);
+        if (this.summaryCache.has(cacheKey)) {
+          return this.summaryCache.get(cacheKey)!;
+        }
+    
+        const summarizationPrompt = `You are a context compressor. Summarize the following conversation transcript.
+    
+    RULES:
+    1. Preserve ALL decisions made, facts mentioned, and user preferences
+    2. Keep important context that affects future interactions
+    3. Include key questions asked and their answers
+    4. Output in Portuguese (PT-BR)
+    5. Be concise but complete - aim for 3-8 sentences
+    6. Format as plain text, no markdown
+    
+    Transcript to summarize:
+    ${transcript.slice(0, 6000)}
+    
+    Summary:`;
+    
+        try {
+          const response = await this.llmClient.chat.completions.create({
+            model: this.config.summaryModel || "deepseek-v4-flash",
+            messages: [
+              { role: "system", content: "You are a precise context summarizer. Follow the rules exactly." },
+              { role: "user", content: summarizationPrompt },
+            ],
+            max_tokens: 500,
+            temperature: 0.3,
+          });
+    
+          const summary = response.choices[0]?.message?.content?.trim() || "";
+          if (summary) {
+            this.summaryCache.set(cacheKey, summary);
+            logger.info(`[ContextEngine] LLM summary generated (${estimateTokens(summary)} tokens)`);
+          }
+          return summary;
+        } catch (err) {
+          logger.warn(`[ContextEngine] LLM summarization failed: ${err}`);
+          return "";
+        }
+      }
+    
+      /**
+       * Comprime o historico mantendo as mensagens recentes
+       */
+      private compress(history: ContextMessage[]): ContextSummary {
+        const { maxTokens, recentRatio, minMessages } = this.config;
+    
+        const recentBudget = Math.floor(maxTokens * recentRatio);
+        let recentCount = 0;
+        let recentTokens = 0;
+    
+        for (let i = history.length - 1; i >= 0; i--) {
+          const msgTokens = estimateMessageTokens(history[i]);
+          if (recentTokens + msgTokens > recentBudget && recentCount >= minMessages) {
+            break;
+          }
+          recentTokens += msgTokens;
+          recentCount++;
+        }
+    
+        // Aplicar safe truncation para evitar tool messages orfas
+        const rawStart = Math.max(0, history.length - recentCount);
+        const safeStart = findSafeTruncationIndex(history, rawStart);
+        const kept = history.slice(safeStart);
+        const summarized = history.length - kept.length;
+    
+        let summary = "";
+        if (summarized > 0) {
+          summary = this.generateSimpleSummary(history.slice(0, summarized));
+        }
+    
+        return {
+          messages: summary
+            ? [{ role: "system" as const, content: summary }, ...kept]
+            : kept,
+          summarizedCount: summarized,
+          estimatedTokens: estimateMessagesTokens(kept),
+          summary: summary || undefined,
+        };
+      }
+    
+      private generateSimpleSummary(messages: ContextMessage[]): string {
+        const userMsgs = messages
+          .filter((m) => m.role === "user")
+          .map((m) => (m.content || "").slice(0, 100));
+        const assistantMsgs = messages
+          .filter((m) => m.role === "assistant")
+          .map((m) => (m.content || "").slice(0, 100));
+    
+        const parts: string[] = [];
+        if (userMsgs.length > 0) {
+          parts.push(`Usuario perguntou: ${userMsgs.join(" | ")}`);
+        }
+        if (assistantMsgs.length > 0) {
+          parts.push(`Assistente respondeu: ${assistantMsgs.join(" | ")}`);
+        }
+    
+        return parts.join(". ").slice(0, 500);
+      }
+    }
+    
+    // Singleton
+    let defaultEngine: ContextEngine | null = null;
+    
+    export function getDefaultEngine(): ContextEngine {
+      if (!defaultEngine) {
+        defaultEngine = new ContextEngine({
+          mode: "summarize",
+          maxTokens: 8000,
+          keepRecentIntact: 5,
+          summarizeZoneSize: 10,
+        });
+      }
+      return defaultEngine;
+    }
+    
+    export function resetDefaultEngine(): void {
+      defaultEngine = null;
+    }
+    
+
+
+================================================================================
+FILE: core/memory/memory-engine.ts (13196 chars)
+================================================================================
+
+/**
+     * MemoryEngine - Sistema de memoria inteligente
+     *
+     * Tres capacidades:
+     * 1. recall() - busca semantica com scoring de relevancia
+     * 2. consolidate() - extrai fatos/decisoes/preferencias do transcript
+     * 3. manageWorkingMemory() - compacta historico preservando contexto critico
+     *
+     * Substitui e expande o memory_search.ts original.
+     */
+    
+    import * as fs from "fs";
+    import * as path from "path";
+    
+    // ============================================================
+    // Tipos
+    // ============================================================
+    
+    interface MemoryFragment {
+      source: string;
+      content: string;
+      score: number;
+      line: number;
+    }
+    
+    interface TranscriptMessage {
+      role: string;
+      content: string;
+    }
+    
+    interface ConsolidatedFact {
+      type: "fact" | "decision" | "preference" | "learning";
+      content: string;
+    }
+    
+    // ============================================================
+    // Constantes
+    // ============================================================
+    
+    const MEMORY_FILE = path.join(process.cwd(), "MEMORY.md");
+    const MEMORY_DIR = path.join(process.cwd(), "memory");
+    const CONSOLIDATION_PATTERNS = [
+      {
+        regex: /(?:lembre[^.]*?(?:que|de)|recorda[^.]*?(?:que|de)|anota[^.]*?(?:que|de)|guarda[^.]*?(?:que|de))\s+(.+?)(?:[.!]|$)/gi,
+        type: "fact" as const,
+      },
+      {
+        regex: /(?:prefiro|prefere|gosto mais de|gosto de|prefer[^.]*?)\s+(.+?)(?:[.!]|$)/gi,
+        type: "preference" as const,
+      },
+      {
+        regex: /(?:decidi[^.]*?|decidiu[^.]*?|vamos\s+\w+\s+porque|a decis[^.]*?[eé])\s+(.+?)(?:[.!]|$)/gi,
+        type: "decision" as const,
+      },
+      {
+        regex: /(?:aprendi[^.]*?|descobri[^.]*?|aprendeu[^.]*?|descobriu[^.]*?)\s+(.+?)(?:[.!]|$)/gi,
+        type: "learning" as const,
+      },
+    ];
+    
+    // ============================================================
+    // MemoryEngine
+    // ============================================================
+    
+    export class MemoryEngine {
+      private memoryCache: string | null = null;
+      private memoryCacheTime: number = 0;
+      private readonly CACHE_TTL = 10_000; // 10 segundos
+    
+      /**
+       * Busca semantica na memoria de longo prazo.
+       * Rankeia fragmentos por relevancia ao contexto da conversa.
+       */
+      recall(query: string, context?: string, maxResults: number = 5): string {
+        const results: MemoryFragment[] = [];
+    
+        // Normalizar termos de busca
+        const queryTerms = this.tokenize(query);
+        const contextTerms = context ? this.tokenize(context) : [];
+    
+        // Peso extra para termos do contexto atual
+        const allTerms = [...queryTerms, ...contextTerms.map((t) => t + "_ctx")];
+    
+        // Buscar em MEMORY.md
+        const memoryContent = this.getMemoryContent();
+        if (memoryContent) {
+          const lines = memoryContent.split("\n");
+          let currentSection = "";
+          let sectionBuffer: string[] = [];
+    
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+    
+            // Detectar secoes
+            if (line.startsWith("## ")) {
+              // Salvar buffer da secao anterior
+              if (sectionBuffer.length > 0) {
+                this.scoreAndAdd(
+                  results,
+                  sectionBuffer.join(" "),
+                  `MEMORY.md (${currentSection || "Geral"})`,
+                  i - sectionBuffer.length,
+                  allTerms,
+                  queryTerms
+                );
+              }
+              currentSection = line.replace(/^##\s+/, "");
+              sectionBuffer = [line];
+            } else if (line.startsWith("# ")) {
+              currentSection = line.replace(/^#\s+/, "");
+              sectionBuffer = [line];
+            } else if (line) {
+              sectionBuffer.push(line);
+            }
+    
+            // Se mudou de top-level section ou fim do arquivo
+            if (
+              (line.startsWith("## ") && sectionBuffer.length > 1) ||
+              i === lines.length - 1
+            ) {
+              if (sectionBuffer.length > 1) {
+                this.scoreAndAdd(
+                  results,
+                  sectionBuffer.join(" "),
+                  `MEMORY.md (${currentSection || "Geral"})`,
+                  i - sectionBuffer.length + 1,
+                  allTerms,
+                  queryTerms
+                );
+                // Reset buffer mantendo o header da nova secao
+                sectionBuffer = line.startsWith("## ") ? [line] : [];
+              }
+            }
+          }
+        }
+    
+        // Buscar em notas diarias
+        this.ensureMemoryDir();
+        try {
+          const files = fs
+            .readdirSync(MEMORY_DIR)
+            .filter((f) => f.endsWith(".md"))
+            .sort()
+            .reverse()
+            .slice(0, 14); // Ultimas 2 semanas
+    
+          for (const file of files) {
+            const content = fs.readFileSync(path.join(MEMORY_DIR, file), "utf-8");
+            const date = file.replace(".md", "");
+            const paragraphs = content.split(/\n##\s+/);
+    
+            for (const para of paragraphs) {
+              if (para.trim().length > 10) {
+                this.scoreAndAdd(
+                  results,
+                  para.trim(),
+                  `Nota diaria ${date}`,
+                  0,
+                  allTerms,
+                  queryTerms
+                );
+              }
+            }
+          }
+        } catch {
+          // Diretorio de memoria pode nao existir
+        }
+    
+        // Ordenar por score e limitar
+        results.sort((a, b) => b.score - a.score);
+        const top = results.slice(0, maxResults);
+    
+        if (top.length === 0) {
+          return "Nenhuma informacao relevante encontrada na memoria.";
+        }
+    
+        return (
+          "=== MEMORIA RELEVANTE ===\n\n" +
+          top
+            .map(
+              (r) =>
+                `[${r.source}] (relevancia: ${(r.score * 100).toFixed(0)}%)\n${r.content}\n`
+            )
+            .join("\n")
+        );
+      }
+    
+      /**
+       * Consolida aprendizado do transcript.
+       * Extrai fatos, decisoes, preferencias e aprendizados.
+       */
+      consolidate(transcript: TranscriptMessage[]): ConsolidatedFact[] {
+        const facts: ConsolidatedFact[] = [];
+        const seenContent = new Set<string>();
+    
+        // Carregar conteudo atual do MEMORY.md para deduplicar
+        const existingContent = this.getMemoryContent().toLowerCase();
+    
+        for (const msg of transcript) {
+          if (msg.role === "tool" || msg.role === "system") continue;
+    
+          for (const pattern of CONSOLIDATION_PATTERNS) {
+            const matches = msg.content.matchAll(pattern.regex);
+            for (const match of matches) {
+              const extracted = match[1].trim();
+              // Evitar entradas muito curtas ou muito longas
+              if (extracted.length < 10 || extracted.length > 300) continue;
+              // Deduplicar
+              const normalized = extracted.toLowerCase();
+              if (seenContent.has(normalized)) continue;
+              if (existingContent.includes(normalized)) continue;
+    
+              seenContent.add(normalized);
+              facts.push({
+                type: pattern.type,
+                content: extracted,
+              });
+            }
+          }
+        }
+    
+        // Persistir novos fatos no MEMORY.md
+        if (facts.length > 0) {
+          this.appendFactsToMemory(facts);
+        }
+    
+        return facts;
+      }
+    
+      /**
+       * Gerencia a working memory: compacta mensagens antigas
+       * quando o total estimado de tokens excede o limite.
+       */
+      manageWorkingMemory(
+        messages: TranscriptMessage[],
+        maxTokens: number
+      ): TranscriptMessage[] {
+        const estimatedTokens = this.estimateTokens(
+          messages.map((m) => m.content).join(" ")
+        );
+    
+        if (estimatedTokens <= maxTokens || messages.length <= 7) {
+          return messages;
+        }
+    
+        // Manter primeiras 2 e ultimas 5 mensagens
+        const keepFirst = 2;
+        const keepLast = 5;
+        const middle = messages.slice(keepFirst, -keepLast);
+    
+        if (middle.length === 0) return messages;
+    
+        // Sumarizar o meio
+        const summary = this.summarizeMessages(middle);
+    
+        return [
+          ...messages.slice(0, keepFirst),
+          {
+            role: "system",
+            content: `[Resumo de ${middle.length} mensagens anteriores]: ${summary}`,
+          },
+          ...messages.slice(-keepLast),
+        ];
+      }
+    
+      // ============================================================
+      // Metodos privados
+      // ============================================================
+    
+      private tokenize(text: string): string[] {
+        return text
+          .toLowerCase()
+          .replace(/[^a-z0-9áàâãéêíóôõúç\s]/g, " ")
+          .split(/\s+/)
+          .filter((t) => t.length > 1);
+      }
+    
+      private getMemoryContent(): string {
+        const now = Date.now();
+        if (this.memoryCache && now - this.memoryCacheTime < this.CACHE_TTL) {
+          return this.memoryCache;
+        }
+        try {
+          this.memoryCache = fs.readFileSync(MEMORY_FILE, "utf-8");
+          this.memoryCacheTime = now;
+          return this.memoryCache;
+        } catch {
+          return "";
+        }
+      }
+    
+      private ensureMemoryDir(): void {
+        if (!fs.existsSync(MEMORY_DIR)) {
+          fs.mkdirSync(MEMORY_DIR, { recursive: true });
+        }
+      }
+    
+      private scoreAndAdd(
+        results: MemoryFragment[],
+        text: string,
+        source: string,
+        line: number,
+        allTerms: string[],
+        queryTerms: string[]
+      ): void {
+        const lowerText = text.toLowerCase();
+        let score = 0;
+    
+        for (const term of allTerms) {
+          if (term.endsWith("_ctx")) {
+            // Termo do contexto: peso reduzido
+            const t = term.replace("_ctx", "");
+            if (lowerText.includes(t)) score += 1;
+          } else {
+            // Termo da query: peso normal
+            if (lowerText.includes(term)) score += 2;
+          }
+        }
+    
+        // Bonus para match exato de frases
+        for (const term of queryTerms) {
+          if (term.length >= 5 && lowerText.includes(term)) {
+            score += 1;
+          }
+        }
+    
+        if (score > 0) {
+          const maxPossibleScore = allTerms.length * 2 + queryTerms.length;
+          results.push({
+            source,
+            content: text.slice(0, 500),
+            score: score / Math.max(maxPossibleScore, 1),
+            line,
+          });
+        }
+      }
+    
+      private estimateTokens(text: string): number {
+        return Math.ceil(text.length / 4);
+      }
+    
+      private summarizeMessages(messages: TranscriptMessage[]): string {
+        const userMessages = messages.filter((m) => m.role === "user");
+        const assistantMessages = messages.filter((m) => m.role === "assistant");
+    
+        const userSummary =
+          userMessages.length > 0
+            ? `Usuario perguntou sobre: ${userMessages
+                .map((m) => m.content.slice(0, 80))
+                .join("; ")}`
+            : "";
+    
+        const assistantSummary =
+          assistantMessages.length > 0
+            ? `Assistente respondeu sobre: ${assistantMessages
+                .map((m) => m.content.slice(0, 80))
+                .join("; ")}`
+            : "";
+    
+        return [userSummary, assistantSummary]
+          .filter(Boolean)
+          .join(". ")
+          .slice(0, 300);
+      }
+    
+      private appendFactsToMemory(facts: ConsolidatedFact[]): void {
+        const typeLabels: Record<string, string> = {
+          fact: "Fatos",
+          decision: "Decisoes",
+          preference: "Preferencias",
+          learning: "Aprendizados",
+        };
+    
+        const grouped: Record<string, ConsolidatedFact[]> = {};
+        for (const fact of facts) {
+          if (!grouped[fact.type]) grouped[fact.type] = [];
+          grouped[fact.type].push(fact);
+        }
+    
+        const timestamp = new Date().toISOString().split("T")[0];
+        let newContent = "";
+    
+        for (const [type, items] of Object.entries(grouped)) {
+          const label = typeLabels[type] || type;
+          newContent += `\n## ${label}\n`;
+          for (const item of items) {
+            newContent += `- [${timestamp}] ${item.content}\n`;
+          }
+        }
+    
+        // Adicionar ao MEMORY.md
+        try {
+          fs.appendFileSync(MEMORY_FILE, newContent, "utf-8");
+        } catch {
+          // Falha ao escrever nao deve quebrar o sistema
+        }
+      }
+    }
+    
+    // Singleton
+    let instance: MemoryEngine | null = null;
+    
+    export function getMemoryEngine(): MemoryEngine {
+      if (!instance) {
+        instance = new MemoryEngine();
+      }
+      return instance;
+    }
+    
+    export default MemoryEngine;
+    
+
+
+================================================================================
+FILE: cloud/src/server.ts (9953 chars)
+================================================================================
+
+/**
+ * colabor-ai Cloud Server v2
+ *
+ * Express + WebSocket server with tool call protocol.
+ * Orchestrator dispatches local tools to connected clients via WebSocket.
+ */
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import cors from "cors";
+import http from "http";
+import { WebSocketServer, WebSocket } from "ws";
+import jwt from "jsonwebtoken";
+import { v4 as uuidv4 } from "uuid";
+
+import authRoutes from "./routes/auth";
+import chatRoutes, { authenticate } from "./routes/chat";
+import { AgentOrchestrator } from "./orchestrator/orchestrator";
+import { logger, createLogger } from "./utils/logger";
+import type { AuthPayload } from "./types";
+import type {
+  ToolCallMessage,
+  ToolResultMessage,
+  PendingToolCall,
+  WSServerMessage,
+  WSClientMessage,
+} from "./protocol/tool-protocol";
+
+// ============================================================
+// Config
+// ============================================================
+const PORT = parseInt(process.env.PORT || "3001", 10);
+const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
+const TOOL_TIMEOUT_MS = parseInt(process.env.TOOL_TIMEOUT_MS || "60000", 10);
+
+// ============================================================
+// Express App
+// ============================================================
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Request logging middleware
+    const requestLog = createLogger("HTTP");
+    app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+      const start = Date.now();
+      requestLog.info(`${req.method} ${req.path}`, {
+        query: Object.keys(req.query).length > 0 ? req.query : undefined
+      });
+      
+      // Log response on finish
+      res.on("finish", () => {
+        const duration = Date.now() - start;
+        const level = res.statusCode >= 400 ? "warn" : "debug";
+        requestLog[level](`${req.method} ${req.path} -> ${res.statusCode}`, { duration: `${duration}ms` });
+      });
+      
+      next();
+    });
+    
+app.get("/health", (_req: express.Request, res: express.Response) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString(), version: "2.0.0" });
+});
+
+app.use("/auth", authRoutes);
+app.use("/chat", chatRoutes);
+
+// ============================================================
+// HTTP + WebSocket Server
+// ============================================================
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server, path: "/ws" });
+
+// Active WebSocket connections: sessionId -> Set<WebSocket>
+const wsConnections: Map<string, Set<WebSocket>> = new Map();
+
+// Pending tool calls awaiting client response: id -> PendingToolCall
+const pendingToolCalls: Map<string, PendingToolCall> = new Map();
+
+// Session -> current orchestrator instance
+const sessionOrchestrators: Map<string, AgentOrchestrator> = new Map();
+
+/**
+ * Send a message to all WebSocket connections for a session.
+ */
+function sendToSession(sessionId: string, message: WSServerMessage): void {
+  const conns = wsConnections.get(sessionId);
+  if (!conns || conns.size === 0) return;
+  const data = JSON.stringify(message);
+  for (const ws of conns) {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(data);
+    }
+  }
+}
+
+/**
+ * Dispatch a tool call to the client and wait for the result.
+ * Creates a Promise that resolves when tool_result comes back.
+ */
+function dispatchToolCall(
+  ws: WebSocket,
+  sessionId: string,
+  toolCall: ToolCallMessage,
+): Promise<ToolResultMessage> {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      pendingToolCalls.delete(toolCall.id);
+      reject(new Error(`Tool call timeout: ${toolCall.tool} (${TOOL_TIMEOUT_MS}ms)`));
+    }, TOOL_TIMEOUT_MS);
+
+    const pending: PendingToolCall = {
+      id: toolCall.id,
+      resolve,
+      reject,
+      timeout,
+      message: toolCall,
+    };
+
+    pendingToolCalls.set(toolCall.id, pending);
+
+    // Send tool_call to client
+    const msg: WSServerMessage = { type: "tool_call", payload: toolCall };
+    ws.send(JSON.stringify(msg));
+
+    logger.info(
+      `[Tool] Dispatched: ${toolCall.agent}/${toolCall.tool} id=${toolCall.id} timeout=${TOOL_TIMEOUT_MS}ms`,
+    );
+  });
+}
+
+/**
+ * Handle a tool_result from the client.
+ */
+function handleToolResult(msg: WSClientMessage, ws: WebSocket): void {
+  const result = (msg as { type: "tool_result"; payload: ToolResultMessage }).payload;
+  if (!result || !result.id) {
+    logger.warn("[Tool] Received tool_result without id");
+    return;
+  }
+
+  const pending = pendingToolCalls.get(result.id);
+  if (!pending) {
+    wsLog.warn(`No pending call for id=${result.id} (maybe already timed out)`);
+    return;
+  }
+
+  clearTimeout(pending.timeout);
+  pendingToolCalls.delete(result.id);
+  pending.resolve(result);
+
+  logger.info(
+    `[Tool] Result: id=${result.id} status=${result.status} resultLen=${(result.result || "").length}`,
+  );
+}
+
+
+const wsLog = createLogger("WS");
+wss.on("connection", (ws: WebSocket, req: http.IncomingMessage) => {
+  const url = new URL(req.url || "/", `http://${req.headers.host}`);
+  const token = url.searchParams.get("token");
+  const sessionId = url.searchParams.get("sessionId") || `ws_${uuidv4()}`;
+
+  // Authenticate
+  let user: AuthPayload | null = null;
+  if (token) {
+    try {
+      user = jwt.verify(token, JWT_SECRET) as AuthPayload;
+    } catch {
+      ws.send(JSON.stringify({ type: "error", payload: { message: "Invalid token" } }));
+      ws.close(4001, "Unauthorized");
+      return;
+    }
+  }
+
+  wsLog.info(`Connected: session=${sessionId}`, { user: user?.userId || "anonymous" });
+
+  // Track connection
+  if (!wsConnections.has(sessionId)) {
+    wsConnections.set(sessionId, new Set());
+  }
+  wsConnections.get(sessionId)!.add(ws);
+
+  // Create orchestrator for this session (with local tool callback)
+  const orchestrator = new AgentOrchestrator(sessionId);
+  sessionOrchestrators.set(sessionId, orchestrator);
+
+  // Set up local tool dispatch callback
+  orchestrator.setLocalToolCallback(async (toolCall: ToolCallMessage) => {
+    return dispatchToolCall(ws, sessionId, toolCall);
+  });
+
+  // Handle messages from client
+  ws.on("message", async (data: Buffer) => {
+    try {
+      const msg: WSClientMessage = JSON.parse(data.toString());
+
+      switch (msg.type) {
+        case "ping":
+          ws.send(JSON.stringify({ type: "pong", payload: { timestamp: Date.now() } }));
+          break;
+
+        case "tool_result": {
+          handleToolResult(msg, ws);
+          break;
+        }
+
+        case "chat": {
+          const { message } = msg.payload as { message: string };
+          if (!message) {
+            ws.send(JSON.stringify({ type: "error", payload: { message: "message required" } }));
+            return;
+          }
+
+          ws.send(
+            JSON.stringify({
+              type: "progress",
+              payload: { content: "Processando...", sessionId },
+            }),
+          );
+
+          try {
+            const generator = await orchestrator.run(message);
+
+            for await (const response of generator) {
+              const streamMsg: WSServerMessage = {
+                type: "stream",
+                payload: {
+                  chunkType: response.type,
+                  content: response.content,
+                  agent: response.agent,
+                  sessionId: response.sessionId,
+                },
+              };
+              ws.send(JSON.stringify(streamMsg));
+            }
+          } catch (err: any) {
+            ws.send(
+              JSON.stringify({
+                type: "error",
+                payload: { message: err.message, sessionId },
+              }),
+            );
+          }
+          break;
+        }
+
+        default:
+          ws.send(
+            JSON.stringify({
+              type: "error",
+              payload: { message: `Unknown type: ${(msg as any).type}` },
+            }),
+          );
+      }
+    } catch (err: any) {
+      wsLog.error(`Parse error: ${err.message}`);
+      ws.send(JSON.stringify({ type: "error", payload: { message: err.message } }));
+    }
+  });
+
+  // Handle disconnect
+  ws.on("close", () => {
+    wsLog.info(`Disconnected: session=${sessionId}`);
+
+    // Reject all pending tool calls for this session
+    for (const [id, pending] of pendingToolCalls) {
+      if (pending.message.sessionId === sessionId) {
+        clearTimeout(pending.timeout);
+        pending.reject(new Error("Client disconnected"));
+        pendingToolCalls.delete(id);
+      }
+    }
+
+    const conns = wsConnections.get(sessionId);
+    if (conns) {
+      conns.delete(ws);
+      if (conns.size === 0) {
+        wsConnections.delete(sessionId);
+        sessionOrchestrators.delete(sessionId);
+      }
+    }
+  });
+
+  // Welcome
+  ws.send(
+    JSON.stringify({
+      type: "connected",
+      payload: { sessionId, message: "Connected to colabor-ai cloud v2", userId: user?.userId },
+    }),
+  );
+});
+
+// ============================================================
+// Start
+// ============================================================
+server.listen(PORT, () => {
+  logger.info("========================================");
+  logger.info("  colabor-ai Cloud Server v2");
+  logger.info(`  HTTP:  http://localhost:${PORT}`);
+  logger.info(`  WS:    ws://localhost:${PORT}/ws`);
+  logger.info(`  Tool timeout: ${TOOL_TIMEOUT_MS}ms`);
+  logger.info("========================================");
+});
+
+process.on("SIGTERM", () => {
+  logger.info("SIGTERM received. Closing...");
+  // Reject all pending
+  for (const [, pending] of pendingToolCalls) {
+    clearTimeout(pending.timeout);
+    pending.reject(new Error("Server shutting down"));
+  }
+  pendingToolCalls.clear();
+  wss.close();
+  server.close();
+});
+
+process.on("SIGINT", () => {
+  logger.info("SIGINT received. Closing...");
+  wss.close();
+  server.close();
+  process.exit(0);
+});
+
+export { app, server, wss, wsConnections, pendingToolCalls };
+
+
+
+================================================================================
+FILE: client/src/App.tsx (2158 chars)
+================================================================================
+
+import React, { useState, useCallback } from "react";
+    import Chat from "./components/Chat";
+    
+    // Electron API type (exposed via preload)
+    declare global {
+      interface Window {
+        electronAPI?: {
+          window: { minimize: () => Promise<void>; maximize: () => Promise<void>; close: () => Promise<void> };
+          agents: { runTool: (tool: string, args: Record<string, unknown>) => Promise<{ result: string; error?: string }>; getAvailableTools: () => Promise<string[]> };
+          platform: string;
+        };
+      }
+    }
+    
+    const isElectron = !!window.electronAPI;
+    
+    export default function App() {
+      const [connected, setConnected] = useState(false);
+      const [sessionId, setSessionId] = useState<string | null>(null);
+    
+      const handleConnectionChange = useCallback((status: boolean, sid?: string) => {
+        setConnected(status);
+        if (sid) setSessionId(sid);
+      }, []);
+    
+      return (
+        <div className="app-container">
+          <header className="app-header">
+            <h1>colabor-ai</h1>
+            <div className="header-actions">
+              {isElectron && (
+                <>
+                  <button className="header-btn" onClick={() => window.electronAPI!.window.minimize()}>_</button>
+                  <button className="header-btn" onClick={() => window.electronAPI!.window.maximize()}>[]</button>
+                  <button className="header-btn" onClick={() => window.electronAPI!.window.close()}>X</button>
+                </>
+              )}
+            </div>
+          </header>
+    
+          <Chat onConnectionChange={handleConnectionChange} />
+    
+          <div className="status-bar">
+            <div className="status-indicator">
+              <span className={`status-dot ${connected ? "connected" : "disconnected"}`} />
+              <span>{connected ? "Conectado" : "Desconectado"}</span>
+            </div>
+            <span>{sessionId ? `Session: ${sessionId.slice(0, 12)}...` : ""}</span>
+            <span>{isElectron ? `Windows (${window.electronAPI?.platform})` : "Browser"}</span>
+          </div>
+        </div>
+      );
+    }
+    
+
+
+================================================================================
+FILE: package.json (861 chars)
+================================================================================
+
+{
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
+    "@types/axios": "^0.9.36",
+    "@types/jest": "^30.0.0",
+    "@types/node-telegram-bot-api": "^0.64.14",
+    "babel-jest": "^30.2.0",
+    "dotenv-cli": "^11.0.0",
+    "git-commit-msg-linter": "^5.0.8",
+    "jest": "^30.2.0",
+    "puppeteer": "^25.1.0",
+    "typescript": "^6.0.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
+    "dev": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "axios": "^1.16.1",
+    "dotenv": "^17.3.1",
+    "node-cron": "^4.2.1",
+    "node-telegram-bot-api": "^0.63.0",
+    "openai": "^6.27.0",
+    "tiktoken": "^1.0.22",
+    "tsx": "^4.21.0"
+  }
+}
+
+
+
+================================================================================
+FILE: .env.example (696 chars)
+================================================================================
+
+# ============================================
+    # colabor-ai-core - Environment Variables
+    # ============================================
+    
+    # --- LLM API Keys ---
+    OPENAI_API_KEY=sk-your-openai-api-key
+    DEEPSEEK_API_KEY=sk-your-deepseek-api-key
+    
+    # --- Model Selection ---
+    MODEL=deepseek-v4-flash
+    
+    # --- Telegram ---
+    TELEGRAM_TOKEN=your-telegram-bot-token
+    
+    # --- Python Execution ---
+    PYTHON_TIMEOUT=30000
+    
+    # --- Rate Limiting ---
+    MAX_MESSAGES_PER_SESSION=100
+    
+    # --- MongoDB (optional) ---
+    MONGODB_URI=mongodb://localhost:27017/colabor-ai
+    
+    # --- Puppeteer / Browser Automation ---
+    PUPPETEER_HEADLESS=true
+    
+

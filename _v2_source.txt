@@ -1,0 +1,756 @@
+#!/usr/bin/env python3
+"""
+gerar_video_enem_v2.py - ClareiaAI Video Generator V2
+
+Novidades da V2:
+  - Duracao automatica: DeepSeek estima o tempo ideal (1-10 min) para cada topico
+  - Bordões ClareiaAI: abertura, encerramento e transicoes com identidade
+  - Textos nas imagens estilo slide (proxima etapa)
+
+Pipeline:
+  1. DeepSeek -> Estima duracao ideal para o topico
+  2. DeepSeek -> Gera roteiro didatico dividido em secoes
+  3. Gemini 3.1 Flash Image -> Gera ilustracoes didaticas
+  4. Edge-TTS (pt-BR-FranciscaNeural) -> Narracao em portugues
+  5. MoviePy -> Montagem do video final com transicoes
+
+Uso:
+  python gerar_video_enem_v2.py "Equacao de segundo grau"
+  python gerar_video_enem_v2.py "Genetica mendeliana" --output genetica
+"""
+
+import os
+import sys
+import json
+import time
+import asyncio
+import argparse
+import traceback
+import textwrap as _textwrap
+from pathlib import Path
+from datetime import datetime
+from typing import Optional
+
+# Pillow para renderizacao de texto nos slides
+from PIL import Image, ImageDraw, ImageFont
+import textwrap
+
+# ------------------------------------------------------------
+# Configuracao de caminhos
+# ------------------------------------------------------------
+PROJECT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = PROJECT_DIR / "videos"
+OUTPUT_DIR.mkdir(exist_ok=True)
+
+# ------------------------------------------------------------
+# Constantes
+# ------------------------------------------------------------
+PALAVRAS_POR_MINUTO = 150
+SEGUNDOS_POR_PALAVRA = 60 / PALAVRAS_POR_MINUTO
+DEEPSEEK_MODEL = "deepseek-v4-flash"
+GEMINI_IMAGE_MODEL = "models/gemini-3.1-flash-image"
+EDGE_TTS_VOICE = "pt-BR-FranciscaNeural"
+FPS = 24
+VIDEO_SIZE = (1920, 1080)
+FADE_DURATION = 0.5
+
+# ------------------------------------------------------------
+# ------------------------------------------------------------
+# Bordões ClareiaAI
+# ------------------------------------------------------------
+# Bordões "Clareia" — identidade do canal
+
+# Abertura (primeira seção)
+CLAREIA_ABERTURA = "Olá! {topico}? Vamos clarear esse assunto?"
+CLAREIA_ABERTURAS = [
+    "Vamos clarear esse assunto?",
+    "Bora clarear?",
+    "Clareia aí!",
+    "Vamos iluminar esse conteúdo?",
+    "Prontos pra clarear?",
+    "Chegou a hora de clarear!",
+]
+
+# Fechamento (última seção)
+CLAREIA_ENCERRAMENTO = "E aí, clareou? Agora é praticar e arrasar no ENEM! Até a próxima!"
+CLAREIA_ENCERRAMENTOS = [
+    "Clareou?",
+    "Ficou claro?",
+    "Esclareceu?",
+    "Deu pra clarear?",
+    "Agora clareou, né?",
+]
+
+# Transição (entre seções)
+CLAREIA_TRANSICAO = "Clareando mais um pouco..."
+CLAREIA_TRANSICOES = [
+    "Clareando mais um pouco...",
+    "Vamos clarear mais?",
+    "Seguindo com a clareza...",
+    "Clareia que lá vem mais!",
+    "Continuando a clarear...",
+    "Mais um ponto pra clarear:",
+]
+
+
+# ------------------------------------------------------------
+# Utilitarios
+# ------------------------------------------------------------
+def log(msg: str, level: str = "INFO"):
+    ts = datetime.now().strftime("%H:%M:%S")
+    emoji = {"INFO": "..", "OK": "OK", "ERR": "ERRO", "GEN": ">>", "AUD": ">>", "VID": ">>", "EST": "??"}.get(level, "..")
+    print(f"[{ts}] {emoji} {msg}")
+
+
+def estimar_duracao_texto(texto: str) -> float:
+    palavras = len(texto.split())
+    return max(3.0, palavras * SEGUNDOS_POR_PALAVRA)
+
+
+def clean_json(raw: str) -> str:
+    """Remove markdown code fences e extrai apenas o objeto JSON da resposta."""
+    raw = raw.strip()
+    if raw.startswith("```"):
+        lines = raw.split("\n")
+        if lines[0].startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        raw = "\n".join(lines).strip()
+    return raw
+
+
+# ------------------------------------------------------------
+# 0. ESTIMATIVA DE DURACAO (DeepSeek) — NOVO V2
+# ------------------------------------------------------------
+def estimar_duracao_topico(topico: str) -> int:
+    """
+    Usa DeepSeek para estimar a duracao ideal (1-10 minutos) para explicar
+    um topico do ENEM. Retorna um inteiro entre 1 e 10.
+    """
+    log(f"Estimando duracao ideal para: '{topico}'...", "EST")
+
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    if not api_key:
+        log("DEEPSEEK_API_KEY ausente, usando duracao padrao = 5 min", "ERR")
+        return 5
+
+    try:
+        from openai import OpenAI
+        client = OpenAI(
+            api_key=api_key,
+            base_url="https://api.deepseek.com/v1",
+        )
+
+        system_prompt = (
+            "Voce e um especialista em educacao e conteudo do ENEM. "
+            "Analise o topico fornecido e estime quantos minutos (1 a 10) "
+            "sao necessarios para explica-lo bem em um video didatico. "
+            "Considere a complexidade, quantidade de subtopicos e profundidade necessaria. "
+            "Responda APENAS com um JSON: {\"duracao\": <int>}"
+        )
+
+        response = client.chat.completions.create(
+            model=DEEPSEEK_MODEL,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": f"Topico: {topico}"},
+            ],
+            temperature=0.3,
+            max_tokens=128,
+            response_format={"type": "json_object"},
+        )
+
+        raw = response.choices[0].message.content
+        raw = clean_json(raw)
+        data = json.loads(raw)
+        duracao = int(data.get("duracao", 5))
+        duracao = max(1, min(10, duracao))
+
+        log(f"Duracao estimada: {duracao} min (DeepSeek)", "OK")
+        return duracao
+
+    except Exception as e:
+        log(f"Erro ao estimar duracao: {e}. Usando padrao = 5 min", "ERR")
+        return 5
+
+
+def gerar_roteiro(topico: str, duracao_minutos: int) -> dict:
+    log(f"Gerando roteiro para: '{topico}' (alvo: {duracao_minutos} min)...", "GEN")
+
+    palavras_alvo = duracao_minutos * PALAVRAS_POR_MINUTO
+    num_secoes = max(4, min(8, duracao_minutos * 2))
+
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    if not api_key:
+        raise RuntimeError("DEEPSEEK_API_KEY nao encontrada nas variaveis de ambiente.")
+
+    from openai import OpenAI
+    client = OpenAI(
+        api_key=api_key,
+        base_url="https://api.deepseek.com/v1",
+    )
+
+    # Prompt V2: inclui bordões ClareiaAI e formato de slide
+    system_prompt = _textwrap.dedent(f"""            Voce e um roteirista educacional especializado em conteudo para o ENEM.
+        Crie um roteiro para um video explicativo de aproximadamente {duracao_minutos} minutos
+        ({palavras_alvo} palavras no total) sobre o topico: "{topico}".
+
+        IMPORTANTE — IDENTIDADE CLAREIAAI:
+        O video pertence ao canal ClareiaAI. Use obrigatoriamente os bordoes
+        "clareia" em pontos especificos do roteiro:
+
+        ABERTURA DA PRIMEIRA SECAO:
+        Use uma destas variacoes (escolha a que melhor se encaixar):
+        "Vamos clarear esse assunto?", "Bora clarear?", "Clareia ai!",
+        "Vamos iluminar esse conteudo?", "Prontos pra clarear?",
+        "Chegou a hora de clarear!"
+
+        ENCERRAMENTO DA ULTIMA SECAO:
+        Use uma destas variacoes:
+        "Clareou?", "Ficou claro?", "Esclareceu?",
+        "Deu pra clarear?", "Agora clareou, ne?"
+
+        ENTRE AS DEMAIS SECOES (transicoes):
+        Ao iniciar cada nova secao, use uma destas variacoes:
+        "Clareando mais um pouco...", "Vamos clarear mais?",
+        "Seguindo com a clareza...", "Clareia que la vem mais!",
+        "Continuando a clarear...", "Mais um ponto pra clarear:"
+
+        REGRA DOS 2 BORDOES: Cada secao do roteiro deve conter pelo menos
+        2 bordoes "clareia" — um na abertura da secao (ou transicao) e
+        um antes de encerrar a explicacao do conceito da secao.
+        Exemplo: ao terminar de explicar um conceito, diga "Clareou ate aqui?"
+        antes de avancar para o proximo.
+
+        O video tera ilustracoes mudando a cada secao. Cada secao precisa de:
+        - Um titulo curto e atraente (max 60 chars)
+        - Texto de narracao fluido, coloquial e didatico (como se estivesse conversando com o estudante)
+        - Uma descricao detalhada para gerar uma ilustracao didatica/ludica (em portugues)
+        - Um texto CURTO (max 80 chars) para sobrepor na imagem como slide
+
+        Regras:
+        - Tom leve, amigavel, como um professor querido
+        - Divida em {num_secoes} secoes
+        - Inclua exemplos praticos
+        - Use analogias do cotidiano quando possivel
+        - A descricao da imagem deve ser rica em detalhes visuais: cores, composicao, elementos
+        - As imagens devem ter estilo didatico, ludico, com cores suaves, como ilustracao de livro escolar
+        - O campo "texto_slide" deve conter uma frase curta de destaque (max 80 chars)
+        - OS BORDOES SAO OBRIGATORIOS em toda secao. Nao os esqueca!
+
+        Responda APENAS com JSON valido, sem markdown ou comentarios.""")
+
+        Crie um roteiro para um video explicativo de aproximadamente {duracao_minutos} minutos
+        ({palavras_alvo} palavras no total) sobre o topico: "{topico}".
+
+        IMPORTANTE — O video pertence ao canal ClareiaAI e tem o seguinte estilo:
+        - Abertura com o bordao: "{CLAREIA_ABERTURA.format(topico=topico)}"
+        - Encerramento com o bordao: "{CLAREIA_ENCERRAMENTO}"
+        - A cada transicao de secao, use variacoes de: "{CLAREIA_TRANSICAO}"
+
+        O video tera ilustracoes mudando a cada secao. Cada secao precisa de:
+        - Um titulo curto e atraente (max 60 chars)
+        - Texto de narracao fluido, coloquial e didatico (como se estivesse conversando com o estudante)
+        - Uma descricao detalhada para gerar uma ilustracao didatica/ludica (em portugues)
+        - Um texto CURTO (max 80 chars) para sobrepor na imagem como slide
+
+        Regras:
+        - Tom leve, amigavel, como um professor querido
+        - Divida em {num_secoes} secoes
+        - Inclua exemplos praticos
+        - Use analogias do cotidiano quando possivel
+        - A descricao da imagem deve ser rica em detalhes visuais: cores, composicao, elementos
+        - As imagens devem ter estilo didatico, ludico, com cores suaves, como ilustracao de livro escolar
+        - O campo "texto_slide" deve conter uma frase curta de destaque (max 80 chars)
+
+        Responda APENAS com JSON valido, sem markdown ou comentarios.""")
+
+    user_prompt = f'Topico: "{topico}"\n\nGere o roteiro com {num_secoes} secoes.'
+
+    current_max_tokens = 16384
+    MAX_TOKENS_CEILING = 32768
+
+    for tentativa in range(3):
+        try:
+            response = client.chat.completions.create(
+                model=DEEPSEEK_MODEL,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=0.7,
+                max_tokens=current_max_tokens,
+                response_format={"type": "json_object"},
+            )
+
+            finish_reason = response.choices[0].finish_reason
+            raw = response.choices[0].message.content
+            log(f"Resposta bruta ({len(raw)} chars, finish_reason={finish_reason})", "GEN")
+
+            if finish_reason == "length":
+                novo = min(current_max_tokens * 2, MAX_TOKENS_CEILING)
+                if novo > current_max_tokens:
+                    log(f"Resposta truncada! Aumentando max_tokens: {current_max_tokens} -> {novo}", "ERR")
+                    current_max_tokens = novo
+                    continue
+                else:
+                    log("Resposta truncada mas ja no teto de tokens, tentando mesmo assim...", "ERR")
+
+            raw = clean_json(raw)
+            roteiro = json.loads(raw)
+
+            if "secoes" not in roteiro:
+                if isinstance(roteiro, list):
+                    roteiro = {"titulo": topico, "secoes": roteiro}
+                else:
+                    raise ValueError("JSON nao contem 'secoes'")
+
+            secoes = roteiro["secoes"]
+            titulo = roteiro.get("titulo", topico)
+            palavras_total = sum(len(s["narracao"].split()) for s in secoes)
+            log(f"Roteiro gerado: {len(secoes)} secoes, ~{palavras_total} palavras, titulo: '{titulo}'", "OK")
+            return roteiro
+
+        except (json.JSONDecodeError, KeyError, ValueError) as e:
+            log(f"Tentativa {tentativa+1}/3 falhou: {e}", "ERR")
+            if tentativa == 2:
+                raise RuntimeError(f"Falha ao gerar roteiro apos 3 tentativas: {e}")
+            time.sleep(2)
+
+    raise RuntimeError("Falha inesperada ao gerar roteiro.")
+
+
+# ------------------------------------------------------------
+# 2. GERACAO DE IMAGENS (Gemini 3.1 Flash Image)
+# ------------------------------------------------------------
+def gerar_imagem(descricao: str, output_path: Path) -> Path:
+    log(f"Gerando imagem: {descricao[:80]}...", "GEN")
+
+    import google.generativeai as genai
+    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+    prompt_imagem = (
+        "Ilustracao educacional didatica e ludica, estilo de livro escolar, "
+        "cores suaves, tracos amigaveis, ambiente acolhedor. "
+        f"Cena: {descricao}. "
+        "Sem texto na imagem. Estilo flat illustration, clean, minimalista."
+    )
+
+    model = genai.GenerativeModel(GEMINI_IMAGE_MODEL)
+
+    for tentativa in range(3):
+        try:
+            response = model.generate_content(
+                prompt_imagem,
+                generation_config=genai.GenerationConfig(
+                    temperature=0.6,
+                    max_output_tokens=4096,
+                ),
+                request_options={"timeout": 90},
+            )
+
+            for candidate in response.candidates:
+                for part in candidate.content.parts:
+                    if hasattr(part, "inline_data") and part.inline_data:
+                        mime = part.inline_data.mime_type
+                        ext = mime.split("/")[-1] if "/" in mime else "png"
+                        img_path = Path(str(output_path).rsplit(".", 1)[0] + f".{ext}")
+                        img_path.write_bytes(part.inline_data.data)
+                        log(f"Imagem salva: {img_path.name} ({len(part.inline_data.data)//1024}KB)", "OK")
+                        return img_path
+
+            log(f"Tentativa {tentativa+1}: resposta sem imagem, tentando novamente...", "ERR")
+
+        except Exception as e:
+            log(f"Tentativa {tentativa+1}/3 falhou: {type(e).__name__}: {e}", "ERR")
+            if tentativa == 2:
+                raise RuntimeError(f"Falha ao gerar imagem apos 3 tentativas: {e}")
+            time.sleep(3)
+
+    raise RuntimeError("Falha ao gerar imagem: nenhuma resposta com inline_data.")
+
+
+# ------------------------------------------------------------
+# 3. SINTESE DE AUDIO (Edge-TTS)
+# ------------------------------------------------------------
+async def gerar_audio(texto: str, output_path: Path) -> float:
+    log(f"Gerando audio para texto de {len(texto.split())} palavras...", "AUD")
+
+    import edge_tts
+
+    communicate = edge_tts.Communicate(
+        text=texto,
+        voice=EDGE_TTS_VOICE,
+        rate="+5%",
+        pitch="-2Hz",
+    )
+
+    await communicate.save(str(output_path))
+
+    duracao = estimar_duracao_texto(texto)
+    log(f"Audio salvo: {output_path.name} (~{duracao:.0f}s)", "OK")
+    return duracao
+
+
+# ------------------------------------------------------------
+# ------------------------------------------------------------
+# 3.5. OVERLAY DE TEXTO ESTILO SLIDE (Pillow)
+# ------------------------------------------------------------
+def criar_overlay_slide(
+    texto: str,
+    titulo: str = "",
+    video_size: tuple = VIDEO_SIZE,
+    altura_pct: float = 0.32,
+) -> Path:
+    """
+    Cria uma imagem PNG com texto estilo slide (semi-transparente)
+    para sobrepor no video.
+
+    Suporta:
+    - Titulo em destaque (fonte maior)
+    - Bullet points (linhas comecando com -, *, ou #)
+    - Destaques entre **negrito**
+    - Fundo escuro semi-transparente com gradiente
+    - Linha accent azul no topo
+    """
+    import numpy as np
+
+    width, height = video_size
+    overlay_height = int(height * altura_pct)
+    margin_x = 60
+    margin_y = 25
+    line_spacing = 10
+
+    # Criar imagem com canal alpha (transparencia)
+    img = Image.new("RGBA", (width, overlay_height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    # Fundo semi-transparente com gradiente
+    for y in range(overlay_height):
+        alpha = int(180 * (1 - y / overlay_height * 0.4))
+        draw.rectangle([(0, y), (width, y + 1)], fill=(15, 15, 25, alpha))
+
+    # Linha decorativa no topo (accent color azul claro)
+    draw.rectangle(
+        [(margin_x, 0), (width - margin_x, 4)],
+        fill=(99, 179, 237, 220)
+    )
+
+    # Fontes
+    font_title = None
+    font_body = None
+    font_bold = None
+    try:
+        font_title = ImageFont.truetype("segoeui.ttf", 44)
+        font_body = ImageFont.truetype("segoeui.ttf", 34)
+        font_bold = ImageFont.truetype("segoeuib.ttf", 34)
+    except Exception:
+        try:
+            font_title = ImageFont.truetype("arial.ttf", 44)
+            font_body = ImageFont.truetype("arial.ttf", 34)
+            font_bold = ImageFont.truetype("arialbd.ttf", 34)
+        except Exception:
+            font_title = ImageFont.load_default()
+            font_body = font_title
+            font_bold = font_title
+
+    y_offset = margin_y + 8
+
+    # Renderizar titulo
+    if titulo:
+        titulo_upper = titulo.upper()
+        draw.text(
+            (margin_x, y_offset), titulo_upper,
+            font=font_title, fill=(255, 255, 255, 240)
+        )
+        bbox = draw.textbbox((0, 0), titulo_upper, font=font_title)
+        y_offset += (bbox[3] - bbox[1]) + line_spacing + 6
+
+    # Separador apos titulo
+    if titulo:
+        sep_y = y_offset - 2
+        draw.rectangle(
+            [(margin_x, sep_y), (margin_x + 80, sep_y + 2)],
+            fill=(99, 179, 237, 180)
+        )
+        y_offset += 6
+
+    # Processar linhas do texto
+    linhas_raw = texto.strip().split("\\n")
+
+    for linha in linhas_raw:
+        linha = linha.strip()
+        if not linha:
+            continue
+
+        is_bullet = linha.startswith(("- ", "* ", "# ", "• "))
+        if is_bullet:
+            linha = linha[2:].strip()
+
+        # Suporte a **negrito** no texto
+        partes = []
+        resto = linha
+        bold_mode = False
+        while resto:
+            if "**" in resto:
+                idx = resto.index("**")
+                partes.append((resto[:idx], bold_mode))
+                bold_mode = not bold_mode
+                resto = resto[idx + 2:]
+            else:
+                partes.append((resto, bold_mode))
+                resto = ""
+
+        # Quebrar linha se muito longa
+        max_chars = 65 if is_bullet else 70
+        wrapped_lines = textwrap.wrap(linha, width=max_chars)
+
+        for wi, wl in enumerate(wrapped_lines):
+            x = margin_x + (30 if is_bullet else 0)
+            current_x = x
+
+            for text_part, is_bold in partes:
+                font = font_bold if is_bold else font_body
+                color = (255, 255, 255, 235)
+                draw.text(
+                    (current_x, y_offset), text_part,
+                    font=font, fill=color
+                )
+                bbox = draw.textbbox((0, 0), text_part, font=font)
+                current_x += bbox[2] - bbox[0]
+
+            if is_bullet and wi == 0:
+                draw.text(
+                    (margin_x + 8, y_offset), "•",
+                    font=font_body, fill=(99, 179, 237, 230)
+                )
+
+            bbox = draw.textbbox((0, 0), "Ag", font=font_body)
+            y_offset += (bbox[3] - bbox[1]) + line_spacing
+
+    # Salvar em arquivo temporario
+    output_path = PROJECT_DIR / "temp_overlay.png"
+    img.save(str(output_path), "PNG")
+    return output_path
+
+
+# 4. MONTAGEM DO VIDEO (MoviePy)
+# ------------------------------------------------------------
+def criar_video(roteiro: dict, imagens: list, audios: list, output_path: Path) -> Path:
+    log("Montando video final...", "VID")
+
+    try:
+        from moviepy import (
+            ImageClip, AudioFileClip, concatenate_videoclips,
+            CompositeVideoClip, TextClip
+        )
+    except ImportError:
+        from moviepy.editor import (
+            ImageClip, AudioFileClip, concatenate_videoclips,
+            CompositeVideoClip, TextClip
+        )
+
+    clips = []
+    secoes = roteiro["secoes"]
+
+    for i, secao in enumerate(secoes):
+        img_path = imagens[i]
+        aud_path = audios[i]
+        titulo = secao.get("titulo", f"Parte {i+1}")
+        texto_slide = secao.get("texto_slide", titulo)  # V2: texto de slide
+
+        log(f"  Secao {i+1}/{len(secoes)}: '{titulo}'", "VID")
+
+        audio_clip = AudioFileClip(str(aud_path))
+        duracao = audio_clip.duration
+
+        img_clip = ImageClip(str(img_path)).with_duration(duracao)
+
+        try:
+            img_clip = img_clip.resized(height=VIDEO_SIZE[1])
+            if img_clip.w > VIDEO_SIZE[0]:
+                img_clip = img_clip.resized(width=VIDEO_SIZE[0])
+        except Exception:
+            img_clip = img_clip.resized(new_size=VIDEO_SIZE)
+
+        # V2: Overlay de texto estilo slide (Pillow + MoviePy)
+        try:
+            from moviepy import ImageClip as ImgClip
+        except ImportError:
+            from moviepy.editor import ImageClip as ImgClip
+
+        try:
+            overlay_path = criar_overlay_slide(
+                texto=texto_slide,
+                titulo=titulo,
+                video_size=VIDEO_SIZE,
+                altura_pct=0.32,
+            )
+            overlay_clip = (
+                ImgClip(str(overlay_path))
+                .with_duration(duracao)
+                .with_position(("center", "bottom"))
+            )
+            clip = CompositeVideoClip([img_clip, overlay_clip]).with_audio(audio_clip)
+        except Exception as e:
+            log(f"  Aviso: falha ao criar overlay slide ({e}), usando fallback...", "ERR")
+            # Fallback: TextClip simples
+            try:
+                txt_clip = TextClip(
+                    text=texto_slide,
+                    font_size=48,
+                    color="white",
+                    font="Arial",
+                    stroke_color="black",
+                    stroke_width=2,
+                ).with_position(("center", VIDEO_SIZE[1] - 120)).with_duration(duracao)
+                clip = CompositeVideoClip([img_clip, txt_clip]).with_audio(audio_clip)
+            except Exception:
+                clip = img_clip.with_audio(audio_clip)
+        try:
+            txt_clip = TextClip(
+                text=texto_slide,
+                font_size=52,
+                color="white",
+                font="Arial",
+                stroke_color="black",
+                stroke_width=3,
+            ).with_position(("center", VIDEO_SIZE[1] - 120)).with_duration(duracao)
+
+            clip = CompositeVideoClip([img_clip, txt_clip]).with_audio(audio_clip)
+            clip = img_clip.with_audio(audio_clip)
+
+        clips.append(clip)
+
+    if len(clips) == 1:
+        final = clips[0]
+    else:
+        final = concatenate_videoclips(
+            clips,
+            method="compose",
+            padding=-FADE_DURATION,
+        )
+
+    log(f"Exportando video: {output_path}...", "VID")
+    final.write_videofile(
+        str(output_path),
+        fps=FPS,
+        codec="libx264",
+        audio_codec="aac",
+        preset="medium",
+        threads=4,
+        logger=None,
+    )
+
+    final.close()
+    for c in clips:
+        c.close()
+
+    tamanho_mb = output_path.stat().st_size / (1024 * 1024)
+    log(f"Video finalizado: {output_path.name} ({tamanho_mb:.1f} MB)", "OK")
+    return output_path
+
+
+# ------------------------------------------------------------
+# 5. ORQUESTRACAO PRINCIPAL (V2: duracao automatica)
+# ------------------------------------------------------------
+async def gerar_video_enem(topico: str, output_name: Optional[str] = None):
+    inicio = time.time()
+    barra = "=" * 60
+    log(barra)
+    log("INICIANDO GERACAO DE VIDEO (V2)", "INFO")
+    log(f"Topico: '{topico}'", "INFO")
+    log(barra)
+
+    # V2: Estima duracao automaticamente
+    log("--- ETAPA 0/4: ESTIMANDO DURACAO IDEAL ---", "EST")
+    duracao_minutos = estimar_duracao_topico(topico)
+    log(f"Duracao definida: {duracao_minutos} min", "OK")
+
+    if output_name is None:
+        import re
+        output_name = re.sub(r"[^a-z0-9]+", "_", topico.lower().strip())[:60]
+
+    output_path = OUTPUT_DIR / f"{output_name}.mp4"
+
+    # Pasta temp no projeto (persiste para inspecao)
+    import uuid as _uuid
+    tmp = PROJECT_DIR / "temp" / f"video_enem_v2_{_uuid.uuid4().hex[:8]}"
+    tmp.mkdir(parents=True, exist_ok=True)
+    log(f"Diretorio de trabalho: {tmp}")
+
+    try:
+        log("--- ETAPA 1/5: GERANDO ROTEIRO ---", "GEN")
+        roteiro = gerar_roteiro(topico, duracao_minutos)
+        secoes = roteiro["secoes"]
+
+        log(f"--- ETAPA 2/5: GERANDO {len(secoes)} IMAGENS ---", "GEN")
+        imagens = []
+        for i, secao in enumerate(secoes):
+            img_path = tmp / f"img_{i:02d}.png"
+            desc = secao.get("descricao_imagem", secao.get("titulo", f"ilustracao sobre {topico}"))
+            img = gerar_imagem(desc, img_path)
+            imagens.append(img)
+
+        log(f"--- ETAPA 3/5: GERANDO {len(secoes)} AUDIOS ---", "AUD")
+        audios = []
+        for i, secao in enumerate(secoes):
+            aud_path = tmp / f"aud_{i:02d}.mp3"
+            narracao = secao["narracao"]
+            await gerar_audio(narracao, aud_path)
+            audios.append(aud_path)
+
+        log("--- ETAPA 4/5: MONTANDO VIDEO ---", "VID")
+        criar_video(roteiro, imagens, audios, output_path)
+
+        elapsed = time.time() - inicio
+        log(barra)
+        log("VIDEO GERADO COM SUCESSO!", "OK")
+        log(f"Arquivo: {output_path}")
+        log(f"Tempo total: {elapsed:.1f}s ({elapsed/60:.1f} min)")
+        log(f"Secoes: {len(secoes)}")
+        log(barra)
+        return str(output_path)
+
+    except Exception as e:
+        log(f"FALHA NA GERACAO: {type(e).__name__}: {e}", "ERR")
+        traceback.print_exc()
+        raise
+
+
+# ------------------------------------------------------------
+# CLI (V2: sem --duracao)
+# ------------------------------------------------------------
+def main():
+    parser = argparse.ArgumentParser(
+        description="ClareiaAI Video Generator V2 — Duracao automatica, bordoes ClareiaAI",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="Exemplos:\n"
+               '  python gerar_video_enem_v2.py "Equacao de segundo grau"\n'
+               '  python gerar_video_enem_v2.py "Genetica mendeliana" --output genetica',
+    )
+    parser.add_argument("topico", help="Topico do ENEM a ser explicado")
+    parser.add_argument("--output", type=str, default=None, help="Nome do arquivo de saida sem extensao")
+    args = parser.parse_args()
+
+    erros = []
+    if not os.environ.get("DEEPSEEK_API_KEY"):
+        erros.append("DEEPSEEK_API_KEY")
+    if not os.environ.get("GEMINI_API_KEY"):
+        erros.append("GEMINI_API_KEY")
+    if erros:
+        print(f"ERRO: Variaveis de ambiente ausentes: {', '.join(erros)}")
+        print("   Defina-as antes de executar:")
+        print("   set DEEPSEEK_API_KEY=sk-...")
+        print("   set GEMINI_API_KEY=AIza...")
+        sys.exit(1)
+
+    asyncio.run(gerar_video_enem(
+        topico=args.topico,
+        output_name=args.output,
+    ))
+
+
+if __name__ == "__main__":
+    main()

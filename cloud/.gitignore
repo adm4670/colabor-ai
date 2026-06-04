@@ -1,8 +1,0 @@
-node_modules/
-    dist/
-    .env
-    coverage/
-    docs/
-    *_output.txt
-    *.log
-    

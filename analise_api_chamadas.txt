@@ -275,7 +275,7 @@ ARQUIVO: core\agent\agent.spec.ts
     | backstory:
     |       'CollaboratorBot was designed to help developers automate repetitive tasks and improve team productivity.',
     |     generalInstructions: 'Always follow best practices when automating tasks.',
-    |     model: 'deepseek-v4-pro',
+    |     model: 'deepseek-v4-flash',
     |   })
   --------------------------------------------------------------------------------
 
@@ -284,7 +284,7 @@ ARQUIVO: core\agent\agent.spec.ts
   Contexto:
     | 'CollaboratorBot was designed to help developers automate repetitive tasks and improve team productivity.',
     |     generalInstructions: 'Always follow best practices when automating tasks.',
-    |     model: 'deepseek-v4-pro',
+    |     model: 'deepseek-v4-flash',
     |   })
   --------------------------------------------------------------------------------
 
@@ -647,7 +647,7 @@ ARQUIVO: core\agent\agent.ts
   Contexto:
     | this.backstory = options.backstory;
     |     
-    |         this.model = options.model ?? "deepseek-v4-pro";
+    |         this.model = options.model ?? "deepseek-v4-flash";
     |         this.fallbackModel = options.fallbackModel ?? "";
     |         this.generalInstructions =
   --------------------------------------------------------------------------------
@@ -655,7 +655,7 @@ ARQUIVO: core\agent\agent.ts
   Linha 174 | Categoria: PROMPT_CONTEXT | Pattern: generalInstructions
   Match: "generalInstructions"
   Contexto:
-    | this.model = options.model ?? "deepseek-v4-pro";
+    | this.model = options.model ?? "deepseek-v4-flash";
     |         this.fallbackModel = options.fallbackModel ?? "";
     |         this.generalInstructions =
     |           options.generalInstructions ?? "- Responda em PT-BR.\n";
@@ -1417,7 +1417,7 @@ ARQUIVO: core\agents\answer.agent.ts
   Contexto:
     | `,
     | 
-    |   model: "deepseek-v4-pro",
+    |   model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |   apiKey: process.env.DEEPSEEK_API_KEY || "",
   --------------------------------------------------------------------------------
@@ -1425,7 +1425,7 @@ ARQUIVO: core\agents\answer.agent.ts
   Linha 21 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | model: "deepseek-v4-pro",
+    | model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |   apiKey: process.env.DEEPSEEK_API_KEY || "",
     |   baseURL: "https://api.deepseek.com",
@@ -1564,7 +1564,7 @@ ARQUIVO: core\agents\assistant.agent.ts
   Contexto:
     | role: "General conversation agent",
     |     
-    |       model: "deepseek-v4-pro",
+    |       model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
   --------------------------------------------------------------------------------
@@ -1572,7 +1572,7 @@ ARQUIVO: core\agents\assistant.agent.ts
   Linha 22 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | model: "deepseek-v4-pro",
+    | model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
     |       baseURL: "https://api.deepseek.com",
@@ -2001,7 +2001,7 @@ ARQUIVO: core\agents\planner.agent.ts
   Linha 11 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | model: "deepseek-v4-pro",
+    | model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |         apiKey: process.env.DEEPSEEK_API_KEY || "",
     |         baseURL: "https://api.deepseek.com",
@@ -2158,7 +2158,7 @@ ARQUIVO: core\agents\python.agent.ts
   Contexto:
     | goal: "Solve tasks using Python and return the result clearly",
     |       backstory: "An assistant specialized in writing and executing Python code to solve problems.",
-    |       model: "deepseek-v4-pro",
+    |       model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
   --------------------------------------------------------------------------------
@@ -2166,7 +2166,7 @@ ARQUIVO: core\agents\python.agent.ts
   Linha 23 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | model: "deepseek-v4-pro",
+    | model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
     |       baseURL: "https://api.deepseek.com",
@@ -2365,7 +2365,7 @@ ARQUIVO: core\agents\reflector.agent.ts
   Contexto:
     | "It identifies missing information and suggests whether a different approach is needed.",
     |     
-    |       model: process.env.REFLECTOR_MODEL || "deepseek-v4-pro",
+    |       model: process.env.REFLECTOR_MODEL || "deepseek-v4-flash",
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
     |       baseURL: "https://api.deepseek.com",
   --------------------------------------------------------------------------------
@@ -2373,7 +2373,7 @@ ARQUIVO: core\agents\reflector.agent.ts
   Linha 24 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | model: process.env.REFLECTOR_MODEL || "deepseek-v4-pro",
+    | model: process.env.REFLECTOR_MODEL || "deepseek-v4-flash",
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
     |       baseURL: "https://api.deepseek.com",
   --------------------------------------------------------------------------------
@@ -2381,7 +2381,7 @@ ARQUIVO: core\agents\reflector.agent.ts
   Linha 25 | Categoria: API_CALL | Pattern: deepseek
   Match: "deepseek"
   Contexto:
-    | model: process.env.REFLECTOR_MODEL || "deepseek-v4-pro",
+    | model: process.env.REFLECTOR_MODEL || "deepseek-v4-flash",
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
     |       baseURL: "https://api.deepseek.com",
     |     
@@ -2484,7 +2484,7 @@ ARQUIVO: core\agents\shell.agent.ts
   Contexto:
     | backstory:
     |         "An assistant specialized in executing CLI commands such as npm, git, and file system operations safely and efficiently.",
-    |       model: "deepseek-v4-pro",
+    |       model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
   --------------------------------------------------------------------------------
@@ -2492,7 +2492,7 @@ ARQUIVO: core\agents\shell.agent.ts
   Linha 14 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | model: "deepseek-v4-pro",
+    | model: "deepseek-v4-flash",
     |       fallbackModel: FALLBACK_MODEL,
     |       apiKey: process.env.DEEPSEEK_API_KEY || "",
     |       baseURL: "https://api.deepseek.com",
@@ -2753,7 +2753,7 @@ ARQUIVO: core\config\config.ts
   Match: "deepseek"
   Contexto:
     | const DEFAULTS: AppConfig = {
-    |   model: "deepseek-v4-pro",
+    |   model: "deepseek-v4-flash",
     |   llmProvider: "deepseek",
     |   maxMessagesPerSession: 100,
   --------------------------------------------------------------------------------
@@ -2762,7 +2762,7 @@ ARQUIVO: core\config\config.ts
   Match: "deepseek"
   Contexto:
     | const DEFAULTS: AppConfig = {
-    |   model: "deepseek-v4-pro",
+    |   model: "deepseek-v4-flash",
     |   llmProvider: "deepseek",
     |   maxMessagesPerSession: 100,
     |   pythonTimeout: 30000,
@@ -2836,15 +2836,15 @@ ARQUIVO: core\constants\instructions.ts
   Contexto:
     | // ============================================================
     |     
-    |     export const DEFAULT_MODEL = "deepseek-v4-pro";
-    |     export const FALLBACK_MODEL = process.env.DEEPSEEK_FALLBACK_MODEL || "deepseek-v4-pro";
+    |     export const DEFAULT_MODEL = "deepseek-v4-flash";
+    |     export const FALLBACK_MODEL = process.env.DEEPSEEK_FALLBACK_MODEL || "deepseek-v4-flash";
   --------------------------------------------------------------------------------
 
   Linha 55 | Categoria: API_CALL | Pattern: deepseek
   Match: "DEEPSEEK"
   Contexto:
-    | export const DEFAULT_MODEL = "deepseek-v4-pro";
-    |     export const FALLBACK_MODEL = process.env.DEEPSEEK_FALLBACK_MODEL || "deepseek-v4-pro";
+    | export const DEFAULT_MODEL = "deepseek-v4-flash";
+    |     export const FALLBACK_MODEL = process.env.DEEPSEEK_FALLBACK_MODEL || "deepseek-v4-flash";
     |     
     |     // ============================================================
   --------------------------------------------------------------------------------
@@ -3753,7 +3753,7 @@ ARQUIVO: core\context\context-engine.ts
   Contexto:
     | try {
     |           const response = await this.llmClient.chat.completions.create({
-    |             model: this.config.summaryModel || "deepseek-v4-pro",
+    |             model: this.config.summaryModel || "deepseek-v4-flash",
     |             messages: [
   --------------------------------------------------------------------------------
 
@@ -3762,7 +3762,7 @@ ARQUIVO: core\context\context-engine.ts
   Contexto:
     | try {
     |           const response = await this.llmClient.chat.completions.create({
-    |             model: this.config.summaryModel || "deepseek-v4-pro",
+    |             model: this.config.summaryModel || "deepseek-v4-flash",
     |             messages: [
     |               { role: "system", content: "You are a precise context summarizer. Follow the rules exactly." },
   --------------------------------------------------------------------------------
@@ -3771,7 +3771,7 @@ ARQUIVO: core\context\context-engine.ts
   Match: "messages: ["
   Contexto:
     | const response = await this.llmClient.chat.completions.create({
-    |             model: this.config.summaryModel || "deepseek-v4-pro",
+    |             model: this.config.summaryModel || "deepseek-v4-flash",
     |             messages: [
     |               { role: "system", content: "You are a precise context summarizer. Follow the rules exactly." },
     |               { role: "user", conten
@@ -7424,7 +7424,7 @@ ARQUIVO: memory\2026-05-29.md
   Contexto:
     | ### 2026-05-29 17:09:28
     | 
-    | Conversa: aplique todos os ajustes finos e por padrão utilize o modelo deepseek-v4-pro
+    | Conversa: aplique todos os ajustes finos e por padrão utilize o modelo deepseek-v4-flash
     | Resultado: ✅ *Todos os 11 ajustes finos aplicados*
   --------------------------------------------------------------------------------
 
@@ -7433,8 +7433,8 @@ ARQUIVO: memory\2026-05-29.md
   Contexto:
     | - *MongoDB* removido do package.json
     | - *Órfãos* limpos (memory.json, sum.spec.ts deletados)
-    | - *DEFAULT_MODEL = "deepseek-v4-pro"* em constants.ts
-    | - *10 agentes* padronizados com deepseek-v4-pro
+    | - *DEFAULT_MODEL = "deepseek-v4-flash"* em constants.ts
+    | - *10 agentes* padronizados com deepseek-v4-flash
   --------------------------------------------------------------------------------
 
   Linha 108 | Categoria: API_CALL | Pattern: deepseek
@@ -7442,8 +7442,8 @@ ARQUIVO: memory\2026-05-29.md
   Contexto:
     | - *MongoDB* removido do package.json
     | - *Órfãos* limpos (memory.json, sum.spec.ts deletados)
-    | - *DEFAULT_MODEL = "deepseek-v4-pro"* em constants.ts
-    | - *10 agentes* padronizados com deepseek-v4-pro
+    | - *DEFAULT_MODEL = "deepseek-v4-flash"* em constants.ts
+    | - *10 agentes* padronizados com deepseek-v4-flash
     | - *Planner prompt* deduplicado em constan
   --------------------------------------------------------------------------------
 
@@ -7451,8 +7451,8 @@ ARQUIVO: memory\2026-05-29.md
   Match: "deepseek"
   Contexto:
     | - *Órfãos* limpos (memory.json, sum.spec.ts deletados)
-    | - *DEFAULT_MODEL = "deepseek-v4-pro"* em constants.ts
-    | - *10 agentes* padronizados com deepseek-v4-pro
+    | - *DEFAULT_MODEL = "deepseek-v4-flash"* em constants.ts
+    | - *10 agentes* padronizados com deepseek-v4-flash
     | - *Planner prompt* deduplicado em constan
   --------------------------------------------------------------------------------
 
@@ -7469,7 +7469,7 @@ ARQUIVO: memory\2026-05-29.md
   Contexto:
     | export const reflectorAgent = new Agent({
     |   name: "ReflectorAgent",
-    |   model: process.env.REFLECTOR_MODEL || "deepseek-v4-pro",  // modelo leve!
+    |   model: process.env.REFLECTOR_MODEL || "deepseek-v4-flash",  // modelo leve!
     |   //
   --------------------------------------------------------------------------------
 
@@ -7608,7 +7608,7 @@ ARQUIVO: memory\2026-05-31.md
   Contexto:
     | ### 2026-06-01 00:54:24
     | 
-    | Conversa: sim, faça o commit e push. Essa foi uma modificação do modelo de deepseek-v4-pro para deepseek-v4-pro
+    | Conversa: sim, faça o commit e push. Essa foi uma modificação do modelo de deepseek-v4-flash para deepseek-v4-flash
     | Resultado: ✅ **Commit e push realizados com sucesso!** 🚀
   --------------------------------------------------------------------------------
 
@@ -7617,7 +7617,7 @@ ARQUIVO: memory\2026-05-31.md
   Contexto:
     | |---|---|
     | | **Commit** | `53b125c` |
-    | | **Mensagem** | `feat: migracao do modelo deepseek-v4-pro para deepseek-v4-pro` |
+    | | **Mensagem** | `feat: migracao do modelo deepseek-v4-flash para deepseek-v4-flash` |
     | | **Arquivos alterados** | **13** (+518 / −11 linhas) |
     | | **Push** | ✅ Enviado para `origin/main` no GitHub |
   --------------------------------------------------------------------------------
@@ -7675,15 +7675,15 @@ ARQUIVO: memory\2026-06-01.md
   Contexto:
     | ### 2026-06-01 20:07:43
     | 
-    | Conversa: se eu alterar o modelo principal de deepseek-v4-pro para  deepseek-v4-pro
-    | Resultado: Mudar de **deepseek-v4-pro** para **deepseek-v4-pro** é basicamente uma troca entre **potência** e **velocidade**. Vou resumir o impacto prático:
+    | Conversa: se eu alterar o modelo principal de deepseek-v4-flash para  deepseek-v4-flash
+    | Resultado: Mudar de **deepseek-v4-flash** para **deepseek-v4-flash** é basicamente uma troca entre **potência** e **velocidade**. Vou resumir o impacto prático:
   --------------------------------------------------------------------------------
 
   Linha 122 | Categoria: API_CALL | Pattern: deepseek
   Match: "deepseek"
   Contexto:
-    | Conversa: se eu alterar o modelo principal de deepseek-v4-pro para  deepseek-v4-pro
-    | Resultado: Mudar de **deepseek-v4-pro** para **deepseek-v4-pro** é basicamente uma troca entre **potência** e **velocidade**. Vou resumir o impacto prático:
+    | Conversa: se eu alterar o modelo principal de deepseek-v4-flash para  deepseek-v4-flash
+    | Resultado: Mudar de **deepseek-v4-flash** para **deepseek-v4-flash** é basicamente uma troca entre **potência** e **velocidade**. Vou resumir o impacto prático:
     | 
     | ---
   --------------------------------------------------------------------------------
@@ -7693,7 +7693,7 @@ ARQUIVO: memory\2026-06-01.md
   Contexto:
     | Resultado: ✅ *Verificação concluída — a alteração já está aplicada!*
     | 
-    | O projeto **C:\Developer\colabor-ai** já está configurado com `deepseek-v4-pro` em **7 arquivos**. Ou seja, não precisa fazer nada agora — a mudança que você cogitou já foi feita anteriormente.
+    | O projeto **C:\Developer\colabor-ai** já está configurado com `deepseek-v4-flash` em **7 arquivos**. Ou seja, não precisa fazer nada agora — a mudança que você cogitou já foi feita anteriormente.
     | 
     | ---
   --------------------------------------------------------------------------------
@@ -7702,7 +7702,7 @@ ARQUIVO: memory\2026-06-01.md
   Match: "deepseek"
   Contexto:
     | Conversa: quais os arquivo que tem o modelo pro?
-    | Resultado: A busca confirmou: **nenhum arquivo** do `colabor-ai` contém mais o modelo `deepseek-v4-pro` — você já trocou tudo pra `flash` anteriormente. ✅
+    | Resultado: A busca confirmou: **nenhum arquivo** do `colabor-ai` contém mais o modelo `deepseek-v4-flash` — você já trocou tudo pra `flash` anteriormente. ✅
     | 
     | ---
   --------------------------------------------------------------------------------
@@ -7712,7 +7712,7 @@ ARQUIVO: memory\2026-06-01.md
   Contexto:
     | ---
     | 
-    | ### 📁 Arquivos que HOJE usam `deepseek-v4-pro`
+    | ### 📁 Arquivos que HOJE usam `deepseek-v4-flash`
     | 
     | **Fonte (código ativo):**
   --------------------------------------------------------------------------------
@@ -7722,15 +7722,15 @@ ARQUIVO: memory\2026-06-01.md
   Contexto:
     | ### ⚙️ Lógica
     | 
-    | 1. Tenta `deepseek-v4-pro` com até **3 retries**
-    | 2. Se falhar, tenta `deepseek-v4-pro` com até **2 retries**
+    | 1. Tenta `deepseek-v4-flash` com até **3 retries**
+    | 2. Se falhar, tenta `deepseek-v4-flash` com até **2 retries**
   --------------------------------------------------------------------------------
 
   Linha 168 | Categoria: API_CALL | Pattern: deepseek
   Match: "deepseek"
   Contexto:
-    | 1. Tenta `deepseek-v4-pro` com até **3 retries**
-    | 2. Se falhar, tenta `deepseek-v4-pro` com até **2 retries**
+    | 1. Tenta `deepseek-v4-flash` com até **3 retries**
+    | 2. Se falhar, tenta `deepseek-v4-flash` com até **2 retries**
     | 
     | ---
   --------------------------------------------------------------------------------
@@ -7753,14 +7753,14 @@ ARQUIVO: memory\2026-06-02.md
     | 🔍 *Problemas identificados*
     | 
     | - *Falta da chave DEEPSEEK_API_KEY* no `.env`  
-    |   Só a OPENAI_API_KEY está configurada, por isso o modelo `deepseek-v4-pro` não consegue autenticar.
+    |   Só a OPENAI_API_KEY está configurada, por isso o modelo `deepseek-v4-flash` não consegue autenticar.
   --------------------------------------------------------------------------------
 
   Linha 217 | Categoria: API_CALL | Pattern: deepseek
   Match: "deepseek"
   Contexto:
     | - *Falta da chave DEEPSEEK_API_KEY* no `.env`  
-    |   Só a OPENAI_API_KEY está configurada, por isso o modelo `deepseek-v4-pro` não consegue autenticar.
+    |   Só a OPENAI_API_KEY está configurada, por isso o modelo `deepseek-v4-flash` não consegue autenticar.
     | 
     | - *Fallba
   --------------------------------------------------------------------------------
@@ -7769,7 +7769,7 @@ ARQUIVO: memory\2026-06-02.md
   Match: "OPENAI"
   Contexto:
     | - *Falta da chave DEEPSEEK_API_KEY* no `.env`  
-    |   Só a OPENAI_API_KEY está configurada, por isso o modelo `deepseek-v4-pro` não consegue autenticar.
+    |   Só a OPENAI_API_KEY está configurada, por isso o modelo `deepseek-v4-flash` não consegue autenticar.
     | 
     | - *Fallba
   --------------------------------------------------------------------------------
@@ -7826,7 +7826,7 @@ ARQUIVO: memory\2026-06-02.md
   Contexto:
     | segue o log apresentado: 
     | 16:52:45.219  INFO   [ORCH] Session ID  {"sessionId":"orchestrator_1780418637406_rxc
-    | Resultado: [Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.]
+    | Resultado: [Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]
     | 
     | ### 2026-06-02 20:21:02
   --------------------------------------------------------------------------------
@@ -7835,7 +7835,7 @@ ARQUIVO: memory\2026-06-02.md
   Match: "deepseek"
   Contexto:
     | Conversa: resolva
-    | Resultado: [Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.]
+    | Resultado: [Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]
     | 
     | ### 2026-06-02 20:39:31
   --------------------------------------------------------------------------------
@@ -7845,7 +7845,7 @@ ARQUIVO: memory\2026-06-02.md
   Contexto:
     | ### 2026-06-02 20:39:31
     | 
-    | Conversa: [Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-pro, but you passed gpt-4o-mini.]
+    | Conversa: [Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]
     | Resultado: {
     |   "success": "no",
   --------------------------------------------------------------------------------
@@ -7855,7 +7855,7 @@ ARQUIVO: memory\2026-06-02.md
   Contexto:
     | "missingInfo": [
     |     "O agente continua recebendo o mesmo erro de configuração de modelo de API sem conseguir avançar",
-    |     "O arquivo de configuração do modelo (gpt-4o-mini) não foi alterado para um modelo suportado (deepseek-v4-pro ou deepseek-v4-pro)"
+    |     "O arquivo de configuração do modelo (gpt-4o-mini) não foi alterado para um modelo suportado (deepseek-v4-flash ou deepseek-v4-flash)"
     | 
     | ### 2026-06-02 20:54:37
   --------------------------------------------------------------------------------
@@ -7865,7 +7865,7 @@ ARQUIVO: memory\2026-06-02.md
   Contexto:
     | ### 2026-06-02 20:58:21
     | 
-    | Conversa: verifique se isso foi corrigido: [Erro no processamento: 400 The supported API model names are deepseek-v4-pro or deepseek-v4-flash, but you passed gpt-4o-mini.]
+    | Conversa: verifique se isso foi corrigido: [Erro no processamento: 400 The supported API model names are deepseek-v4-flash or deepseek-v4-flash, but you passed gpt-4o-mini.]
     | Resultado: ✅ *Erro do modelo corrigido.*
   --------------------------------------------------------------------------------
 
@@ -7874,7 +7874,7 @@ ARQUIVO: memory\2026-06-02.md
   Contexto:
     | Resultado: ✅ *Erro do modelo corrigido.*
     | 
-    | O problema estava no `core/constants/instructions.ts`, onde `FALLBACK_MODEL` estava fixo como `'gpt-4o-mini'`. Troquei para `'deepseek-v4-pro'` em 3 arquivos: `instructions.ts`, `instructions.js` e cobertura relacionada.
+    | O problema estava no `core/constants/instructions.ts`, onde `FALLBACK_MODEL` estava fixo como `'gpt-4o-mini'`. Troquei para `'deepseek-v4-flash'` em 3 arquivos: `instructions.ts`, `instructions.js` e cobertura relacionada.
     | 
     | O erro 400 da API DeepSeek não vai m
   --------------------------------------------------------------------------------
@@ -7882,7 +7882,7 @@ ARQUIVO: memory\2026-06-02.md
   Linha 624 | Categoria: API_CALL | Pattern: deepseek
   Match: "DeepSeek"
   Contexto:
-    | O problema estava no `core/constants/instructions.ts`, onde `FALLBACK_MODEL` estava fixo como `'gpt-4o-mini'`. Troquei para `'deepseek-v4-pro'` em 3 arquivos: `instructions.ts`, `instructions.js` e cobertura relacionada.
+    | O problema estava no `core/constants/instructions.ts`, onde `FALLBACK_MODEL` estava fixo como `'gpt-4o-mini'`. Troquei para `'deepseek-v4-flash'` em 3 arquivos: `instructions.ts`, `instructions.js` e cobertura relacionada.
     | 
     | O erro 400 da API DeepSeek não vai mais aparece
     | 
@@ -7893,7 +7893,7 @@ ARQUIVO: memory\2026-06-02.md
   Match: "deepseek"
   Contexto:
     | - Build TypeScript rodou sem erros
-    | - Commit `c3a5a61` criado: *fix: replace gpt-4o-mini with deepseek-v4-pro as fallback model*
+    | - Commit `c3a5a61` criado: *fix: replace gpt-4o-mini with deepseek-v4-flash as fallback model*
     | - Push pra `origin/main` concluído
   --------------------------------------------------------------------------------
 

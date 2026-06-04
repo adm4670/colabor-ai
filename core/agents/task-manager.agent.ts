@@ -1,5 +1,5 @@
 import { Agent } from "../agent/agent";
-import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
+import { DEFAULT_MODEL } from "../constants/instructions";
 import { taskTools, taskFunctions } from "../tools/task.tools";
 import { memorySearchTool } from "../memory/memory_search";
 import { memoryAppendTool } from "../memory/memory_search";
@@ -22,7 +22,6 @@ import { memoryAppendTool } from "../memory/memory_search";
     `,
     
       generalInstructions: `
-        ${CORE_INSTRUCTIONS}
     
     - Responda em PT-BR.
     - Sempre use as ferramentas quando o usuario pedir para:
