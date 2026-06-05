@@ -72,6 +72,146 @@ function escapeMarkdown(text: string) {
   return text.replace(/[_*[\]()~`>#+=|{}.!-]/g, "\\$&");
 }
 
+    
+    /**
+     * Remove/substitui caracteres que podem quebrar o Telegram
+     */
+    function sanitizeText(text: string): string {
+      // Remove caracteres de controle (exceto newline e tab)
+      let cleaned = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+      
+      // Substitui caracteres Unicode problemáticos
+      cleaned = cleaned.replace(/\uFFFD/g, ''); // Replacement character
+      cleaned = cleaned.replace(/\u200B/g, ''); // Zero-width space
+      cleaned = cleaned.replace(/\u200C/g, '');
+      cleaned = cleaned.replace(/\u200D/g, '');
+      cleaned = cleaned.replace(/\uFEFF/g, ''); // BOM
+      
+      // Normaliza Unicode (NFD -> NFC) para evitar caracteres compostos quebrados
+      try {
+        cleaned = cleaned.normalize('NFC');
+      } catch {
+        // Se normalize falhar, segue com o texto original
+      }
+      
+      return cleaned;
+    }
+    
+    /**
+     * Divide mensagens longas para respeitar limite do Telegram (4096 chars)
+     * Tenta quebrar em parágrafos ou frases
+     */
+    function splitMessage(text: string, maxLen: number = 4000): string[] {
+      if (text.length <= maxLen) {
+        return [text];
+      }
+      
+      const parts: string[] = [];
+      let remaining = text;
+      
+      while (remaining.length > 0) {
+        if (remaining.length <= maxLen) {
+          parts.push(remaining);
+          break;
+        }
+        
+        // Try to break at paragraph boundary
+        let splitAt = remaining.lastIndexOf('\n\n', maxLen);
+        if (splitAt > maxLen * 0.5) {
+          parts.push(remaining.substring(0, splitAt));
+          remaining = remaining.substring(splitAt + 2);
+          continue;
+        }
+        
+        // Try to break at sentence boundary
+        splitAt = -1;
+        for (const sep of ['. ', '! ', '? ', '.\n', '!\n', '?\n']) {
+          const idx = remaining.lastIndexOf(sep, maxLen);
+          if (idx > maxLen * 0.5) {
+            splitAt = idx + 1; // include the punctuation
+            break;
+          }
+        }
+        if (splitAt > maxLen * 0.5) {
+          parts.push(remaining.substring(0, splitAt));
+          remaining = remaining.substring(splitAt);
+          continue;
+        }
+        
+        // Try to break at word boundary
+        splitAt = remaining.lastIndexOf(' ', maxLen);
+        if (splitAt > maxLen * 0.5) {
+          parts.push(remaining.substring(0, splitAt));
+          remaining = remaining.substring(splitAt + 1);
+          continue;
+        }
+        
+        // Force break at maxLen
+        parts.push(remaining.substring(0, maxLen));
+        remaining = remaining.substring(maxLen);
+        
+        logger
+          ? logger.warn(`[Telegram] Mensagem forcadamente truncada em ${maxLen} caracteres`)
+          : null;
+      }
+      
+      return parts;
+    }
+    
+    /**
+     * Envia mensagem de forma segura: sanitiza, divide se necessario, 
+     * e trata erros de parse_mode
+     */
+    async function sendSafeMessage(
+      bot: TelegramBot,
+      chatId: number,
+      text: string,
+      useMarkdown: boolean = true
+    ): Promise<void> {
+      const sanitized = sanitizeText(text);
+      const parts = splitMessage(sanitized, 4000);
+      
+      if (parts.length > 1) {
+        logger
+          ? logger.info(`[Telegram] Mensagem dividida em ${parts.length} partes (${sanitized.length} chars)`)
+          : null;
+      }
+      
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        const prefix = parts.length > 1 ? `[${i + 1}/${parts.length}] ` : '';
+        const finalText = prefix + part;
+        
+        try {
+          if (useMarkdown) {
+            // Tenta enviar com MarkdownV2
+            try {
+              await sendWithRetry(bot, chatId, escapeMarkdown(finalText), {
+                parse_mode: "MarkdownV2",
+              });
+            } catch (parseErr: any) {
+              if (parseErr?.message?.includes('parse') || parseErr?.description?.includes('parse')) {
+                // Fallback: reenvia sem formatacao
+                logger
+                  ? logger.warn(`[Telegram] Erro de parse na parte ${i+1}, reenviando sem formatacao`)
+                  : null;
+                await sendWithRetry(bot, chatId, finalText, {});
+              } else {
+                throw parseErr;
+              }
+            }
+          } else {
+            await sendWithRetry(bot, chatId, finalText, {});
+          }
+        } catch (err: any) {
+          logger
+            ? logger.error(`[Telegram] Falha ao enviar parte ${i + 1}/${parts.length}: ${err.message}`)
+            : null;
+          throw err;
+        }
+      }
+    }
+    
 async function downloadTelegramFile(bot: TelegramBot, fileId: string) {
   const file = await bot.getFile(fileId);
   const url = `https://api.telegram.org/file/bot${process.env.TELEGRAM_TOKEN}/${file.file_path}`;
@@ -128,7 +268,7 @@ async function startTelegramAgent() {
   });
 
   logger ? logger.info("[Telegram] Multi-Agent iniciado.") : null;
-  console.log("Telegram Multi-Agent iniciado.");
+  logger ? logger.info("[Telegram] Multi-Agent iniciado.") : null;
 
   bot.on("message", async (msg) => {
     const chatId = msg.chat.id;
@@ -163,26 +303,27 @@ async function startTelegramAgent() {
           let progressMsg: any = null;
           let progressShown = false;
     
-          const sendProgress = async (message: string) => {
-            try {
-              if (!progressShown) {
-                progressMsg = await bot.sendMessage(chatId, message);
-                progressShown = true;
-              } else if (progressMsg) {
-                await bot.editMessageText(message, {
-                  chat_id: chatId,
-                  message_id: progressMsg.message_id,
-                });
-              }
-            } catch (error: any) {
-                  // Ignorar erro "message is not modified" (conteudo identico)
-                  if (error?.description && error.description.includes("message is not modified")) return;
-                  try {
-                    progressMsg = await bot.sendMessage(chatId, message);
+                    const sendProgress = async (message: string) => {
+                try {
+                  const safeMsg = sanitizeText(message);
+                  if (!progressShown) {
+                    progressMsg = await bot.sendMessage(chatId, safeMsg);
                     progressShown = true;
-                  } catch { /* silencioso */ }
-                }
-          };
+                  } else if (progressMsg) {
+                    await bot.editMessageText(safeMsg, {
+                      chat_id: chatId,
+                      message_id: progressMsg.message_id,
+                    });
+                  }
+                } catch (error: any) {
+                      // Ignorar erro "message is not modified" (conteudo identico)
+                      if (error?.description && error.description.includes("message is not modified")) return;
+                      try {
+                        progressMsg = await bot.sendMessage(chatId, sanitizeText(message));
+                        progressShown = true;
+                      } catch { /* silencioso */ }
+                    }
+              };
     
           let progressActive = false;
           const PROGRESS_DELAY_MS = parseInt(process.env.PROGRESS_DELAY_MS || "2000", 10);
@@ -208,20 +349,8 @@ async function startTelegramAgent() {
         content: response,
       });
 
-      // Enviar resposta com escape de MarkdownV2
-      // Se falhar por parse entities, tenta sem formatacao
-      try {
-        await sendWithRetry(bot, chatId, escapeMarkdown(response), {
-          parse_mode: "MarkdownV2",
-        });
-      } catch (parseErr: any) {
-        if (parseErr.message && parseErr.message.includes("parse")) {
-          // Fallback: envia sem formatacao
-          await sendWithRetry(bot, chatId, response, {});
-        } else {
-          throw parseErr;
-        }
-      }
+            // Enviar resposta com protecoes: sanitizacao, split, fallback de parse
+          await sendSafeMessage(bot, chatId, response, true);
     } catch (err) {
       logger
         ? logger.error(
