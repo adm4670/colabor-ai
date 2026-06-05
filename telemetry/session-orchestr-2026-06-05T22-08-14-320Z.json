@@ -1,0 +1,654 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Verifique se tem algo para commit no diretório da clareiaai",
+  "startedAt": "2026-06-05T22:06:18.156Z",
+  "finishedAt": "2026-06-05T22:08:14.320Z",
+  "totalDuration": 116164,
+  "totalLLMCalls": 28,
+  "totalPromptTokens": 290511,
+  "totalCompletionTokens": 3797,
+  "totalTokens": 294308,
+  "maxContextWindowTokens": 38845,
+  "avgTokensPerLLMCall": 10511,
+  "estimatedCostUSD": 0.0826,
+  "totalAgentCalls": 23,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 19,
+    "PythonAgent": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 23,
+  "totalToolCalls": 5,
+  "toolCallBreakdown": {
+    "execute_python": 5
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697178188,
+      "duration": 5253,
+      "promptTokens": 35030,
+      "completionTokens": 403,
+      "totalTokens": 35433,
+      "historyLength": 28,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697183444,
+      "duration": 1441,
+      "promptTokens": 6681,
+      "completionTokens": 29,
+      "totalTokens": 6710,
+      "historyLength": 174,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697183444,
+      "duration": 4332,
+      "promptTokens": 9696,
+      "completionTokens": 453,
+      "totalTokens": 10149,
+      "historyLength": 14,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697187777,
+      "duration": 1397,
+      "promptTokens": 6739,
+      "completionTokens": 30,
+      "totalTokens": 6769,
+      "historyLength": 176,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697189504,
+      "duration": 1227,
+      "promptTokens": 6791,
+      "completionTokens": 19,
+      "totalTokens": 6810,
+      "historyLength": 178,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697191058,
+      "duration": 1345,
+      "promptTokens": 6835,
+      "completionTokens": 24,
+      "totalTokens": 6859,
+      "historyLength": 180,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697183444,
+      "duration": 11539,
+      "promptTokens": 10226,
+      "completionTokens": 399,
+      "totalTokens": 10625,
+      "historyLength": 16,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697194984,
+      "duration": 1507,
+      "promptTokens": 6873,
+      "completionTokens": 34,
+      "totalTokens": 6907,
+      "historyLength": 182,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697196814,
+      "duration": 1554,
+      "promptTokens": 6927,
+      "completionTokens": 24,
+      "totalTokens": 6951,
+      "historyLength": 184,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697198692,
+      "duration": 1253,
+      "promptTokens": 6976,
+      "completionTokens": 19,
+      "totalTokens": 6995,
+      "historyLength": 186,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697183444,
+      "duration": 49784,
+      "promptTokens": 10656,
+      "completionTokens": 461,
+      "totalTokens": 11117,
+      "historyLength": 18,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697233228,
+      "duration": 1284,
+      "promptTokens": 7022,
+      "completionTokens": 27,
+      "totalTokens": 7049,
+      "historyLength": 188,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697234848,
+      "duration": 1633,
+      "promptTokens": 7074,
+      "completionTokens": 25,
+      "totalTokens": 7099,
+      "historyLength": 190,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697183444,
+      "duration": 84299,
+      "promptTokens": 11148,
+      "completionTokens": 253,
+      "totalTokens": 11401,
+      "historyLength": 20,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697267743,
+      "duration": 1309,
+      "promptTokens": 7118,
+      "completionTokens": 25,
+      "totalTokens": 7143,
+      "historyLength": 192,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697269388,
+      "duration": 1494,
+      "promptTokens": 7166,
+      "completionTokens": 26,
+      "totalTokens": 7192,
+      "historyLength": 194,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697271207,
+      "duration": 1450,
+      "promptTokens": 7219,
+      "completionTokens": 28,
+      "totalTokens": 7247,
+      "historyLength": 196,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697183444,
+      "duration": 91595,
+      "promptTokens": 15022,
+      "completionTokens": 396,
+      "totalTokens": 15418,
+      "historyLength": 22,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697275039,
+      "duration": 1778,
+      "promptTokens": 7271,
+      "completionTokens": 74,
+      "totalTokens": 7345,
+      "historyLength": 198,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697277146,
+      "duration": 1741,
+      "promptTokens": 7366,
+      "completionTokens": 57,
+      "totalTokens": 7423,
+      "historyLength": 200,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697279212,
+      "duration": 1408,
+      "promptTokens": 7449,
+      "completionTokens": 21,
+      "totalTokens": 7470,
+      "historyLength": 202,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697183444,
+      "duration": 101013,
+      "promptTokens": 15968,
+      "completionTokens": 392,
+      "totalTokens": 16360,
+      "historyLength": 24,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697284457,
+      "duration": 1363,
+      "promptTokens": 7482,
+      "completionTokens": 23,
+      "totalTokens": 7505,
+      "historyLength": 204,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697286147,
+      "duration": 2088,
+      "promptTokens": 7551,
+      "completionTokens": 84,
+      "totalTokens": 7635,
+      "historyLength": 206,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697288557,
+      "duration": 1543,
+      "promptTokens": 8060,
+      "completionTokens": 62,
+      "totalTokens": 8122,
+      "historyLength": 18,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697288556,
+      "duration": 2106,
+      "promptTokens": 7653,
+      "completionTokens": 84,
+      "totalTokens": 7737,
+      "historyLength": 209,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780697290102,
+      "duration": 2572,
+      "promptTokens": 7667,
+      "completionTokens": 106,
+      "totalTokens": 7773,
+      "historyLength": 210,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780697290102,
+      "duration": 4217,
+      "promptTokens": 38845,
+      "completionTokens": 219,
+      "totalTokens": 39064,
+      "historyLength": 30,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Verifique se tem algo para commit no diretório da clareiaai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a ú",
+      "startTime": 1780697178188,
+      "duration": 5253,
+      "success": true,
+      "responseLength": 617,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"1. Encontre o diretório do projeto clareiaai. Tente os caminhos comuns: `C:\\Deve…\"",
+      "startTime": 1780697183444,
+      "duration": 1442,
+      "success": true,
+      "responseLength": 88,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking me to check if there's anything to commit in the clareiaai directory.",
+      "startTime": 1780697187777,
+      "duration": 1398,
+      "success": true,
+      "responseLength": 97,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 I need to find where the clareiaai project is located.",
+      "startTime": 1780697189504,
+      "duration": 1228,
+      "success": true,
+      "responseLength": 59,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import os, subprocess\n\n# Tentar caminhos\"",
+      "startTime": 1780697191058,
+      "duration": 1346,
+      "success": true,
+      "responseLength": 69,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The print had encoding issues.",
+      "startTime": 1780697194984,
+      "duration": 1508,
+      "success": true,
+      "responseLength": 110,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me retry without special characters in the print statements.",
+      "startTime": 1780697196814,
+      "duration": 1556,
+      "success": true,
+      "responseLength": 93,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import os, subprocess\n\n# Tentar caminhos\"",
+      "startTime": 1780697198692,
+      "duration": 1253,
+      "success": true,
+      "responseLength": 66,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me try a different approach - search from the user's home directory or common development directories.",
+      "startTime": 1780697233228,
+      "duration": 1284,
+      "success": true,
+      "responseLength": 105,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import os, subprocess\n\n# Listar diretori\"",
+      "startTime": 1780697234848,
+      "duration": 1634,
+      "success": true,
+      "responseLength": 75,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Hmm, the subprocess calls are failing silently.",
+      "startTime": 1780697267743,
+      "duration": 1310,
+      "success": true,
+      "responseLength": 87,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me use pure Python with os.walk or os.listdir instead.",
+      "startTime": 1780697269388,
+      "duration": 1495,
+      "success": true,
+      "responseLength": 97,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import os\n\n# Listar conteudo de C:\\Devel\"",
+      "startTime": 1780697271207,
+      "duration": 1451,
+      "success": true,
+      "responseLength": 84,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 I can see there are several clareiaai-related directories: 1.",
+      "startTime": 1780697275039,
+      "duration": 1778,
+      "success": true,
+      "responseLength": 201,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 `C:\\Developer\\clareia.ai` 2.",
+      "startTime": 1780697277146,
+      "duration": 1743,
+      "success": true,
+      "responseLength": 191,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import os, subprocess\n\nrepo_path = r\"C:\\\"",
+      "startTime": 1780697279212,
+      "duration": 1408,
+      "success": true,
+      "responseLength": 61,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 There are changes!",
+      "startTime": 1780697284457,
+      "duration": 1363,
+      "success": true,
+      "responseLength": 64,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The repo is 2 commits ahead of origin/main, and there are: - Modified files: `gerar_video_enem_v2.py` and `videos/equa_o",
+      "startTime": 1780697286147,
+      "duration": 2090,
+      "success": true,
+      "responseLength": 245,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Verifique se tem algo para commit no diretório da clareiaai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a ú",
+      "startTime": 1780697183444,
+      "duration": 105112,
+      "success": true,
+      "responseLength": 838,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Verifique se tem algo para commit no diretório da clareiaai\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: 1. Encon",
+      "startTime": 1780697288557,
+      "duration": 1544,
+      "success": true,
+      "responseLength": 218,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780697288556,
+      "duration": 2106,
+      "success": true,
+      "responseLength": 283,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780697290102,
+      "duration": 2572,
+      "success": true,
+      "responseLength": 348,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Verifique se tem algo para commit no diretório da clareiaai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a ú",
+      "startTime": 1780697290102,
+      "duration": 4217,
+      "success": true,
+      "responseLength": 243,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "1. Encontre o diretório do projeto clareiaai. Tente os caminhos comuns: `C:\\Developer\\clareiaai`, `C:\\Users\\[usuário]\\clareiaai`, `C:\\Projects\\clareiaai`, ou use `dir /s /b clareiaai` para localizar. ",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780697183442
+    },
+    {
+      "instruction": "O PythonAgent já verificou o diretório e apresentou o resultado com todas as alterações pendentes. A pergunta foi respondida — há alterações sim, e o usuário pode decidir se quer commitar ou revisar.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780697294319
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780697191402,
+      "hasError": false,
+      "duration": 7958
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780697228723,
+      "hasError": false,
+      "duration": 45279
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780697264886,
+      "hasError": false,
+      "duration": 81442
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780697271377,
+      "hasError": false,
+      "duration": 87933
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780697279998,
+      "hasError": false,
+      "duration": 96554
+    }
+  ]
+}

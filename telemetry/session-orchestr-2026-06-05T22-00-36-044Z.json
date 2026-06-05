@@ -1,0 +1,504 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "E sobre o projeto Duda",
+  "startedAt": "2026-06-05T22:00:05.426Z",
+  "finishedAt": "2026-06-05T22:00:36.043Z",
+  "totalDuration": 30617,
+  "totalLLMCalls": 21,
+  "totalPromptTokens": 206878,
+  "totalCompletionTokens": 1198,
+  "totalTokens": 208076,
+  "maxContextWindowTokens": 25290,
+  "avgTokensPerLLMCall": 9908,
+  "estimatedCostUSD": 0.0572,
+  "totalAgentCalls": 18,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 14,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 18,
+  "totalToolCalls": 3,
+  "toolCallBreakdown": {
+    "memory_search": 3
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696805457,
+      "duration": 2378,
+      "promptTokens": 21339,
+      "completionTokens": 128,
+      "totalTokens": 21467,
+      "historyLength": 20,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696807869,
+      "duration": 1335,
+      "promptTokens": 5649,
+      "completionTokens": 28,
+      "totalTokens": 5677,
+      "historyLength": 136,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696807870,
+      "duration": 2070,
+      "promptTokens": 17033,
+      "completionTokens": 86,
+      "totalTokens": 17119,
+      "historyLength": 30,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696809940,
+      "duration": 1352,
+      "promptTokens": 5697,
+      "completionTokens": 27,
+      "totalTokens": 5724,
+      "historyLength": 138,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696811604,
+      "duration": 1342,
+      "promptTokens": 5743,
+      "completionTokens": 25,
+      "totalTokens": 5768,
+      "historyLength": 140,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696813260,
+      "duration": 1531,
+      "promptTokens": 5784,
+      "completionTokens": 15,
+      "totalTokens": 5799,
+      "historyLength": 142,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696807870,
+      "duration": 7092,
+      "promptTokens": 17981,
+      "completionTokens": 86,
+      "totalTokens": 18067,
+      "historyLength": 32,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696814963,
+      "duration": 1589,
+      "promptTokens": 5823,
+      "completionTokens": 53,
+      "totalTokens": 5876,
+      "historyLength": 144,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696816863,
+      "duration": 1568,
+      "promptTokens": 5892,
+      "completionTokens": 19,
+      "totalTokens": 5911,
+      "historyLength": 146,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696818744,
+      "duration": 1227,
+      "promptTokens": 5926,
+      "completionTokens": 15,
+      "totalTokens": 5941,
+      "historyLength": 148,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696807870,
+      "duration": 12714,
+      "promptTokens": 18110,
+      "completionTokens": 83,
+      "totalTokens": 18193,
+      "historyLength": 34,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696820585,
+      "duration": 1813,
+      "promptTokens": 5957,
+      "completionTokens": 48,
+      "totalTokens": 6005,
+      "historyLength": 150,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696822710,
+      "duration": 1275,
+      "promptTokens": 6020,
+      "completionTokens": 17,
+      "totalTokens": 6037,
+      "historyLength": 152,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696824301,
+      "duration": 1420,
+      "promptTokens": 6057,
+      "completionTokens": 23,
+      "totalTokens": 6080,
+      "historyLength": 154,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696807870,
+      "duration": 20133,
+      "promptTokens": 19055,
+      "completionTokens": 219,
+      "totalTokens": 19274,
+      "historyLength": 36,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696828004,
+      "duration": 1935,
+      "promptTokens": 6101,
+      "completionTokens": 57,
+      "totalTokens": 6158,
+      "historyLength": 156,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696830252,
+      "duration": 1462,
+      "promptTokens": 6183,
+      "completionTokens": 43,
+      "totalTokens": 6226,
+      "historyLength": 158,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696832028,
+      "duration": 1461,
+      "promptTokens": 6244,
+      "completionTokens": 16,
+      "totalTokens": 6260,
+      "historyLength": 160,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696832028,
+      "duration": 1556,
+      "promptTokens": 4716,
+      "completionTokens": 64,
+      "totalTokens": 4780,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696833586,
+      "duration": 1283,
+      "promptTokens": 6278,
+      "completionTokens": 16,
+      "totalTokens": 6294,
+      "historyLength": 162,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696833587,
+      "duration": 2453,
+      "promptTokens": 25290,
+      "completionTokens": 130,
+      "totalTokens": 25420,
+      "historyLength": 22,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    E sobre o projeto Duda\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositório",
+      "startTime": 1780696805457,
+      "duration": 2379,
+      "success": true,
+      "responseLength": 349,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário perguntou sobre o projeto 'Duda'. Primeiro, busque na memória (memory_…\"",
+      "startTime": 1780696807869,
+      "duration": 1335,
+      "success": true,
+      "responseLength": 95,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking about the \"Duda\" project.",
+      "startTime": 1780696809940,
+      "duration": 1353,
+      "success": true,
+      "responseLength": 89,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me search my memory for any information about it.",
+      "startTime": 1780696811604,
+      "duration": 1343,
+      "success": true,
+      "responseLength": 87,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"Duda projeto\"",
+      "startTime": 1780696813260,
+      "duration": 1531,
+      "success": true,
+      "responseLength": 51,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The search didn't find any specific results about a \"Duda\" project.",
+      "startTime": 1780696814963,
+      "duration": 1590,
+      "success": true,
+      "responseLength": 179,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me try a slightly different search.",
+      "startTime": 1780696816863,
+      "duration": 1569,
+      "success": true,
+      "responseLength": 62,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"duda\"",
+      "startTime": 1780696818744,
+      "duration": 1228,
+      "success": true,
+      "responseLength": 52,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 No results found for \"duda\".",
+      "startTime": 1780696820585,
+      "duration": 1814,
+      "success": true,
+      "responseLength": 157,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also try broader search.",
+      "startTime": 1780696822710,
+      "duration": 1276,
+      "success": true,
+      "responseLength": 62,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"\"Duda\" projeto site aplicativo\"",
+      "startTime": 1780696824301,
+      "duration": 1421,
+      "success": true,
+      "responseLength": 80,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Nothing specifically about a \"Duda\" project in the memory.",
+      "startTime": 1780696828004,
+      "duration": 1936,
+      "success": true,
+      "responseLength": 210,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 I should let the user know I couldn't find anything and ask for more context.",
+      "startTime": 1780696830252,
+      "duration": 1463,
+      "success": true,
+      "responseLength": 145,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    E sobre o projeto Duda\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositório",
+      "startTime": 1780696807870,
+      "duration": 24157,
+      "success": true,
+      "responseLength": 660,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780696832028,
+      "duration": 1462,
+      "success": true,
+      "responseLength": 52,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: E sobre o projeto Duda\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário perguntou sobre o projeto 'Duda'. Pri",
+      "startTime": 1780696832028,
+      "duration": 1557,
+      "success": true,
+      "responseLength": 223,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780696833586,
+      "duration": 1284,
+      "success": true,
+      "responseLength": 55,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    E sobre o projeto Duda\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositório",
+      "startTime": 1780696833587,
+      "duration": 2454,
+      "success": true,
+      "responseLength": 203,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário perguntou sobre o projeto 'Duda'. Primeiro, busque na memória (memory_search) qualquer informação registrada sobre esse projeto, com termos como 'Duda', 'projeto Duda' ou 'duda'. Se não enco",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780696807837
+    },
+    {
+      "instruction": "O assistente respondeu adequadamente, informando que não encontrou registros sobre o projeto Duda e pedindo mais contexto ao usuário. Aguardando nova resposta.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780696836041
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780696813265,
+      "hasError": false,
+      "duration": 5395
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780696818752,
+      "hasError": false,
+      "duration": 10882
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780696824305,
+      "hasError": false,
+      "duration": 16435
+    }
+  ]
+}

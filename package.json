@@ -19,7 +19,7 @@
     "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
     "dev": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
     "build": "tsc",
-    "lint": "eslint 'core/**/*.ts' 'scripts/**/*.ts'"
+    "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "axios": "^1.17.0",
@@ -32,5 +32,6 @@
   "name": "colabor-ai",
   "version": "1.0.0",
   "description": "Multi-agent orchestration system for AI collaboration",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module"
 }

@@ -1,0 +1,198 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Você conseguiu?",
+  "startedAt": "2026-06-05T23:28:21.904Z",
+  "finishedAt": "2026-06-05T23:28:34.299Z",
+  "totalDuration": 12395,
+  "totalLLMCalls": 7,
+  "totalPromptTokens": 500962,
+  "totalCompletionTokens": 845,
+  "totalTokens": 501807,
+  "maxContextWindowTokens": 131351,
+  "avgTokensPerLLMCall": 71687,
+  "estimatedCostUSD": 0.1362,
+  "totalAgentCalls": 7,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ReflectorAgent": 2,
+    "ThinkingAgent": 3
+  },
+  "avgAgentCalls": 7,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702101960,
+      "duration": 4334,
+      "promptTokens": 125198,
+      "completionTokens": 170,
+      "totalTokens": 125368,
+      "historyLength": 58,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702106299,
+      "duration": 1859,
+      "promptTokens": 19781,
+      "completionTokens": 66,
+      "totalTokens": 19847,
+      "historyLength": 36,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702106298,
+      "duration": 2897,
+      "promptTokens": 68117,
+      "completionTokens": 116,
+      "totalTokens": 68233,
+      "historyLength": 1565,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702108160,
+      "duration": 2129,
+      "promptTokens": 20119,
+      "completionTokens": 63,
+      "totalTokens": 20182,
+      "historyLength": 38,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702108159,
+      "duration": 3082,
+      "promptTokens": 68131,
+      "completionTokens": 108,
+      "totalTokens": 68239,
+      "historyLength": 1567,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702110293,
+      "duration": 2402,
+      "promptTokens": 68265,
+      "completionTokens": 100,
+      "totalTokens": 68365,
+      "historyLength": 1568,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702110293,
+      "duration": 4003,
+      "promptTokens": 131351,
+      "completionTokens": 222,
+      "totalTokens": 131573,
+      "historyLength": 60,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Você conseguiu?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ✅ *Build concluído com sucesso* — zero erros!\n\n📦 *Working tree limpa* — não havia alterações penden",
+      "startTime": 1780702101960,
+      "duration": 4335,
+      "success": true,
+      "responseLength": 271,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Você conseguiu?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ✅ *Build concluído com sucesso* — zero erros!\n\n📦 *Working tree limpa* — não havia alterações penden",
+      "startTime": 1780702106299,
+      "duration": 1860,
+      "success": true,
+      "responseLength": 239,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 ReflectorAgent → \"Você conseguiu?\"",
+      "startTime": 1780702106298,
+      "duration": 2898,
+      "success": true,
+      "responseLength": 308,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Você conseguiu?\n\n\n\n    Agent used: ReflectorAgent\n\n\n\n    Instruction given: Você conseguiu?\n\n\n\n    Result produced: {\n  \"succ",
+      "startTime": 1780702108160,
+      "duration": 2130,
+      "success": true,
+      "responseLength": 225,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780702108159,
+      "duration": 3082,
+      "success": true,
+      "responseLength": 346,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780702110293,
+      "duration": 2402,
+      "success": true,
+      "responseLength": 319,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Você conseguiu?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ✅ *Build concluído com sucesso* — zero erros!\n\n📦 *Working tree limpa* — não havia alterações penden",
+      "startTime": 1780702110293,
+      "duration": 4004,
+      "success": true,
+      "responseLength": 173,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Sim, consegui! O push foi realizado com sucesso após reescrever o histórico para remover o `torch_cpu.dll` de 253 MB. O repositório `clareiaai-process-pdf-tool` está sincronizado no GitHub. A resposta",
+      "chosenAgent": "finish",
+      "step": 1,
+      "timestamp": 1780702106296
+    },
+    {
+      "instruction": "Sim, consegui! O push foi bem-sucedido após reescrever o histórico. A resposta já foi fornecida e confirmada pelo ReflectorAgent.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780702114297
+    }
+  ],
+  "toolCalls": []
+}

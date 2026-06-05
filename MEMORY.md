@@ -148,3 +148,6 @@
 
 ## Preferencias
 - [2026-06-05] um caminho diferente?
+
+## Preferencias
+- [2026-06-05] revisar antes o que entra no commit? (os `__pycache__` e `temp/` talvez não queira incluir)

@@ -1,0 +1,221 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Não entendi",
+  "startedAt": "2026-06-05T23:28:53.756Z",
+  "finishedAt": "2026-06-05T23:29:19.538Z",
+  "totalDuration": 25782,
+  "totalLLMCalls": 8,
+  "totalPromptTokens": 600847,
+  "totalCompletionTokens": 1827,
+  "totalTokens": 602674,
+  "maxContextWindowTokens": 143708,
+  "avgTokensPerLLMCall": 75334,
+  "estimatedCostUSD": 0.1642,
+  "totalAgentCalls": 8,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 4,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 8,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702133811,
+      "duration": 3717,
+      "promptTokens": 137347,
+      "completionTokens": 228,
+      "totalTokens": 137575,
+      "historyLength": 62,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702137530,
+      "duration": 4054,
+      "promptTokens": 68645,
+      "completionTokens": 192,
+      "totalTokens": 68837,
+      "historyLength": 1572,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702137531,
+      "duration": 7274,
+      "promptTokens": 23256,
+      "completionTokens": 706,
+      "totalTokens": 23962,
+      "historyLength": 38,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702144806,
+      "duration": 4632,
+      "promptTokens": 68855,
+      "completionTokens": 217,
+      "totalTokens": 69072,
+      "historyLength": 1574,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702150078,
+      "duration": 3563,
+      "promptTokens": 69102,
+      "completionTokens": 193,
+      "totalTokens": 69295,
+      "historyLength": 1576,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702153961,
+      "duration": 2135,
+      "promptTokens": 20621,
+      "completionTokens": 61,
+      "totalTokens": 20682,
+      "historyLength": 40,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702153960,
+      "duration": 3246,
+      "promptTokens": 69313,
+      "completionTokens": 83,
+      "totalTokens": 69396,
+      "historyLength": 1579,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702156098,
+      "duration": 3438,
+      "promptTokens": 143708,
+      "completionTokens": 147,
+      "totalTokens": 143855,
+      "historyLength": 64,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Não entendi\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Então, sobre o **clareiaai** — especificamente o `clareiaai-process-pdf-tool` — eu lembro bem porque a g",
+      "startTime": 1780702133811,
+      "duration": 3718,
+      "success": true,
+      "responseLength": 503,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário disse que não entendeu. Explique de forma mais simples e amigável o qu…\"",
+      "startTime": 1780702137530,
+      "duration": 4054,
+      "success": true,
+      "responseLength": 634,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user said \"Não entendi\" again.",
+      "startTime": 1780702144806,
+      "duration": 4633,
+      "success": true,
+      "responseLength": 636,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Looking at the conversation history, the last thing I responded was about successfully pushing the clareiaai repository ",
+      "startTime": 1780702150078,
+      "duration": 3564,
+      "success": true,
+      "responseLength": 584,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Não entendi\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Então, sobre o **clareiaai** — especificamente o `clareiaai-process-pdf-tool` — eu lembro bem porque a g",
+      "startTime": 1780702137531,
+      "duration": 16429,
+      "success": true,
+      "responseLength": 768,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Não entendi\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário disse que não entendeu. Explique de forma mais s",
+      "startTime": 1780702153961,
+      "duration": 2136,
+      "success": true,
+      "responseLength": 208,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780702153960,
+      "duration": 3247,
+      "success": true,
+      "responseLength": 270,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Não entendi\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Então, sobre o **clareiaai** — especificamente o `clareiaai-process-pdf-tool` — eu lembro bem porque a g",
+      "startTime": 1780702156098,
+      "duration": 3438,
+      "success": true,
+      "responseLength": 194,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário disse que não entendeu. Explique de forma mais simples e amigável o que aconteceu: que tentamos fazer o push do repositório clareiaai, descobrimos que o arquivo `torch_cpu.dll` de 253 MB no ",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780702137529
+    },
+    {
+      "instruction": "O assistente respondeu adequadamente à dúvida do usuário com uma explicação simplificada sobre o push do clareiaai. Nenhuma ação adicional necessária.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780702159537
+    }
+  ],
+  "toolCalls": []
+}

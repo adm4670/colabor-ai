@@ -1,0 +1,198 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Como você pode me ajudar?",
+  "startedAt": "2026-06-05T22:01:05.031Z",
+  "finishedAt": "2026-06-05T22:01:18.766Z",
+  "totalDuration": 13735,
+  "totalLLMCalls": 7,
+  "totalPromptTokens": 94028,
+  "totalCompletionTokens": 1078,
+  "totalTokens": 95106,
+  "maxContextWindowTokens": 31699,
+  "avgTokensPerLLMCall": 13587,
+  "estimatedCostUSD": 0.0266,
+  "totalAgentCalls": 7,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ReflectorAgent": 2,
+    "ThinkingAgent": 3
+  },
+  "avgAgentCalls": 7,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696865061,
+      "duration": 7721,
+      "promptTokens": 28435,
+      "completionTokens": 605,
+      "totalTokens": 29040,
+      "historyLength": 24,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696872786,
+      "duration": 1609,
+      "promptTokens": 7180,
+      "completionTokens": 63,
+      "totalTokens": 7243,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696872785,
+      "duration": 2488,
+      "promptTokens": 6345,
+      "completionTokens": 119,
+      "totalTokens": 6464,
+      "historyLength": 167,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696874397,
+      "duration": 1454,
+      "promptTokens": 7514,
+      "completionTokens": 58,
+      "totalTokens": 7572,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696874396,
+      "duration": 2144,
+      "promptTokens": 6359,
+      "completionTokens": 89,
+      "totalTokens": 6448,
+      "historyLength": 169,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696875855,
+      "duration": 1226,
+      "promptTokens": 6496,
+      "completionTokens": 17,
+      "totalTokens": 6513,
+      "historyLength": 170,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696875856,
+      "duration": 2907,
+      "promptTokens": 31699,
+      "completionTokens": 127,
+      "totalTokens": 31826,
+      "historyLength": 26,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como você pode me ajudar?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositó",
+      "startTime": 1780696865061,
+      "duration": 7721,
+      "success": true,
+      "responseLength": 236,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como você pode me ajudar?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositó",
+      "startTime": 1780696872786,
+      "duration": 1610,
+      "success": true,
+      "responseLength": 235,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 ReflectorAgent → \"Como você pode me ajudar?\"",
+      "startTime": 1780696872785,
+      "duration": 2489,
+      "success": true,
+      "responseLength": 383,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Como você pode me ajudar?\n\n\n\n    Agent used: ReflectorAgent\n\n\n\n    Instruction given: Como você pode me ajudar?\n\n\n\n    Result",
+      "startTime": 1780696874397,
+      "duration": 1455,
+      "success": true,
+      "responseLength": 218,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780696874396,
+      "duration": 2145,
+      "success": true,
+      "responseLength": 313,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780696875855,
+      "duration": 1226,
+      "success": true,
+      "responseLength": 56,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como você pode me ajudar?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositó",
+      "startTime": 1780696875856,
+      "duration": 2908,
+      "success": true,
+      "responseLength": 207,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Já respondi essa pergunta antes! 😊 Relembrando: posso ajudar com dúvidas, código, arquivos, buscas na web, memória de longo prazo e organização. Se tiver algo específico em mente, é só falar!",
+      "chosenAgent": "finish",
+      "step": 1,
+      "timestamp": 1780696872783
+    },
+    {
+      "instruction": "A pergunta já foi respondida de forma completa pelo assistente anteriormente. O ReflectorAgent confirmou que a resposta foi adequada e não há informações faltando.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780696878764
+    }
+  ],
+  "toolCalls": []
+}

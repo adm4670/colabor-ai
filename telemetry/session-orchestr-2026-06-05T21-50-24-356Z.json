@@ -1,0 +1,221 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Como você pode me ajudar?",
+  "startedAt": "2026-06-05T21:50:09.856Z",
+  "finishedAt": "2026-06-05T21:50:24.355Z",
+  "totalDuration": 14499,
+  "totalLLMCalls": 8,
+  "totalPromptTokens": 28807,
+  "totalCompletionTokens": 939,
+  "totalTokens": 29746,
+  "maxContextWindowTokens": 6499,
+  "avgTokensPerLLMCall": 3718,
+  "estimatedCostUSD": 0.0088,
+  "totalAgentCalls": 8,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 4,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 8,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696209868,
+      "duration": 2636,
+      "promptTokens": 4928,
+      "completionTokens": 178,
+      "totalTokens": 5106,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696212507,
+      "duration": 1267,
+      "promptTokens": 2348,
+      "completionTokens": 25,
+      "totalTokens": 2373,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696212507,
+      "duration": 6453,
+      "promptTokens": 4801,
+      "completionTokens": 451,
+      "totalTokens": 5252,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696218960,
+      "duration": 1753,
+      "promptTokens": 2408,
+      "completionTokens": 68,
+      "totalTokens": 2476,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696221023,
+      "duration": 1067,
+      "promptTokens": 2494,
+      "completionTokens": 15,
+      "totalTokens": 2509,
+      "historyLength": 18,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696221023,
+      "duration": 1257,
+      "promptTokens": 2802,
+      "completionTokens": 62,
+      "totalTokens": 2864,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780696222282,
+      "duration": 1202,
+      "promptTokens": 2527,
+      "completionTokens": 19,
+      "totalTokens": 2546,
+      "historyLength": 20,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780696222282,
+      "duration": 2071,
+      "promptTokens": 6499,
+      "completionTokens": 121,
+      "totalTokens": 6620,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como você pode me ajudar?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositó",
+      "startTime": 1780696209868,
+      "duration": 2637,
+      "success": true,
+      "responseLength": 381,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário está perguntando sobre minhas capacidades. Explique de forma clara e a…\"",
+      "startTime": 1780696212507,
+      "duration": 1268,
+      "success": true,
+      "responseLength": 82,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me give a clear, friendly answer about what I can do to help the user, based on my capabilities and the context of o",
+      "startTime": 1780696218960,
+      "duration": 1754,
+      "success": true,
+      "responseLength": 220,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como você pode me ajudar?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositó",
+      "startTime": 1780696212507,
+      "duration": 8515,
+      "success": true,
+      "responseLength": 1448,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780696221023,
+      "duration": 1067,
+      "success": true,
+      "responseLength": 54,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Como você pode me ajudar?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário está perguntando sobre minhas capa",
+      "startTime": 1780696221023,
+      "duration": 1258,
+      "success": true,
+      "responseLength": 210,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780696222282,
+      "duration": 1203,
+      "success": true,
+      "responseLength": 58,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como você pode me ajudar?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver de novo.\n\nPela memória, a última movimentação foi no repositó",
+      "startTime": 1780696222282,
+      "duration": 2072,
+      "success": true,
+      "responseLength": 205,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário está perguntando sobre minhas capacidades. Explique de forma clara e amigável como posso ajudar, listando os agentes disponíveis e exemplos práticos do que posso fazer: responder perguntas, ",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780696212505
+    },
+    {
+      "instruction": "O assistente respondeu adequadamente à pergunta sobre suas capacidades, com exemplos claros e referência ao contexto anterior. Nenhuma ação adicional necessária.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780696224355
+    }
+  ],
+  "toolCalls": []
+}
