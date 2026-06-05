@@ -6,7 +6,7 @@ export const plannerAgent = new Agent({
     role: "AI task planner",
     goal: "Decide which agent should execute the next step",
     backstory: "An AI responsible for coordinating other agents.",
-    model: "deepseek-v4-pro",
+    model: "deepseek-v4-flash",
     apiKey: process.env.DEEPSEEK_API_KEY || "",
     baseURL: "https://api.deepseek.com",
     generalInstructions: `

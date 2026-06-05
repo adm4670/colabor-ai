@@ -7,7 +7,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
       role: "General conversation agent",
     
-      model: "deepseek-v4-pro",
+      model: "deepseek-v4-flash",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

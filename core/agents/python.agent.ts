@@ -8,7 +8,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       role: "Python execution specialist",
       goal: "Solve tasks using Python and return the result clearly",
       backstory: "An assistant specialized in writing and executing Python code to solve problems.",
-      model: "deepseek-v4-pro",
+      model: "deepseek-v4-flash",
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     

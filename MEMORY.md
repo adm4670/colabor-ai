@@ -107,3 +107,9 @@
 
 ## Preferencias
 - [2026-05-30] - *A)* Commitar só o `memory/` + adicionar os artefatos ao `
+
+## Preferencias
+- [2026-06-05] fazer outra coisa?
+
+## Preferencias
+- [2026-06-05] Basicamente, sou seu **assistente pessoal** — tô aqui pra te ajudar com o que precisar, seja código, organização, pesquisa ou só uma conversa produtiva

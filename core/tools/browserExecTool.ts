@@ -1,4 +1,4 @@
-import puppeteer, { Browser, Page } from "puppeteer";
+import puppeteer, { Browser, Page, ConsoleMessage } from "puppeteer";
     import path from "path";
     import fs from "fs";
     import { logger } from "../utils/logger";
@@ -14,11 +14,11 @@ import puppeteer, { Browser, Page } from "puppeteer";
     const HEADLESS = process.env.PUPPETEER_HEADLESS !== "false"; // default: true
     
     async function getPage(): Promise<Page> {
-      if (!browserInstance || !browserInstance.isConnected()) {
+      if (!browserInstance || !browserInstance.connected) {
         logger.info("[BrowserTool] Iniciando navegador Puppeteer...", { headless: HEADLESS });
     
         browserInstance = await puppeteer.launch({
-          executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+          executablePath: process.env.CHROME_PATH || undefined,
           headless: HEADLESS ? "new" as any : false,
           args: [
             "--no-sandbox",
@@ -36,7 +36,7 @@ import puppeteer, { Browser, Page } from "puppeteer";
         pageInstance.setDefaultNavigationTimeout(30000);
     
         // Interceptar console do browser
-        pageInstance.on("console", (msg) => {
+        pageInstance.on("console", (msg: ConsoleMessage) => {
           logger.debug(`[BrowserTool:console] ${msg.type()}: ${msg.text()}`);
         });
     
@@ -65,7 +65,7 @@ import puppeteer, { Browser, Page } from "puppeteer";
     
     export function isBrowserAlive(): boolean {
       try {
-        return !!(browserInstance && browserInstance.isConnected());
+        return !!(browserInstance && browserInstance.connected);
       } catch {
         return false;
       }
@@ -159,6 +159,11 @@ export const browserExecTool = {
             case "navigate": {
               if (!url) {
                 return { success: false, error: "URL e obrigatoria para action='navigate'" };
+
+              // Validacao de seguranca: apenas http/https
+              if (!url!.startsWith('http://') && !url!.startsWith('https://')) {
+                return { success: false, error: "URL invalida. Apenas URLs http/https sao permitidas." };
+              }
               }
     
               const page = await getPage();
@@ -220,7 +225,7 @@ export const browserExecTool = {
               await page.waitForSelector(selector, { timeout: 10000 });
     
               // Limpar campo antes de preencher
-              await page.click(selector, { clickCount: 3 }); // seleciona todo texto
+              await page.click(selector, { count: 3 }); // seleciona todo texto
               await page.keyboard.press("Backspace");
               await page.type(selector, value, { delay: 30 }); // digitar com delay realista
     

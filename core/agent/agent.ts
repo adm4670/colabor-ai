@@ -56,14 +56,12 @@ import type { LLMProviderType } from "../types";
           baseURL: options.baseURL ?? "https://api.deepseek.com",
         });
     
-        console.log(`[Agent] Agent '${this.name}' inicializado`);
-        console.log(`[Agent] Model: ${this.model}`);
-        console.log(`[Agent] Tools disponiveis: ${this.tools.length}`);
+        logger.info(`[Agent] Agent '${this.name}' inicializado`, { model: this.model, tools: this.tools.length });
       }
     
       resetHistory(): void {
         this.history = [];
-        console.log(`[Agent] Historico de ${this.name} resetado.`);
+        logger.info(`[Agent] Historico de ${this.name} resetado.`);
       }
     
       private async ensureSystemMessage(): Promise<void> {
@@ -210,7 +208,7 @@ import type { LLMProviderType } from "../types";
             const jitter = delay * 0.1 * (Math.random() * 2 - 1);
             const waitMs = Math.floor(delay + jitter);
             
-            console.log(`[Agent] Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
+            logger.warn(`[Agent] Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms`, { error: error.message });
             await new Promise(resolve => setTimeout(resolve, waitMs));
           }
         }
@@ -219,9 +217,7 @@ import type { LLMProviderType } from "../types";
       }
     
   async run(userMessage: string, onProgress?: (msg: string) => Promise<void>): Promise<string> {
-        console.log("\n==============================");
-        console.log(`[Agent] [${this.name}] User input:`);
-        console.log(userMessage);
+        logger.info(`[Agent] [${this.name}] User input recebido`);
     
         await this.ensureSystemMessage();
     
@@ -232,8 +228,7 @@ import type { LLMProviderType } from "../types";
     
         try {
           while (true) {
-            console.log("\n[Agent] Enviando requisicao para o modelo...");
-            console.log(`[Agent] Historico atual: ${this.history.length} mensagens`);
+            logger.info(`[Agent] Enviando requisicao para o modelo (historico: ${this.history.length} msgs)`);
     
             const response = await this.retryWithBackoff(
               () => this.client.chat.completions.create({
@@ -247,14 +242,13 @@ import type { LLMProviderType } from "../types";
     
             const msg = (response as any).choices[0].message;
     
-            console.log("\n[Agent] Resposta do modelo recebida");
+            logger.info("[Agent] Resposta do modelo recebida");
     
             if (msg.content) {
-              console.log("[Agent] Conteudo:");
-              console.log(msg.content);
+              logger.debug("[Agent] Conteudo da resposta processado");
             }
             if ((msg as any).reasoning_content) {
-              console.log("[Agent] Conteudo do raciocinio recebido (sera preservado).");
+              logger.debug("[Agent] Conteudo do raciocinio recebido (sera preservado).");
             }
     
             const assistantEntry: Message = {
@@ -280,14 +274,14 @@ import type { LLMProviderType } from "../types";
                 }
     
             if (msg.tool_calls) {
-              console.log(`[Agent] Tool calls detectadas: ${msg.tool_calls.length}`);
+              logger.info(`[Agent] Tool calls detectadas: ${msg.tool_calls.length}`);
               assistantEntry.tool_calls = msg.tool_calls;
             }
     
             this.history.push(assistantEntry);
     
             if (!msg.tool_calls) {
-              console.log("\n[Agent] Resposta final retornada ao usuario");
+              logger.info("[Agent] Resposta final retornada ao usuario");
               return msg.content ?? "";
             }
     
@@ -311,9 +305,7 @@ import type { LLMProviderType } from "../types";
                   })()
               
     
-              console.log("\n[Agent] Executando tool:");
-              console.log(`[Agent] Nome: ${toolName}`);
-              console.log(`[Agent] Args:`, args);
+              logger.info(`[Agent] Executando tool: ${toolName}`, { args });
     
               const fn = this.functions[toolName];
     
@@ -323,16 +315,14 @@ import type { LLMProviderType } from "../types";
                 if (fn) {
                   const result = await fn(args);
                   toolResult = JSON.stringify(result, null, 2);
-                  console.log("[Agent] Resultado da tool:");
-                  console.log(toolResult);
+                  logger.debug("[Agent] Resultado da tool processado");
                 } else {
                   toolResult = "Erro: Funcao nao encontrada.";
-                  console.log("[Agent] Tool nao encontrada");
+                  logger.warn("[Agent] Tool nao encontrada");
                 }
               } catch (e: any) {
                 toolResult = `Erro na execucao: ${e.message}`;
-                console.log("[Agent] Erro na execucao da tool:");
-                console.log(e.message);
+                logger.error("[Agent] Erro na execucao da tool", { error: e.message });
               }
     
               this.history.push({
@@ -342,12 +332,11 @@ import type { LLMProviderType } from "../types";
                 content: toolResult,
               });
     
-              console.log("[Agent] Resultado adicionado ao historico");
+              logger.debug("[Agent] Resultado adicionado ao historico");
             }
           }
         } catch (e: any) {
-          console.log("[Agent] Erro no Agent:");
-          console.log(e);
+          logger.error("[Agent] Erro no Agent:", { error: e });
     
           return `[Erro no processamento: ${e.message}]`;
         }
