@@ -113,3 +113,17 @@
 
 ## Preferencias
 - [2026-06-05] Basicamente, sou seu **assistente pessoal** — tô aqui pra te ajudar com o que precisar, seja código, organização, pesquisa ou só uma conversa produtiva
+
+## Preferencias
+- [2026-06-05] A rápida pra já ter algo funcionando, ou a completa pra ter dados reais? 😊
+
+## Aprendizados
+- [2026-06-05] ✅ O sistema de telemetria **já existe** — classe `TelemetryCollector`, CLI de relatórios, singleton exportado
+
+## Aprendizados
+- [2026-06-05] O Reflector já existe, mas só avalia *se funcionou*
+- [2026-06-05] Isso vira um **memória de decisões** que o Planner consulta antes de decidir
+- [2026-06-05] **O pulo do gato:** as melhorias 1, 2 e 3 juntas criam um sistema que **responde mais rápido e acerta mais** — que é exatamente a definição de "mais inteligente" na prática
+
+## Preferencias
+- [2026-06-05] ajustar algo (cor, fonte, adicionar seção), é só falar
