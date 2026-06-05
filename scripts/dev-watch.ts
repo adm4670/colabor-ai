@@ -45,7 +45,7 @@ import { watch } from 'fs';
       try {
         execSync('npx tsc --noEmit', { stdio: 'pipe', cwd: process.cwd() });
         lastValidationOk = true;
-        log('✅ Código válido. Pressione 'r' para reiniciar o servidor.');
+        log("✅ Código válido. Pressione 'r' para reiniciar o servidor.");
       } catch (err: any) {
         lastValidationOk = false;
         const output = err.stdout?.toString() || err.stderr?.toString() || err.message;

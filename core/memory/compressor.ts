@@ -141,7 +141,7 @@
     ): CompressedSummary {
       // Extract plan-related info
       let plan = "";
-      let outcomes: string[] = [];
+      const outcomes: string[] = [];
     
       for (const text of texts) {
         const lower = text.toLowerCase();

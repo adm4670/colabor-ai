@@ -98,7 +98,7 @@
       lastResponse: string;
     }
     
-    let state: DashboardState = {
+    const state: DashboardState = {
       lastQuery: "(nenhuma consulta ainda)",
       maxInputTokens: 0,
       maxOutputTokens: 0,
@@ -118,7 +118,7 @@
     // Rendering
     // ============================================================
     
-    let dashboardEnabled = true;
+    const dashboardEnabled = true;
     let lastRender = "";
     
     function formatTime(ms: number): string {

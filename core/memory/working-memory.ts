@@ -221,7 +221,7 @@
     
         // Take from most recent first
         const reversedEntries = [...this.state.entries].reverse();
-        let includedEntries: WorkingMemoryEntry[] = [];
+        const includedEntries: WorkingMemoryEntry[] = [];
     
         for (const entry of reversedEntries) {
           const entryTokens_needed = estimateTokens(entry.content) + 20; // overhead

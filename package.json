@@ -5,8 +5,11 @@
     "@babel/preset-typescript": "^7.28.5",
     "@types/jest": "^30.0.0",
     "@types/node-telegram-bot-api": "^0.64.14",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
     "babel-jest": "^30.2.0",
     "dotenv-cli": "^11.0.0",
+    "eslint": "^9.39.4",
     "git-commit-msg-linter": "^5.0.8",
     "jest": "^30.2.0",
     "typescript": "^6.0.3"
@@ -15,7 +18,8 @@
     "test": "jest",
     "start:dev:orchestrator:telegram": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
     "dev": "dotenv -e .env -- tsx ./core/orchestrator/telegram.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint 'core/**/*.ts' 'scripts/**/*.ts'"
   },
   "dependencies": {
     "axios": "^1.17.0",

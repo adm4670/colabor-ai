@@ -1,0 +1,175 @@
+{
+  "sessionId": "orchestrator_1780693862883_kz5638",
+  "userInput": "Ótimo rode um linter faça o build commit e push",
+  "startedAt": "2026-06-05T21:41:39.231Z",
+  "finishedAt": "2026-06-05T21:42:22.023Z",
+  "totalDuration": 42792,
+  "totalLLMCalls": 6,
+  "totalPromptTokens": 903086,
+  "totalCompletionTokens": 2968,
+  "totalTokens": 906054,
+  "maxContextWindowTokens": 188890,
+  "avgTokensPerLLMCall": 151009,
+  "estimatedCostUSD": 0.2471,
+  "totalAgentCalls": 4,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "PythonAgent": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 4,
+  "totalToolCalls": 2,
+  "toolCallBreakdown": {
+    "execute_python": 2
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695699294,
+      "duration": 5159,
+      "promptTokens": 160068,
+      "completionTokens": 374,
+      "totalTokens": 160442,
+      "historyLength": 62,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695704456,
+      "duration": 7078,
+      "promptTokens": 185725,
+      "completionTokens": 768,
+      "totalTokens": 186493,
+      "historyLength": 92,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695704456,
+      "duration": 19066,
+      "promptTokens": 186588,
+      "completionTokens": 1275,
+      "totalTokens": 187863,
+      "historyLength": 94,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695704456,
+      "duration": 30393,
+      "promptTokens": 188890,
+      "completionTokens": 290,
+      "totalTokens": 189180,
+      "historyLength": 96,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780695735465,
+      "duration": 2044,
+      "promptTokens": 13825,
+      "completionTokens": 114,
+      "totalTokens": 13939,
+      "historyLength": 34,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695737511,
+      "duration": 4510,
+      "promptTokens": 167990,
+      "completionTokens": 147,
+      "totalTokens": 168137,
+      "historyLength": 64,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ótimo rode um linter faça o build commit e push\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual delas te inter",
+      "startTime": 1780695699294,
+      "duration": 5159,
+      "success": true,
+      "responseLength": 1062,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ótimo rode um linter faça o build commit e push\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual delas te inter",
+      "startTime": 1780695704456,
+      "duration": 31008,
+      "success": true,
+      "responseLength": 831,
+      "llmCallsCount": 3
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Ótimo rode um linter faça o build commit e push\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Execute linter, buil",
+      "startTime": 1780695735465,
+      "duration": 2044,
+      "success": true,
+      "responseLength": 409,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ótimo rode um linter faça o build commit e push\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual delas te inter",
+      "startTime": 1780695737511,
+      "duration": 4511,
+      "success": true,
+      "responseLength": 223,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Execute linter, build, commit and push for the colabor-ai project at C:\\Developer\\colabor-ai. Write and run a Python script that:\n\n1. First, detect which linter the project uses by checking package.js",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780695704454
+    },
+    {
+      "instruction": "Pipeline completo: tipo-check (tsc --noEmit) ✅, build (npm run build) ✅, commit (7daddb5) ✅, push para origin/v3 ✅. Tudo certo — o ThinkingAgent e alterações estão no repositório.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780695742022
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695712368,
+      "hasError": false,
+      "duration": 7912
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695730357,
+      "hasError": false,
+      "duration": 25901
+    }
+  ]
+}
