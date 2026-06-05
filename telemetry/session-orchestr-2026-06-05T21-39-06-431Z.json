@@ -1,0 +1,2009 @@
+{
+  "sessionId": "orchestrator_1780693862883_kz5638",
+  "userInput": "Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso para o Telegram no onProgress utilize um modelo simples sem reasoning da deepseek",
+  "startedAt": "2026-06-05T21:32:05.779Z",
+  "finishedAt": "2026-06-05T21:39:06.431Z",
+  "totalDuration": 420652,
+  "totalLLMCalls": 97,
+  "totalPromptTokens": 8634310,
+  "totalCompletionTokens": 21987,
+  "totalTokens": 8656297,
+  "maxContextWindowTokens": 165340,
+  "avgTokensPerLLMCall": 89240,
+  "estimatedCostUSD": 2.3554,
+  "totalAgentCalls": 7,
+  "agentCallBreakdown": {
+    "PlannerAgent": 3,
+    "assistant": 1,
+    "ReflectorAgent": 2,
+    "PythonAgent": 1
+  },
+  "avgAgentCalls": 7,
+  "totalToolCalls": 90,
+  "toolCallBreakdown": {
+    "memory_search": 76,
+    "execute_python": 14
+  },
+  "totalSteps": 3,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695125826,
+      "duration": 12786,
+      "promptTokens": 121495,
+      "completionTokens": 894,
+      "totalTokens": 122389,
+      "historyLength": 52,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 3110,
+      "promptTokens": 49900,
+      "completionTokens": 151,
+      "totalTokens": 50051,
+      "historyLength": 64,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 6076,
+      "promptTokens": 50547,
+      "completionTokens": 93,
+      "totalTokens": 50640,
+      "historyLength": 66,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 9326,
+      "promptTokens": 51082,
+      "completionTokens": 109,
+      "totalTokens": 51191,
+      "historyLength": 68,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 12877,
+      "promptTokens": 51666,
+      "completionTokens": 184,
+      "totalTokens": 51850,
+      "historyLength": 70,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 16401,
+      "promptTokens": 52288,
+      "completionTokens": 107,
+      "totalTokens": 52395,
+      "historyLength": 72,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 20190,
+      "promptTokens": 52810,
+      "completionTokens": 138,
+      "totalTokens": 52948,
+      "historyLength": 74,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 23509,
+      "promptTokens": 53763,
+      "completionTokens": 109,
+      "totalTokens": 53872,
+      "historyLength": 76,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 27014,
+      "promptTokens": 54326,
+      "completionTokens": 98,
+      "totalTokens": 54424,
+      "historyLength": 78,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 7
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 30262,
+      "promptTokens": 54796,
+      "completionTokens": 98,
+      "totalTokens": 54894,
+      "historyLength": 80,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 8
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 32872,
+      "promptTokens": 55469,
+      "completionTokens": 96,
+      "totalTokens": 55565,
+      "historyLength": 82,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 9
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 36379,
+      "promptTokens": 55957,
+      "completionTokens": 108,
+      "totalTokens": 56065,
+      "historyLength": 84,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 10
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 38791,
+      "promptTokens": 57021,
+      "completionTokens": 101,
+      "totalTokens": 57122,
+      "historyLength": 86,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 11
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 42128,
+      "promptTokens": 57469,
+      "completionTokens": 89,
+      "totalTokens": 57558,
+      "historyLength": 88,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 12
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 44730,
+      "promptTokens": 58062,
+      "completionTokens": 88,
+      "totalTokens": 58150,
+      "historyLength": 90,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 13
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 47033,
+      "promptTokens": 58490,
+      "completionTokens": 91,
+      "totalTokens": 58581,
+      "historyLength": 92,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 14
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 50490,
+      "promptTokens": 59028,
+      "completionTokens": 96,
+      "totalTokens": 59124,
+      "historyLength": 94,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 15
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 53351,
+      "promptTokens": 59614,
+      "completionTokens": 69,
+      "totalTokens": 59683,
+      "historyLength": 96,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 16
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 56554,
+      "promptTokens": 60162,
+      "completionTokens": 90,
+      "totalTokens": 60252,
+      "historyLength": 98,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 17
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 59739,
+      "promptTokens": 60754,
+      "completionTokens": 101,
+      "totalTokens": 60855,
+      "historyLength": 100,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 18
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 63682,
+      "promptTokens": 61312,
+      "completionTokens": 123,
+      "totalTokens": 61435,
+      "historyLength": 102,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 19
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 67741,
+      "promptTokens": 62232,
+      "completionTokens": 120,
+      "totalTokens": 62352,
+      "historyLength": 104,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 20
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 70270,
+      "promptTokens": 63133,
+      "completionTokens": 102,
+      "totalTokens": 63235,
+      "historyLength": 106,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 21
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 73502,
+      "promptTokens": 64172,
+      "completionTokens": 118,
+      "totalTokens": 64290,
+      "historyLength": 108,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 22
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 75916,
+      "promptTokens": 64635,
+      "completionTokens": 91,
+      "totalTokens": 64726,
+      "historyLength": 110,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 23
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 78432,
+      "promptTokens": 65529,
+      "completionTokens": 105,
+      "totalTokens": 65634,
+      "historyLength": 112,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 24
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 83806,
+      "promptTokens": 65725,
+      "completionTokens": 299,
+      "totalTokens": 66024,
+      "historyLength": 114,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 25
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 86723,
+      "promptTokens": 66538,
+      "completionTokens": 97,
+      "totalTokens": 66635,
+      "historyLength": 116,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 26
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 90383,
+      "promptTokens": 67157,
+      "completionTokens": 88,
+      "totalTokens": 67245,
+      "historyLength": 118,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 27
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 93140,
+      "promptTokens": 67724,
+      "completionTokens": 102,
+      "totalTokens": 67826,
+      "historyLength": 120,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 28
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 97398,
+      "promptTokens": 68297,
+      "completionTokens": 183,
+      "totalTokens": 68480,
+      "historyLength": 122,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 29
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 100779,
+      "promptTokens": 69456,
+      "completionTokens": 131,
+      "totalTokens": 69587,
+      "historyLength": 124,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 30
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 103877,
+      "promptTokens": 70574,
+      "completionTokens": 118,
+      "totalTokens": 70692,
+      "historyLength": 126,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 31
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 107399,
+      "promptTokens": 71581,
+      "completionTokens": 116,
+      "totalTokens": 71697,
+      "historyLength": 128,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 32
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 110183,
+      "promptTokens": 72172,
+      "completionTokens": 104,
+      "totalTokens": 72276,
+      "historyLength": 130,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 33
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 113473,
+      "promptTokens": 73101,
+      "completionTokens": 115,
+      "totalTokens": 73216,
+      "historyLength": 132,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 34
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 116676,
+      "promptTokens": 73845,
+      "completionTokens": 104,
+      "totalTokens": 73949,
+      "historyLength": 134,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 35
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 119298,
+      "promptTokens": 74528,
+      "completionTokens": 93,
+      "totalTokens": 74621,
+      "historyLength": 136,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 36
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 122667,
+      "promptTokens": 76166,
+      "completionTokens": 104,
+      "totalTokens": 76270,
+      "historyLength": 138,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 37
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 125116,
+      "promptTokens": 76313,
+      "completionTokens": 95,
+      "totalTokens": 76408,
+      "historyLength": 140,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 38
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 128798,
+      "promptTokens": 76504,
+      "completionTokens": 110,
+      "totalTokens": 76614,
+      "historyLength": 142,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 39
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 132385,
+      "promptTokens": 77325,
+      "completionTokens": 96,
+      "totalTokens": 77421,
+      "historyLength": 144,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 40
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 135953,
+      "promptTokens": 77583,
+      "completionTokens": 113,
+      "totalTokens": 77696,
+      "historyLength": 146,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 41
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 139393,
+      "promptTokens": 78394,
+      "completionTokens": 143,
+      "totalTokens": 78537,
+      "historyLength": 148,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 42
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 143102,
+      "promptTokens": 79239,
+      "completionTokens": 102,
+      "totalTokens": 79341,
+      "historyLength": 150,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 43
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 146548,
+      "promptTokens": 79384,
+      "completionTokens": 107,
+      "totalTokens": 79491,
+      "historyLength": 152,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 44
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 151766,
+      "promptTokens": 80189,
+      "completionTokens": 383,
+      "totalTokens": 80572,
+      "historyLength": 154,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 45
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 154983,
+      "promptTokens": 81438,
+      "completionTokens": 110,
+      "totalTokens": 81548,
+      "historyLength": 156,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 46
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 157595,
+      "promptTokens": 82243,
+      "completionTokens": 108,
+      "totalTokens": 82351,
+      "historyLength": 158,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 47
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 161275,
+      "promptTokens": 83044,
+      "completionTokens": 115,
+      "totalTokens": 83159,
+      "historyLength": 160,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 48
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 164883,
+      "promptTokens": 84027,
+      "completionTokens": 124,
+      "totalTokens": 84151,
+      "historyLength": 162,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 49
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 168811,
+      "promptTokens": 84971,
+      "completionTokens": 123,
+      "totalTokens": 85094,
+      "historyLength": 164,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 50
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 172311,
+      "promptTokens": 86052,
+      "completionTokens": 106,
+      "totalTokens": 86158,
+      "historyLength": 166,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 51
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 175358,
+      "promptTokens": 87054,
+      "completionTokens": 98,
+      "totalTokens": 87152,
+      "historyLength": 168,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 52
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 180732,
+      "promptTokens": 87786,
+      "completionTokens": 328,
+      "totalTokens": 88114,
+      "historyLength": 170,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 53
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 184588,
+      "promptTokens": 88371,
+      "completionTokens": 114,
+      "totalTokens": 88485,
+      "historyLength": 172,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 54
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 187690,
+      "promptTokens": 89134,
+      "completionTokens": 140,
+      "totalTokens": 89274,
+      "historyLength": 174,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 55
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 191659,
+      "promptTokens": 89621,
+      "completionTokens": 133,
+      "totalTokens": 89754,
+      "historyLength": 176,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 56
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 195284,
+      "promptTokens": 90717,
+      "completionTokens": 111,
+      "totalTokens": 90828,
+      "historyLength": 178,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 57
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 198424,
+      "promptTokens": 91396,
+      "completionTokens": 109,
+      "totalTokens": 91505,
+      "historyLength": 180,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 58
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 202051,
+      "promptTokens": 92297,
+      "completionTokens": 124,
+      "totalTokens": 92421,
+      "historyLength": 182,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 59
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 204756,
+      "promptTokens": 92464,
+      "completionTokens": 114,
+      "totalTokens": 92578,
+      "historyLength": 184,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 60
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 210900,
+      "promptTokens": 92621,
+      "completionTokens": 517,
+      "totalTokens": 93138,
+      "historyLength": 186,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 61
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 214864,
+      "promptTokens": 93824,
+      "completionTokens": 111,
+      "totalTokens": 93935,
+      "historyLength": 188,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 62
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 217995,
+      "promptTokens": 94604,
+      "completionTokens": 99,
+      "totalTokens": 94703,
+      "historyLength": 190,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 63
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 221725,
+      "promptTokens": 95493,
+      "completionTokens": 119,
+      "totalTokens": 95612,
+      "historyLength": 192,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 64
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 225113,
+      "promptTokens": 95655,
+      "completionTokens": 91,
+      "totalTokens": 95746,
+      "historyLength": 194,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 65
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 228329,
+      "promptTokens": 95789,
+      "completionTokens": 96,
+      "totalTokens": 95885,
+      "historyLength": 196,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 66
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 233149,
+      "promptTokens": 96553,
+      "completionTokens": 343,
+      "totalTokens": 96896,
+      "historyLength": 198,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 67
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 237096,
+      "promptTokens": 97576,
+      "completionTokens": 107,
+      "totalTokens": 97683,
+      "historyLength": 200,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 68
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 240733,
+      "promptTokens": 98814,
+      "completionTokens": 109,
+      "totalTokens": 98923,
+      "historyLength": 202,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 69
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 257231,
+      "promptTokens": 99718,
+      "completionTokens": 1551,
+      "totalTokens": 101269,
+      "historyLength": 204,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 70
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 260239,
+      "promptTokens": 102174,
+      "completionTokens": 91,
+      "totalTokens": 102265,
+      "historyLength": 206,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 71
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 263052,
+      "promptTokens": 103132,
+      "completionTokens": 114,
+      "totalTokens": 103246,
+      "historyLength": 208,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 72
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 265933,
+      "promptTokens": 103950,
+      "completionTokens": 116,
+      "totalTokens": 104066,
+      "historyLength": 210,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 73
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 269625,
+      "promptTokens": 105510,
+      "completionTokens": 111,
+      "totalTokens": 105621,
+      "historyLength": 212,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 74
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 272270,
+      "promptTokens": 106524,
+      "completionTokens": 89,
+      "totalTokens": 106613,
+      "historyLength": 214,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 75
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695138664,
+      "duration": 287234,
+      "promptTokens": 107544,
+      "completionTokens": 1597,
+      "totalTokens": 109141,
+      "historyLength": 216,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 76
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780695426535,
+      "duration": 2383,
+      "promptTokens": 12118,
+      "completionTokens": 100,
+      "totalTokens": 12218,
+      "historyLength": 28,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695428922,
+      "duration": 10071,
+      "promptTokens": 129655,
+      "completionTokens": 681,
+      "totalTokens": 130336,
+      "historyLength": 54,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 4053,
+      "promptTokens": 140640,
+      "completionTokens": 373,
+      "totalTokens": 141013,
+      "historyLength": 36,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 8098,
+      "promptTokens": 144762,
+      "completionTokens": 127,
+      "totalTokens": 144889,
+      "historyLength": 38,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 10992,
+      "promptTokens": 144930,
+      "completionTokens": 116,
+      "totalTokens": 145046,
+      "historyLength": 40,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 14161,
+      "promptTokens": 145109,
+      "completionTokens": 133,
+      "totalTokens": 145242,
+      "historyLength": 42,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 21257,
+      "promptTokens": 153347,
+      "completionTokens": 411,
+      "totalTokens": 153758,
+      "historyLength": 44,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 26683,
+      "promptTokens": 156052,
+      "completionTokens": 402,
+      "totalTokens": 156454,
+      "historyLength": 46,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 43777,
+      "promptTokens": 157820,
+      "completionTokens": 1491,
+      "totalTokens": 159311,
+      "historyLength": 48,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 51405,
+      "promptTokens": 159354,
+      "completionTokens": 455,
+      "totalTokens": 159809,
+      "historyLength": 50,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 7
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 56960,
+      "promptTokens": 160595,
+      "completionTokens": 394,
+      "totalTokens": 160989,
+      "historyLength": 52,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 8
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 64025,
+      "promptTokens": 161886,
+      "completionTokens": 511,
+      "totalTokens": 162397,
+      "historyLength": 54,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 9
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 70825,
+      "promptTokens": 162436,
+      "completionTokens": 445,
+      "totalTokens": 162881,
+      "historyLength": 56,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 10
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 76801,
+      "promptTokens": 163057,
+      "completionTokens": 626,
+      "totalTokens": 163683,
+      "historyLength": 58,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 11
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 82217,
+      "promptTokens": 163791,
+      "completionTokens": 462,
+      "totalTokens": 164253,
+      "historyLength": 60,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 12
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 90399,
+      "promptTokens": 164314,
+      "completionTokens": 691,
+      "totalTokens": 165005,
+      "historyLength": 62,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 13
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695438995,
+      "duration": 98369,
+      "promptTokens": 165340,
+      "completionTokens": 560,
+      "totalTokens": 165900,
+      "historyLength": 64,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 14
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780695537974,
+      "duration": 2257,
+      "promptTokens": 12693,
+      "completionTokens": 111,
+      "totalTokens": 12804,
+      "historyLength": 30,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780695540233,
+      "duration": 6196,
+      "promptTokens": 138808,
+      "completionTokens": 308,
+      "totalTokens": 139116,
+      "historyLength": 56,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso para o Telegram no onProgress utilize um modelo s",
+      "startTime": 1780695125826,
+      "duration": 12786,
+      "success": true,
+      "responseLength": 579,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso para o Telegram no onProgress utilize um modelo s",
+      "startTime": 1780695138664,
+      "duration": 287870,
+      "success": true,
+      "responseLength": 5365,
+      "llmCallsCount": 77
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso par",
+      "startTime": 1780695426535,
+      "duration": 2384,
+      "success": true,
+      "responseLength": 390,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso para o Telegram no onProgress utilize um modelo s",
+      "startTime": 1780695428922,
+      "duration": 10071,
+      "success": true,
+      "responseLength": 2114,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso para o Telegram no onProgress utilize um modelo s",
+      "startTime": 1780695438995,
+      "duration": 98979,
+      "success": true,
+      "responseLength": 1795,
+      "llmCallsCount": 15
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso par",
+      "startTime": 1780695537974,
+      "duration": 2257,
+      "success": true,
+      "responseLength": 437,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Adicione um agente que pega as informações do progress e gera uma mensagem como se fosse o agente pensando e retorne isso para o Telegram no onProgress utilize um modelo s",
+      "startTime": 1780695540233,
+      "duration": 6196,
+      "success": true,
+      "responseLength": 458,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Search memory for details about how progress events are structured and processed, particularly the 'progress' type in StreamEventType and how onProgress works in telegram.ts. Also check the current ag",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780695138612
+    },
+    {
+      "instruction": "Implement the ThinkingAgent and integrate it into the Telegram bot. Create/modify the following files in C:\\Developer\\colabor-ai:\n\n1. CREATE `core/agents/thinking.agent.ts`:\n- Import Agent from '../ag",
+      "chosenAgent": "PythonAgent",
+      "step": 2,
+      "timestamp": 1780695438993
+    },
+    {
+      "instruction": "O ThinkingAgent foi implementado com sucesso: arquivo criado em core/agents/thinking.agent.ts (4.9 KB), integrado ao onProgress no telegram.ts (17.9 KB), com fallbacks naturais em PT-BR e modelo deeps",
+      "chosenAgent": "finish",
+      "step": 3,
+      "timestamp": 1780695546430
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695142417,
+      "hasError": false,
+      "duration": 3753
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695145083,
+      "hasError": false,
+      "duration": 6419
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695148653,
+      "hasError": false,
+      "duration": 9989
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695152171,
+      "hasError": false,
+      "duration": 13507
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695155688,
+      "hasError": false,
+      "duration": 17024
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695159488,
+      "hasError": false,
+      "duration": 20824
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695162808,
+      "hasError": false,
+      "duration": 24144
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695166321,
+      "hasError": false,
+      "duration": 27657
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695169554,
+      "hasError": false,
+      "duration": 30890
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695172231,
+      "hasError": false,
+      "duration": 33567
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695175359,
+      "hasError": false,
+      "duration": 36695
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695178118,
+      "hasError": false,
+      "duration": 39454
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695181473,
+      "hasError": false,
+      "duration": 42809
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695183710,
+      "hasError": false,
+      "duration": 45046
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695186317,
+      "hasError": false,
+      "duration": 47653
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695189468,
+      "hasError": false,
+      "duration": 50804
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695192020,
+      "hasError": false,
+      "duration": 53356
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695195536,
+      "hasError": false,
+      "duration": 56872
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695199028,
+      "hasError": false,
+      "duration": 60364
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695202987,
+      "hasError": false,
+      "duration": 64323
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695206725,
+      "hasError": false,
+      "duration": 68061
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695209260,
+      "hasError": false,
+      "duration": 70596
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695212484,
+      "hasError": false,
+      "duration": 73820
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695214887,
+      "hasError": false,
+      "duration": 76223
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695217396,
+      "hasError": false,
+      "duration": 78732
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695223063,
+      "hasError": false,
+      "duration": 84399
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695225981,
+      "hasError": false,
+      "duration": 87317
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695229348,
+      "hasError": false,
+      "duration": 90684
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695232401,
+      "hasError": false,
+      "duration": 93737
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695236681,
+      "hasError": false,
+      "duration": 98017
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695240090,
+      "hasError": false,
+      "duration": 101426
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695242840,
+      "hasError": false,
+      "duration": 104176
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695246359,
+      "hasError": false,
+      "duration": 107695
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695249148,
+      "hasError": false,
+      "duration": 110484
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695252435,
+      "hasError": false,
+      "duration": 113771
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695255639,
+      "hasError": false,
+      "duration": 116975
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695258260,
+      "hasError": false,
+      "duration": 119596
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695261628,
+      "hasError": false,
+      "duration": 122964
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695264098,
+      "hasError": false,
+      "duration": 125434
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695268116,
+      "hasError": false,
+      "duration": 129452
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695271368,
+      "hasError": false,
+      "duration": 132704
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695274933,
+      "hasError": false,
+      "duration": 136269
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695278694,
+      "hasError": false,
+      "duration": 140030
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695282084,
+      "hasError": false,
+      "duration": 143420
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695285528,
+      "hasError": false,
+      "duration": 146864
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695291065,
+      "hasError": false,
+      "duration": 152401
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695293975,
+      "hasError": false,
+      "duration": 155311
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695296570,
+      "hasError": false,
+      "duration": 157906
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695300262,
+      "hasError": false,
+      "duration": 161598
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695304181,
+      "hasError": false,
+      "duration": 165517
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695307793,
+      "hasError": false,
+      "duration": 169129
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695311601,
+      "hasError": false,
+      "duration": 172937
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695314345,
+      "hasError": false,
+      "duration": 175681
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695320027,
+      "hasError": false,
+      "duration": 181363
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695323568,
+      "hasError": false,
+      "duration": 184904
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695327000,
+      "hasError": false,
+      "duration": 188336
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695330952,
+      "hasError": false,
+      "duration": 192288
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695334261,
+      "hasError": false,
+      "duration": 195597
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695337405,
+      "hasError": false,
+      "duration": 198741
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695341027,
+      "hasError": false,
+      "duration": 202363
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695343734,
+      "hasError": false,
+      "duration": 205070
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695350194,
+      "hasError": false,
+      "duration": 211530
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695353851,
+      "hasError": false,
+      "duration": 215187
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695356976,
+      "hasError": false,
+      "duration": 218312
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695360705,
+      "hasError": false,
+      "duration": 222041
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695364175,
+      "hasError": false,
+      "duration": 225511
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695367314,
+      "hasError": false,
+      "duration": 228650
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695372455,
+      "hasError": false,
+      "duration": 233791
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695376086,
+      "hasError": false,
+      "duration": 237422
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695379722,
+      "hasError": false,
+      "duration": 241058
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695396522,
+      "hasError": false,
+      "duration": 257858
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695399220,
+      "hasError": false,
+      "duration": 260556
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695402032,
+      "hasError": false,
+      "duration": 263368
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695404921,
+      "hasError": false,
+      "duration": 266257
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695408612,
+      "hasError": false,
+      "duration": 269948
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780695411248,
+      "hasError": false,
+      "duration": 272584
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695443826,
+      "hasError": false,
+      "duration": 4831
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695447559,
+      "hasError": false,
+      "duration": 8564
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695450758,
+      "hasError": false,
+      "duration": 11763
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695453941,
+      "hasError": false,
+      "duration": 14946
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695461053,
+      "hasError": false,
+      "duration": 22058
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695466471,
+      "hasError": false,
+      "duration": 27476
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695483558,
+      "hasError": false,
+      "duration": 44563
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695491236,
+      "hasError": false,
+      "duration": 52241
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695496778,
+      "hasError": false,
+      "duration": 57783
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695503854,
+      "hasError": false,
+      "duration": 64859
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695509985,
+      "hasError": false,
+      "duration": 70990
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695516551,
+      "hasError": false,
+      "duration": 77556
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695521662,
+      "hasError": false,
+      "duration": 82667
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780695529846,
+      "hasError": false,
+      "duration": 90851
+    }
+  ]
+}

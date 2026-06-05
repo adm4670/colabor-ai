@@ -1,0 +1,195 @@
+{
+  "sessionId": "orchestrator_1780693862883_kz5638",
+  "userInput": "O que você sabe sobre a colabor-ai?",
+  "startedAt": "2026-06-05T21:12:23.219Z",
+  "finishedAt": "2026-06-05T21:12:45.025Z",
+  "totalDuration": 21806,
+  "totalLLMCalls": 7,
+  "totalPromptTokens": 48671,
+  "totalCompletionTokens": 1276,
+  "totalTokens": 49947,
+  "maxContextWindowTokens": 8970,
+  "avgTokensPerLLMCall": 7135,
+  "estimatedCostUSD": 0.0145,
+  "totalAgentCalls": 4,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 4,
+  "totalToolCalls": 3,
+  "toolCallBreakdown": {
+    "memory_search": 3
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693943233,
+      "duration": 3419,
+      "promptTokens": 6399,
+      "completionTokens": 208,
+      "totalTokens": 6607,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693946657,
+      "duration": 1742,
+      "promptTokens": 6260,
+      "completionTokens": 92,
+      "totalTokens": 6352,
+      "historyLength": 6,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693946657,
+      "duration": 3841,
+      "promptTokens": 7267,
+      "completionTokens": 89,
+      "totalTokens": 7356,
+      "historyLength": 8,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693946657,
+      "duration": 5952,
+      "promptTokens": 8356,
+      "completionTokens": 91,
+      "totalTokens": 8447,
+      "historyLength": 10,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693946657,
+      "duration": 12333,
+      "promptTokens": 8970,
+      "completionTokens": 501,
+      "totalTokens": 9471,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780693959672,
+      "duration": 2597,
+      "promptTokens": 3313,
+      "completionTokens": 116,
+      "totalTokens": 3429,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693962276,
+      "duration": 2747,
+      "promptTokens": 8106,
+      "completionTokens": 179,
+      "totalTokens": 8285,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    O que você sabe sobre a colabor-ai?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual delas te interessa mais?\n\n",
+      "startTime": 1780693943233,
+      "duration": 3420,
+      "success": true,
+      "responseLength": 338,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    O que você sabe sobre a colabor-ai?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual delas te interessa mais?\n\n",
+      "startTime": 1780693946657,
+      "duration": 13014,
+      "success": true,
+      "responseLength": 1660,
+      "llmCallsCount": 4
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: O que você sabe sobre a colabor-ai?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: The user is asking about what you ",
+      "startTime": 1780693959672,
+      "duration": 2598,
+      "success": true,
+      "responseLength": 439,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    O que você sabe sobre a colabor-ai?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual delas te interessa mais?\n\n",
+      "startTime": 1780693962276,
+      "duration": 2747,
+      "success": true,
+      "responseLength": 205,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "The user is asking about what you know about 'colabor-ai'. Search relevant memory notes and provide a concise overview of the project: what it is, its architecture (Client + Cloud), key features, and ",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780693946654
+    },
+    {
+      "instruction": "The assistant has already provided a comprehensive answer about colabor-ai, including its architecture, stack, and current status. No further action is required.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780693965024
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780693948719,
+      "hasError": false,
+      "duration": 2062
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780693950808,
+      "hasError": false,
+      "duration": 4151
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780693952919,
+      "hasError": false,
+      "duration": 6262
+    }
+  ]
+}

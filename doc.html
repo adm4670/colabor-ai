@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="colabor-ai - Multi-Agent Orchestration System. Documentacao completa do projeto.">
+    <meta name="author" content="colabor-ai team">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🧠</text></svg>">
+    <title>colabor-ai — Multi-Agent Orchestration System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']},animation:{'fade-in':'fadeIn 0.7s ease-out forwards','slide-up':'slideUp 0.7s ease-out forwards','pulse-slow':'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite','float':'float 6s ease-in-out infinite','spin-slow':'spin 8s linear infinite'},keyframes:{fadeIn:{'0%':{opacity:'0'},'100%':{opacity:'1'}},slideUp:{'0%':{opacity:'0',transform:'translateY(30px)'},'100%':{opacity:'1',transform:'translateY(0)'}},float:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-10px)'}}}}}}}
+    </script>
+    <style>
+    *{font-family:'Inter',sans-serif}
+    code,pre,.font-mono{font-family:'JetBrains Mono',monospace!important}
+    html{scroll-behavior:smooth}
+    body{transition:background-color .3s,color .3s}
+    body.light{--bg:#f8fafc;--text:#0f172a;--text-sec:#475569}
+    body:not(.light){--bg:transparent;--text:inherit;--text-sec:inherit}
+    .glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.06);transition:all .3s}
+    body.light .glass{background:rgba(255,255,255,0.8);border-color:rgba(0,0,0,0.08)}
+    .glass:hover{border-color:rgba(59,130,246,0.3)}
+    .agent-card{transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .agent-card:hover{transform:translateY(-6px) scale(1.01)}
+    .timeline-line{position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#3b82f6,#8b5cf6,#a855f7)}
+    @media(max-width:768px){.timeline-line{left:20px}}
+    .sort-btn.active{background:rgba(59,130,246,0.2);border-color:#3b82f6}
+    .nav-link.active{color:#60a5fa;border-bottom-color:#3b82f6}
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:#0f172a}
+    ::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
+    body.light ::-webkit-scrollbar-track{background:#e2e8f0}
+    body.light ::-webkit-scrollbar-thumb{background:#94a3b8}
+    .flow-step{opacity:0;transform:translateY(15px);transition:all .5s ease-out}
+    .flow-step.visible{opacity:1;transform:translateY(0)}
+    #float-nav{transition:all .4s cubic-bezier(.4,0,.2,1);opacity:0;pointer-events:none;transform:translateY(20px)}
+    #float-nav.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+    .tooltip{position:relative}
+    .tooltip .tip{visibility:hidden;opacity:0;transition:opacity .2s;position:absolute;bottom:calc(100%+8px);left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:6px;font-size:.75rem;white-space:nowrap;background:#1e293b;color:#e2e8f0;border:1px solid #334155;z-index:50}
+    body.light .tooltip .tip{background:#f1f5f9;color:#0f172a;border-color:#cbd5e1}
+    .tooltip:hover .tip{visibility:visible;opacity:1}
+    .progress-fill{transition:width 1s ease-out}
+    .code-sample{max-height:0;overflow:hidden;transition:max-height .5s ease-out}
+    .code-sample.open{max-height:800px}
+    body.light .bg-gray-950{background-color:var(--bg)!important}
+    body.light .text-gray-100{color:var(--text)!important}
+    body.light .text-gray-400{color:var(--text-sec)!important}
+    body.light .border-gray-800{border-color:#e2e8f0!important}
+    body.light .bg-gray-800\/40{background-color:#f1f5f9!important}
+    .section-glow{position:relative;overflow:hidden}
+    .section-glow::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(59,130,246,0.03),transparent,rgba(147,51,234,0.03),transparent);animation:spin-slow 8s linear infinite;pointer-events:none}
+    .section-glow>*{position:relative;z-index:1}
+    .section-hidden{opacity:0;transform:translateY(40px);transition:all .7s ease-out}
+    .section-visible{opacity:1;transform:translateY(0)}
+    #particle-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease-out}
+    .faq-answer.open{max-height:300px}
+    #presentation-overlay{position:fixed;inset:0;background:#0f172a;z-index:9999;overflow-y:auto;display:none}
+    #presentation-overlay.active{display:block}
+    .presentation-slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center}
+    #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#1e293b;color:#e2e8f0;padding:.75rem 1.5rem;border-radius:12px;border:1px solid #334155;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+    #toast.show{opacity:1}
+    #scroll-top{position:fixed;bottom:6rem;right:1.5rem;z-index:40;opacity:0;pointer-events:none;transition:all .3s}
+    #scroll-top.show{opacity:1;pointer-events:auto}
+    #progress-tracker{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:30;padding:.5rem;display:none}
+    @media(min-width:1024px){#progress-tracker{display:block}}
+    .pt-item{width:10px;height:10px;border-radius:50%;background:#334155;margin:.5rem 0;transition:all .3s;cursor:pointer}
+    .pt-item.done{background:#3b82f6}
+    .pt-item.active{background:#8b5cf6;box-shadow:0 0 8px rgba(139,92,246,.5)}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:9998;display:none}
+    .modal-overlay.active{display:flex;align-items:center;justify-content:center}
+    .modal-content{max-width:90vw;max-height:90vh;background:#0f172a;border:1px solid #334155;border-radius:16px;padding:2rem;overflow-y:auto;position:relative}
+    body.light .modal-content{background:#f8fafc;border-color:#e2e8f0}
+    .skip-link{position:absolute;top:-100px;left:0;background:#3b82f6;color:#fff;padding:.5rem 1rem;z-index:9999;transition:top .2s}
+    .skip-link:focus{top:0}
+    #cursor-trail{position:fixed;pointer-events:none;z-index:99999}
+    .cursor-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(96,165,250,0.6);transform:translate(-50%,-50%);transition:opacity .5s;}
+    #skeleton-loader{position:fixed;inset:0;background:#0f172a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s}
+    body.light #skeleton-loader{background:#f8fafc}
+    .skel-block{width:300px;height:20px;background:linear-gradient(90deg,#1e293b 25%,#334155 50%,#1e293b 75%);background-size:200% 100%;animation:skelShimmer 1.5s infinite;border-radius:8px;margin:8px}
+    @keyframes skelShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    body.light .skel-block{background:linear-gradient(90deg,#e2e8f0 25%,#cbd5e1 50%,#e2e8f0 75%);background-size:200% 100%}
+    .confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99998}
+    #font-slider{accent-color:#3b82f6}
+    </style>
+    </head>
+    <body class="bg-gray-950 text-gray-100" role="document">
+    <a href="#overview" class="skip-link" tabindex="0">Pular para conteudo principal</a>
+    
+    <!-- SKELETON LOADER -->
+    <div id="skeleton-loader">
+    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-3xl mb-8 animate-pulse">🧠</div>
+    <div class="skel-block" style="width:250px;height:32px"></div>
+    <div class="skel-block" style="width:180px;height:16px"></div>
+    <div class="skel-block" style="width:320px;height:12px;margin-top:20px"></div>
+    <div class="skel-block" style="width:280px;height:12px"></div>
+    <div class="skel-block" style="width:240px;height:12px"></div>
+    <div class="text-gray-600 text-sm mt-10 animate-pulse">Carregando...</div>
+    </div>
+    
+    <!-- CURSOR TRAIL -->
+    <div id="cursor-trail"></div>
+    
+    <!-- CONFETTI CANVAS -->
+    <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+    
+    <!-- TOAST -->
+    <div id="toast"></div>
+    
+    <!-- KEYBOARD SHORTCUTS MODAL -->
+    <div class="modal-overlay" id="shortcuts-modal" role="dialog" aria-modal="true" aria-label="Atalhos">
+    <div class="modal-content max-w-md">
+    <button onclick="closeShortcuts()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl" aria-label="Fechar">&times;</button>
+    <h3 class="text-xl font-bold mb-4">Atalhos do Teclado</h3>
+    <div class="space-y-2 text-sm">
+    <div class="flex justify-between p-2 rounded bg-gray-800/40"><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">?</kbd><span>Abrir ajuda</span></div>
+    <div class="flex justify-between p-2 rounded bg-gray-800/40"><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">Esc</kbd><span>Fechar modal / Sair apresentacao</span></div>
+    <div class="flex justify-between p-2 rounded bg-gray-800/40"><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">&larr;</kbd><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">&rarr;</kbd><span>Navegar slides</span></div>
+    <div class="flex justify-between p-2 rounded bg-gray-800/40"><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">P</kbd><span>Modo apresentacao</span></div>
+    <div class="flex justify-between p-2 rounded bg-gray-800/40"><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">T</kbd><span>Alternar tema</span></div>
+    <div class="flex justify-between p-2 rounded bg-gray-800/40"><kbd class="px-2 py-0.5 bg-gray-700 rounded text-xs">L</kbd><span>Alternar idioma</span></div>
+    </div></div></div>
+    
+    <!-- PRESENTATION OVERLAY -->
+    <div id="presentation-overlay" role="region" aria-label="Apresentacao">
+    <div class="absolute top-4 right-4 z-10 flex gap-2">
+    <span id="pres-counter" class="text-gray-400 text-sm bg-gray-800/80 px-3 py-1 rounded-full">1/10</span>
+    <button onclick="exitPresentation()" class="bg-red-500/20 text-red-300 px-4 py-1.5 rounded-full text-sm hover:bg-red-500/30 transition-all" aria-label="Sair">Sair</button></div>
+    <div id="pres-slides" class="min-h-screen"></div>
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 flex gap-4 z-10">
+    <button onclick="prevSlide()" class="glass px-6 py-2 rounded-full text-sm hover:bg-white/5 transition-all" aria-label="Anterior">&larr; Anterior</button>
+    <div class="flex items-center gap-1.5" id="pres-dots"></div>
+    <button onclick="nextSlide()" class="glass px-6 py-2 rounded-full text-sm hover:bg-white/5 transition-all" aria-label="Proximo">Proximo &rarr;</button></div></div>
+    
+    <!-- SCROLL TOP -->
+    <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg flex items-center justify-center text-xl hover:scale-110 transition-all" aria-label="Topo">^</button>
+    
+    <!-- PROGRESS TRACKER -->
+    <div id="progress-tracker" role="navigation" aria-label="Progresso">
+    <div class="flex flex-col items-center">
+    <div class="pt-item done" data-section="hero" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})" title="Inicio"></div>
+    <div class="pt-item" data-section="overview" onclick="document.getElementById('overview').scrollIntoView({behavior:'smooth'})" title="Visao"></div>
+    <div class="pt-item" data-section="architecture" onclick="document.getElementById('architecture').scrollIntoView({behavior:'smooth'})" title="Arquitetura"></div>
+    <div class="pt-item" data-section="flow" onclick="document.getElementById('flow').scrollIntoView({behavior:'smooth'})" title="Fluxo"></div>
+    <div class="pt-item" data-section="agents" onclick="document.getElementById('agents').scrollIntoView({behavior:'smooth'})" title="Agentes"></div>
+    <div class="pt-item" data-section="stack" onclick="document.getElementById('stack').scrollIntoView({behavior:'smooth'})" title="Stack"></div>
+    <div class="pt-item" data-section="stats" onclick="document.getElementById('stats').scrollIntoView({behavior:'smooth'})" title="Metricas"></div>
+    <div class="pt-item" data-section="quickstart" onclick="document.getElementById('quickstart').scrollIntoView({behavior:'smooth'})" title="Quickstart"></div>
+    <div class="pt-item" data-section="timeline" onclick="document.getElementById('timeline').scrollIntoView({behavior:'smooth'})" title="Timeline"></div>
+    <div class="pt-item" data-section="changelog" onclick="document.getElementById('changelog').scrollIntoView({behavior:'smooth'})" title="Changelog"></div>
+    <div class="pt-item" data-section="roadmap" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})" title="Roadmap"></div>
+    <div class="pt-item" data-section="improvements" onclick="document.getElementById('improvements').scrollIntoView({behavior:'smooth'})" title="Melhorias"></div>
+    <div class="pt-item" data-section="security" onclick="document.getElementById('security').scrollIntoView({behavior:'smooth'})" title="Seguranca"></div>
+    <div class="pt-item" data-section="contributing" onclick="document.getElementById('contributing').scrollIntoView({behavior:'smooth'})" title="Contribuir"></div>
+    <div class="pt-item" data-section="faq" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})" title="FAQ"></div>
+    <div class="pt-item" data-section="glossary" onclick="document.getElementById('glossary').scrollIntoView({behavior:'smooth'})" title="Glossario"></div>
+    </div></div>
+    
+    <!-- FLOATING NAV -->
+    <div id="float-nav" class="fixed bottom-6 right-6 z-50">
+    <button onclick="toggleFloatMenu()" class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg flex items-center justify-center text-2xl hover:scale-110 transition-all" aria-label="Navegacao"><span id="float-icon">&#9889;</span></button>
+    <div id="float-menu" class="absolute bottom-16 right-0 hidden flex-col gap-2 min-w-[210px]">
+    <a href="#" onclick="closeFloatMenu();return false" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Topo</a>
+    <a href="#overview" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Visao</a>
+    <a href="#architecture" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Arquitetura</a>
+    <a href="#agents" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Agentes</a>
+    <a href="#quickstart" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Quickstart</a>
+    <a href="#roadmap" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Roadmap</a>
+    <a href="#improvements" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Melhorias</a>
+    <a href="#security" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Seguranca</a>
+    <a href="#contributing" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Contribuir</a>
+    <a href="#faq" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">FAQ</a>
+    </div></div>
+    
+    <!-- STICKY NAV -->
+    <nav class="sticky top-0 z-40 glass border-b border-gray-800/50" role="navigation" aria-label="Navegacao">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="#" class="font-bold text-lg bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">colabor-ai</a>
+    <div class="hidden md:flex items-center gap-1 text-sm">
+    <a href="#overview" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Visao</a>
+    <a href="#architecture" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Arquitetura</a>
+    <a href="#agents" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Agentes</a>
+    <a href="#quickstart" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Quickstart</a>
+    <a href="#roadmap" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Roadmap</a>
+    <a href="#improvements" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Melhorias</a>
+    </div>
+    <div class="flex items-center gap-2">
+    <button id="lang-toggle" onclick="toggleLang()" class="px-2.5 py-1 text-xs rounded-lg bg-gray-800/60 hover:bg-gray-700/60 transition-all text-gray-400" aria-label="Idioma">PT | EN</button>
+    <button id="theme-toggle" onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-gray-800/60 flex items-center justify-center hover:bg-gray-700/60 transition-all text-lg" aria-label="Tema">&#x1F319;</button>
+    <button onclick="startPresentation()" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-blue-500/10 text-blue-300 hover:bg-blue-500/20 transition-all border border-blue-500/20">&#x25B6; Apresentar</button>
+    <button onclick="exportPage()" class="w-9 h-9 rounded-lg bg-gray-800/60 flex items-center justify-center hover:bg-gray-700/60 transition-all text-xs text-gray-400" title="Exportar">&#x1F4BE;</button>
+    <button onclick="sharePage()" class="w-9 h-9 rounded-lg bg-gray-800/60 flex items-center justify-center hover:bg-gray-700/60 transition-all text-xs text-gray-400" title="Compartilhar">&#x1F517;</button>
+    </div></div></nav>
+    
+    <!-- HERO -->
+    <header id="hero" class="relative overflow-hidden min-h-[80vh] flex items-center" role="banner">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-950 to-purple-900/30"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="absolute top-10 left-1/3 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay:2s"></div>
+    <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32 w-full">
+    <div class="text-center animate-fade-in">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-8"><span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span> v1.0.0 &mdash; TypeScript + Node.js</div>
+    <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight mb-6"><span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">colabor-ai</span></h1>
+    <p class="text-xl md:text-3xl text-gray-400 font-light mb-4">Multi-Agent Orchestration System</p>
+    <p class="max-w-3xl mx-auto text-gray-500 text-lg leading-relaxed mb-10">Uma plataforma agentica onde <span class="text-blue-300 font-medium">agentes de IA colaboram</span> para executar tarefas complexas &mdash; navegacao web, execucao de codigo, automacao de shell &mdash; tudo orquestrado por um <span class="text-purple-300 font-medium">planner inteligente</span> com memoria persistente.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+    <a href="#overview" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all hover:scale-105">Explorar Projeto &rarr;</a>
+    <a href="#quickstart" class="px-8 py-3.5 glass rounded-xl font-semibold hover:bg-white/5 transition-all">Quickstart</a>
+    <button onclick="toggleCodeSample()" class="px-8 py-3.5 glass rounded-xl font-semibold hover:bg-white/5 transition-all">Ver Codigo</button>
+    </div>
+    <p class="text-gray-600 text-sm mt-6">~ 12 min de leitura &middot; <span id="hero-updated"></span></p>
+    </div></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-950 to-transparent"></div>
+    </header>
+    
+    <!-- OVERVIEW -->
+    <section id="overview" class="section-hidden max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Visao Geral</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div><p class="text-gray-500 mt-4 text-lg">Arquitetura cerebro + corpo para IA colaborativa</p></div>
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+    <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-500/5 transition-all group"><div class="flex items-center gap-4 mb-4"><div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all">&#x1F9E0;</div><div><h3 class="text-xl font-bold">Cloud &mdash; O Cerebro</h3><p class="text-sm text-gray-500">Processamento central e orquestracao</p></div></div><p class="text-gray-400">Workflows agenticos com <strong>planner</strong> inteligente que decide qual agente chamar. Memoria SOTA, telemetria em tempo real, comunicacao via WebSocket.</p><div class="mt-4 flex flex-wrap gap-2"><span class="px-3 py-1 text-xs bg-blue-500/10 rounded-full text-blue-300">Planner</span><span class="px-3 py-1 text-xs bg-purple-500/10 rounded-full text-purple-300">Orchestrator</span><span class="px-3 py-1 text-xs bg-pink-500/10 rounded-full text-pink-300">Memory SOTA</span></div></div>
+    <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-purple-500/5 transition-all group"><div class="flex items-center gap-4 mb-4"><div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:-rotate-6 transition-all">&#x1F916;</div><div><h3 class="text-xl font-bold">Client &mdash; O Corpo</h3><p class="text-sm text-gray-500">Aplicacao desktop Electron + React</p></div></div><p class="text-gray-400">Captura eventos locais (teclado, clipes de tela, audio), executa ferramentas de automacao de desktop e sincroniza com o Cloud via <strong>WebSocket</strong>.</p><div class="mt-4 flex flex-wrap gap-2"><span class="px-3 py-1 text-xs bg-green-500/10 rounded-full text-green-300">Electron</span><span class="px-3 py-1 text-xs bg-yellow-500/10 rounded-full text-yellow-300">React</span><span class="px-3 py-1 text-xs bg-cyan-500/10 rounded-full text-cyan-300">WebSocket</span></div></div></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all tooltip"><div class="text-3xl mb-3">&#x26A1;</div><h4 class="font-semibold mb-1">Orquestracao</h4><p class="text-gray-500 text-sm">8 agentes especializados</p><span class="tip">Planner-Worker pattern</span></div>
+    <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all tooltip"><div class="text-3xl mb-3">&#x1F9E0;</div><h4 class="font-semibold mb-1">Memoria SOTA</h4><p class="text-gray-500 text-sm">14 modulos de memoria</p><span class="tip">Attention, Knowledge Graph, Embeddings</span></div>
+    <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all tooltip"><div class="text-3xl mb-3">&#x1F4CA;</div><h4 class="font-semibold mb-1">Telemetria</h4><p class="text-gray-500 text-sm">Dashboard em tempo real</p><span class="tip">Tokens, eventos, performance</span></div>
+    <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all tooltip"><div class="text-3xl mb-3">&#x2708;&#xFE0F;</div><h4 class="font-semibold mb-1">Telegram</h4><p class="text-gray-500 text-sm">Interface principal</p><span class="tip">Bot API com protecoes</span></div></div></section>
+    
+    <!-- ARCHITECTURE -->
+    <section id="architecture" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Arquitetura</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div><p class="text-gray-500 mt-4 text-lg">Estrutura de diretorios e fluxo de execucao</p></div>
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+    <div class="glass rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition-all"><h3 class="text-lg font-semibold mb-4 flex items-center gap-2"><span>&#x1F4C1;</span> Estrutura de Diretorios</h3>
+    <pre class="text-sm leading-relaxed text-gray-300 overflow-x-auto font-mono">
+    <span class="text-blue-400 font-semibold">colabor-ai/</span>
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">core/</span>                    <span class="text-gray-500">&larr; Nucleo (57 .ts)</span>
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">agent/</span>               Motor de agentes
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">agents/</span>              7 agentes especializados
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">orchestrator/</span>        Orquestrador + Telegram
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">memory/</span>               Memoria SOTA (14 arqs)
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">context/</span>              Engine de contexto
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">stream/</span>               Stream de eventos
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">telemetry/</span>            Dashboard e relatorios
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">tools/</span>                Ferramentas
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">skills/</span>               Skills manager
+    &#x2502;   &#x251C;&#x2500;&#x2500; <span class="text-green-300">session/</span>              Sessao e transcript
+    &#x2502;   &#x2514;&#x2500;&#x2500; <span class="text-green-300">config/</span>               Configuracao
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">scripts/</span>                  Scripts auxiliares
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">memory/</span>                   Notas diarias
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">skills/</span>                   Definicoes de skills
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">docs/</span>                     Documentacao
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">telemetry/</span>                Logs de sessao
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">package.json</span>
+    &#x251C;&#x2500;&#x2500; <span class="text-yellow-300">tsconfig.json</span>
+    &#x2514;&#x2500;&#x2500; <span class="text-yellow-300">README.md</span></pre></div>
+    <div class="space-y-6"><div class="glass rounded-2xl p-6 hover:shadow-xl hover:shadow-purple-500/5 transition-all"><h3 class="text-lg font-semibold mb-4 flex items-center gap-2"><span>&#x1F504;</span> Fluxo de Execucao</h3><div class="space-y-3">
+    <div class="flex items-center gap-4 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all"><div class="w-9 h-9 rounded-lg bg-blue-500/20 flex items-center justify-center text-sm font-bold text-blue-300 shrink-0">1</div><div><span class="font-medium">Entrada</span><p class="text-xs text-gray-500">Mensagem do usuario (Telegram / CLI)</p></div></div>
+    <div class="flex items-center gap-4 p-3 rounded-xl bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/10 transition-all"><div class="w-9 h-9 rounded-lg bg-purple-500/20 flex items-center justify-center text-sm font-bold text-purple-300 shrink-0">2</div><div><span class="font-medium">Orquestrador</span><p class="text-xs text-gray-500">Recebe e encaminha ao Planner</p></div></div>
+    <div class="flex items-center gap-4 p-3 rounded-xl bg-pink-500/5 border border-pink-500/10 hover:bg-pink-500/10 transition-all"><div class="w-9 h-9 rounded-lg bg-pink-500/20 flex items-center justify-center text-sm font-bold text-pink-300 shrink-0">3</div><div><span class="font-medium">Planner &rarr; Workers</span><p class="text-xs text-gray-500">Decide qual agente e coordena execucao</p></div></div>
+    <div class="flex items-center gap-4 p-3 rounded-xl bg-green-500/5 border border-green-500/10 hover:bg-green-500/10 transition-all"><div class="w-9 h-9 rounded-lg bg-green-500/20 flex items-center justify-center text-sm font-bold text-green-300 shrink-0">4</div><div><span class="font-medium">Memoria + Contexto</span><p class="text-xs text-gray-500">Sistema SOTA enriquece a resposta</p></div></div>
+    <div class="flex items-center gap-4 p-3 rounded-xl bg-cyan-500/5 border border-cyan-500/10 hover:bg-cyan-500/10 transition-all"><div class="w-9 h-9 rounded-lg bg-cyan-500/20 flex items-center justify-center text-sm font-bold text-cyan-300 shrink-0">5</div><div><span class="font-medium">Resposta</span><p class="text-xs text-gray-500">Stream de eventos &rarr; Usuario</p></div></div></div></div>
+    <div class="glass rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition-all"><h3 class="text-lg font-semibold mb-3 flex items-center gap-2"><span>&#x1F3D7;&#xFE0F;</span> Padrao Arquitetural</h3><p class="text-gray-400">O <span class="text-blue-300 font-medium">Planner-Worker</span> e o padrao central: um <strong>Orquestrador</strong> recebe a mensagem, o <strong>Planejador</strong> decide qual agente chamar (browser, python, shell, etc.), e o resultado volta em loop ate finalizar.</p><div class="mt-4 flex gap-2"><span class="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-300">Planner</span><span class="px-3 py-1 text-xs rounded-full bg-purple-500/10 text-purple-300">Worker</span><span class="px-3 py-1 text-xs rounded-full bg-green-500/10 text-green-300">Loop</span></div></div></div></div></div></section>
+    
+    <!-- FLOW -->
+    <section id="flow" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Diagrama de Fluxo</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="glass rounded-2xl p-8 md:p-12 cursor-pointer hover:border-blue-500/30 transition-all" onclick="openFlowModal()" role="button" tabindex="0" aria-label="Ampliar diagrama">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-0 items-start">
+    <div class="flow-step text-center px-2"><div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-2xl shadow-lg mb-3">&#x1F4AC;</div><div class="text-sm font-semibold mb-1">Usuario</div><div class="text-xs text-gray-500">Envia mensagem</div></div><div class="hidden md:flex items-center justify-center text-2xl text-blue-400 flow-step">&rarr;</div>
+    <div class="flow-step text-center px-2"><div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-2xl shadow-lg mb-3">&#x26A1;</div><div class="text-sm font-semibold mb-1">Orquestrador</div><div class="text-xs text-gray-500">Distribui tarefa</div></div><div class="hidden md:flex items-center justify-center text-2xl text-purple-400 flow-step">&rarr;</div>
+    <div class="flow-step text-center px-2"><div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center text-2xl shadow-lg mb-3">&#x1F3AF;</div><div class="text-sm font-semibold mb-1">Planner</div><div class="text-xs text-gray-500">Seleciona agente</div></div><div class="hidden md:flex items-center justify-center text-2xl text-pink-400 flow-step">&rarr;</div>
+    <div class="flow-step text-center px-2"><div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-2xl shadow-lg mb-3">&#x1F916;</div><div class="text-sm font-semibold mb-1">Worker Agent</div><div class="text-xs text-gray-500">Executa a acao</div></div><div class="hidden md:flex items-center justify-center text-2xl text-green-400 flow-step">&rarr;</div>
+    <div class="flow-step text-center px-2"><div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-2xl shadow-lg mb-3">&#x2705;</div><div class="text-sm font-semibold mb-1">Resposta</div><div class="text-xs text-gray-500">Retorna ao usuario</div></div></div>
+    <div class="mt-6 text-center text-xs text-gray-500">(Clique para expandir)</div>
+    <div class="mt-8 text-center"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm text-blue-300"><span>&#x1F504;</span> Loop ate task completa + Answer/Reflector</div></div></div></section>
+    
+    <!-- FLOW MODAL -->
+    <div class="modal-overlay" id="flow-modal" onclick="closeFlowModal()" role="dialog" aria-modal="true">
+    <div class="modal-content max-w-4xl" onclick="event.stopPropagation()">
+    <button onclick="closeFlowModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl">&times;</button>
+    <h3 class="text-xl font-bold mb-6 text-center">Diagrama de Fluxo - Ampliado</h3>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center py-8">
+    <div class="text-center"><div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-4xl shadow-lg mb-3">&#x1F4AC;</div><div class="font-semibold">Usuario</div><div class="text-xs text-gray-500">Envia mensagem</div></div><div class="flex items-center justify-center text-3xl text-blue-400">&rarr;</div>
+    <div class="text-center"><div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-4xl shadow-lg mb-3">&#x26A1;</div><div class="font-semibold">Orquestrador</div><div class="text-xs text-gray-500">Distribui tarefa</div></div><div class="flex items-center justify-center text-3xl text-purple-400">&rarr;</div>
+    <div class="text-center"><div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center text-4xl shadow-lg mb-3">&#x1F3AF;</div><div class="font-semibold">Planner</div><div class="text-xs text-gray-500">Seleciona agente</div></div><div class="flex items-center justify-center text-3xl text-pink-400">&rarr;</div>
+    <div class="text-center"><div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-4xl shadow-lg mb-3">&#x1F916;</div><div class="font-semibold">Worker Agent</div><div class="text-xs text-gray-500">Executa a acao</div></div><div class="flex items-center justify-center text-3xl text-green-400">&rarr;</div>
+    <div class="text-center"><div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-4xl shadow-lg mb-3">&#x2705;</div><div class="font-semibold">Resposta</div><div class="text-xs text-gray-500">Retorna ao usuario</div></div></div></div></div>
+    
+    <!-- AGENTS (JS rendered) -->
+    <section id="agents" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-purple-950/5 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Agentes</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div><p class="text-gray-500 mt-4 text-lg">8 agentes especializados no AgentRegistry</p></div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5" id="agent-grid"></div></div></section>
+    
+    <!-- STACK -->
+    <section id="stack" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Stack Tecnologica</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="grid md:grid-cols-2 gap-8">
+    <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-500/5 transition-all"><h3 class="text-lg font-semibold mb-6 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-blue-400 animate-pulse"></span> Producao</h3><div class="space-y-3">
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">openai</span> <span class="text-gray-500 text-sm">^6.27.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">LLM Client</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">puppeteer</span> <span class="text-gray-500 text-sm">^25.1.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Navegacao headless</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">node-telegram-bot-api</span> <span class="text-gray-500 text-sm">^0.63.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Telegram Bot API</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">axios</span> <span class="text-gray-500 text-sm">^1.17.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">HTTP</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">tsx</span> <span class="text-gray-500 text-sm">^4.21.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Runtime TS</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">dotenv</span> <span class="text-gray-500 text-sm">^17.3.1</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Config</span></div></div></div>
+    <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-purple-500/5 transition-all"><h3 class="text-lg font-semibold mb-6 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-purple-400 animate-pulse"></span> Desenvolvimento</h3><div class="space-y-3">
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">typescript</span> <span class="text-gray-500 text-sm">^6.0.3</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Linguagem</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">jest</span> <span class="text-gray-500 text-sm">^30.2.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Test runner</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">@babel/core</span> <span class="text-gray-500 text-sm">^7.29.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Babel</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">babel-jest</span> <span class="text-gray-500 text-sm">^30.2.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Jest+Babel</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">dotenv-cli</span> <span class="text-gray-500 text-sm">^11.0.0</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">CLI</span></div>
+    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all"><div><span class="font-medium">git-commit-msg-linter</span> <span class="text-gray-500 text-sm">^5.0.8</span></div><span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Commits</span></div></div></div></div></section>
+    
+    <!-- STATS -->
+    <section id="stats" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Metricas</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all group tooltip"><div class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform counter" data-target="98">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Arquivos</div><span class="tip">57 .ts + 19 .json + 18 .md</span></div>
+    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all group tooltip"><div class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform counter" data-target="42804">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Linhas Totais</div><span class="tip">Inclui codigo + blanks</span></div>
+    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all group tooltip"><div class="text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform counter" data-target="30896">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Linhas Codigo</div><span class="tip">Codigo fonte efetivo</span></div>
+    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all group tooltip"><div class="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform counter" data-target="9">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Testes</div><span class="tip">.spec.ts + .test.ts</span></div>
+    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all group tooltip"><div class="text-3xl font-bold bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform counter" data-target="24">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">TODOs</div><span class="tip">Divida tecnica</span></div>
+    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all group tooltip"><div class="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform counter" data-target="3094">0</div><div class="text-xs text-gray-500 uppercase tracking-wide">Comentarios</div><span class="tip">10% do total</span></div></div>
+    <div class="mt-10 grid md:grid-cols-2 gap-6">
+    <div class="glass rounded-2xl p-6"><h3 class="font-semibold mb-4">Distribuicao por Tipo</h3><canvas id="pieChart" height="200"></canvas></div>
+    <div class="glass rounded-2xl p-6"><h3 class="font-semibold mb-4">Distribuicao por Diretorio</h3>
+    <div class="space-y-4">
+    <div class="progress-item"><div class="flex justify-between text-sm mb-1"><span>(root)</span><span class="text-gray-500">29%</span></div><div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-blue-500 to-cyan-400 h-2.5 rounded-full" style="width:29%"></div></div></div>
+    <div class="progress-item"><div class="flex justify-between text-sm mb-1"><span>telemetry/</span><span class="text-gray-500">14.6%</span></div><div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-purple-500 to-pink-400 h-2.5 rounded-full" style="width:14.6%"></div></div></div>
+    <div class="progress-item"><div class="flex justify-between text-sm mb-1"><span>core/orchestrator/</span><span class="text-gray-500">11.9%</span></div><div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-pink-500 to-rose-400 h-2.5 rounded-full" style="width:11.9%"></div></div></div>
+    <div class="progress-item"><div class="flex justify-between text-sm mb-1"><span>core/memory/</span><span class="text-gray-500">7.9%</span></div><div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-green-500 to-emerald-400 h-2.5 rounded-full" style="width:7.9%"></div></div></div>
+    <div class="progress-item"><div class="flex justify-between text-sm mb-1"><span>scripts/</span><span class="text-gray-500">7.2%</span></div><div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-yellow-500 to-orange-400 h-2.5 rounded-full" style="width:7.2%"></div></div></div>
+    <div class="progress-item"><div class="flex justify-between text-sm mb-1"><span>memory/</span><span class="text-gray-500">6.8%</span></div><div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-indigo-500 to-violet-400 h-2.5 rounded-full" style="width:6.8%"></div></div></div></div></div></div>
+    <script>new Chart(document.getElementById('pieChart'),{type:'pie',data:{labels:['TypeScript','JSON','Markdown','HTML','Others'],datasets:[{data:[17825,17063,7188,586,142],backgroundColor:['#3b82f6','#8b5cf6','#f59e0b','#ef4444','#6b7280'],borderWidth:0}]},options:{plugins:{legend:{labels:{color:'#9ca3af',font:{size:11}}}}}});</script>
+    </div></section>
+    
+    <!-- QUICKSTART -->
+    <section id="quickstart" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Quickstart Guide</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div><p class="text-gray-500 mt-4 text-lg">Instale, configure e execute em 5 minutos</p></div>
+    <div class="grid md:grid-cols-2 gap-8">
+    <div class="glass rounded-2xl p-8"><h3 class="text-lg font-semibold mb-6">1. Pre-requisitos</h3><div class="space-y-4">
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center text-sm font-bold text-green-300">1</div><div><span class="font-medium">Node.js 20+</span><p class="text-xs text-gray-500">Download em nodejs.org</p></div></div>
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center text-sm font-bold text-green-300">2</div><div><span class="font-medium">npm 9+</span><p class="text-xs text-gray-500">Incluso com Node.js</p></div></div>
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center text-sm font-bold text-green-300">3</div><div><span class="font-medium">OpenAI API Key</span><p class="text-xs text-gray-500">Ou qualquer provider OpenAI-compativel</p></div></div>
+    </div>
+    <h3 class="text-lg font-semibold mt-8 mb-4">2. Instalacao</h3>
+    <pre class="bg-gray-900/60 rounded-xl p-4 text-sm font-mono text-gray-300 overflow-x-auto">
+    <span class="text-gray-500"># Clone o repositorio</span>
+    git clone https://github.com/colabor-ai/colabor-ai.git
+    cd colabor-ai
+    
+    <span class="text-gray-500"># Instale as dependencias</span>
+    npm install
+    
+    <span class="text-gray-500"># Configure as variaveis de ambiente</span>
+    cp .env.example .env</pre>
+    </div>
+    <div class="glass rounded-2xl p-8"><h3 class="text-lg font-semibold mb-6">3. Configuracao (.env)</h3>
+    <pre class="bg-gray-900/60 rounded-xl p-4 text-sm font-mono text-gray-300 overflow-x-auto">
+    <span class="text-green-300"># LLM Provider (OpenAI-compatible)</span>
+    LLM_API_KEY=sua-chave-aqui
+    LLM_BASE_URL=https://api.deepseek.com
+    LLM_MODEL=deepseek-v4-flash
+    
+    <span class="text-green-300"># Telegram (opcional)</span>
+    TELEGRAM_BOT_TOKEN=seu-token-aqui
+    
+    <span class="text-green-300"># Ambiente</span>
+    NODE_ENV=development
+    LOG_LEVEL=info</pre>
+    <h3 class="text-lg font-semibold mt-8 mb-4">4. Executar</h3>
+    <pre class="bg-gray-900/60 rounded-xl p-4 text-sm font-mono text-gray-300 overflow-x-auto">
+    <span class="text-gray-500"># Modo desenvolvimento (Telegram)</span>
+    npm run dev
+    
+    <span class="text-gray-500"># Rodar testes</span>
+    npm test
+    
+    <span class="text-gray-500"># Build para producao</span>
+    npm run build</pre>
+    </div></div>
+    <div class="mt-8 glass rounded-2xl p-8"><h3 class="text-lg font-semibold mb-4">5. Exemplo: Hello World com agente</h3>
+    <pre class="bg-gray-900/60 rounded-xl p-4 text-sm font-mono text-gray-300 overflow-x-auto">
+    <span class="text-blue-300">import</span> { Orchestrator } <span class="text-blue-300">from</span> <span class="text-green-300">'./core/orchestrator/orchestrator'</span>;
+    <span class="text-blue-300">import</span> { AgentRegistry } <span class="text-blue-300">from</span> <span class="text-green-300">'./core/agents/agent-registry'</span>;
+    
+    <span class="text-blue-300">const</span> registry = <span class="text-blue-300">new</span> AgentRegistry();
+    <span class="text-blue-300">const</span> orchestrator = <span class="text-blue-300">new</span> Orchestrator(registry);
+    
+    <span class="text-blue-300">const</span> result = <span class="text-blue-300">await</span> orchestrator.run({
+        input: <span class="text-green-300">"Ola, mundo! Quem e voce?"</span>,
+        sessionId: <span class="text-green-300">"demo-001"</span>,
+    });
+    console.log(result); <span class="text-gray-500">// Resposta do agente</span></pre></div></section>
+    
+    <!-- TIMELINE -->
+    <section id="timeline" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Timeline</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="relative"><div class="timeline-line"></div><div class="space-y-12 relative">
+    <div class="relative flex flex-col md:flex-row gap-6 items-start"><div class="hidden md:block w-1/2 text-right pr-10"><div class="glass rounded-xl p-5 inline-block text-left min-w-[280px]"><div class="text-xs text-blue-400 font-semibold mb-1">28 Maio 2026</div><h4 class="font-semibold mb-1">README Reescrito</h4><p class="text-sm text-gray-500">Documentacao didatica completa. PDF gerado.</p></div></div><div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-blue-500 border-4 border-gray-950 z-10 mt-6"></div><div class="md:hidden w-full pl-10"><div class="glass rounded-xl p-5"><div class="text-xs text-blue-400 font-semibold mb-1">28 Maio 2026</div><h4 class="font-semibold mb-1">README Reescrito</h4><p class="text-sm text-gray-500">Documentacao completa + PDF.</p></div></div><div class="hidden md:block w-1/2"></div></div>
+    <div class="relative flex flex-col md:flex-row gap-6 items-start"><div class="hidden md:block w-1/2"></div><div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-purple-500 border-4 border-gray-950 z-10 mt-6"></div><div class="w-full md:w-1/2 pl-10"><div class="glass rounded-xl p-5"><div class="text-xs text-purple-400 font-semibold mb-1">29 Maio 2026</div><h4 class="font-semibold mb-1">Build Zero Erros</h4><p class="text-sm text-gray-500">Correcoes event-stream, agent, telemetry.</p></div></div></div>
+    <div class="relative flex flex-col md:flex-row gap-6 items-start"><div class="hidden md:block w-1/2 text-right pr-10"><div class="glass rounded-xl p-5 inline-block text-left min-w-[280px]"><div class="text-xs text-pink-400 font-semibold mb-1">29 Maio 2026</div><h4 class="font-semibold mb-1">Memory SOTA</h4><p class="text-sm text-gray-500">AttentionFilter, KnowledgeGraph, Embeddings.</p></div></div><div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-pink-500 border-4 border-gray-950 z-10 mt-6"></div><div class="md:hidden w-full pl-10"><div class="glass rounded-xl p-5"><div class="text-xs text-pink-400 font-semibold mb-1">29 Maio 2026</div><h4 class="font-semibold mb-1">Memory SOTA</h4><p class="text-sm text-gray-500">Arquitetura SOTA de memoria.</p></div></div><div class="hidden md:block w-1/2"></div></div>
+    <div class="relative flex flex-col md:flex-row gap-6 items-start"><div class="hidden md:block w-1/2"></div><div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-green-500 border-4 border-gray-950 z-10 mt-6"></div><div class="w-full md:w-1/2 pl-10"><div class="glass rounded-xl p-5"><div class="text-xs text-green-400 font-semibold mb-1">30 Maio 2026</div><h4 class="font-semibold mb-1">Telemetry Dashboard</h4><p class="text-sm text-gray-500">Dashboard de tokens em tempo real.</p></div></div></div>
+    <div class="relative flex flex-col md:flex-row gap-6 items-start"><div class="hidden md:block w-1/2 text-right pr-10"><div class="glass rounded-xl p-5 inline-block text-left min-w-[280px]"><div class="text-xs text-cyan-400 font-semibold mb-1">30 Maio 2026</div><h4 class="font-semibold mb-1">Telegram Protections</h4><p class="text-sm text-gray-500">Rate limiting e validacao de entrada.</p></div></div><div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-cyan-500 border-4 border-gray-950 z-10 mt-6"></div><div class="md:hidden w-full pl-10"><div class="glass rounded-xl p-5"><div class="text-xs text-cyan-400 font-semibold mb-1">30 Maio 2026</div><h4 class="font-semibold mb-1">Telegram Protections</h4><p class="text-sm text-gray-500">Rate limiting.</p></div></div><div class="hidden md:block w-1/2"></div></div>
+    <div class="relative flex flex-col md:flex-row gap-6 items-start"><div class="hidden md:block w-1/2"></div><div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-yellow-500 border-4 border-gray-950 z-10 mt-6"></div><div class="w-full md:w-1/2 pl-10"><div class="glass rounded-xl p-5"><div class="text-xs text-yellow-400 font-semibold mb-1">05 Jun 2026</div><h4 class="font-semibold mb-1">Codebase Analysis</h4><p class="text-sm text-gray-500">98 arquivos, 42k linhas, 24 TODOs.</p></div></div></div></div></div></section>
+    
+    <!-- CHANGELOG -->
+    <section id="changelog" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-purple-950/5 to-gray-950"></div>
+    <div class="relative max-w-4xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Changelog</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="space-y-3">
+    <div class="glass rounded-xl p-5 flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-lg shrink-0 font-bold text-green-400">v1.0</div><div><h4 class="font-semibold">Junho 2026 — Codebase Analysis Release</h4><ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1"><li>Analise completa do codigo-fonte com metricas detalhadas</li><li>Documentacao gerada em PDF e HTML interativo</li><li>Dashboard de telemetria com tokens em tempo real</li><li>Build com zero erros</li></ul></div></div>
+    <div class="glass rounded-xl p-5 flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-lg shrink-0 font-bold text-blue-400">v0.9</div><div><h4 class="font-semibold">Maio 2026 — Memory SOTA & Telegram</h4><ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1"><li>Arquitetura SOTA de memoria (AttentionFilter, KnowledgeGraph, Embeddings)</li><li>Protecoes no modulo Telegram (rate limiting, validacao)</li><li>Orquestrador com loop Planner-Worker e Reflector</li><li>Suporte a 7 agentes especializados</li></ul></div></div>
+    <div class="glass rounded-xl p-5 flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-lg shrink-0 font-bold text-purple-400">v0.5</div><div><h4 class="font-semibold">Abril 2026 — Agent Registry & Tools</h4><ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1"><li>AgentRegistry com registro e descoberta de agentes</li><li>Ferramentas: browserExecTool, pythonExecTool, shellExecTool</li><li>Stream de eventos para comunicacao em tempo real</li><li>Engine de contexto com estimativa de tokens</li></ul></div></div>
+    <div class="glass rounded-xl p-5 flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-lg shrink-0 font-bold text-pink-400">v0.2</div><div><h4 class="font-semibold">Marco 2026 — Core & Orchestrator</h4><ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1"><li>Classe Agent com sistema de ferramentas e ciclo de vida</li><li>Orquestrador central com suporte a sessao</li><li>Sistema de memoria basico (working + long-term)</li><li>Integracao inicial com LLM (OpenAI-compatible)</li></ul></div></div>
+    <div class="glass rounded-xl p-5 flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-lg shrink-0 font-bold text-cyan-400">v0.1</div><div><h4 class="font-semibold">Fevereiro 2026 — Initial Commit</h4><ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1"><li>Estrutura inicial do projeto TypeScript</li><li>Configuracao de build (tsconfig, jest, babel)</li><li>README com visao geral da arquitetura</li><li>Dependencias base (openai, dotenv, puppeteer)</li></ul></div></div></div></div></section>
+    
+    <!-- ROADMAP -->
+    <section id="roadmap" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Roadmap</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="glass rounded-xl p-5 border-t-4 border-green-500"><div class="flex items-center gap-2 mb-3"><span class="text-green-400 text-lg">&#x2705;</span><h4 class="font-semibold">v1.1 — Client Desktop</h4></div><p class="text-sm text-gray-400 mb-3">Aplicacao Electron + React para desktop.</p><span class="text-xs text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">Em andamento</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-blue-500"><div class="flex items-center gap-2 mb-3"><span class="text-blue-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v1.2 — Plugin System</h4></div><p class="text-sm text-gray-400 mb-3">Arquitetura de plugins para ferramentas.</p><span class="text-xs text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full">Planejado</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-blue-500"><div class="flex items-center gap-2 mb-3"><span class="text-blue-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v1.3 — Multi-LLM</h4></div><p class="text-sm text-gray-400 mb-3">Suporte a multiplos provedores.</p><span class="text-xs text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full">Planejado</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-blue-500"><div class="flex items-center gap-2 mb-3"><span class="text-blue-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v1.4 — API Gateway</h4></div><p class="text-sm text-gray-400 mb-3">API REST documentada (OpenAPI).</p><span class="text-xs text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full">Planejado</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-purple-500"><div class="flex items-center gap-2 mb-3"><span class="text-purple-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v2.0 — Workflow Builder</h4></div><p class="text-sm text-gray-400 mb-3">Interface drag-and-drop visual.</p><span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full">Futuro</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-purple-500"><div class="flex items-center gap-2 mb-3"><span class="text-purple-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v2.1 — Mobile App</h4></div><p class="text-sm text-gray-400 mb-3">React Native para mobile.</p><span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full">Futuro</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-purple-500"><div class="flex items-center gap-2 mb-3"><span class="text-purple-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v2.2 — Marketplace</h4></div><p class="text-sm text-gray-400 mb-3">Compartilhar agentes e ferramentas.</p><span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full">Futuro</span></div>
+    <div class="glass rounded-xl p-5 border-t-4 border-purple-500"><div class="flex items-center gap-2 mb-3"><span class="text-purple-400 text-lg">&#x23F3;</span><h4 class="font-semibold">v2.3 — Enterprise SSO</h4></div><p class="text-sm text-gray-400 mb-3">Autenticacao corporativa e RBAC.</p><span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full">Futuro</span></div></div></div></section>
+    
+    <!-- IMPROVEMENTS -->
+    <section id="improvements" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Melhorias</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div><p class="text-gray-500 mt-4 text-lg">Sugestoes baseadas na analise estatica</p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+    <button onclick="sortImprovements('all')" class="sort-btn active px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-blue-500 transition-all">Todos</button>
+    <button onclick="sortImprovements('high')" class="sort-btn px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-red-500 transition-all">&#x1F534; Alta</button>
+    <button onclick="sortImprovements('medium')" class="sort-btn px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-yellow-500 transition-all">&#x1F7E1; Media</button>
+    <button onclick="sortImprovements('low')" class="sort-btn px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-green-500 transition-all">&#x1F7E2; Baixa</button></div></div>
+    <div id="improvements-list" class="space-y-6">
+    <div class="improvement-item high glass rounded-2xl p-6 border-l-4 border-red-500 hover:bg-white/5 transition-all" data-priority="high"><div class="flex items-start gap-4"><div class="text-2xl mt-0.5">&#x1F534;</div><div><div class="flex items-center gap-3 mb-2"><h3 class="text-lg font-bold">Testar modulo de Memoria SOTA</h3><span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-red-500/20 text-red-300">Alta Prioridade</span></div><p class="text-gray-400">14 arquivos (AttentionFilter, KnowledgeGraph, etc.) com <strong>zero testes</strong>. Modulo mais critico do sistema.</p></div></div></div>
+    <div class="improvement-item high glass rounded-2xl p-6 border-l-4 border-red-500 hover:bg-white/5 transition-all" data-priority="high"><div class="flex items-start gap-4"><div class="text-2xl mt-0.5">&#x1F534;</div><div><div class="flex items-center gap-3 mb-2"><h3 class="text-lg font-bold">Refatorar arquivos grandes</h3><span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-red-500/20 text-red-300">Alta Prioridade</span></div><p class="text-gray-400"><code class="text-blue-300">orchestrator.ts</code> (503 linhas) e <code class="text-blue-300">telegram.ts</code> (311 linhas) densos.</p></div></div></div>
+    <div class="improvement-item medium glass rounded-2xl p-6 border-l-4 border-yellow-500 hover:bg-white/5 transition-all" data-priority="medium"><div class="flex items-start gap-4"><div class="text-2xl mt-0.5">&#x1F7E1;</div><div><div class="flex items-center gap-3 mb-2"><h3 class="text-lg font-bold">Resolver divida tecnica</h3><span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-300">Media Prioridade</span></div><p class="text-gray-400">24 TODOs/FIXMEs em 13 arquivos.</p></div></div></div>
+    <div class="improvement-item medium glass rounded-2xl p-6 border-l-4 border-yellow-500 hover:bg-white/5 transition-all" data-priority="medium"><div class="flex items-start gap-4"><div class="text-2xl mt-0.5">&#x1F7E1;</div><div><div class="flex items-center gap-3 mb-2"><h3 class="text-lg font-bold">Adicionar JSDoc</h3><span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-300">Media Prioridade</span></div><p class="text-gray-400">Apenas 10% de comentarios no codigo.</p></div></div></div>
+    <div class="improvement-item low glass rounded-2xl p-6 border-l-4 border-green-500 hover:bg-white/5 transition-all" data-priority="low"><div class="flex items-start gap-4"><div class="text-2xl mt-0.5">&#x1F7E2;</div><div><div class="flex items-center gap-3 mb-2"><h3 class="text-lg font-bold">Modularizar diretorio raiz</h3><span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-green-500/20 text-green-300">Baixa Prioridade</span></div><p class="text-gray-400">12.370 linhas no raiz. Mover docs para docs/.</p></div></div></div></div></section>
+    
+    <!-- SECURITY -->
+    <section id="security" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Seguranca & Privacidade</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="grid md:grid-cols-3 gap-5">
+    <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all"><div class="text-3xl mb-3">&#x1F512;</div><h4 class="font-semibold mb-2">Criptografia</h4><p class="text-sm text-gray-400">Dados sensiveis criptografados em repouso. Chaves de API armazenadas em .env com dotenv.</p></div>
+    <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all"><div class="text-3xl mb-3">&#x1F6E1;&#xFE0F;</div><h4 class="font-semibold mb-2">API Key Management</h4><p class="text-sm text-gray-400">Chaves gerenciadas via variaveis de ambiente. Suporte a provedores OpenAI-compatible.</p></div>
+    <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all"><div class="text-3xl mb-3">&#x1F4DD;</div><h4 class="font-semibold mb-2">Audit Logging</h4><p class="text-sm text-gray-400">Todas as interacoes registradas em logs de auditoria. Telemetria em tempo real.</p></div>
+    <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all"><div class="text-3xl mb-3">&#x1F6AB;</div><h4 class="font-semibold mb-2">Isolamento de Dados</h4><p class="text-sm text-gray-400">Sessoes isoladas por sessionId. Dados de memoria particionados por usuario.</p></div>
+    <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all"><div class="text-3xl mb-3">&#x2699;&#xFE0F;</div><h4 class="font-semibold mb-2">Rate Limiting</h4><p class="text-sm text-gray-400">Protecao contra abuso no modulo Telegram. Limites configuráveis por usuario.</p></div>
+    <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all"><div class="text-3xl mb-3">&#x1F6A8;</div><h4 class="font-semibold mb-2">Validacao de Input</h4><p class="text-sm text-gray-400">Sanitizacao de entradas do usuario. Prevensao contra injection e comandos maliciosos.</p></div></div></div></section>
+    
+    <!-- CONTRIBUTING -->
+    <section id="contributing" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Contribuindo</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="grid md:grid-cols-2 gap-8">
+    <div class="glass rounded-2xl p-8"><h3 class="text-lg font-semibold mb-6">Workflow de Contribuicao</h3><div class="space-y-4">
+    <div class="flex items-start gap-4 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center text-sm font-bold text-blue-300 shrink-0">1</div><div><span class="font-medium">Fork & Clone</span><p class="text-xs text-gray-500">Fork o repositorio e clone localmente</p></div></div>
+    <div class="flex items-start gap-4 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-purple-500/15 flex items-center justify-center text-sm font-bold text-purple-300 shrink-0">2</div><div><span class="font-medium">Crie uma branch</span><p class="text-xs text-gray-500">git checkout -b feat/nome-da-feature</p></div></div>
+    <div class="flex items-start gap-4 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center text-sm font-bold text-pink-300 shrink-0">3</div><div><span class="font-medium">Commit</span><p class="text-xs text-gray-500">Conventional commits: feat:, fix:, docs:, test:</p></div></div>
+    <div class="flex items-start gap-4 p-3 rounded-xl bg-gray-800/40"><div class="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center text-sm font-bold text-green-300 shrink-0">4</div><div><span class="font-medium">PR</span><p class="text-xs text-gray-500">Abra Pull Request para branch main</p></div></div>
+    </div></div>
+    <div class="glass rounded-2xl p-8"><h3 class="text-lg font-semibold mb-6">Padroes de Codigo</h3><div class="space-y-3">
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><span class="text-lg">&#x1F4DD;</span><div><span class="font-medium">TypeScript estrito</span><p class="text-xs text-gray-500">strict mode no tsconfig</p></div></div>
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><span class="text-lg">&#x1F9EA;</span><div><span class="font-medium">Testes obrigatorios</span><p class="text-xs text-gray-500">Jest para modulos novos</p></div></div>
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><span class="text-lg">&#x1F4CB;</span><div><span class="font-medium">JSDoc em APIs publicas</span><p class="text-xs text-gray-500">Documentar classes e metodos</p></div></div>
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/40"><span class="text-lg">&#x1F504;</span><div><span class="font-medium">Conventional Commits</span><p class="text-xs text-gray-500">feat:/fix:/docs:/test:/refactor:</p></div></div>
+    </div>
+    <div class="mt-6 text-center"><span class="text-sm text-gray-500">Consulte <code class="text-blue-300">CONTRIBUTING.md</code> para mais detalhes</span></div></div></div></section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-purple-950/5 to-gray-950"></div>
+    <div class="relative max-w-4xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">FAQ</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div id="faq-list" class="space-y-3">
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(0)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">O que e o colabor-ai?</span><span id="fc0" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa0" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">Plataforma agentica multi-agente com arquitetura Planner-Worker e memoria SOTA.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Como difere do action4.me?</span><span id="fc1" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa1" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">colabor-ai e o sistema principal com memoria SOTA, 8 agentes e telemetria. action4.me e um fork experimental.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Esta pronto para producao?</span><span id="fc2" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa2" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">Core funcional com build zero erros. Recomendado para ambientes controlados. Cobertura de testes: 15.5%.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Como contribuir?</span><span id="fc3" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa3" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">Testes, refatoracao, documentacao. Use conventional commits e PR para main.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(4)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Quais LLMs sao suportados?</span><span id="fc4" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa4" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">OpenAI-compatible API. Multi-LLM no roadmap v1.3.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(5)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Como funciona a memoria?</span><span id="fc5" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa5" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">AttentionFilter, KnowledgeGraph, EmbeddingService, WorkingMemory com compressao e persistencia.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(6)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Quais ferramentas os agentes usam?</span><span id="fc6" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa6" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">browserExecTool, pythonExecTool, shellExecTool, task.tools, toolRegistry.</div></div></div>
+    <div class="glass rounded-xl overflow-hidden"><button onclick="toggleFaq(7)" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-all"><span class="font-semibold">Como executar localmente?</span><span id="fc7" class="text-gray-500 transition-transform">&#x25BC;</span></button><div id="fa7" class="faq-answer"><div class="px-6 pb-4 text-sm text-gray-400">Clone, configure .env, npm install, npm run dev. Veja secao Quickstart acima.</div></div></div></div></div></section>
+    
+    <!-- GLOSSARY -->
+    <section id="glossary" class="section-hidden max-w-6xl mx-auto px-6 py-20"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Glossario</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all"><h4 class="font-semibold text-blue-300 mb-1">Planner-Worker</h4><p class="text-sm text-gray-400">Padrao onde Planner decide o plano e Workers executam.</p></div>
+    <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all"><h4 class="font-semibold text-purple-300 mb-1">SOTA</h4><p class="text-sm text-gray-400">State of the Art — memoria com Attention, Knowledge Graph.</p></div>
+    <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all"><h4 class="font-semibold text-pink-300 mb-1">AgentRegistry</h4><p class="text-sm text-gray-400">Registro central que mapeia agentes.</p></div>
+    <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all"><h4 class="font-semibold text-green-300 mb-1">Stream de Eventos</h4><p class="text-sm text-gray-400">Canal em tempo real para progresso e resultados.</p></div>
+    <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all"><h4 class="font-semibold text-yellow-300 mb-1">Telemetry Dashboard</h4><p class="text-sm text-gray-400">Painel de tokens e performance.</p></div>
+    <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all"><h4 class="font-semibold text-cyan-300 mb-1">Orchestrator</h4><p class="text-sm text-gray-400">Componente central que coordena agentes e tarefas.</p></div></div>
+    <div class="mt-8 glass rounded-2xl p-6"><h4 class="font-semibold mb-4">Legenda de Cores</h4><div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-blue-500"></span> TypeScript</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-purple-500"></span> Core modules</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-green-500"></span> Agentes</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-red-500"></span> Alta prioridade</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-yellow-500"></span> Media prioridade</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-green-500"></span> Baixa prioridade</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-cyan-500"></span> Stream</div>
+    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-pink-500"></span> Memoria SOTA</div>
+    </div>
+    <div class="mt-4 flex items-center gap-4"><label class="text-sm text-gray-500" for="font-slider">Tamanho da Fonte:</label><input type="range" id="font-slider" min="80" max="130" value="100" class="w-32"><span id="font-label" class="text-xs text-gray-400">100%</span></div></div></section>
+    
+    <!-- CODE -->
+    <section id="code" class="section-hidden relative py-20"><div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6"><div class="text-center mb-16 section-glow"><h2 class="text-3xl md:text-5xl font-bold mb-4">Exemplo de Codigo</h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div></div>
+    <div class="glass rounded-2xl overflow-hidden">
+    <button onclick="toggleCodeSample()" class="w-full px-6 py-4 flex items-center justify-between bg-gray-800/30 hover:bg-gray-800/50 transition-all"><span class="font-semibold flex items-center gap-2"><span>&#x1F4C4;</span> Fluxo de orquestracao (TypeScript)</span><span id="code-chevron" class="text-gray-400 transition-transform">&#x25BC;</span></button>
+    <div id="code-sample-content" class="code-sample"><pre class="p-6 text-sm leading-relaxed text-gray-300 overflow-x-auto font-mono bg-gray-900/50">
+    <span class="text-gray-500">// Exemplo do fluxo de orquestracao no colabor-ai</span>
+    <span class="text-blue-300">import</span> { AgentRegistry } <span class="text-blue-300">from</span> <span class="text-green-300">'./agents/agent-registry'</span>;
+    <span class="text-blue-300">import</span> { Orchestrator } <span class="text-blue-300">from</span> <span class="text-green-300">'./orchestrator/orchestrator'</span>;
+    <span class="text-blue-300">const</span> registry = <span class="text-blue-300">new</span> AgentRegistry();
+    registry.register(plannerAgent);
+    registry.register(browserAgent);
+    registry.register(pythonAgent);
+    registry.register(answerAgent);
+    <span class="text-blue-300">const</span> orchestrator = <span class="text-blue-300">new</span> Orchestrator(registry);
+    <span class="text-blue-300">const</span> result = <span class="text-blue-300">await</span> orchestrator.run({
+        input: <span class="text-green-300">"Pesquise o clima em SP"</span>,
+        sessionId: <span class="text-green-300">"session_123"</span>,
+    });
+    eventStream.emit({ type: <span class="text-green-300">"response"</span>, content: result });</pre></div></div></div></section>
+    
+    <!-- FOOTER -->
+    <footer class="relative" role="contentinfo">
+    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/20 to-gray-950"></div>
+    <div class="relative max-w-6xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+    <div><span class="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">colabor-ai</span><span class="text-gray-600 mx-2">&bull;</span><span class="text-gray-500 text-sm">Multi-Agent Orchestration System v1.0.0</span></div>
+    <div class="text-gray-500 text-sm text-center">Gerado por <span class="text-blue-400">colabor-ai assistant</span><span class="hidden md:inline"> &bull; </span>Ultima atualizacao: <span class="text-purple-400" id="footer-date"></span></div></div>
+    <div class="mt-6 pt-6 border-t border-gray-800 text-center text-gray-600 text-xs"><p>TypeScript &bull; Node.js &bull; OpenAI &bull; Puppeteer &bull; Telegram &bull; Jest</p></div></div></footer>
+    
+    <!-- ==================== MAIN JAVASCRIPT ==================== -->
+    <script>
+    // === SKELETON LOADER ===
+    setTimeout(()=>{
+    const s=document.getElementById('skeleton-loader');
+    s.style.opacity='0';
+    setTimeout(()=>s.style.display='none',500);
+    },1500);
+    
+    // === THEME ===
+    function toggleTheme(){document.body.classList.toggle('light');const b=document.getElementById('theme-toggle');b.textContent=document.body.classList.contains('light')?'☀️':'🌙';localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark')}
+    if(localStorage.getItem('theme')==='light'){document.body.classList.add('light');document.getElementById('theme-toggle').textContent='☀️'}
+    
+    // === FONT SLIDER ===
+    const fs=document.getElementById('font-slider');
+    const fl=document.getElementById('font-label');
+    fs.addEventListener('input',()=>{
+    const v=fs.value+'%';
+    fl.textContent=v;
+    document.body.style.fontSize=v;
+    localStorage.setItem('fontSize',fs.value);
+    });
+    const savedFs=localStorage.getItem('fontSize');
+    if(savedFs){fs.value=savedFs;fl.textContent=savedFs+'%';document.body.style.fontSize=savedFs+'%';}
+    
+    // === PARTICLES ===
+    const pc=document.getElementById('particle-canvas');
+    const px=pc.getContext('2d');
+    let pts=[];
+    function rs(){pc.width=pc.parentElement.offsetWidth;pc.height=pc.parentElement.offsetHeight}
+    rs();window.addEventListener('resize',rs);
+    for(let i=0;i<50;i++){pts.push({x:Math.random()*pc.width,y:Math.random()*pc.height,r:Math.random()*2+1,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,o:Math.random()*0.5+0.1})}
+    function ap(){px.clearRect(0,0,pc.width,pc.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>pc.width)p.vx*=-1;if(p.y<0||p.y>pc.height)p.vy*=-1;px.beginPath();px.arc(p.x,p.y,p.r,0,Math.PI*2);px.fillStyle=`rgba(59,130,246,${p.o})`;px.fill()});requestAnimationFrame(ap)}
+    ap();
+    
+    // === AGENTS ===
+    const agents=[
+    {id:'planner',icon:'🧠',color:'blue',name:'plannerAgent',role:'Orquestrador central. Decide qual worker chamar.',tags:['Raciocinio','Decisao'],tools:'Planner-Worker, AgentRegistry, task decomposition',config:'model: deepseek-v4-flash, maxSteps: 10'},
+    {id:'browser',icon:'🌐',color:'green',name:'browserAgent',role:'Navegacao web headless com Puppeteer.',tags:['Puppeteer','Scraping'],tools:'browserExecTool (navigate, click, extract)',config:'headless: true, timeout: 30000'},
+    {id:'python',icon:'🐍',color:'yellow',name:'pythonAgent',role:'Executa codigo Python.',tags:['Python','Data'],tools:'pythonExecTool (run code, install packages)',config:'timeout: 60000'},
+    {id:'shell',icon:'💻',color:'gray',name:'shellAgent',role:'Executa comandos shell.',tags:['Shell','Sistema'],tools:'shellExecTool (run command)',config:'workdir: /tmp'},
+    {id:'answer',icon:'💡',color:'purple',name:'answerAgent',role:'Consolida respostas parciais.',tags:['Sintese','Final'],tools:'ContextEngine, Memory, Stream',config:'temperature: 0.3'},
+    {id:'reflector',icon:'🪞',color:'pink',name:'reflectorAgent',role:'Valida qualidade e sugere correcoes.',tags:['Revisao','Qualidade'],tools:'Quality validation, feedback loop',config:'maxIterations: 3'},
+    {id:'assistant',icon:'🤝',color:'cyan',name:'assistantAgent',role:'Suporte geral e conversa.',tags:['Chat','Suporte'],tools:'openai chat, context lookup',config:'temperature: 0.7'},
+    {id:'task-manager',icon:'📋',color:'orange',name:'taskManagerAgent',role:'Gerencia tarefas longas.',tags:['Tarefas','Progresso'],tools:'Task queue, progress tracker',config:'maxConcurrent: 5'}
+    ];
+    const ag=document.getElementById('agent-grid');
+    agents.forEach(a=>{
+    const card=document.createElement('div');
+    card.className=`agent-card glass rounded-xl p-5 border-t-4 border-${a.color}-500`;
+    card.innerHTML=`<div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 rounded-lg bg-${a.color}-500/15 flex items-center justify-center text-xl">${a.icon}</div><div><h4 class="font-semibold">${a.name}</h4><span class="text-xs text-gray-500">core/agents/</span></div></div><p class="text-sm text-gray-400 mb-3">${a.role}</p><div class="flex flex-wrap gap-1.5">${a.tags.map(t=>`<span class="px-2 py-0.5 text-xs rounded bg-${a.color}-500/10 text-${a.color}-300">${t}</span>`).join('')}</div><button onclick='document.getElementById("tip-${a.id}").classList.toggle("open");document.getElementById("ch-${a.id}").style.transform=document.getElementById("tip-${a.id}").classList.contains("open")?"rotate(180deg)":""' class="mt-3 text-xs text-blue-400 hover:text-blue-300 transition-all flex items-center gap-1">&#x1F4CB; Detalhes <span id="ch-${a.id}" class="transition-transform">&#x25BC;</span></button><div id="tip-${a.id}" class="code-sample mt-2"><div class="p-3 rounded-xl bg-gray-800/40 text-xs text-gray-400"><strong class="text-blue-300">Ferramentas:</strong> ${a.tools}<br><strong class="text-purple-300">Config:</strong> <code class="font-mono text-gray-500">${a.config}</code></div></div>`;
+    ag.appendChild(card);
+    });
+    
+    // === COUNTERS ===
+    const cobs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target;const t=parseInt(el.dataset.target);const s=performance.now();function u(p){const pr=Math.min((p-s)/2000,1);el.textContent=Math.floor(pr*t).toLocaleString('pt-BR');if(pr<1)requestAnimationFrame(u)}requestAnimationFrame(u);cobs.unobserve(el)}})},{threshold:0.3});
+    document.querySelectorAll('.counter').forEach(el=>cobs.observe(el));
+    
+    // === NAV ===
+    const nl=document.querySelectorAll('.nav-link');
+    const ss=document.querySelectorAll('section[id]');
+    window.addEventListener('scroll',()=>{
+    let cur='';ss.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});nl.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+    document.querySelectorAll('.pt-item').forEach(pt=>{const sc=pt.dataset.section;if(sc&&document.getElementById(sc))pt.classList.toggle('done',window.scrollY>=document.getElementById(sc).offsetTop-200)});
+    document.getElementById('float-nav').classList.toggle('show',window.scrollY>400);
+    document.getElementById('scroll-top').classList.toggle('show',window.scrollY>300);
+    });
+    
+    function toggleFloatMenu(){const m=document.getElementById('float-menu');const i=document.getElementById('float-icon');m.classList.toggle('hidden');i.textContent=m.classList.contains('hidden')?'⚡':'✕'}
+    function closeFloatMenu(){document.getElementById('float-menu').classList.add('hidden');document.getElementById('float-icon').textContent='⚡'}
+    let codeOpen=false;
+    function toggleCodeSample(){codeOpen=!codeOpen;document.getElementById('code-sample-content').classList.toggle('open',codeOpen);document.getElementById('code-chevron').style.transform=codeOpen?'rotate(180deg)':''}
+    function sortImprovements(p){document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.sort-btn').forEach(b=>{if(b.textContent.includes(p==='all'?'Todos':p)||(p==='all'&&b.textContent.includes('All')))b.classList.add('active')});document.querySelectorAll('.improvement-item').forEach(i=>{i.style.display=(p==='all'||i.dataset.priority===p)?'':'none'})}
+    function openFlowModal(){document.getElementById('flow-modal').classList.add('active')}
+    function closeFlowModal(){document.getElementById('flow-modal').classList.remove('active')}
+    function toggleFaq(i){const a=document.getElementById('fa'+i);const c=document.getElementById('fc'+i);a.classList.toggle('open');c.style.transform=a.classList.contains('open')?'rotate(180deg)':''}
+    
+    // === PRESENTATION ===
+    let psi=0;const pss=['hero','overview','architecture','flow','agents','stack','stats','timeline','roadmap','improvements'];let pInt=null;
+    function startPresentation(){document.getElementById('presentation-overlay').classList.add('active');psi=0;rp();if(pInt)clearInterval(pInt);pInt=setInterval(ns,8000);document.addEventListener('keydown',pk)}
+    function exitPresentation(){document.getElementById('presentation-overlay').classList.remove('active');if(pInt)clearInterval(pInt);document.removeEventListener('keydown',pk)}
+    function rp(){const s=document.getElementById('pres-slides');const sec=document.getElementById(pss[psi]);if(!sec)return;const c=sec.cloneNode(true);c.classList.remove('section-hidden');c.style.opacity='1';c.style.transform='none';s.innerHTML='';const w=document.createElement('div');w.className='presentation-slide';w.appendChild(c);s.appendChild(w);document.getElementById('pres-counter').textContent=`${psi+1}/${pss.length}`;const d=document.getElementById('pres-dots');d.innerHTML='';pss.forEach((_,i)=>{const x=document.createElement('span');x.className=`w-2 h-2 rounded-full mx-1 ${i===psi?'bg-blue-400':'bg-gray-600'}`;d.appendChild(x)})}
+    function ns(){psi=(psi+1)%pss.length;rp()}
+    function ps_(){psi=(psi-1+pss.length)%pss.length;rp()}
+    function pk(e){if(e.key==='ArrowRight')ns();if(e.key==='ArrowLeft')ps_();if(e.key==='Escape')exitPresentation()}
+    
+    // === SHARE ===
+    function sharePage(){navigator.clipboard.writeText(window.location.href).then(()=>st('Link copiado!')).catch(()=>st('Link: '+window.location.href))}
+    function st(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
+    
+    // === EXPORT ===
+    function exportPage(){const w=window.open('','_blank');const bg=document.body.classList.contains('light')?'#f8fafc':'#0f172a';const tx=document.body.classList.contains('light')?'#0f172a':'#f1f5f9';w.document.write(`<!DOCTYPE html><html><head><title>colabor-ai Export</title><style>body{font-family:Inter,sans-serif;background:${bg};color:${tx};padding:2rem;max-width:800px;margin:auto}h1{font-size:2rem}h2{margin-top:2rem;border-bottom:1px solid #333}</style></head><body><h1>colabor-ai</h1><p>Multi-Agent Orchestration System v1.0.0</p><h2>Overview</h2><p>Plataforma agentica Planner-Worker, 8 agentes, memoria SOTA.</p><h2>Statistics</h2><p>98 files, 42,804 lines, 30,896 LOC, 9 tests, 24 TODOs</p><h2>Dependencies</h2><p>openai, puppeteer, telegram, axios, tsx, dotenv<br>Dev: typescript, jest, babel</p><h2>Improvements</h2><p>1. Test Memory SOTA<br>2. Refactor orchestrator.ts<br>3. Resolve 24 TODOs<br>4. Add JSDoc<br>5. Modularize root</p><footer style="margin-top:2rem;text-align:center;color:#666">Generated by colabor-ai assistant</footer></body></html>`);w.document.close()}
+    
+    // === KEYBOARD ===
+    document.addEventListener('keydown',e=>{
+    if(e.key==='?'){document.getElementById('shortcuts-modal').classList.toggle('active')}
+    if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));exitPresentation()}
+    if(e.key==='t'||e.key==='T')toggleTheme();
+    if(e.key==='p'||e.key==='P'){if(document.getElementById('presentation-overlay').classList.contains('active'))exitPresentation();else startPresentation()}
+    });
+    function closeShortcuts(){document.getElementById('shortcuts-modal').classList.remove('active')}
+    
+    // === SECTION OBSERVER ===
+    new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('section-visible')}})},{threshold:0.1}).observe(document.querySelectorAll('.section-hidden'))
+    
+    // === PROGRESS BARS ===
+    new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.progress-fill').forEach(bar=>{const w=bar.style.width;bar.style.width='0';setTimeout(()=>bar.style.width=w,200)})}}})},{threshold:0.2}).observe(document.querySelectorAll('.progress-item'))
+    
+    // === CURSOR TRAIL ===
+    document.addEventListener('mousemove',function(e){const t=document.getElementById('cursor-trail');const d=document.createElement('div');d.className='cursor-dot';d.style.left=e.pageX+'px';d.style.top=e.pageY+'px';t.appendChild(d);setTimeout(()=>{d.style.opacity='0';setTimeout(()=>d.remove(),500)},200)})
+    
+    // === CONFETTI ===
+    let confettiFired=false;
+    window.addEventListener('scroll',()=>{
+    if(confettiFired)return;
+    const last=document.getElementById('glossary');
+    if(last&&window.scrollY+window.innerHeight>=last.offsetTop+last.offsetHeight-100){
+    confettiFired=true;
+    const c=document.getElementById('confetti-canvas');
+    const cx=c.getContext('2d');
+    c.width=window.innerWidth;c.height=window.innerHeight;
+    const pieces=[];
+    for(let i=0;i<150;i++){pieces.push({x:Math.random()*c.width,y:-20,r:Math.random()*6+3,vx:(Math.random()-0.5)*4,vy:Math.random()*4+2,color:`hsl(${Math.random()*360},70%,60%)`,rot:Math.random()*360})}
+    function drawConfetti(){
+    cx.clearRect(0,0,c.width,c.height);
+    let alive=false;
+    pieces.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.rot+=2;
+    if(p.y<c.height+20){alive=true;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot*Math.PI/180);cx.fillStyle=p.color;cx.fillRect(-p.r/2,-p.r/2,p.r,p.r);cx.restore()}
+    });
+    if(alive)requestAnimationFrame(drawConfetti);
+    else{cx.clearRect(0,0,c.width,c.height);c.width=0;c.height=0}
+    }
+    drawConfetti();
+    }},{passive:true});
+    
+    // === FOOTER DATE ===
+    document.getElementById('footer-date').textContent=new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('hero-updated').textContent='Atualizado em '+new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+    </script>
+    </body>
+    </html>

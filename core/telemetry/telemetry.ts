@@ -112,6 +112,8 @@
       totalCompletionTokens: number;
       /** Total de tokens */
       totalTokens: number;
+      /** Maximo de tokens de prompt em uma unica chamada (janela de contexto) */
+      maxContextWindowTokens: number;
       /** Media de tokens por chamada LLM */
       avgTokensPerLLMCall: number;
       /** Custo estimado (USD) - default Deepseek: $0.27/M prompt, $1.10/M completion */
@@ -235,6 +237,9 @@
         const totalPromptTokens = this.llmCalls.reduce((s, c) => s + c.promptTokens, 0);
         const totalCompletionTokens = this.llmCalls.reduce((s, c) => s + c.completionTokens, 0);
         const totalTokens = totalPromptTokens + totalCompletionTokens;
+        const maxContextWindowTokens = this.llmCalls.length > 0
+          ? Math.max(...this.llmCalls.map((c) => c.promptTokens))
+          : 0;
     
         // Custo estimado
         const promptCost = (totalPromptTokens / 1_000_000) * DEEPSEEK_PRICES.prompt;
@@ -269,6 +274,7 @@
           totalPromptTokens,
           totalCompletionTokens,
           totalTokens,
+          maxContextWindowTokens,
           avgTokensPerLLMCall: totalLLMCalls > 0 ? Math.round(totalTokens / totalLLMCalls) : 0,
           estimatedCostUSD: Math.round((promptCost + completionCost) * 10000) / 10000,
     
@@ -307,7 +313,7 @@
         lines.push(`  Chamadas LLM:        ${r.totalLLMCalls}`);
         lines.push(`  Tokens de prompt:    ${r.totalPromptTokens.toLocaleString()}`);
         lines.push(`  Tokens de completion:${r.totalCompletionTokens.toLocaleString()}`);
-        lines.push(`  Total de tokens:     ${r.totalTokens.toLocaleString()}`);
+        lines.push(`  Max janela contexto:${r.maxContextWindowTokens.toLocaleString()}`);
         lines.push(`  Media tokens/chamada:${r.avgTokensPerLLMCall.toLocaleString()}`);
         lines.push(`  Custo estimado:      $${r.estimatedCostUSD.toFixed(4)}`);
         lines.push("");

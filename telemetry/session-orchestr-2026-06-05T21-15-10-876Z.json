@@ -1,0 +1,289 @@
+{
+  "sessionId": "orchestrator_1780693862883_kz5638",
+  "userInput": "Faça uma nova análise em toda base de código da colabor-ai",
+  "startedAt": "2026-06-05T21:13:16.284Z",
+  "finishedAt": "2026-06-05T21:15:10.876Z",
+  "totalDuration": 114592,
+  "totalLLMCalls": 11,
+  "totalPromptTokens": 102820,
+  "totalCompletionTokens": 13417,
+  "totalTokens": 116237,
+  "maxContextWindowTokens": 21022,
+  "avgTokensPerLLMCall": 10567,
+  "estimatedCostUSD": 0.0425,
+  "totalAgentCalls": 7,
+  "agentCallBreakdown": {
+    "PlannerAgent": 3,
+    "PythonAgent": 1,
+    "ReflectorAgent": 2,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 7,
+  "totalToolCalls": 4,
+  "toolCallBreakdown": {
+    "memory_search": 1,
+    "execute_python": 3
+  },
+  "totalSteps": 3,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693996304,
+      "duration": 12901,
+      "promptTokens": 10238,
+      "completionTokens": 1135,
+      "totalTokens": 11373,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694009211,
+      "duration": 1821,
+      "promptTokens": 5003,
+      "completionTokens": 122,
+      "totalTokens": 5125,
+      "historyLength": 2,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694009211,
+      "duration": 4836,
+      "promptTokens": 5414,
+      "completionTokens": 197,
+      "totalTokens": 5611,
+      "historyLength": 4,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694009211,
+      "duration": 34039,
+      "promptTokens": 5697,
+      "completionTokens": 4163,
+      "totalTokens": 9860,
+      "historyLength": 6,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694009211,
+      "duration": 62284,
+      "promptTokens": 9974,
+      "completionTokens": 4359,
+      "totalTokens": 14333,
+      "historyLength": 8,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694009211,
+      "duration": 76194,
+      "promptTokens": 21022,
+      "completionTokens": 1523,
+      "totalTokens": 22545,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780694086025,
+      "duration": 1779,
+      "promptTokens": 3873,
+      "completionTokens": 99,
+      "totalTokens": 3972,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694087807,
+      "duration": 3989,
+      "promptTokens": 14190,
+      "completionTokens": 267,
+      "totalTokens": 14457,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694091798,
+      "duration": 13139,
+      "promptTokens": 4496,
+      "completionTokens": 1226,
+      "totalTokens": 5722,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780694105567,
+      "duration": 1869,
+      "promptTokens": 4402,
+      "completionTokens": 89,
+      "totalTokens": 4491,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780694107439,
+      "duration": 3436,
+      "promptTokens": 18511,
+      "completionTokens": 237,
+      "totalTokens": 18748,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual del",
+      "startTime": 1780693996304,
+      "duration": 12904,
+      "success": true,
+      "responseLength": 1390,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual del",
+      "startTime": 1780694009211,
+      "duration": 76813,
+      "success": true,
+      "responseLength": 4671,
+      "llmCallsCount": 5
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Write and",
+      "startTime": 1780694086025,
+      "duration": 1780,
+      "success": true,
+      "responseLength": 376,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual del",
+      "startTime": 1780694087807,
+      "duration": 3989,
+      "success": true,
+      "responseLength": 435,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual del",
+      "startTime": 1780694091798,
+      "duration": 13768,
+      "success": true,
+      "responseLength": 1901,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    Agent used: WriterAgent\n\n\n\n    Instruction given: Transform",
+      "startTime": 1780694105567,
+      "duration": 1869,
+      "success": true,
+      "responseLength": 365,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Faça uma nova análise em toda base de código da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Ótimo\nassistant: Fico feliz que curtiu as opções! 😊\n\nQual del",
+      "startTime": 1780694107439,
+      "duration": 3436,
+      "success": true,
+      "responseLength": 164,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Write and execute a Python script that performs a comprehensive analysis of the colabor-ai codebase. Assume the project is located at `C:\\Developer\\colabor-ai`. The script should:\n\n1. Traverse the ent",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780694009209
+    },
+    {
+      "instruction": "Transform the PythonAgent's analysis report into a clean, user-friendly final response for the user. Keep all key data (98 files, 42,804 lines, 9 test files, 24 TODOs, suggestions). Format it nicely f",
+      "chosenAgent": "WriterAgent",
+      "step": 2,
+      "timestamp": 1780694091797
+    },
+    {
+      "instruction": "A análise completa foi executada e o relatório final foi entregue pelo WriterAgent. Nenhuma ação adicional é necessária.",
+      "chosenAgent": "finish",
+      "step": 3,
+      "timestamp": 1780694110875
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780694011726,
+      "hasError": false,
+      "duration": 2516
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780694015496,
+      "hasError": false,
+      "duration": 6285
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780694044094,
+      "hasError": false,
+      "duration": 34883
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780694072437,
+      "hasError": false,
+      "duration": 63226
+    }
+  ]
+}

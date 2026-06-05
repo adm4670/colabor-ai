@@ -1,0 +1,587 @@
+{
+  "sessionId": "orchestrator_1780690574996_2uebt5",
+  "userInput": "Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a aplicação, exemplo quando executar o npm run dev ficar quase que um dashboard no console mostrando o problema do usuário total de tokens de entrada e saída para responder aquela pergunta máximo número de tokens na janela de contexto, número de Agents utilizados tudo isso atualizando em realtime",
+  "startedAt": "2026-06-05T20:53:25.433Z",
+  "finishedAt": "2026-06-05T20:56:42.726Z",
+  "totalDuration": 197293,
+  "totalLLMCalls": 26,
+  "totalPromptTokens": 2878124,
+  "totalCompletionTokens": 15429,
+  "totalTokens": 2893553,
+  "avgTokensPerLLMCall": 111291,
+  "estimatedCostUSD": 0.7941,
+  "totalAgentCalls": 7,
+  "agentCallBreakdown": {
+    "PlannerAgent": 3,
+    "PythonAgent": 1,
+    "ReflectorAgent": 2,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 7,
+  "totalToolCalls": 19,
+  "toolCallBreakdown": {
+    "execute_python": 19
+  },
+  "totalSteps": 3,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692805485,
+      "duration": 15430,
+      "promptTokens": 69952,
+      "completionTokens": 1084,
+      "totalTokens": 71036,
+      "historyLength": 30,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 7399,
+      "promptTokens": 116885,
+      "completionTokens": 634,
+      "totalTokens": 117519,
+      "historyLength": 58,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 11132,
+      "promptTokens": 118792,
+      "completionTokens": 195,
+      "totalTokens": 118987,
+      "historyLength": 60,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 16406,
+      "promptTokens": 119050,
+      "completionTokens": 255,
+      "totalTokens": 119305,
+      "historyLength": 62,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 20757,
+      "promptTokens": 120415,
+      "completionTokens": 226,
+      "totalTokens": 120641,
+      "historyLength": 64,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 52516,
+      "promptTokens": 121709,
+      "completionTokens": 3495,
+      "totalTokens": 125204,
+      "historyLength": 66,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 80815,
+      "promptTokens": 125258,
+      "completionTokens": 3959,
+      "totalTokens": 129217,
+      "historyLength": 68,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 86659,
+      "promptTokens": 129318,
+      "completionTokens": 254,
+      "totalTokens": 129572,
+      "historyLength": 70,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 90845,
+      "promptTokens": 129626,
+      "completionTokens": 204,
+      "totalTokens": 129830,
+      "historyLength": 72,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 7
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 95370,
+      "promptTokens": 132299,
+      "completionTokens": 217,
+      "totalTokens": 132516,
+      "historyLength": 74,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 8
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 105108,
+      "promptTokens": 133556,
+      "completionTokens": 797,
+      "totalTokens": 134353,
+      "historyLength": 76,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 9
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 110959,
+      "promptTokens": 134421,
+      "completionTokens": 283,
+      "totalTokens": 134704,
+      "historyLength": 78,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 10
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 116215,
+      "promptTokens": 135121,
+      "completionTokens": 284,
+      "totalTokens": 135405,
+      "historyLength": 80,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 11
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 120743,
+      "promptTokens": 135572,
+      "completionTokens": 270,
+      "totalTokens": 135842,
+      "historyLength": 82,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 12
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 128525,
+      "promptTokens": 136150,
+      "completionTokens": 504,
+      "totalTokens": 136654,
+      "historyLength": 84,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 13
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 134397,
+      "promptTokens": 136725,
+      "completionTokens": 294,
+      "totalTokens": 137019,
+      "historyLength": 86,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 14
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 138614,
+      "promptTokens": 137124,
+      "completionTokens": 200,
+      "totalTokens": 137324,
+      "historyLength": 88,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 15
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 143159,
+      "promptTokens": 137439,
+      "completionTokens": 265,
+      "totalTokens": 137704,
+      "historyLength": 90,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 16
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 147085,
+      "promptTokens": 137762,
+      "completionTokens": 201,
+      "totalTokens": 137963,
+      "historyLength": 92,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 17
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 154021,
+      "promptTokens": 138081,
+      "completionTokens": 232,
+      "totalTokens": 138313,
+      "historyLength": 94,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 18
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692820918,
+      "duration": 161847,
+      "promptTokens": 138405,
+      "completionTokens": 507,
+      "totalTokens": 138912,
+      "historyLength": 96,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 19
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780692982767,
+      "duration": 1692,
+      "promptTokens": 7178,
+      "completionTokens": 64,
+      "totalTokens": 7242,
+      "historyLength": 20,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692984461,
+      "duration": 5848,
+      "promptTokens": 76869,
+      "completionTokens": 306,
+      "totalTokens": 77175,
+      "historyLength": 32,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692990312,
+      "duration": 4586,
+      "promptTokens": 18911,
+      "completionTokens": 355,
+      "totalTokens": 19266,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780692995542,
+      "duration": 1721,
+      "promptTokens": 7730,
+      "completionTokens": 75,
+      "totalTokens": 7805,
+      "historyLength": 22,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780692997265,
+      "duration": 5458,
+      "promptTokens": 83776,
+      "completionTokens": 269,
+      "totalTokens": 84045,
+      "historyLength": 34,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a aplicação, exemplo quando executar o npm run dev",
+      "startTime": 1780692805485,
+      "duration": 15431,
+      "success": true,
+      "responseLength": 2051,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a aplicação, exemplo quando executar o npm run dev",
+      "startTime": 1780692820918,
+      "duration": 161848,
+      "success": true,
+      "responseLength": 1739,
+      "llmCallsCount": 20
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a ap",
+      "startTime": 1780692982767,
+      "duration": 1692,
+      "success": true,
+      "responseLength": 243,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a aplicação, exemplo quando executar o npm run dev",
+      "startTime": 1780692984461,
+      "duration": 5848,
+      "success": true,
+      "responseLength": 798,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a aplicação, exemplo quando executar o npm run dev",
+      "startTime": 1780692990312,
+      "duration": 5229,
+      "success": true,
+      "responseLength": 829,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a ap",
+      "startTime": 1780692995542,
+      "duration": 1721,
+      "success": true,
+      "responseLength": 286,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Ajuste o código para colocar toda informação de telemetria e observabilidade em real time no console que está executando a aplicação, exemplo quando executar o npm run dev",
+      "startTime": 1780692997265,
+      "duration": 5459,
+      "success": true,
+      "responseLength": 152,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Implement a real-time dashboard for telemetry and observability in the console for the colabor-ai project. Follow these steps:\n\n1. **Read the existing telemetry code**: Navigate to 'C:\\Developer\\colab",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780692820917
+    },
+    {
+      "instruction": "Comunique ao usuário que o dashboard de telemetria em tempo real foi implementado com sucesso. Detalhe: foi criado o arquivo 'core/telemetry/console-dashboard.ts' com um dashboard ANSI sem dependência",
+      "chosenAgent": "WriterAgent",
+      "step": 2,
+      "timestamp": 1780692990310
+    },
+    {
+      "instruction": "Dashboard de telemetria implementado com sucesso. Aguardando resposta do usuário sobre build, commit e push.",
+      "chosenAgent": "finish",
+      "step": 3,
+      "timestamp": 1780693002725
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692829125,
+      "hasError": false,
+      "duration": 8207
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692832885,
+      "hasError": false,
+      "duration": 11967
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692838145,
+      "hasError": false,
+      "duration": 17227
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692842594,
+      "hasError": false,
+      "duration": 21676
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692874258,
+      "hasError": false,
+      "duration": 53340
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692902569,
+      "hasError": false,
+      "duration": 81651
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692908392,
+      "hasError": false,
+      "duration": 87474
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692912274,
+      "hasError": false,
+      "duration": 91356
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692917105,
+      "hasError": false,
+      "duration": 96187
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692926835,
+      "hasError": false,
+      "duration": 105917
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692932714,
+      "hasError": false,
+      "duration": 111796
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692937972,
+      "hasError": false,
+      "duration": 117054
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692942477,
+      "hasError": false,
+      "duration": 121559
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692950243,
+      "hasError": false,
+      "duration": 129325
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692955479,
+      "hasError": false,
+      "duration": 134561
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692960338,
+      "hasError": false,
+      "duration": 139420
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692964875,
+      "hasError": false,
+      "duration": 143957
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692970322,
+      "hasError": false,
+      "duration": 149404
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780692975938,
+      "hasError": false,
+      "duration": 155020
+    }
+  ]
+}

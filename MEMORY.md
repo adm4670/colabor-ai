@@ -127,3 +127,24 @@
 
 ## Preferencias
 - [2026-06-05] ajustar algo (cor, fonte, adicionar seção), é só falar
+
+## Fatos
+- [2026-06-05] uma análise profunda de produtividade semanal
+- [2026-06-05] comprar pão" → 200 tokens (só memória recente)
+
+## Decisoes
+- [2026-06-05] qual agente acionar
+
+## Aprendizados
+- [2026-06-05] **Hoje:** O ReflectorAgent dá feedback sobre a qualidade da resposta, mas esse feedback não realimenta o sistema
+- [2026-06-05] **Ideia:** Interações bem-sucedidas viram **dados de fine-tuning** para melhorar o comportamento do sistema como um todo
+- [2026-06-05] Quer que eu explore **alguma dessas melhorias em específico** com mais profundidade — como implementar o roteamento preditivo ou o cache semântico, por exemplo?
+
+## Preferencias
+- [2026-06-05] revisar a seção REVIEW primeiro para garantir que nada importante seja perdido?
+
+## Preferencias
+- [2026-06-05] seguir com uma das opções que listei antes?
+
+## Preferencias
+- [2026-06-05] um caminho diferente?

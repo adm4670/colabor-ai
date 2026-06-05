@@ -1,0 +1,131 @@
+{
+  "sessionId": "orchestrator_1780693051606_dp2z9n",
+  "userInput": "Excelente quais melhorias de inteligência seria possível fazer na arquitetura?",
+  "startedAt": "2026-06-05T21:02:19.896Z",
+  "finishedAt": "2026-06-05T21:02:58.379Z",
+  "totalDuration": 38483,
+  "totalLLMCalls": 4,
+  "totalPromptTokens": 65185,
+  "totalCompletionTokens": 2552,
+  "totalTokens": 67737,
+  "avgTokensPerLLMCall": 16934,
+  "estimatedCostUSD": 0.0204,
+  "totalAgentCalls": 4,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 4,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693339924,
+      "duration": 10592,
+      "promptTokens": 23911,
+      "completionTokens": 682,
+      "totalTokens": 24593,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693350520,
+      "duration": 22920,
+      "promptTokens": 7717,
+      "completionTokens": 1684,
+      "totalTokens": 9401,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780693374118,
+      "duration": 1624,
+      "promptTokens": 4215,
+      "completionTokens": 71,
+      "totalTokens": 4286,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780693375745,
+      "duration": 2631,
+      "promptTokens": 29342,
+      "completionTokens": 115,
+      "totalTokens": 29457,
+      "historyLength": 18,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Excelente quais melhorias de inteligência seria possível fazer na arquitetura?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver por aqui",
+      "startTime": 1780693339924,
+      "duration": 10593,
+      "success": true,
+      "responseLength": 1430,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Excelente quais melhorias de inteligência seria possível fazer na arquitetura?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver por aqui",
+      "startTime": 1780693350520,
+      "duration": 23597,
+      "success": true,
+      "responseLength": 5652,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Excelente quais melhorias de inteligência seria possível fazer na arquitetura?\n\n\n\n    Agent used: assistant\n\n\n\n    Instructio",
+      "startTime": 1780693374118,
+      "duration": 1624,
+      "success": true,
+      "responseLength": 264,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Excelente quais melhorias de inteligência seria possível fazer na arquitetura?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋 Bom te ver por aqui",
+      "startTime": 1780693375745,
+      "duration": 2632,
+      "success": true,
+      "responseLength": 264,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Answer the user's question about intelligence improvements for the colabor-ai architecture. Provide a detailed, thoughtful analysis in Portuguese covering:\n\n1. **Roteamento Preditivo de Agentes** — su",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780693350518
+    },
+    {
+      "instruction": "The assistant already provided a comprehensive and well-structured answer about intelligence improvements for the architecture, covering 8 specific enhancements with examples and a priority map. No fu",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780693378378
+    }
+  ],
+  "toolCalls": []
+}

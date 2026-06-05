@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>colabor-ai — Multi-Agent Orchestration System</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: { mono: ['JetBrains Mono', 'monospace'], sans: ['Inter', 'sans-serif'] },
+                        animation: {
+                            'fade-in': 'fadeIn 0.7s ease-out forwards',
+                            'slide-up': 'slideUp 0.7s ease-out forwards',
+                            'slide-down': 'slideDown 0.4s ease-out forwards',
+                            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                            'glow': 'glow 3s ease-in-out infinite alternate',
+                            'float': 'float 6s ease-in-out infinite',
+                            'spin-slow': 'spin 8s linear infinite',
+                            'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+                        },
+                        keyframes: {
+                            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                            slideUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                            slideDown: { '0%': { opacity: '0', transform: 'translateY(-20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                            glow: { '0%': { boxShadow: '0 0 20px rgba(59,130,246,0.1)' }, '100%': { boxShadow: '0 0 40px rgba(147,51,234,0.3)' } },
+                            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                            bounceGentle: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-5px)' } },
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            * { font-family: 'Inter', sans-serif; }
+            code, pre, .font-mono { font-family: 'JetBrains Mono', monospace !important; }
+            html { scroll-behavior: smooth; }
+            body { transition: background-color 0.3s, color 0.3s; }
+    
+            /* Light theme */
+            body.light { --bg: #f8fafc; --bg-card: #ffffff; --text: #0f172a; --text-sec: #475569; --border: rgba(0,0,0,0.08); }
+            body:not(.light) { --bg: transparent; --bg-card: transparent; --text: inherit; --text-sec: inherit; --border: rgba(255,255,255,0.06); }
+    
+            .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s; }
+            body.light .glass { background: rgba(255,255,255,0.8); border-color: rgba(0,0,0,0.08); }
+            .glass:hover { border-color: rgba(59,130,246,0.3); }
+    
+            /* Agent cards */
+            .agent-card { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+            .agent-card:hover { transform: translateY(-6px) scale(1.01); }
+    
+            /* Flow diagram arrows */
+            .flow-arrow::after { content: '\2193'; display: block; text-align: center; font-size: 1.5rem; color: #6366f1; margin: 4px 0; }
+    
+            /* Timeline */
+            .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #a855f7); }
+            @media (max-width: 768px) { .timeline-line { left: 20px; } }
+    
+            /* Sortable improvements */
+            .sort-btn.active { background: rgba(59,130,246,0.2); border-color: #3b82f6; }
+    
+            /* Navigation link active */
+            .nav-link.active { color: #60a5fa; border-bottom-color: #3b82f6; }
+    
+            /* Scrollbar */
+            ::-webkit-scrollbar { width: 8px; }
+            ::-webkit-scrollbar-track { background: #0f172a; }
+            ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+            ::-webkit-scrollbar-thumb:hover { background: #475569; }
+            body.light ::-webkit-scrollbar-track { background: #e2e8f0; }
+            body.light ::-webkit-scrollbar-thumb { background: #94a3b8; }
+    
+            /* Flow diagram */
+            .flow-step { opacity: 0; transform: translateY(15px); transition: all 0.5s ease-out; }
+            .flow-step.visible { opacity: 1; transform: translateY(0); }
+    
+            /* Glossary details/summary */
+            details summary::-webkit-details-marker { display: none; }
+            details summary { cursor: pointer; user-select: none; }
+            details[open] summary .chevron { transform: rotate(180deg); }
+    
+            /* Floating nav */
+            #float-nav { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); opacity: 0; pointer-events: none; transform: translateY(20px); }
+            #float-nav.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    
+            /* Hover tooltip */
+            .tooltip { position: relative; }
+            .tooltip .tip { visibility: hidden; opacity: 0; transition: opacity 0.2s; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; background: #1e293b; color: #e2e8f0; border: 1px solid #334155; z-index: 50; }
+            body.light .tooltip .tip { background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; }
+            .tooltip:hover .tip { visibility: visible; opacity: 1; }
+    
+            /* Progress bar animation */
+            .progress-fill { transition: width 1s ease-out; }
+            .progress-fill:not(.animated) { width: 0 !important; }
+    
+            /* Code sample */
+            .code-sample { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+            .code-sample.open { max-height: 800px; }
+    
+            /* Light theme overrides */
+            body.light .bg-gray-950 { background-color: var(--bg) !important; }
+            body.light .text-gray-100 { color: var(--text) !important; }
+            body.light .text-gray-400 { color: var(--text-sec) !important; }
+            body.light .text-gray-500 { color: #64748b !important; }
+            body.light .border-gray-800 { border-color: #e2e8f0 !important; }
+            body.light .bg-gray-800\/40 { background-color: #f1f5f9 !important; }
+    
+            /* Section header gradient animation */
+            .section-glow { position: relative; overflow: hidden; }
+            .section-glow::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: conic-gradient(from 0deg, transparent, rgba(59,130,246,0.03), transparent, rgba(147,51,234,0.03), transparent);
+                animation: spin-slow 8s linear infinite;
+                pointer-events: none;
+            }
+            .section-glow > * { position: relative; z-index: 1; }
+        </style>
+    </head>
+    <body class="bg-gray-950 text-gray-100">
+    
+        <!-- ===== FLOATING NAV BUTTON ===== -->
+        <div id="float-nav" class="fixed bottom-6 right-6 z-50">
+            <button onclick="toggleFloatMenu()" class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-blue-500/20 flex items-center justify-center text-2xl hover:scale-110 transition-all duration-300" aria-label="Quick navigation">
+                <span id="float-icon">⚡</span>
+            </button>
+            <div id="float-menu" class="absolute bottom-16 right-0 hidden flex-col gap-2 min-w-[200px]">
+                <a href="#" onclick="closeFloatMenu(); return false;" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Topo</a>
+                <a href="#overview" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Visão Geral</a>
+                <a href="#architecture" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Arquitetura</a>
+                <a href="#agents" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Agentes</a>
+                <a href="#flow" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Fluxo</a>
+                <a href="#stack" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Stack</a>
+                <a href="#stats" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Métricas</a>
+                <a href="#timeline" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Timeline</a>
+                <a href="#improvements" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Melhorias</a>
+                <a href="#code" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Código</a>
+                <a href="#glossary" onclick="closeFloatMenu()" class="glass rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all text-right">Glossário</a>
+            </div>
+        </div>
+    
+        <!-- ===== STICKY NAV ===== -->
+        <nav class="sticky top-0 z-40 glass border-b border-gray-800/50">
+            <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+                <a href="#" class="font-bold text-lg bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">colabor-ai</a>
+                <div class="hidden md:flex items-center gap-1 text-sm">
+                    <a href="#overview" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Visão</a>
+                    <a href="#architecture" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Arquitetura</a>
+                    <a href="#agents" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Agentes</a>
+                    <a href="#stats" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Métricas</a>
+                    <a href="#improvements" class="nav-link px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all border-b-2 border-transparent">Melhorias</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-gray-800/60 flex items-center justify-center hover:bg-gray-700/60 transition-all text-lg" aria-label="Toggle theme">🌙</button>
+                    <a href="https://github.com" target="_blank" class="w-9 h-9 rounded-lg bg-gray-800/60 flex items-center justify-center hover:bg-gray-700/60 transition-all text-sm text-gray-400 hover:text-white">Git</a>
+                </div>
+            </div>
+        </nav>
+    
+        <!-- ===== HERO ===== -->
+        <header class="relative overflow-hidden min-h-[80vh] flex items-center">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-950 to-purple-900/30"></div>
+            <div class="absolute top-10 left-1/3 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-pink-500/5 rounded-full blur-3xl animate-float"></div>
+            
+            <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32 w-full">
+                <div class="text-center animate-fade-in">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-8 hover:bg-blue-500/20 transition-all">
+                        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                        v1.0.0 — TypeScript + Node.js
+                        <span class="text-gray-600 mx-1">•</span>
+                        <span class="text-blue-300/70">98 arquivos</span>
+                    </div>
+                    <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight mb-6">
+                        <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">colabor-ai</span>
+                    </h1>
+                    <p class="text-xl md:text-3xl text-gray-400 font-light mb-4">Multi-Agent Orchestration System</p>
+                    <p class="max-w-3xl mx-auto text-gray-500 text-lg leading-relaxed mb-10">
+                        Uma plataforma agêntica onde <span class="text-blue-300 font-medium">agentes de IA colaboram</span> para executar tarefas complexas —<br class="hidden md:block">
+                        navegação web, execução de código, automação de shell — tudo orquestrado por um <span class="text-purple-300 font-medium">planner inteligente</span> com memória persistente.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#overview" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105">Explorar Projeto →</a>
+                        <a href="#improvements" class="px-8 py-3.5 glass rounded-xl font-semibold hover:bg-white/5 transition-all duration-300">Melhorias</a>
+                        <button onclick="toggleCodeSample()" class="px-8 py-3.5 glass rounded-xl font-semibold hover:bg-white/5 transition-all duration-300">Ver Código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-950 to-transparent"></div>
+        </header>
+    
+        <!-- ===== OVERVIEW ===== -->
+        <section id="overview" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 animate-slide-up section-glow">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Visão Geral</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                <p class="text-gray-500 mt-4 text-lg">Arquitetura cérebro + corpo para IA colaborativa</p>
+            </div>
+    
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">🧠</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Cloud — O Cérebro</h3>
+                            <p class="text-sm text-gray-500">Processamento central e orquestração</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Workflows agenticos com <strong>planner</strong> inteligente que decide qual agente chamar. Memória SOTA, telemetria em tempo real, e comunicação via WebSocket.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs bg-blue-500/10 rounded-full text-blue-300">Planner</span>
+                        <span class="px-3 py-1 text-xs bg-purple-500/10 rounded-full text-purple-300">Orchestrator</span>
+                        <span class="px-3 py-1 text-xs bg-pink-500/10 rounded-full text-pink-300">Memory SOTA</span>
+                        <span class="px-3 py-1 text-xs bg-cyan-500/10 rounded-full text-cyan-300">WebSocket</span>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-500 group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">🤖</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Client — O Corpo</h3>
+                            <p class="text-sm text-gray-500">Aplicação desktop Electron + React</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Captura eventos locais (teclado, clipes de tela, áudio), executa ferramentas de automação de desktop e sincroniza com o Cloud via <strong>WebSocket</strong>.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs bg-green-500/10 rounded-full text-green-300">Electron</span>
+                        <span class="px-3 py-1 text-xs bg-yellow-500/10 rounded-full text-yellow-300">React</span>
+                        <span class="px-3 py-1 text-xs bg-cyan-500/10 rounded-full text-cyan-300">WebSocket</span>
+                        <span class="px-3 py-1 text-xs bg-red-500/10 rounded-full text-red-300">TypeScript</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all duration-300 tooltip">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h4 class="font-semibold mb-1">Orquestração</h4>
+                    <p class="text-gray-500 text-sm">8 agentes especializados</p>
+                    <span class="tip">Planner-Worker pattern</span>
+                </div>
+                <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all duration-300 tooltip">
+                    <div class="text-3xl mb-3">🧠</div>
+                    <h4 class="font-semibold mb-1">Memória SOTA</h4>
+                    <p class="text-gray-500 text-sm">14 módulos de memória</p>
+                    <span class="tip">Attention, Knowledge Graph, Embeddings</span>
+                </div>
+                <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all duration-300 tooltip">
+                    <div class="text-3xl mb-3">📊</div>
+                    <h4 class="font-semibold mb-1">Telemetria</h4>
+                    <p class="text-gray-500 text-sm">Dashboard em tempo real</p>
+                    <span class="tip">Tokens, eventos, performance</span>
+                </div>
+                <div class="glass rounded-xl p-6 text-center hover:-translate-y-2 transition-all duration-300 tooltip">
+                    <div class="text-3xl mb-3">✈️</div>
+                    <h4 class="font-semibold mb-1">Telegram</h4>
+                    <p class="text-gray-500 text-sm">Interface principal</p>
+                    <span class="tip">Bot API com proteções</span>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== ARCHITECTURE ===== -->
+        <section id="architecture" class="relative py-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 animate-slide-up section-glow">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Arquitetura</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                    <p class="text-gray-500 mt-4 text-lg">Estrutura de diretórios e fluxo de execução</p>
+                </div>
+    
+                <div class="grid lg:grid-cols-2 gap-10 items-start">
+                    <div class="glass rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <span>📁</span> Estrutura de Diretórios
+                        </h3>
+                        <pre class="text-sm leading-relaxed text-gray-300 overflow-x-auto font-mono">
+    <span class="text-blue-400 font-semibold">colabor-ai/</span>
+    ├── <span class="text-yellow-300">core/</span>                    <span class="text-gray-500">← Núcleo (57 .ts)</span>
+    │   ├── <span class="text-green-300">agent/</span>               Motor de agentes
+    │   ├── <span class="text-green-300">agents/</span>              7 agentes especializados
+    │   ├── <span class="text-green-300">orchestrator/</span>        Orquestrador + Telegram
+    │   ├── <span class="text-green-300">memory/</span>               Memória SOTA (14 arqs)
+    │   ├── <span class="text-green-300">context/</span>              Engine de contexto
+    │   ├── <span class="text-green-300">stream/</span>               Stream de eventos
+    │   ├── <span class="text-green-300">telemetry/</span>            Dashboard e relatórios
+    │   ├── <span class="text-green-300">tools/</span>                Ferramentas
+    │   ├── <span class="text-green-300">skills/</span>               Skills manager
+    │   ├── <span class="text-green-300">session/</span>              Sessão e transcript
+    │   └── <span class="text-green-300">config/</span>               Configuração
+    ├── <span class="text-yellow-300">scripts/</span>                  Scripts auxiliares
+    ├── <span class="text-yellow-300">memory/</span>                   Notas diárias
+    ├── <span class="text-yellow-300">skills/</span>                   Definições de skills
+    ├── <span class="text-yellow-300">docs/</span>                     Documentação
+    ├── <span class="text-yellow-300">telemetry/</span>                Logs de sessão
+    ├── <span class="text-yellow-300">package.json</span>
+    ├── <span class="text-yellow-300">tsconfig.json</span>
+    └── <span class="text-yellow-300">README.md</span></pre>
+                    </div>
+    
+                    <div class="space-y-6">
+                        <div class="glass rounded-2xl p-6 hover:shadow-xl hover:shadow-purple-500/5 transition-all">
+                            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                                <span>🔄</span> Fluxo de Execução
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all">
+                                    <div class="w-9 h-9 rounded-lg bg-blue-500/20 flex items-center justify-center text-sm font-bold text-blue-300 shrink-0">1</div>
+                                    <div><span class="font-medium">Entrada</span><p class="text-xs text-gray-500">Mensagem do usuário (Telegram / CLI)</p></div>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-purple-500/5 border border-purple-500/10 hover:bg-purple-500/10 transition-all">
+                                    <div class="w-9 h-9 rounded-lg bg-purple-500/20 flex items-center justify-center text-sm font-bold text-purple-300 shrink-0">2</div>
+                                    <div><span class="font-medium">Orquestrador</span><p class="text-xs text-gray-500">Recebe e encaminha ao Planner</p></div>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-pink-500/5 border border-pink-500/10 hover:bg-pink-500/10 transition-all">
+                                    <div class="w-9 h-9 rounded-lg bg-pink-500/20 flex items-center justify-center text-sm font-bold text-pink-300 shrink-0">3</div>
+                                    <div><span class="font-medium">Planner → Workers</span><p class="text-xs text-gray-500">Decide qual agente e coordena execução</p></div>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-green-500/5 border border-green-500/10 hover:bg-green-500/10 transition-all">
+                                    <div class="w-9 h-9 rounded-lg bg-green-500/20 flex items-center justify-center text-sm font-bold text-green-300 shrink-0">4</div>
+                                    <div><span class="font-medium">Memória + Contexto</span><p class="text-xs text-gray-500">Sistema SOTA enriquece a resposta</p></div>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-cyan-500/5 border border-cyan-500/10 hover:bg-cyan-500/10 transition-all">
+                                    <div class="w-9 h-9 rounded-lg bg-cyan-500/20 flex items-center justify-center text-sm font-bold text-cyan-300 shrink-0">5</div>
+                                    <div><span class="font-medium">Resposta</span><p class="text-xs text-gray-500">Stream de eventos → Usuário</p></div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="glass rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span>🏗️</span> Padrão Arquitetural
+                            </h3>
+                            <p class="text-gray-400">O <span class="text-blue-300 font-medium">Planner-Worker</span> é o padrão central: um <strong>Orquestrador</strong> recebe a mensagem, o <strong>Planejador</strong> decide qual agente chamar (browser, python, shell, etc.), e o resultado volta em loop até finalizar com uma resposta consolidada.</p>
+                            <div class="mt-4 flex gap-2">
+                                <span class="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-300">Planner</span>
+                                <span class="px-3 py-1 text-xs rounded-full bg-purple-500/10 text-purple-300">Worker</span>
+                                <span class="px-3 py-1 text-xs rounded-full bg-green-500/10 text-green-300">Loop</span>
+                                <span class="px-3 py-1 text-xs rounded-full bg-cyan-500/10 text-cyan-300">Stream</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== FLOW DIAGRAM ===== -->
+        <section id="flow" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 animate-slide-up section-glow">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Diagrama de Fluxo</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                <p class="text-gray-500 mt-4 text-lg">Como uma mensagem percorre o sistema</p>
+            </div>
+    
+            <div class="glass rounded-2xl p-8 md:p-12">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-0 items-start">
+                    <!-- Step 1 -->
+                    <div class="flow-step text-center px-2">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-2xl shadow-lg shadow-blue-500/20 mb-3">💬</div>
+                        <div class="text-sm font-semibold mb-1">Usuário</div>
+                        <div class="text-xs text-gray-500">Envia mensagem</div>
+                        <div class="text-2xl text-blue-400 mt-2 md:hidden">↓</div>
+                    </div>
+                    <div class="hidden md:flex items-center justify-center text-2xl text-blue-400 flow-step">→</div>
+                    <!-- Step 2 -->
+                    <div class="flow-step text-center px-2">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-2xl shadow-lg shadow-purple-500/20 mb-3">⚡</div>
+                        <div class="text-sm font-semibold mb-1">Orquestrador</div>
+                        <div class="text-xs text-gray-500">Distribui tarefa</div>
+                        <div class="text-2xl text-purple-400 mt-2 md:hidden">↓</div>
+                    </div>
+                    <div class="hidden md:flex items-center justify-center text-2xl text-purple-400 flow-step">→</div>
+                    <!-- Step 3 -->
+                    <div class="flow-step text-center px-2">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center text-2xl shadow-lg shadow-pink-500/20 mb-3">🎯</div>
+                        <div class="text-sm font-semibold mb-1">Planner</div>
+                        <div class="text-xs text-gray-500">Seleciona agente</div>
+                        <div class="text-2xl text-pink-400 mt-2 md:hidden">↓</div>
+                    </div>
+                    <div class="hidden md:flex items-center justify-center text-2xl text-pink-400 flow-step">→</div>
+                    <!-- Step 4 -->
+                    <div class="flow-step text-center px-2">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-2xl shadow-lg shadow-green-500/20 mb-3">🤖</div>
+                        <div class="text-sm font-semibold mb-1">Worker Agent</div>
+                        <div class="text-xs text-gray-500">Executa a ação</div>
+                        <div class="text-2xl text-green-400 mt-2 md:hidden">↓</div>
+                    </div>
+                    <div class="hidden md:flex items-center justify-center text-2xl text-green-400 flow-step">→</div>
+                    <!-- Step 5 -->
+                    <div class="flow-step text-center px-2">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-2xl shadow-lg shadow-cyan-500/20 mb-3">✅</div>
+                        <div class="text-sm font-semibold mb-1">Resposta</div>
+                        <div class="text-xs text-gray-500">Retorna ao usuário</div>
+                    </div>
+                </div>
+                <!-- Loop back -->
+                <div class="mt-8 text-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm text-blue-300">
+                        <span>🔄</span> Loop Planner-Worker até task completa + consolidação via Answer/Reflector
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== AGENTS ===== -->
+        <section id="agents" class="relative py-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-purple-950/5 to-gray-950"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 animate-slide-up section-glow">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Agentes</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                    <p class="text-gray-500 mt-4 text-lg">8 agentes especializados registrados no AgentRegistry</p>
+                </div>
+    
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Agent cards -->
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-blue-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/15 flex items-center justify-center text-xl">🧠</div>
+                            <div><h4 class="font-semibold">plannerAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Agente orquestrador central. Decide qual worker chamar e coordena o fluxo multi-etapas.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-blue-500/10 text-blue-300">🧠 Raciocínio</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-purple-500/10 text-purple-300">🎯 Decisão</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-green-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-green-500/15 flex items-center justify-center text-xl">🌐</div>
+                            <div><h4 class="font-semibold">browserAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Navegação web headless com Puppeteer. Acessa sites, extrai dados, interage com páginas.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-green-500/10 text-green-300">🕸️ Puppeteer</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-cyan-500/10 text-cyan-300">📄 Scraping</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-yellow-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-yellow-500/15 flex items-center justify-center text-xl">🐍</div>
+                            <div><h4 class="font-semibold">pythonAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Executa código Python arbitrário. Análise de dados, cálculos, automação de scripts.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-yellow-500/10 text-yellow-300">🐍 Python</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-orange-500/10 text-orange-300">📊 Data</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-gray-400">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-gray-500/15 flex items-center justify-center text-xl">💻</div>
+                            <div><h4 class="font-semibold">shellAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Executa comandos shell. Git, Docker, gerenciamento de arquivos e processos.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-gray-500/10 text-gray-300">⌨️ Shell</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-red-500/10 text-red-300">⚙️ Sistema</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-purple-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center text-xl">💡</div>
+                            <div><h4 class="font-semibold">answerAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Consolida respostas parciais em uma resposta final coesa para o usuário.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-purple-500/10 text-purple-300">✍️ Síntese</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-pink-500/10 text-pink-300">🎯 Final</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-pink-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-pink-500/15 flex items-center justify-center text-xl">🪞</div>
+                            <div><h4 class="font-semibold">reflectorAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Reflete sobre resultados parciais, valida qualidade e sugere correções de rota.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-pink-500/10 text-pink-300">🔍 Revisão</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-rose-500/10 text-rose-300">✅ Qualidade</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-cyan-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/15 flex items-center justify-center text-xl">🤝</div>
+                            <div><h4 class="font-semibold">assistantAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Agente de suporte geral. Conversa, tira dúvidas e auxilia o usuário no dia a dia.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-cyan-500/10 text-cyan-300">💬 Chat</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-teal-500/10 text-teal-300">🎓 Suporte</span>
+                        </div>
+                    </div>
+    
+                    <div class="agent-card glass rounded-xl p-5 border-t-4 border-orange-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center text-xl">📋</div>
+                            <div><h4 class="font-semibold">taskManagerAgent</h4><span class="text-xs text-gray-500">core/agents/</span></div>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-3">Gerencia tarefas de longa duração, acompanha progresso e reporta status.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-xs rounded bg-orange-500/10 text-orange-300">📋 Tarefas</span>
+                            <span class="px-2 py-0.5 text-xs rounded bg-amber-500/10 text-amber-300">⏱️ Progresso</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== TECH STACK ===== -->
+        <section id="stack" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 animate-slide-up section-glow">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Stack Tecnológica</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+            </div>
+    
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+                    <h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-blue-400 animate-pulse"></span> Produção
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">openai</span> <span class="text-gray-500 text-sm">^6.27.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">LLM Client</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">puppeteer</span> <span class="text-gray-500 text-sm">^25.1.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Navegação headless</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">node-telegram-bot-api</span> <span class="text-gray-500 text-sm">^0.63.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Interface Telegram</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">axios</span> <span class="text-gray-500 text-sm">^1.17.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">HTTP Requests</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">tsx</span> <span class="text-gray-500 text-sm">^4.21.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Execução TS</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">dotenv</span> <span class="text-gray-500 text-sm">^17.3.1</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Configuração</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-8 hover:shadow-xl hover:shadow-purple-500/5 transition-all">
+                    <h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-purple-400 animate-pulse"></span> Desenvolvimento
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">typescript</span> <span class="text-gray-500 text-sm">^6.0.3</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Linguagem</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">jest</span> <span class="text-gray-500 text-sm">^30.2.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Test runner</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">@babel/core</span> <span class="text-gray-500 text-sm">^7.29.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Transpilação</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">babel-jest</span> <span class="text-gray-500 text-sm">^30.2.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Jest + Babel</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">dotenv-cli</span> <span class="text-gray-500 text-sm">^11.0.0</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">CLI ambiente</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-800/40 hover:bg-gray-800/60 transition-all">
+                            <div><span class="font-medium">git-commit-msg-linter</span> <span class="text-gray-500 text-sm">^5.0.8</span></div>
+                            <span class="text-xs text-gray-400 bg-gray-700/50 px-2 py-0.5 rounded">Commits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== STATISTICS ===== -->
+        <section id="stats" class="relative py-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 animate-slide-up section-glow">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Métricas</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                    <p class="text-gray-500 mt-4 text-lg">Análise estática — Junho 2026</p>
+                </div>
+    
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all duration-300 group tooltip">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform">98</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide">Arquivos</div>
+                        <span class="tip">57 .ts + 19 .json + 18 .md + 4 outros</span>
+                    </div>
+                    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all duration-300 group tooltip">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform">42.8k</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide">Linhas Totais</div>
+                        <span class="tip">Inclui código + comentários + blanks</span>
+                    </div>
+                    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all duration-300 group tooltip">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform">30.9k</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide">Linhas de Código</div>
+                        <span class="tip">Código fonte efetivo</span>
+                    </div>
+                    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all duration-300 group tooltip">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform">9</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide">Testes</div>
+                        <span class="tip">.spec.ts + .test.ts</span>
+                    </div>
+                    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all duration-300 group tooltip">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform">24</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide">TODOs</div>
+                        <span class="tip">Dívida técnica identificada</span>
+                    </div>
+                    <div class="glass rounded-xl p-5 text-center hover:bg-white/5 transition-all duration-300 group tooltip">
+                        <div class="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform">3.1k</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wide">Comentários</div>
+                        <span class="tip">10% do total — JSDoc suggestions</span>
+                    </div>
+                </div>
+    
+                <!-- Progress bars by directory -->
+                <div class="mt-10 glass rounded-2xl p-8">
+                    <h3 class="font-semibold mb-6">📊 Distribuição por Diretório</h3>
+                    <div class="space-y-4">
+                        <div class="progress-item">
+                            <div class="flex justify-between text-sm mb-1"><span>core/</span><span class="text-gray-500">(root) 12.370 linhas</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-blue-500 to-cyan-400 h-2.5 rounded-full" style="width:29%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="flex justify-between text-sm mb-1"><span>telemetry/</span><span class="text-gray-500">6.235 linhas</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-purple-500 to-pink-400 h-2.5 rounded-full" style="width:14.6%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="flex justify-between text-sm mb-1"><span>core/orchestrator/</span><span class="text-gray-500">5.113 linhas</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-pink-500 to-rose-400 h-2.5 rounded-full" style="width:11.9%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="flex justify-between text-sm mb-1"><span>core/memory/</span><span class="text-gray-500">3.362 linhas</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-green-500 to-emerald-400 h-2.5 rounded-full" style="width:7.9%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="flex justify-between text-sm mb-1"><span>scripts/</span><span class="text-gray-500">3.069 linhas</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-yellow-500 to-orange-400 h-2.5 rounded-full" style="width:7.2%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="flex justify-between text-sm mb-1"><span>memory/</span><span class="text-gray-500">2.907 linhas</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5"><div class="progress-fill bg-gradient-to-r from-indigo-500 to-violet-400 h-2.5 rounded-full" style="width:6.8%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== TIMELINE ===== -->
+        <section id="timeline" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 animate-slide-up section-glow">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Timeline do Projeto</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                <p class="text-gray-500 mt-4 text-lg">Marcos importantes da evolução do colabor-ai</p>
+            </div>
+    
+            <div class="relative">
+                <div class="timeline-line"></div>
+                <div class="space-y-12 relative">
+                    <!-- Item 1 -->
+                    <div class="relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="hidden md:block w-1/2 text-right pr-10">
+                            <div class="glass rounded-xl p-5 inline-block text-left min-w-[280px]">
+                                <div class="text-xs text-blue-400 font-semibold mb-1">28 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">🧠 README Reescrito</h4>
+                                <p class="text-sm text-gray-500">Documentação didática completa do projeto. PDF gerado para distribuição.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-blue-500 border-4 border-gray-950 z-10 mt-6"></div>
+                        <div class="md:hidden w-full pl-10">
+                            <div class="glass rounded-xl p-5">
+                                <div class="text-xs text-blue-400 font-semibold mb-1">28 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">🧠 README Reescrito</h4>
+                                <p class="text-sm text-gray-500">Documentação didática completa + PDF.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
+    
+                    <!-- Item 2 -->
+                    <div class="relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-purple-500 border-4 border-gray-950 z-10 mt-6"></div>
+                        <div class="w-full md:w-1/2 pl-10 md:pl-10">
+                            <div class="glass rounded-xl p-5">
+                                <div class="text-xs text-purple-400 font-semibold mb-1">29 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">⚡ Build com Zero Erros</h4>
+                                <p class="text-sm text-gray-500">Correções no event-stream.ts, agent.ts e módulos de telemetria. Build completamente limpo.</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Item 3 -->
+                    <div class="relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="hidden md:block w-1/2 text-right pr-10">
+                            <div class="glass rounded-xl p-5 inline-block text-left min-w-[280px]">
+                                <div class="text-xs text-pink-400 font-semibold mb-1">29 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">🧠 Memory SOTA Migration</h4>
+                                <p class="text-sm text-gray-500">Migração do sistema de memória para arquitetura SOTA com AttentionFilter, KnowledgeGraph e EmbeddingService.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-pink-500 border-4 border-gray-950 z-10 mt-6"></div>
+                        <div class="md:hidden w-full pl-10">
+                            <div class="glass rounded-xl p-5">
+                                <div class="text-xs text-pink-400 font-semibold mb-1">29 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">🧠 Memory SOTA Migration</h4>
+                                <p class="text-sm text-gray-500">Migração para AttentionFilter, KnowledgeGraph, EmbeddingService.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
+    
+                    <!-- Item 4 -->
+                    <div class="relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-green-500 border-4 border-gray-950 z-10 mt-6"></div>
+                        <div class="w-full md:w-1/2 pl-10 md:pl-10">
+                            <div class="glass rounded-xl p-5">
+                                <div class="text-xs text-green-400 font-semibold mb-1">30 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">📊 Telemetry Dashboard</h4>
+                                <p class="text-sm text-gray-500">Dashboard de telemetria em tempo real ajustado para mostrar máximo de tokens por janela de contexto.</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Item 5 -->
+                    <div class="relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="hidden md:block w-1/2 text-right pr-10">
+                            <div class="glass rounded-xl p-5 inline-block text-left min-w-[280px]">
+                                <div class="text-xs text-cyan-400 font-semibold mb-1">30 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">🛡️ Telegram Protections</h4>
+                                <p class="text-sm text-gray-500">Proteções adicionadas no módulo Telegram: rate limiting, validação de entrada e tratamento de erros.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-cyan-500 border-4 border-gray-950 z-10 mt-6"></div>
+                        <div class="md:hidden w-full pl-10">
+                            <div class="glass rounded-xl p-5">
+                                <div class="text-xs text-cyan-400 font-semibold mb-1">30 Maio 2026</div>
+                                <h4 class="font-semibold mb-1">🛡️ Telegram Protections</h4>
+                                <p class="text-sm text-gray-500">Rate limiting, validação, tratamento de erros.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/2"></div>
+                    </div>
+    
+                    <!-- Item 6 -->
+                    <div class="relative flex flex-col md:flex-row gap-6 items-start">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-yellow-500 border-4 border-gray-950 z-10 mt-6"></div>
+                        <div class="w-full md:w-1/2 pl-10 md:pl-10">
+                            <div class="glass rounded-xl p-5">
+                                <div class="text-xs text-yellow-400 font-semibold mb-1">05 Junho 2026</div>
+                                <h4 class="font-semibold mb-1">🔍 Codebase Analysis</h4>
+                                <p class="text-sm text-gray-500">Análise completa do código: 98 arquivos, 42.8k linhas, 24 TODOs identificados. Geração de relatório detalhado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== CODE SAMPLE ===== -->
+        <section id="code" class="relative py-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-blue-950/5 to-gray-950"></div>
+            <div class="relative max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 animate-slide-up section-glow">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Exemplo de Código</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                    <p class="text-gray-500 mt-4 text-lg">Como um task flui pelo sistema de orquestração</p>
+                </div>
+    
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button onclick="toggleCodeSample()" class="w-full px-6 py-4 flex items-center justify-between bg-gray-800/30 hover:bg-gray-800/50 transition-all">
+                        <span class="font-semibold flex items-center gap-2"><span>📄</span> Ver fluxo de orquestração (TypeScript)</span>
+                        <span id="code-chevron" class="text-gray-400 transition-transform">▼</span>
+                    </button>
+                    <div id="code-sample-content" class="code-sample">
+                        <pre class="p-6 text-sm leading-relaxed text-gray-300 overflow-x-auto font-mono bg-gray-900/50">
+    <span class="text-gray-500">// Exemplo simplificado do fluxo de orquestração no colabor-ai</span>
+    
+    <span class="text-blue-300">import</span> { AgentRegistry } <span class="text-blue-300">from</span> <span class="text-green-300">'./agents/agent-registry'</span>;
+    <span class="text-blue-300">import</span> { Orchestrator } <span class="text-blue-300">from</span> <span class="text-green-300">'./orchestrator/orchestrator'</span>;
+    <span class="text-blue-300">import</span> { MemoryEngine } <span class="text-blue-300">from</span> <span class="text-green-300">'./memory/memory-engine'</span>;
+    
+    <span class="text-gray-500">// 1. Configuração</span>
+    <span class="text-blue-300">const</span> registry = <span class="text-blue-300">new</span> AgentRegistry();
+    <span class="text-blue-300">const</span> memory = <span class="text-blue-300">new</span> MemoryEngine();
+    <span class="text-blue-300">const</span> orchestrator = <span class="text-blue-300">new</span> Orchestrator(registry, memory);
+    
+    <span class="text-gray-500">// 2. Registrar agentes especializados</span>
+    registry.register(plannerAgent);
+    registry.register(browserAgent);
+    registry.register(pythonAgent);
+    registry.register(shellAgent);
+    registry.register(answerAgent);
+    
+    <span class="text-gray-500">// 3. Receber mensagem do usuário (via Telegram)</span>
+    <span class="text-blue-300">const</span> userMessage = <span class="text-green-300">"Pesquise o clima em São Paulo e salve em um arquivo"</span>;
+    
+    <span class="text-gray-500">// 4. Orquestrador processa</span>
+    <span class="text-blue-300">const</span> result = <span class="text-blue-300">await</span> orchestrator.run({
+        input: userMessage,
+        sessionId: <span class="text-green-300">"session_123"</span>,
+    });
+    
+    <span class="text-gray-500">// 5. Internamente o Orchestrator:</span>
+    <span class="text-gray-500">//    a) Chama o PlannerAgent para decidir o plano</span>
+    <span class="text-gray-500">//    b) Planner: ["browser (pesquisar clima)", "python (processar)", "shell (salvar)"]</span>
+    <span class="text-gray-500">//    c) Executa cada passo em sequência</span>
+    <span class="text-gray-500">//    d) Reflector valida resultados parciais</span>
+    <span class="text-gray-500">//    e) AnswerAgent consolida resposta final</span>
+    
+    <span class="text-gray-500">// 6. Resposta é enviada via stream de eventos</span>
+    eventStream.emit({
+        type: <span class="text-green-300">"response"</span>,
+        content: result,
+        sessionId: <span class="text-green-300">"session_123"</span>,
+    });</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== IMPROVEMENTS ===== -->
+        <section id="improvements" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 animate-slide-up section-glow">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Melhorias</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                <p class="text-gray-500 mt-4 text-lg">Sugestões baseadas na análise estática do código-fonte</p>
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <button onclick="sortImprovements('all')" class="sort-btn active px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-blue-500 transition-all">Todos</button>
+                    <button onclick="sortImprovements('high')" class="sort-btn px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-red-500 transition-all">🔴 Alta</button>
+                    <button onclick="sortImprovements('medium')" class="sort-btn px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-yellow-500 transition-all">🟡 Média</button>
+                    <button onclick="sortImprovements('low')" class="sort-btn px-4 py-1.5 text-xs rounded-full border border-gray-700 text-gray-300 hover:border-green-500 transition-all">🟢 Baixa</button>
+                </div>
+            </div>
+    
+            <div id="improvements-list" class="space-y-6">
+                <!-- High 1 -->
+                <div class="improvement-item high glass rounded-2xl p-6 border-l-4 border-red-500 hover:bg-white/5 transition-all duration-300" data-priority="high">
+                    <div class="flex items-start gap-4">
+                        <div class="text-2xl mt-0.5">🔴</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                <h3 class="text-lg font-bold">Testar o módulo de Memória SOTA</h3>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-red-500/20 text-red-300">Alta Prioridade</span>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed">O módulo de memória possui <strong>14 arquivos</strong> (AttentionFilter, KnowledgeGraph, EmbeddingService, MemoryEngine, etc.) e <strong>zero testes</strong>. É o módulo mais complexo e crítico — qualquer regressão aqui afeta toda a orquestração do sistema.</p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">attention-filter.ts</span>
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">memory-engine.ts</span>
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">knowledge-graph.ts</span>
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">embedding-service.ts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- High 2 -->
+                <div class="improvement-item high glass rounded-2xl p-6 border-l-4 border-red-500 hover:bg-white/5 transition-all duration-300" data-priority="high">
+                    <div class="flex items-start gap-4">
+                        <div class="text-2xl mt-0.5">🔴</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                <h3 class="text-lg font-bold">Refatorar arquivos grandes</h3>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-red-500/20 text-red-300">Alta Prioridade</span>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed"><code class="text-blue-300">orchestrator.ts</code> (503 linhas de código) e <code class="text-blue-300">telegram.ts</code> (311 linhas) são muito densos. Idealmente, um arquivo deve ter no máximo 300-400 linhas. Quebrar em módulos menores melhora manutenibilidade e testabilidade.</p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs rounded bg-blue-500/10 text-blue-300">Extrair handlers</span>
+                                <span class="px-2 py-1 text-xs rounded bg-blue-500/10 text-blue-300">Separar rotas</span>
+                                <span class="px-2 py-1 text-xs rounded bg-blue-500/10 text-blue-300">Modularizar lógica</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Medium 1 -->
+                <div class="improvement-item medium glass rounded-2xl p-6 border-l-4 border-yellow-500 hover:bg-white/5 transition-all duration-300" data-priority="medium">
+                    <div class="flex items-start gap-4">
+                        <div class="text-2xl mt-0.5">🟡</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                <h3 class="text-lg font-bold">Resolver dívida técnica (24 TODOs)</h3>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-300">Média Prioridade</span>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed"><strong>24 itens</strong> de TODO/FIXME/HACK espalhados por 13 arquivos. Alguns são simples (documentação de métodos privados), outros podem indicar bugs ou decisões pendentes. Agendar uma sessão de cleanup é recomendado.</p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">context-engine.ts</span>
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">memory-engine.ts</span>
+                                <span class="px-2 py-1 text-xs rounded bg-gray-800 text-gray-400 font-mono">browserExecTool.ts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Medium 2 -->
+                <div class="improvement-item medium glass rounded-2xl p-6 border-l-4 border-yellow-500 hover:bg-white/5 transition-all duration-300" data-priority="medium">
+                    <div class="flex items-start gap-4">
+                        <div class="text-2xl mt-0.5">🟡</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                <h3 class="text-lg font-bold">Adicionar JSDoc ao código</h3>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-300">Média Prioridade</span>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed">A taxa de comentários é de apenas <strong>10%</strong>. Módulos críticos como <code class="text-blue-300">memory-engine.ts</code>, <code class="text-blue-300">orchestrator.ts</code> e <code class="text-blue-300">telegram.ts</code> carecem de documentação JSDoc em classes e métodos públicos, dificultando a onboarding de novos desenvolvedores.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Low -->
+                <div class="improvement-item low glass rounded-2xl p-6 border-l-4 border-green-500 hover:bg-white/5 transition-all duration-300" data-priority="low">
+                    <div class="flex items-start gap-4">
+                        <div class="text-2xl mt-0.5">🟢</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                <h3 class="text-lg font-bold">Modularizar diretório raiz</h3>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-green-500/20 text-green-300">Baixa Prioridade</span>
+                            </div>
+                            <p class="text-gray-400 leading-relaxed">O diretório raiz contém <strong>12.370 linhas</strong>. Organizar documentação em subdiretórios ou mover arquivos soltos (como <code class="text-blue-300">analise-run-method.md</code>, <code class="text-blue-300">diagnostico-orchestrator.md</code>) para <code class="text-blue-300">docs/</code> traria mais organização.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== GLOSSARY ===== -->
+        <section id="glossary" class="max-w-6xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 animate-slide-up section-glow">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Glossário</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+            </div>
+    
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all">
+                    <h4 class="font-semibold text-blue-300 mb-1">Planner-Worker</h4>
+                    <p class="text-sm text-gray-400">Padrão arquitetural onde um Planner decide o plano e Workers executam as tarefas.</p>
+                </div>
+                <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all">
+                    <h4 class="font-semibold text-purple-300 mb-1">SOTA</h4>
+                    <p class="text-sm text-gray-400">State of the Art — sistema de memória de última geração com AttentionFilter, KnowledgeGraph, EmbeddingService.</p>
+                </div>
+                <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all">
+                    <h4 class="font-semibold text-pink-300 mb-1">AgentRegistry</h4>
+                    <p class="text-sm text-gray-400">Registro central que mapeia nomes de agentes para suas implementações.</p>
+                </div>
+                <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all">
+                    <h4 class="font-semibold text-green-300 mb-1">Stream de Eventos</h4>
+                    <p class="text-sm text-gray-400">Canal de comunicação em tempo real para emitir progresso, resultados e logs.</p>
+                </div>
+                <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all">
+                    <h4 class="font-semibold text-yellow-300 mb-1">Telemetry Dashboard</h4>
+                    <p class="text-sm text-gray-400">Painel em tempo real mostrando tokens consumidos, eventos e performance dos agentes.</p>
+                </div>
+                <div class="glass rounded-xl p-4 hover:bg-white/5 transition-all">
+                    <h4 class="font-semibold text-cyan-300 mb-1">Orchestrator</h4>
+                    <p class="text-sm text-gray-400">Componente central que recebe mensagens, coordena agentes e gerencia o ciclo de vida das tarefas.</p>
+                </div>
+            </div>
+    
+            <!-- Color Legend -->
+            <div class="mt-8 glass rounded-2xl p-6">
+                <h4 class="font-semibold mb-4">🎨 Legenda de Cores</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-blue-500"></span> TypeScript</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-purple-500"></span> Core modules</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-green-500"></span> Agentes</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-red-500"></span> Alta prioridade</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-yellow-500"></span> Média prioridade</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-green-500"></span> Baixa prioridade</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-cyan-500"></span> Stream/Eventos</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-pink-500"></span> Memória SOTA</div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== FOOTER ===== -->
+        <footer class="relative">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/20 to-gray-950"></div>
+            <div class="relative max-w-6xl mx-auto px-6 py-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-center md:text-left">
+                        <span class="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">colabor-ai</span>
+                        <span class="text-gray-600 mx-2">•</span>
+                        <span class="text-gray-500 text-sm">Multi-Agent Orchestration System v1.0.0</span>
+                    </div>
+                    <div class="text-gray-500 text-sm text-center">
+                        Gerado por <span class="text-blue-400">colabor-ai assistant</span><br class="md:hidden">
+                        <span class="hidden md:inline"> • </span>
+                        Última atualização: <span class="text-purple-400" id="last-updated">2026-06-05 18:20:42</span>
+                    </div>
+                </div>
+                <div class="mt-6 pt-6 border-t border-gray-800 text-center text-gray-600 text-xs">
+                    <p>Construído com TypeScript • Node.js • OpenAI • Puppeteer • Telegram Bot API • Jest</p>
+                </div>
+            </div>
+        </footer>
+    
+        <script>
+            // === THEME TOGGLE ===
+            function toggleTheme() {
+                const body = document.body;
+                body.classList.toggle('light');
+                const btn = document.getElementById('theme-toggle');
+                btn.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+                localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+            }
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light');
+                document.getElementById('theme-toggle').textContent = '☀️';
+            }
+    
+            // === SMOOTH SCROLL NAV HIGHLIGHT ===
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(s => {
+                    const top = s.offsetTop - 120;
+                    if (window.scrollY >= top) current = s.id;
+                });
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+                });
+            });
+    
+            // === FLOATING NAV ===
+            let floatNavVisible = false;
+            window.addEventListener('scroll', () => {
+                const fn = document.getElementById('float-nav');
+                if (window.scrollY > 400) {
+                    fn.classList.add('show');
+                } else {
+                    fn.classList.remove('show');
+                    document.getElementById('float-menu').classList.add('hidden');
+                    document.getElementById('float-icon').textContent = '⚡';
+                }
+            });
+            function toggleFloatMenu() {
+                const menu = document.getElementById('float-menu');
+                const icon = document.getElementById('float-icon');
+                menu.classList.toggle('hidden');
+                icon.textContent = menu.classList.contains('hidden') ? '⚡' : '✕';
+            }
+            function closeFloatMenu() {
+                document.getElementById('float-menu').classList.add('hidden');
+                document.getElementById('float-icon').textContent = '⚡';
+            }
+    
+            // === CODE SAMPLE ===
+            let codeOpen = false;
+            function toggleCodeSample() {
+                codeOpen = !codeOpen;
+                document.getElementById('code-sample-content').classList.toggle('open', codeOpen);
+                document.getElementById('code-chevron').style.transform = codeOpen ? 'rotate(180deg)' : '';
+            }
+    
+            // === SORT IMPROVEMENTS ===
+            let currentFilter = 'all';
+            function sortImprovements(priority) {
+                currentFilter = priority;
+                document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll(`.sort-btn`).forEach(b => {
+                    if (b.textContent.toLowerCase().includes(priority) || (priority === 'all' && b.textContent.includes('Todos')))
+                        b.classList.add('active');
+                });
+                document.querySelectorAll('.improvement-item').forEach(item => {
+                    if (priority === 'all' || item.dataset.priority === priority) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+    
+            // === INTERSECTION OBSERVER FOR FLOW STEPS ===
+            const flowObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.flow-step').forEach(el => flowObserver.observe(el));
+    
+            // === INTERSECTION OBSERVER FOR PROGRESS BARS ===
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const bars = e.target.querySelectorAll('.progress-fill');
+                        bars.forEach(bar => {
+                            const w = bar.style.width;
+                            bar.style.width = '0';
+                            setTimeout(() => { bar.style.width = w; bar.classList.add('animated'); }, 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+            document.querySelectorAll('.progress-item').forEach(el => progressObserver.observe(el));
+    
+            // === AGENT CARDS STAGGER ANIMATION ===
+            const agentObserver = new IntersectionObserver((entries) => {
+                entries.forEach((e, i) => {
+                    if (e.isIntersecting) {
+                        setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, i * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.agent-card').forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                agentObserver.observe(el);
+            });
+    
+            // === UPDATE TIMESTAMP ===
+            const now = new Date();
+            document.getElementById('last-updated').textContent = 
+                now.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        </script>
+    </body>
+    </html>
