@@ -1,0 +1,198 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Processar PDF, Excel, etc, também faz sentido?",
+  "startedAt": "2026-06-06T01:50:12.330Z",
+  "finishedAt": "2026-06-06T01:50:26.915Z",
+  "totalDuration": 14585,
+  "totalLLMCalls": 7,
+  "totalPromptTokens": 787688,
+  "totalCompletionTokens": 869,
+  "totalTokens": 788557,
+  "maxContextWindowTokens": 243001,
+  "avgTokensPerLLMCall": 112651,
+  "estimatedCostUSD": 0.2136,
+  "totalAgentCalls": 7,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ReflectorAgent": 2,
+    "ThinkingAgent": 3
+  },
+  "avgAgentCalls": 7,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780710612367,
+      "duration": 4834,
+      "promptTokens": 238655,
+      "completionTokens": 131,
+      "totalTokens": 238786,
+      "historyLength": 98,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710617204,
+      "duration": 2643,
+      "promptTokens": 33853,
+      "completionTokens": 69,
+      "totalTokens": 33922,
+      "historyLength": 62,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710617204,
+      "duration": 3149,
+      "promptTokens": 79262,
+      "completionTokens": 136,
+      "totalTokens": 79398,
+      "historyLength": 1737,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710619847,
+      "duration": 2509,
+      "promptTokens": 34211,
+      "completionTokens": 59,
+      "totalTokens": 34270,
+      "historyLength": 64,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710619847,
+      "duration": 3700,
+      "promptTokens": 79276,
+      "completionTokens": 137,
+      "totalTokens": 79413,
+      "historyLength": 1739,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710622358,
+      "duration": 4213,
+      "promptTokens": 79430,
+      "completionTokens": 219,
+      "totalTokens": 79649,
+      "historyLength": 1740,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780710622358,
+      "duration": 4556,
+      "promptTokens": 243001,
+      "completionTokens": 118,
+      "totalTokens": 243119,
+      "historyLength": 100,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Processar PDF, Excel, etc, também faz sentido?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"ret",
+      "startTime": 1780710612367,
+      "duration": 4835,
+      "success": true,
+      "responseLength": 222,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Processar PDF, Excel, etc, também faz sentido?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"ret",
+      "startTime": 1780710617204,
+      "duration": 2643,
+      "success": true,
+      "responseLength": 249,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 ReflectorAgent → \"Processar PDF, Excel, etc, também faz sentido?\"",
+      "startTime": 1780710617204,
+      "duration": 3150,
+      "success": true,
+      "responseLength": 466,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Processar PDF, Excel, etc, também faz sentido?\n\n\n\n    Agent used: ReflectorAgent\n\n\n\n    Instruction given: Processar PDF, Exc",
+      "startTime": 1780710619847,
+      "duration": 2509,
+      "success": true,
+      "responseLength": 217,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780710619847,
+      "duration": 3701,
+      "success": true,
+      "responseLength": 444,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780710622358,
+      "duration": 4213,
+      "success": true,
+      "responseLength": 689,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Processar PDF, Excel, etc, também faz sentido?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"ret",
+      "startTime": 1780710622358,
+      "duration": 4557,
+      "success": true,
+      "responseLength": 179,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Esta pergunta já foi respondida de forma completa diversas vezes. A resposta confirmou que faz sentido e detalhou os formatos, dependências e complexidade. Nada mais a adicionar.",
+      "chosenAgent": "finish",
+      "step": 1,
+      "timestamp": 1780710617202
+    },
+    {
+      "instruction": "Pergunta já respondida de forma completa múltiplas vezes. O ReflectorAgent confirma que a resposta foi adequada. Nada mais a adicionar.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780710626915
+    }
+  ],
+  "toolCalls": []
+}

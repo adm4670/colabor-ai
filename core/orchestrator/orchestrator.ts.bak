@@ -11,7 +11,6 @@ import { Agent } from "../agent/agent";
 
 
 import { reflectorAgent } from "../agents/reflector.agent";
-import { answerAgent as writerAgent } from "../agents/answer.agent";
 
 
 
@@ -1583,17 +1582,36 @@ import { getTelemetry } from "../telemetry/telemetry";
                     });
 
 
+
           } catch {
 
 
+
             console.warn("Planner returned invalid JSON");
-            if (onProgress) {
-              onProgress("Redirecionando para assistente...").catch(() => {});
-            }
-            parsed = { agent: "assistant", instruction: input };
+
+
+
+            this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
+
+
+
+            this.eventStream.push(createEvent("agent_end"));
+
+
+
+            this.eventStream.end();
+
+
+
+            return lastResult || "Erro ao interpretar resposta do planner.";
+
 
 
           }
+
+
+
+    
 
 
 
@@ -1713,22 +1731,6 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
 
-
-            // Format result through writer agent to avoid raw JSON
-            let finalResponse = lastResult || parsed.instruction || "Concluido.";
-            try {
-              if (finalResponse.trim().startsWith("{") || finalResponse.trim().startsWith("[")) {
-                if (onProgress) {
-                  onProgress("Formatando resposta...").catch(() => {});
-                }
-                const writerPrompt = "Format this response for the user in natural, friendly language:\\n\\n" + finalResponse.slice(0, 2000);
-                const formatted = await writerAgent.run(writerPrompt);
-                if (formatted && formatted.length > 10) {
-                  finalResponse = formatted;
-                }
-              }
-            } catch {
-            }
             _tel.endSession();
 
         _tel.saveToFile();
@@ -1741,7 +1743,7 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
 
-              content: finalResponse || parsed.instruction || "Concluido.",
+              content: lastResult || parsed.instruction || "Concluido.",
 
 
 
@@ -2449,17 +2451,6 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
 
-            let finalResponse = lastResult || "Nao foi possivel concluir a tarefa.";
-            try {
-              if (finalResponse.trim().startsWith("{") || finalResponse.trim().startsWith("[")) {
-                const writerPrompt = "Format this response for the user in natural language:\\n\\n" + finalResponse.slice(0, 2000);
-                const formatted = await writerAgent.run(writerPrompt);
-                if (formatted && formatted.length > 10) {
-                  finalResponse = formatted;
-                }
-              }
-            } catch {
-            }
         appendToTranscript(this.sessionId, {
 
 
@@ -2468,7 +2459,7 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
 
-          content: finalResponse || "Nao foi possivel concluir a tarefa.",
+          content: lastResult || "Nao foi possivel concluir a tarefa.",
 
 
 
@@ -2488,11 +2479,11 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
 
-        this.eventStream.end(finalResponse as any);
+        this.eventStream.end(lastResult as any);
 
 
 
-        return finalResponse || "Nao foi possivel concluir a tarefa.";
+        return lastResult || "Nao foi possivel concluir a tarefa.";
 
 
 

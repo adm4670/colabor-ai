@@ -1,0 +1,221 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Entes de tudo corrija esses dois pontos. O seguinte erro está acontecendo com frequência: Erro ao interpretar resposta do planner.\n\nTambém corrija a reposta para nunca vim uma resposta assim: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"retryDifferent\": false,\n  \"learning\": \"O agente processou corretamente a pergunta do usuário sobre a relevância de adicionar ferramentas de processamento de PDF e Excel ao projeto.\"\n}",
+  "startedAt": "2026-06-06T01:51:35.929Z",
+  "finishedAt": "2026-06-06T01:52:12.431Z",
+  "totalDuration": 36502,
+  "totalLLMCalls": 8,
+  "totalPromptTokens": 891622,
+  "totalCompletionTokens": 2419,
+  "totalTokens": 894041,
+  "maxContextWindowTokens": 253019,
+  "avgTokensPerLLMCall": 111755,
+  "estimatedCostUSD": 0.2434,
+  "totalAgentCalls": 8,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 4,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 8,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780710695973,
+      "duration": 10848,
+      "promptTokens": 247661,
+      "completionTokens": 734,
+      "totalTokens": 248395,
+      "historyLength": 102,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710706823,
+      "duration": 3628,
+      "promptTokens": 80032,
+      "completionTokens": 187,
+      "totalTokens": 80219,
+      "historyLength": 1744,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780710706824,
+      "duration": 10879,
+      "promptTokens": 35117,
+      "completionTokens": 927,
+      "totalTokens": 36044,
+      "historyLength": 44,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710717704,
+      "duration": 2678,
+      "promptTokens": 80237,
+      "completionTokens": 29,
+      "totalTokens": 80266,
+      "historyLength": 1746,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710720714,
+      "duration": 3891,
+      "promptTokens": 80292,
+      "completionTokens": 190,
+      "totalTokens": 80482,
+      "historyLength": 1748,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710724933,
+      "duration": 2395,
+      "promptTokens": 34764,
+      "completionTokens": 57,
+      "totalTokens": 34821,
+      "historyLength": 66,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780710724932,
+      "duration": 4436,
+      "promptTokens": 80500,
+      "completionTokens": 191,
+      "totalTokens": 80691,
+      "historyLength": 1751,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780710727332,
+      "duration": 5097,
+      "promptTokens": 253019,
+      "completionTokens": 104,
+      "totalTokens": 253123,
+      "historyLength": 104,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Entes de tudo corrija esses dois pontos. O seguinte erro está acontecendo com frequência: Erro ao interpretar resposta do planner.\n\nTambém corrija a reposta para nunca vim",
+      "startTime": 1780710695973,
+      "duration": 10849,
+      "success": true,
+      "responseLength": 1032,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário reportou dois problemas. Explique de forma clara e direta:\n\n1. **'Erro…\"",
+      "startTime": 1780710706823,
+      "duration": 3629,
+      "success": true,
+      "responseLength": 631,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is reporting two issues: 1.",
+      "startTime": 1780710717704,
+      "duration": 2679,
+      "success": true,
+      "responseLength": 91,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 **\"Erro ao interpretar resposta do planner\"** - This error occurs frequently.",
+      "startTime": 1780710720714,
+      "duration": 3892,
+      "success": true,
+      "responseLength": 656,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Entes de tudo corrija esses dois pontos. O seguinte erro está acontecendo com frequência: Erro ao interpretar resposta do planner.\n\nTambém corrija a reposta para nunca vim",
+      "startTime": 1780710706824,
+      "duration": 18108,
+      "success": true,
+      "responseLength": 1626,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Entes de tudo corrija esses dois pontos. O seguinte erro está acontecendo com frequência: Erro ao interpretar resposta do pla",
+      "startTime": 1780710724933,
+      "duration": 2396,
+      "success": true,
+      "responseLength": 210,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780710724932,
+      "duration": 4436,
+      "success": true,
+      "responseLength": 712,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Entes de tudo corrija esses dois pontos. O seguinte erro está acontecendo com frequência: Erro ao interpretar resposta do planner.\n\nTambém corrija a reposta para nunca vim",
+      "startTime": 1780710727332,
+      "duration": 5097,
+      "success": true,
+      "responseLength": 171,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário reportou dois problemas. Explique de forma clara e direta:\n\n1. **'Erro ao interpretar resposta do planner'** — Acontece porque eu estava usando `\"agent\": \"finish\"` em situações onde o usuári",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780710706822
+    },
+    {
+      "instruction": "O assistente já respondeu de forma completa ao usuário, explicando e corrigindo os dois problemas reportados. Tarefa concluída.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780710732430
+    }
+  ],
+  "toolCalls": []
+}

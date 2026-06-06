@@ -1,0 +1,221 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Olá",
+  "startedAt": "2026-06-06T01:06:03.144Z",
+  "finishedAt": "2026-06-06T01:06:23.929Z",
+  "totalDuration": 20785,
+  "totalLLMCalls": 8,
+  "totalPromptTokens": 696390,
+  "totalCompletionTokens": 1057,
+  "totalTokens": 697447,
+  "maxContextWindowTokens": 181512,
+  "avgTokensPerLLMCall": 87181,
+  "estimatedCostUSD": 0.1892,
+  "totalAgentCalls": 8,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 4,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 8,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780707963198,
+      "duration": 6073,
+      "promptTokens": 175031,
+      "completionTokens": 384,
+      "totalTokens": 175415,
+      "historyLength": 74,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780707969274,
+      "duration": 3197,
+      "promptTokens": 27645,
+      "completionTokens": 144,
+      "totalTokens": 27789,
+      "historyLength": 40,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780707969274,
+      "duration": 3636,
+      "promptTokens": 72382,
+      "completionTokens": 166,
+      "totalTokens": 72548,
+      "historyLength": 1633,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780707972472,
+      "duration": 2920,
+      "promptTokens": 72396,
+      "completionTokens": 63,
+      "totalTokens": 72459,
+      "historyLength": 1634,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780707975716,
+      "duration": 2134,
+      "promptTokens": 72640,
+      "completionTokens": 73,
+      "totalTokens": 72713,
+      "historyLength": 1636,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780707978160,
+      "duration": 2184,
+      "promptTokens": 22053,
+      "completionTokens": 63,
+      "totalTokens": 22116,
+      "historyLength": 46,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780707978160,
+      "duration": 2667,
+      "promptTokens": 72731,
+      "completionTokens": 61,
+      "totalTokens": 72792,
+      "historyLength": 1639,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780707980365,
+      "duration": 3562,
+      "promptTokens": 181512,
+      "completionTokens": 103,
+      "totalTokens": 181615,
+      "historyLength": 76,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## 📋 Resultado — clareiaai-process-pdf-tool\n\n**Repositório encontrado** em: `C:\\Developer\\clareiaai-process-pdf",
+      "startTime": 1780707963198,
+      "duration": 6074,
+      "success": true,
+      "responseLength": 152,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Olá! O repositório colabor-ai está atualizado e o clareiaai também. Tudo sincron…\"",
+      "startTime": 1780707969274,
+      "duration": 3637,
+      "success": true,
+      "responseLength": 445,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user just said \"Olá\" again.",
+      "startTime": 1780707972472,
+      "duration": 2921,
+      "success": true,
+      "responseLength": 177,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 This is a simple greeting.",
+      "startTime": 1780707975716,
+      "duration": 2134,
+      "success": true,
+      "responseLength": 201,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## 📋 Resultado — clareiaai-process-pdf-tool\n\n**Repositório encontrado** em: `C:\\Developer\\clareiaai-process-pdf",
+      "startTime": 1780707969274,
+      "duration": 8886,
+      "success": true,
+      "responseLength": 268,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Olá\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: Olá! O repositório colabor-ai está atualizado e o clareiaai também",
+      "startTime": 1780707978160,
+      "duration": 2190,
+      "success": true,
+      "responseLength": 214,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780707978160,
+      "duration": 2667,
+      "success": true,
+      "responseLength": 205,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## 📋 Resultado — clareiaai-process-pdf-tool\n\n**Repositório encontrado** em: `C:\\Developer\\clareiaai-process-pdf",
+      "startTime": 1780707980365,
+      "duration": 3562,
+      "success": true,
+      "responseLength": 176,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Olá! O repositório colabor-ai está atualizado e o clareiaai também. Tudo sincronizado. Como posso ajudar?",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780707969272
+    },
+    {
+      "instruction": "Saudação já foi respondida de forma completa pelo assistente, que também resumiu o estado atual dos repositórios. Nada mais a fazer.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780707983928
+    }
+  ],
+  "toolCalls": []
+}

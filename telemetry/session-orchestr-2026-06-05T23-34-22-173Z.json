@@ -1,0 +1,396 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "1",
+  "startedAt": "2026-06-05T23:33:15.093Z",
+  "finishedAt": "2026-06-05T23:34:22.173Z",
+  "totalDuration": 67080,
+  "totalLLMCalls": 16,
+  "totalPromptTokens": 2543168,
+  "totalCompletionTokens": 1971,
+  "totalTokens": 2545139,
+  "maxContextWindowTokens": 492987,
+  "avgTokensPerLLMCall": 159071,
+  "estimatedCostUSD": 0.6888,
+  "totalAgentCalls": 14,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 10,
+    "PythonAgent": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 14,
+  "totalToolCalls": 2,
+  "toolCallBreakdown": {
+    "execute_python": 2
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702395143,
+      "duration": 4348,
+      "promptTokens": 162266,
+      "completionTokens": 148,
+      "totalTokens": 162414,
+      "historyLength": 70,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702399494,
+      "duration": 2598,
+      "promptTokens": 71187,
+      "completionTokens": 39,
+      "totalTokens": 71226,
+      "historyLength": 1608,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702399495,
+      "duration": 6183,
+      "promptTokens": 490504,
+      "completionTokens": 311,
+      "totalTokens": 490815,
+      "historyLength": 488,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702405679,
+      "duration": 1758,
+      "promptTokens": 71252,
+      "completionTokens": 29,
+      "totalTokens": 71281,
+      "historyLength": 1610,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702407743,
+      "duration": 1843,
+      "promptTokens": 71295,
+      "completionTokens": 42,
+      "totalTokens": 71337,
+      "historyLength": 1612,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702409898,
+      "duration": 1763,
+      "promptTokens": 71364,
+      "completionTokens": 18,
+      "totalTokens": 71382,
+      "historyLength": 1614,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702399495,
+      "duration": 18219,
+      "promptTokens": 492401,
+      "completionTokens": 436,
+      "totalTokens": 492837,
+      "historyLength": 490,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702417714,
+      "duration": 2272,
+      "promptTokens": 71396,
+      "completionTokens": 39,
+      "totalTokens": 71435,
+      "historyLength": 1616,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702420297,
+      "duration": 2359,
+      "promptTokens": 71455,
+      "completionTokens": 57,
+      "totalTokens": 71512,
+      "historyLength": 1618,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702422962,
+      "duration": 1705,
+      "promptTokens": 71539,
+      "completionTokens": 17,
+      "totalTokens": 71556,
+      "historyLength": 1620,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702399495,
+      "duration": 47325,
+      "promptTokens": 492987,
+      "completionTokens": 289,
+      "totalTokens": 493276,
+      "historyLength": 492,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702446821,
+      "duration": 3956,
+      "promptTokens": 71572,
+      "completionTokens": 141,
+      "totalTokens": 71713,
+      "historyLength": 1622,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702451100,
+      "duration": 3737,
+      "promptTokens": 71728,
+      "completionTokens": 132,
+      "totalTokens": 71860,
+      "historyLength": 1624,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702455182,
+      "duration": 2218,
+      "promptTokens": 21675,
+      "completionTokens": 63,
+      "totalTokens": 21738,
+      "historyLength": 44,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780702455181,
+      "duration": 3014,
+      "promptTokens": 71878,
+      "completionTokens": 54,
+      "totalTokens": 71932,
+      "historyLength": 1627,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780702457403,
+      "duration": 4769,
+      "promptTokens": 168669,
+      "completionTokens": 156,
+      "totalTokens": 168825,
+      "historyLength": 72,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    1\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"retryDifferent\": false,\n  \"learning\": \"O agente ",
+      "startTime": 1780702395143,
+      "duration": 4349,
+      "success": true,
+      "responseLength": 257,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"Navegue até `C:\\Developer\\colabor-ai` e execute:\n\n1. `git add .`\n2. `git commit …\"",
+      "startTime": 1780702399494,
+      "duration": 2599,
+      "success": true,
+      "responseLength": 104,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user chose option 1 - add everything including telemetry, then commit and push.",
+      "startTime": 1780702405679,
+      "duration": 1759,
+      "success": true,
+      "responseLength": 67,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me execute the steps.",
+      "startTime": 1780702407743,
+      "duration": 1843,
+      "success": true,
+      "responseLength": 95,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import subprocess, os\n\nrepo = r\"C:\\Devel\"",
+      "startTime": 1780702409898,
+      "duration": 1763,
+      "success": true,
+      "responseLength": 44,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Commit bem-sucedido!",
+      "startTime": 1780702417714,
+      "duration": 2272,
+      "success": true,
+      "responseLength": 104,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 20 arquivos, +25.639 linhas.",
+      "startTime": 1780702420297,
+      "duration": 2360,
+      "success": true,
+      "responseLength": 149,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"import os, time\n\nrepo = r\"C:\\Developer\\c\"",
+      "startTime": 1780702422962,
+      "duration": 1706,
+      "success": true,
+      "responseLength": 39,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O push foi um sucesso total!",
+      "startTime": 1780702446821,
+      "duration": 3957,
+      "success": true,
+      "responseLength": 372,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Rápido e sem problemas!",
+      "startTime": 1780702451100,
+      "duration": 3738,
+      "success": true,
+      "responseLength": 370,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    1\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"retryDifferent\": false,\n  \"learning\": \"O agente ",
+      "startTime": 1780702399495,
+      "duration": 55686,
+      "success": true,
+      "responseLength": 504,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: 1\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Navegue até `C:\\Developer\\colabor-ai` e execute:\n\n1. `git add .`\n2",
+      "startTime": 1780702455182,
+      "duration": 2218,
+      "success": true,
+      "responseLength": 226,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780702455181,
+      "duration": 3015,
+      "success": true,
+      "responseLength": 172,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    1\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"retryDifferent\": false,\n  \"learning\": \"O agente ",
+      "startTime": 1780702457403,
+      "duration": 4769,
+      "success": true,
+      "responseLength": 178,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Navegue até `C:\\Developer\\colabor-ai` e execute:\n\n1. `git add .`\n2. `git commit -m \"chore: atualizacoes diversas\"`\n3. `git push` (com timeout de 300 segundos)\n\nRetorne stdout/stderr de cada comando.",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780702399493
+    },
+    {
+      "instruction": "Commit e push do repositório colabor-ai realizados com sucesso na branch `v3`. 20 arquivos enviados, incluindo telemetry/. Tudo certo!",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780702462172
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780702411052,
+      "hasError": false,
+      "duration": 11557
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780702439385,
+      "hasError": false,
+      "duration": 39890
+    }
+  ]
+}

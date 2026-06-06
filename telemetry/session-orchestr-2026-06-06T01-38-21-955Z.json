@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780696178868_jzz125",
+  "userInput": "Olá",
+  "startedAt": "2026-06-06T01:38:00.676Z",
+  "finishedAt": "2026-06-06T01:38:21.954Z",
+  "totalDuration": 21278,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 801481,
+  "totalCompletionTokens": 819,
+  "totalTokens": 802300,
+  "maxContextWindowTokens": 193442,
+  "avgTokensPerLLMCall": 89144,
+  "estimatedCostUSD": 0.2173,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780709880730,
+      "duration": 6947,
+      "promptTokens": 187439,
+      "completionTokens": 328,
+      "totalTokens": 187767,
+      "historyLength": 78,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780709887678,
+      "duration": 2059,
+      "promptTokens": 73206,
+      "completionTokens": 43,
+      "totalTokens": 73249,
+      "historyLength": 1644,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780709887679,
+      "duration": 2309,
+      "promptTokens": 31627,
+      "completionTokens": 49,
+      "totalTokens": 31676,
+      "historyLength": 42,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780709889989,
+      "duration": 2189,
+      "promptTokens": 73267,
+      "completionTokens": 43,
+      "totalTokens": 73310,
+      "historyLength": 1646,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780709892506,
+      "duration": 2278,
+      "promptTokens": 73333,
+      "completionTokens": 34,
+      "totalTokens": 73367,
+      "historyLength": 1648,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780709895115,
+      "duration": 2288,
+      "promptTokens": 22383,
+      "completionTokens": 64,
+      "totalTokens": 22447,
+      "historyLength": 48,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780709895114,
+      "duration": 2390,
+      "promptTokens": 73385,
+      "completionTokens": 83,
+      "totalTokens": 73468,
+      "historyLength": 1651,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780709897406,
+      "duration": 2864,
+      "promptTokens": 73399,
+      "completionTokens": 65,
+      "totalTokens": 73464,
+      "historyLength": 1652,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780709897406,
+      "duration": 4546,
+      "promptTokens": 193442,
+      "completionTokens": 110,
+      "totalTokens": 193552,
+      "historyLength": 80,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## RESULTADO\n\nO commit foi **criado com sucesso** ✅, mas o **push está bloqueado por autenticação**.\n\n### ✅ Feit",
+      "startTime": 1780709880730,
+      "duration": 6947,
+      "success": true,
+      "responseLength": 250,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário enviou 'Olá' novamente. Responda de forma simples e amigável, desta ve…\"",
+      "startTime": 1780709887678,
+      "duration": 2059,
+      "success": true,
+      "responseLength": 127,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user just said \"Olá\" again.",
+      "startTime": 1780709889989,
+      "duration": 2189,
+      "success": true,
+      "responseLength": 118,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The instruction says to respond simply without repeating the full summary of the repositories.",
+      "startTime": 1780709892506,
+      "duration": 2279,
+      "success": true,
+      "responseLength": 91,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## RESULTADO\n\nO commit foi **criado com sucesso** ✅, mas o **push está bloqueado por autenticação**.\n\n### ✅ Feit",
+      "startTime": 1780709887679,
+      "duration": 7435,
+      "success": true,
+      "responseLength": 36,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Olá\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário enviou 'Olá' novamente. Responda de forma simples e amig",
+      "startTime": 1780709895115,
+      "duration": 2289,
+      "success": true,
+      "responseLength": 226,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780709895114,
+      "duration": 2390,
+      "success": true,
+      "responseLength": 274,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780709897406,
+      "duration": 2864,
+      "success": true,
+      "responseLength": 198,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## RESULTADO\n\nO commit foi **criado com sucesso** ✅, mas o **push está bloqueado por autenticação**.\n\n### ✅ Feit",
+      "startTime": 1780709897406,
+      "duration": 4547,
+      "success": true,
+      "responseLength": 134,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário enviou 'Olá' novamente. Responda de forma simples e amigável, desta vez sem repetir o resumo completo dos repositórios que já foi dado. Apenas retorne o cumprimento e pergunte como pode ajud",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780709887678
+    },
+    {
+      "instruction": "Saudação já foi respondida de forma simples e adequada. Nenhuma ação adicional necessária.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780709901953
+    }
+  ],
+  "toolCalls": []
+}
