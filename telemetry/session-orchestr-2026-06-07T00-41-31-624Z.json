@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Liste 5 Agents prioritários que teriam maior impacto na inteligência da arquitetura agentica da colabor-ai",
+  "startedAt": "2026-06-07T00:41:07.162Z",
+  "finishedAt": "2026-06-07T00:41:31.623Z",
+  "totalDuration": 24461,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 1218102,
+  "totalCompletionTokens": 1293,
+  "totalTokens": 1219395,
+  "maxContextWindowTokens": 454917,
+  "avgTokensPerLLMCall": 135488,
+  "estimatedCostUSD": 0.3303,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792867321,
+      "duration": 6452,
+      "promptTokens": 447892,
+      "completionTokens": 403,
+      "totalTokens": 448295,
+      "historyLength": 76,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792873777,
+      "duration": 2910,
+      "promptTokens": 36658,
+      "completionTokens": 159,
+      "totalTokens": 36817,
+      "historyLength": 994,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792873778,
+      "duration": 4535,
+      "promptTokens": 108119,
+      "completionTokens": 242,
+      "totalTokens": 108361,
+      "historyLength": 82,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792878314,
+      "duration": 2314,
+      "promptTokens": 36837,
+      "completionTokens": 83,
+      "totalTokens": 36920,
+      "historyLength": 996,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792881060,
+      "duration": 1894,
+      "promptTokens": 36937,
+      "completionTokens": 99,
+      "totalTokens": 37036,
+      "historyLength": 998,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792883380,
+      "duration": 2048,
+      "promptTokens": 37054,
+      "completionTokens": 21,
+      "totalTokens": 37075,
+      "historyLength": 1000,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792883382,
+      "duration": 2424,
+      "promptTokens": 22595,
+      "completionTokens": 119,
+      "totalTokens": 22714,
+      "historyLength": 50,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792885814,
+      "duration": 2071,
+      "promptTokens": 37093,
+      "completionTokens": 25,
+      "totalTokens": 37118,
+      "historyLength": 1002,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792885816,
+      "duration": 5798,
+      "promptTokens": 454917,
+      "completionTokens": 142,
+      "totalTokens": 455059,
+      "historyLength": 78,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Liste 5 Agents prioritários que teriam maior impacto na inteligência da arquitetura agentica da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"succ",
+      "startTime": 1780792867321,
+      "duration": 6453,
+      "success": true,
+      "responseLength": 794,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário agora quer a lista. Responda de forma direta e concisa com os 5 agente…\"",
+      "startTime": 1780792873777,
+      "duration": 2913,
+      "success": true,
+      "responseLength": 461,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user now wants the list of 5 priority agents.",
+      "startTime": 1780792878314,
+      "duration": 2316,
+      "success": true,
+      "responseLength": 218,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me respond directly and concisely.",
+      "startTime": 1780792881060,
+      "duration": 1897,
+      "success": true,
+      "responseLength": 274,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Liste 5 Agents prioritários que teriam maior impacto na inteligência da arquitetura agentica da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"succ",
+      "startTime": 1780792873778,
+      "duration": 9601,
+      "success": true,
+      "responseLength": 813,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780792883380,
+      "duration": 2049,
+      "success": true,
+      "responseLength": 45,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Liste 5 Agents prioritários que teriam maior impacto na inteligência da arquitetura agentica da colabor-ai\n\n\n\n    Agent used:",
+      "startTime": 1780792883382,
+      "duration": 2426,
+      "success": true,
+      "responseLength": 408,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780792885814,
+      "duration": 2102,
+      "success": true,
+      "responseLength": 55,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Liste 5 Agents prioritários que teriam maior impacto na inteligência da arquitetura agentica da colabor-ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: {\n  \"succ",
+      "startTime": 1780792885816,
+      "duration": 5801,
+      "success": true,
+      "responseLength": 240,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário agora quer a lista. Responda de forma direta e concisa com os 5 agentes prioritários que mais impactariam a inteligência do sistema:\n\n1. **DataAnalystAgent** — analisa dados, gera gráficos e",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780792873775
+    },
+    {
+      "instruction": "Lista completa dos 5 agentes prioritários já foi apresentada: DataAnalystAgent, GitAgent, DBAgent, ImageAgent, NotificationAgent. Perguntei qual ele quer implementar primeiro. Aguardando resposta.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780792891618
+    }
+  ],
+  "toolCalls": []
+}

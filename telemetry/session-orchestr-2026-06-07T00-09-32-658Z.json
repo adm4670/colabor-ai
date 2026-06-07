@@ -1,0 +1,265 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Qual é o banco de vector que foi utilizado?",
+  "startedAt": "2026-06-07T00:09:15.578Z",
+  "finishedAt": "2026-06-07T00:09:32.657Z",
+  "totalDuration": 17079,
+  "totalLLMCalls": 10,
+  "totalPromptTokens": 315716,
+  "totalCompletionTokens": 1047,
+  "totalTokens": 316763,
+  "maxContextWindowTokens": 110250,
+  "avgTokensPerLLMCall": 31676,
+  "estimatedCostUSD": 0.0864,
+  "totalAgentCalls": 10,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "ReflectorAgent": 2,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 10,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780790955825,
+      "duration": 4146,
+      "promptTokens": 95870,
+      "completionTokens": 307,
+      "totalTokens": 96177,
+      "historyLength": 30,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790959987,
+      "duration": 1991,
+      "promptTokens": 13508,
+      "completionTokens": 36,
+      "totalTokens": 13544,
+      "historyLength": 470,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790959990,
+      "duration": 2083,
+      "promptTokens": 15387,
+      "completionTokens": 72,
+      "totalTokens": 15459,
+      "historyLength": 22,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790962076,
+      "duration": 1657,
+      "promptTokens": 13562,
+      "completionTokens": 18,
+      "totalTokens": 13580,
+      "historyLength": 472,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790962078,
+      "duration": 1818,
+      "promptTokens": 15749,
+      "completionTokens": 70,
+      "totalTokens": 15819,
+      "historyLength": 24,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790963902,
+      "duration": 1494,
+      "promptTokens": 13598,
+      "completionTokens": 25,
+      "totalTokens": 13623,
+      "historyLength": 474,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780790963904,
+      "duration": 4868,
+      "promptTokens": 110250,
+      "completionTokens": 230,
+      "totalTokens": 110480,
+      "historyLength": 32,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790968780,
+      "duration": 1329,
+      "promptTokens": 13643,
+      "completionTokens": 18,
+      "totalTokens": 13661,
+      "historyLength": 477,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790968783,
+      "duration": 1963,
+      "promptTokens": 13643,
+      "completionTokens": 35,
+      "totalTokens": 13678,
+      "historyLength": 478,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780790968785,
+      "duration": 3870,
+      "promptTokens": 10506,
+      "completionTokens": 236,
+      "totalTokens": 10742,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Qual é o banco de vector que foi utilizado?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá",
+      "startTime": 1780790955825,
+      "duration": 4149,
+      "success": true,
+      "responseLength": 824,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 ReflectorAgent → \"Qual é o banco de vector que foi utilizado?\"",
+      "startTime": 1780790959987,
+      "duration": 1993,
+      "success": true,
+      "responseLength": 134,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Qual é o banco de vector que foi utilizado?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá",
+      "startTime": 1780790959990,
+      "duration": 2085,
+      "success": true,
+      "responseLength": 269,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780790962076,
+      "duration": 1660,
+      "success": true,
+      "responseLength": 49,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Qual é o banco de vector que foi utilizado?\n\n\n\n    Agent used: ReflectorAgent\n\n\n\n    Instruction given: Qual é o banco de vec",
+      "startTime": 1780790962078,
+      "duration": 1820,
+      "success": true,
+      "responseLength": 244,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780790963902,
+      "duration": 1497,
+      "success": true,
+      "responseLength": 82,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Qual é o banco de vector que foi utilizado?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá",
+      "startTime": 1780790963904,
+      "duration": 4870,
+      "success": true,
+      "responseLength": 441,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 📝 Preparando a resposta final...",
+      "startTime": 1780790968780,
+      "duration": 1331,
+      "success": true,
+      "responseLength": 53,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Formatando resposta...",
+      "startTime": 1780790968783,
+      "duration": 1965,
+      "success": true,
+      "responseLength": 120,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "Format this response for the user in natural, friendly language:\\n\\n{\n  \"success\": \"yes\",\n  \"complete\": true,\n  \"missingInfo\": [],\n  \"retryDifferent\": false,\n  \"learning\": \"O agente respondeu corretam",
+      "startTime": 1780790968785,
+      "duration": 3872,
+      "success": true,
+      "responseLength": 374,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Não foi utilizado um banco vetorial tradicional (como ChromaDB, Pinecone ou pgvector).\n\nA implementação usa **armazenamento local em JSON** combinado com embeddings da OpenAI:\n\n- 📄 **Armazenamento:**",
+      "chosenAgent": "finish",
+      "step": 1,
+      "timestamp": 1780790959976
+    },
+    {
+      "instruction": "Não foi utilizado um banco vetorial tradicional.\n\nA implementação é **caseira**:\n\n- 📄 **Armazenamento:** arquivo `data/memory/vector-store.json`\n- 🧠 **Embeddings:** OpenAI `text-embedding-3-small` (",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780790968776
+    }
+  ],
+  "toolCalls": []
+}

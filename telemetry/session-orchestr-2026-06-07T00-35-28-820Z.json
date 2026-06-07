@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Tem alguns Agents que melhoraria a capacidade do sistema agentico?",
+  "startedAt": "2026-06-07T00:35:00.043Z",
+  "finishedAt": "2026-06-07T00:35:28.820Z",
+  "totalDuration": 28777,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 1002784,
+  "totalCompletionTokens": 1690,
+  "totalTokens": 1004474,
+  "maxContextWindowTokens": 375224,
+  "avgTokensPerLLMCall": 111608,
+  "estimatedCostUSD": 0.2726,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792500329,
+      "duration": 7547,
+      "promptTokens": 357135,
+      "completionTokens": 376,
+      "totalTokens": 357511,
+      "historyLength": 62,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792507896,
+      "duration": 2545,
+      "promptTokens": 33745,
+      "completionTokens": 149,
+      "totalTokens": 33894,
+      "historyLength": 946,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792507900,
+      "duration": 6350,
+      "promptTokens": 79391,
+      "completionTokens": 502,
+      "totalTokens": 79893,
+      "historyLength": 74,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792514253,
+      "duration": 2620,
+      "promptTokens": 33917,
+      "completionTokens": 145,
+      "totalTokens": 34062,
+      "historyLength": 948,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792517283,
+      "duration": 3242,
+      "promptTokens": 34099,
+      "completionTokens": 170,
+      "totalTokens": 34269,
+      "historyLength": 950,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792520942,
+      "duration": 2223,
+      "promptTokens": 34287,
+      "completionTokens": 39,
+      "totalTokens": 34326,
+      "historyLength": 952,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792520945,
+      "duration": 2268,
+      "promptTokens": 20642,
+      "completionTokens": 130,
+      "totalTokens": 20772,
+      "historyLength": 42,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792523222,
+      "duration": 1548,
+      "promptTokens": 34344,
+      "completionTokens": 47,
+      "totalTokens": 34391,
+      "historyLength": 954,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792523230,
+      "duration": 5582,
+      "promptTokens": 375224,
+      "completionTokens": 132,
+      "totalTokens": 375356,
+      "historyLength": 64,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Tem alguns Agents que melhoraria a capacidade do sistema agentico?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Legal! Já tenho um bom panorama do **colabor-ai**",
+      "startTime": 1780792500329,
+      "duration": 7549,
+      "success": true,
+      "responseLength": 603,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário perguntou sobre agents que melhorariam o sistema. Dê uma resposta dire…\"",
+      "startTime": 1780792507896,
+      "duration": 2547,
+      "success": true,
+      "responseLength": 472,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário perguntou sobre agents que melhorariam o sistema.",
+      "startTime": 1780792514253,
+      "duration": 2621,
+      "success": true,
+      "responseLength": 462,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou dar uma resposta direta sugerindo novos agentes especializados, baseado no que já foi implementado (tools) e na arqu",
+      "startTime": 1780792517283,
+      "duration": 3245,
+      "success": true,
+      "responseLength": 558,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Tem alguns Agents que melhoraria a capacidade do sistema agentico?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Legal! Já tenho um bom panorama do **colabor-ai**",
+      "startTime": 1780792507900,
+      "duration": 13041,
+      "success": true,
+      "responseLength": 1594,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780792520942,
+      "duration": 2224,
+      "success": true,
+      "responseLength": 112,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Tem alguns Agents que melhoraria a capacidade do sistema agentico?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O u",
+      "startTime": 1780792520945,
+      "duration": 2270,
+      "success": true,
+      "responseLength": 483,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780792523222,
+      "duration": 1551,
+      "success": true,
+      "responseLength": 150,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Tem alguns Agents que melhoraria a capacidade do sistema agentico?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Legal! Já tenho um bom panorama do **colabor-ai**",
+      "startTime": 1780792523230,
+      "duration": 5584,
+      "success": true,
+      "responseLength": 195,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário perguntou sobre agents que melhorariam o sistema. Dê uma resposta direta sugerindo novos agentes especializados:\n\n1. **DataAnalystAgent** — análise de dados, geração de gráficos e relatórios",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780792507880
+    },
+    {
+      "instruction": "A resposta já foi dada: sugestão de 3 agentes prioritários (DataAnalystAgent, GitAgent, DBAgent) e aguardando o usuário escolher qual quer implementar.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780792528816
+    }
+  ],
+  "toolCalls": []
+}

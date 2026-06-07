@@ -2,6 +2,7 @@ import { Agent } from "../agent/agent";
 import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { shellExecTool } from "../tools/shellExecTool";
     import { memorySearchTool } from "../memory/memory_search";
+    import { vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool } from "../memory/vector-memory-tools";
     
     export const shellAgent = new Agent({
       name: "ShellAgent",
@@ -13,11 +14,18 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     
-      tools: [shellExecTool, memorySearchTool],
+      tools: [shellExecTool, memorySearchTool, vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool, fileSystemTool, webSearchTool, apiIntegrationTool, taskSchedulerTool],
     
       functions: {
         execute_shell: shellExecTool.handler,
         memory_search: memorySearchTool.handler,
+        vector_memory_store: vectorMemoryStoreTool.handler,
+        vector_memory_search: vectorMemorySearchTool.handler,
+        vector_memory_stats: vectorMemoryStatsTool.handler,
+              file_system: fileSystemTool.handler,
+              web_search: webSearchTool.handler,
+              api_request: apiIntegrationTool.handler,
+              task_scheduler: taskSchedulerTool.handler,
       },
     
       generalInstructions: `
@@ -94,6 +102,10 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
     // Registrar no AgentRegistry
     import { agentRegistry } from "./agent-registry";
+    import { fileSystemTool } from "../tools/fileSystemTool";
+    import { webSearchTool } from "../tools/webSearchTool";
+    import { apiIntegrationTool } from "../tools/apiIntegrationTool";
+    import { taskSchedulerTool } from "../tools/taskSchedulerTool";
     agentRegistry.register({
       name: shellAgent.name,
       description: "Shell command execution specialist. Can run npm, git, file operations, and system commands.",

@@ -1,6 +1,7 @@
 import { Agent } from "../agent/agent";
 import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { memorySearchTool } from "../memory/memory_search";
+        import { vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool } from "../memory/vector-memory-tools";
     
     export const assistantAgent = new Agent({
       name: "assistant",
@@ -11,10 +12,17 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     
-      tools: [memorySearchTool],
+      tools: [memorySearchTool, vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool, fileSystemTool, webSearchTool, apiIntegrationTool, taskSchedulerTool],
     
       functions: {
         memory_search: memorySearchTool.handler,
+        vector_memory_store: vectorMemoryStoreTool.handler,
+        vector_memory_search: vectorMemorySearchTool.handler,
+        vector_memory_stats: vectorMemoryStatsTool.handler,
+              file_system: fileSystemTool.handler,
+              web_search: webSearchTool.handler,
+              api_request: apiIntegrationTool.handler,
+              task_scheduler: taskSchedulerTool.handler,
       },
     
       goal: `
@@ -52,6 +60,10 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
     // Registrar no AgentRegistry
     import { agentRegistry } from "./agent-registry";
+    import { fileSystemTool } from "../tools/fileSystemTool";
+    import { webSearchTool } from "../tools/webSearchTool";
+    import { apiIntegrationTool } from "../tools/apiIntegrationTool";
+    import { taskSchedulerTool } from "../tools/taskSchedulerTool";
     agentRegistry.register({
       name: assistantAgent.name,
       description: "General conversation, questions and explanations. Can search memory.",

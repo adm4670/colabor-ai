@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "savedAt": "2026-06-07T22:02:01.287Z",
+  "nodes": [
+    {
+      "key": "colabor-ai",
+      "predicates": [
+        "has_total_files",
+        "has_total_directories",
+        "has_total_facts"
+      ]
+    },
+    {
+      "key": "0",
+      "predicates": [
+        "has_total_files",
+        "has_total_directories"
+      ]
+    },
+    {
+      "key": "2",
+      "predicates": [
+        "has_total_facts"
+      ]
+    },
+    {
+      "key": "ai",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "um",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "o que",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "o action4",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "nalisados",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "uma",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "como a resposta final",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "montada após o loop de agents terminar",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "as correções",
+      "predicates": [
+        "foram"
+      ]
+    },
+    {
+      "key": "aplicadas no arquivo",
+      "predicates": [
+        "foram"
+      ]
+    },
+    {
+      "key": "as alterações",
+      "predicates": [
+        "foram"
+      ]
+    },
+    {
+      "key": "aplicadas corretamente",
+      "predicates": [
+        "foram"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "key": "colabor-ai::has_total_files",
+      "targets": [
+        {
+          "object": "0",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "colabor-ai::has_total_directories",
+      "targets": [
+        {
+          "object": "0",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "colabor-ai::has_total_facts",
+      "targets": [
+        {
+          "object": "2",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "ai::é",
+      "targets": [
+        {
+          "object": "um",
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "key": "o que::é",
+      "targets": [
+        {
+          "object": "o action4",
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "key": "nalisados::é",
+      "targets": [
+        {
+          "object": "uma",
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "key": "como a resposta final::é",
+      "targets": [
+        {
+          "object": "montada após o loop de agents terminar",
+          "confidence": 0.99
+        }
+      ]
+    },
+    {
+      "key": "as correções::foram",
+      "targets": [
+        {
+          "object": "aplicadas no arquivo",
+          "confidence": 0.99
+        }
+      ]
+    },
+    {
+      "key": "as alterações::foram",
+      "targets": [
+        {
+          "object": "aplicadas corretamente",
+          "confidence": 0.9500000000000001
+        }
+      ]
+    }
+  ]
+}

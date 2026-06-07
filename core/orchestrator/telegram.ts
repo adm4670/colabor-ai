@@ -112,6 +112,8 @@ import "../agents/answer.agent";
 
 
 import "../agents/task-manager.agent";
+    import "../agents/knowledge-graph.agent";
+    import "../agents/knowledge-graph.agent";
 import { generateThinkingMessage } from "../agents/thinking.agent";
 
 import { startConsoleDashboard, setDashboardQuery, setDashboardResponse } from "../telemetry/console-dashboard";

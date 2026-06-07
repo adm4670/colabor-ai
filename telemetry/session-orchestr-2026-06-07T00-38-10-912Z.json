@@ -1,0 +1,441 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Como seria esse agente de visão computacional?",
+  "startedAt": "2026-06-07T00:37:14.481Z",
+  "finishedAt": "2026-06-07T00:38:10.912Z",
+  "totalDuration": 56431,
+  "totalLLMCalls": 18,
+  "totalPromptTokens": 1845630,
+  "totalCompletionTokens": 3687,
+  "totalTokens": 1849317,
+  "maxContextWindowTokens": 426310,
+  "avgTokensPerLLMCall": 102740,
+  "estimatedCostUSD": 0.5024,
+  "totalAgentCalls": 18,
+  "agentCallBreakdown": {
+    "PlannerAgent": 3,
+    "ThinkingAgent": 11,
+    "assistant": 2,
+    "ReflectorAgent": 2
+  },
+  "avgAgentCalls": 18,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792634770,
+      "duration": 9135,
+      "promptTokens": 391566,
+      "completionTokens": 526,
+      "totalTokens": 392092,
+      "historyLength": 66,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792643931,
+      "duration": 3524,
+      "promptTokens": 34480,
+      "completionTokens": 160,
+      "totalTokens": 34640,
+      "historyLength": 958,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792643934,
+      "duration": 8175,
+      "promptTokens": 89165,
+      "completionTokens": 608,
+      "totalTokens": 89773,
+      "historyLength": 76,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792652112,
+      "duration": 3522,
+      "promptTokens": 34675,
+      "completionTokens": 190,
+      "totalTokens": 34865,
+      "historyLength": 960,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792656051,
+      "duration": 3187,
+      "promptTokens": 34881,
+      "completionTokens": 165,
+      "totalTokens": 35046,
+      "historyLength": 962,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792659654,
+      "duration": 1729,
+      "promptTokens": 35064,
+      "completionTokens": 28,
+      "totalTokens": 35092,
+      "historyLength": 964,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792659657,
+      "duration": 2361,
+      "promptTokens": 21210,
+      "completionTokens": 123,
+      "totalTokens": 21333,
+      "historyLength": 44,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792662030,
+      "duration": 1690,
+      "promptTokens": 35110,
+      "completionTokens": 43,
+      "totalTokens": 35153,
+      "historyLength": 966,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792662032,
+      "duration": 3928,
+      "promptTokens": 408913,
+      "completionTokens": 134,
+      "totalTokens": 409047,
+      "historyLength": 68,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792665983,
+      "duration": 3229,
+      "promptTokens": 35186,
+      "completionTokens": 209,
+      "totalTokens": 35395,
+      "historyLength": 969,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792665985,
+      "duration": 3387,
+      "promptTokens": 35186,
+      "completionTokens": 248,
+      "totalTokens": 35434,
+      "historyLength": 970,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792665987,
+      "duration": 7596,
+      "promptTokens": 98654,
+      "completionTokens": 565,
+      "totalTokens": 99219,
+      "historyLength": 78,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792673585,
+      "duration": 3133,
+      "promptTokens": 35677,
+      "completionTokens": 103,
+      "totalTokens": 35780,
+      "historyLength": 972,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792677238,
+      "duration": 2856,
+      "promptTokens": 35813,
+      "completionTokens": 170,
+      "totalTokens": 35983,
+      "historyLength": 974,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792680516,
+      "duration": 2228,
+      "promptTokens": 36001,
+      "completionTokens": 34,
+      "totalTokens": 36035,
+      "historyLength": 976,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792680519,
+      "duration": 2579,
+      "promptTokens": 21686,
+      "completionTokens": 127,
+      "totalTokens": 21813,
+      "historyLength": 46,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792683112,
+      "duration": 2244,
+      "promptTokens": 36053,
+      "completionTokens": 35,
+      "totalTokens": 36088,
+      "historyLength": 978,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792683114,
+      "duration": 7793,
+      "promptTokens": 426310,
+      "completionTokens": 219,
+      "totalTokens": 426529,
+      "historyLength": 70,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como seria esse agente de visão computacional?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Vou direto ao ponto. Baseado na estrutura que mapeei do projeto, aqui",
+      "startTime": 1780792634770,
+      "duration": 9138,
+      "success": true,
+      "responseLength": 1501,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário quer saber detalhes sobre o ImageAgent (visão computacional). Explique…\"",
+      "startTime": 1780792643931,
+      "duration": 3526,
+      "success": true,
+      "responseLength": 542,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user asked \"Como seria esse agente de visão computacional?\" - they want to know the details about the ImageAgent/com",
+      "startTime": 1780792652112,
+      "duration": 3524,
+      "success": true,
+      "responseLength": 584,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me explain it clearly and directly.",
+      "startTime": 1780792656051,
+      "duration": 3189,
+      "success": true,
+      "responseLength": 478,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como seria esse agente de visão computacional?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Vou direto ao ponto. Baseado na estrutura que mapeei do projeto, aqui",
+      "startTime": 1780792643934,
+      "duration": 15719,
+      "success": true,
+      "responseLength": 1870,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780792659654,
+      "duration": 1731,
+      "success": true,
+      "responseLength": 69,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Como seria esse agente de visão computacional?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário quer saber de",
+      "startTime": 1780792659657,
+      "duration": 2363,
+      "success": true,
+      "responseLength": 477,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780792662030,
+      "duration": 1692,
+      "success": true,
+      "responseLength": 122,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como seria esse agente de visão computacional?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Vou direto ao ponto. Baseado na estrutura que mapeei do projeto, aqui",
+      "startTime": 1780792662032,
+      "duration": 3949,
+      "success": true,
+      "responseLength": 0,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Redirecionando para assistente...",
+      "startTime": 1780792665983,
+      "duration": 3231,
+      "success": true,
+      "responseLength": 640,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Como seria esse agente de visão computacional?\"",
+      "startTime": 1780792665985,
+      "duration": 3389,
+      "success": true,
+      "responseLength": 783,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking the same question again - \"Como seria esse agente de visão computacional?\" - which I already answered",
+      "startTime": 1780792673585,
+      "duration": 3136,
+      "success": true,
+      "responseLength": 316,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 They might want more detail, or perhaps they're testing me, or they didn't fully read my previous response because it wa",
+      "startTime": 1780792677238,
+      "duration": 2858,
+      "success": true,
+      "responseLength": 531,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como seria esse agente de visão computacional?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Vou direto ao ponto. Baseado na estrutura que mapeei do projeto, aqui",
+      "startTime": 1780792665987,
+      "duration": 14528,
+      "success": true,
+      "responseLength": 1710,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780792680516,
+      "duration": 2230,
+      "success": true,
+      "responseLength": 91,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Como seria esse agente de visão computacional?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: Como seria esse agente ",
+      "startTime": 1780792680519,
+      "duration": 2582,
+      "success": true,
+      "responseLength": 481,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780792683112,
+      "duration": 2247,
+      "success": true,
+      "responseLength": 92,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Como seria esse agente de visão computacional?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Vou direto ao ponto. Baseado na estrutura que mapeei do projeto, aqui",
+      "startTime": 1780792683114,
+      "duration": 7794,
+      "success": true,
+      "responseLength": 364,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário quer saber detalhes sobre o ImageAgent (visão computacional). Explique de forma clara e direta:\n\n## 🖼️ ImageAgent — Visão Computacional\n\n**Capacidades principais:**\n1. **Descrever imagens**",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780792643911
+    },
+    {
+      "instruction": "A explicação completa sobre o ImageAgent já foi fornecida: capacidades (descrever imagens, OCR, analisar objetos), tecnologias (GPT-4o Vision, Tesseract.js, Sharp), integração com tools existentes, es",
+      "chosenAgent": "finish",
+      "step": 3,
+      "timestamp": 1780792690909
+    }
+  ],
+  "toolCalls": []
+}

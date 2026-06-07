@@ -1,0 +1,259 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Pense em como criar uma arquitetura que teremos na cloud a parte da inteligência da colabor-ai, com seus Agents, e na maquina no usuário as tools e quando o usuário pede alguma coisa o agente se comunica com a máquina e executa via as tools na máquina. Essa arquitetura precisa ter um banco para gerenciar múltiplos usuários diferentes sem vazamento de informação entre eles assim como login via Google e a parte do cliente de ser uma aplicação electron que gera um instalador com todas as configurações necessárias inclusive, nodejs e python",
+  "startedAt": "2026-06-07T13:02:52.618Z",
+  "finishedAt": "2026-06-07T13:04:09.959Z",
+  "totalDuration": 77341,
+  "totalLLMCalls": 10,
+  "totalPromptTokens": 1299733,
+  "totalCompletionTokens": 7677,
+  "totalTokens": 1307410,
+  "maxContextWindowTokens": 475594,
+  "avgTokensPerLLMCall": 130741,
+  "estimatedCostUSD": 0.3594,
+  "totalAgentCalls": 10,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 6,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 10,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 1,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780837372807,
+      "duration": 28688,
+      "promptTokens": 462299,
+      "completionTokens": 3178,
+      "totalTokens": 465477,
+      "historyLength": 80,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837401530,
+      "duration": 3257,
+      "promptTokens": 37195,
+      "completionTokens": 151,
+      "totalTokens": 37346,
+      "historyLength": 1007,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837401534,
+      "duration": 3643,
+      "promptTokens": 37195,
+      "completionTokens": 161,
+      "totalTokens": 37356,
+      "historyLength": 1008,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780837401536,
+      "duration": 28563,
+      "promptTokens": 113007,
+      "completionTokens": 3322,
+      "totalTokens": 116329,
+      "historyLength": 84,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837430102,
+      "duration": 4175,
+      "promptTokens": 37540,
+      "completionTokens": 194,
+      "totalTokens": 37734,
+      "historyLength": 1010,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837434689,
+      "duration": 3025,
+      "promptTokens": 37767,
+      "completionTokens": 162,
+      "totalTokens": 37929,
+      "historyLength": 1012,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837438149,
+      "duration": 1835,
+      "promptTokens": 37947,
+      "completionTokens": 23,
+      "totalTokens": 37970,
+      "historyLength": 1014,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837438151,
+      "duration": 3267,
+      "promptTokens": 23201,
+      "completionTokens": 132,
+      "totalTokens": 23333,
+      "historyLength": 52,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780837441464,
+      "duration": 2933,
+      "promptTokens": 37988,
+      "completionTokens": 50,
+      "totalTokens": 38038,
+      "historyLength": 1016,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780837441466,
+      "duration": 8481,
+      "promptTokens": 475594,
+      "completionTokens": 304,
+      "totalTokens": 475898,
+      "historyLength": 82,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Pense em como criar uma arquitetura que teremos na cloud a parte da inteligência da colabor-ai, com seus Agents, e na maquina no usuário as tools e quando o usuário pede a",
+      "startTime": 1780837372807,
+      "duration": 28691,
+      "success": true,
+      "responseLength": 9175,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Redirecionando para assistente...",
+      "startTime": 1780837401530,
+      "duration": 3259,
+      "success": true,
+      "responseLength": 479,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Pense em como criar uma arquitetura que teremos na cloud a parte da inteligência…\"",
+      "startTime": 1780837401534,
+      "duration": 3645,
+      "success": true,
+      "responseLength": 519,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking me to think about a new architecture for colabor-ai that splits the system into: 1.",
+      "startTime": 1780837430102,
+      "duration": 4177,
+      "success": true,
+      "responseLength": 637,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 **Cloud side** - The intelligence (Agents/LLM) + Database for multi-tenant user management 2.",
+      "startTime": 1780837434689,
+      "duration": 3027,
+      "success": true,
+      "responseLength": 505,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Pense em como criar uma arquitetura que teremos na cloud a parte da inteligência da colabor-ai, com seus Agents, e na maquina no usuário as tools e quando o usuário pede a",
+      "startTime": 1780837401536,
+      "duration": 36612,
+      "success": true,
+      "responseLength": 10337,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780837438149,
+      "duration": 1837,
+      "success": true,
+      "responseLength": 62,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Pense em como criar uma arquitetura que teremos na cloud a parte da inteligência da colabor-ai, com seus Agents, e na maquina",
+      "startTime": 1780837438151,
+      "duration": 3270,
+      "success": true,
+      "responseLength": 499,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780837441464,
+      "duration": 2935,
+      "success": true,
+      "responseLength": 145,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Pense em como criar uma arquitetura que teremos na cloud a parte da inteligência da colabor-ai, com seus Agents, e na maquina no usuário as tools e quando o usuário pede a",
+      "startTime": 1780837441466,
+      "duration": 8483,
+      "success": true,
+      "responseLength": 707,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "A arquitetura cloud-edge completa foi detalhada, cobrindo:\n\n- **Cloud**: API Gateway (Express), Agent Engine com Planner + 5 agents, PostgreSQL multi-tenant, ChromaDB por usuário, WebSocket server, Re",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780837449951
+    }
+  ],
+  "toolCalls": []
+}

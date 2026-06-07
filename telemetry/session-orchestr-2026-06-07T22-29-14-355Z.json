@@ -1,0 +1,58 @@
+{
+  "sessionId": "orchestrator_1780869749745_yxn60x",
+  "userInput": "Tem algum jogo bom para assistir agora, ligado a preparação da copa do mundo?",
+  "startedAt": "2026-06-07T22:29:08.579Z",
+  "finishedAt": "2026-06-07T22:29:14.354Z",
+  "totalDuration": 5775,
+  "totalLLMCalls": 1,
+  "totalPromptTokens": 44546,
+  "totalCompletionTokens": 282,
+  "totalTokens": 44828,
+  "maxContextWindowTokens": 44546,
+  "avgTokensPerLLMCall": 44828,
+  "estimatedCostUSD": 0.0123,
+  "totalAgentCalls": 1,
+  "agentCallBreakdown": {
+    "PlannerAgent": 1
+  },
+  "avgAgentCalls": 1,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 1,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780871348709,
+      "duration": 5635,
+      "promptTokens": 44546,
+      "completionTokens": 282,
+      "totalTokens": 44828,
+      "historyLength": 32,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Tem algum jogo bom para assistir agora, ligado a preparação da copa do mundo?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! Tudo bem por aí? 😊\n\nCo",
+      "startTime": 1780871348709,
+      "duration": 5638,
+      "success": true,
+      "responseLength": 552,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Navegue até o Google (google.com) e pesquise por \"jogos de preparação Copa do Mundo hoje horário\" e também \"amistosos seleções hoje Copa 2026\". Extraia os resultados: quais jogos estão acontecendo hoj",
+      "chosenAgent": "browser",
+      "step": 1,
+      "timestamp": 1780871354349
+    }
+  ],
+  "toolCalls": []
+}

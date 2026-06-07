@@ -1,0 +1,772 @@
+{
+  "sessionId": "orchestrator_1780867800798_objh8t",
+  "userInput": "e sobre o projeto duda?",
+  "startedAt": "2026-06-07T21:35:33.805Z",
+  "finishedAt": "2026-06-07T21:36:51.437Z",
+  "totalDuration": 77632,
+  "totalLLMCalls": 33,
+  "totalPromptTokens": 640581,
+  "totalCompletionTokens": 5332,
+  "totalTokens": 645913,
+  "maxContextWindowTokens": 39801,
+  "avgTokensPerLLMCall": 19573,
+  "estimatedCostUSD": 0.1788,
+  "totalAgentCalls": 27,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 23,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 27,
+  "totalToolCalls": 7,
+  "toolCallBreakdown": {
+    "memory_search": 1,
+    "vector_memory_search": 1,
+    "file_system": 4,
+    "vector_memory_store": 1
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868133957,
+      "duration": 5299,
+      "promptTokens": 30798,
+      "completionTokens": 295,
+      "totalTokens": 31093,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868139274,
+      "duration": 1942,
+      "promptTokens": 18544,
+      "completionTokens": 44,
+      "totalTokens": 18588,
+      "historyLength": 158,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 2409,
+      "promptTokens": 10630,
+      "completionTokens": 146,
+      "totalTokens": 10776,
+      "historyLength": 4,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868141688,
+      "duration": 2154,
+      "promptTokens": 18610,
+      "completionTokens": 72,
+      "totalTokens": 18682,
+      "historyLength": 160,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868144258,
+      "duration": 1646,
+      "promptTokens": 18709,
+      "completionTokens": 39,
+      "totalTokens": 18748,
+      "historyLength": 162,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868146344,
+      "duration": 2253,
+      "promptTokens": 18778,
+      "completionTokens": 82,
+      "totalTokens": 18860,
+      "historyLength": 165,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 9428,
+      "promptTokens": 11256,
+      "completionTokens": 122,
+      "totalTokens": 11378,
+      "historyLength": 7,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868148708,
+      "duration": 2313,
+      "promptTokens": 18875,
+      "completionTokens": 62,
+      "totalTokens": 18937,
+      "historyLength": 167,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868146329,
+      "duration": 7098,
+      "promptTokens": 18778,
+      "completionTokens": 599,
+      "totalTokens": 19377,
+      "historyLength": 169,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868151456,
+      "duration": 2615,
+      "promptTokens": 18983,
+      "completionTokens": 123,
+      "totalTokens": 19106,
+      "historyLength": 170,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868154491,
+      "duration": 2146,
+      "promptTokens": 19731,
+      "completionTokens": 75,
+      "totalTokens": 19806,
+      "historyLength": 172,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 18920,
+      "promptTokens": 14779,
+      "completionTokens": 257,
+      "totalTokens": 15036,
+      "historyLength": 9,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868158201,
+      "duration": 2107,
+      "promptTokens": 19829,
+      "completionTokens": 73,
+      "totalTokens": 19902,
+      "historyLength": 174,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868160731,
+      "duration": 3706,
+      "promptTokens": 19917,
+      "completionTokens": 192,
+      "totalTokens": 20109,
+      "historyLength": 176,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868164860,
+      "duration": 2162,
+      "promptTokens": 20136,
+      "completionTokens": 37,
+      "totalTokens": 20173,
+      "historyLength": 178,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 27806,
+      "promptTokens": 15089,
+      "completionTokens": 93,
+      "totalTokens": 15182,
+      "historyLength": 11,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868167086,
+      "duration": 3214,
+      "promptTokens": 20187,
+      "completionTokens": 95,
+      "totalTokens": 20282,
+      "historyLength": 180,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868170728,
+      "duration": 1689,
+      "promptTokens": 20306,
+      "completionTokens": 27,
+      "totalTokens": 20333,
+      "historyLength": 182,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 35647,
+      "promptTokens": 15382,
+      "completionTokens": 87,
+      "totalTokens": 15469,
+      "historyLength": 13,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868172835,
+      "duration": 2542,
+      "promptTokens": 20360,
+      "completionTokens": 96,
+      "totalTokens": 20456,
+      "historyLength": 185,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868174927,
+      "duration": 1610,
+      "promptTokens": 20377,
+      "completionTokens": 44,
+      "totalTokens": 20421,
+      "historyLength": 186,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868176954,
+      "duration": 1964,
+      "promptTokens": 20548,
+      "completionTokens": 34,
+      "totalTokens": 20582,
+      "historyLength": 188,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 40949,
+      "promptTokens": 18684,
+      "completionTokens": 230,
+      "totalTokens": 18914,
+      "historyLength": 15,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868180230,
+      "duration": 6137,
+      "promptTokens": 20603,
+      "completionTokens": 477,
+      "totalTokens": 21080,
+      "historyLength": 190,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868186792,
+      "duration": 2480,
+      "promptTokens": 21102,
+      "completionTokens": 71,
+      "totalTokens": 21173,
+      "historyLength": 192,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868189736,
+      "duration": 1972,
+      "promptTokens": 21205,
+      "completionTokens": 49,
+      "totalTokens": 21254,
+      "historyLength": 194,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868139278,
+      "duration": 56734,
+      "promptTokens": 18980,
+      "completionTokens": 546,
+      "totalTokens": 19526,
+      "historyLength": 17,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868196012,
+      "duration": 1979,
+      "promptTokens": 21285,
+      "completionTokens": 51,
+      "totalTokens": 21336,
+      "historyLength": 196,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868198416,
+      "duration": 2988,
+      "promptTokens": 21356,
+      "completionTokens": 185,
+      "totalTokens": 21541,
+      "historyLength": 198,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868202088,
+      "duration": 2295,
+      "promptTokens": 3831,
+      "completionTokens": 89,
+      "totalTokens": 3920,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868202087,
+      "duration": 2854,
+      "promptTokens": 21559,
+      "completionTokens": 108,
+      "totalTokens": 21667,
+      "historyLength": 201,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868204404,
+      "duration": 2255,
+      "promptTokens": 21573,
+      "completionTokens": 79,
+      "totalTokens": 21652,
+      "historyLength": 202,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868204410,
+      "duration": 7011,
+      "promptTokens": 39801,
+      "completionTokens": 753,
+      "totalTokens": 40554,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    e sobre o projeto duda?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar. O que você precisa hoje?\n",
+      "startTime": 1780868133957,
+      "duration": 5302,
+      "success": true,
+      "responseLength": 365,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário perguntou sobre o 'projeto duda'. Primeiro, faça uma busca na memória …\"",
+      "startTime": 1780868139274,
+      "duration": 1945,
+      "success": true,
+      "responseLength": 152,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário está perguntando sobre o \"projeto duda\".",
+      "startTime": 1780868141688,
+      "duration": 2157,
+      "success": true,
+      "responseLength": 230,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou buscar na memória textual e vetorial para ver se há informações sobre esse projeto.",
+      "startTime": 1780868144258,
+      "duration": 1648,
+      "success": true,
+      "responseLength": 129,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 vector_memory_search: \"projeto duda\"",
+      "startTime": 1780868146344,
+      "duration": 2256,
+      "success": true,
+      "responseLength": 266,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Encontrei algumas referências.",
+      "startTime": 1780868148708,
+      "duration": 2315,
+      "success": true,
+      "responseLength": 191,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"projeto duda\"",
+      "startTime": 1780868146329,
+      "duration": 7100,
+      "success": true,
+      "responseLength": 1795,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou ler a nota de 2026-06-07 para ver mais detalhes sobre o \"SENAC_DudaFrontEnd\", já que parece ser o projeto mais concr",
+      "startTime": 1780868151456,
+      "duration": 2617,
+      "success": true,
+      "responseLength": 351,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, memory/2026-06-07.md\"",
+      "startTime": 1780868154491,
+      "duration": 2148,
+      "success": true,
+      "responseLength": 217,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Encontrei várias referências ao projeto \"Duda\" nas notas.",
+      "startTime": 1780868158201,
+      "duration": 2109,
+      "success": true,
+      "responseLength": 237,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vamos ver: 1.",
+      "startTime": 1780868160731,
+      "duration": 3708,
+      "success": true,
+      "responseLength": 724,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"exists, C:\\Developer\\SENAC_DudaFrontEnd\"",
+      "startTime": 1780868164860,
+      "duration": 2164,
+      "success": true,
+      "responseLength": 115,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O diretório existe.",
+      "startTime": 1780868167086,
+      "duration": 3216,
+      "success": true,
+      "responseLength": 359,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vamos dar uma olhada nele para ver o que contém.",
+      "startTime": 1780868170728,
+      "duration": 1691,
+      "success": true,
+      "responseLength": 75,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\SENAC_DudaFrontEnd\"",
+      "startTime": 1780868172835,
+      "duration": 2544,
+      "success": true,
+      "responseLength": 300,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou ler o README.md para entender melhor o projeto.",
+      "startTime": 1780868174927,
+      "duration": 1612,
+      "success": true,
+      "responseLength": 134,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\SENAC_DudaFrontEnd\\README.m\"",
+      "startTime": 1780868176954,
+      "duration": 1966,
+      "success": true,
+      "responseLength": 109,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Agora tenho uma visão completa do projeto Duda.",
+      "startTime": 1780868180230,
+      "duration": 6139,
+      "success": true,
+      "responseLength": 1417,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou salvar isso na memória para referência futura.",
+      "startTime": 1780868186792,
+      "duration": 2482,
+      "success": true,
+      "responseLength": 243,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 vector_memory_store: \"Projeto Duda (SENAC_DudaFrontEnd) - Plat, fact\"",
+      "startTime": 1780868189736,
+      "duration": 1974,
+      "success": true,
+      "responseLength": 152,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O erro foi na memória vetorial, mas não tem problema, a informação já está nas notas diárias.",
+      "startTime": 1780868196012,
+      "duration": 1980,
+      "success": true,
+      "responseLength": 183,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou responder ao usuário com tudo que encontrei.",
+      "startTime": 1780868198416,
+      "duration": 2990,
+      "success": true,
+      "responseLength": 653,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    e sobre o projeto duda?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar. O que você precisa hoje?\n",
+      "startTime": 1780868139278,
+      "duration": 62555,
+      "success": true,
+      "responseLength": 1759,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: e sobre o projeto duda?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário perguntou sobre o 'projeto duda'. Pr",
+      "startTime": 1780868202088,
+      "duration": 2296,
+      "success": true,
+      "responseLength": 345,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780868202087,
+      "duration": 2857,
+      "success": true,
+      "responseLength": 329,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780868204404,
+      "duration": 2258,
+      "success": true,
+      "responseLength": 290,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    e sobre o projeto duda?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar. O que você precisa hoje?\n",
+      "startTime": 1780868204410,
+      "duration": 7013,
+      "success": true,
+      "responseLength": 1834,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário perguntou sobre o 'projeto duda'. Primeiro, faça uma busca na memória textual e no grafo de conhecimento usando as ferramentas disponíveis para verificar se há alguma informação registrada s",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780868139260
+    },
+    {
+      "instruction": "Sobre o **projeto Duda** — encontrei informações bem interessantes! 😊\n\n## 🧠 Projeto Duda\n\n**Duda** = **D**ados **U**nificados, **D**ados **A**nalisados\n\nÉ uma **plataforma de Agents LLM** voltada pa",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780868211426
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780868146344,
+      "hasError": false,
+      "duration": 7066
+    },
+    {
+      "toolName": "vector_memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780868146345,
+      "hasError": false,
+      "duration": 7067
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1780868154496,
+      "hasError": false,
+      "duration": 15218
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1780868164862,
+      "hasError": false,
+      "duration": 25584
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1780868172839,
+      "hasError": false,
+      "duration": 33561
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1780868176959,
+      "hasError": false,
+      "duration": 37681
+    },
+    {
+      "toolName": "vector_memory_store",
+      "agentName": "assistant",
+      "timestamp": 1780868190236,
+      "hasError": false,
+      "duration": 50958
+    }
+  ]
+}

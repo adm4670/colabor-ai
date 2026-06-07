@@ -1717,15 +1717,16 @@ import { getTelemetry } from "../telemetry/telemetry";
             // Format result through writer agent to avoid raw JSON
             let finalResponse = lastResult || parsed.instruction || "Concluido.";
             try {
-              if (finalResponse.trim().startsWith("{") || finalResponse.trim().startsWith("[")) {
-                if (onProgress) {
-                  onProgress("Formatando resposta...").catch(() => {});
-                }
-                const writerPrompt = "Format this response for the user in natural, friendly language:\\n\\n" + finalResponse.slice(0, 2000);
-                const formatted = await writerAgent.run(writerPrompt);
-                if (formatted && formatted.length > 10) {
-                  finalResponse = formatted;
-                }
+              if (onProgress) {
+                onProgress("Formatando resposta...").catch(() => {});
+              }
+              const writerPrompt = 
+                "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. " +
+                "If it\'s already natural, just polish it slightly. If it\'s JSON or internal data, rewrite it completely as a human would say it.\n\n" +
+                finalResponse.slice(0, 2000);
+              const formatted = await writerAgent.run(writerPrompt);
+              if (formatted && formatted.length > 5) {
+                finalResponse = formatted;
               }
             } catch {
             }
@@ -1861,27 +1862,20 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
 
-            this.eventStream.push(createEvent("turn_end", { content: lastResult }));
-
+            this.eventStream.push(createEvent("turn_end", { content: finalResponse }));
 
 
             this.eventStream.push(createEvent("agent_end"));
 
 
-
-            this.eventStream.end(lastResult as any);
-
+            this.eventStream.end(finalResponse as any);
 
 
-            return lastResult || parsed.instruction || "Concluido.";
+            return finalResponse;
 
 
 
           }
-
-
-
-    
 
 
 
@@ -2451,12 +2445,13 @@ import { getTelemetry } from "../telemetry/telemetry";
 
             let finalResponse = lastResult || "Nao foi possivel concluir a tarefa.";
             try {
-              if (finalResponse.trim().startsWith("{") || finalResponse.trim().startsWith("[")) {
-                const writerPrompt = "Format this response for the user in natural language:\\n\\n" + finalResponse.slice(0, 2000);
-                const formatted = await writerAgent.run(writerPrompt);
-                if (formatted && formatted.length > 10) {
-                  finalResponse = formatted;
-                }
+              const writerPrompt = 
+                "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. " +
+                "If it\'s already natural, just polish it slightly. If it\'s JSON or internal data, rewrite it completely as a human would say it.\n\n" +
+                finalResponse.slice(0, 2000);
+              const formatted = await writerAgent.run(writerPrompt);
+              if (formatted && formatted.length > 5) {
+                finalResponse = formatted;
               }
             } catch {
             }

@@ -1,0 +1,352 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Execute o npm run build",
+  "startedAt": "2026-06-07T00:20:35.947Z",
+  "finishedAt": "2026-06-07T00:21:08.004Z",
+  "totalDuration": 32057,
+  "totalLLMCalls": 14,
+  "totalPromptTokens": 976219,
+  "totalCompletionTokens": 1301,
+  "totalTokens": 977520,
+  "maxContextWindowTokens": 234540,
+  "avgTokensPerLLMCall": 69823,
+  "estimatedCostUSD": 0.265,
+  "totalAgentCalls": 12,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 8,
+    "PythonAgent": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 12,
+  "totalToolCalls": 2,
+  "toolCallBreakdown": {
+    "execute_python": 2
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791636241,
+      "duration": 4649,
+      "promptTokens": 217880,
+      "completionTokens": 113,
+      "totalTokens": 217993,
+      "historyLength": 46,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791640898,
+      "duration": 1480,
+      "promptTokens": 18142,
+      "completionTokens": 36,
+      "totalTokens": 18178,
+      "historyLength": 640,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791640901,
+      "duration": 2878,
+      "promptTokens": 119411,
+      "completionTokens": 170,
+      "totalTokens": 119581,
+      "historyLength": 154,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791643781,
+      "duration": 1584,
+      "promptTokens": 18206,
+      "completionTokens": 38,
+      "totalTokens": 18244,
+      "historyLength": 642,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791645843,
+      "duration": 1620,
+      "promptTokens": 18271,
+      "completionTokens": 35,
+      "totalTokens": 18306,
+      "historyLength": 644,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791640901,
+      "duration": 12623,
+      "promptTokens": 119683,
+      "completionTokens": 295,
+      "totalTokens": 119978,
+      "historyLength": 156,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791653526,
+      "duration": 1396,
+      "promptTokens": 18326,
+      "completionTokens": 31,
+      "totalTokens": 18357,
+      "historyLength": 646,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791655330,
+      "duration": 2003,
+      "promptTokens": 18378,
+      "completionTokens": 38,
+      "totalTokens": 18416,
+      "historyLength": 648,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791657751,
+      "duration": 1823,
+      "promptTokens": 18442,
+      "completionTokens": 24,
+      "totalTokens": 18466,
+      "historyLength": 650,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791640901,
+      "duration": 20544,
+      "promptTokens": 120045,
+      "completionTokens": 173,
+      "totalTokens": 120218,
+      "historyLength": 158,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791661450,
+      "duration": 1653,
+      "promptTokens": 17913,
+      "completionTokens": 69,
+      "totalTokens": 17982,
+      "historyLength": 32,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791661447,
+      "duration": 1748,
+      "promptTokens": 18484,
+      "completionTokens": 34,
+      "totalTokens": 18518,
+      "historyLength": 653,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791663111,
+      "duration": 1435,
+      "promptTokens": 18498,
+      "completionTokens": 33,
+      "totalTokens": 18531,
+      "historyLength": 654,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791663114,
+      "duration": 4879,
+      "promptTokens": 234540,
+      "completionTokens": 212,
+      "totalTokens": 234752,
+      "historyLength": 48,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Execute o npm run build\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá\nassistant: Olá de n",
+      "startTime": 1780791636241,
+      "duration": 4652,
+      "success": true,
+      "responseLength": 249,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"Execute o comando 'npm run build' no diretório do projeto colabor-ai (C:\\Develop…\"",
+      "startTime": 1780791640898,
+      "duration": 1482,
+      "success": true,
+      "responseLength": 97,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user wants me to run `npm run build` in the project directory and show the results.",
+      "startTime": 1780791643781,
+      "duration": 1586,
+      "success": true,
+      "responseLength": 126,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport subprocess, os\n\nroot = r\"C:\\Deve\"",
+      "startTime": 1780791645843,
+      "duration": 1621,
+      "success": true,
+      "responseLength": 108,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The build succeeded with return code 0 (zero errors).",
+      "startTime": 1780791653526,
+      "duration": 1398,
+      "success": true,
+      "responseLength": 91,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me check the dist folder to confirm the output was generated.",
+      "startTime": 1780791655330,
+      "duration": 2005,
+      "success": true,
+      "responseLength": 130,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os\n\nroot = r\"C:\\Developer\\colabo\"",
+      "startTime": 1780791657751,
+      "duration": 1826,
+      "success": true,
+      "responseLength": 68,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Execute o npm run build\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá\nassistant: Olá de n",
+      "startTime": 1780791640901,
+      "duration": 20546,
+      "success": true,
+      "responseLength": 534,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Execute o npm run build\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Execute o comando 'npm run build' no diretór",
+      "startTime": 1780791661450,
+      "duration": 1655,
+      "success": true,
+      "responseLength": 236,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780791661447,
+      "duration": 1749,
+      "success": true,
+      "responseLength": 104,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780791663111,
+      "duration": 1437,
+      "success": true,
+      "responseLength": 107,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Execute o npm run build\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá\nassistant: Olá de n",
+      "startTime": 1780791663114,
+      "duration": 4881,
+      "success": true,
+      "responseLength": 404,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Execute o comando 'npm run build' no diretório do projeto colabor-ai (C:\\Developer\\colabor-ai). Capture a saída completa (stdout e stderr) e retorne o resultado, incluindo se houve erros ou sucesso.",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780791640895
+    },
+    {
+      "instruction": "Build executado com sucesso! ✅\n\n**Resultado:**\n- `tsc` compilou sem erros (return code: 0)\n- 150 arquivos gerados em `dist/`\n- Módulos de memória vetorial compilados:\n  - `dist/core/memory/vectorStore",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780791667997
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780791649803,
+      "hasError": false,
+      "duration": 8902
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780791657945,
+      "hasError": false,
+      "duration": 17044
+    }
+  ]
+}

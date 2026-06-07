@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Pense: seria interessante um agente que conseguisse criar um knowleged graphs de todos os ambientes do usuário? E como isso melhoraria a performance de inteligência do agente? E como isso pode ser feito?",
+  "startedAt": "2026-06-07T16:59:31.100Z",
+  "finishedAt": "2026-06-07T17:00:31.109Z",
+  "totalDuration": 60009,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 2208924,
+  "totalCompletionTokens": 3890,
+  "totalTokens": 2212814,
+  "maxContextWindowTokens": 849375,
+  "avgTokensPerLLMCall": 245868,
+  "estimatedCostUSD": 0.6007,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780851571354,
+      "duration": 15260,
+      "promptTokens": 835971,
+      "completionTokens": 746,
+      "totalTokens": 836717,
+      "historyLength": 128,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780851586665,
+      "duration": 4639,
+      "promptTokens": 65875,
+      "completionTokens": 191,
+      "totalTokens": 66066,
+      "historyLength": 1432,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780851586668,
+      "duration": 17989,
+      "promptTokens": 161673,
+      "completionTokens": 1211,
+      "totalTokens": 162884,
+      "historyLength": 102,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780851604660,
+      "duration": 5647,
+      "promptTokens": 66096,
+      "completionTokens": 194,
+      "totalTokens": 66290,
+      "historyLength": 1434,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780851610758,
+      "duration": 4537,
+      "promptTokens": 66307,
+      "completionTokens": 174,
+      "totalTokens": 66481,
+      "historyLength": 1436,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780851615720,
+      "duration": 4000,
+      "promptTokens": 30615,
+      "completionTokens": 110,
+      "totalTokens": 30725,
+      "historyLength": 78,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780851619748,
+      "duration": 3283,
+      "promptTokens": 66513,
+      "completionTokens": 89,
+      "totalTokens": 66602,
+      "historyLength": 1439,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780851615718,
+      "duration": 8635,
+      "promptTokens": 66499,
+      "completionTokens": 911,
+      "totalTokens": 67410,
+      "historyLength": 1440,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780851619750,
+      "duration": 11348,
+      "promptTokens": 849375,
+      "completionTokens": 264,
+      "totalTokens": 849639,
+      "historyLength": 130,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Pense: seria interessante um agente que conseguisse criar um knowleged graphs de todos os ambientes do usuário? E como isso melhoraria a performance de inteligência do age",
+      "startTime": 1780851571354,
+      "duration": 15277,
+      "success": true,
+      "responseLength": 2204,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Responda de forma direta e analítica sobre o Knowledge Graph Agent:\n\n## 🧠 Sim, …\"",
+      "startTime": 1780851586665,
+      "duration": 4642,
+      "success": true,
+      "responseLength": 649,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking about a Knowledge Graph Agent - whether it would be interesting, how it would improve intelligence pe",
+      "startTime": 1780851604660,
+      "duration": 5647,
+      "success": true,
+      "responseLength": 668,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me give a thoughtful, direct analysis.",
+      "startTime": 1780851610758,
+      "duration": 4539,
+      "success": true,
+      "responseLength": 568,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Pense: seria interessante um agente que conseguisse criar um knowleged graphs de todos os ambientes do usuário? E como isso melhoraria a performance de inteligência do age",
+      "startTime": 1780851586668,
+      "duration": 29050,
+      "success": true,
+      "responseLength": 3873,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Pense: seria interessante um agente que conseguisse criar um knowleged graphs de todos os ambientes do usuário? E como isso m",
+      "startTime": 1780851615720,
+      "duration": 4003,
+      "success": true,
+      "responseLength": 447,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780851619748,
+      "duration": 3284,
+      "success": true,
+      "responseLength": 185,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780851615718,
+      "duration": 8637,
+      "success": true,
+      "responseLength": 1513,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Pense: seria interessante um agente que conseguisse criar um knowleged graphs de todos os ambientes do usuário? E como isso melhoraria a performance de inteligência do age",
+      "startTime": 1780851619750,
+      "duration": 11350,
+      "success": true,
+      "responseLength": 615,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Responda de forma direta e analítica sobre o Knowledge Graph Agent:\n\n## 🧠 Sim, seria um dos agents mais poderosos do sistema\n\nUm **KnowledgeGraphAgent** que mapeia todo o ambiente do usuário (arquivo",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780851586635
+    },
+    {
+      "instruction": "Análise completa sobre o KnowledgeGraphAgent já foi apresentada:\n\n- **Impacto:** potencializa todos os outros agents com contexto real do ambiente\n- **Comparativo:** Memory/VectorDB (⭐⭐⭐⭐) vs Knowledg",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780851631102
+    }
+  ],
+  "toolCalls": []
+}

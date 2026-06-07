@@ -2,6 +2,7 @@ import { Agent } from "../agent/agent";
 import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         import { browserExecTool, ensureBrowserAlive } from "../tools/browserExecTool";
         import { memorySearchTool } from "../memory/memory_search";
+    import { vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool } from "../memory/vector-memory-tools";
         
         export const browserAgent = new Agent({
           name: "browser",
@@ -14,12 +15,19 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         
-          tools: [browserExecTool, memorySearchTool],
+          tools: [browserExecTool, memorySearchTool, vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool, fileSystemTool, webSearchTool, apiIntegrationTool, taskSchedulerTool],
         
           functions: {
             browser_action: browserExecTool.handler,
             memory_search: memorySearchTool.handler,
-          },
+                vector_memory_store: vectorMemoryStoreTool.handler,
+                vector_memory_search: vectorMemorySearchTool.handler,
+                vector_memory_stats: vectorMemoryStatsTool.handler,
+                      file_system: fileSystemTool.handler,
+              web_search: webSearchTool.handler,
+              api_request: apiIntegrationTool.handler,
+              task_scheduler: taskSchedulerTool.handler,
+      },
         
           generalInstructions: `
         ${CORE_INSTRUCTIONS}
@@ -86,6 +94,10 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
         
     // Registrar no AgentRegistry
     import { agentRegistry } from "./agent-registry";
+    import { fileSystemTool } from "../tools/fileSystemTool";
+    import { webSearchTool } from "../tools/webSearchTool";
+    import { apiIntegrationTool } from "../tools/apiIntegrationTool";
+    import { taskSchedulerTool } from "../tools/taskSchedulerTool";
     agentRegistry.register({
       name: browserAgent.name,
       description: "Web navigation and browser automation. Can navigate websites, fill forms, extract text, and take screenshots.",

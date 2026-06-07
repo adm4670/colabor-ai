@@ -1,0 +1,524 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "Por enquanto desfaça a utilização do ChromaDB",
+  "startedAt": "2026-06-07T00:18:46.462Z",
+  "finishedAt": "2026-06-07T00:19:52.627Z",
+  "totalDuration": 66165,
+  "totalLLMCalls": 22,
+  "totalPromptTokens": 1185085,
+  "totalCompletionTokens": 5728,
+  "totalTokens": 1190813,
+  "maxContextWindowTokens": 201312,
+  "avgTokensPerLLMCall": 54128,
+  "estimatedCostUSD": 0.3263,
+  "totalAgentCalls": 18,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 14,
+    "PythonAgent": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 18,
+  "totalToolCalls": 4,
+  "toolCallBreakdown": {
+    "execute_python": 4
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791526794,
+      "duration": 6779,
+      "promptTokens": 185015,
+      "completionTokens": 361,
+      "totalTokens": 185376,
+      "historyLength": 42,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791533584,
+      "duration": 1821,
+      "promptTokens": 17224,
+      "completionTokens": 24,
+      "totalTokens": 17248,
+      "historyLength": 610,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791533588,
+      "duration": 4525,
+      "promptTokens": 104976,
+      "completionTokens": 307,
+      "totalTokens": 105283,
+      "historyLength": 144,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791538116,
+      "duration": 1698,
+      "promptTokens": 17275,
+      "completionTokens": 33,
+      "totalTokens": 17308,
+      "historyLength": 612,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791540226,
+      "duration": 1560,
+      "promptTokens": 17337,
+      "completionTokens": 43,
+      "totalTokens": 17380,
+      "historyLength": 614,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791542206,
+      "duration": 1679,
+      "promptTokens": 17406,
+      "completionTokens": 18,
+      "totalTokens": 17424,
+      "historyLength": 616,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791533588,
+      "duration": 13059,
+      "promptTokens": 105379,
+      "completionTokens": 325,
+      "totalTokens": 105704,
+      "historyLength": 146,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791546649,
+      "duration": 1710,
+      "promptTokens": 17460,
+      "completionTokens": 24,
+      "totalTokens": 17484,
+      "historyLength": 618,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791548772,
+      "duration": 1455,
+      "promptTokens": 17510,
+      "completionTokens": 18,
+      "totalTokens": 17528,
+      "historyLength": 620,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791533588,
+      "duration": 30599,
+      "promptTokens": 105810,
+      "completionTokens": 2460,
+      "totalTokens": 108270,
+      "historyLength": 148,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791564190,
+      "duration": 2185,
+      "promptTokens": 17548,
+      "completionTokens": 77,
+      "totalTokens": 17625,
+      "historyLength": 622,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791566788,
+      "duration": 2067,
+      "promptTokens": 17657,
+      "completionTokens": 46,
+      "totalTokens": 17703,
+      "historyLength": 624,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791569270,
+      "duration": 1803,
+      "promptTokens": 17728,
+      "completionTokens": 40,
+      "totalTokens": 17768,
+      "historyLength": 626,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791533588,
+      "duration": 43368,
+      "promptTokens": 108560,
+      "completionTokens": 1051,
+      "totalTokens": 109611,
+      "historyLength": 150,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791576957,
+      "duration": 1702,
+      "promptTokens": 17782,
+      "completionTokens": 45,
+      "totalTokens": 17827,
+      "historyLength": 628,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791579068,
+      "duration": 1932,
+      "promptTokens": 17843,
+      "completionTokens": 58,
+      "totalTokens": 17901,
+      "historyLength": 630,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791581416,
+      "duration": 1723,
+      "promptTokens": 17925,
+      "completionTokens": 21,
+      "totalTokens": 17946,
+      "historyLength": 632,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791533588,
+      "duration": 53003,
+      "promptTokens": 109994,
+      "completionTokens": 321,
+      "totalTokens": 110315,
+      "historyLength": 152,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791586594,
+      "duration": 1457,
+      "promptTokens": 17964,
+      "completionTokens": 34,
+      "totalTokens": 17998,
+      "historyLength": 634,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791586596,
+      "duration": 2179,
+      "promptTokens": 17364,
+      "completionTokens": 133,
+      "totalTokens": 17497,
+      "historyLength": 30,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780791588778,
+      "duration": 1756,
+      "promptTokens": 18016,
+      "completionTokens": 39,
+      "totalTokens": 18055,
+      "historyLength": 636,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780791588779,
+      "duration": 3844,
+      "promptTokens": 201312,
+      "completionTokens": 250,
+      "totalTokens": 201562,
+      "historyLength": 44,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Por enquanto desfaça a utilização do ChromaDB\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: O",
+      "startTime": 1780791526794,
+      "duration": 6781,
+      "success": true,
+      "responseLength": 676,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"Reverta a migração para ChromaDB e volte ao armazenamento JSON local no projeto …\"",
+      "startTime": 1780791533584,
+      "duration": 1823,
+      "success": true,
+      "responseLength": 71,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user wants me to revert the ChromaDB migration and go back to JSON local storage.",
+      "startTime": 1780791538116,
+      "duration": 1700,
+      "success": true,
+      "responseLength": 108,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Restore vectorStore.ts to the JSON local version (the one before ChromaDB) 2.",
+      "startTime": 1780791540226,
+      "duration": 1562,
+      "success": true,
+      "responseLength": 138,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os\n\nroot = r\"C:\\Developer\\colabo\"",
+      "startTime": 1780791542206,
+      "duration": 1681,
+      "success": true,
+      "responseLength": 56,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now let me read the current vectorStore.ts (ChromaDB version) to understand what I need to revert, then write the JSON l",
+      "startTime": 1780791546649,
+      "duration": 1712,
+      "success": true,
+      "responseLength": 66,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os\n\nroot = r\"C:\\Developer\\colabo\"",
+      "startTime": 1780791548772,
+      "duration": 1457,
+      "success": true,
+      "responseLength": 61,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now let me do all the reverts: 1.",
+      "startTime": 1780791564190,
+      "duration": 2185,
+      "success": true,
+      "responseLength": 226,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 **vectorStore.ts** → Restore JSON local version (with fs, uuid, cosineSimilarity) 2.",
+      "startTime": 1780791566788,
+      "duration": 2068,
+      "success": true,
+      "responseLength": 153,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os, json\n\nroot = r\"C:\\Developer\\\"",
+      "startTime": 1780791569270,
+      "duration": 1803,
+      "success": true,
+      "responseLength": 129,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 All 7 steps completed.",
+      "startTime": 1780791576957,
+      "duration": 1703,
+      "success": true,
+      "responseLength": 132,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me verify everything is consistent now.",
+      "startTime": 1780791579068,
+      "duration": 1933,
+      "success": true,
+      "responseLength": 187,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os, json\n\nroot = r\"C:\\Developer\\\"",
+      "startTime": 1780791581416,
+      "duration": 1725,
+      "success": true,
+      "responseLength": 79,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Por enquanto desfaça a utilização do ChromaDB\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: O",
+      "startTime": 1780791533588,
+      "duration": 53005,
+      "success": true,
+      "responseLength": 1010,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780791586594,
+      "duration": 1460,
+      "success": true,
+      "responseLength": 106,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Por enquanto desfaça a utilização do ChromaDB\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Reverta a migração par",
+      "startTime": 1780791586596,
+      "duration": 2180,
+      "success": true,
+      "responseLength": 503,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780791588778,
+      "duration": 1758,
+      "success": true,
+      "responseLength": 129,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Por enquanto desfaça a utilização do ChromaDB\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: O",
+      "startTime": 1780791588779,
+      "duration": 3845,
+      "success": true,
+      "responseLength": 589,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Reverta a migração para ChromaDB e volte ao armazenamento JSON local no projeto colabor-ai:\n\n1. Restaure o arquivo `src/core/memory/vectorStore.ts` para a versão JSON original (com fs, uuid, cosineSim",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780791533577
+    },
+    {
+      "instruction": "ChromaDB removido e JSON local restaurado com sucesso! ✅\n\n**O que foi desfeito:**\n- `vectorStore.ts` voltou a usar `fs` + cosineSimilarity\n- `chromadb` removido do `package.json` e `node_modules`\n- `s",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780791592624
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780791542360,
+      "hasError": false,
+      "duration": 8772
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780791548951,
+      "hasError": false,
+      "duration": 15363
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780791569561,
+      "hasError": false,
+      "duration": 35973
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780791581591,
+      "hasError": false,
+      "duration": 48003
+    }
+  ]
+}

@@ -1,0 +1,657 @@
+{
+  "sessionId": "orchestrator_1780867800798_objh8t",
+  "userInput": "o que você sabe sobre o projeto action4.me?",
+  "startedAt": "2026-06-07T21:33:31.610Z",
+  "finishedAt": "2026-06-07T21:34:49.129Z",
+  "totalDuration": 77519,
+  "totalLLMCalls": 27,
+  "totalPromptTokens": 760515,
+  "totalCompletionTokens": 6628,
+  "totalTokens": 767143,
+  "maxContextWindowTokens": 103217,
+  "avgTokensPerLLMCall": 28413,
+  "estimatedCostUSD": 0.2126,
+  "totalAgentCalls": 23,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 19,
+    "knowledge-graph": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 23,
+  "totalToolCalls": 7,
+  "toolCallBreakdown": {
+    "vector_memory_search": 1,
+    "memory_search": 1,
+    "file_system": 5
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868011742,
+      "duration": 5906,
+      "promptTokens": 14957,
+      "completionTokens": 413,
+      "totalTokens": 15370,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868017659,
+      "duration": 2079,
+      "promptTokens": 14016,
+      "completionTokens": 55,
+      "totalTokens": 14071,
+      "historyLength": 120,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868017661,
+      "duration": 2419,
+      "promptTokens": 63985,
+      "completionTokens": 148,
+      "totalTokens": 64133,
+      "historyLength": 46,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868020081,
+      "duration": 2532,
+      "promptTokens": 14091,
+      "completionTokens": 71,
+      "totalTokens": 14162,
+      "historyLength": 122,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868023032,
+      "duration": 1837,
+      "promptTokens": 14186,
+      "completionTokens": 25,
+      "totalTokens": 14211,
+      "historyLength": 124,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868025289,
+      "duration": 1978,
+      "promptTokens": 14246,
+      "completionTokens": 44,
+      "totalTokens": 14290,
+      "historyLength": 127,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868025288,
+      "duration": 2739,
+      "promptTokens": 14246,
+      "completionTokens": 85,
+      "totalTokens": 14331,
+      "historyLength": 128,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868017661,
+      "duration": 10831,
+      "promptTokens": 64951,
+      "completionTokens": 158,
+      "totalTokens": 65109,
+      "historyLength": 49,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868028493,
+      "duration": 5627,
+      "promptTokens": 14400,
+      "completionTokens": 441,
+      "totalTokens": 14841,
+      "historyLength": 130,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868034534,
+      "duration": 3459,
+      "promptTokens": 14903,
+      "completionTokens": 233,
+      "totalTokens": 15136,
+      "historyLength": 133,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868017661,
+      "duration": 21366,
+      "promptTokens": 85836,
+      "completionTokens": 193,
+      "totalTokens": 86029,
+      "historyLength": 52,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868034535,
+      "duration": 6386,
+      "promptTokens": 14903,
+      "completionTokens": 587,
+      "totalTokens": 15490,
+      "historyLength": 135,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868039030,
+      "duration": 4324,
+      "promptTokens": 15158,
+      "completionTokens": 235,
+      "totalTokens": 15393,
+      "historyLength": 136,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868043768,
+      "duration": 3878,
+      "promptTokens": 16023,
+      "completionTokens": 233,
+      "totalTokens": 16256,
+      "historyLength": 138,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868048060,
+      "duration": 2933,
+      "promptTokens": 16318,
+      "completionTokens": 136,
+      "totalTokens": 16454,
+      "historyLength": 141,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868017661,
+      "duration": 34326,
+      "promptTokens": 99969,
+      "completionTokens": 109,
+      "totalTokens": 100078,
+      "historyLength": 55,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868048062,
+      "duration": 6017,
+      "promptTokens": 16318,
+      "completionTokens": 548,
+      "totalTokens": 16866,
+      "historyLength": 143,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868051989,
+      "duration": 4906,
+      "promptTokens": 16470,
+      "completionTokens": 280,
+      "totalTokens": 16750,
+      "historyLength": 144,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868057310,
+      "duration": 2493,
+      "promptTokens": 17330,
+      "completionTokens": 101,
+      "totalTokens": 17431,
+      "historyLength": 146,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868060250,
+      "duration": 2465,
+      "promptTokens": 17464,
+      "completionTokens": 84,
+      "totalTokens": 17548,
+      "historyLength": 148,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868017661,
+      "duration": 54681,
+      "promptTokens": 103217,
+      "completionTokens": 1158,
+      "totalTokens": 104375,
+      "historyLength": 57,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868072345,
+      "duration": 4456,
+      "promptTokens": 17567,
+      "completionTokens": 270,
+      "totalTokens": 17837,
+      "historyLength": 150,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868077215,
+      "duration": 4610,
+      "promptTokens": 17864,
+      "completionTokens": 331,
+      "totalTokens": 18195,
+      "historyLength": 152,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868082929,
+      "duration": 1855,
+      "promptTokens": 3317,
+      "completionTokens": 89,
+      "totalTokens": 3406,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868082926,
+      "duration": 2561,
+      "promptTokens": 18213,
+      "completionTokens": 70,
+      "totalTokens": 18283,
+      "historyLength": 155,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780868084831,
+      "duration": 3598,
+      "promptTokens": 18227,
+      "completionTokens": 210,
+      "totalTokens": 18437,
+      "historyLength": 156,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780868084833,
+      "duration": 4292,
+      "promptTokens": 22340,
+      "completionTokens": 321,
+      "totalTokens": 22661,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    o que você sabe sobre o projeto action4.me?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar. O que",
+      "startTime": 1780868011742,
+      "duration": 5908,
+      "success": true,
+      "responseLength": 431,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 knowledge-graph → \"Busque na memória e no grafo de conhecimento tudo o que sabemos sobre o projeto …\"",
+      "startTime": 1780868017659,
+      "duration": 2081,
+      "success": true,
+      "responseLength": 185,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking about the project \"action4.me\".",
+      "startTime": 1780868020081,
+      "duration": 2535,
+      "success": true,
+      "responseLength": 224,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me search the memory and notes to find all relevant information about this project.",
+      "startTime": 1780868023032,
+      "duration": 1839,
+      "success": true,
+      "responseLength": 78,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"action4.me projeto\"",
+      "startTime": 1780868025289,
+      "duration": 1981,
+      "success": true,
+      "responseLength": 151,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 vector_memory_search: \"action4.me project architecture Planner-\"",
+      "startTime": 1780868025288,
+      "duration": 2740,
+      "success": true,
+      "responseLength": 268,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me read the relevant notes to get the full context about action4.me.",
+      "startTime": 1780868028493,
+      "duration": 5629,
+      "success": true,
+      "responseLength": 1398,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\memory\\2026-05-2\"",
+      "startTime": 1780868034534,
+      "duration": 3461,
+      "success": true,
+      "responseLength": 692,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\memory\\2026-06-0\"",
+      "startTime": 1780868034535,
+      "duration": 6388,
+      "success": true,
+      "responseLength": 1762,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now I have a comprehensive picture of action4.me from the memory.",
+      "startTime": 1780868039030,
+      "duration": 4327,
+      "success": true,
+      "responseLength": 860,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also read the 2026-05-30 note which has more information about the project, and check the 2026-06-07 notes for an",
+      "startTime": 1780868043768,
+      "duration": 3880,
+      "success": true,
+      "responseLength": 682,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\memory\\2026-05-3\"",
+      "startTime": 1780868048060,
+      "duration": 2935,
+      "success": true,
+      "responseLength": 401,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\memory\\2026-05-3\"",
+      "startTime": 1780868048062,
+      "duration": 6019,
+      "success": true,
+      "responseLength": 1549,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now I have a very comprehensive picture.",
+      "startTime": 1780868051989,
+      "duration": 4908,
+      "success": true,
+      "responseLength": 1034,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also check the 2026-06-07.md notes for any recent info about action4.me.",
+      "startTime": 1780868057310,
+      "duration": 2495,
+      "success": true,
+      "responseLength": 307,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\memory\\2026-06-0\"",
+      "startTime": 1780868060250,
+      "duration": 2468,
+      "success": true,
+      "responseLength": 244,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now I have a comprehensive picture of action4.me.",
+      "startTime": 1780868072345,
+      "duration": 4458,
+      "success": true,
+      "responseLength": 959,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me synthesize all the information I've gathered from the memory to answer the user's question.",
+      "startTime": 1780868077215,
+      "duration": 4613,
+      "success": true,
+      "responseLength": 1181,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "knowledge-graph",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    o que você sabe sobre o projeto action4.me?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar. O que",
+      "startTime": 1780868017661,
+      "duration": 64584,
+      "success": true,
+      "responseLength": 3684,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: o que você sabe sobre o projeto action4.me?\n\n\n\n    Agent used: knowledge-graph\n\n\n\n    Instruction given: Busque na memória e ",
+      "startTime": 1780868082929,
+      "duration": 1857,
+      "success": true,
+      "responseLength": 353,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780868082926,
+      "duration": 2563,
+      "success": true,
+      "responseLength": 252,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780868084831,
+      "duration": 3599,
+      "success": true,
+      "responseLength": 750,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    o que você sabe sobre o projeto action4.me?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar. O que",
+      "startTime": 1780868084833,
+      "duration": 4294,
+      "success": true,
+      "responseLength": 391,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Busque na memória e no grafo de conhecimento tudo o que sabemos sobre o projeto 'action4.me'. Consulte as notas diárias (especialmente 2026-05-29, 2026-05-30, 2026-06-05) e o grafo para montar uma des",
+      "chosenAgent": "knowledge-graph",
+      "step": 1,
+      "timestamp": 1780868017651
+    },
+    {
+      "instruction": "Transforme a resposta do knowledge-graph sobre o action4.me em uma resposta final clara e amigável para o chat. Mantenha todas as informações principais (o que é, arquitetura, funcionalidades, relação",
+      "chosenAgent": "writer",
+      "step": 2,
+      "timestamp": 1780868089127
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "vector_memory_search",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868025289,
+      "hasError": false,
+      "duration": 7628
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868025296,
+      "hasError": false,
+      "duration": 7635
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868034535,
+      "hasError": false,
+      "duration": 16874
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868034538,
+      "hasError": false,
+      "duration": 16877
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868048062,
+      "hasError": false,
+      "duration": 30401
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868048064,
+      "hasError": false,
+      "duration": 30403
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780868060252,
+      "hasError": false,
+      "duration": 42591
+    }
+  ]
+}

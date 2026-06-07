@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arquitetura colabor-ai — Cloud + Edge</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' },
+                            edge: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                            cloud: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+            * { font-family: 'Inter', sans-serif; }
+            code, pre { font-family: 'JetBrains Mono', monospace !important; }
+            .gradient-cloud { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%); }
+            .gradient-edge { background: linear-gradient(135deg, #14532d 0%, #22c55e 50%, #4ade80 100%); }
+            .gradient-hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); }
+            .gradient-card { background: linear-gradient(135deg, #1e293b, #0f172a); }
+            .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+            .glass-light { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.05); }
+            .arrow-down::after { content: "\\2193"; display: block; text-align: center; font-size: 1.5rem; margin: 0.5rem 0; }
+            .arrow-right::after { content: "\\2192"; display: inline; font-size: 1.2rem; }
+            .tool-tag { @apply inline-block px-3 py-1 rounded-full text-xs font-medium; }
+            .step-number { @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-500 text-white font-bold text-sm shrink-0; }
+            .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+            .delay-1 { animation-delay: 0.1s; }
+            .delay-2 { animation-delay: 0.2s; }
+            .delay-3 { animation-delay: 0.3s; }
+            .delay-4 { animation-delay: 0.4s; }
+            html { scroll-behavior: smooth; }
+        </style>
+    </head>
+    <body class="bg-slate-950 text-slate-100">
+    
+        <!-- ===== HERO ===== -->
+        <header class="gradient-hero border-b border-slate-800 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 25% 50%, #6366f1 0%, transparent 50%), radial-gradient(circle at 75% 50%, #22c55e 0%, transparent 50%);"></div>
+            <div class="max-w-6xl mx-auto px-6 py-20 relative">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-400 text-sm font-medium border border-primary-500/20">Arquitetura v2.0</span>
+                    <span class="px-4 py-1.5 rounded-full bg-edge-500/10 text-edge-400 text-sm font-medium border border-edge-500/20">Cloud + Edge</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-300 to-cloud-300">colabor-ai</span>
+                </h1>
+                <p class="text-2xl md:text-3xl font-bold text-slate-200 mb-4">Arquitetura Cloud-Edge</p>
+                <p class="text-lg text-slate-400 max-w-2xl mb-8 leading-relaxed">
+                    Inteligência centralizada na nuvem com Agents especializados. Execução descentralizada na máquina do usuário via Tools. 
+                    Isolamento multi-tenant, autenticação Google OAuth2.0 e aplicação desktop Electron.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#cloud" class="px-6 py-3 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-semibold transition-all shadow-lg shadow-primary-600/20">☁️ Cloud</a>
+                    <a href="#edge" class="px-6 py-3 rounded-xl bg-edge-600 hover:bg-edge-500 text-white font-semibold transition-all shadow-lg shadow-edge-600/20">💻 Edge</a>
+                    <a href="#fluxo" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold transition-all border border-slate-700">🔄 Fluxo</a>
+                    <a href="#passos" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold transition-all border border-slate-700">📋 Passos</a>
+                </div>
+            </div>
+        </header>
+    
+        <!-- ===== DIAGRAMA ===== -->
+        <section class="max-w-6xl mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-10 text-center">Diagrama da Arquitetura</h2>
+            
+            <div class="relative">
+                <!-- Cloud Box -->
+                <div class="gradient-cloud rounded-2xl p-8 mb-8 relative z-10 shadow-2xl shadow-blue-500/10 border border-blue-400/20">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-3xl">☁️</span>
+                        <h3 class="text-2xl font-bold text-white">Cloud</h3>
+                        <span class="text-sm text-blue-200 bg-white/10 px-3 py-1 rounded-full">Inteligência Centralizada</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🚪</div>
+                            <div class="font-semibold text-white">API Gateway</div>
+                            <div class="text-xs text-blue-200 mt-1">Express/Fastify</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">REST</span>
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Rate-limit</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🔐</div>
+                            <div class="font-semibold text-white">Auth Google</div>
+                            <div class="text-xs text-blue-200 mt-1">OAuth2.0 + JWT</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Passport.js</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🧠</div>
+                            <div class="font-semibold text-white">Agent Engine</div>
+                            <div class="text-xs text-blue-200 mt-1">Planner + 5 Agents</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">OpenAI</span>
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">DeepSeek</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">📡</div>
+                            <div class="font-semibold text-white">WebSocket</div>
+                            <div class="text-xs text-blue-200 mt-1">Socket.IO</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Bidirecional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🗄️</div>
+                            <div class="font-semibold text-white">PostgreSQL</div>
+                            <div class="text-xs text-blue-200 mt-1">Usuários, Sessões, Conversas</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Multi-tenant</span>
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">FK user_id</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🧬</div>
+                            <div class="font-semibold text-white">ChromaDB</div>
+                            <div class="text-xs text-blue-200 mt-1">Memória Vetorial (1 collection/user)</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Embeddings</span>
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Multi-tenant</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">⚡</div>
+                            <div class="font-semibold text-white">Redis</div>
+                            <div class="text-xs text-blue-200 mt-1">Cache + Pub/Sub</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Sessões</span>
+                                <span class="tool-tag bg-blue-500/20 text-blue-200">Fila</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Arrow Connector -->
+                <div class="flex justify-center my-6 relative z-10">
+                    <div class="flex flex-col items-center text-slate-500">
+                        <div class="w-px h-6 bg-gradient-to-b from-blue-400 to-green-400"></div>
+                        <div class="text-3xl animate-bounce">⬇</div>
+                        <div class="w-px h-6 bg-gradient-to-b from-green-400 to-green-500"></div>
+                    </div>
+                </div>
+    
+                <!-- Edge Box -->
+                <div class="gradient-edge rounded-2xl p-8 relative z-10 shadow-2xl shadow-green-500/10 border border-green-400/20">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-3xl">💻</span>
+                        <h3 class="text-2xl font-bold text-white">Edge (Máquina do Usuário)</h3>
+                        <span class="text-sm text-green-200 bg-white/10 px-3 py-1 rounded-full">Execução Descentralizada</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🖥️</div>
+                            <div class="font-semibold text-white">Electron App</div>
+                            <div class="text-xs text-green-200 mt-1">React + electron-builder</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-green-500/20 text-green-200">Instalável</span>
+                                <span class="tool-tag bg-green-500/20 text-green-200">Tray</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🔧</div>
+                            <div class="font-semibold text-white">Tool Executor Engine</div>
+                            <div class="text-xs text-green-200 mt-1">Child Process + Python Bridge</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-green-500/20 text-green-200">FileSystem</span>
+                                <span class="tool-tag bg-green-500/20 text-green-200">Shell</span>
+                                <span class="tool-tag bg-green-500/20 text-green-200">Python</span>
+                                <span class="tool-tag bg-green-500/20 text-green-200">Browser</span>
+                                <span class="tool-tag bg-green-500/20 text-green-200">Image</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🔗</div>
+                            <div class="font-semibold text-white">Conexão Cloud</div>
+                            <div class="text-xs text-green-200 mt-1">WebSocket + JWT</div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="tool-tag bg-green-500/20 text-green-200">Tempo real</span>
+                                <span class="tool-tag bg-green-500/20 text-green-200">Auth Token</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🟢</div>
+                            <div class="font-semibold text-white">Node.js Runtime</div>
+                            <div class="text-xs text-green-200 mt-1">Bundled via electron-builder</div>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-4 border border-white/10">
+                            <div class="text-lg mb-2">🐍</div>
+                            <div class="font-semibold text-white">Python Runtime</div>
+                            <div class="text-xs text-green-200 mt-1">Embedded + python-shell</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== CLOUD DEEP DIVE ===== -->
+        <section id="cloud" class="bg-slate-900/50 border-t border-slate-800 py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">☁️</span> Cloud — Núcleo de Inteligência</h2>
+                <p class="text-slate-400 mb-12 max-w-3xl">Responsável por toda a inteligência do sistema. Orchestrador, Agents, memória vetorial e comunicação com os clients Edge.</p>
+    
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🚪</span>
+                            <h3 class="text-xl font-bold">API Gateway</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Express/Fastify com middleware de autenticação JWT</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Rate limiting por usuário (Redis-based)</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Rotas: <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">/auth/*</code>, <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">/agents/*</code>, <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">/tools/*</code></li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🔐</span>
+                            <h3 class="text-xl font-bold">Auth Google OAuth2.0</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Login via Google com Passport.js</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> JWT com <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">sub = userId</code>, expiração 24h</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Refresh token automático</li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🧠</span>
+                            <h3 class="text-xl font-bold">Agent Engine</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> <strong>Planner</strong> — decide qual agente chamar baseado na mensagem</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> <strong>Orchestrator</strong> — gerencia o fluxo, reflexão, memória</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> <strong>5+ Agents</strong> — DataAnalyst, Git, DB, Image, Notification</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> LLM: OpenAI GPT-4o / DeepSeek v4 (configurável)</li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">📡</span>
+                            <h3 class="text-xl font-bold">WebSocket Server</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Socket.IO ou <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">ws</code> nativo</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Mensagens: <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">tool_call</code>, <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">tool_result</code>, <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">agent_response</code></li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Autenticação JWT na conexão</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> Heartbeat a cada 30s</li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🗄️</span>
+                            <h3 class="text-xl font-bold">PostgreSQL + Redis + ChromaDB</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> <strong>PostgreSQL</strong>: users, sessions, conversations, configs</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> <strong>ChromaDB</strong>: 1 collection por usuário (<code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">user_{id}_memories</code>)</li>
+                            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">▸</span> <strong>Redis</strong>: cache de sessão, pub/sub para WebSocket, fila de tools</li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">📂</span>
+                            <h3 class="text-xl font-bold">Estrutura cloud/</h3>
+                        </div>
+                        <pre class="text-xs text-slate-400 bg-slate-950/50 rounded-lg p-4 overflow-x-auto"><code>cloud/
+    ├── src/
+    │   ├── api/
+    │   │   ├── routes/
+    │   │   │   ├── auth.ts
+    │   │   │   ├── session.ts
+    │   │   │   ├── agents.ts
+    │   │   │   └── tools.ts
+    │   │   └── middleware/auth.ts
+    │   ├── agents/
+    │   │   ├── planner.ts
+    │   │   ├── dataAnalystAgent.ts
+    │   │   ├── gitAgent.ts
+    │   │   ├── dbAgent.ts
+    │   │   ├── imageAgent.ts
+    │   │   └── notificationAgent.ts
+    │   ├── engine/
+    │   │   ├── orchestrator.ts
+    │   │   ├── toolRouter.ts
+    │   │   └── responseFormatter.ts
+    │   ├── websocket/
+    │   │   └── edgeGateway.ts
+    │   ├── db/
+    │   │   ├── migrations/
+    │   │   ├── models/
+    │   │   └── vectorStore.ts
+    │   └── index.ts
+    ├── Dockerfile
+    └── package.json</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== EDGE DEEP DIVE ===== -->
+        <section id="edge" class="py-20 border-t border-slate-800">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">💻</span> Edge — Execução na Máquina do Usuário</h2>
+                <p class="text-slate-400 mb-12 max-w-3xl">Aplicação desktop Electron que conecta à Cloud via WebSocket, executa ferramentas localmente e gerencia a comunicação bidirecional.</p>
+    
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🖥️</span>
+                            <h3 class="text-xl font-bold">Electron App</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Interface React com chat, histórico e configurações</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Tray icon + notificações nativas</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Login via Google (webview embutida)</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Instalador: .exe (Windows), .dmg (Mac), .deb (Linux)</li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🔧</span>
+                            <h3 class="text-xl font-bold">Tool Executor Engine</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>FileSystem</strong>: read, write, list, delete, mkdir, copy, move</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>ShellExec</strong>: comandos no terminal (npm, git, etc)</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>PythonExec</strong>: executa scripts Python via <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">python-shell</code></li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>Browser</strong>: automação web via Puppeteer/Playwright</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>Image</strong>: captura de tela, análise de imagem local</li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🔗</span>
+                            <h3 class="text-xl font-bold">WebSocket Client</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Conexão persistente com a Cloud</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Reconexão automática com backoff exponencial</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Mensagens: <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">tool_result</code>, <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">tool_error</code>, <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">heartbeat</code></li>
+                        </ul>
+                    </div>
+    
+                    <div class="glass rounded-xl p-6 border border-slate-700/50">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-2xl">🟢</span>
+                            <h3 class="text-xl font-bold">Runtimes Embarcados</h3>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>Node.js</strong>: embarcado via electron-builder (versão LTS)</li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> <strong>Python</strong>: distribuição embedded portátil na pasta <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">python/</code></li>
+                            <li class="flex items-start gap-2"><span class="text-edge-400 mt-0.5">▸</span> Nenhuma instalação externa necessária pelo usuário</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <div class="mt-8 glass rounded-xl p-6 border border-slate-700/50">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-2xl">📂</span>
+                        <h3 class="text-xl font-bold">Estrutura edge/</h3>
+                    </div>
+                    <pre class="text-xs text-slate-400 bg-slate-950/50 rounded-lg p-4 overflow-x-auto"><code>edge/
+    ├── src/
+    │   ├── main/              # Processo principal Electron
+    │   │   ├── main.ts        # Janela, tray, IPC
+    │   │   ├── toolExecutor.ts
+    │   │   ├── wsClient.ts
+    │   │   ├── auth.ts
+    │   │   └── pythonBridge.ts
+    │   ├── renderer/          # Interface React
+    │   │   ├── App.tsx
+    │   │   ├── components/
+    │   │   │   ├── Chat.tsx
+    │   │   │   ├── Login.tsx
+    │   │   │   └── Settings.tsx
+    │   │   └── index.html
+    │   └── tools/
+    │       ├── fileSystemTool.ts
+    │       ├── shellExecTool.ts
+    │       ├── pythonExecTool.ts
+    │       ├── browserTool.ts
+    │       └── imageTool.ts
+    ├── python/                # Scripts Python embarcados
+    ├── electron-builder.yml
+    └── package.json</code></pre>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== FLUXO ===== -->
+        <section id="fluxo" class="bg-slate-900/50 border-t border-slate-800 py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">🔄</span> Fluxo de Requisição — Passo a Passo</h2>
+                <p class="text-slate-400 mb-12 max-w-3xl">Como uma requisição do usuário percorre a arquitetura da Edge até a Cloud e volta.</p>
+    
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 animate-fade-in delay-1">
+                        <span class="step-number">1</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">💬</span><span class="font-semibold">Usuário envia mensagem</span></div>
+                            <p class="text-sm text-slate-400">"Crie um relatório com esses arquivos da pasta Downloads"</p>
+                            <div class="mt-2 flex items-center gap-2 text-xs text-slate-500"><span class="bg-slate-800 px-2 py-0.5 rounded">Electron App</span><span class="text-edge-400">→</span><span class="bg-slate-800 px-2 py-0.5 rounded">WebSocket Client</span></div>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-2">
+                        <span class="step-number">2</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">📡</span><span class="font-semibold">Edge envia para Cloud via WebSocket</span></div>
+                            <p class="text-sm text-slate-400">Mensagem <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">user_message</code> com userId, sessionId e texto</p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-2">
+                        <span class="step-number">3</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">🧠</span><span class="font-semibold">Cloud: Agent Engine processa</span></div>
+                            <p class="text-sm text-slate-400">Planner decide: <strong class="text-primary-300">DataAnalystAgent</strong> é o melhor para a tarefa</p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-3">
+                        <span class="step-number">4</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">🤖</span><span class="font-semibold">Agente precisa de uma Tool</span></div>
+                            <p class="text-sm text-slate-400">DataAnalystAgent precisa ler arquivos → emite comando <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">tool_call</code> para <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">fileSystem.read</code></p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-3">
+                        <span class="step-number">5</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">📤</span><span class="font-semibold">Cloud envia Tool Call para Edge</span></div>
+                            <p class="text-sm text-slate-400">WebSocket Server → Edge: <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">{ type: "tool_call", toolName: "fileSystem.read", params: { target: "~/Downloads" } }</code></p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-4">
+                        <span class="step-number">6</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">⚡</span><span class="font-semibold">Edge executa Tool localmente</span></div>
+                            <p class="text-sm text-slate-400">Tool Executor Engine roda <code class="text-edge-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">fs.readdirSync</code> no sistema do usuário</p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-4">
+                        <span class="step-number">7</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">📥</span><span class="font-semibold">Edge envia resultado de volta</span></div>
+                            <p class="text-sm text-slate-400">WebSocket Client → Cloud: <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">{ type: "tool_result", toolName: "fileSystem.read", result: {...} }</code></p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-4">
+                        <span class="step-number">8</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">🔄</span><span class="font-semibold">Cloud processa e repete se necessário</span></div>
+                            <p class="text-sm text-slate-400">Agente analisa resultado, decide próximos passos. Pode chamar mais tools ou finalizar.</p>
+                        </div>
+                    </div>
+    
+                    <div class="flex items-start gap-4 animate-fade-in delay-4">
+                        <span class="step-number">9</span>
+                        <div class="flex-1 glass rounded-xl p-5 border border-slate-700/50 ring-2 ring-primary-500/30">
+                            <div class="flex items-center gap-2 mb-1"><span class="text-xl">✅</span><span class="font-semibold">Resposta final volta para o usuário</span></div>
+                            <p class="text-sm text-slate-400">Cloud envia <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">agent_response</code> → Edge exibe no chat → Usuário vê o relatório pronto</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="mt-10 glass rounded-xl p-6 border border-slate-700/50">
+                    <h3 class="text-lg font-bold mb-4">📋 Protocolo WebSocket</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-sm font-semibold text-primary-400 mb-2">Cloud → Edge</h4>
+                            <pre class="text-xs bg-slate-950/50 rounded-lg p-4 overflow-x-auto"><code>interface CloudToEdge {
+      type: "tool_call"
+         | "notification"
+         | "agent_response"
+      userId: string
+      sessionId: string
+      data: {
+        toolName: string
+        requestId: string
+        params: any
+      }
+    }</code></pre>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-edge-400 mb-2">Edge → Cloud</h4>
+                            <pre class="text-xs bg-slate-950/50 rounded-lg p-4 overflow-x-auto"><code>interface EdgeToCloud {
+      type: "tool_result"
+         | "tool_error"
+         | "auth"
+         | "heartbeat"
+      userId: string
+      sessionId: string
+      data: {
+        toolName: string
+        requestId: string
+        result?: any
+        error?: string
+      }
+    }</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== SEGURANCA ===== -->
+        <section class="py-20 border-t border-slate-800">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">🔒</span> Segurança — Isolamento Multi-tenant</h2>
+                <p class="text-slate-400 mb-12 max-w-3xl">Cada camada da arquitetura isola dados entre usuários para garantir que não haja vazamento de informação.</p>
+    
+                <div class="overflow-x-auto rounded-xl border border-slate-800">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-slate-800/50">
+                                <th class="text-left p-4 font-semibold text-slate-300">Camada</th>
+                                <th class="text-left p-4 font-semibold text-slate-300">Tecnologia</th>
+                                <th class="text-left p-4 font-semibold text-slate-300">Como isola</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium">🗄️ Banco Relacional</td>
+                                <td class="p-4 text-slate-300">PostgreSQL</td>
+                                <td class="p-4 text-slate-400">Toda tabela tem FK <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">user_id</code> — consultas sempre filtradas por <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">WHERE user_id = ?</code></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium">🧬 Banco Vetorial</td>
+                                <td class="p-4 text-slate-300">ChromaDB</td>
+                                <td class="p-4 text-slate-400">Uma <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">collection</code> por usuário — nome: <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">user_{id}_memories</code></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium">⚡ Cache</td>
+                                <td class="p-4 text-slate-300">Redis</td>
+                                <td class="p-4 text-slate-400">Chaves prefixadas com <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">user:{id}:*</code></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium">📡 WebSocket</td>
+                                <td class="p-4 text-slate-300">Socket.IO</td>
+                                <td class="p-4 text-slate-400">Autenticação JWT na conexão — servidor só encaminha mensagens para o userId correspondente</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium">🔧 Tools</td>
+                                <td class="p-4 text-slate-300">Tool Executor</td>
+                                <td class="p-4 text-slate-400">Cada tool roda no contexto do sistema daquele usuário (isolamento por processo)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium">🔐 Sessão</td>
+                                <td class="p-4 text-slate-300">JWT + Redis</td>
+                                <td class="p-4 text-slate-400">Token JWT com <code class="text-primary-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">sub = userId</code>, expira 24h, refresh token automático</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== INSTALADOR ===== -->
+        <section class="bg-slate-900/50 border-t border-slate-800 py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📦</span> Instalador Electron</h2>
+                <p class="text-slate-400 mb-8 max-w-3xl">Configuração do electron-builder para gerar instaladores nativos com Node.js e Python embarcados.</p>
+    
+                <div class="glass rounded-xl p-6 border border-slate-700/50">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-lg">⚙️</span>
+                        <h3 class="font-bold text-lg"><code class="text-primary-300">electron-builder.yml</code></h3>
+                    </div>
+                    <pre class="text-xs text-slate-300 bg-slate-950/70 rounded-lg p-6 overflow-x-auto leading-relaxed"><code>appId: com.colabor-ai.desktop
+    productName: colabor-ai
+    directories:
+      output: dist
+      buildResources: build
+    
+    extraResources:
+      - from: python/
+        to: python/
+        filter:
+          - "**/*"
+    
+    files:
+      - "**/*"
+      - "!python/**/*"
+    
+    extraMetadata:
+      main: build/main.js
+    
+    win:
+      target:
+        - target: nsis
+          arch: [x64]
+      extraResources:
+        - from: python/embedded/
+          to: python/
+    
+    mac:
+      target:
+        - target: dmg
+          arch: [x64, arm64]
+    
+    nsis:
+      oneClick: false
+      allowToChangeInstallationDirectory: true
+      installerIcon: build/icon.ico</code></pre>
+                </div>
+    
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 text-center">
+                        <div class="text-2xl mb-2">🪟</div>
+                        <div class="font-semibold">Windows</div>
+                        <div class="text-xs text-slate-400">.exe (NSIS)</div>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 text-center">
+                        <div class="text-2xl mb-2">🍎</div>
+                        <div class="font-semibold">macOS</div>
+                        <div class="text-xs text-slate-400">.dmg (Intel + Apple Silicon)</div>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 text-center">
+                        <div class="text-2xl mb-2">🐧</div>
+                        <div class="font-semibold">Linux</div>
+                        <div class="text-xs text-slate-400">.deb / .AppImage</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== RESUMO ===== -->
+        <section class="py-20 border-t border-slate-800">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📊</span> Resumo da Arquitetura</h2>
+                <p class="text-slate-400 mb-12 max-w-3xl">Visão geral de todos os componentes e tecnologias.</p>
+    
+                <div class="overflow-x-auto rounded-xl border border-slate-800">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-slate-800/50">
+                                <th class="text-left p-4 font-semibold text-slate-300">Aspecto</th>
+                                <th class="text-left p-4 font-semibold text-slate-300">Solução</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🧠 Inteligência</td><td class="p-4 text-slate-300">Cloud — Agents + LLM (OpenAI GPT-4o / DeepSeek)</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">⚡ Execução</td><td class="p-4 text-slate-300">Edge — Tools na máquina do usuário (FileSystem, Shell, Python, Browser, Image)</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">📡 Comunicação</td><td class="p-4 text-slate-300">WebSocket bidirecional com JWT + Socket.IO</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🔐 Autenticação</td><td class="p-4 text-slate-300">Google OAuth2.0 + Passport.js + JWT (24h)</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🔒 Isolamento</td><td class="p-4 text-slate-300">PostgreSQL (FK user_id) + ChromaDB (collection/user) + Redis (prefixo user:id)</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🖥️ Cliente</td><td class="p-4 text-slate-300">Electron + React + electron-builder</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🟢 Runtimes</td><td class="p-4 text-slate-300">Node.js (nativo Electron) + Python (embarcado)</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">📦 Instalador</td><td class="p-4 text-slate-300">.exe (Windows NSIS), .dmg (Mac), .deb (Linux)</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🗄️ Banco Relacional</td><td class="p-4 text-slate-300">PostgreSQL — users, sessions, conversations, configs</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">🧬 Banco Vetorial</td><td class="p-4 text-slate-300">ChromaDB — memórias, embeddings, busca semântica</td></tr>
+                            <tr class="hover:bg-slate-800/30"><td class="p-4 font-medium">⚡ Cache</td><td class="p-4 text-slate-300">Redis — sessões, pub/sub, fila de execução</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== PASSOS ===== -->
+        <section id="passos" class="bg-slate-900/50 border-t border-slate-800 py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 flex items-center gap-3"><span class="text-3xl">📋</span> Passos para Implementação</h2>
+                <p class="text-slate-400 mb-12 max-w-3xl">Roteiro prático para construir a arquitetura Cloud-Edge do zero.</p>
+    
+                <div class="space-y-8">
+                    <!-- Fase 1 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-primary-400 mb-4 flex items-center gap-2"><span class="text-2xl">📦</span> Fase 1 — Cloud Setup</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">1</span>
+                                <div><span class="font-semibold">Criar projeto cloud/</span><p class="text-xs text-slate-400 mt-1">TypeScript + Express + estrutura de diretórios</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">2</span>
+                                <div><span class="font-semibold">Configurar PostgreSQL</span><p class="text-xs text-slate-400 mt-1">Docker + migrations + models (User, Session, Conversation)</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">3</span>
+                                <div><span class="font-semibold">Configurar ChromaDB</span><p class="text-xs text-slate-400 mt-1">Docker + multi-tenant por collection</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">4</span>
+                                <div><span class="font-semibold">Implementar Auth Google</span><p class="text-xs text-slate-400 mt-1">OAuth2.0 + Passport.js + JWT + refresh token</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">5</span>
+                                <div><span class="font-semibold">Implementar Agent Engine</span><p class="text-xs text-slate-400 mt-1">Planner + Orchestrator + 5 Agents + Tool Router</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">6</span>
+                                <div><span class="font-semibold">Implementar WebSocket Server</span><p class="text-xs text-slate-400 mt-1">Socket.IO + autenticação JWT + heartbeat</p></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Fase 2 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-edge-400 mb-4 flex items-center gap-2"><span class="text-2xl">💻</span> Fase 2 — Edge Setup</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">7</span>
+                                <div><span class="font-semibold">Criar projeto edge/</span><p class="text-xs text-slate-400 mt-1">Electron + React + Webpack/Vite</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">8</span>
+                                <div><span class="font-semibold">Implementar WebSocket Client</span><p class="text-xs text-slate-400 mt-1">Conexão persistente + reconexão automática</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">9</span>
+                                <div><span class="font-semibold">Implementar Tool Executor Engine</span><p class="text-xs text-slate-400 mt-1">FileSystem, ShellExec, PythonExec, Browser, Image</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">10</span>
+                                <div><span class="font-semibold">Implementar UI React</span><p class="text-xs text-slate-400 mt-1">Chat, Login Google (webview), Configurações</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">11</span>
+                                <div><span class="font-semibold">Embarcar Python</span><p class="text-xs text-slate-400 mt-1">Distribuição embedded + python-shell bridge</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">12</span>
+                                <div><span class="font-semibold">Configurar electron-builder</span><p class="text-xs text-slate-400 mt-1">Instalador .exe/.dmg/.deb com Node.js + Python</p></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Fase 3 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-purple-400 mb-4 flex items-center gap-2"><span class="text-2xl">🔗</span> Fase 3 — Integração e Deploy</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">13</span>
+                                <div><span class="font-semibold">Dockerizar Cloud</span><p class="text-xs text-slate-400 mt-1">Dockerfile + docker-compose (PostgreSQL, ChromaDB, Redis, API)</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">14</span>
+                                <div><span class="font-semibold">Deploy Cloud</span><p class="text-xs text-slate-400 mt-1">AWS ECS / Railway / Fly.io com variáveis de ambiente</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">15</span>
+                                <div><span class="font-semibold">Testar comunicação Edge-Cloud</span><p class="text-xs text-slate-400 mt-1">WebSocket + tool_call + tool_result end-to-end</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4">
+                                <span class="step-number shrink-0">16</span>
+                                <div><span class="font-semibold">Gerar instalador</span><p class="text-xs text-slate-400 mt-1">npm run build:win / build:mac / build:linux</p></div>
+                            </div>
+                            <div class="glass rounded-xl p-5 border border-slate-700/50 flex items-start gap-4 md:col-span-2">
+                                <span class="step-number shrink-0">17</span>
+                                <div><span class="font-semibold">Testar instalação limpa</span><p class="text-xs text-slate-400 mt-1">Instalar em máquina sem Node.js/Python — validar que tudo funciona embarcado</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- ===== FOOTER ===== -->
+        <footer class="border-t border-slate-800 py-12">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <p class="text-slate-500 text-sm">colabor-ai — Arquitetura Cloud-Edge v2.0</p>
+                <p class="text-slate-600 text-xs mt-2">Documentação gerada em 2026</p>
+            </div>
+        </footer>
+    
+    </body>
+    </html>

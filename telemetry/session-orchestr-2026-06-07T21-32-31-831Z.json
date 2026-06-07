@@ -1,0 +1,1651 @@
+{
+  "sessionId": "orchestrator_1780867800798_objh8t",
+  "userInput": "como está funcionando a arquitetura do colabor-ai?",
+  "startedAt": "2026-06-07T21:30:38.251Z",
+  "finishedAt": "2026-06-07T21:32:31.831Z",
+  "totalDuration": 113580,
+  "totalLLMCalls": 66,
+  "totalPromptTokens": 584331,
+  "totalCompletionTokens": 15868,
+  "totalTokens": 600199,
+  "maxContextWindowTokens": 57456,
+  "avgTokensPerLLMCall": 9094,
+  "estimatedCostUSD": 0.1752,
+  "totalAgentCalls": 57,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 53,
+    "knowledge-graph": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 57,
+  "totalToolCalls": 33,
+  "toolCallBreakdown": {
+    "knowledge_graph_scan": 2,
+    "file_system": 31
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867838309,
+      "duration": 4040,
+      "promptTokens": 5048,
+      "completionTokens": 292,
+      "totalTokens": 5340,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 2779,
+      "promptTokens": 6547,
+      "completionTokens": 85,
+      "totalTokens": 6632,
+      "historyLength": 2,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867842362,
+      "duration": 4511,
+      "promptTokens": 2353,
+      "completionTokens": 212,
+      "totalTokens": 2565,
+      "historyLength": 15,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867845152,
+      "duration": 1992,
+      "promptTokens": 2369,
+      "completionTokens": 74,
+      "totalTokens": 2443,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867847563,
+      "duration": 1368,
+      "promptTokens": 2686,
+      "completionTokens": 27,
+      "totalTokens": 2713,
+      "historyLength": 18,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867849353,
+      "duration": 1383,
+      "promptTokens": 2726,
+      "completionTokens": 28,
+      "totalTokens": 2754,
+      "historyLength": 20,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 8832,
+      "promptTokens": 6874,
+      "completionTokens": 88,
+      "totalTokens": 6962,
+      "historyLength": 4,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867851205,
+      "duration": 3065,
+      "promptTokens": 2769,
+      "completionTokens": 159,
+      "totalTokens": 2928,
+      "historyLength": 22,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867854684,
+      "duration": 1893,
+      "promptTokens": 2949,
+      "completionTokens": 35,
+      "totalTokens": 2984,
+      "historyLength": 24,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867856997,
+      "duration": 1584,
+      "promptTokens": 3008,
+      "completionTokens": 22,
+      "totalTokens": 3030,
+      "historyLength": 26,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 17938,
+      "promptTokens": 8796,
+      "completionTokens": 264,
+      "totalTokens": 9060,
+      "historyLength": 6,
+      "hadToolCalls": true,
+      "toolCallCount": 4,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867860309,
+      "duration": 1832,
+      "promptTokens": 3055,
+      "completionTokens": 27,
+      "totalTokens": 3082,
+      "historyLength": 28,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867862562,
+      "duration": 1381,
+      "promptTokens": 3099,
+      "completionTokens": 23,
+      "totalTokens": 3122,
+      "historyLength": 30,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867864388,
+      "duration": 1297,
+      "promptTokens": 3214,
+      "completionTokens": 20,
+      "totalTokens": 3234,
+      "historyLength": 35,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867864374,
+      "duration": 1600,
+      "promptTokens": 3214,
+      "completionTokens": 46,
+      "totalTokens": 3260,
+      "historyLength": 36,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867864377,
+      "duration": 2126,
+      "promptTokens": 3214,
+      "completionTokens": 83,
+      "totalTokens": 3297,
+      "historyLength": 37,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867864383,
+      "duration": 2482,
+      "promptTokens": 3214,
+      "completionTokens": 101,
+      "totalTokens": 3315,
+      "historyLength": 38,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 26455,
+      "promptTokens": 10829,
+      "completionTokens": 614,
+      "totalTokens": 11443,
+      "historyLength": 11,
+      "hadToolCalls": true,
+      "toolCallCount": 10,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867868827,
+      "duration": 1666,
+      "promptTokens": 3490,
+      "completionTokens": 23,
+      "totalTokens": 3513,
+      "historyLength": 40,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870939,
+      "duration": 1844,
+      "promptTokens": 3738,
+      "completionTokens": 21,
+      "totalTokens": 3759,
+      "historyLength": 51,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870923,
+      "duration": 2348,
+      "promptTokens": 3689,
+      "completionTokens": 61,
+      "totalTokens": 3750,
+      "historyLength": 52,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870962,
+      "duration": 2537,
+      "promptTokens": 3762,
+      "completionTokens": 93,
+      "totalTokens": 3855,
+      "historyLength": 53,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 31146,
+      "promptTokens": 15458,
+      "completionTokens": 118,
+      "totalTokens": 15576,
+      "historyLength": 22,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870950,
+      "duration": 2598,
+      "promptTokens": 3762,
+      "completionTokens": 73,
+      "totalTokens": 3835,
+      "historyLength": 55,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870928,
+      "duration": 2688,
+      "promptTokens": 3714,
+      "completionTokens": 70,
+      "totalTokens": 3784,
+      "historyLength": 56,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870915,
+      "duration": 3113,
+      "promptTokens": 3640,
+      "completionTokens": 92,
+      "totalTokens": 3732,
+      "historyLength": 57,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870943,
+      "duration": 3394,
+      "promptTokens": 3762,
+      "completionTokens": 153,
+      "totalTokens": 3915,
+      "historyLength": 58,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870909,
+      "duration": 3833,
+      "promptTokens": 3616,
+      "completionTokens": 183,
+      "totalTokens": 3799,
+      "historyLength": 59,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870918,
+      "duration": 4039,
+      "promptTokens": 3665,
+      "completionTokens": 184,
+      "totalTokens": 3849,
+      "historyLength": 60,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867873517,
+      "duration": 1662,
+      "promptTokens": 3960,
+      "completionTokens": 23,
+      "totalTokens": 3983,
+      "historyLength": 61,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867870957,
+      "duration": 6284,
+      "promptTokens": 3762,
+      "completionTokens": 409,
+      "totalTokens": 4171,
+      "historyLength": 63,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867875601,
+      "duration": 2841,
+      "promptTokens": 4779,
+      "completionTokens": 118,
+      "totalTokens": 4897,
+      "historyLength": 64,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 39403,
+      "promptTokens": 15820,
+      "completionTokens": 300,
+      "totalTokens": 16120,
+      "historyLength": 24,
+      "hadToolCalls": true,
+      "toolCallCount": 4,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867878852,
+      "duration": 4312,
+      "promptTokens": 5319,
+      "completionTokens": 251,
+      "totalTokens": 5570,
+      "historyLength": 67,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867881776,
+      "duration": 1975,
+      "promptTokens": 5333,
+      "completionTokens": 34,
+      "totalTokens": 5367,
+      "historyLength": 68,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867884164,
+      "duration": 1951,
+      "promptTokens": 5639,
+      "completionTokens": 52,
+      "totalTokens": 5691,
+      "historyLength": 70,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867886529,
+      "duration": 1477,
+      "promptTokens": 5798,
+      "completionTokens": 21,
+      "totalTokens": 5819,
+      "historyLength": 75,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867886534,
+      "duration": 1817,
+      "promptTokens": 5798,
+      "completionTokens": 55,
+      "totalTokens": 5853,
+      "historyLength": 76,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867886537,
+      "duration": 2146,
+      "promptTokens": 5798,
+      "completionTokens": 84,
+      "totalTokens": 5882,
+      "historyLength": 77,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 49514,
+      "promptTokens": 36095,
+      "completionTokens": 353,
+      "totalTokens": 36448,
+      "historyLength": 29,
+      "hadToolCalls": true,
+      "toolCallCount": 5,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867886532,
+      "duration": 6023,
+      "promptTokens": 5798,
+      "completionTokens": 416,
+      "totalTokens": 6214,
+      "historyLength": 79,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867891886,
+      "duration": 2690,
+      "promptTokens": 5994,
+      "completionTokens": 154,
+      "totalTokens": 6148,
+      "historyLength": 80,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867894997,
+      "duration": 1733,
+      "promptTokens": 6674,
+      "completionTokens": 46,
+      "totalTokens": 6720,
+      "historyLength": 86,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 56674,
+      "promptTokens": 47690,
+      "completionTokens": 274,
+      "totalTokens": 47964,
+      "historyLength": 35,
+      "hadToolCalls": true,
+      "toolCallCount": 4,
+      "turnIndex": 7
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867895001,
+      "duration": 4404,
+      "promptTokens": 6699,
+      "completionTokens": 273,
+      "totalTokens": 6972,
+      "historyLength": 88,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867899046,
+      "duration": 2073,
+      "promptTokens": 6768,
+      "completionTokens": 60,
+      "totalTokens": 6828,
+      "historyLength": 89,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867895005,
+      "duration": 6259,
+      "promptTokens": 6699,
+      "completionTokens": 498,
+      "totalTokens": 7197,
+      "historyLength": 90,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867894999,
+      "duration": 7480,
+      "promptTokens": 6699,
+      "completionTokens": 563,
+      "totalTokens": 7262,
+      "historyLength": 95,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867901546,
+      "duration": 2872,
+      "promptTokens": 7710,
+      "completionTokens": 141,
+      "totalTokens": 7851,
+      "historyLength": 96,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 63333,
+      "promptTokens": 52226,
+      "completionTokens": 234,
+      "totalTokens": 52460,
+      "historyLength": 40,
+      "hadToolCalls": true,
+      "toolCallCount": 3,
+      "turnIndex": 8
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867901542,
+      "duration": 4664,
+      "promptTokens": 7710,
+      "completionTokens": 288,
+      "totalTokens": 7998,
+      "historyLength": 98,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867895009,
+      "duration": 11712,
+      "promptTokens": 6699,
+      "completionTokens": 947,
+      "totalTokens": 7646,
+      "historyLength": 99,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867901540,
+      "duration": 5423,
+      "promptTokens": 7710,
+      "completionTokens": 352,
+      "totalTokens": 8062,
+      "historyLength": 100,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867905706,
+      "duration": 3502,
+      "promptTokens": 8437,
+      "completionTokens": 250,
+      "totalTokens": 8687,
+      "historyLength": 101,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867909636,
+      "duration": 1479,
+      "promptTokens": 10301,
+      "completionTokens": 20,
+      "totalTokens": 10321,
+      "historyLength": 103,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867901536,
+      "duration": 9860,
+      "promptTokens": 7710,
+      "completionTokens": 794,
+      "totalTokens": 8504,
+      "historyLength": 104,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867911534,
+      "duration": 2180,
+      "promptTokens": 11199,
+      "completionTokens": 54,
+      "totalTokens": 11253,
+      "historyLength": 108,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867911536,
+      "duration": 5603,
+      "promptTokens": 11199,
+      "completionTokens": 376,
+      "totalTokens": 11575,
+      "historyLength": 109,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867911538,
+      "duration": 15296,
+      "promptTokens": 11199,
+      "completionTokens": 1392,
+      "totalTokens": 12591,
+      "historyLength": 110,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867842370,
+      "duration": 93141,
+      "promptTokens": 57456,
+      "completionTokens": 2538,
+      "totalTokens": 59994,
+      "historyLength": 44,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 9
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867935514,
+      "duration": 4601,
+      "promptTokens": 13045,
+      "completionTokens": 313,
+      "totalTokens": 13358,
+      "historyLength": 112,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867940528,
+      "duration": 4922,
+      "promptTokens": 13376,
+      "completionTokens": 331,
+      "totalTokens": 13707,
+      "historyLength": 114,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867946357,
+      "duration": 1984,
+      "promptTokens": 2764,
+      "completionTokens": 93,
+      "totalTokens": 2857,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867946356,
+      "duration": 2043,
+      "promptTokens": 13725,
+      "completionTokens": 69,
+      "totalTokens": 13794,
+      "historyLength": 117,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780867948381,
+      "duration": 3350,
+      "promptTokens": 13739,
+      "completionTokens": 174,
+      "totalTokens": 13913,
+      "historyLength": 118,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780867948383,
+      "duration": 3429,
+      "promptTokens": 8744,
+      "completionTokens": 247,
+      "totalTokens": 8991,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    como está funcionando a arquitetura do colabor-ai?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar",
+      "startTime": 1780867838309,
+      "duration": 4043,
+      "success": true,
+      "responseLength": 431,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 knowledge-graph → \"Responda à pergunta do usuário: 'como está funcionando a arquitetura do colabor-…\"",
+      "startTime": 1780867842362,
+      "duration": 4514,
+      "success": true,
+      "responseLength": 815,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user wants to understand the architecture of colabor-ai.",
+      "startTime": 1780867845152,
+      "duration": 1995,
+      "success": true,
+      "responseLength": 262,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me start by scanning the project to build/update the knowledge graph, then query it to understand the architecture c",
+      "startTime": 1780867847563,
+      "duration": 1369,
+      "success": true,
+      "responseLength": 99,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 knowledge_graph_scan...",
+      "startTime": 1780867849353,
+      "duration": 1385,
+      "success": true,
+      "responseLength": 92,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The scan returned 0 files.",
+      "startTime": 1780867851205,
+      "duration": 3067,
+      "success": true,
+      "responseLength": 539,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me check the project structure manually to understand the directory layout.",
+      "startTime": 1780867854684,
+      "duration": 1896,
+      "success": true,
+      "responseLength": 129,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\"",
+      "startTime": 1780867856997,
+      "duration": 1585,
+      "success": true,
+      "responseLength": 81,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me scan the core directory and the cloud directory more deeply to understand the architecture.",
+      "startTime": 1780867860309,
+      "duration": 1834,
+      "success": true,
+      "responseLength": 102,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also look at the key files.",
+      "startTime": 1780867862562,
+      "duration": 1383,
+      "success": true,
+      "responseLength": 75,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\skills\"",
+      "startTime": 1780867864388,
+      "duration": 1299,
+      "success": true,
+      "responseLength": 77,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\"",
+      "startTime": 1780867864374,
+      "duration": 1603,
+      "success": true,
+      "responseLength": 140,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\cloud\"",
+      "startTime": 1780867864377,
+      "duration": 2131,
+      "success": true,
+      "responseLength": 265,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\memory\"",
+      "startTime": 1780867864383,
+      "duration": 2484,
+      "success": true,
+      "responseLength": 322,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me now scan deeper into the core directories to understand the architecture better.",
+      "startTime": 1780867868827,
+      "duration": 1668,
+      "success": true,
+      "responseLength": 76,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\llm\"",
+      "startTime": 1780867870939,
+      "duration": 1846,
+      "success": true,
+      "responseLength": 80,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\tools\"",
+      "startTime": 1780867870923,
+      "duration": 2349,
+      "success": true,
+      "responseLength": 195,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\cloud\\src\"",
+      "startTime": 1780867870962,
+      "duration": 2542,
+      "success": true,
+      "responseLength": 306,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\telemetry\"",
+      "startTime": 1780867870950,
+      "duration": 2600,
+      "success": true,
+      "responseLength": 223,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\memory\"",
+      "startTime": 1780867870928,
+      "duration": 2690,
+      "success": true,
+      "responseLength": 228,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\agent\"",
+      "startTime": 1780867870915,
+      "duration": 3114,
+      "success": true,
+      "responseLength": 280,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\session\"",
+      "startTime": 1780867870943,
+      "duration": 3398,
+      "success": true,
+      "responseLength": 494,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\agents\"",
+      "startTime": 1780867870909,
+      "duration": 3835,
+      "success": true,
+      "responseLength": 632,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\orchestrato\"",
+      "startTime": 1780867870918,
+      "duration": 4041,
+      "success": true,
+      "responseLength": 557,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now let me read the key files to understand the architecture deeply.",
+      "startTime": 1780867873517,
+      "duration": 1664,
+      "success": true,
+      "responseLength": 87,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\core\\config\"",
+      "startTime": 1780867870957,
+      "duration": 6287,
+      "success": true,
+      "responseLength": 1330,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me read the main orchestrator, the agent base class, the memory hub, the config, and some agents to understand the f",
+      "startTime": 1780867875601,
+      "duration": 2843,
+      "success": true,
+      "responseLength": 385,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 knowledge_graph_scan...",
+      "startTime": 1780867878852,
+      "duration": 4315,
+      "success": true,
+      "responseLength": 802,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The knowledge graph scan isn't picking up files.",
+      "startTime": 1780867881776,
+      "duration": 1977,
+      "success": true,
+      "responseLength": 123,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me read the key files directly to understand the architecture.",
+      "startTime": 1780867884164,
+      "duration": 1953,
+      "success": true,
+      "responseLength": 171,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\orchestrato\"",
+      "startTime": 1780867886529,
+      "duration": 1479,
+      "success": true,
+      "responseLength": 80,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\memory\\memo\"",
+      "startTime": 1780867886534,
+      "duration": 1818,
+      "success": true,
+      "responseLength": 194,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\package.json\"",
+      "startTime": 1780867886537,
+      "duration": 2147,
+      "success": true,
+      "responseLength": 279,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\agent\\agent\"",
+      "startTime": 1780867886532,
+      "duration": 6024,
+      "success": true,
+      "responseLength": 1413,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now let me read a few more key files to complete the picture: the telegram entry point, the agents registry, and the mai",
+      "startTime": 1780867891886,
+      "duration": 2692,
+      "success": true,
+      "responseLength": 493,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\agent\\main.\"",
+      "startTime": 1780867894997,
+      "duration": 1736,
+      "success": true,
+      "responseLength": 137,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\orchestrato\"",
+      "startTime": 1780867895001,
+      "duration": 4406,
+      "success": true,
+      "responseLength": 880,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also read the cloud source index.ts to understand the cloud layer.",
+      "startTime": 1780867899046,
+      "duration": 2074,
+      "success": true,
+      "responseLength": 176,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\config\\conf\"",
+      "startTime": 1780867895005,
+      "duration": 6260,
+      "success": true,
+      "responseLength": 1624,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\agents\\agen\"",
+      "startTime": 1780867894999,
+      "duration": 7482,
+      "success": true,
+      "responseLength": 1856,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\memory\\memo\"",
+      "startTime": 1780867901546,
+      "duration": 2875,
+      "success": true,
+      "responseLength": 422,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\cloud\\src\\engine\"",
+      "startTime": 1780867901542,
+      "duration": 4667,
+      "success": true,
+      "responseLength": 924,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\types.ts\"",
+      "startTime": 1780867895009,
+      "duration": 11713,
+      "success": true,
+      "responseLength": 3201,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\\cloud\\src\\agents\"",
+      "startTime": 1780867901540,
+      "duration": 5425,
+      "success": true,
+      "responseLength": 1089,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now I have a very comprehensive picture of the colabor-ai architecture.",
+      "startTime": 1780867905706,
+      "duration": 3505,
+      "success": true,
+      "responseLength": 874,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also read the knowledge-graph agent file to understand how it works:",
+      "startTime": 1780867909636,
+      "duration": 1481,
+      "success": true,
+      "responseLength": 79,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\cloud\\src\\index.\"",
+      "startTime": 1780867901536,
+      "duration": 9863,
+      "success": true,
+      "responseLength": 2300,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\agents\\know\"",
+      "startTime": 1780867911534,
+      "duration": 2183,
+      "success": true,
+      "responseLength": 189,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\memory\\know\"",
+      "startTime": 1780867911536,
+      "duration": 5605,
+      "success": true,
+      "responseLength": 1327,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\tools\\toolR\"",
+      "startTime": 1780867911538,
+      "duration": 15298,
+      "success": true,
+      "responseLength": 4640,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 I now have a very comprehensive view of the colabor-ai architecture.",
+      "startTime": 1780867935514,
+      "duration": 4603,
+      "success": true,
+      "responseLength": 1096,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me synthesize all this into a clear response.",
+      "startTime": 1780867940528,
+      "duration": 4925,
+      "success": true,
+      "responseLength": 1089,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "knowledge-graph",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    como está funcionando a arquitetura do colabor-ai?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar",
+      "startTime": 1780867842370,
+      "duration": 103497,
+      "success": true,
+      "responseLength": 8545,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: como está funcionando a arquitetura do colabor-ai?\n\n\n\n    Agent used: knowledge-graph\n\n\n\n    Instruction given: Responda à pe",
+      "startTime": 1780867946357,
+      "duration": 1986,
+      "success": true,
+      "responseLength": 358,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780867946356,
+      "duration": 2045,
+      "success": true,
+      "responseLength": 233,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780867948381,
+      "duration": 3352,
+      "success": true,
+      "responseLength": 630,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    como está funcionando a arquitetura do colabor-ai?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem? Por aqui está tudo pronto pra ajudar",
+      "startTime": 1780867948383,
+      "duration": 3432,
+      "success": true,
+      "responseLength": 473,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Responda à pergunta do usuário: 'como está funcionando a arquitetura do colabor-ai?' — consulte o grafo de conhecimento do projeto para descrever a arquitetura atual, incluindo os principais component",
+      "chosenAgent": "knowledge-graph",
+      "step": 1,
+      "timestamp": 1780867842354
+    },
+    {
+      "instruction": "Transforme a resposta do knowledge-graph sobre a arquitetura do colabor-ai em uma resposta final clara e amigável para o usuário. Mantenha a estrutura completa (camadas, agentes, orquestrador, memória",
+      "chosenAgent": "writer",
+      "step": 2,
+      "timestamp": 1780867951817
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "knowledge_graph_scan",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867849367,
+      "hasError": false,
+      "duration": 6997
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867857008,
+      "hasError": false,
+      "duration": 14638
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867864377,
+      "hasError": false,
+      "duration": 22007
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867864383,
+      "hasError": false,
+      "duration": 22013
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867864387,
+      "hasError": false,
+      "duration": 22017
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867864394,
+      "hasError": false,
+      "duration": 22024
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870915,
+      "hasError": false,
+      "duration": 28545
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870918,
+      "hasError": false,
+      "duration": 28548
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870922,
+      "hasError": false,
+      "duration": 28552
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870927,
+      "hasError": false,
+      "duration": 28557
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870933,
+      "hasError": false,
+      "duration": 28563
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870943,
+      "hasError": false,
+      "duration": 28573
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870947,
+      "hasError": false,
+      "duration": 28577
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870956,
+      "hasError": false,
+      "duration": 28586
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870961,
+      "hasError": false,
+      "duration": 28591
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867870970,
+      "hasError": false,
+      "duration": 28600
+    },
+    {
+      "toolName": "knowledge_graph_scan",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867878856,
+      "hasError": false,
+      "duration": 36486
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867886531,
+      "hasError": false,
+      "duration": 44161
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867886533,
+      "hasError": false,
+      "duration": 44163
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867886536,
+      "hasError": false,
+      "duration": 44166
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867886540,
+      "hasError": false,
+      "duration": 44170
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867894999,
+      "hasError": false,
+      "duration": 52629
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867895001,
+      "hasError": false,
+      "duration": 52631
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867895004,
+      "hasError": false,
+      "duration": 52634
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867895008,
+      "hasError": false,
+      "duration": 52638
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867895013,
+      "hasError": false,
+      "duration": 52643
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867901539,
+      "hasError": false,
+      "duration": 59169
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867901542,
+      "hasError": false,
+      "duration": 59172
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867901545,
+      "hasError": false,
+      "duration": 59175
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867901550,
+      "hasError": false,
+      "duration": 59180
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867911536,
+      "hasError": false,
+      "duration": 69166
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867911538,
+      "hasError": false,
+      "duration": 69168
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780867911542,
+      "hasError": false,
+      "duration": 69172
+    }
+  ]
+}

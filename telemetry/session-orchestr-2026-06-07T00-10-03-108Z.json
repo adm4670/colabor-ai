@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "?",
+  "startedAt": "2026-06-07T00:09:44.645Z",
+  "finishedAt": "2026-06-07T00:10:03.108Z",
+  "totalDuration": 18463,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 409476,
+  "totalCompletionTokens": 996,
+  "totalTokens": 410472,
+  "maxContextWindowTokens": 139008,
+  "avgTokensPerLLMCall": 45608,
+  "estimatedCostUSD": 0.1117,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780790984891,
+      "duration": 3078,
+      "promptTokens": 124532,
+      "completionTokens": 152,
+      "totalTokens": 124684,
+      "historyLength": 34,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790987977,
+      "duration": 1816,
+      "promptTokens": 13732,
+      "completionTokens": 65,
+      "totalTokens": 13797,
+      "historyLength": 480,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780790987979,
+      "duration": 3765,
+      "promptTokens": 60056,
+      "completionTokens": 225,
+      "totalTokens": 60281,
+      "historyLength": 70,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790991747,
+      "duration": 1905,
+      "promptTokens": 13823,
+      "completionTokens": 89,
+      "totalTokens": 13912,
+      "historyLength": 482,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790994068,
+      "duration": 2208,
+      "promptTokens": 13932,
+      "completionTokens": 111,
+      "totalTokens": 14043,
+      "historyLength": 484,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790996700,
+      "duration": 1437,
+      "promptTokens": 14061,
+      "completionTokens": 19,
+      "totalTokens": 14080,
+      "historyLength": 486,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790996703,
+      "duration": 1936,
+      "promptTokens": 16234,
+      "completionTokens": 71,
+      "totalTokens": 16305,
+      "historyLength": 26,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780790998647,
+      "duration": 2134,
+      "promptTokens": 14098,
+      "completionTokens": 44,
+      "totalTokens": 14142,
+      "historyLength": 488,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780790998649,
+      "duration": 4455,
+      "promptTokens": 139008,
+      "completionTokens": 220,
+      "totalTokens": 139228,
+      "historyLength": 36,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    ?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá\nassistant: Olá de novo! 😄\n\nTô aqui, firm",
+      "startTime": 1780790984891,
+      "duration": 3081,
+      "success": true,
+      "responseLength": 352,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário enviou apenas '?' depois de você explicar sobre o banco vetorial. Ele …\"",
+      "startTime": 1780790987977,
+      "duration": 1818,
+      "success": true,
+      "responseLength": 220,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário mandou \"?\" depois de eu ter explicado que é JSON local.",
+      "startTime": 1780790991747,
+      "duration": 1908,
+      "success": true,
+      "responseLength": 343,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Ele parece estar questionando ou querendo mais detalhes.",
+      "startTime": 1780790994068,
+      "duration": 2210,
+      "success": true,
+      "responseLength": 394,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    ?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá\nassistant: Olá de novo! 😄\n\nTô aqui, firm",
+      "startTime": 1780790987979,
+      "duration": 8721,
+      "success": true,
+      "responseLength": 660,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780790996700,
+      "duration": 1439,
+      "success": true,
+      "responseLength": 63,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: ?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário enviou apenas '?' depois de você explicar sobre o banco ve",
+      "startTime": 1780790996703,
+      "duration": 1938,
+      "success": true,
+      "responseLength": 241,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780790998647,
+      "duration": 2135,
+      "success": true,
+      "responseLength": 155,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    ?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\nassistant: Olá! 👋\n\nTudo bem por aí? Como posso te ajudar hoje?\nuser: Olá\nassistant: Olá de novo! 😄\n\nTô aqui, firm",
+      "startTime": 1780790998649,
+      "duration": 4456,
+      "success": true,
+      "responseLength": 360,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário enviou apenas '?' depois de você explicar sobre o banco vetorial. Ele provavelmente quer mais detalhes. Responda de forma direta perguntando se ele quer saber mais sobre como a memória vetor",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780790987973
+    },
+    {
+      "instruction": "A resposta já foi dada: a implementação usa armazenamento JSON local com embeddings OpenAI e busca por similaridade de cosseno. Ofereci opções para migrar para um banco vetorial real (ChromaDB, pgvect",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780791003106
+    }
+  ],
+  "toolCalls": []
+}

@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780760969478_npj128",
+  "userInput": "Olá",
+  "startedAt": "2026-06-06T15:52:34.482Z",
+  "finishedAt": "2026-06-06T15:52:49.148Z",
+  "totalDuration": 14666,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 23898,
+  "totalCompletionTokens": 582,
+  "totalTokens": 24480,
+  "maxContextWindowTokens": 3908,
+  "avgTokensPerLLMCall": 2720,
+  "estimatedCostUSD": 0.0071,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780761154527,
+      "duration": 2892,
+      "promptTokens": 2922,
+      "completionTokens": 114,
+      "totalTokens": 3036,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780761157434,
+      "duration": 1738,
+      "promptTokens": 2139,
+      "completionTokens": 25,
+      "totalTokens": 2164,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780761157439,
+      "duration": 3373,
+      "promptTokens": 3590,
+      "completionTokens": 129,
+      "totalTokens": 3719,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780761160815,
+      "duration": 1441,
+      "promptTokens": 2180,
+      "completionTokens": 21,
+      "totalTokens": 2201,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780761162686,
+      "duration": 1539,
+      "promptTokens": 2225,
+      "completionTokens": 22,
+      "totalTokens": 2247,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780761164656,
+      "duration": 1901,
+      "promptTokens": 2265,
+      "completionTokens": 53,
+      "totalTokens": 2318,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780761164659,
+      "duration": 2180,
+      "promptTokens": 2333,
+      "completionTokens": 71,
+      "totalTokens": 2404,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780761166856,
+      "duration": 1972,
+      "promptTokens": 2336,
+      "completionTokens": 66,
+      "totalTokens": 2402,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780761166859,
+      "duration": 2280,
+      "promptTokens": 3908,
+      "completionTokens": 81,
+      "totalTokens": 3989,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\n\n\n\n    \n\n\n\n    Current context:\n\n\n\n    \n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n ",
+      "startTime": 1780761154527,
+      "duration": 2894,
+      "success": true,
+      "responseLength": 109,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Responda ao usuário com uma saudação amigável e ofereça ajuda.\"",
+      "startTime": 1780761157434,
+      "duration": 1740,
+      "success": true,
+      "responseLength": 66,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário disse \"Olá\".",
+      "startTime": 1780761160815,
+      "duration": 1444,
+      "success": true,
+      "responseLength": 60,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou responder de forma amigável, direta e oferecer ajuda.",
+      "startTime": 1780761162686,
+      "duration": 1542,
+      "success": true,
+      "responseLength": 62,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\n\n\n\n    \n\n\n\n    Instruction:\n\n\n\n    Responda ao usuário com uma saudação amigável e ofereça ajuda.\n\n\n\n    \n\n\n\n    ",
+      "startTime": 1780761157439,
+      "duration": 7216,
+      "success": true,
+      "responseLength": 215,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780761164656,
+      "duration": 1903,
+      "success": true,
+      "responseLength": 166,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Olá\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: Responda ao usuário com uma saudação amigável e ofereça ajuda.\n\n\n\n",
+      "startTime": 1780761164659,
+      "duration": 2182,
+      "success": true,
+      "responseLength": 251,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780761166856,
+      "duration": 1974,
+      "success": true,
+      "responseLength": 196,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá\n\n\n\n    \n\n\n\n    Current context:\n\n\n\n    \n\n\n\n    User request:\n\n\n\n    Olá\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n ",
+      "startTime": 1780761166859,
+      "duration": 2283,
+      "success": true,
+      "responseLength": 97,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Responda ao usuário com uma saudação amigável e ofereça ajuda.",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780761157423
+    },
+    {
+      "instruction": "O assistente já respondeu adequadamente. Finalizando.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780761169143
+    }
+  ],
+  "toolCalls": []
+}

@@ -151,3 +151,22 @@
 
 ## Preferencias
 - [2026-06-05] revisar antes o que entra no commit? (os `__pycache__` e `temp/` talvez não queira incluir)
+
+## Preferencias
+- [2026-06-06] 🔴 IMPORTANTE: Sempre busque na memória antes de assumir que não sabe algo
+- [2026-06-06] do usuário e decisões importantes
+
+## Preferencias
+- [2026-06-06] e decisões com um comando, e depois *buscar* por similaridade de significado — não só por palavra exata
+
+## Preferencias
+- [2026-06-07] Ex: azul escuro, roxo, verde
+
+## Preferencias
+- [2026-06-07] decisões, aprendizados) e consultar depois — como se fosse uma memória persistente
+
+## Aprendizados
+- [2026-06-07] e consultar depois — como se fosse uma memória persistente
+
+## Fatos
+- [2026-06-07] eu agendo um aviso

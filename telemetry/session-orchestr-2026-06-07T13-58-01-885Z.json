@@ -1,0 +1,760 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "instale o necessário e deixe pronto para que eu possa executar",
+  "startedAt": "2026-06-07T13:55:40.184Z",
+  "finishedAt": "2026-06-07T13:58:01.884Z",
+  "totalDuration": 141700,
+  "totalLLMCalls": 33,
+  "totalPromptTokens": 4936910,
+  "totalCompletionTokens": 4755,
+  "totalTokens": 4941665,
+  "maxContextWindowTokens": 787215,
+  "avgTokensPerLLMCall": 149747,
+  "estimatedCostUSD": 1.3382,
+  "totalAgentCalls": 26,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 22,
+    "PythonAgent": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 26,
+  "totalToolCalls": 7,
+  "toolCallBreakdown": {
+    "execute_python": 7
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840540502,
+      "duration": 9174,
+      "promptTokens": 770026,
+      "completionTokens": 333,
+      "totalTokens": 770359,
+      "historyLength": 120,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840549681,
+      "duration": 2874,
+      "promptTokens": 51966,
+      "completionTokens": 93,
+      "totalTokens": 52059,
+      "historyLength": 1302,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 5530,
+      "promptTokens": 272122,
+      "completionTokens": 402,
+      "totalTokens": 272524,
+      "historyLength": 320,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840555215,
+      "duration": 2580,
+      "promptTokens": 52091,
+      "completionTokens": 85,
+      "totalTokens": 52176,
+      "historyLength": 1304,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840559348,
+      "duration": 2882,
+      "promptTokens": 52199,
+      "completionTokens": 42,
+      "totalTokens": 52241,
+      "historyLength": 1306,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840562671,
+      "duration": 2930,
+      "promptTokens": 52268,
+      "completionTokens": 44,
+      "totalTokens": 52312,
+      "historyLength": 1308,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 18550,
+      "promptTokens": 272618,
+      "completionTokens": 227,
+      "totalTokens": 272845,
+      "historyLength": 322,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840568234,
+      "duration": 3183,
+      "promptTokens": 52327,
+      "completionTokens": 68,
+      "totalTokens": 52395,
+      "historyLength": 1310,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840571830,
+      "duration": 3129,
+      "promptTokens": 52409,
+      "completionTokens": 65,
+      "totalTokens": 52474,
+      "historyLength": 1312,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840575368,
+      "duration": 2243,
+      "promptTokens": 52500,
+      "completionTokens": 37,
+      "totalTokens": 52537,
+      "historyLength": 1314,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 29423,
+      "promptTokens": 273017,
+      "completionTokens": 192,
+      "totalTokens": 273209,
+      "historyLength": 324,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840579106,
+      "duration": 2394,
+      "promptTokens": 52552,
+      "completionTokens": 33,
+      "totalTokens": 52585,
+      "historyLength": 1316,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840581912,
+      "duration": 2230,
+      "promptTokens": 52612,
+      "completionTokens": 36,
+      "totalTokens": 52648,
+      "historyLength": 1318,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 68088,
+      "promptTokens": 273240,
+      "completionTokens": 172,
+      "totalTokens": 273412,
+      "historyLength": 326,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840617772,
+      "duration": 3476,
+      "promptTokens": 52671,
+      "completionTokens": 94,
+      "totalTokens": 52765,
+      "historyLength": 1320,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840621661,
+      "duration": 3660,
+      "promptTokens": 52780,
+      "completionTokens": 94,
+      "totalTokens": 52874,
+      "historyLength": 1322,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840625734,
+      "duration": 3001,
+      "promptTokens": 52900,
+      "completionTokens": 50,
+      "totalTokens": 52950,
+      "historyLength": 1324,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 81181,
+      "promptTokens": 273464,
+      "completionTokens": 228,
+      "totalTokens": 273692,
+      "historyLength": 328,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840630865,
+      "duration": 3295,
+      "promptTokens": 52975,
+      "completionTokens": 70,
+      "totalTokens": 53045,
+      "historyLength": 1326,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840634577,
+      "duration": 2851,
+      "promptTokens": 53070,
+      "completionTokens": 32,
+      "totalTokens": 53102,
+      "historyLength": 1328,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 93451,
+      "promptTokens": 273835,
+      "completionTokens": 400,
+      "totalTokens": 274235,
+      "historyLength": 330,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840643136,
+      "duration": 2230,
+      "promptTokens": 53117,
+      "completionTokens": 32,
+      "totalTokens": 53149,
+      "historyLength": 1330,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840645795,
+      "duration": 2010,
+      "promptTokens": 53180,
+      "completionTokens": 47,
+      "totalTokens": 53227,
+      "historyLength": 1332,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840648217,
+      "duration": 2719,
+      "promptTokens": 53252,
+      "completionTokens": 39,
+      "totalTokens": 53291,
+      "historyLength": 1334,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 106229,
+      "promptTokens": 274388,
+      "completionTokens": 627,
+      "totalTokens": 275015,
+      "historyLength": 332,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840655913,
+      "duration": 3056,
+      "promptTokens": 53305,
+      "completionTokens": 85,
+      "totalTokens": 53390,
+      "historyLength": 1336,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840659451,
+      "duration": 2081,
+      "promptTokens": 53416,
+      "completionTokens": 39,
+      "totalTokens": 53455,
+      "historyLength": 1338,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840661954,
+      "duration": 2911,
+      "promptTokens": 53481,
+      "completionTokens": 38,
+      "totalTokens": 53519,
+      "historyLength": 1340,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840549682,
+      "duration": 118392,
+      "promptTokens": 275406,
+      "completionTokens": 372,
+      "totalTokens": 275778,
+      "historyLength": 334,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 7
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840668075,
+      "duration": 2670,
+      "promptTokens": 53537,
+      "completionTokens": 22,
+      "totalTokens": 53559,
+      "historyLength": 1342,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840668076,
+      "duration": 3666,
+      "promptTokens": 29394,
+      "completionTokens": 139,
+      "totalTokens": 29533,
+      "historyLength": 74,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780840671746,
+      "duration": 2411,
+      "promptTokens": 53577,
+      "completionTokens": 35,
+      "totalTokens": 53612,
+      "historyLength": 1344,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780840671748,
+      "duration": 10109,
+      "promptTokens": 787215,
+      "completionTokens": 483,
+      "totalTokens": 787698,
+      "historyLength": 122,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    instale o necessário e deixe pronto para que eu possa executar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## 🏆 Top 5 Agents de maior impacto para a inteligênc",
+      "startTime": 1780840540502,
+      "duration": 9175,
+      "success": true,
+      "responseLength": 835,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"Navegue até C:\\Developer\\colabor-ai\\cloud e prepare tudo para execução:\n\n1. Exec…\"",
+      "startTime": 1780840549681,
+      "duration": 2875,
+      "success": true,
+      "responseLength": 248,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user wants me to install all npm dependencies in the cloud/ directory and prepare it so they can just run it.",
+      "startTime": 1780840555215,
+      "duration": 2581,
+      "success": true,
+      "responseLength": 257,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Copy .env.example to .env if it doesn't exist 2.",
+      "startTime": 1780840559348,
+      "duration": 2912,
+      "success": true,
+      "responseLength": 112,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os, shutil\n\nroot = r\"C:\\Develope\"",
+      "startTime": 1780840562671,
+      "duration": 2932,
+      "success": true,
+      "responseLength": 117,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Encoding error with the emoji.",
+      "startTime": 1780840568234,
+      "duration": 3185,
+      "success": true,
+      "responseLength": 184,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me fix and continue.",
+      "startTime": 1780840571830,
+      "duration": 3131,
+      "success": true,
+      "responseLength": 173,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os\n\nroot = r\"C:\\Developer\\colabo\"",
+      "startTime": 1780840575368,
+      "duration": 2244,
+      "success": true,
+      "responseLength": 111,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Now let me run npm install.",
+      "startTime": 1780840579106,
+      "duration": 2396,
+      "success": true,
+      "responseLength": 85,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport subprocess, os\n\nroot = r\"C:\\Deve\"",
+      "startTime": 1780840581912,
+      "duration": 2231,
+      "success": true,
+      "responseLength": 95,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The command might have failed silently or the shell=True might be causing issues.",
+      "startTime": 1780840617772,
+      "duration": 3477,
+      "success": true,
+      "responseLength": 270,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me try a different approach.",
+      "startTime": 1780840621661,
+      "duration": 3662,
+      "success": true,
+      "responseLength": 275,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport subprocess, os\n\ncloud = r\"C:\\Dev\"",
+      "startTime": 1780840625734,
+      "duration": 3002,
+      "success": true,
+      "responseLength": 143,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me try with node installed path directly, or just check if npm is available.",
+      "startTime": 1780840630865,
+      "duration": 3298,
+      "success": true,
+      "responseLength": 198,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport subprocess, os\n\n# Check if npm i\"",
+      "startTime": 1780840634577,
+      "duration": 2853,
+      "success": true,
+      "responseLength": 84,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The npm and node are available.",
+      "startTime": 1780840643136,
+      "duration": 2231,
+      "success": true,
+      "responseLength": 90,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 But I see there's already a `node_modules` and `package-lock.json` in the cloud folder.",
+      "startTime": 1780840645795,
+      "duration": 2011,
+      "success": true,
+      "responseLength": 143,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os, json\n\ncloud = r\"C:\\Developer\"",
+      "startTime": 1780840648217,
+      "duration": 2721,
+      "success": true,
+      "responseLength": 129,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 All dependencies are already installed.",
+      "startTime": 1780840655913,
+      "duration": 3056,
+      "success": true,
+      "responseLength": 265,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me verify the public/ files are present and then give the user the final summary.",
+      "startTime": 1780840659451,
+      "duration": 2083,
+      "success": true,
+      "responseLength": 109,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 execute_python: \"\nimport os\n\nroot = r\"C:\\Developer\\colabo\"",
+      "startTime": 1780840661954,
+      "duration": 2913,
+      "success": true,
+      "responseLength": 102,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    instale o necessário e deixe pronto para que eu possa executar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## 🏆 Top 5 Agents de maior impacto para a inteligênc",
+      "startTime": 1780840549682,
+      "duration": 118393,
+      "success": true,
+      "responseLength": 1158,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780840668075,
+      "duration": 2671,
+      "success": true,
+      "responseLength": 52,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: instale o necessário e deixe pronto para que eu possa executar\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Naveg",
+      "startTime": 1780840668076,
+      "duration": 3667,
+      "success": true,
+      "responseLength": 549,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780840671746,
+      "duration": 2413,
+      "success": true,
+      "responseLength": 104,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    instale o necessário e deixe pronto para que eu possa executar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: ## 🏆 Top 5 Agents de maior impacto para a inteligênc",
+      "startTime": 1780840671748,
+      "duration": 10111,
+      "success": true,
+      "responseLength": 958,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Navegue até C:\\Developer\\colabor-ai\\cloud e prepare tudo para execução:\n\n1. Execute `npm install` para instalar todas as dependências\n2. Verifique se o arquivo .env existe. Se não existir, copie de .e",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780840549677
+    },
+    {
+      "instruction": "Tudo pronto! ✅\n\n**O que já foi feito:**\n- `npm install` — dependências instaladas (express, pg, socket.io, passport-google-oauth20, jsonwebtoken, openai, uuid)\n- `.env` criado a partir de `.env.exampl",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780840681862
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840562947,
+      "hasError": false,
+      "duration": 13265
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840575519,
+      "hasError": false,
+      "duration": 25837
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840612115,
+      "hasError": false,
+      "duration": 62433
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840625981,
+      "hasError": false,
+      "duration": 76299
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840637923,
+      "hasError": false,
+      "duration": 88241
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840648393,
+      "hasError": false,
+      "duration": 98711
+    },
+    {
+      "toolName": "execute_python",
+      "agentName": "PythonAgent",
+      "timestamp": 1780840662204,
+      "hasError": false,
+      "duration": 112522
+    }
+  ]
+}

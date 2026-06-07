@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780761250981_cver13",
+  "userInput": "No momento não liste 5 Agents prioritários",
+  "startedAt": "2026-06-07T00:39:52.218Z",
+  "finishedAt": "2026-06-07T00:40:14.763Z",
+  "totalDuration": 22545,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 1182808,
+  "totalCompletionTokens": 823,
+  "totalTokens": 1183631,
+  "maxContextWindowTokens": 441320,
+  "avgTokensPerLLMCall": 131515,
+  "estimatedCostUSD": 0.3203,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792792384,
+      "duration": 6316,
+      "promptTokens": 433803,
+      "completionTokens": 225,
+      "totalTokens": 434028,
+      "historyLength": 72,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792798708,
+      "duration": 2385,
+      "promptTokens": 36172,
+      "completionTokens": 87,
+      "totalTokens": 36259,
+      "historyLength": 982,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792798711,
+      "duration": 2839,
+      "promptTokens": 103742,
+      "completionTokens": 75,
+      "totalTokens": 103817,
+      "historyLength": 80,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792801552,
+      "duration": 1881,
+      "promptTokens": 36296,
+      "completionTokens": 75,
+      "totalTokens": 36371,
+      "historyLength": 984,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792804126,
+      "duration": 2174,
+      "promptTokens": 36390,
+      "completionTokens": 66,
+      "totalTokens": 36456,
+      "historyLength": 986,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792806719,
+      "duration": 1592,
+      "promptTokens": 36474,
+      "completionTokens": 38,
+      "totalTokens": 36512,
+      "historyLength": 988,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792806721,
+      "duration": 2165,
+      "promptTokens": 22081,
+      "completionTokens": 67,
+      "totalTokens": 22148,
+      "historyLength": 48,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780792808892,
+      "duration": 2314,
+      "promptTokens": 36530,
+      "completionTokens": 42,
+      "totalTokens": 36572,
+      "historyLength": 990,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780792808895,
+      "duration": 5860,
+      "promptTokens": 441320,
+      "completionTokens": 148,
+      "totalTokens": 441468,
+      "historyLength": 74,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    No momento não liste 5 Agents prioritários\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Pronto! Tudo implementado e integrado. ✅\n\n## 🧠 Memória Vetorial — colabo",
+      "startTime": 1780792792384,
+      "duration": 6319,
+      "success": true,
+      "responseLength": 247,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário disse 'No momento não liste 5 Agents prioritários'. Provavelmente é um…\"",
+      "startTime": 1780792798708,
+      "duration": 2387,
+      "success": true,
+      "responseLength": 293,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user said \"No momento não liste 5 Agents prioritários\" which means \"Don't list 5 priority agents right now.\" This se",
+      "startTime": 1780792801552,
+      "duration": 1884,
+      "success": true,
+      "responseLength": 245,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 They're telling me not to list agents right now.",
+      "startTime": 1780792804126,
+      "duration": 2175,
+      "success": true,
+      "responseLength": 222,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    No momento não liste 5 Agents prioritários\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Pronto! Tudo implementado e integrado. ✅\n\n## 🧠 Memória Vetorial — colabo",
+      "startTime": 1780792798711,
+      "duration": 8006,
+      "success": true,
+      "responseLength": 52,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780792806719,
+      "duration": 1593,
+      "success": true,
+      "responseLength": 102,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: No momento não liste 5 Agents prioritários\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: O usuário disse 'No momento",
+      "startTime": 1780792806721,
+      "duration": 2167,
+      "success": true,
+      "responseLength": 226,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780792808892,
+      "duration": 2316,
+      "success": true,
+      "responseLength": 118,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    No momento não liste 5 Agents prioritários\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Pronto! Tudo implementado e integrado. ✅\n\n## 🧠 Memória Vetorial — colabo",
+      "startTime": 1780792808895,
+      "duration": 5863,
+      "success": true,
+      "responseLength": 96,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário disse 'No momento não liste 5 Agents prioritários'. Provavelmente é uma resposta à listagem anterior de agentes que fiz. Apenas reconheça e pergunte o que ele deseja fazer agora. Seja breve.",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780792798705
+    },
+    {
+      "instruction": "Entendi, sem problemas. O que você quer fazer agora?",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780792814759
+    }
+  ],
+  "toolCalls": []
+}
