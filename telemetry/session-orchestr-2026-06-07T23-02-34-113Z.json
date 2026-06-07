@@ -1,0 +1,537 @@
+{
+  "sessionId": "orchestrator_1780869749745_yxn60x",
+  "userInput": "Quais as principais notícias na globo",
+  "startedAt": "2026-06-07T23:01:27.462Z",
+  "finishedAt": "2026-06-07T23:02:34.112Z",
+  "totalDuration": 66650,
+  "totalLLMCalls": 22,
+  "totalPromptTokens": 1946781,
+  "totalCompletionTokens": 3765,
+  "totalTokens": 1950546,
+  "maxContextWindowTokens": 242132,
+  "avgTokensPerLLMCall": 88661,
+  "estimatedCostUSD": 0.5298,
+  "totalAgentCalls": 21,
+  "agentCallBreakdown": {
+    "PlannerAgent": 3,
+    "ThinkingAgent": 13,
+    "PythonAgent": 1,
+    "ReflectorAgent": 2,
+    "WriterAgent": 2
+  },
+  "avgAgentCalls": 21,
+  "totalToolCalls": 1,
+  "toolCallBreakdown": {
+    "web_search": 1
+  },
+  "totalSteps": 3,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873287589,
+      "duration": 6634,
+      "promptTokens": 229564,
+      "completionTokens": 273,
+      "totalTokens": 229837,
+      "historyLength": 86,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873294231,
+      "duration": 2831,
+      "promptTokens": 49580,
+      "completionTokens": 48,
+      "totalTokens": 49628,
+      "historyLength": 714,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873294234,
+      "duration": 3915,
+      "promptTokens": 215780,
+      "completionTokens": 114,
+      "totalTokens": 215894,
+      "historyLength": 168,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873298150,
+      "duration": 2807,
+      "promptTokens": 49652,
+      "completionTokens": 72,
+      "totalTokens": 49724,
+      "historyLength": 716,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873301375,
+      "duration": 2863,
+      "promptTokens": 49744,
+      "completionTokens": 66,
+      "totalTokens": 49810,
+      "historyLength": 718,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873304668,
+      "duration": 2088,
+      "promptTokens": 49833,
+      "completionTokens": 52,
+      "totalTokens": 49885,
+      "historyLength": 720,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873294234,
+      "duration": 20176,
+      "promptTokens": 218272,
+      "completionTokens": 568,
+      "totalTokens": 218840,
+      "historyLength": 170,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873314413,
+      "duration": 2671,
+      "promptTokens": 49907,
+      "completionTokens": 57,
+      "totalTokens": 49964,
+      "historyLength": 722,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873317506,
+      "duration": 3237,
+      "promptTokens": 49981,
+      "completionTokens": 137,
+      "totalTokens": 50118,
+      "historyLength": 724,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873321178,
+      "duration": 2801,
+      "promptTokens": 17892,
+      "completionTokens": 140,
+      "totalTokens": 18032,
+      "historyLength": 54,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873321176,
+      "duration": 3182,
+      "promptTokens": 50136,
+      "completionTokens": 139,
+      "totalTokens": 50275,
+      "historyLength": 727,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873323999,
+      "duration": 3229,
+      "promptTokens": 50150,
+      "completionTokens": 107,
+      "totalTokens": 50257,
+      "historyLength": 728,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873324001,
+      "duration": 7343,
+      "promptTokens": 235583,
+      "completionTokens": 440,
+      "totalTokens": 236023,
+      "historyLength": 88,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873331366,
+      "duration": 3375,
+      "promptTokens": 50432,
+      "completionTokens": 148,
+      "totalTokens": 50580,
+      "historyLength": 730,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873331368,
+      "duration": 4720,
+      "promptTokens": 57985,
+      "completionTokens": 440,
+      "totalTokens": 58425,
+      "historyLength": 52,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873336184,
+      "duration": 3027,
+      "promptTokens": 50608,
+      "completionTokens": 90,
+      "totalTokens": 50698,
+      "historyLength": 732,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873339630,
+      "duration": 2011,
+      "promptTokens": 50727,
+      "completionTokens": 59,
+      "totalTokens": 50786,
+      "historyLength": 734,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873342099,
+      "duration": 2035,
+      "promptTokens": 50804,
+      "completionTokens": 63,
+      "totalTokens": 50867,
+      "historyLength": 736,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873342102,
+      "duration": 3146,
+      "promptTokens": 18512,
+      "completionTokens": 166,
+      "totalTokens": 18678,
+      "historyLength": 56,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873345252,
+      "duration": 2207,
+      "promptTokens": 50885,
+      "completionTokens": 90,
+      "totalTokens": 50975,
+      "historyLength": 738,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873345253,
+      "duration": 4286,
+      "promptTokens": 242132,
+      "completionTokens": 101,
+      "totalTokens": 242233,
+      "historyLength": 90,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873349551,
+      "duration": 4558,
+      "promptTokens": 58622,
+      "completionTokens": 395,
+      "totalTokens": 59017,
+      "historyLength": 54,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Quais as principais notícias na globo\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Erro: agente 'browser' nao encontrado.\nuser: Tem algum jogo bom para assistir ",
+      "startTime": 1780873287589,
+      "duration": 6637,
+      "success": true,
+      "responseLength": 467,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"Use Python para obter as principais notícias do G1 (Globo). Acesse 'https://g1.g…\"",
+      "startTime": 1780873294231,
+      "duration": 2832,
+      "success": true,
+      "responseLength": 121,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário quer as principais notícias da Globo (G1).",
+      "startTime": 1780873298150,
+      "duration": 2809,
+      "success": true,
+      "responseLength": 200,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou acessar a página principal do G1.",
+      "startTime": 1780873301375,
+      "duration": 2864,
+      "success": true,
+      "responseLength": 173,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"scrape, https://g1.globo.com/\"",
+      "startTime": 1780873304668,
+      "duration": 2089,
+      "success": true,
+      "responseLength": 139,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Consegui extrair as principais manchetes do G1.",
+      "startTime": 1780873314413,
+      "duration": 2673,
+      "success": true,
+      "responseLength": 167,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou organizar de forma clara.",
+      "startTime": 1780873317506,
+      "duration": 3238,
+      "success": true,
+      "responseLength": 396,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Quais as principais notícias na globo\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Erro: agente 'browser' nao encontrado.\nuser: Tem algum jogo bom para assistir ",
+      "startTime": 1780873294234,
+      "duration": 26941,
+      "success": true,
+      "responseLength": 1533,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Quais as principais notícias na globo\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Use Python para obter as princ",
+      "startTime": 1780873321178,
+      "duration": 2804,
+      "success": true,
+      "responseLength": 475,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780873321176,
+      "duration": 3184,
+      "success": true,
+      "responseLength": 418,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780873323999,
+      "duration": 3231,
+      "success": true,
+      "responseLength": 337,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Quais as principais notícias na globo\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Erro: agente 'browser' nao encontrado.\nuser: Tem algum jogo bom para assistir ",
+      "startTime": 1780873324001,
+      "duration": 7346,
+      "success": true,
+      "responseLength": 915,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 WriterAgent → \"Transforme as manchetes abaixo em uma resposta final clara e amigável para o usu…\"",
+      "startTime": 1780873331366,
+      "duration": 3377,
+      "success": true,
+      "responseLength": 427,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Fiquei feliz que o usuário quis saber as principais notícias na Globo.",
+      "startTime": 1780873336184,
+      "duration": 3028,
+      "success": true,
+      "responseLength": 305,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Acabei de receber os dados do PythonAgent com as manchetes do G1 de hoje.",
+      "startTime": 1780873339630,
+      "duration": 2011,
+      "success": true,
+      "responseLength": 165,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Quais as principais notícias na globo\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Erro: agente 'browser' nao encontrado.\nuser: Tem algum jogo bom para assistir ",
+      "startTime": 1780873331368,
+      "duration": 10730,
+      "success": true,
+      "responseLength": 787,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780873342099,
+      "duration": 2037,
+      "success": true,
+      "responseLength": 185,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Quais as principais notícias na globo\n\n\n\n    Agent used: WriterAgent\n\n\n\n    Instruction given: Transforme as manchetes abaixo",
+      "startTime": 1780873342102,
+      "duration": 3147,
+      "success": true,
+      "responseLength": 569,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780873345252,
+      "duration": 2209,
+      "success": true,
+      "responseLength": 272,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Quais as principais notícias na globo\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Erro: agente 'browser' nao encontrado.\nuser: Tem algum jogo bom para assistir ",
+      "startTime": 1780873345253,
+      "duration": 4289,
+      "success": true,
+      "responseLength": 172,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. If it's already natural, just polish it slightly. If it's JSON or internal ",
+      "startTime": 1780873349551,
+      "duration": 4561,
+      "success": true,
+      "responseLength": 767,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Use Python para obter as principais notícias do G1 (Globo). Acesse 'https://g1.globo.com/' usando requests com headers de navegador. Extraia os títulos e resumos das principais manchetes (cerca de 6 a",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780873294228
+    },
+    {
+      "instruction": "Transforme as manchetes abaixo em uma resposta final clara e amigável para o usuário, em formato de mensagem de chat. Use tom natural e emojis moderados. Mantenha as 6 principais manchetes com seus de",
+      "chosenAgent": "WriterAgent",
+      "step": 2,
+      "timestamp": 1780873331349
+    },
+    {
+      "instruction": "As principais notícias do G1 foram coletadas e a resposta final já foi entregue ao usuário pelo WriterAgent. Conversa concluída.",
+      "chosenAgent": "finish",
+      "step": 3,
+      "timestamp": 1780873349544
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873305849,
+      "hasError": false,
+      "duration": 11615
+    }
+  ]
+}

@@ -17,7 +17,7 @@ import { Agent } from "../agent/agent";
       "Deixa eu preparar isso com cuidado...",
     ];
     
-    function getRandomFallback(): string {
+    export function getRandomFallback(): string {
       return FALLBACK_MESSAGES[Math.floor(Math.random() * FALLBACK_MESSAGES.length)];
     }
     
@@ -41,7 +41,7 @@ import { Agent } from "../agent/agent";
     
       RULES:
       - Responda SEMPRE em portugu\u00eas do Brasil.
-      - Seja curto: m\u00e1ximo 150 caracteres.
+      - Seja curto: m\u00e1ximo 150 caracteres (max 150 chars).
       - Tom amig\u00e1vel e natural, como se estivesse pensando alto.
       - NUNCA mencione: agentes, ferramentas, modelos, prompts, ou termos t\u00e9cnicos.
       - NUNCA use jarg\u00e3o t\u00e9cnico.

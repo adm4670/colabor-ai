@@ -114,7 +114,7 @@ import "../agents/answer.agent";
 import "../agents/task-manager.agent";
     import "../agents/knowledge-graph.agent";
     import "../agents/knowledge-graph.agent";
-import { generateThinkingMessage } from "../agents/thinking.agent";
+import { generateThinkingMessage, getRandomFallback } from "../agents/thinking.agent";
 
 import { startConsoleDashboard, setDashboardQuery, setDashboardResponse } from "../telemetry/console-dashboard";
 
@@ -2023,7 +2023,7 @@ async function startTelegramAgent() {
 
 
 
-                        progressMsg = await bot.sendMessage(chatId, sanitizeText(message));
+                        progressMsg = await bot.sendMessage(chatId, getRandomFallback());
 
 
 
@@ -2093,8 +2093,8 @@ async function startTelegramAgent() {
                     });
                     await sendProgress(thinkingMsg);
                   } catch {
-                    // Fallback: mostra mensagem original se ThinkingAgent falhar
-                    await sendProgress(message);
+                    // Fallback: mensagem narrativa generica
+                    await sendProgress(getRandomFallback());
                   }
                 }
     

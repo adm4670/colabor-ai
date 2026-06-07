@@ -1,0 +1,853 @@
+{
+  "sessionId": "orchestrator_1780869749745_yxn60x",
+  "userInput": "Sim, mais detalhes, o que aconteceu e como ele estar",
+  "startedAt": "2026-06-07T23:06:29.741Z",
+  "finishedAt": "2026-06-07T23:08:26.562Z",
+  "totalDuration": 116821,
+  "totalLLMCalls": 36,
+  "totalPromptTokens": 3466720,
+  "totalCompletionTokens": 9951,
+  "totalTokens": 3476671,
+  "maxContextWindowTokens": 275400,
+  "avgTokensPerLLMCall": 96574,
+  "estimatedCostUSD": 0.947,
+  "totalAgentCalls": 32,
+  "agentCallBreakdown": {
+    "PlannerAgent": 3,
+    "ThinkingAgent": 24,
+    "PythonAgent": 1,
+    "ReflectorAgent": 2,
+    "WriterAgent": 2
+  },
+  "avgAgentCalls": 32,
+  "totalToolCalls": 6,
+  "toolCallBreakdown": {
+    "web_search": 6
+  },
+  "totalSteps": 3,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873589952,
+      "duration": 7596,
+      "promptTokens": 260821,
+      "completionTokens": 387,
+      "totalTokens": 261208,
+      "historyLength": 96,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873597562,
+      "duration": 2242,
+      "promptTokens": 54565,
+      "completionTokens": 44,
+      "totalTokens": 54609,
+      "historyLength": 774,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873597565,
+      "duration": 4554,
+      "promptTokens": 223010,
+      "completionTokens": 201,
+      "totalTokens": 223211,
+      "historyLength": 172,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873602120,
+      "duration": 2816,
+      "promptTokens": 54634,
+      "completionTokens": 62,
+      "totalTokens": 54696,
+      "historyLength": 776,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873605360,
+      "duration": 1785,
+      "promptTokens": 54711,
+      "completionTokens": 65,
+      "totalTokens": 54776,
+      "historyLength": 778,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873607568,
+      "duration": 2500,
+      "promptTokens": 54805,
+      "completionTokens": 52,
+      "totalTokens": 54857,
+      "historyLength": 781,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873607977,
+      "duration": 4760,
+      "promptTokens": 54827,
+      "completionTokens": 356,
+      "totalTokens": 55183,
+      "historyLength": 782,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873597565,
+      "duration": 16020,
+      "promptTokens": 225016,
+      "completionTokens": 318,
+      "totalTokens": 225334,
+      "historyLength": 175,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873613587,
+      "duration": 2301,
+      "promptTokens": 55281,
+      "completionTokens": 83,
+      "totalTokens": 55364,
+      "historyLength": 784,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873616376,
+      "duration": 2797,
+      "promptTokens": 55385,
+      "completionTokens": 63,
+      "totalTokens": 55448,
+      "historyLength": 786,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873619591,
+      "duration": 2064,
+      "promptTokens": 55479,
+      "completionTokens": 61,
+      "totalTokens": 55540,
+      "historyLength": 789,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873597565,
+      "duration": 27237,
+      "promptTokens": 225529,
+      "completionTokens": 104,
+      "totalTokens": 225633,
+      "historyLength": 178,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873619798,
+      "duration": 8535,
+      "promptTokens": 55506,
+      "completionTokens": 983,
+      "totalTokens": 56489,
+      "historyLength": 791,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873624804,
+      "duration": 4267,
+      "promptTokens": 55588,
+      "completionTokens": 410,
+      "totalTokens": 55998,
+      "historyLength": 792,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873629490,
+      "duration": 2598,
+      "promptTokens": 57013,
+      "completionTokens": 58,
+      "totalTokens": 57071,
+      "historyLength": 794,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873597565,
+      "duration": 36031,
+      "promptTokens": 225715,
+      "completionTokens": 285,
+      "totalTokens": 226000,
+      "historyLength": 180,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873633599,
+      "duration": 3600,
+      "promptTokens": 57089,
+      "completionTokens": 212,
+      "totalTokens": 57301,
+      "historyLength": 796,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873637614,
+      "duration": 3348,
+      "promptTokens": 57347,
+      "completionTokens": 229,
+      "totalTokens": 57576,
+      "historyLength": 798,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873641383,
+      "duration": 2850,
+      "promptTokens": 57605,
+      "completionTokens": 64,
+      "totalTokens": 57669,
+      "historyLength": 800,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PythonAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873597565,
+      "duration": 55689,
+      "promptTokens": 226107,
+      "completionTokens": 1016,
+      "totalTokens": 227123,
+      "historyLength": 182,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873653257,
+      "duration": 4215,
+      "promptTokens": 57696,
+      "completionTokens": 199,
+      "totalTokens": 57895,
+      "historyLength": 802,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873657890,
+      "duration": 4715,
+      "promptTokens": 57934,
+      "completionTokens": 319,
+      "totalTokens": 58253,
+      "historyLength": 804,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873663022,
+      "duration": 2477,
+      "promptTokens": 58271,
+      "completionTokens": 143,
+      "totalTokens": 58414,
+      "historyLength": 806,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873663024,
+      "duration": 3005,
+      "promptTokens": 19779,
+      "completionTokens": 177,
+      "totalTokens": 19956,
+      "historyLength": 60,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873666041,
+      "duration": 2606,
+      "promptTokens": 58432,
+      "completionTokens": 133,
+      "totalTokens": 58565,
+      "historyLength": 808,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873666043,
+      "duration": 8352,
+      "promptTokens": 267750,
+      "completionTokens": 649,
+      "totalTokens": 268399,
+      "historyLength": 98,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873674419,
+      "duration": 3574,
+      "promptTokens": 58600,
+      "completionTokens": 244,
+      "totalTokens": 58844,
+      "historyLength": 810,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873674422,
+      "duration": 7075,
+      "promptTokens": 64203,
+      "completionTokens": 759,
+      "totalTokens": 64962,
+      "historyLength": 58,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873681500,
+      "duration": 3826,
+      "promptTokens": 58858,
+      "completionTokens": 241,
+      "totalTokens": 59099,
+      "historyLength": 812,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873685743,
+      "duration": 5048,
+      "promptTokens": 59135,
+      "completionTokens": 337,
+      "totalTokens": 59472,
+      "historyLength": 814,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873691209,
+      "duration": 3059,
+      "promptTokens": 20402,
+      "completionTokens": 174,
+      "totalTokens": 20576,
+      "historyLength": 62,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873691207,
+      "duration": 3121,
+      "promptTokens": 59490,
+      "completionTokens": 126,
+      "totalTokens": 59616,
+      "historyLength": 817,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873694280,
+      "duration": 5177,
+      "promptTokens": 59504,
+      "completionTokens": 354,
+      "totalTokens": 59858,
+      "historyLength": 818,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873694290,
+      "duration": 5725,
+      "promptTokens": 275400,
+      "completionTokens": 214,
+      "totalTokens": 275614,
+      "historyLength": 100,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780873700021,
+      "duration": 4574,
+      "promptTokens": 60005,
+      "completionTokens": 265,
+      "totalTokens": 60270,
+      "historyLength": 821,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780873700027,
+      "duration": 6532,
+      "promptTokens": 65228,
+      "completionTokens": 564,
+      "totalTokens": 65792,
+      "historyLength": 60,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Ficou assim:\n\n---\n\nSim! O próximo jogo do Brasil é **domingo, 1",
+      "startTime": 1780873589952,
+      "duration": 7599,
+      "success": true,
+      "responseLength": 922,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 PythonAgent → \"Use Python para buscar informações atualizadas sobre Christian Eriksen. Acesse v…\"",
+      "startTime": 1780873597562,
+      "duration": 2244,
+      "success": true,
+      "responseLength": 127,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário quer mais detalhes sobre o incidente com Christian Eriksen.",
+      "startTime": 1780873602120,
+      "duration": 2817,
+      "success": true,
+      "responseLength": 184,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou buscar informações atualizadas.",
+      "startTime": 1780873605360,
+      "duration": 1787,
+      "success": true,
+      "responseLength": 193,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"scrape, https://ge.globo.com/futebol/futebol-int\"",
+      "startTime": 1780873607568,
+      "duration": 2501,
+      "success": true,
+      "responseLength": 144,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"search, Christian Eriksen passa mal Dinamarca Uc\"",
+      "startTime": 1780873607977,
+      "duration": 4761,
+      "success": true,
+      "responseLength": 938,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Consegui extrair informações do GE sobre o incidente: Do GE: \"Eriksen passa mal em campo, e amistoso Dinamarca x Ucrânia",
+      "startTime": 1780873613587,
+      "duration": 2303,
+      "success": true,
+      "responseLength": 221,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou tentar acessar a notícia completa.",
+      "startTime": 1780873616376,
+      "duration": 2799,
+      "success": true,
+      "responseLength": 169,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"search, Eriksen passa mal Dinamarca Ucrânia 07/0\"",
+      "startTime": 1780873619591,
+      "duration": 2066,
+      "success": true,
+      "responseLength": 151,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"scrape, https://g1.globo.com/mundo/noticia/2026/\"",
+      "startTime": 1780873619798,
+      "duration": 8538,
+      "success": true,
+      "responseLength": 2405,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou tentar encontrar a notícia completa no GE.",
+      "startTime": 1780873624804,
+      "duration": 4269,
+      "success": true,
+      "responseLength": 1063,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"search, \"Eriksen\" \"passa mal\" site:ge.globo.com\"",
+      "startTime": 1780873629490,
+      "duration": 2599,
+      "success": true,
+      "responseLength": 143,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O mecanismo de busca não está encontrando.",
+      "startTime": 1780873633599,
+      "duration": 3602,
+      "success": true,
+      "responseLength": 666,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Mas eu tenho as informações do GE que já extraí: \"Eriksen passa mal em campo, e amistoso Dinamarca x Ucrânia é encerrado",
+      "startTime": 1780873637614,
+      "duration": 3351,
+      "success": true,
+      "responseLength": 624,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"scrape, https://ge.globo.com/futebol/futebol-int\"",
+      "startTime": 1780873641383,
+      "duration": 2852,
+      "success": true,
+      "responseLength": 187,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Não consigo acessar a notícia completa porque a URL exata é diferente.",
+      "startTime": 1780873653257,
+      "duration": 4217,
+      "success": true,
+      "responseLength": 588,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Mas tenho as informações que já extraí do GE e do G1, que são suficientes para dar uma resposta detalhada ao usuário.",
+      "startTime": 1780873657890,
+      "duration": 4717,
+      "success": true,
+      "responseLength": 921,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PythonAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Ficou assim:\n\n---\n\nSim! O próximo jogo do Brasil é **domingo, 1",
+      "startTime": 1780873597565,
+      "duration": 65456,
+      "success": true,
+      "responseLength": 2215,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780873663022,
+      "duration": 2480,
+      "success": true,
+      "responseLength": 451,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    Agent used: PythonAgent\n\n\n\n    Instruction given: Use Python para",
+      "startTime": 1780873663024,
+      "duration": 3007,
+      "success": true,
+      "responseLength": 619,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780873666041,
+      "duration": 2607,
+      "success": true,
+      "responseLength": 393,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Ficou assim:\n\n---\n\nSim! O próximo jogo do Brasil é **domingo, 1",
+      "startTime": 1780873666043,
+      "duration": 8354,
+      "success": true,
+      "responseLength": 1434,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 WriterAgent → \"Transforme os detalhes abaixo em uma resposta final clara, informativa e amigáve…\"",
+      "startTime": 1780873674419,
+      "duration": 3576,
+      "success": true,
+      "responseLength": 704,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vamos organizar isso.",
+      "startTime": 1780873681500,
+      "duration": 3828,
+      "success": true,
+      "responseLength": 649,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário pede mais detalhes sobre a situação de Eriksen, especificamente o que aconteceu e como ele está.",
+      "startTime": 1780873685743,
+      "duration": 5051,
+      "success": true,
+      "responseLength": 1021,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Ficou assim:\n\n---\n\nSim! O próximo jogo do Brasil é **domingo, 1",
+      "startTime": 1780873674422,
+      "duration": 16784,
+      "success": true,
+      "responseLength": 1597,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    Agent used: WriterAgent\n\n\n\n    Instruction given: Transforme os d",
+      "startTime": 1780873691209,
+      "duration": 3061,
+      "success": true,
+      "responseLength": 652,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780873691207,
+      "duration": 3122,
+      "success": true,
+      "responseLength": 390,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780873694280,
+      "duration": 5179,
+      "success": true,
+      "responseLength": 1079,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Sim, mais detalhes, o que aconteceu e como ele estar\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    assistant: Ficou assim:\n\n---\n\nSim! O próximo jogo do Brasil é **domingo, 1",
+      "startTime": 1780873694290,
+      "duration": 5728,
+      "success": true,
+      "responseLength": 199,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 📝 Preparando a resposta final...",
+      "startTime": 1780873700021,
+      "duration": 4577,
+      "success": true,
+      "responseLength": 740,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. If it's already natural, just polish it slightly. If it's JSON or internal ",
+      "startTime": 1780873700027,
+      "duration": 6535,
+      "success": true,
+      "responseLength": 1392,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Use Python para buscar informações atualizadas sobre Christian Eriksen. Acesse via requests (com headers de navegador):\n\n1. Pesquise no Google: 'Christian Eriksen passa mal Dinamarca Ucrânia 07/06/202",
+      "chosenAgent": "PythonAgent",
+      "step": 1,
+      "timestamp": 1780873597553
+    },
+    {
+      "instruction": "Transforme os detalhes abaixo em uma resposta final clara, informativa e amigável para o usuário sobre a situação de Christian Eriksen. Use tom respeitoso e emojis moderados. Organize em:\n\n1. O que ac",
+      "chosenAgent": "WriterAgent",
+      "step": 2,
+      "timestamp": 1780873674400
+    },
+    {
+      "instruction": "O WriterAgent já forneceu uma resposta completa com todos os detalhes solicitados sobre a situação de Christian Eriksen. Nenhuma ação adicional necessária.",
+      "chosenAgent": "finish",
+      "step": 3,
+      "timestamp": 1780873700019
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873607977,
+      "hasError": false,
+      "duration": 10412
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873608452,
+      "hasError": false,
+      "duration": 10887
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873619797,
+      "hasError": false,
+      "duration": 22232
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873620418,
+      "hasError": false,
+      "duration": 22853
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873629726,
+      "hasError": false,
+      "duration": 32161
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "PythonAgent",
+      "timestamp": 1780873641580,
+      "hasError": false,
+      "duration": 44015
+    }
+  ]
+}
