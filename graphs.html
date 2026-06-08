@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph - colabor-ai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0f172a; color: #e2e8f0; overflow: hidden; }
+        #mynetwork {
+            width: 100%;
+            height: calc(100vh - 64px);
+            background: radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%);
+            border: none;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .glass-light {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+        .node-tooltip {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 1000;
+            max-width: 320px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: none;
+        }
+        .node-tooltip .title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+        .node-tooltip .type { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .search-highlight {
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(99,102,241,0.3)); }
+            50% { filter: drop-shadow(0 0 16px rgba(99,102,241,0.8)); }
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <div class="h-16 glass border-b border-white/5 flex items-center justify-between px-6 z-50 relative">
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">KG</div>
+                <div>
+                    <h1 class="text-white font-bold text-lg leading-tight">Knowledge Graph</h1>
+                    <p class="text-xs text-slate-400">colabor-ai · <span id="stats-nodes">0</span> nós · <span id="stats-edges">0</span> arestas</p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-2 ml-6 pl-6 border-l border-white/10">
+                <span class="badge bg-indigo-500/20 text-indigo-300 border border-indigo-500/20">Agents</span>
+                <span class="badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">Tools</span>
+                <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/20">Memory</span>
+                <span class="badge bg-cyan-500/20 text-cyan-300 border border-cyan-500/20">Core</span>
+                <span class="badge bg-rose-500/20 text-rose-300 border border-rose-500/20">Deps</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="relative">
+                <input id="search-input" type="text" placeholder="Buscar nó..." 
+                    class="w-48 md:w-64 bg-slate-800/80 text-sm text-white rounded-lg pl-9 pr-3 py-2 border border-white/10 focus:border-indigo-500/50 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-all placeholder:text-slate-500">
+                <svg class="absolute left-3 top-2.5 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <button id="btn-reset" class="text-slate-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-slate-800/50" title="Resetar visualização">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </button>
+            <button id="btn-fullscreen" class="text-slate-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-slate-800/50" title="Tela cheia">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- TOOLTIP -->
+    <div id="tooltip" class="node-tooltip"></div>
+
+    <!-- FILTER BAR -->
+    <div class="absolute left-6 top-20 z-40 flex flex-col gap-2">
+        <div class="glass-light rounded-xl p-3 w-44 shadow-2xl">
+            <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Filtrar por tipo</p>
+            <div id="filter-buttons" class="flex flex-col gap-1.5"></div>
+        </div>
+        <div class="glass-light rounded-xl p-3 w-44 shadow-2xl">
+            <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Layout</p>
+            <div class="flex flex-col gap-1.5">
+                <button data-layout="force" class="layout-btn text-xs px-3 py-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/20 font-medium">Force Atlas</button>
+                <button data-layout="hierarchical" class="layout-btn text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700/50 text-slate-400 font-medium">Hierárquico</button>
+                <button data-layout="concentric" class="layout-btn text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700/50 text-slate-400 font-medium">Concêntrico</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NETWORK -->
+    <div id="mynetwork"></div>
+
+    <!-- LEGEND (bottom) -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-40">
+        <div class="glass-light rounded-xl px-5 py-2.5 flex items-center gap-5 shadow-2xl">
+            <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-indigo-500"></div><span class="text-xs text-slate-400">Agents</span></div>
+            <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-emerald-500"></div><span class="text-xs text-slate-400">Tools</span></div>
+            <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-amber-500"></div><span class="text-xs text-slate-400">Memory</span></div>
+            <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-cyan-500"></div><span class="text-xs text-slate-400">Core</span></div>
+            <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-rose-500"></div><span class="text-xs text-slate-400">Deps</span></div>
+            <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-purple-500"></div><span class="text-xs text-slate-400">Cloud</span></div>
+            <div class="flex items-center gap-2 border-l border-white/10 pl-4"><div class="w-3 h-0.5 bg-slate-600"></div><span class="text-xs text-slate-400">contém</span></div>
+            <div class="flex items-center gap-2"><div class="w-3 h-0.5 border-t border-dashed border-slate-600"></div><span class="text-xs text-slate-400">usa/importa</span></div>
+        </div>
+    </div>
+
+    <script>
+    // ==================== DATA ====================
+    const graphData = {
+        nodes: [
+            // === ROOT ===
+            { id: "root", label: "colabor-ai", type: "root", color: "#6366f1", size: 35, font: { size: 18, face: "Inter", color: "#fff", weight: "bold" } },
+
+            // === CORE DIRECTORIES ===
+            { id: "core", label: "core", type: "directory", color: "#06b6d4", size: 22, group: "core" },
+            { id: "core/agent", label: "agent", type: "directory", color: "#06b6d4", size: 16, group: "core" },
+            { id: "core/agents", label: "agents", type: "directory", color: "#6366f1", size: 18, group: "agents" },
+            { id: "core/config", label: "config", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/constants", label: "constants", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/context", label: "context", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/llm", label: "llm", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/memory", label: "memory", type: "directory", color: "#f59e0b", size: 18, group: "memory" },
+            { id: "core/orchestrator", label: "orchestrator", type: "directory", color: "#06b6d4", size: 18, group: "core" },
+            { id: "core/session", label: "session", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/skills", label: "skills", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/stream", label: "stream", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/telemetry", label: "telemetry", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+            { id: "core/tools", label: "tools", type: "directory", color: "#10b981", size: 16, group: "tools" },
+            { id: "core/utils", label: "utils", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+
+            // === AGENTS ===
+            { id: "agent.ts", label: "agent.ts\n(Base Agent)", type: "agent", color: "#6366f1", size: 28, group: "agents", shape: "hexagon" },
+            { id: "main.ts", label: "main.ts", type: "agent", color: "#6366f1", size: 16, group: "agents", shape: "hexagon" },
+            { id: "assistant.agent.ts", label: "assistant.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+            { id: "browser.agent.ts", label: "browser.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+            { id: "python.agent.ts", label: "python.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+            { id: "knowledge-graph.agent.ts", label: "knowledge-graph\n.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+            { id: "planner.agent.ts", label: "planner.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+            { id: "shell.agent.ts", label: "shell.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+            { id: "answer.agent.ts", label: "answer.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+            { id: "reflector.agent.ts", label: "reflector.agent", type: "agent", color: "#6366f1", size: 18, group: "agents", shape: "hexagon" },
+            { id: "thinking.agent.ts", label: "thinking.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+            { id: "task-manager.agent.ts", label: "task-manager\n.agent", type: "agent", color: "#6366f1", size: 18, group: "agents", shape: "hexagon" },
+            { id: "agent-registry.ts", label: "agent-registry.ts", type: "agent", color: "#6366f1", size: 18, group: "agents", shape: "hexagon" },
+
+            // === TOOLS ===
+            { id: "apiIntegrationTool.ts", label: "apiIntegration\nTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+            { id: "browserExecTool.ts", label: "browserExec\nTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+            { id: "dateTimeTool.ts", label: "dateTimeTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+            { id: "fileSystemTool.ts", label: "fileSystem\nTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+            { id: "knowledgeGraphScanTool.ts", label: "knowledgeGraph\nScanTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+            { id: "knowledgeGraphQueryTool.ts", label: "knowledgeGraph\nQueryTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+            { id: "pythonExecTool.ts", label: "pythonExec\nTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+            { id: "shellExecTool.ts", label: "shellExecTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+            { id: "taskSchedulerTool.ts", label: "taskScheduler\nTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+            { id: "webSearchTool.ts", label: "webSearchTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+            { id: "task.tools.ts", label: "task.tools.ts", type: "tool", color: "#10b981", size: 14, group: "tools" },
+            { id: "toolDefinition.ts", label: "toolDefinition", type: "tool", color: "#10b981", size: 14, group: "tools" },
+            { id: "toolRegistry.ts", label: "toolRegistry", type: "tool", color: "#10b981", size: 14, group: "tools" },
+
+            // === MEMORY ===
+            { id: "knowledge-graph.ts", label: "knowledge-graph.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory" },
+            { id: "kg-extractor.ts", label: "kg-extractor.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory" },
+            { id: "memory-engine.ts", label: "memory-engine.ts", type: "memory", color: "#f59e0b", size: 20, group: "memory" },
+            { id: "memory-engine-sota.ts", label: "memory-engine\n-sota.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory" },
+            { id: "memory-hub.ts", label: "memory-hub.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory" },
+            { id: "memory_search.ts", label: "memory_search.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "long-term-memory.ts", label: "long-term\n-memory.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory" },
+            { id: "working-memory.ts", label: "working\n-memory.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "vectorStore.ts", label: "vectorStore.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "vector-memory-tools.ts", label: "vector-memory\n-tools.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "embedding-service.ts", label: "embedding\n-service.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "embeddings.ts", label: "embeddings.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+            { id: "attention-filter.ts", label: "attention\n-filter.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "compressor.ts", label: "compressor.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+            { id: "focus-inducer.ts", label: "focus-inducer.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory" },
+            { id: "validation-simulator.ts", label: "validation\n-simulator.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+            { id: "refresh-forget.ts", label: "refresh\n-forget.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+            { id: "memory-sota-types.ts", label: "memory-sota\n-types.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+            { id: "types.ts", label: "types.ts\n(memory)", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+            { id: "orchestrator-sota-integration.ts", label: "orchestrator-sota\n-integration.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory" },
+
+            // === ORCHESTRATOR ===
+            { id: "orchestrator.ts", label: "orchestrator.ts", type: "orchestrator", color: "#06b6d4", size: 30, group: "core" },
+            { id: "telegram.ts", label: "telegram.ts", type: "orchestrator", color: "#06b6d4", size: 26, group: "core" },
+
+            // === CORE FILES ===
+            { id: "config.ts", label: "config.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+            { id: "instructions.ts", label: "instructions.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+            { id: "context-engine.ts", label: "context-engine.ts", type: "core", color: "#06b6d4", size: 18, group: "core" },
+            { id: "event-stream.ts", label: "event-stream.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+            { id: "provider.ts", label: "provider.ts\n(LLM)", type: "core", color: "#06b6d4", size: 16, group: "core" },
+            { id: "transcript.ts", label: "transcript.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+            { id: "skills-manager.ts", label: "skills-manager.ts", type: "core", color: "#06b6d4", size: 18, group: "core" },
+            { id: "telemetry.ts", label: "telemetry.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+            { id: "console-dashboard.ts", label: "console\n-dashboard.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+            { id: "telemetry-report.ts", label: "telemetry\n-report.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+            { id: "logger.ts", label: "logger.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+            { id: "types.ts(core)", label: "types.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+
+            // === CLOUD ===
+            { id: "cloud", label: "cloud", type: "directory", color: "#a855f7", size: 18, group: "cloud" },
+            { id: "cloud/package.json", label: "package.json\n(cloud)", type: "cloud", color: "#a855f7", size: 16, group: "cloud" },
+
+            // === DEPENDENCIES ===
+            { id: "axios", label: "axios", type: "dependency", color: "#f43f5e", size: 14, group: "deps" },
+            { id: "dotenv", label: "dotenv", type: "dependency", color: "#f43f5e", size: 14, group: "deps" },
+            { id: "node-telegram-bot-api", label: "node-telegram\n-bot-api", type: "dependency", color: "#f43f5e", size: 16, group: "deps" },
+            { id: "openai", label: "openai", type: "dependency", color: "#f43f5e", size: 16, group: "deps" },
+            { id: "puppeteer", label: "puppeteer", type: "dependency", color: "#f43f5e", size: 16, group: "deps" },
+            { id: "tsx", label: "tsx", type: "dependency", color: "#f43f5e", size: 14, group: "deps" },
+            { id: "typescript", label: "typescript", type: "dependency", color: "#f43f5e", size: 14, group: "deps" },
+            { id: "jest", label: "jest", type: "dependency", color: "#f43f5e", size: 14, group: "deps" },
+            { id: "eslint", label: "eslint", type: "dependency", color: "#f43f5e", size: 14, group: "deps" },
+
+            // === ROOT FILES ===
+            { id: "package.json", label: "package.json", type: "file", color: "#64748b", size: 12, group: "files" },
+            { id: "tsconfig.json", label: "tsconfig.json", type: "file", color: "#64748b", size: 12, group: "files" },
+            { id: "Dockerfile", label: "Dockerfile", type: "file", color: "#64748b", size: 12, group: "files" },
+            { id: "README.md", label: "README.md", type: "file", color: "#64748b", size: 12, group: "files" },
+            { id: "MEMORY.md", label: "MEMORY.md", type: "file", color: "#64748b", size: 12, group: "files" },
+        ],
+        edges: [
+            // ROOT → CORE
+            { from: "root", to: "core", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1, dashes: false },
+            { from: "root", to: "cloud", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1, dashes: false },
+            { from: "root", to: "package.json", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "root", to: "tsconfig.json", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "root", to: "Dockerfile", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "root", to: "README.md", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "root", to: "MEMORY.md", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+
+            // CORE → SUBDIRS
+            { from: "core", to: "core/agent", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/agents", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/config", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/constants", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/context", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/llm", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/memory", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/orchestrator", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/session", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/skills", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/stream", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/telemetry", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/tools", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "core/utils", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+            { from: "core", to: "types.ts(core)", label: "contains", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+
+            // SUBDIRS → FILES
+            { from: "core/agent", to: "agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agent", to: "main.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "assistant.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "browser.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "python.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "knowledge-graph.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "planner.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "shell.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "answer.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "reflector.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "thinking.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "task-manager.agent.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/agents", to: "agent-registry.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/config", to: "config.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/constants", to: "instructions.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/context", to: "context-engine.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/llm", to: "provider.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "knowledge-graph.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "kg-extractor.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "memory-engine.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "memory-engine-sota.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "memory-hub.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "memory_search.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "long-term-memory.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "working-memory.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "vectorStore.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "vector-memory-tools.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "embedding-service.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "embeddings.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "attention-filter.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "compressor.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "focus-inducer.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "validation-simulator.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "refresh-forget.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "memory-sota-types.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "types.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/memory", to: "orchestrator-sota-integration.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/orchestrator", to: "orchestrator.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/orchestrator", to: "telegram.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/session", to: "transcript.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/skills", to: "skills-manager.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/stream", to: "event-stream.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/telemetry", to: "telemetry.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/telemetry", to: "console-dashboard.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/telemetry", to: "telemetry-report.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "apiIntegrationTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "browserExecTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "dateTimeTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "fileSystemTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "knowledgeGraphScanTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "knowledgeGraphQueryTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "pythonExecTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "shellExecTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "taskSchedulerTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "webSearchTool.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "task.tools.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "toolDefinition.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/tools", to: "toolRegistry.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+            { from: "core/utils", to: "logger.ts", label: "contains", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+
+            // AGENTS → BASE AGENT
+            { from: "assistant.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "browser.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "python.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "knowledge-graph.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "planner.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "shell.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "answer.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "reflector.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "thinking.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+            { from: "task-manager.agent.ts", to: "agent.ts", label: "extends", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+
+            // AGENTS → TOOLS (uses)
+            { from: "assistant.agent.ts", to: "fileSystemTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "assistant.agent.ts", to: "webSearchTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "assistant.agent.ts", to: "dateTimeTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "browser.agent.ts", to: "browserExecTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "browser.agent.ts", to: "webSearchTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "python.agent.ts", to: "pythonExecTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "python.agent.ts", to: "dateTimeTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "knowledge-graph.agent.ts", to: "knowledgeGraphScanTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "knowledge-graph.agent.ts", to: "knowledgeGraphQueryTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "shell.agent.ts", to: "shellExecTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "planner.agent.ts", to: "taskSchedulerTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "task-manager.agent.ts", to: "taskSchedulerTool.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+            { from: "task-manager.agent.ts", to: "task.tools.ts", label: "uses", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+
+            // ORCHESTRATOR → AGENTS
+            { from: "orchestrator.ts", to: "assistant.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "browser.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "python.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "knowledge-graph.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "planner.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "shell.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "answer.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "reflector.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "thinking.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+            { from: "orchestrator.ts", to: "task-manager.agent.ts", label: "orchestrates", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+
+            // ORCHESTRATOR → CORE
+            { from: "orchestrator.ts", to: "context-engine.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+            { from: "orchestrator.ts", to: "event-stream.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+            { from: "orchestrator.ts", to: "skills-manager.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+            { from: "orchestrator.ts", to: "memory-hub.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+            { from: "orchestrator.ts", to: "agent-registry.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+
+            // TELEGRAM → ORCHESTRATOR
+            { from: "telegram.ts", to: "orchestrator.ts", label: "delegates to", color: { color: "#38bdf8", opacity: 0.5 }, width: 2.5 },
+            { from: "telegram.ts", to: "agent.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+            { from: "telegram.ts", to: "transcript.ts", label: "uses", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+
+            // MEMORY HUB → SUB-MEMORIES
+            { from: "memory-hub.ts", to: "memory-engine.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "memory-hub.ts", to: "memory-engine-sota.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "memory-hub.ts", to: "memory_search.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "memory-hub.ts", to: "long-term-memory.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "memory-hub.ts", to: "working-memory.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "memory-hub.ts", to: "vectorStore.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "memory-hub.ts", to: "kg-extractor.ts", label: "coordinates", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+            { from: "knowledge-graph.ts", to: "kg-extractor.ts", label: "feeds", color: { color: "#fbbf24", opacity: 0.4 }, width: 1.5, dashes: true },
+            { from: "knowledge-graph.ts", to: "vectorStore.ts", label: "stores to", color: { color: "#fbbf24", opacity: 0.4 }, width: 1.5, dashes: true },
+
+            // DEPENDENCIES
+            { from: "root", to: "axios", label: "depends", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+            { from: "root", to: "dotenv", label: "depends", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+            { from: "root", to: "node-telegram-bot-api", label: "depends", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+            { from: "root", to: "openai", label: "depends", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+            { from: "root", to: "puppeteer", label: "depends", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+            { from: "root", to: "tsx", label: "depends", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+            { from: "root", to: "typescript", label: "devDepends", color: { color: "#fb7185", opacity: 0.3 }, width: 1, dashes: true },
+            { from: "root", to: "jest", label: "devDepends", color: { color: "#fb7185", opacity: 0.3 }, width: 1, dashes: true },
+            { from: "root", to: "eslint", label: "devDepends", color: { color: "#fb7185", opacity: 0.3 }, width: 1, dashes: true },
+        ]
+    };
+
+    // ==================== VIS NETWORK ====================
+    const nodes = new vis.DataSet(graphData.nodes.map(n => ({
+        id: n.id,
+        label: n.label,
+        shape: n.shape || "dot",
+        size: n.size || 15,
+        color: {
+            background: n.color,
+            border: n.color,
+            highlight: { background: n.color, border: "#ffffff" },
+        },
+        font: n.font || { color: "#e2e8f0", size: 11, face: "Inter" },
+        borderWidth: 0,
+        borderWidthSelected: 2,
+        group: n.group,
+        shadow: { enabled: true, color: n.color + "40", size: 6 },
+        title: `<strong>${n.id}</strong><br/>Tipo: ${n.type}`,
+    })));
+
+    const edges = new vis.DataSet(graphData.edges.map(e => ({
+        from: e.from,
+        to: e.to,
+        label: e.label,
+        color: e.color || { color: "#334155", opacity: 0.4 },
+        width: e.width || 1,
+        dashes: e.dashes || false,
+        smooth: { type: "curvedCW", roundness: 0.15 },
+        font: { color: "#64748b", size: 9, face: "Inter", strokeWidth: 0, align: "middle" },
+        arrows: { to: { enabled: true, scaleFactor: 0.6, type: "arrow" } },
+    })));
+
+    const container = document.getElementById("mynetwork");
+    const data = { nodes, edges };
+
+    const options = {
+        physics: {
+            solver: "forceAtlas2Based",
+            forceAtlas2Based: {
+                gravitationalConstant: -42,
+                centralGravity: 0.008,
+                springLength: 180,
+                springConstant: 0.05,
+                damping: 0.4,
+                avoidOverlap: 0.5,
+            },
+            stabilization: { iterations: 200 },
+        },
+        interaction: {
+            hover: true,
+            tooltipDelay: 200,
+            navigationButtons: true,
+            keyboard: true,
+            multiselect: true,
+            selectConnectedEdges: true,
+        },
+        manipulation: { enabled: false },
+        edges: {
+            smooth: { type: "curvedCW", roundness: 0.15 },
+            arrowStrikethrough: false,
+        },
+        nodes: {
+            borderWidth: 0,
+            borderWidthSelected: 2,
+        },
+        groups: {
+            agents: { shape: "hexagon", size: 22 },
+            tools: { shape: "dot", size: 18 },
+            memory: { shape: "diamond", size: 16 },
+            core: { shape: "square", size: 14 },
+            deps: { shape: "star", size: 12 },
+            cloud: { shape: "dot", size: 16 },
+        },
+    };
+
+    const network = new vis.Network(container, data, options);
+
+    // Stats
+    document.getElementById("stats-nodes").textContent = graphData.nodes.length;
+    document.getElementById("stats-edges").textContent = graphData.edges.length;
+
+    // ==================== FILTERS ====================
+    const filterGroups = [...new Set(graphData.nodes.map(n => n.group))];
+    const filterContainer = document.getElementById("filter-buttons");
+    const activeFilters = new Set(filterGroups);
+
+    filterGroups.forEach(group => {
+        const btn = document.createElement("button");
+        btn.dataset.group = group;
+        btn.className = "filter-btn text-xs px-3 py-1.5 rounded-lg font-medium transition-all flex items-center gap-2";
+        btn.innerHTML = `<span class="w-2 h-2 rounded-full" style="background: ${getGroupColor(group)}"></span>${group}`;
+        btn.classList.add("bg-indigo-500/20", "text-indigo-300", "border", "border-indigo-500/20");
+        filterContainer.appendChild(btn);
+
+        btn.addEventListener("click", () => {
+            if (activeFilters.has(group)) {
+                activeFilters.delete(group);
+                btn.classList.remove("bg-indigo-500/20", "text-indigo-300", "border-indigo-500/20");
+                btn.classList.add("bg-slate-800/50", "text-slate-500");
+            } else {
+                activeFilters.add(group);
+                btn.classList.remove("bg-slate-800/50", "text-slate-500");
+                btn.classList.add("bg-indigo-500/20", "text-indigo-300", "border", "border-indigo-500/20");
+            }
+            applyFilters();
+        });
+    });
+
+    function getGroupColor(group) {
+        const map = { agents: "#6366f1", tools: "#10b981", memory: "#f59e0b", core: "#06b6d4", deps: "#f43f5e", cloud: "#a855f7", directory: "#06b6d4", files: "#64748b" };
+        return map[group] || "#64748b";
+    }
+
+    function applyFilters() {
+        const idsToShow = new Set();
+        graphData.nodes.forEach(n => {
+            if (activeFilters.has(n.group)) idsToShow.add(n.id);
+        });
+        nodes.forEach(n => {
+            const visible = idsToShow.has(n.id);
+            nodes.update({ id: n.id, hidden: !visible });
+        });
+    }
+
+    // ==================== SEARCH ====================
+    const searchInput = document.getElementById("search-input");
+    let searchTimeout;
+
+    searchInput.addEventListener("input", () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            const q = searchInput.value.toLowerCase().trim();
+            if (!q) {
+                network.selectNodes([]);
+                return;
+            }
+            const matches = graphData.nodes.filter(n => 
+                n.id.toLowerCase().includes(q) || n.label.toLowerCase().includes(q)
+            );
+            if (matches.length > 0) {
+                const ids = matches.map(m => m.id);
+                network.selectNodes(ids);
+                network.fit({
+                    nodes: ids,
+                    animation: { duration: 800, easingFunction: "easeInOutQuad" }
+                });
+            }
+        }, 300);
+    });
+
+    // ==================== LAYOUT SWITCH ====================
+    document.querySelectorAll(".layout-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".layout-btn").forEach(b => {
+                b.classList.remove("bg-indigo-500/20", "text-indigo-300", "border-indigo-500/20");
+                b.classList.add("text-slate-400");
+            });
+            btn.classList.add("bg-indigo-500/20", "text-indigo-300", "border", "border-indigo-500/20");
+            btn.classList.remove("text-slate-400");
+
+            const layout = btn.dataset.layout;
+            if (layout === "hierarchical") {
+                network.setOptions({
+                    physics: { enabled: false },
+                    layout: {
+                        hierarchical: {
+                            direction: "UD",
+                            sortMethod: "directed",
+                            levelSeparation: 180,
+                            nodeSpacing: 150,
+                            treeSpacing: 200,
+                            edgeMinimization: true,
+                        }
+                    }
+                });
+            } else if (layout === "concentric") {
+                network.setOptions({
+                    physics: { enabled: false },
+                    layout: { hierarchical: false }
+                });
+                // concentric via custom positions
+                const center = { x: 0, y: 0 };
+                const groups = [...new Set(graphData.nodes.map(n => n.group))];
+                const radius = 120;
+                const positions = {};
+                graphData.nodes.forEach((n, i) => {
+                    const groupIdx = groups.indexOf(n.group);
+                    const angle = (i / graphData.nodes.length) * 2 * Math.PI;
+                    const r = radius + groupIdx * 40;
+                    positions[n.id] = { x: Math.cos(angle) * r, y: Math.sin(angle) * r };
+                });
+                nodes.forEach(n => {
+                    if (positions[n.id]) {
+                        nodes.update({ id: n.id, x: positions[n.id].x, y: positions[n.id].y });
+                    }
+                });
+                network.fit({ animation: true });
+            } else {
+                network.setOptions({
+                    physics: {
+                        enabled: true,
+                        solver: "forceAtlas2Based",
+                        forceAtlas2Based: {
+                            gravitationalConstant: -42,
+                            centralGravity: 0.008,
+                            springLength: 180,
+                            springConstant: 0.05,
+                            damping: 0.4,
+                            avoidOverlap: 0.5,
+                        },
+                        stabilization: { iterations: 200 },
+                    },
+                    layout: { hierarchical: false }
+                });
+            }
+        });
+    });
+
+    // ==================== RESET ====================
+    document.getElementById("btn-reset").addEventListener("click", () => {
+        network.fit({ animation: { duration: 600, easingFunction: "easeInOutQuad" } });
+        network.selectNodes([]);
+        searchInput.value = "";
+    });
+
+    // ==================== FULLSCREEN ====================
+    document.getElementById("btn-fullscreen").addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+
+    // ==================== TOOLTIP ====================
+    network.on("hoverNode", function (params) {
+        const nodeId = params.node;
+        const nodeData = graphData.nodes.find(n => n.id === nodeId);
+        if (!nodeData) return;
+        const tip = document.getElementById("tooltip");
+        tip.style.display = "block";
+        tip.innerHTML = `
+            <div class="type">${nodeData.type}</div>
+            <div class="title">${nodeData.label.replace(/\n/g, "<br>")}</div>
+            <div class="text-xs text-slate-400 mt-1">ID: ${nodeData.id}</div>
+        `;
+        const rect = container.getBoundingClientRect();
+        tip.style.left = (params.event.clientX - rect.left + 15) + "px";
+        tip.style.top = (params.event.clientY - rect.top - 10) + "px";
+    });
+
+    network.on("blurNode", function () {
+        document.getElementById("tooltip").style.display = "none";
+    });
+
+    // ==================== DOUBLE CLICK ====================
+    network.on("doubleClick", function (params) {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            network.fit({
+                nodes: [nodeId],
+                animation: { duration: 600, easingFunction: "easeInOutQuad" }
+            });
+        }
+    });
+
+    console.log("🚀 Knowledge Graph carregado:", graphData.nodes.length, "nós,", graphData.edges.length, "arestas");
+    </script>
+</body>
+</html>

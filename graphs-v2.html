@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph v2 - colabor-ai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0b1120; color: #e2e8f0; overflow: hidden; }
+        #mynetwork {
+            width: 100%;
+            height: calc(100vh - 64px);
+            background: radial-gradient(ellipse at center, #131c31 0%, #0b1120 100%);
+            border: none;
+            transition: width 0.3s ease;
+        }
+        #mynetwork.with-panel { width: calc(100% - 420px); }
+        .glass {
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .glass-light {
+            background: rgba(19, 28, 49, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+        /* Detail Panel */
+        #detail-panel {
+            position: fixed;
+            top: 64px;
+            right: -420px;
+            width: 420px;
+            height: calc(100vh - 64px);
+            background: rgba(11, 17, 32, 0.97);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(148, 163, 184, 0.1);
+            z-index: 50;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding: 0;
+        }
+        #detail-panel.open { right: 0; }
+        #detail-panel::-webkit-scrollbar { width: 4px; }
+        #detail-panel::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+        .node-tooltip {
+            position: absolute;
+            background: rgba(11, 17, 32, 0.96);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 1000;
+            max-width: 340px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: none;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .detail-section { padding: 16px 24px; border-bottom: 1px solid rgba(148,163,184,0.06); }
+        .connection-item {
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(148,163,184,0.04);
+            border: 1px solid rgba(148,163,184,0.06);
+            margin-bottom: 4px;
+            font-size: 13px;
+            transition: all 0.15s;
+        }
+        .connection-item:hover { background: rgba(148,163,184,0.08); }
+        .search-highlight { animation: pulse-glow 1.5s ease-in-out infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(99,102,241,0.3)); }
+            50% { filter: drop-shadow(0 0 16px rgba(99,102,241,0.8)); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .slide-in { animation: slideIn 0.3s ease-out; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+        @media (max-width: 768px) {
+            #detail-panel { width: 100%; right: -100%; }
+            #mynetwork.with-panel { width: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="h-16 glass border-b border-white/5 flex items-center justify-between px-3 md:px-6 z-50 relative">
+    <div class="flex items-center gap-2 md:gap-4">
+        <div class="flex items-center gap-2 md:gap-3">
+            <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">KG</div>
+            <div>
+                <h1 class="text-white font-bold text-sm md:text-lg leading-tight">Knowledge Graph <span class="text-indigo-400 text-xs">v2</span></h1>
+                <p class="text-[10px] md:text-xs text-slate-400"><span id="stats-nodes">0</span> nós · <span id="stats-edges">0</span> arestas · <span id="stats-groups">0</span> categorias</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center gap-2">
+        <div class="relative">
+            <input id="search-input" type="text" placeholder="Buscar nó..." 
+                class="w-36 md:w-56 bg-slate-800/80 text-xs md:text-sm text-white rounded-lg pl-8 pr-2.5 py-1.5 md:py-2 border border-white/10 focus:border-indigo-500/50 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-all placeholder:text-slate-500">
+            <svg class="absolute left-2.5 top-2 md:top-2.5 w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <button id="btn-reset" class="text-slate-400 hover:text-white transition-colors p-1.5 md:p-2 rounded-lg hover:bg-slate-800/50" title="Resetar">
+            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </button>
+        <button id="btn-fullscreen" class="text-slate-400 hover:text-white transition-colors p-1.5 md:p-2 rounded-lg hover:bg-slate-800/50" title="Tela cheia">
+            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+        </button>
+    </div>
+</div>
+
+<!-- TOOLTIP -->
+<div id="tooltip" class="node-tooltip"></div>
+
+<!-- LEFTBAR: Filters + Layout -->
+<div class="absolute left-2 md:left-4 top-20 z-40 flex flex-col gap-2 max-h-[70vh] overflow-y-auto">
+    <div class="glass-light rounded-xl p-2.5 md:p-3 w-40 md:w-44 shadow-2xl">
+        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold px-1">Filtrar tipo</p>
+        <div id="filter-buttons" class="flex flex-col gap-1"></div>
+    </div>
+    <div class="glass-light rounded-xl p-2.5 md:p-3 w-40 md:w-44 shadow-2xl">
+        <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold px-1">Layout</p>
+        <div class="flex flex-col gap-1">
+            <button data-layout="force" class="layout-btn text-xs px-3 py-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/20 font-medium">Force Atlas</button>
+            <button data-layout="hierarchical" class="layout-btn text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700/50 text-slate-400 font-medium">Hierárquico</button>
+            <button data-layout="concentric" class="layout-btn text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700/50 text-slate-400 font-medium">Concêntrico</button>
+        </div>
+    </div>
+</div>
+
+<!-- NETWORK -->
+<div id="mynetwork"></div>
+
+<!-- DETAIL PANEL -->
+<div id="detail-panel">
+    <div id="panel-content"></div>
+</div>
+
+<!-- LEGEND -->
+<div class="absolute bottom-2 md:bottom-6 left-1/2 -translate-x-1/2 z-40 max-w-[95vw] overflow-x-auto">
+    <div class="glass-light rounded-xl px-3 md:px-5 py-2 md:py-2.5 flex items-center gap-2 md:gap-5 shadow-2xl text-xs">
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-indigo-500"></div><span class="text-slate-400">Agents</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-slate-400">Tools</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div><span class="text-slate-400">Memory</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-cyan-500"></div><span class="text-slate-400">Core</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div><span class="text-slate-400">Deps</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-purple-500"></div><span class="text-slate-400">Cloud</span></div>
+        <div class="flex items-center gap-1.5 shrink-0 border-l border-white/10 pl-3"><div class="w-3 h-0.5 bg-indigo-500/60"></div><span class="text-slate-400">contém</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-3 border-t border-dashed border-emerald-500/60"></div><span class="text-slate-400">usa</span></div>
+        <div class="flex items-center gap-1.5 shrink-0"><div class="w-3 h-0.5 bg-amber-500/60"></div><span class="text-slate-400">coordena</span></div>
+    </div>
+</div>
+
+<script>
+// ==================== RICH DATA ====================
+const nodeDetails = {
+    "root": { description: "Diretório raiz do projeto colabor-ai. Contém todo o código fonte, configurações e documentação.", path: "/", dependencies: ["axios","dotenv","node-telegram-bot-api","openai","puppeteer","tsx","typescript","jest","eslint"] },
+    "core": { description: "Diretório principal com todo o código fonte do sistema multi-agente.", path: "core/" },
+    "core/agent": { description: "Implementação da classe base Agent e do ponto de entrada principal.", path: "core/agent/" },
+    "core/agents": { description: "Registro de todos os agentes especializados do sistema.", path: "core/agents/" },
+    "core/config": { description: "Configurações gerais do sistema.", path: "core/config/" },
+    "core/constants": { description: "Constantes e instruções base do sistema.", path: "core/constants/" },
+    "core/context": { description: "Gerenciamento de contexto para as conversas dos agents.", path: "core/context/" },
+    "core/llm": { description: "Provedor de LLM para comunicação com APIs de linguagem.", path: "core/llm/" },
+    "core/memory": { description: "Sistema completo de memória: curto prazo, longo prazo, vetorial e grafo de conhecimento.", path: "core/memory/" },
+    "core/orchestrator": { description: "Orquestrador principal que coordena a execução dos agents.", path: "core/orchestrator/" },
+    "core/session": { description: "Gerenciamento de sessões e transcrições de conversas.", path: "core/session/" },
+    "core/skills": { description: "Gerenciador de skills/habilidades dos agents.", path: "core/skills/" },
+    "core/stream": { description: "Stream de eventos para comunicação em tempo real.", path: "core/stream/" },
+    "core/telemetry": { description: "Sistema de telemetria e monitoramento.", path: "core/telemetry/" },
+    "core/tools": { description: "Coleção de ferramentas disponíveis para os agents executarem tarefas.", path: "core/tools/" },
+    "core/utils": { description: "Utilitários gerais como logger.", path: "core/utils/" },
+    "agent.ts": { description: "Classe base Agent. Define a estrutura fundamental que todos os agents especializados estendem.", path: "core/agent/agent.ts", type: "agent", connections: ["main.ts"] },
+    "main.ts": { description: "Ponto de entrada principal da aplicação.", path: "core/agent/main.ts", type: "agent" },
+    "assistant.agent.ts": { description: "Agent assistente principal. Orquestra respostas e coordena outros agents.", path: "core/agents/assistant.agent.ts", type: "agent", connections: ["agent.ts","fileSystemTool.ts","webSearchTool.ts","dateTimeTool.ts"] },
+    "browser.agent.ts": { description: "Agent especializado em navegação web. Usa Puppeteer para automatizar navegadores.", path: "core/agents/browser.agent.ts", type: "agent", connections: ["agent.ts","browserExecTool.ts","webSearchTool.ts"] },
+    "python.agent.ts": { description: "Agent especialista em execução Python. Escreve e executa scripts para cálculos e análise de dados.", path: "core/agents/python.agent.ts", type: "agent", connections: ["agent.ts","pythonExecTool.ts","dateTimeTool.ts"] },
+    "knowledge-graph.agent.ts": { description: "Agent especializado em escanear e consultar o grafo de conhecimento.", path: "core/agents/knowledge-graph.agent.ts", type: "agent", connections: ["agent.ts","knowledgeGraphScanTool.ts","knowledgeGraphQueryTool.ts"] },
+    "planner.agent.ts": { description: "Agent de planejamento. Cria e gerencia planos de execução multi-etapas.", path: "core/agents/planner.agent.ts", type: "agent", connections: ["agent.ts","taskSchedulerTool.ts"] },
+    "shell.agent.ts": { description: "Agent de shell. Executa comandos no sistema operacional.", path: "core/agents/shell.agent.ts", type: "agent", connections: ["agent.ts","shellExecTool.ts"] },
+    "answer.agent.ts": { description: "Agent de respostas. Formata e entrega respostas finais ao usuário.", path: "core/agents/answer.agent.ts", type: "agent", connections: ["agent.ts"] },
+    "reflector.agent.ts": { description: "Agent reflexivo. Analisa e reflete sobre as próprias respostas para melhoria contínua.", path: "core/agents/reflector.agent.ts", type: "agent", connections: ["agent.ts"] },
+    "thinking.agent.ts": { description: "Agent de pensamento crítico. Realiza análise profunda antes de responder.", path: "core/agents/thinking.agent.ts", type: "agent", connections: ["agent.ts"] },
+    "task-manager.agent.ts": { description: "Agent gerenciador de tarefas. Agenda, lista e gerencia tarefas assíncronas.", path: "core/agents/task-manager.agent.ts", type: "agent", connections: ["agent.ts","taskSchedulerTool.ts","task.tools.ts"] },
+    "agent-registry.ts": { description: "Registro central de agents. Mantém o catálogo de todos os agents disponíveis.", path: "core/agents/agent-registry.ts", type: "agent" },
+    "apiIntegrationTool.ts": { description: "Ferramenta para integrar com APIs REST/GraphQL externas.", path: "core/tools/apiIntegrationTool.ts", type: "tool" },
+    "browserExecTool.ts": { description: "Ferramenta de navegação web. Usa Puppeteer para controle de navegador.", path: "core/tools/browserExecTool.ts", type: "tool" },
+    "dateTimeTool.ts": { description: "Ferramenta de data/hora. Retorna data atual, hora, timestamp Unix e data formatada em português.", path: "core/tools/dateTimeTool.ts", type: "tool" },
+    "fileSystemTool.ts": { description: "Ferramenta de sistema de arquivos. Lê, escreve, lista e gerencia arquivos/diretórios.", path: "core/tools/fileSystemTool.ts", type: "tool" },
+    "knowledgeGraphScanTool.ts": { description: "Ferramenta de scan do grafo de conhecimento. Varre o código para extrair relações.", path: "core/tools/knowledgeGraphScanTool.ts", type: "tool" },
+    "knowledgeGraphQueryTool.ts": { description: "Ferramenta de consulta ao grafo de conhecimento. Busca e navega pelas conexões.", path: "core/tools/knowledgeGraphQueryTool.ts", type: "tool" },
+    "pythonExecTool.ts": { description: "Ferramenta de execução Python. Executa scripts e retorna stdout/stderr.", path: "core/tools/pythonExecTool.ts", type: "tool" },
+    "shellExecTool.ts": { description: "Ferramenta de execução de comandos shell no sistema operacional.", path: "core/tools/shellExecTool.ts", type: "tool" },
+    "taskSchedulerTool.ts": { description: "Ferramenta de agendamento de tarefas. Agenda execuções futuras com timeout.", path: "core/tools/taskSchedulerTool.ts", type: "tool" },
+    "webSearchTool.ts": { description: "Ferramenta de busca na web. Pesquisa no DuckDuckGo e extrai conteúdo de páginas.", path: "core/tools/webSearchTool.ts", type: "tool" },
+    "task.tools.ts": { description: "Definições de tipos e ferramentas auxiliares para o sistema de tarefas.", path: "core/tools/task.tools.ts", type: "tool" },
+    "toolDefinition.ts": { description: "Interface ToolDefinition que define o contrato para todas as ferramentas.", path: "core/tools/toolDefinition.ts", type: "tool" },
+    "toolRegistry.ts": { description: "Registro central de ferramentas. Mantém o catálogo e gera formato OpenAI.", path: "core/tools/toolRegistry.ts", type: "tool" },
+    "knowledge-graph.ts": { description: "Classe principal do grafo de conhecimento. Gerencia nós, arestas e consultas.", path: "core/memory/knowledge-graph.ts", type: "memory" },
+    "kg-extractor.ts": { description: "Extrator do grafo de conhecimento. Analisa código fonte para extrair relações automaticamente.", path: "core/memory/kg-extractor.ts", type: "memory" },
+    "memory-engine.ts": { description: "Motor de memória principal. Gerencia armazenamento e recuperação de memórias.", path: "core/memory/memory-engine.ts", type: "memory" },
+    "memory-engine-sota.ts": { description: "Motor de memória SOTA (State of the Art). Versão avançada com técnicas modernas.", path: "core/memory/memory-engine-sota.ts", type: "memory" },
+    "memory-hub.ts": { description: "Hub central de memória. Coordena todos os subsistemas de memória.", path: "core/memory/memory-hub.ts", type: "memory" },
+    "memory_search.ts": { description: "Ferramenta de busca em memória de longo prazo.", path: "core/memory/memory_search.ts", type: "memory" },
+    "long-term-memory.ts": { description: "Memória de longo prazo. Persiste informações importantes entre sessões.", path: "core/memory/long-term-memory.ts", type: "memory" },
+    "working-memory.ts": { description: "Memória de trabalho (curto prazo). Mantém contexto ativo da conversa atual.", path: "core/memory/working-memory.ts", type: "memory" },
+    "vectorStore.ts": { description: "Armazenamento vetorial para embeddings e busca por similaridade semântica.", path: "core/memory/vectorStore.ts", type: "memory" },
+    "vector-memory-tools.ts": { description: "Ferramentas de memória vetorial: store, search e stats.", path: "core/memory/vector-memory-tools.ts", type: "memory" },
+    "embedding-service.ts": { description: "Serviço de embeddings. Gera vetores de texto para busca semântica.", path: "core/memory/embedding-service.ts", type: "memory" },
+    "embeddings.ts": { description: "Utilitários para manipulação de embeddings e vetores.", path: "core/memory/embeddings.ts", type: "memory" },
+    "attention-filter.ts": { description: "Filtro de atenção. Seleciona informações relevantes para o contexto atual.", path: "core/memory/attention-filter.ts", type: "memory" },
+    "compressor.ts": { description: "Compressor de memória. Compacta e sumariza informações para otimizar armazenamento.", path: "core/memory/compressor.ts", type: "memory" },
+    "focus-inducer.ts": { description: "Indutor de foco. Ajuda o agent a manter concentração nas tarefas importantes.", path: "core/memory/focus-inducer.ts", type: "memory" },
+    "validation-simulator.ts": { description: "Simulador de validação. Testa cenários hipotéticos para validar decisões.", path: "core/memory/validation-simulator.ts", type: "memory" },
+    "refresh-forget.ts": { description: "Gerenciador de refresh/forget. Atualiza e descarta memórias obsoletas.", path: "core/memory/refresh-forget.ts", type: "memory" },
+    "memory-sota-types.ts": { description: "Tipos e interfaces específicos do sistema de memória SOTA.", path: "core/memory/memory-sota-types.ts", type: "memory" },
+    "types.ts": { description: "Tipos e interfaces do sistema de memória.", path: "core/memory/types.ts", type: "memory" },
+    "orchestrator-sota-integration.ts": { description: "Integração do orquestrador com o sistema de memória SOTA.", path: "core/memory/orchestrator-sota-integration.ts", type: "memory" },
+    "orchestrator.ts": { description: "Orquestrador principal. Coordena a execução de todos os agents, gerencia fluxo de trabalho e delega tarefas.", path: "core/orchestrator/orchestrator.ts", type: "orchestrator", connections: ["assistant.agent.ts","browser.agent.ts","python.agent.ts","knowledge-graph.agent.ts","planner.agent.ts","shell.agent.ts","answer.agent.ts","reflector.agent.ts","thinking.agent.ts","task-manager.agent.ts","context-engine.ts","event-stream.ts","skills-manager.ts","memory-hub.ts","agent-registry.ts"] },
+    "telegram.ts": { description: "Interface Telegram. Conecta o orquestrador ao Telegram Bot API.", path: "core/orchestrator/telegram.ts", type: "orchestrator", connections: ["orchestrator.ts","agent.ts","transcript.ts"] },
+    "config.ts": { description: "Configurações do sistema: variáveis de ambiente, chaves de API, etc.", path: "core/config/config.ts", type: "core" },
+    "instructions.ts": { description: "Instruções base do sistema e constantes de configuração.", path: "core/constants/instructions.ts", type: "core" },
+    "context-engine.ts": { description: "Motor de contexto. Gerencia e enriquece o contexto das conversas.", path: "core/context/context-engine.ts", type: "core" },
+    "event-stream.ts": { description: "Stream de eventos. Gerencia comunicação assíncrona entre componentes.", path: "core/stream/event-stream.ts", type: "core" },
+    "provider.ts": { description: "Provedor de LLM. Abstrai a comunicação com diferentes APIs de linguagem.", path: "core/llm/provider.ts", type: "core" },
+    "transcript.ts": { description: "Gerenciador de transcrições. Registra e armazena o histórico de conversas.", path: "core/session/transcript.ts", type: "core" },
+    "skills-manager.ts": { description: "Gerenciador de skills. Carrega e gerencia as habilidades dos agents.", path: "core/skills/skills-manager.ts", type: "core" },
+    "telemetry.ts": { description: "Sistema de telemetria. Coleta métricas de uso e performance.", path: "core/telemetry/telemetry.ts", type: "core" },
+    "console-dashboard.ts": { description: "Dashboard de console para visualização de telemetria em tempo real.", path: "core/telemetry/console-dashboard.ts", type: "core" },
+    "telemetry-report.ts": { description: "Gerador de relatórios de telemetria.", path: "core/telemetry/telemetry-report.ts", type: "core" },
+    "logger.ts": { description: "Logger central do sistema com níveis de log.", path: "core/utils/logger.ts", type: "core" },
+    "types.ts(core)": { description: "Tipos e interfaces compartilhados do core.", path: "core/types.ts", type: "core" },
+    "cloud": { description: "Diretório com configs de deploy em nuvem.", path: "cloud/", type: "cloud" },
+    "cloud/package.json": { description: "Configuração de dependências para o deploy cloud.", path: "cloud/package.json", type: "cloud" },
+    "axios": { description: "Cliente HTTP para requisições a APIs externas.", path: "node_modules/axios", type: "dependency" },
+    "dotenv": { description: "Carregador de variáveis de ambiente do arquivo .env.", path: "node_modules/dotenv", type: "dependency" },
+    "node-telegram-bot-api": { description: "SDK oficial da API do Telegram para bots.", path: "node_modules/node-telegram-bot-api", type: "dependency" },
+    "openai": { description: "SDK oficial da API da OpenAI para LLMs.", path: "node_modules/openai", type: "dependency" },
+    "puppeteer": { description: "Biblioteca de automação de navegador para scraping e testes.", path: "node_modules/puppeteer", type: "dependency" },
+    "tsx": { description: "Executor TypeScript para Node.js sem necessidade de compilação.", path: "node_modules/tsx", type: "dependency" },
+    "typescript": { description: "Compilador TypeScript para JavaScript.", path: "node_modules/typescript", type: "dependency" },
+    "jest": { description: "Framework de testes.", path: "node_modules/jest", type: "dependency" },
+    "eslint": { description: "Linter para manter qualidade do código.", path: "node_modules/eslint", type: "dependency" },
+    "package.json": { description: "Manifesto do projeto com dependências e scripts.", path: "package.json", type: "file" },
+    "tsconfig.json": { description: "Configuração do compilador TypeScript.", path: "tsconfig.json", type: "file" },
+    "Dockerfile": { description: "Arquivo Docker para containerização do projeto.", path: "Dockerfile", type: "file" },
+    "README.md": { description: "Documentação principal do projeto.", path: "README.md", type: "file" },
+    "MEMORY.md": { description: "Documento de memória persistente do sistema.", path: "MEMORY.md", type: "file" },
+};
+
+// Add missing entries for directory nodes
+const dirNodes = ["core","core/agent","core/agents","core/config","core/constants","core/context","core/llm","core/memory","core/orchestrator","core/session","core/skills","core/stream","core/telemetry","core/tools","core/utils","cloud"];
+dirNodes.forEach(id => {
+    if (!nodeDetails[id]) {
+        const label = id.split('/').pop();
+        nodeDetails[id] = { description: `Diretório ${label} com arquivos do sistema.`, path: `${id}/`, type: "directory" };
+    }
+});
+
+// ==================== GRAPH DATA ====================
+const graphData = {
+    nodes: [
+        { id: "root", label: "colabor-ai", type: "root", color: "#6366f1", size: 35, font: { size: 18, face: "Inter", color: "#fff", weight: "bold" } },
+        { id: "core", label: "core", type: "directory", color: "#06b6d4", size: 22, group: "core" },
+        { id: "core/agent", label: "agent", type: "directory", color: "#06b6d4", size: 16, group: "core" },
+        { id: "core/agents", label: "agents", type: "directory", color: "#6366f1", size: 18, group: "agents" },
+        { id: "core/config", label: "config", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/constants", label: "constants", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/context", label: "context", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/llm", label: "llm", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/memory", label: "memory", type: "directory", color: "#f59e0b", size: 18, group: "memory" },
+        { id: "core/orchestrator", label: "orchestrator", type: "directory", color: "#06b6d4", size: 18, group: "core" },
+        { id: "core/session", label: "session", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/skills", label: "skills", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/stream", label: "stream", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/telemetry", label: "telemetry", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "core/tools", label: "tools", type: "directory", color: "#10b981", size: 16, group: "tools" },
+        { id: "core/utils", label: "utils", type: "directory", color: "#06b6d4", size: 14, group: "core" },
+        { id: "agent.ts", label: "agent.ts\n(Base Agent)", type: "agent", color: "#6366f1", size: 28, group: "agents", shape: "hexagon" },
+        { id: "main.ts", label: "main.ts", type: "agent", color: "#6366f1", size: 16, group: "agents", shape: "hexagon" },
+        { id: "assistant.agent.ts", label: "assistant.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+        { id: "browser.agent.ts", label: "browser.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+        { id: "python.agent.ts", label: "python.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+        { id: "knowledge-graph.agent.ts", label: "knowledge-graph\n.agent", type: "agent", color: "#6366f1", size: 22, group: "agents", shape: "hexagon" },
+        { id: "planner.agent.ts", label: "planner.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+        { id: "shell.agent.ts", label: "shell.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+        { id: "answer.agent.ts", label: "answer.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+        { id: "reflector.agent.ts", label: "reflector.agent", type: "agent", color: "#6366f1", size: 18, group: "agents", shape: "hexagon" },
+        { id: "thinking.agent.ts", label: "thinking.agent", type: "agent", color: "#6366f1", size: 20, group: "agents", shape: "hexagon" },
+        { id: "task-manager.agent.ts", label: "task-manager\n.agent", type: "agent", color: "#6366f1", size: 18, group: "agents", shape: "hexagon" },
+        { id: "agent-registry.ts", label: "agent-registry.ts", type: "agent", color: "#6366f1", size: 18, group: "agents", shape: "hexagon" },
+        { id: "apiIntegrationTool.ts", label: "apiIntegration\nTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+        { id: "browserExecTool.ts", label: "browserExec\nTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+        { id: "dateTimeTool.ts", label: "dateTimeTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+        { id: "fileSystemTool.ts", label: "fileSystem\nTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+        { id: "knowledgeGraphScanTool.ts", label: "knowledgeGraph\nScanTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+        { id: "knowledgeGraphQueryTool.ts", label: "knowledgeGraph\nQueryTool", type: "tool", color: "#10b981", size: 20, group: "tools" },
+        { id: "pythonExecTool.ts", label: "pythonExec\nTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+        { id: "shellExecTool.ts", label: "shellExecTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+        { id: "taskSchedulerTool.ts", label: "taskScheduler\nTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+        { id: "webSearchTool.ts", label: "webSearchTool", type: "tool", color: "#10b981", size: 18, group: "tools" },
+        { id: "task.tools.ts", label: "task.tools.ts", type: "tool", color: "#10b981", size: 14, group: "tools" },
+        { id: "toolDefinition.ts", label: "toolDefinition", type: "tool", color: "#10b981", size: 14, group: "tools" },
+        { id: "toolRegistry.ts", label: "toolRegistry", type: "tool", color: "#10b981", size: 14, group: "tools" },
+        { id: "knowledge-graph.ts", label: "knowledge-graph.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory", shape: "diamond" },
+        { id: "kg-extractor.ts", label: "kg-extractor.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory", shape: "diamond" },
+        { id: "memory-engine.ts", label: "memory-engine.ts", type: "memory", color: "#f59e0b", size: 20, group: "memory", shape: "diamond" },
+        { id: "memory-engine-sota.ts", label: "memory-engine\n-sota.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory", shape: "diamond" },
+        { id: "memory-hub.ts", label: "memory-hub.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory", shape: "diamond" },
+        { id: "memory_search.ts", label: "memory_search.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "long-term-memory.ts", label: "long-term\n-memory.ts", type: "memory", color: "#f59e0b", size: 18, group: "memory", shape: "diamond" },
+        { id: "working-memory.ts", label: "working\n-memory.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "vectorStore.ts", label: "vectorStore.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "vector-memory-tools.ts", label: "vector-memory\n-tools.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "embedding-service.ts", label: "embedding\n-service.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "embeddings.ts", label: "embeddings.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "attention-filter.ts", label: "attention\n-filter.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "compressor.ts", label: "compressor.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "focus-inducer.ts", label: "focus-inducer.ts", type: "memory", color: "#f59e0b", size: 16, group: "memory", shape: "diamond" },
+        { id: "validation-simulator.ts", label: "validation\n-simulator.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "refresh-forget.ts", label: "refresh\n-forget.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "memory-sota-types.ts", label: "memory-sota\n-types.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "types.ts", label: "types.ts\n(memory)", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "orchestrator-sota-integration.ts", label: "orchestrator-sota\n-integration.ts", type: "memory", color: "#f59e0b", size: 14, group: "memory", shape: "diamond" },
+        { id: "orchestrator.ts", label: "orchestrator.ts", type: "orchestrator", color: "#06b6d4", size: 30, group: "core" },
+        { id: "telegram.ts", label: "telegram.ts", type: "orchestrator", color: "#06b6d4", size: 26, group: "core" },
+        { id: "config.ts", label: "config.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+        { id: "instructions.ts", label: "instructions.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+        { id: "context-engine.ts", label: "context-engine.ts", type: "core", color: "#06b6d4", size: 18, group: "core" },
+        { id: "event-stream.ts", label: "event-stream.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+        { id: "provider.ts", label: "provider.ts\n(LLM)", type: "core", color: "#06b6d4", size: 16, group: "core" },
+        { id: "transcript.ts", label: "transcript.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+        { id: "skills-manager.ts", label: "skills-manager.ts", type: "core", color: "#06b6d4", size: 18, group: "core" },
+        { id: "telemetry.ts", label: "telemetry.ts", type: "core", color: "#06b6d4", size: 16, group: "core" },
+        { id: "console-dashboard.ts", label: "console\n-dashboard.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+        { id: "telemetry-report.ts", label: "telemetry\n-report.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+        { id: "logger.ts", label: "logger.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+        { id: "types.ts(core)", label: "types.ts", type: "core", color: "#06b6d4", size: 14, group: "core" },
+        { id: "cloud", label: "cloud", type: "directory", color: "#a855f7", size: 18, group: "cloud" },
+        { id: "cloud/package.json", label: "package.json\n(cloud)", type: "cloud", color: "#a855f7", size: 16, group: "cloud" },
+        { id: "axios", label: "axios", type: "dependency", color: "#f43f5e", size: 14, group: "deps", shape: "star" },
+        { id: "dotenv", label: "dotenv", type: "dependency", color: "#f43f5e", size: 14, group: "deps", shape: "star" },
+        { id: "node-telegram-bot-api", label: "node-telegram\n-bot-api", type: "dependency", color: "#f43f5e", size: 16, group: "deps", shape: "star" },
+        { id: "openai", label: "openai", type: "dependency", color: "#f43f5e", size: 16, group: "deps", shape: "star" },
+        { id: "puppeteer", label: "puppeteer", type: "dependency", color: "#f43f5e", size: 16, group: "deps", shape: "star" },
+        { id: "tsx", label: "tsx", type: "dependency", color: "#f43f5e", size: 14, group: "deps", shape: "star" },
+        { id: "typescript", label: "typescript", type: "dependency", color: "#f43f5e", size: 14, group: "deps", shape: "star" },
+        { id: "jest", label: "jest", type: "dependency", color: "#f43f5e", size: 14, group: "deps", shape: "star" },
+        { id: "eslint", label: "eslint", type: "dependency", color: "#f43f5e", size: 14, group: "deps", shape: "star" },
+        { id: "package.json", label: "package.json", type: "file", color: "#64748b", size: 12, group: "files" },
+        { id: "tsconfig.json", label: "tsconfig.json", type: "file", color: "#64748b", size: 12, group: "files" },
+        { id: "Dockerfile", label: "Dockerfile", type: "file", color: "#64748b", size: 12, group: "files" },
+        { id: "README.md", label: "README.md", type: "file", color: "#64748b", size: 12, group: "files" },
+        { id: "MEMORY.md", label: "MEMORY.md", type: "file", color: "#64748b", size: 12, group: "files" },
+    ],
+    edges: [
+        { from: "root", to: "core", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "cloud", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "package.json", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "tsconfig.json", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "Dockerfile", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "README.md", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "MEMORY.md", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "root", to: "axios", label: "usa", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+        { from: "root", to: "dotenv", label: "usa", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+        { from: "root", to: "node-telegram-bot-api", label: "usa", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+        { from: "root", to: "openai", label: "usa", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+        { from: "root", to: "puppeteer", label: "usa", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+        { from: "root", to: "tsx", label: "usa", color: { color: "#fb7185", opacity: 0.4 }, width: 1, dashes: true },
+        { from: "root", to: "typescript", label: "dev", color: { color: "#fb7185", opacity: 0.3 }, width: 1, dashes: true },
+        { from: "root", to: "jest", label: "dev", color: { color: "#fb7185", opacity: 0.3 }, width: 1, dashes: true },
+        { from: "root", to: "eslint", label: "dev", color: { color: "#fb7185", opacity: 0.3 }, width: 1, dashes: true },
+        { from: "core", to: "core/agent", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/agents", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/config", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/constants", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/context", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/llm", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/memory", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/orchestrator", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/session", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/skills", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/stream", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/telemetry", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/tools", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "core/utils", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core", to: "types.ts(core)", label: "contém", color: { color: "#334155", opacity: 0.4 }, width: 1 },
+        { from: "core/agent", to: "agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agent", to: "main.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "assistant.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "browser.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "python.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "knowledge-graph.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "planner.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "shell.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "answer.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "reflector.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "thinking.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "task-manager.agent.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/agents", to: "agent-registry.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/config", to: "config.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/constants", to: "instructions.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/context", to: "context-engine.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/llm", to: "provider.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "knowledge-graph.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "kg-extractor.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "memory-engine.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "memory-engine-sota.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "memory-hub.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "memory_search.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "long-term-memory.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "working-memory.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "vectorStore.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "vector-memory-tools.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "embedding-service.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "embeddings.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "attention-filter.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "compressor.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "focus-inducer.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "validation-simulator.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "refresh-forget.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "memory-sota-types.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "types.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/memory", to: "orchestrator-sota-integration.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/orchestrator", to: "orchestrator.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/orchestrator", to: "telegram.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/session", to: "transcript.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/skills", to: "skills-manager.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/stream", to: "event-stream.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/telemetry", to: "telemetry.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/telemetry", to: "console-dashboard.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/telemetry", to: "telemetry-report.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "apiIntegrationTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "browserExecTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "dateTimeTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "fileSystemTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "knowledgeGraphScanTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "knowledgeGraphQueryTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "pythonExecTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "shellExecTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "taskSchedulerTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "webSearchTool.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "task.tools.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "toolDefinition.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/tools", to: "toolRegistry.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "core/utils", to: "logger.ts", label: "contém", color: { color: "#334155", opacity: 0.3 }, width: 1 },
+        { from: "assistant.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "browser.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "python.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "knowledge-graph.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "planner.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "shell.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "answer.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "reflector.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "thinking.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "task-manager.agent.ts", to: "agent.ts", label: "estende", color: { color: "#818cf8", opacity: 0.6 }, width: 2, dashes: true },
+        { from: "assistant.agent.ts", to: "fileSystemTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "assistant.agent.ts", to: "webSearchTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "assistant.agent.ts", to: "dateTimeTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "browser.agent.ts", to: "browserExecTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "browser.agent.ts", to: "webSearchTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "python.agent.ts", to: "pythonExecTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "python.agent.ts", to: "dateTimeTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "knowledge-graph.agent.ts", to: "knowledgeGraphScanTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "knowledge-graph.agent.ts", to: "knowledgeGraphQueryTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "shell.agent.ts", to: "shellExecTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "planner.agent.ts", to: "taskSchedulerTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "task-manager.agent.ts", to: "taskSchedulerTool.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "task-manager.agent.ts", to: "task.tools.ts", label: "usa", color: { color: "#34d399", opacity: 0.5 }, width: 1.5, dashes: true },
+        { from: "orchestrator.ts", to: "assistant.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "browser.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "python.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "knowledge-graph.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "planner.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "shell.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "answer.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "reflector.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "thinking.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "task-manager.agent.ts", label: "coordena", color: { color: "#38bdf8", opacity: 0.5 }, width: 2 },
+        { from: "orchestrator.ts", to: "context-engine.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "orchestrator.ts", to: "event-stream.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "orchestrator.ts", to: "skills-manager.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "orchestrator.ts", to: "memory-hub.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "orchestrator.ts", to: "agent-registry.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "telegram.ts", to: "orchestrator.ts", label: "delega para", color: { color: "#38bdf8", opacity: 0.5 }, width: 2.5 },
+        { from: "telegram.ts", to: "agent.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "telegram.ts", to: "transcript.ts", label: "usa", color: { color: "#38bdf8", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "memory-hub.ts", to: "memory-engine.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "memory-hub.ts", to: "memory-engine-sota.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "memory-hub.ts", to: "memory_search.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "memory-hub.ts", to: "long-term-memory.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "memory-hub.ts", to: "working-memory.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "memory-hub.ts", to: "vectorStore.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "memory-hub.ts", to: "kg-extractor.ts", label: "coordena", color: { color: "#fbbf24", opacity: 0.5 }, width: 1.5 },
+        { from: "knowledge-graph.ts", to: "kg-extractor.ts", label: "alimenta", color: { color: "#fbbf24", opacity: 0.4 }, width: 1.5, dashes: true },
+        { from: "knowledge-graph.ts", to: "vectorStore.ts", label: "armazena em", color: { color: "#fbbf24", opacity: 0.4 }, width: 1.5, dashes: true },
+    ]
+};
+
+// ==================== VIS NETWORK ====================
+const nodes = new vis.DataSet(graphData.nodes.map(n => ({
+    id: n.id,
+    label: n.label,
+    shape: n.shape || "dot",
+    size: n.size || 15,
+    color: { background: n.color, border: n.color, highlight: { background: n.color, border: "#ffffff" } },
+    font: n.font || { color: "#e2e8f0", size: 11, face: "Inter" },
+    borderWidth: 0, borderWidthSelected: 2,
+    group: n.group,
+    shadow: { enabled: true, color: n.color + "40", size: 6 },
+})));
+
+const edges = new vis.DataSet(graphData.edges.map(e => ({
+    from: e.from, to: e.to, label: e.label,
+    color: e.color || { color: "#334155", opacity: 0.4 },
+    width: e.width || 1, dashes: e.dashes || false,
+    smooth: { type: "curvedCW", roundness: 0.15 },
+    font: { color: "#64748b", size: 9, face: "Inter", strokeWidth: 0, align: "middle" },
+    arrows: { to: { enabled: true, scaleFactor: 0.6, type: "arrow" } },
+})));
+
+const container = document.getElementById("mynetwork");
+const data = { nodes, edges };
+const options = {
+    physics: {
+        solver: "forceAtlas2Based",
+        forceAtlas2Based: { gravitationalConstant: -42, centralGravity: 0.008, springLength: 180, springConstant: 0.05, damping: 0.4, avoidOverlap: 0.5 },
+        stabilization: { iterations: 200 },
+    },
+    interaction: { hover: true, tooltipDelay: 200, navigationButtons: true, keyboard: true, multiselect: true, selectConnectedEdges: true },
+    manipulation: { enabled: false },
+    edges: { smooth: { type: "curvedCW", roundness: 0.15 }, arrowStrikethrough: false },
+    nodes: { borderWidth: 0, borderWidthSelected: 2 },
+    groups: { agents: { shape: "hexagon", size: 22 }, tools: { shape: "dot", size: 18 }, memory: { shape: "diamond", size: 16 }, core: { shape: "square", size: 14 }, deps: { shape: "star", size: 12 }, cloud: { shape: "dot", size: 16 } },
+};
+const network = new vis.Network(container, data, options);
+
+document.getElementById("stats-nodes").textContent = graphData.nodes.length;
+document.getElementById("stats-edges").textContent = graphData.edges.length;
+document.getElementById("stats-groups").textContent = [...new Set(graphData.nodes.map(n=>n.group))].length;
+
+// ==================== DETAIL PANEL ====================
+network.on("click", function(params) {
+    if (params.nodes.length > 0) {
+        const nodeId = params.nodes[0];
+        showNodeDetails(nodeId);
+    } else {
+        closePanel();
+    }
+});
+
+function showNodeDetails(nodeId) {
+    const nodeData = graphData.nodes.find(n => n.id === nodeId);
+    const details = nodeDetails[nodeId];
+    if (!nodeData || !details) return;
+
+    const panel = document.getElementById("detail-panel");
+    const content = document.getElementById("panel-content");
+    const isMobile = window.innerWidth < 768;
+
+    const group = nodeData.group || nodeData.type || "unknown";
+    const colors = { agents: "#6366f1", tools: "#10b981", memory: "#f59e0b", core: "#06b6d4", deps: "#f43f5e", cloud: "#a855f7", files: "#64748b" };
+    const color = colors[group] || "#64748b";
+
+    // Find connections
+    const outgoing = graphData.edges.filter(e => e.from === nodeId);
+    const incoming = graphData.edges.filter(e => e.to === nodeId);
+    const connectedNodes = [...new Set([...outgoing.map(e=>e.to), ...incoming.map(e=>e.from)])].filter(id => id !== nodeId);
+    const connectedDetails = connectedNodes.slice(0, 20).map(id => {
+        const n = graphData.nodes.find(x => x.id === id);
+        return n ? { id, label: n.label.replace(/\n/g, " "), group: n.group } : { id, label: id, group: "unknown" };
+    });
+
+    content.innerHTML = `
+        <div class="slide-in">
+            <div class="detail-section flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg" style="background:${color}20; border:1px solid ${color}40; display:flex; align-items:center; justify-content:center;">
+                        <div class="w-3 h-3 rounded-full" style="background:${color}"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-white font-bold text-base">${nodeData.label.replace(/\n/g, " ")}</h2>
+                        <span class="badge" style="background:${color}20; color:${color}; border:1px solid ${color}30">${group}</span>
+                    </div>
+                </div>
+                <button onclick="closePanel()" class="text-slate-500 hover:text-white transition-colors p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="detail-section">
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Descrição</p>
+                <p class="text-sm text-slate-300 leading-relaxed">${details.description || "Sem descrição disponível."}</p>
+            </div>
+
+            <div class="detail-section">
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Informações</p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between"><span class="text-slate-400">ID</span><span class="text-slate-200 font-mono">${nodeId}</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Tipo</span><span class="text-slate-200">${nodeData.type || group}</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Grupo</span><span class="text-slate-200 capitalize">${group}</span></div>
+                    ${details.path ? `<div class="flex justify-between"><span class="text-slate-400">Path</span><span class="text-slate-200 font-mono text-xs truncate max-w-[200px]" title="${details.path}">${details.path}</span></div>` : ""}
+                    ${details.dependencies ? `<div class="flex justify-between"><span class="text-slate-400">Dependências</span><span class="text-slate-200">${details.dependencies.length}</span></div>` : ""}
+                </div>
+            </div>
+
+            ${details.dependencies ? `
+            <div class="detail-section">
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Dependências (${details.dependencies.length})</p>
+                <div class="flex flex-wrap gap-1.5">
+                    ${details.dependencies.map(dep => `<span class="badge bg-rose-500/10 text-rose-300 border border-rose-500/20 text-[10px]">${dep}</span>`).join('')}
+                </div>
+            </div>` : ""}
+
+            <div class="detail-section">
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Conexões (${connectedDetails.length})</p>
+                <div class="space-y-1 max-h-48 overflow-y-auto">
+                    ${connectedDetails.map(c => `
+                        <div class="connection-item flex items-center gap-2 cursor-pointer hover:bg-slate-700/20" onclick="focusNode('${c.id}')">
+                            <div class="w-2 h-2 rounded-full shrink-0" style="background:${colors[c.group] || '#64748b'}"></div>
+                            <span class="text-slate-300 truncate">${c.label}</span>
+                            <span class="text-slate-500 text-[10px] uppercase ml-auto shrink-0">${c.group}</span>
+                        </div>
+                    `).join('')}
+                    ${connectedDetails.length === 0 ? '<p class="text-slate-500 text-sm">Nenhuma conexão direta</p>' : ''}
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2 font-semibold">Relacionamentos</p>
+                <div class="space-y-1.5 text-sm">
+                    <div><span class="text-emerald-400 font-medium">${outgoing.length}</span> <span class="text-slate-400">arestas de saída</span></div>
+                    <div><span class="text-cyan-400 font-medium">${incoming.length}</span> <span class="text-slate-400">arestas de entrada</span></div>
+                    ${outgoing.slice(0,5).map(e => `<div class="text-xs text-slate-500 ml-2">→ ${e.label}: ${graphData.nodes.find(n=>n.id===e.to)?.label?.replace(/\n/g,' ') || e.to}</div>`).join('')}
+                    ${outgoing.length > 5 ? `<div class="text-xs text-slate-600 ml-2">... e mais ${outgoing.length-5}</div>` : ''}
+                </div>
+            </div>
+        </div>
+    `;
+
+    panel.classList.add("open");
+    if (isMobile) {
+        document.getElementById("mynetwork").classList.add("with-panel");
+    }
+}
+
+function closePanel() {
+    document.getElementById("detail-panel").classList.remove("open");
+    document.getElementById("mynetwork").classList.remove("with-panel");
+}
+
+function focusNode(nodeId) {
+    closePanel();
+    network.fit({ nodes: [nodeId], animation: { duration: 500, easingFunction: "easeInOutQuad" } });
+    network.selectNodes([nodeId]);
+    setTimeout(() => showNodeDetails(nodeId), 600);
+}
+
+// ==================== FILTERS ====================
+const filterGroups = [...new Set(graphData.nodes.map(n => n.group))];
+const filterContainer = document.getElementById("filter-buttons");
+const activeFilters = new Set(filterGroups);
+
+filterGroups.forEach(group => {
+    const btn = document.createElement("button");
+    btn.dataset.group = group;
+    btn.className = "filter-btn text-xs px-3 py-1.5 rounded-lg font-medium transition-all flex items-center gap-2";
+    const colors = { agents: "#6366f1", tools: "#10b981", memory: "#f59e0b", core: "#06b6d4", deps: "#f43f5e", cloud: "#a855f7", files: "#64748b" };
+    btn.innerHTML = `<span class="w-2 h-2 rounded-full shrink-0" style="background:${colors[group]||'#64748b'}"></span><span class="truncate">${group}</span>`;
+    btn.classList.add("bg-indigo-500/20", "text-indigo-300", "border", "border-indigo-500/20");
+    filterContainer.appendChild(btn);
+
+    btn.addEventListener("click", () => {
+        if (activeFilters.has(group)) {
+            activeFilters.delete(group);
+            btn.classList.remove("bg-indigo-500/20", "text-indigo-300", "border-indigo-500/20");
+            btn.classList.add("bg-slate-800/50", "text-slate-500");
+        } else {
+            activeFilters.add(group);
+            btn.classList.remove("bg-slate-800/50", "text-slate-500");
+            btn.classList.add("bg-indigo-500/20", "text-indigo-300", "border", "border-indigo-500/20");
+        }
+        applyFilters();
+    });
+});
+
+function applyFilters() {
+    const idsToShow = new Set();
+    graphData.nodes.forEach(n => { if (activeFilters.has(n.group)) idsToShow.add(n.id); });
+    nodes.forEach(n => { nodes.update({ id: n.id, hidden: !idsToShow.has(n.id) }); });
+}
+
+// ==================== SEARCH ====================
+const searchInput = document.getElementById("search-input");
+let searchTimeout;
+searchInput.addEventListener("input", () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        const q = searchInput.value.toLowerCase().trim();
+        if (!q) { network.selectNodes([]); return; }
+        const matches = graphData.nodes.filter(n => n.id.toLowerCase().includes(q) || n.label.toLowerCase().includes(q));
+        if (matches.length > 0) {
+            const ids = matches.map(m => m.id);
+            network.selectNodes(ids);
+            network.fit({ nodes: ids, animation: { duration: 800, easingFunction: "easeInOutQuad" } });
+        }
+    }, 300);
+});
+
+// ==================== LAYOUT ====================
+document.querySelectorAll(".layout-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".layout-btn").forEach(b => {
+            b.classList.remove("bg-indigo-500/20", "text-indigo-300", "border-indigo-500/20");
+            b.classList.add("text-slate-400");
+        });
+        btn.classList.add("bg-indigo-500/20", "text-indigo-300", "border", "border-indigo-500/20");
+        btn.classList.remove("text-slate-400");
+
+        const layout = btn.dataset.layout;
+        if (layout === "hierarchical") {
+            network.setOptions({ physics: { enabled: false }, layout: { hierarchical: { direction: "UD", sortMethod: "directed", levelSeparation: 180, nodeSpacing: 150, treeSpacing: 200, edgeMinimization: true } } });
+        } else if (layout === "concentric") {
+            network.setOptions({ physics: { enabled: false }, layout: { hierarchical: false } });
+            const groups = [...new Set(graphData.nodes.map(n => n.group))];
+            const positions = {};
+            graphData.nodes.forEach((n, i) => {
+                const groupIdx = groups.indexOf(n.group);
+                const angle = (i / graphData.nodes.length) * 2 * Math.PI;
+                const r = 120 + groupIdx * 40;
+                positions[n.id] = { x: Math.cos(angle) * r, y: Math.sin(angle) * r };
+            });
+            nodes.forEach(n => { if (positions[n.id]) nodes.update({ id: n.id, x: positions[n.id].x, y: positions[n.id].y }); });
+            network.fit({ animation: true });
+        } else {
+            network.setOptions({ physics: { enabled: true, solver: "forceAtlas2Based", forceAtlas2Based: { gravitationalConstant: -42, centralGravity: 0.008, springLength: 180, springConstant: 0.05, damping: 0.4, avoidOverlap: 0.5 }, stabilization: { iterations: 200 } }, layout: { hierarchical: false } });
+        }
+    });
+});
+
+// ==================== RESET + FULLSCREEN ====================
+document.getElementById("btn-reset").addEventListener("click", () => {
+    network.fit({ animation: { duration: 600, easingFunction: "easeInOutQuad" } });
+    network.selectNodes([]);
+    searchInput.value = "";
+    closePanel();
+});
+
+document.getElementById("btn-fullscreen").addEventListener("click", () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+});
+
+// ==================== TOOLTIP ====================
+network.on("hoverNode", function(params) {
+    const nodeData = graphData.nodes.find(n => n.id === params.node);
+    const details = nodeDetails[params.node];
+    if (!nodeData) return;
+    const tip = document.getElementById("tooltip");
+    tip.style.display = "block";
+    tip.innerHTML = `
+        <div class="text-[10px] uppercase tracking-wider opacity-50 mb-1">${nodeData.type || nodeData.group || "component"}</div>
+        <div class="text-white font-bold text-sm">${nodeData.label.replace(/\n/g, "<br>")}</div>
+        <div class="text-xs text-slate-400 mt-1">${(details?.description || "Sem descrição").substring(0, 100)}${(details?.description||"").length > 100 ? "..." : ""}</div>
+        <div class="text-[10px] text-slate-600 mt-1 font-mono">${details?.path || nodeData.id}</div>
+    `;
+    const rect = container.getBoundingClientRect();
+    tip.style.left = (params.event.clientX - rect.left + 15) + "px";
+    tip.style.top = (params.event.clientY - rect.top - 10) + "px";
+});
+
+network.on("blurNode", function() {
+    document.getElementById("tooltip").style.display = "none";
+});
+
+// ==================== DOUBLE CLICK ====================
+network.on("doubleClick", function(params) {
+    if (params.nodes.length > 0) {
+        showNodeDetails(params.nodes[0]);
+        network.fit({ nodes: [params.nodes[0]], animation: { duration: 600, easingFunction: "easeInOutQuad" } });
+    }
+});
+
+// ==================== ESC TO CLOSE PANEL ====================
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePanel();
+});
+
+console.log("🚀 Knowledge Graph v2 carregado:", graphData.nodes.length, "nós,", graphData.edges.length, "arestas");
+</script>
+</body>
+</html>
