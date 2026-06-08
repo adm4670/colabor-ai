@@ -103,6 +103,7 @@ import { answerAgent as writerAgent } from "../agents/answer.agent";
 
 
 import { getTelemetry } from "../telemetry/telemetry";
+import { getMemoryHub } from "../memory/memory-hub";
 
 
 
@@ -1855,6 +1856,13 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
             }
+        // Extrair fatos da conversa para o Knowledge Graph
+        try {
+          getMemoryHub().extractFromConversation(input, finalResponse || parsed.instruction || "");
+        } catch (e) {
+          // Knowledge Graph extraction is not critical
+        }
+    
 
 
 
@@ -2472,6 +2480,13 @@ import { getTelemetry } from "../telemetry/telemetry";
 
 
         });
+        // Extrair fatos da conversa para o Knowledge Graph
+        try {
+          getMemoryHub().extractFromConversation(input, finalResponse);
+        } catch (e) {
+          // Knowledge Graph extraction is not critical
+        }
+    
 
 
 
