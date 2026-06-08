@@ -1,0 +1,464 @@
+{
+  "sessionId": "orchestrator_1780932805348_e8jt1b",
+  "userInput": "você utilizou o agent imageReaderAgent para ler a imagem?",
+  "startedAt": "2026-06-08T15:48:41.830Z",
+  "finishedAt": "2026-06-08T15:49:29.329Z",
+  "totalDuration": 47499,
+  "totalLLMCalls": 19,
+  "totalPromptTokens": 490730,
+  "totalCompletionTokens": 3420,
+  "totalTokens": 494150,
+  "maxContextWindowTokens": 30518,
+  "avgTokensPerLLMCall": 26008,
+  "estimatedCostUSD": 0.1363,
+  "totalAgentCalls": 17,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 12,
+    "assistant": 1,
+    "ReflectorAgent": 1,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 17,
+  "totalToolCalls": 2,
+  "toolCallBreakdown": {
+    "memory_search": 1,
+    "vector_memory_search": 1
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780933721856,
+      "duration": 5447,
+      "promptTokens": 23813,
+      "completionTokens": 394,
+      "totalTokens": 24207,
+      "historyLength": 22,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933727304,
+      "duration": 2971,
+      "promptTokens": 29219,
+      "completionTokens": 105,
+      "totalTokens": 29324,
+      "historyLength": 296,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780933727305,
+      "duration": 5623,
+      "promptTokens": 21884,
+      "completionTokens": 516,
+      "totalTokens": 22400,
+      "historyLength": 51,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933732928,
+      "duration": 2934,
+      "promptTokens": 29350,
+      "completionTokens": 93,
+      "totalTokens": 29443,
+      "historyLength": 298,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933736523,
+      "duration": 1921,
+      "promptTokens": 29461,
+      "completionTokens": 34,
+      "totalTokens": 29495,
+      "historyLength": 300,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780933727305,
+      "duration": 13842,
+      "promptTokens": 22833,
+      "completionTokens": 87,
+      "totalTokens": 22920,
+      "historyLength": 53,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933738776,
+      "duration": 3061,
+      "promptTokens": 29517,
+      "completionTokens": 113,
+      "totalTokens": 29630,
+      "historyLength": 303,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933741149,
+      "duration": 4490,
+      "promptTokens": 29534,
+      "completionTokens": 248,
+      "totalTokens": 29782,
+      "historyLength": 304,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933745971,
+      "duration": 2332,
+      "promptTokens": 29920,
+      "completionTokens": 36,
+      "totalTokens": 29956,
+      "historyLength": 306,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780933727305,
+      "duration": 23935,
+      "promptTokens": 22968,
+      "completionTokens": 366,
+      "totalTokens": 23334,
+      "historyLength": 55,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933751241,
+      "duration": 2994,
+      "promptTokens": 29990,
+      "completionTokens": 92,
+      "totalTokens": 30082,
+      "historyLength": 308,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933754573,
+      "duration": 3379,
+      "promptTokens": 30109,
+      "completionTokens": 115,
+      "totalTokens": 30224,
+      "historyLength": 310,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933758288,
+      "duration": 2554,
+      "promptTokens": 6094,
+      "completionTokens": 120,
+      "totalTokens": 6214,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933758288,
+      "duration": 2703,
+      "promptTokens": 30242,
+      "completionTokens": 100,
+      "totalTokens": 30342,
+      "historyLength": 313,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933760844,
+      "duration": 2855,
+      "promptTokens": 30256,
+      "completionTokens": 142,
+      "totalTokens": 30398,
+      "historyLength": 314,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780933760844,
+      "duration": 2897,
+      "promptTokens": 26473,
+      "completionTokens": 126,
+      "totalTokens": 26599,
+      "historyLength": 24,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933763744,
+      "duration": 3131,
+      "promptTokens": 30508,
+      "completionTokens": 178,
+      "totalTokens": 30686,
+      "historyLength": 317,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780933763744,
+      "duration": 3378,
+      "promptTokens": 30518,
+      "completionTokens": 138,
+      "totalTokens": 30656,
+      "historyLength": 318,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780933763744,
+      "duration": 5585,
+      "promptTokens": 8041,
+      "completionTokens": 417,
+      "totalTokens": 8458,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    você utilizou o agent imageReaderAgent para ler a imagem?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: crie uma imagem teste_imagem no diretório raiz da colabor-ai ba",
+      "startTime": 1780933721856,
+      "duration": 5448,
+      "success": true,
+      "responseLength": 487,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Responda de forma honesta e direta: sim, o imageReaderAgent foi chamado primeiro…\"",
+      "startTime": 1780933727304,
+      "duration": 2971,
+      "success": true,
+      "responseLength": 363,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking if I used the imageReaderAgent to read the logo.png image.",
+      "startTime": 1780933732928,
+      "duration": 2935,
+      "success": true,
+      "responseLength": 333,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me look at the conversation history more carefully.",
+      "startTime": 1780933736523,
+      "duration": 1921,
+      "success": true,
+      "responseLength": 105,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"logo.png imageReaderAgent 429 rate limit\"",
+      "startTime": 1780933738776,
+      "duration": 3061,
+      "success": true,
+      "responseLength": 368,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me search more specifically for the conversation about reading logo.png.",
+      "startTime": 1780933741149,
+      "duration": 4491,
+      "success": true,
+      "responseLength": 915,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 vector_memory_search: \"leitura da imagem logo.png imageReaderAg\"",
+      "startTime": 1780933745971,
+      "duration": 2333,
+      "success": true,
+      "responseLength": 122,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 OK, I don't have direct memory of that specific exchange, but based on the instruction provided to me, I should respond ",
+      "startTime": 1780933751241,
+      "duration": 2994,
+      "success": true,
+      "responseLength": 331,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking about a previous interaction where they asked me to read the logo.png image.",
+      "startTime": 1780933754573,
+      "duration": 3380,
+      "success": true,
+      "responseLength": 366,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    você utilizou o agent imageReaderAgent para ler a imagem?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: crie uma imagem teste_imagem no diretório raiz da colabor-ai ba",
+      "startTime": 1780933727305,
+      "duration": 30983,
+      "success": true,
+      "responseLength": 881,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: você utilizou o agent imageReaderAgent para ler a imagem?\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: Responda de ",
+      "startTime": 1780933758288,
+      "duration": 2555,
+      "success": true,
+      "responseLength": 439,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780933758288,
+      "duration": 2703,
+      "success": true,
+      "responseLength": 320,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780933760844,
+      "duration": 2856,
+      "success": true,
+      "responseLength": 458,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    você utilizou o agent imageReaderAgent para ler a imagem?\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: crie uma imagem teste_imagem no diretório raiz da colabor-ai ba",
+      "startTime": 1780933760844,
+      "duration": 2898,
+      "success": true,
+      "responseLength": 216,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Formatando resposta...",
+      "startTime": 1780933763744,
+      "duration": 3131,
+      "success": true,
+      "responseLength": 528,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 📝 Preparando a resposta final...",
+      "startTime": 1780933763744,
+      "duration": 3379,
+      "success": true,
+      "responseLength": 420,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. If it's already natural, just polish it slightly. If it's JSON or internal ",
+      "startTime": 1780933763744,
+      "duration": 5585,
+      "success": true,
+      "responseLength": 828,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Responda de forma honesta e direta: sim, o imageReaderAgent foi chamado primeiro para ler a imagem, mas retornou erro 429 (rate limit - muitas requisições). Como alternativa, usei o PythonAgent com Pi",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780933727304
+    },
+    {
+      "instruction": "A resposta do assistant já explicou claramente que o imageReaderAgent foi tentado mas falhou por rate limit (429), e o fallback com PythonAgent foi usado. Tarefa concluída.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780933763743
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780933738780,
+      "hasError": false,
+      "duration": 11475
+    },
+    {
+      "toolName": "vector_memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780933745971,
+      "hasError": false,
+      "duration": 18666
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-08T14:55:13.969Z",
+  "savedAt": "2026-06-08T19:13:05.234Z",
   "nodes": [
     {
       "key": "colabor-ai",
@@ -822,7 +822,8 @@
       "predicates": [
         "exports",
         "is_defined_in",
-        "is_interface"
+        "is_interface",
+        "had_conversation"
       ]
     },
     {
@@ -5637,6 +5638,628 @@
       "predicates": [
         "has_total_facts"
       ]
+    },
+    {
+      "key": "core/agents/image-generator.agent.ts",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "imports",
+        "exports",
+        "is_defined_in",
+        "contains"
+      ]
+    },
+    {
+      "key": "imagegeneratoragent",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_const"
+      ]
+    },
+    {
+      "key": "core/agents/image-reader.agent.ts",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "imports",
+        "exports",
+        "is_defined_in",
+        "contains"
+      ]
+    },
+    {
+      "key": "imagereaderagent",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_const"
+      ]
+    },
+    {
+      "key": "../agents/image-reader.agent",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "../agents/image-generator.agent",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "logo.png",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category"
+      ]
+    },
+    {
+      "key": ".png",
+      "predicates": [
+        "has_extension"
+      ]
+    },
+    {
+      "key": "medium",
+      "predicates": [
+        "size_category"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-00-59-549z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-02-32-944z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-17-10-206z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-22-39-367z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-28-56-854z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-32-24-112z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-33-16-761z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-37-34-588z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-42-54-952z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-47-49-687z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-49-29-330z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-06-21-173z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-50-10-212z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "267",
+      "predicates": [
+        "has_total_files"
+      ]
+    },
+    {
+      "key": "2239",
+      "predicates": [
+        "has_total_facts"
+      ]
+    },
+    {
+      "key": "core/agent/fix_agent.py",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": ".py",
+      "predicates": [
+        "has_extension"
+      ]
+    },
+    {
+      "key": "19",
+      "predicates": [
+        "has_total_files"
+      ]
+    },
+    {
+      "key": "234",
+      "predicates": [
+        "has_total_facts"
+      ]
+    },
+    {
+      "key": "me explique o que",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "essa imagem",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "detalhes em charcoal pra dar contraste",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "um design bem moderno e vibrante",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "2026-06-08",
+      "predicates": [
+        "had_conversation"
+      ]
+    },
+    {
+      "key": "pedir pra ele analisar uma logo",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "tipo pedir pra uma impressora ler um documento pra você",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "a logo",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "1024x1024 px",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "e de descobrir que o agente certo mesmo",
+      "predicates": [
+        "era"
+      ]
+    },
+    {
+      "key": "o leitor de imagens",
+      "predicates": [
+        "era"
+      ]
+    },
+    {
+      "key": "a luz",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "de início de tarde",
+      "predicates": [
+        "é"
+      ]
+    },
+    {
+      "key": "ou",
+      "predicates": [
+        "prefere"
+      ]
+    },
+    {
+      "key": "ajustar algo",
+      "predicates": [
+        "prefere"
+      ]
+    },
+    {
+      "key": "core/agents/image-audit.ts",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "imports",
+        "exports",
+        "is_defined_in",
+        "contains"
+      ]
+    },
+    {
+      "key": "imageauditentry",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_interface"
+      ]
+    },
+    {
+      "key": "logimageaudit",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_function"
+      ]
+    },
+    {
+      "key": "readrecentauditentries",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_function"
+      ]
+    },
+    {
+      "key": "getauditlogpath",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_function"
+      ]
+    },
+    {
+      "key": "getauditstats",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_function"
+      ]
+    },
+    {
+      "key": "../tools/imageaudittool",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "../agents/image-audit",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "core/tools/imageaudittool.ts",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "imports",
+        "exports",
+        "is_defined_in",
+        "contains"
+      ]
+    },
+    {
+      "key": "imageaudittool",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_const"
+      ]
+    },
+    {
+      "key": "generated_images",
+      "predicates": [
+        "is_directory"
+      ]
+    },
+    {
+      "key": "pato-real-azul.png",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category"
+      ]
+    },
+    {
+      "key": "suico-alpes.png",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-59-24-773z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-01-16-727z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-02-46-247z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-04-58-483z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-12-01-790z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-33-07-019z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-34-59-427z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-37-25-987z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-41-50-840z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-52-40-991z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-10-16-613z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-53-42-811z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-57-39-708z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-58-50-495z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-02-32-398z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-03-53-985z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-09-472z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-53-394z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-11-13-285z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-12-03-217z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "292",
+      "predicates": [
+        "has_total_files"
+      ]
+    },
+    {
+      "key": "39",
+      "predicates": [
+        "has_total_directories"
+      ]
+    },
+    {
+      "key": "2362",
+      "predicates": [
+        "has_total_facts"
+      ]
     }
   ],
   "edges": [
@@ -5653,6 +6276,18 @@
         },
         {
           "object": "251",
+          "confidence": 1
+        },
+        {
+          "object": "267",
+          "confidence": 1
+        },
+        {
+          "object": "19",
+          "confidence": 1
+        },
+        {
+          "object": "292",
           "confidence": 1
         }
       ]
@@ -5671,6 +6306,10 @@
         {
           "object": "38",
           "confidence": 1
+        },
+        {
+          "object": "39",
+          "confidence": 1
         }
       ]
     },
@@ -5687,6 +6326,18 @@
         },
         {
           "object": "2151",
+          "confidence": 1
+        },
+        {
+          "object": "2239",
+          "confidence": 1
+        },
+        {
+          "object": "234",
+          "confidence": 1
+        },
+        {
+          "object": "2362",
           "confidence": 1
         }
       ]
@@ -7992,6 +8643,10 @@
         {
           "object": "core/agent/main.ts",
           "confidence": 1
+        },
+        {
+          "object": "core/agent/fix_agent.py",
+          "confidence": 1
         }
       ]
     },
@@ -8270,6 +8925,18 @@
         },
         {
           "object": "core/agents/thinking.agent.ts",
+          "confidence": 1
+        },
+        {
+          "object": "core/agents/image-generator.agent.ts",
+          "confidence": 1
+        },
+        {
+          "object": "core/agents/image-reader.agent.ts",
+          "confidence": 1
+        },
+        {
+          "object": "core/agents/image-audit.ts",
           "confidence": 1
         }
       ]
@@ -12977,6 +13644,18 @@
         {
           "object": "../telemetry/console-dashboard",
           "confidence": 0.95
+        },
+        {
+          "object": "../agents/image-reader.agent",
+          "confidence": 0.9
+        },
+        {
+          "object": "../agents/image-generator.agent",
+          "confidence": 0.9
+        },
+        {
+          "object": "../agents/image-audit",
+          "confidence": 0.95
         }
       ]
     },
@@ -14342,6 +15021,10 @@
         },
         {
           "object": "core/tools/datetimetool.ts",
+          "confidence": 1
+        },
+        {
+          "object": "core/tools/imageaudittool.ts",
           "confidence": 1
         }
       ]
@@ -17842,6 +18525,138 @@
         {
           "object": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json",
           "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-00-59-549z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-02-32-944z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-17-10-206z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-22-39-367z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-28-56-854z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-32-24-112z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-33-16-761z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-37-34-588z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-42-54-952z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-47-49-687z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t15-49-29-330z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t16-06-21-173z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t16-50-10-212z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t16-59-24-773z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-01-16-727z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-02-46-247z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-04-58-483z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-12-01-790z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-33-07-019z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-34-59-427z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-37-25-987z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-41-50-840z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t17-52-40-991z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t18-10-16-613z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t18-53-42-811z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t18-57-39-708z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t18-58-50-495z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t19-02-32-398z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t19-03-53-985z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t19-07-09-472z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t19-07-53-394z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t19-11-13-285z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t19-12-03-217z.json",
+          "confidence": 1
         }
       ]
     },
@@ -21249,6 +22064,1502 @@
     },
     {
       "key": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-generator.agent.ts::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-generator.agent.ts::has_extension",
+      "targets": [
+        {
+          "object": ".ts",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-generator.agent.ts::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-generator.agent.ts::imports",
+      "targets": [
+        {
+          "object": "../agent/agent",
+          "confidence": 0.95
+        },
+        {
+          "object": "../constants/instructions",
+          "confidence": 0.95
+        },
+        {
+          "object": "./agent-registry",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/filesystemtool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/websearchtool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/apiintegrationtool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../memory/memory_search",
+          "confidence": 0.95
+        },
+        {
+          "object": "../memory/vector-memory-tools",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/taskschedulertool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/imageaudittool",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-generator.agent.ts::exports",
+      "targets": [
+        {
+          "object": "imagegeneratoragent",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imagegeneratoragent::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-generator.agent.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imagegeneratoragent::is_const",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-reader.agent.ts::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-reader.agent.ts::has_extension",
+      "targets": [
+        {
+          "object": ".ts",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-reader.agent.ts::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-reader.agent.ts::imports",
+      "targets": [
+        {
+          "object": "../agent/agent",
+          "confidence": 0.95
+        },
+        {
+          "object": "../constants/instructions",
+          "confidence": 0.95
+        },
+        {
+          "object": "./agent-registry",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/filesystemtool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/websearchtool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/apiintegrationtool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../memory/memory_search",
+          "confidence": 0.95
+        },
+        {
+          "object": "../memory/vector-memory-tools",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/taskschedulertool",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-reader.agent.ts::exports",
+      "targets": [
+        {
+          "object": "imagereaderagent",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imagereaderagent::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-reader.agent.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imagereaderagent::is_const",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "logo.png::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "logo.png::has_extension",
+      "targets": [
+        {
+          "object": ".png",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "logo.png::size_category",
+      "targets": [
+        {
+          "object": "medium",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-00-59-549z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-00-59-549z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-00-59-549z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-02-32-944z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-02-32-944z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-02-32-944z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-17-10-206z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-17-10-206z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-17-10-206z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-22-39-367z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-22-39-367z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-22-39-367z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-28-56-854z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-28-56-854z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-28-56-854z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-32-24-112z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-32-24-112z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-32-24-112z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-33-16-761z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-33-16-761z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-33-16-761z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-37-34-588z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-37-34-588z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-37-34-588z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-42-54-952z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-42-54-952z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-42-54-952z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-47-49-687z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-47-49-687z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-47-49-687z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-49-29-330z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-49-29-330z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t15-49-29-330z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-06-21-173z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-06-21-173z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-06-21-173z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-50-10-212z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-50-10-212z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-50-10-212z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/agent/fix_agent.py::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agent/fix_agent.py::has_extension",
+      "targets": [
+        {
+          "object": ".py",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agent/fix_agent.py::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "me explique o que::é",
+      "targets": [
+        {
+          "object": "essa imagem",
+          "confidence": 0.9500000000000001
+        }
+      ]
+    },
+    {
+      "key": "detalhes em charcoal pra dar contraste::é",
+      "targets": [
+        {
+          "object": "um design bem moderno e vibrante",
+          "confidence": 0.9500000000000001
+        }
+      ]
+    },
+    {
+      "key": "user::had_conversation",
+      "targets": [
+        {
+          "object": "2026-06-08",
+          "confidence": 0.5
+        }
+      ]
+    },
+    {
+      "key": "pedir pra ele analisar uma logo::é",
+      "targets": [
+        {
+          "object": "tipo pedir pra uma impressora ler um documento pra você",
+          "confidence": 0.9500000000000001
+        }
+      ]
+    },
+    {
+      "key": "a logo::é",
+      "targets": [
+        {
+          "object": "1024x1024 px",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "e de descobrir que o agente certo mesmo::era",
+      "targets": [
+        {
+          "object": "o leitor de imagens",
+          "confidence": 0.99
+        }
+      ]
+    },
+    {
+      "key": "a luz::é",
+      "targets": [
+        {
+          "object": "de início de tarde",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "ou::prefere",
+      "targets": [
+        {
+          "object": "ajustar algo",
+          "confidence": 0.75
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-audit.ts::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-audit.ts::has_extension",
+      "targets": [
+        {
+          "object": ".ts",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-audit.ts::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-audit.ts::imports",
+      "targets": [
+        {
+          "object": "fs",
+          "confidence": 0.95
+        },
+        {
+          "object": "path",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/agents/image-audit.ts::exports",
+      "targets": [
+        {
+          "object": "imageauditentry",
+          "confidence": 0.98
+        },
+        {
+          "object": "logimageaudit",
+          "confidence": 0.98
+        },
+        {
+          "object": "readrecentauditentries",
+          "confidence": 0.98
+        },
+        {
+          "object": "getauditlogpath",
+          "confidence": 0.98
+        },
+        {
+          "object": "getauditstats",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imageauditentry::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-audit.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imageauditentry::is_interface",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "logimageaudit::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-audit.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "logimageaudit::is_function",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "readrecentauditentries::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-audit.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "readrecentauditentries::is_function",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "getauditlogpath::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-audit.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "getauditlogpath::is_function",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "getauditstats::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/image-audit.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "getauditstats::is_function",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/tools/imageaudittool.ts::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/tools/imageaudittool.ts::has_extension",
+      "targets": [
+        {
+          "object": ".ts",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/tools/imageaudittool.ts::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/tools/imageaudittool.ts::imports",
+      "targets": [
+        {
+          "object": "../agents/image-audit",
+          "confidence": 0.95
+        },
+        {
+          "object": "../utils/logger",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/tools/imageaudittool.ts::exports",
+      "targets": [
+        {
+          "object": "imageaudittool",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imageaudittool::is_defined_in",
+      "targets": [
+        {
+          "object": "core/tools/imageaudittool.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "imageaudittool::is_const",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "generated_images::is_directory",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "pato-real-azul.png::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "pato-real-azul.png::has_extension",
+      "targets": [
+        {
+          "object": ".png",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "pato-real-azul.png::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "suico-alpes.png::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "suico-alpes.png::has_extension",
+      "targets": [
+        {
+          "object": ".png",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "suico-alpes.png::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-59-24-773z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-59-24-773z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t16-59-24-773z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-01-16-727z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-01-16-727z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-01-16-727z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-02-46-247z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-02-46-247z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-02-46-247z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-04-58-483z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-04-58-483z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-04-58-483z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-12-01-790z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-12-01-790z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-12-01-790z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-33-07-019z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-33-07-019z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-33-07-019z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-34-59-427z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-34-59-427z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-34-59-427z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-37-25-987z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-37-25-987z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-37-25-987z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-41-50-840z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-41-50-840z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-41-50-840z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-52-40-991z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-52-40-991z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t17-52-40-991z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-10-16-613z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-10-16-613z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-10-16-613z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-53-42-811z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-53-42-811z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-53-42-811z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-57-39-708z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-57-39-708z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-57-39-708z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-58-50-495z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-58-50-495z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t18-58-50-495z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-02-32-398z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-02-32-398z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-02-32-398z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-03-53-985z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-03-53-985z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-03-53-985z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-09-472z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-09-472z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-09-472z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-53-394z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-53-394z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-07-53-394z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-11-13-285z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-11-13-285z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-11-13-285z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-12-03-217z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-12-03-217z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t19-12-03-217z.json::size_category",
       "targets": [
         {
           "object": "small",

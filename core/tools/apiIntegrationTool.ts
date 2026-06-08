@@ -113,11 +113,19 @@
           let responseData: any = response.data;
           let responseStr: string;
           
+          // ============================================================
+          // CORRECAO: Aumenta o limite de truncamento de 5000 para 100000000
+          // para não truncar base64 de imagens (que podem ter varios MB)
+          // ============================================================
           if (typeof responseData === "object") {
-            responseStr = JSON.stringify(responseData, null, 2).substring(0, 5000);
+            responseStr = JSON.stringify(responseData, null, 2).substring(0, 100000000);
           } else {
-            responseStr = String(responseData).substring(0, 5000);
+            responseStr = String(responseData).substring(0, 100000000);
           }
+    
+          const totalLen = typeof responseData === "object"
+            ? JSON.stringify(responseData).length
+            : String(responseData).length;
     
           return {
             success: true,
@@ -125,7 +133,7 @@
             statusText: response.statusText,
             duration: `${duration}ms`,
             data: responseStr,
-            dataTruncated: responseStr.length < JSON.stringify(response.data).length,
+            dataTruncated: responseStr.length < totalLen,
             headers: {
               contentType: response.headers["content-type"],
               contentLength: response.headers["content-length"],

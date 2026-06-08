@@ -1,0 +1,244 @@
+{
+  "sessionId": "orchestrator_1780945638001_ga0hzy",
+  "userInput": "gere uma imagem de uma ferrari",
+  "startedAt": "2026-06-08T19:11:44.926Z",
+  "finishedAt": "2026-06-08T19:12:03.217Z",
+  "totalDuration": 18291,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 63939,
+  "totalCompletionTokens": 1223,
+  "totalTokens": 65162,
+  "maxContextWindowTokens": 15918,
+  "avgTokensPerLLMCall": 7240,
+  "estimatedCostUSD": 0.0186,
+  "totalAgentCalls": 8,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 4,
+    "image-generator": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 8,
+  "totalToolCalls": 1,
+  "toolCallBreakdown": {
+    "file_system": 1
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780945904952,
+      "duration": 3499,
+      "promptTokens": 13299,
+      "completionTokens": 185,
+      "totalTokens": 13484,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "image-generator",
+      "model": "models/gemini-3.1-flash-image",
+      "startTime": 1780945908452,
+      "duration": 2112,
+      "promptTokens": 9843,
+      "completionTokens": 24,
+      "totalTokens": 9867,
+      "historyLength": 4,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780945908452,
+      "duration": 2357,
+      "promptTokens": 2826,
+      "completionTokens": 21,
+      "totalTokens": 2847,
+      "historyLength": 35,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780945910564,
+      "duration": 1944,
+      "promptTokens": 2842,
+      "completionTokens": 14,
+      "totalTokens": 2856,
+      "historyLength": 36,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "image-generator",
+      "model": "models/gemini-3.1-flash-image",
+      "startTime": 1780945908452,
+      "duration": 6285,
+      "promptTokens": 9904,
+      "completionTokens": 489,
+      "totalTokens": 10393,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780945914737,
+      "duration": 1754,
+      "promptTokens": 2896,
+      "completionTokens": 12,
+      "totalTokens": 2908,
+      "historyLength": 38,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780945914737,
+      "duration": 2414,
+      "promptTokens": 3485,
+      "completionTokens": 95,
+      "totalTokens": 3580,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780945917161,
+      "duration": 1751,
+      "promptTokens": 2926,
+      "completionTokens": 17,
+      "totalTokens": 2943,
+      "historyLength": 40,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780945917161,
+      "duration": 6055,
+      "promptTokens": 15918,
+      "completionTokens": 366,
+      "totalTokens": 16284,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    gere uma imagem de uma ferrari\n\n    Conversation history:\n    user: Gere a seguinte imagem: Uma pessoa realista, um senhor suíço de aproximadamente 60 anos, com pele levemente q",
+      "startTime": 1780945904952,
+      "duration": 3499,
+      "success": true,
+      "responseLength": 350,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 image-generator → \"Gere uma imagem de uma Ferrari: um carro esportivo vermelho vibrante, modelo mod…\"",
+      "startTime": 1780945908452,
+      "duration": 2357,
+      "success": true,
+      "responseLength": 59,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"generated_images, mkdir\"",
+      "startTime": 1780945910564,
+      "duration": 1945,
+      "success": true,
+      "responseLength": 45,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "image-generator",
+      "instruction": "\n    User request:\n    gere uma imagem de uma ferrari\n\n    Conversation history:\n    user: Gere a seguinte imagem: Uma pessoa realista, um senhor suíço de aproximadamente 60 anos, com pele levemente q",
+      "startTime": 1780945908452,
+      "duration": 6285,
+      "success": true,
+      "responseLength": 892,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780945914737,
+      "duration": 1754,
+      "success": true,
+      "responseLength": 45,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n    Evaluate the agent execution result honestly.\n\n    Task: gere uma imagem de uma ferrari\n    Agent used: image-generator\n    Instruction given: Gere uma imagem de uma Ferrari: um carro esportivo v",
+      "startTime": 1780945914737,
+      "duration": 2414,
+      "success": true,
+      "responseLength": 356,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780945917161,
+      "duration": 1752,
+      "success": true,
+      "responseLength": 63,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    gere uma imagem de uma ferrari\n\n    Conversation history:\n    user: Gere a seguinte imagem: Uma pessoa realista, um senhor suíço de aproximadamente 60 anos, com pele levemente q",
+      "startTime": 1780945917161,
+      "duration": 6055,
+      "success": true,
+      "responseLength": 340,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Gere uma imagem de uma Ferrari: um carro esportivo vermelho vibrante, modelo moderno como uma Ferrari SF90 Stradale ou F8 Tributo, estacionado em uma estrada costeira sinuosa à beira-mar, com o sol se",
+      "chosenAgent": "image-generator",
+      "step": 1,
+      "timestamp": 1780945908452
+    },
+    {
+      "instruction": "The image-generator successfully created the Ferrari image. Inform the user that the image was generated with the specified details (Ferrari SF90 Stradale, coastal road at sunset, photorealistic style",
+      "chosenAgent": "writer",
+      "step": 2,
+      "timestamp": 1780945923217
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "file_system",
+      "agentName": "image-generator",
+      "timestamp": 1780945910565,
+      "hasError": false,
+      "duration": 2113
+    }
+  ]
+}

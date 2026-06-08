@@ -30,6 +30,49 @@
       return path.resolve(target);
     }
     
+    // ============================================================
+    // CORRECAO: Funcao para detectar e processar data URLs com base64
+    // Ex: "data:image/png;base64,iVBORw0KGgoAAAA..."
+    // ============================================================
+    function isDataUrl(content: string): boolean {
+      return /^data:[a-zA-Z0-9\/\-\.+]+\/[a-zA-Z0-9\/\-\.+]+;base64,/.test(content);
+    }
+    
+    function extractBase64FromDataUrl(content: string): { mimeType: string; data: Buffer } | null {
+      const match = content.match(/^data:([a-zA-Z0-9\/\-\.+]+);base64,(.+)$/s);
+      if (!match) return null;
+      const mimeType = match[1];
+      const base64Data = match[2];
+      const buffer = Buffer.from(base64Data, "base64");
+      return { mimeType, data: buffer };
+    }
+    
+    function isBase64String(content: string): boolean {
+      // Verifica se parece ser uma string base64 pura (comum em respostas de API)
+      // Precisa ter tamanho minimo e ser composta apenas de caracteres base64 validos
+      if (content.length < 100) return false;
+      // Verifica se e uma sequencia longa de caracteres base64 (a-zA-Z0-9+/=)
+      const base64Regex = /^[A-Za-z0-9+/]+=*$/;
+      return base64Regex.test(content.trim());
+    }
+    
+    // ============================================================
+    // CORRECAO: Extensoes de arquivos que podem conter dados binarios
+    // ============================================================
+    const BINARY_EXTENSIONS = new Set([
+      ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".ico",
+      ".pdf", ".zip", ".gz", ".tar", ".7z", ".rar",
+      ".mp3", ".mp4", ".avi", ".mov", ".mkv",
+      ".exe", ".dll", ".so", ".dylib",
+      ".ttf", ".otf", ".woff", ".woff2",
+      ".ogg", ".wav", ".flac",
+    ]);
+    
+    function isBinaryExtension(filePath: string): boolean {
+      const ext = path.extname(filePath).toLowerCase();
+      return BINARY_EXTENSIONS.has(ext);
+    }
+    
     export const fileSystemTool = {
       type: "function" as const,
     
@@ -111,6 +154,62 @@
               if (!fs.existsSync(dir)) {
                 fs.mkdirSync(dir, { recursive: true });
               }
+    
+              // ============================================================
+              // CORRECAO: Detecta se o conteudo e uma data URL com base64
+              // e escreve como binario em vez de UTF-8
+              // ============================================================
+              const isImageFile = isBinaryExtension(safePath);
+    
+              // Caso 1: Conteudo e data URL (ex: "data:image/png;base64,...")
+              if (isDataUrl(content)) {
+                const extracted = extractBase64FromDataUrl(content);
+                if (extracted) {
+                  fs.writeFileSync(safePath, extracted.data);
+                  return {
+                    success: true,
+                    message: `Arquivo salvo como binario: ${target} (${extracted.data.length} bytes, ${extracted.mimeType})`,
+                    size: extracted.data.length,
+                    mimeType: extracted.mimeType
+                  };
+                }
+              }
+    
+              // Caso 2: Arquivo de imagem e conteudo parece ser base64 puro
+              if (isImageFile && isBase64String(content)) {
+                const buffer = Buffer.from(content.trim(), "base64");
+                fs.writeFileSync(safePath, buffer);
+                return {
+                  success: true,
+                  message: `Arquivo salvo como binario (base64 decodificado): ${target} (${buffer.length} bytes)`,
+                  size: buffer.length
+                };
+              }
+    
+              // Caso 3: Arquivo de imagem mas conteudo nao parece base64 - verificar
+              // se sao bytes "sujos" (string com caracteres nao-UTF8)
+              if (isImageFile) {
+                // Tenta escrever como binario mesmo (pode ser dados binarios convertidos pra string)
+                try {
+                  const buffer = Buffer.from(content, "binary");
+                  fs.writeFileSync(safePath, buffer);
+                  return {
+                    success: true,
+                    message: `Arquivo salvo como binario (fallback): ${target} (${buffer.length} bytes)`,
+                    size: buffer.length
+                  };
+                } catch (binaryErr: any) {
+                  // Se falhar, tenta UTF-8 como fallback
+                  fs.writeFileSync(safePath, content, "utf-8");
+                  return {
+                    success: true,
+                    message: `Arquivo salvo (utf-8 fallback): ${target} (${content.length} caracteres)`,
+                    size: content.length
+                  };
+                }
+              }
+    
+              // Caso 4: Arquivo normal (texto) - escreve como UTF-8
               fs.writeFileSync(safePath, content, "utf-8");
               return {
                 success: true,

@@ -170,3 +170,12 @@
 
 ## Fatos
 - [2026-06-07] eu agendo um aviso
+
+## Preferencias
+- [2026-06-08] commitar essa correção agora? 😊
+
+## Aprendizados
+- [2026-06-08] Os dois arquivos (`image-reader
+
+## Preferencias
+- [2026-06-08] **ajustar algo** no prompt (como enquadramento, cores, posição das vacas, etc

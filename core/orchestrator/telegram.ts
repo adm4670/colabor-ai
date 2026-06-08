@@ -9,6 +9,11 @@ import { logger } from "../utils/logger";
 import { getTelemetry } from "../telemetry/telemetry";
 
 // ============================================================
+// Sistema de Auditoria de Imagens
+// ============================================================
+import { readRecentAuditEntries, getAuditStats } from "../agents/image-audit";
+
+// ============================================================
 // Imports dos agentes (cada import faz o auto-registro no agentRegistry)
 // ============================================================
 import "../agents/planner.agent";
@@ -210,6 +215,135 @@ async function transcribeAudio(filePath: string) {
   return transcription.text;
 }
 
+// ============================================================
+// CORRECAO: Utilitario para detectar e extrair caminhos de imagem
+// gerados pelo image-generator.agent a partir da resposta textual.
+// ============================================================
+
+// Expressao regular para encontrar caminhos de arquivos de imagem
+// Exemplos: "generated_images/image_1234567890.png"
+//           "C:\\projeto\\generated_images\\ferrari.png"
+//           "./generated_images/ferrari.jpg"
+const IMAGE_PATH_REGEX = /(?:generated_images[\\/][^\s"';,)]+\.(?:png|jpg|jpeg|gif|webp|bmp))/gi;
+
+// Expressao regular para encontrar qualquer caminho de arquivo de imagem
+const ANY_IMAGE_PATH_REGEX = /(?:[^\s"';,)]+\.(?:png|jpg|jpeg|gif|webp|bmp))/gi;
+
+/**
+ * Detecta se uma resposta textual contem referencias a imagens geradas
+ * e retorna o caminho do arquivo de imagem, se existir.
+ */
+function findGeneratedImagePath(response: string): string | null {
+  // 1. Tenta primeiro encontrar caminhos na pasta generated_images/
+  const specificMatches = response.match(IMAGE_PATH_REGEX);
+  if (specificMatches && specificMatches.length > 0) {
+    for (const match of specificMatches) {
+      const cleanPath = match.trim();
+      // Tenta resolver o caminho absoluto
+      const resolvedPath = path.resolve(cleanPath);
+      if (fs.existsSync(resolvedPath)) {
+        return resolvedPath;
+      }
+      // Tenta com o caminho relativo ao CWD
+      const cwdPath = path.join(process.cwd(), cleanPath);
+      if (fs.existsSync(cwdPath)) {
+        return cwdPath;
+      }
+    }
+  }
+
+  // 2. Fallback: procura por qualquer caminho de imagem que exista no disco
+  const allMatches = response.match(ANY_IMAGE_PATH_REGEX);
+  if (allMatches && allMatches.length > 0) {
+    for (const match of allMatches) {
+      const cleanPath = match.trim();
+      // Pula se comeca com http (URLs)
+      if (cleanPath.startsWith("http://") || cleanPath.startsWith("https://")) continue;
+      // Pula se for muito curto
+      if (cleanPath.length < 5) continue;
+
+      const resolvedPath = path.resolve(cleanPath);
+      if (fs.existsSync(resolvedPath)) {
+        const stats = fs.statSync(resolvedPath);
+        if (stats.isFile() && stats.size > 0) {
+          return resolvedPath;
+        }
+      }
+    }
+  }
+
+  // 3. Verifica se a pasta generated_images tem arquivos recentes
+  const generatedDir = path.join(process.cwd(), "generated_images");
+  if (fs.existsSync(generatedDir)) {
+    try {
+      const files = fs.readdirSync(generatedDir)
+        .map(f => path.join(generatedDir, f))
+        .filter(f => {
+          const ext = path.extname(f).toLowerCase();
+          return ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp'].includes(ext);
+        })
+        .sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs); // Mais recente primeiro
+
+      if (files.length > 0) {
+        const newest = files[0];
+        const age = Date.now() - fs.statSync(newest).mtimeMs;
+        // So usa se a imagem foi criada nos ultimos 30 segundos
+        if (age < 30000) {
+          return newest;
+        }
+      }
+    } catch {
+      // Ignora erros de leitura do diretorio
+    }
+  }
+
+  return null;
+}
+
+async function sendWithPhoto(
+  bot: TelegramBot,
+  chatId: number,
+  imagePath: string,
+  text: string
+): Promise<void> {
+  const maxCaptionLen = 1000; // Limite do Telegram para caption
+  let caption = sanitizeText(text).substring(0, maxCaptionLen);
+
+  try {
+    // Verifica se o arquivo existe e tem conteudo
+    if (!fs.existsSync(imagePath)) {
+      logger?.warn(`[Telegram] Imagem nao encontrada em: ${imagePath}`);
+      await sendSafeMessage(bot, chatId, text, true);
+      return;
+    }
+
+    const stats = fs.statSync(imagePath);
+    if (stats.size === 0) {
+      logger?.warn(`[Telegram] Imagem vazia: ${imagePath}`);
+      await sendSafeMessage(bot, chatId, text, true);
+      return;
+    }
+
+    logger?.info(`[Telegram] Enviando foto: ${imagePath} (${stats.size} bytes)`);
+
+    // Envia a foto com legenda
+    await bot.sendPhoto(chatId, imagePath, {
+      caption: caption,
+      parse_mode: "MarkdownV2",
+    });
+
+    // Se o texto for maior que o limite da legenda, envia o resto como mensagem separada
+    const remaining = sanitizeText(text).substring(maxCaptionLen).trim();
+    if (remaining.length > 0) {
+      await sendSafeMessage(bot, chatId, remaining, true);
+    }
+  } catch (err: any) {
+    logger?.error(`[Telegram] Erro ao enviar foto: ${err.message}`);
+    // Fallback: envia apenas o texto
+    await sendSafeMessage(bot, chatId, text, true);
+  }
+}
+
 async function startTelegramAgent() {
   const planner = agentRegistry.getPlanner();
   if (!planner) {
@@ -269,6 +403,7 @@ async function startTelegramAgent() {
       // ============================================================
       if (text.startsWith("/")) {
         const cmd = text.split(" ")[0].toLowerCase();
+
         if (cmd === "/telemetry") {
           try {
             const tel = getTelemetry();
@@ -282,9 +417,49 @@ async function startTelegramAgent() {
           }
           return;
         }
+
+        if (cmd === "/audit" || cmd === "/auditoria") {
+          try {
+            // Verificar se foi passado um número (ex: /audit 10)
+            const parts = text.split(" ");
+            const count = parts.length > 1 ? Math.min(parseInt(parts[1], 10) || 5, 20) : 5;
+
+            const stats = getAuditStats();
+            const entries = readRecentAuditEntries(count);
+
+            let message = `<b>📋 AUDITORIA DE GERAÇÃO DE IMAGENS</b>\n\n`;
+            message += `<b>📊 Estatísticas:</b>\n`;
+            message += `• Total de registros: ${stats.totalEntries}\n`;
+            message += `• Arquivo: ${stats.filePath}\n`;
+            message += `• Tamanho: ${stats.fileSizeKB} KB\n\n`;
+
+            if (stats.totalEntries > 0) {
+              message += `<b>📝 Últimos ${count} registros:</b>\n\n`;
+              message += `<code>${sanitizeText(entries.slice(0, 3000))}</code>`;
+            } else {
+              message += `Nenhum registro de auditoria encontrado ainda.\n\n`;
+              message += `Gere uma imagem primeiro para ver os registros aqui.`;
+            }
+
+            message += `\n\n<i>Dica: Use /audit N para ver N registros (máx 20)</i>`;
+
+            await bot.sendMessage(chatId, message, { parse_mode: "HTML" });
+          } catch (err: any) {
+            await bot.sendMessage(
+              chatId,
+              "❌ Erro ao ler auditoria: " + (err.message || "desconhecido")
+            );
+          }
+          return;
+        }
+
         await bot.sendMessage(
           chatId,
-          "Comando nao reconhecido.\n\nComandos disponiveis:\n/telemetry - Ver metricas da sessao atual"
+          "Comandos disponíveis:\n" +
+          "• /telemetry - Ver métricas da sessão atual\n" +
+          "• /audit - Ver auditoria de geração de imagens\n" +
+          "  (modelo usado, prompt enviado, resultado)\n" +
+          "• /audit 10 - Ver últimos 10 registros"
         );
         return;
       }
@@ -356,7 +531,17 @@ async function startTelegramAgent() {
         content: response,
       });
 
-      await sendSafeMessage(bot, chatId, response, true);
+      // ============================================================
+      // CORRECAO: Detecta se uma imagem foi gerada e envia como foto
+      // ============================================================
+      const imagePath = findGeneratedImagePath(response);
+      if (imagePath) {
+        logger?.info(`[Telegram] Imagem detectada na resposta: ${imagePath}`);
+        await sendWithPhoto(bot, chatId, imagePath, response);
+      } else {
+        // Sem imagem: envia apenas o texto normalmente
+        await sendSafeMessage(bot, chatId, response, true);
+      }
     } catch (err) {
       logger
         ? logger.error(
