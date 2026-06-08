@@ -7,3 +7,6 @@
 
 /data/memory/
 
+
+# Temp files
+_temp_*
