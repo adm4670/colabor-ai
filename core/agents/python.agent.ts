@@ -3,6 +3,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { pythonExecTool } from "../tools/pythonExecTool";
     import { memorySearchTool } from "../memory/memory_search";
     import { vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool } from "../memory/vector-memory-tools";
+    import { dateTimeTool } from "../tools/dateTimeTool";
     
     export const pythonAgent = new Agent({
       name: "PythonAgent",
@@ -13,7 +14,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       apiKey: process.env.DEEPSEEK_API_KEY || "",
       baseURL: "https://api.deepseek.com",
     
-      tools: [pythonExecTool, memorySearchTool, vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool, fileSystemTool, webSearchTool, apiIntegrationTool, taskSchedulerTool],
+      tools: [pythonExecTool, memorySearchTool, vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool, fileSystemTool, webSearchTool, apiIntegrationTool, taskSchedulerTool, dateTimeTool],
     
       functions: {
         execute_python: pythonExecTool.handler,
@@ -25,6 +26,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
               web_search: webSearchTool.handler,
               api_request: apiIntegrationTool.handler,
               task_scheduler: taskSchedulerTool.handler,
+              get_current_datetime: dateTimeTool.handler,
       },
     
       generalInstructions: `
@@ -32,6 +34,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     
       You can write and execute Python code using the execute_python tool.
       You can search long-term memory using the memory_search tool.
+      You can get the current date and time using the get_current_datetime tool.
     
       Use Python when:
       - calculations are complex
@@ -95,9 +98,8 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { taskSchedulerTool } from "../tools/taskSchedulerTool";
     agentRegistry.register({
       name: pythonAgent.name,
-      description: "Python execution specialist. Can write and run Python scripts for calculations, data analysis, and file manipulation.",
+      description: "Python execution specialist. Can write and run Python scripts for calculations, data analysis, and file manipulation. Also has datetime tool for getting current date/time.",
       agent: pythonAgent,
       role: "PythonAgent",
       useWhen: ["calculations", "data analysis", "code", "scripting"],
     });
-    
