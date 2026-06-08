@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-07T23:12:12.455Z",
+  "savedAt": "2026-06-08T14:55:13.969Z",
   "nodes": [
     {
       "key": "colabor-ai",
@@ -5487,6 +5487,156 @@
       "predicates": [
         "has_total_facts"
       ]
+    },
+    {
+      "key": "../tools/datetimetool",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "getrandomfallback",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_function"
+      ]
+    },
+    {
+      "key": "core/architecture",
+      "predicates": [
+        "is_directory",
+        "contains"
+      ]
+    },
+    {
+      "key": "../memory/memory-hub",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "core/tools/datetimetool.ts",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "exports",
+        "is_defined_in",
+        "contains"
+      ]
+    },
+    {
+      "key": "datetimetool",
+      "predicates": [
+        "exports",
+        "is_defined_in",
+        "is_const"
+      ]
+    },
+    {
+      "key": "docs/interview",
+      "predicates": [
+        "is_directory",
+        "contains"
+      ]
+    },
+    {
+      "key": "graphs-v2.html",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category"
+      ]
+    },
+    {
+      "key": "graphs.html",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category"
+      ]
+    },
+    {
+      "key": "memory/2026-06-08.md",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-07t23-18-59-932z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-16-32-253z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-27-52-431z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-33-04-014z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-46-37-843z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json",
+      "predicates": [
+        "is_file",
+        "has_extension",
+        "size_category",
+        "contains"
+      ]
+    },
+    {
+      "key": "251",
+      "predicates": [
+        "has_total_files"
+      ]
+    },
+    {
+      "key": "38",
+      "predicates": [
+        "has_total_directories"
+      ]
+    },
+    {
+      "key": "2151",
+      "predicates": [
+        "has_total_facts"
+      ]
     }
   ],
   "edges": [
@@ -5499,6 +5649,10 @@
         },
         {
           "object": "245",
+          "confidence": 1
+        },
+        {
+          "object": "251",
           "confidence": 1
         }
       ]
@@ -5513,6 +5667,10 @@
         {
           "object": "36",
           "confidence": 1
+        },
+        {
+          "object": "38",
+          "confidence": 1
         }
       ]
     },
@@ -5525,6 +5683,10 @@
         },
         {
           "object": "2115",
+          "confidence": 1
+        },
+        {
+          "object": "2151",
           "confidence": 1
         }
       ]
@@ -7769,6 +7931,10 @@
         {
           "object": "core/utils",
           "confidence": 1
+        },
+        {
+          "object": "core/architecture",
+          "confidence": 1
         }
       ]
     },
@@ -8687,6 +8853,10 @@
         {
           "object": "../tools/taskschedulertool",
           "confidence": 0.95
+        },
+        {
+          "object": "../tools/datetimetool",
+          "confidence": 0.95
         }
       ]
     },
@@ -9019,6 +9189,10 @@
         },
         {
           "object": "thinkinginfo",
+          "confidence": 0.98
+        },
+        {
+          "object": "getrandomfallback",
           "confidence": 0.98
         }
       ]
@@ -12615,6 +12789,10 @@
         {
           "object": "../telemetry/telemetry",
           "confidence": 0.95
+        },
+        {
+          "object": "../memory/memory-hub",
+          "confidence": 0.95
         }
       ]
     },
@@ -14161,6 +14339,10 @@
         {
           "object": "core/tools/websearchtool.ts",
           "confidence": 1
+        },
+        {
+          "object": "core/tools/datetimetool.ts",
+          "confidence": 1
         }
       ]
     },
@@ -15624,6 +15806,10 @@
         {
           "object": "docs/tools-consolidado.md",
           "confidence": 1
+        },
+        {
+          "object": "docs/interview",
+          "confidence": 1
         }
       ]
     },
@@ -16131,6 +16317,10 @@
         },
         {
           "object": "memory/2026-06-07.md",
+          "confidence": 1
+        },
+        {
+          "object": "memory/2026-06-08.md",
           "confidence": 1
         }
       ]
@@ -17627,6 +17817,30 @@
         },
         {
           "object": "telemetry/session-orchestr-2026-06-07t23-10-18-333z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-07t23-18-59-932z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t14-16-32-253z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t14-27-52-431z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t14-33-04-014z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t14-46-37-843z.json",
+          "confidence": 1
+        },
+        {
+          "object": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json",
           "confidence": 1
         }
       ]
@@ -20702,6 +20916,339 @@
     },
     {
       "key": "tsconfig.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "getrandomfallback::is_defined_in",
+      "targets": [
+        {
+          "object": "core/agents/thinking.agent.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "getrandomfallback::is_function",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "core/architecture::is_directory",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/tools/datetimetool.ts::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/tools/datetimetool.ts::has_extension",
+      "targets": [
+        {
+          "object": ".ts",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "core/tools/datetimetool.ts::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "core/tools/datetimetool.ts::exports",
+      "targets": [
+        {
+          "object": "datetimetool",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "datetimetool::is_defined_in",
+      "targets": [
+        {
+          "object": "core/tools/datetimetool.ts",
+          "confidence": 0.98
+        }
+      ]
+    },
+    {
+      "key": "datetimetool::is_const",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "key": "docs/interview::is_directory",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "graphs-v2.html::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "graphs-v2.html::has_extension",
+      "targets": [
+        {
+          "object": ".html",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "graphs-v2.html::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "graphs.html::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "graphs.html::has_extension",
+      "targets": [
+        {
+          "object": ".html",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "graphs.html::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "memory/2026-06-08.md::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "memory/2026-06-08.md::has_extension",
+      "targets": [
+        {
+          "object": ".md",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "memory/2026-06-08.md::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-07t23-18-59-932z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-07t23-18-59-932z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-07t23-18-59-932z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-16-32-253z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-16-32-253z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-16-32-253z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-27-52-431z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-27-52-431z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-27-52-431z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-33-04-014z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-33-04-014z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-33-04-014z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-46-37-843z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-46-37-843z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-46-37-843z.json::size_category",
+      "targets": [
+        {
+          "object": "small",
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json::is_file",
+      "targets": [
+        {
+          "object": "true",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json::has_extension",
+      "targets": [
+        {
+          "object": ".json",
+          "confidence": 1
+        }
+      ]
+    },
+    {
+      "key": "telemetry/session-orchestr-2026-06-08t14-50-51-461z.json::size_category",
       "targets": [
         {
           "object": "small",

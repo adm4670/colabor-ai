@@ -1,0 +1,472 @@
+{
+  "sessionId": "orchestrator_1780930201775_xmv323",
+  "userInput": "Olá o que você sabe sobre a clareia.ai",
+  "startedAt": "2026-06-08T14:50:14.647Z",
+  "finishedAt": "2026-06-08T14:50:51.461Z",
+  "totalDuration": 36814,
+  "totalLLMCalls": 19,
+  "totalPromptTokens": 66896,
+  "totalCompletionTokens": 2739,
+  "totalTokens": 69635,
+  "maxContextWindowTokens": 12569,
+  "avgTokensPerLLMCall": 3665,
+  "estimatedCostUSD": 0.0211,
+  "totalAgentCalls": 17,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 12,
+    "assistant": 1,
+    "ReflectorAgent": 1,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 17,
+  "totalToolCalls": 3,
+  "toolCallBreakdown": {
+    "memory_search": 1,
+    "vector_memory_search": 1,
+    "file_system": 1
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780930214664,
+      "duration": 7007,
+      "promptTokens": 3010,
+      "completionTokens": 545,
+      "totalTokens": 3555,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930221673,
+      "duration": 1687,
+      "promptTokens": 2136,
+      "completionTokens": 18,
+      "totalTokens": 2154,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780930221674,
+      "duration": 2140,
+      "promptTokens": 5632,
+      "completionTokens": 139,
+      "totalTokens": 5771,
+      "historyLength": 2,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930223814,
+      "duration": 1340,
+      "promptTokens": 2182,
+      "completionTokens": 24,
+      "totalTokens": 2206,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930225490,
+      "duration": 1455,
+      "promptTokens": 2242,
+      "completionTokens": 26,
+      "totalTokens": 2268,
+      "historyLength": 7,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930225504,
+      "duration": 1742,
+      "promptTokens": 2229,
+      "completionTokens": 30,
+      "totalTokens": 2259,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780930221674,
+      "duration": 5585,
+      "promptTokens": 6574,
+      "completionTokens": 105,
+      "totalTokens": 6679,
+      "historyLength": 5,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930227259,
+      "duration": 1659,
+      "promptTokens": 2343,
+      "completionTokens": 30,
+      "totalTokens": 2373,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930229254,
+      "duration": 1631,
+      "promptTokens": 2398,
+      "completionTokens": 26,
+      "totalTokens": 2424,
+      "historyLength": 12,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780930221674,
+      "duration": 13118,
+      "promptTokens": 12569,
+      "completionTokens": 410,
+      "totalTokens": 12979,
+      "historyLength": 7,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930234793,
+      "duration": 1348,
+      "promptTokens": 2451,
+      "completionTokens": 27,
+      "totalTokens": 2478,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930236474,
+      "duration": 2023,
+      "promptTokens": 2499,
+      "completionTokens": 71,
+      "totalTokens": 2570,
+      "historyLength": 16,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930238827,
+      "duration": 1989,
+      "promptTokens": 2588,
+      "completionTokens": 64,
+      "totalTokens": 2652,
+      "historyLength": 18,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930238828,
+      "duration": 2316,
+      "promptTokens": 2472,
+      "completionTokens": 66,
+      "totalTokens": 2538,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930241146,
+      "duration": 2025,
+      "promptTokens": 2670,
+      "completionTokens": 71,
+      "totalTokens": 2741,
+      "historyLength": 20,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780930241147,
+      "duration": 4933,
+      "promptTokens": 4517,
+      "completionTokens": 547,
+      "totalTokens": 5064,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930246083,
+      "duration": 1492,
+      "promptTokens": 2755,
+      "completionTokens": 29,
+      "totalTokens": 2784,
+      "historyLength": 23,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780930246085,
+      "duration": 2024,
+      "promptTokens": 2761,
+      "completionTokens": 75,
+      "totalTokens": 2836,
+      "historyLength": 24,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780930246085,
+      "duration": 5375,
+      "promptTokens": 2868,
+      "completionTokens": 436,
+      "totalTokens": 3304,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá o que você sabe sobre a clareia.ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá o que você sabe sobre a clareia.ai\n\n\n\n    \n\n\n\n    Current context:\n\n\n\n    \n\n\n\n",
+      "startTime": 1780930214664,
+      "duration": 7008,
+      "success": true,
+      "responseLength": 438,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Search memory for all information about 'clareia.ai' (including 'clareiaai-proce…\"",
+      "startTime": 1780930221673,
+      "duration": 1687,
+      "success": true,
+      "responseLength": 58,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou buscar mais informações na memória sobre a clareia.ai para dar uma resposta completa.",
+      "startTime": 1780930223814,
+      "duration": 1340,
+      "success": true,
+      "responseLength": 81,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"clareia.ai\"",
+      "startTime": 1780930225490,
+      "duration": 1455,
+      "success": true,
+      "responseLength": 73,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 vector_memory_search: \"clareia.ai clareiaai\"",
+      "startTime": 1780930225504,
+      "duration": 1742,
+      "success": true,
+      "responseLength": 89,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vamos ler o arquivo de notas do dia 2026-05-31 para pegar mais detalhes sobre o que foi dito sobre a clareia.ai.",
+      "startTime": 1780930227259,
+      "duration": 1659,
+      "success": true,
+      "responseLength": 89,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, memory/2026-05-31.md\"",
+      "startTime": 1780930229254,
+      "duration": 1631,
+      "success": true,
+      "responseLength": 75,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Agora tenho bastante informação sobre a clareia.ai dos registros de memória.",
+      "startTime": 1780930234793,
+      "duration": 1349,
+      "success": true,
+      "responseLength": 95,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou compilar um resumo claro para o usuário.",
+      "startTime": 1780930236474,
+      "duration": 2023,
+      "success": true,
+      "responseLength": 272,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá o que você sabe sobre a clareia.ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá o que você sabe sobre a clareia.ai\n\n\n\n    \n\n\n\n    Instruction:\n\n\n\n    Search m",
+      "startTime": 1780930221674,
+      "duration": 17153,
+      "success": true,
+      "responseLength": 1281,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1780930238827,
+      "duration": 1990,
+      "success": true,
+      "responseLength": 212,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n\n\n\n    Evaluate the agent execution result honestly.\n\n\n\n    \n\n\n\n    Task: Olá o que você sabe sobre a clareia.ai\n\n\n\n    Agent used: assistant\n\n\n\n    Instruction given: Search memory for all informati",
+      "startTime": 1780930238828,
+      "duration": 2317,
+      "success": true,
+      "responseLength": 224,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1780930241146,
+      "duration": 2026,
+      "success": true,
+      "responseLength": 227,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n\n\n\n    User request:\n\n\n\n    Olá o que você sabe sobre a clareia.ai\n\n\n\n    \n\n\n\n    Conversation history:\n\n\n\n    user: Olá o que você sabe sobre a clareia.ai\n\n\n\n    \n\n\n\n    Current context:\n\n\n\n    \n\n\n\n",
+      "startTime": 1780930241147,
+      "duration": 4934,
+      "success": true,
+      "responseLength": 1354,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 📝 Preparando a resposta final...",
+      "startTime": 1780930246083,
+      "duration": 1493,
+      "success": true,
+      "responseLength": 98,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Formatando resposta...",
+      "startTime": 1780930246085,
+      "duration": 2025,
+      "success": true,
+      "responseLength": 277,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. If it's already natural, just polish it slightly. If it's JSON or internal ",
+      "startTime": 1780930246085,
+      "duration": 5375,
+      "success": true,
+      "responseLength": 1002,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Search memory for all information about 'clareia.ai' (including 'clareiaai-process-pdf-tool', 'clareiaai', etc.). Then use the retrieved context to provide a friendly and informative answer to the use",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1780930221673
+    },
+    {
+      "instruction": "Olá! 👋\n\nSei sim — a **clareia.ai** é um dos seus projetos. Pelo que registramos nas sessões anteriores, aqui está um resumo:\n\n## 📁 O Ecossistema Clareia\n\nA clareia.ai é um **workspace com múltiplos ",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1780930246082
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780930225504,
+      "hasError": false,
+      "duration": 3830
+    },
+    {
+      "toolName": "vector_memory_search",
+      "agentName": "assistant",
+      "timestamp": 1780930225506,
+      "hasError": false,
+      "duration": 3832
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1780930229254,
+      "hasError": false,
+      "duration": 7580
+    }
+  ]
+}
