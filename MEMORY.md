@@ -179,3 +179,6 @@
 
 ## Preferencias
 - [2026-06-08] **ajustar algo** no prompt (como enquadramento, cores, posição das vacas, etc
+
+## Preferencias
+- [2026-06-09] Ou se tiver outra ideia do que fazer agora, é só falar

@@ -1,0 +1,250 @@
+================================================================================
+[2026-06-08T22:45:20.645Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A red Ferrari SF90 Stradale sports car parked on a wet city street at golden hour, dramatic reflections on the asphalt, cinematic lighting, highly detailed, photorealistic, 4K, sharp focus, vibrant red color, luxury sports car, urban background with bokeh lights.. Photorealistic, highly detailed, 8K, realistic textures, natural lighting, depth of field. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\colabor-ai\ferrari.jpeg
+  Tamanho:         849.0 KB
+================================================================================
+================================================================================
+[2026-06-09T00:20:53.494Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          An origami-style illustration in soft, calming colors (sand beige, light sky blue, sage green, warm cream). A paper crane (tsuru) made of folded paper sits on an open book also made of origami folds. Surrounding geometric paper shapes — diamonds, triangles, gentle curves — float softly. The background is a minimalist paper texture with subtle fold lines. Warm, peaceful, tranquil atmosphere. Soft natural lighting from the side. Art style: flat illustration inspired by paper art, origami aesthetic. Clean composition with ample negative space. No harsh lines, no aggressive colors.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\images\hero-origami.jpeg
+  Tamanho:         480.4 KB
+================================================================================
+================================================================================
+[2026-06-09T00:21:10.324Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A clean, minimalist origami logo design. A simple folded paper crane symbol made of two geometric triangles, in soft sage green and warm cream colors. The paper folds are clearly visible with subtle shadows. Minimalist composition, centered. Soothing, calm aesthetic. Transparent-like background feel. Professional logo style. Soft lighting. The crane shape should be abstract and elegant, representing peace, knowledge and step-by-step growth.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\images\logo-origami.jpeg
+  Tamanho:         503.5 KB
+================================================================================
+================================================================================
+[2026-06-09T00:21:21.142Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          Origami style illustration showing three sequential paper folding steps representing knowledge construction. Step 1: a flat square piece of paper. Step 2: a partially folded diamond shape. Step 3: a complete folded crane or geometric form. The three steps arranged left to right, connected by subtle dotted fold lines. Soft colors: sand beige, sage green, light sky blue. Minimalist. Calm and peaceful atmosphere. Paper texture background. Clean edges, flat illustration style. No text. Ample whitespace around the elements.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\images\origami-steps.jpeg
+  Tamanho:         551.8 KB
+================================================================================
+================================================================================
+[2026-06-09T01:11:44.618Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          Abstract technology background representing AI clarity and data visualization, modern and clean light theme, subtle blue and purple gradient color scheme, flowing data lines, glowing nodes and geometric shapes, minimalist design, soft gradients, ethereal atmosphere, 16:9 aspect ratio, suitable for a hero section background of an AI education platform. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\hero-bg.jpeg
+  Tamanho:         505.8 KB
+================================================================================
+================================================================================
+[2026-06-09T01:11:54.921Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          Modern minimalist illustration of artificial intelligence and data analysis concept, glowing blue neural network nodes connected by lines, floating data graphs and charts, abstract brain with digital elements, clean white background with soft blue and purple accents, educational technology theme, futuristic but friendly, 1:1 square aspect ratio, flat vector style with subtle gradients. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\assets\feature-ai.jpeg
+  Tamanho:         432.8 KB
+================================================================================
+================================================================================
+[2026-06-09T01:12:04.951Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          Clean modern illustration showing a solution flow concept for education, a person standing at a crossroads with arrows showing the path forward, glowing roadmap or pathway with checkpoints, light blue to purple gradient background, minimalist flat design, educational technology theme, clarity and direction concept, 1:1 square aspect ratio, vector art style with soft shadows and clean lines. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\assets\solution-flow.jpeg
+  Tamanho:         557.2 KB
+================================================================================
+================================================================================
+[2026-06-09T01:12:16.152Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          Inspirational illustration of a student reaching towards a bright glowing future, book pages transforming into digital data and light, graduation cap with AI elements, staircase going upward with light at the top, soft blue and purple gradient background, clean and modern flat illustration style, educational achievement theme, motivational atmosphere, 1:1 square aspect ratio, minimal vector art. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\assets\cta-illustration.jpeg
+  Tamanho:         545.2 KB
+================================================================================
+================================================================================
+[2026-06-09T01:20:56.587Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A stunning abstract digital brain made of glowing blue and purple neural networks, floating in a dark space with luminous connections, particles of light flowing around it, gradient background shifting from deep blue to purple, cinematic lighting, 4K quality, modern technology aesthetic, clean and professional design for an AI studying platform landing page. Cinematic composition, dramatic lighting, film grain, movie poster quality, depth of field, anamorphic. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\hero-image.jpeg
+  Tamanho:         820.0 KB
+================================================================================
+================================================================================
+[2026-06-09T01:21:06.151Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A modern student sitting at a desk using a holographic transparent tablet, floating study icons around it - books, graduation cap, atom, lightbulb, mathematical symbols, clean minimalist style, soft blue and purple ambient lighting, futuristic but warm atmosphere, white and light gray background with subtle gradient, professional educational technology concept, 4K quality. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\feature-image.jpeg
+  Tamanho:         512.2 KB
+================================================================================
+================================================================================
+[2026-06-09T01:21:15.480Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A large elegant checkmark symbol made of geometric gold and white shapes, floating above a soft gradient background from light blue to light purple, surrounded by subtle glowing particles and sparkles, minimal and clean design, sense of achievement and success, premium quality, modern corporate aesthetic, white and pastel tones, 4K quality. Flat illustration, vector style, solid colors, minimalist, modern design, crisp shapes. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\trust-image.jpeg
+  Tamanho:         415.7 KB
+================================================================================
+================================================================================
+[2026-06-09T01:32:35.515Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A modern flat vector illustration of a student studying with AI-powered tools. A glowing lightbulb above a laptop with colorful data charts, progress bars, and floating study icons (books, graduation cap, brain). Clean minimal design, blue and purple gradient color scheme, light background with soft glowing effects. The student looks focused and inspired. Professional educational technology style, suitable for a landing page hero section. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\hero-illustration.jpeg
+  Tamanho:         559.2 KB
+================================================================================
+================================================================================
+[2026-06-09T01:32:51.749Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A modern split illustration showing "before and after" of studying with AI. Left side: chaotic messy desk with scattered books, papers, stressed student, overlapping schedules, anxiety symbols, red and orange colors. Right side: organized clean desk with a tablet showing AI analytics, roadmap, clear charts, calm focused student, green and blue colors. In the middle: a glowing arrow or transformation symbol. Flat vector illustration style, light theme, clean lines, educational technology concept. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\problem-solution-visual.jpeg
+  Tamanho:         721.4 KB
+================================================================================
+================================================================================
+[2026-06-09T01:33:05.168Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A modern flat vector illustration showing an AI-powered study dashboard. Main focus: a large tablet screen displaying colorful analytics with bar charts, line graphs showing progress over time, circular progress indicators, a study roadmap timeline, and performance scores. Surrounding the screen are small floating icons representing different study subjects (math, science, literature). Clean white background with subtle blue and purple gradient accents. Modern minimalist educational technology style, light theme. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\features-illustration.jpeg
+  Tamanho:         319.3 KB
+================================================================================
+================================================================================
+[2026-06-09T01:33:19.792Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A clean modern flat vector illustration showing a 4-step learning process flow: Step 1 "Diagnóstico" (diagnosis with magnifying glass and checklist), Step 2 "Roadmap" (a personalized study roadmap with milestones), Step 3 "Evolução" (evolution with growth chart and upward arrow), Step 4 "Aprovação" (approval with graduation cap and certificate). Connected by flowing arrows in blue and purple gradient colors. Minimalist design, light background, educational technology concept. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\learning-path.jpeg
+  Tamanho:         597.6 KB
+================================================================================
+================================================================================
+[2026-06-09T01:33:35.778Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A close-up realistic mockup of a modern analytics dashboard on a laptop screen. Shows colorful data visualizations: a bar chart comparing different study subjects, a circular progress ring showing 78% completion, a line graph showing score improvement over 6 months from 500 to 780 points, and small profile avatar. Clean modern UI design, white background, blue and purple accent colors. Educational technology SaaS dashboard style, minimalist. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\dashboard-preview.jpeg
+  Tamanho:         587.9 KB
+================================================================================
+================================================================================
+[2026-06-09T01:33:53.195Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A professional smiling young woman avatar illustration, friendly and confident, modern flat vector style, warm skin tone, dark hair in a ponytail, wearing a casual blouse. Clean circle format for profile picture. Light background, minimalist style, educational platform avatar. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\assets\testimonial-avatar1.jpeg
+  Tamanho:         399.0 KB
+================================================================================
+================================================================================
+[2026-06-09T01:34:04.576Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A professional smiling young man avatar illustration, friendly and confident, modern flat vector style, light skin tone, short brown hair, wearing a casual t-shirt. Clean circle format for profile picture. Light background, minimalist style, educational platform avatar. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\assets\testimonial-avatar2.jpeg
+  Tamanho:         340.7 KB
+================================================================================
+================================================================================
+[2026-06-09T01:34:15.530Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A professional smiling young woman avatar illustration, friendly and confident, modern flat vector style, brown skin tone, curly black hair, wearing a casual blouse with a subtle necklace. Clean circle format for profile picture. Light background, minimalist style, educational platform avatar. No text, no watermark.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 1:1, square format
+  Output:          C:\Developer\clareiaai-site\assets\testimonial-avatar3.jpeg
+  Tamanho:         363.3 KB
+================================================================================
+================================================================================
+[2026-06-09T01:35:59.448Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A modern, clean flat vector illustration of a student studying with artificial intelligence. A young person sitting at a desk with a glowing holographic brain above them, floating books and study materials around, connected by digital lines and nodes. Light blue and purple gradient background. Modern educational technology concept. Clean lines, soft gradients, professional look for a website hero section.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\hero-illustration.jpeg
+  Tamanho:         609.9 KB
+================================================================================
+================================================================================
+[2026-06-09T01:36:09.470Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A modern flat vector illustration showing interconnected modules of an AI education platform. Four colorful blocks representing features (diagnosis, roadmap, dashboard, AI assistant) connected by glowing digital pathways. Clean professional design with light blue, purple and pink gradients. White background. Technology platform concept, modern SaaS style illustration.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\features-illustration.jpeg
+  Tamanho:         484.2 KB
+================================================================================
+================================================================================
+[2026-06-09T01:36:39.653Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A clean flat vector illustration showing a learning journey flow. Left side shows a chaotic messy desk with scattered papers (before), middle shows an arrow transformation with glowing AI brain, right side shows organized study plan on a tablet with checkmarks and progress bars. Light background with blue to purple gradient accents. Educational transformation concept, modern design.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\problem-solution-visual.jpeg
+  Tamanho:         607.5 KB
+================================================================================
+================================================================================
+[2026-06-09T01:36:50.092Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A clean flat vector illustration of a learning path roadmap. Four steps connected by a flowing curved line: 1) A clipboard with checkmarks (Diagnosis), 2) A map with a highlighted route (Roadmap), 3) A graph going up with a star (Evolution), 4) A graduation cap and trophy (Approval). Light blue and purple gradient background. Modern educational step-by-step flow design.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\learning-path.jpeg
+  Tamanho:         576.3 KB
+================================================================================
+================================================================================
+[2026-06-09T01:37:07.789Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A clean modern flat vector illustration of a student analytics dashboard on a tablet screen. Showing colorful bar charts, a pie chart, a progress graph going up with a star milestone, user avatar, and study metrics. Light blue and purple gradient colors. Minimalist design, clean UI, professional SaaS dashboard concept. Educational technology interface.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\dashboard-preview.jpeg
+  Tamanho:         530.4 KB
+================================================================================
+================================================================================
+[2026-06-09T01:37:17.687Z] AUDITORIA DE GERACAO DE IMAGEM
+================================================================================
+  Modelo:          models/gemini-3.1-flash-image
+  Status:          SUCCESS
+  Gerado por:      image-generator
+  Prompt:          A clean modern flat vector illustration of a student achieving success. A young person standing on top of a graph arrow going upward, holding a graduation cap, surrounded by glowing stars and achievement badges. Light blue and purple gradient background. Success, achievement, goal completion concept. Inspiring educational illustration.. Educational illustration, flat design style, soft colors, friendly vector art, clean minimalistic, textbook style didatico. aspect ratio 16:9, widescreen, horizontal
+  Output:          C:\Developer\clareiaai-site\assets\cta-image.jpeg
+  Tamanho:         501.3 KB
+================================================================================

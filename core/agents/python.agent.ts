@@ -6,7 +6,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
     import { dateTimeTool } from "../tools/dateTimeTool";
     
     export const pythonAgent = new Agent({
-      name: "PythonAgent",
+      name: "python",
       role: "Python execution specialist",
       goal: "Solve tasks using Python and return the result clearly",
       backstory: "An assistant specialized in writing and executing Python code to solve problems.",
@@ -100,6 +100,6 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
       name: pythonAgent.name,
       description: "Python execution specialist. Can write and run Python scripts for calculations, data analysis, and file manipulation. Also has datetime tool for getting current date/time.",
       agent: pythonAgent,
-      role: "PythonAgent",
+      role: "python",
       useWhen: ["calculations", "data analysis", "code", "scripting"],
     });

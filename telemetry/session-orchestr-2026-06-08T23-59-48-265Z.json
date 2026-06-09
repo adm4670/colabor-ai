@@ -1,0 +1,58 @@
+{
+  "sessionId": "orchestrator_1780961545301_9pwi5m",
+  "userInput": "liste para mim os principais sites de plataformas que concorrem com a clareia.ai",
+  "startedAt": "2026-06-08T23:59:44.819Z",
+  "finishedAt": "2026-06-08T23:59:48.264Z",
+  "totalDuration": 3445,
+  "totalLLMCalls": 1,
+  "totalPromptTokens": 49006,
+  "totalCompletionTokens": 194,
+  "totalTokens": 49200,
+  "maxContextWindowTokens": 49006,
+  "avgTokensPerLLMCall": 49200,
+  "estimatedCostUSD": 0.0134,
+  "totalAgentCalls": 1,
+  "agentCallBreakdown": {
+    "PlannerAgent": 1
+  },
+  "avgAgentCalls": 1,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 1,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780963184971,
+      "duration": 3279,
+      "promptTokens": 49006,
+      "completionTokens": 194,
+      "totalTokens": 49200,
+      "historyLength": 20,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    liste para mim os principais sites de plataformas que concorrem com a clareia.ai\n\n    Conversation history:\n    user: descreva a seguinte imagem C:\\Developer\\colabor-ai\\1.png\nas",
+      "startTime": 1780963184971,
+      "duration": 3282,
+      "success": true,
+      "responseLength": 378,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Pesquise no Google pelos principais concorrentes brasileiros da Clareia.ai, que é uma plataforma de preparação para o ENEM com inteligência artificial. Busque por: 'plataformas concorrentes clareia ai",
+      "chosenAgent": "browser",
+      "step": 1,
+      "timestamp": 1780963188258
+    }
+  ],
+  "toolCalls": []
+}

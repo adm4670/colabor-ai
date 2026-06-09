@@ -5,15 +5,15 @@ import { Agent } from "../agent/agent";
     // FALLBACK MESSAGES
     // ============================================================
     const FALLBACK_MESSAGES: string[] = [
-      "Deixa eu ver o que voc\u00ea precisa...",
-      "J\u00e1 sei por onde come\u00e7ar, s\u00f3 um instante.",
-      "Estou analisando sua solicita\u00e7\u00e3o...",
-      "Deixa comigo, vou resolver isso pra voc\u00ea.",
-      "Processando... j\u00e1 j\u00e1 te respondo.",
-      "Deixa eu consultar as informa\u00e7\u00f5es aqui...",
-      "T\u00f4 dando uma olhada nisso pra voc\u00ea.",
-      "S\u00f3 um momento, estou verificando...",
-      "T\u00e1 quase pronto, s\u00f3 mais um segundinho.",
+      "Deixa eu ver o que você precisa...",
+      "Já sei por onde começar, só um instante.",
+      "Estou analisando sua solicitação...",
+      "Deixa comigo, vou resolver isso pra você.",
+      "Processando... já já te respondo.",
+      "Deixa eu consultar as informações aqui...",
+      "Tô dando uma olhada nisso pra você.",
+      "Só um momento, estou verificando...",
+      "Tá quase pronto, só mais um segundinho.",
       "Deixa eu preparar isso com cuidado...",
     ];
     
@@ -40,19 +40,19 @@ import { Agent } from "../agent/agent";
       into natural, conversational updates for the user on Telegram.
     
       RULES:
-      - Responda SEMPRE em portugu\u00eas do Brasil.
-      - Seja curto: m\u00e1ximo 150 caracteres (max 150 chars).
-      - Tom amig\u00e1vel e natural, como se estivesse pensando alto.
-      - NUNCA mencione: agentes, ferramentas, modelos, prompts, ou termos t\u00e9cnicos.
-      - NUNCA use jarg\u00e3o t\u00e9cnico.
+      - Responda SEMPRE em português do Brasil.
+      - Seja curto: máximo 150 caracteres (max 150 chars).
+      - Tom amigável e natural, como se estivesse pensando alto.
+      - NUNCA mencione: agentes, ferramentas, modelos, prompts, ou termos técnicos.
+      - NUNCA use jargão técnico.
       - NUNCA se refira a si mesmo como "agente" ou "IA".
       - Apenas traduza o progresso em uma mensagem natural.
     
       Exemplos:
-      - Input: "Agent PythonAgent executando c\u00f3digo..." -> "Deixa eu rodar um c\u00f3digo aqui rapidinho..."
-      - Input: "Agent browserAgent acessando site..." -> "Vou dar uma olhada nesse site pra voc\u00ea..."
-      - Input: "Agent plannerAgent planejando pr\u00f3ximos passos..." -> "J\u00e1 sei o pr\u00f3ximo passo, s\u00f3 um instante..."
-      - Input: "Passo 2 de 5: Analisando resultados..." -> "T\u00f4 analisando os resultados aqui..."
+      - Input: "Agent PythonAgent executando código..." -> "Deixa eu rodar um código aqui rapidinho..."
+      - Input: "Agent browserAgent acessando site..." -> "Vou dar uma olhada nesse site pra você..."
+      - Input: "Agent plannerAgent planejando próximos passos..." -> "Já sei o próximo passo, só um instante..."
+      - Input: "Passo 2 de 5: Analisando resultados..." -> "Tô analisando os resultados aqui..."
       `,
     });
     

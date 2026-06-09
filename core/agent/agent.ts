@@ -70,109 +70,133 @@ export class Agent {
   }
 
   /**
-   * Sanitiza uma string para evitar escapes hex malformados no JSON.
-   * Corrige barras invertidas seguidas de 'u' ou 'x' com digitos hex incompletos.
+   * CORRECAO DEFINITIVA v3: Sanitizacao profunda de string para JSON
+   *
+   * Remove ou escapa qualquer caractere ou sequencia que possa causar
+   * "Unterminated string in JSON" no parser do servidor da API.
+   *
+   * O erro ocorre no SERVIDOR (DeepSeek/OpenAI), nao no Node.js.
+   * Por isso, JSON.stringify(this.history) SEMPRE funciona localmente,
+   * mas o parser do servidor pode ser mais restritivo.
+   *
+   * Problemas conhecidos que esta funcao corrige:
+   * - Barras invertidas solitarias antes de aspas: \" → \\"
+   * - Barras invertidas no final da string: \ → (escapada)
+   * - Caracteres de controle (\x00-\x1F exceto \t, \n, \r)
+   * - Escapes Unicode incompletos: \u sem 4 hex digits
+   * - Sequencias de escape invalidas: \j, \q, etc.
    */
-  private sanitizeContent(content: string): string {
-    // Protege contra \\u incompleto (ex: "voc\\u" sem 4 digitos hex)
-    // e contra \\x incompleto (ex: "\\x" sem 2 digitos hex)
-    let sanitized = content.replace(
+  private deepSanitizeForJsonAPI(content: string): string {
+    if (!content) return content;
+
+    let sanitized = content;
+
+    // ================================================================
+    // PASSO 1: Remover caracteres de controle (exceto \t, \n, \r)
+    // ================================================================
+    sanitized = sanitized.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+
+    // ================================================================
+    // PASSO 2: Escapar TODAS as barras invertidas que NAO fazem parte
+    //          de escapes JSON validos (\n, \t, \r, \", \\, \/, \b, \f)
+    // ================================================================
+    // Uma barra invertida antes de aspa (ex: "texto\"resto") faz o
+    // parser entender que a aspa esta escapada e a string continua,
+    // mas se o restante do JSON for inconsistente, quebra tudo.
+    sanitized = sanitized.replace(/\\(?![nrt"\\\/bf])/g, '\\\\');
+
+    // ================================================================
+    // PASSO 3: Escapar barras invertidas que precedem aspas
+    //          Isso evita \" se transformar em escape de string no servidor
+    // ================================================================
+    // Mas precisamos tomar cuidado para nao duplicar escapes ja validos.
+    // \" ja e um escape valido em JSON, entao vamos verificar:
+    // Se a barra ja esta escapando uma aspa, pode ser que o servidor
+    // interprete de forma diferente. Vamos duplicar a barra.
+    sanitized = sanitized.replace(/\\(?=["'])/g, '\\\\');
+
+    // ================================================================
+    // PASSO 4: Escapar sequencias de escape incompletas (\u, \x)
+    // ================================================================
+    sanitized = sanitized.replace(
       /\\([ux])([0-9a-fA-F]{0,3})($|[^0-9a-fA-F])/g,
       (match, escapeChar, hexDigits, nextChar) => {
         const expectedLen = escapeChar === 'u' ? 4 : 2;
         if (hexDigits.length < expectedLen) {
-          // Escape incompleto - escapa a barra invertida
           return '\\\\' + match;
         }
         return match;
       }
     );
 
-    // CORRECAO: Remove caracteres de controle que quebram JSON
-    // (exceto \t, \n, \r que sao validos em strings)
-    sanitized = sanitized.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+    // ================================================================
+    // PASSO 5: Escapar barras invertidas solitarias no final de linhas
+    //          ou no final do texto (causam "Unterminated string")
+    // ================================================================
+    sanitized = sanitized.replace(/\\$/gm, '\\\\ ');
 
-    // CORRECAO: Corrige aspas simples dentro de strings que podem quebrar JSON
-    // Se encontrar uma aspa simples dentro de um contexto onde deveria ser dupla
-    sanitized = sanitized.replace(/'([^']*?)'/g, (match) => {
-      // So substitui se a string contem caracteres que indicam que deveria ser JSON
-      if (match.includes('\\"') || match.includes('\\\\')) {
-        return match;
-      }
-      return match;
-    });
+    // ================================================================
+    // PASSO 6: Remover BOM e outros caracteres especiais Unicode
+    // ================================================================
+    sanitized = sanitized.replace(/[\uFEFF\u200B\u200C\u200D\uFFFD]/g, '');
 
     return sanitized;
   }
 
   /**
+   * CORRECAO DEFINITIVA v3: Aplica sanitizacao profunda em TODO o historico
+   * antes de enviar para a API. Roda em TODAS as strings do historico,
+   * incluindo tool_calls.function.arguments.
+   *
+   * Diferente da versao anterior (validateHistoryJson), esta funcao
+   * SEMPRE sanitiza, em vez de confiar no JSON.stringify que nunca falha.
+   */
+  private sanitizeHistoryForApi(): void {
+    for (const msg of this.history) {
+      // Sanitizar conteudo principal
+      if (typeof msg.content === 'string') {
+        msg.content = this.deepSanitizeForJsonAPI(msg.content);
+      }
+
+      // Sanitizar reasoning_content (DeepSeek)
+      if (typeof msg.reasoning_content === 'string') {
+        msg.reasoning_content = this.deepSanitizeForJsonAPI(msg.reasoning_content);
+      }
+
+      // Sanitizar tool_calls.function.arguments (JSON interno do modelo)
+      if (msg.tool_calls) {
+        for (const tc of msg.tool_calls) {
+          if (tc.function && typeof tc.function.arguments === 'string') {
+            tc.function.arguments = this.deepSanitizeForJsonAPI(tc.function.arguments);
+          }
+        }
+      }
+    }
+  }
+
+  /**
    * CORRECAO: Sanitiza tool results para garantir que nao quebrem o JSON da API.
-   * Diferente do sanitizeContent, este metodo lida com grandes blocos de JSON
+   * Diferente do deepSanitizeForJsonAPI, este metodo lida com grandes blocos de JSON
    * que podem conter caracteres problematicos apos serializacao aninhada.
    */
-    /**
-       * CORRECAO: Sanitiza todo o historico de mensagens antes de enviar para a API.
-       * Percorre cada mensagem no historico e aplica sanitizacao em todos os campos
-       * de conteudo para garantir que nao haja caracteres ou escapes que possam
-       * quebrar o JSON da requisicao.
-       */
-      private sanitizeHistory(): void {
-        for (const msg of this.history) {
-          if (typeof msg.content === 'string') {
-            msg.content = this.sanitizeContent(msg.content);
-          }
-          if (msg.tool_calls) {
-            for (const tc of msg.tool_calls) {
-              if (tc.function && typeof tc.function.arguments === 'string') {
-                tc.function.arguments = tc.function.arguments.replace(
-                  /\\([ux])([0-9a-fA-F]{0,3})($|[^0-9a-fA-F])/g,
-                  (match: string, escapeChar: string, hexDigits: string, nextChar: string) => {
-                    const expectedLen = escapeChar === 'u' ? 4 : 2;
-                    if (hexDigits.length < expectedLen) {
-                      return '\\\\' + match;
-                    }
-                    return match;
-                  }
-                );
-              }
-            }
-          }
-        }
-      }
-    
-        private sanitizeToolResult(toolResult: string): string {
-        // Limitar tamanho para evitar payloads gigantes (100KB max)
-        const MAX_TOOL_RESULT_LENGTH = 100 * 1024;
-        if (toolResult.length > MAX_TOOL_RESULT_LENGTH) {
-          toolResult = toolResult.substring(0, MAX_TOOL_RESULT_LENGTH) +
-            `\n\n[... TRUNCADO: resultado muito grande (${toolResult.length} bytes)]`;
-        }
-    
-        // CORRECAO: Remover caracteres de controle que quebram JSON
-        toolResult = toolResult.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
-    
-        // CORRECAO: Escapar sequencias de escape incompletas que quebram JSON
-        // Ex: "\u" sem 4 hex digits, "\x" sem 2 hex digits
-        toolResult = toolResult.replace(
-          /\\([ux])([0-9a-fA-F]{0,3})($|[^0-9a-fA-F])/g,
-          (match, escapeChar, hexDigits, nextChar) => {
-            const expectedLen = escapeChar === 'u' ? 4 : 2;
-            if (hexDigits.length < expectedLen) {
-              // Escape incompleto - escapa a barra invertida adicionando outra
-              return '\\\\' + match.substring(1);
-            }
-            return match;
-          }
-        );
-    
-        // CORRECAO: Escapar barras invertidas solitarias no final de strings truncadas
-        // Quando uma string e cortada exatamente apos uma barra invertida,
-        // isso forma um escape invalido no JSON
-        toolResult = toolResult.replace(/\\$/gm, '\\\\ ');
-    
-        return toolResult;
-      }
-      private async ensureSystemMessage(): Promise<void> {
+  private sanitizeToolResult(toolResult: string): string {
+    // Limitar tamanho para evitar payloads gigantes (100KB max)
+    const MAX_TOOL_RESULT_LENGTH = 100 * 1024;
+    if (toolResult.length > MAX_TOOL_RESULT_LENGTH) {
+      toolResult = toolResult.substring(0, MAX_TOOL_RESULT_LENGTH) +
+        `\n\n[... TRUNCADO: resultado muito grande (${toolResult.length} bytes)]`;
+    }
+
+    // Aplicar sanitizacao profunda
+    toolResult = this.deepSanitizeForJsonAPI(toolResult);
+
+    // CORRECAO: Escapar barras invertidas solitarias no final de strings truncadas
+    toolResult = toolResult.replace(/\\$/gm, '\\\\ ');
+
+    return toolResult;
+  }
+
+  private async ensureSystemMessage(): Promise<void> {
     const systemPrompt = await this.buildSystemPrompt();
     if (this.history.length > 0 && this.history[0].role === "system") {
       this.history[0].content = systemPrompt;
@@ -390,16 +414,21 @@ export class Agent {
 
     this.history.push({
       role: "user",
-      content: this.sanitizeContent(userMessage),
+      content: this.deepSanitizeForJsonAPI(userMessage),
     });
 
     try {
       while (true) {
         logger.info(`[Agent] Enviando requisicao para o modelo (historico: ${this.history.length} msgs)`);
-    
-            // CORRECAO: Sanitizar TODO o historico antes de enviar para a API
-            // Isso evita que tool results com escapes malformados quebrem o JSON
-            this.sanitizeHistory();
+
+        // ================================================================
+        // CORRECAO DEFINITIVA v3: Sanitizar TODO o historico antes de enviar
+        // ================================================================
+        // A funcao sanitizeHistoryForApi() aplica deepSanitizeForJsonAPI()
+        // em TODAS as strings do historico, garantindo que nao haja
+        // caracteres ou escapes que possam quebrar o JSON no servidor.
+        // ================================================================
+        this.sanitizeHistoryForApi();
 
         const response = await this.retryWithBackoff(
           () => this.client.chat.completions.create({
@@ -577,6 +606,21 @@ export class Agent {
           lastMessagePreview: (this.history[this.history.length - 1]?.content || "").slice(0, 200),
           errorMessage: e.message,
         });
+
+        // CORRECAO: Logar a posicao do erro no JSON para debug
+        const posMatch = e.message?.match(/position\s+(\d+)/i);
+        if (posMatch) {
+          const pos = parseInt(posMatch[1], 10);
+          logger.error(`[Agent] Posicao do erro JSON: ${pos}`);
+          // Tentar identificar qual mensagem contem o problema
+          try {
+            const jsonStr = JSON.stringify(this.history);
+            const around = jsonStr.substring(Math.max(0, pos - 100), Math.min(jsonStr.length, pos + 100));
+            logger.error(`[Agent] Contexto ao redor da posicao ${pos}: ...${around}...`);
+          } catch (serializeErr: any) {
+            logger.error(`[Agent] Erro ao serializar historico para debug: ${serializeErr.message}`);
+          }
+        }
       }
 
       return `[Erro no processamento: ${e.message}]`;
@@ -592,111 +636,139 @@ export class Agent {
    * - Trailing commas
    */
   private tryRepairJson(input: string): string | null {
-        if (!input || input.trim() === '') return null;
-    
-        let repaired = input;
-    
-        // 1. Remover caracteres de controle
-        repaired = repaired.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
-    
-        // 2. Tentar parse direto primeiro (se ja for valido)
-        try {
-          JSON.parse(repaired);
-          return repaired;
-        } catch {}
-    
-        // 3. CORRECAO: Escapar sequencias de escape incompletas (\u, \x)
-        // Isso evita que "\\u" ou "\\x" sem hex digits suficientes quebrem o JSON
-        repaired = repaired.replace(
-          /\\([ux])([0-9a-fA-F]{0,3})($|[^0-9a-fA-F])/g,
-          (match, escapeChar, hexDigits, nextChar) => {
-            const expectedLen = escapeChar === 'u' ? 4 : 2;
-            if (hexDigits.length < expectedLen) {
-              return '\\\\' + match;
-            }
-            return match;
-          }
-        );
-    
-        try {
-          JSON.parse(repaired);
-          return repaired;
-        } catch {}
-    
-        // 4. Tentar fechar strings nao terminadas (no final do texto)
-        repaired = repaired.replace(
-          /(["'])(?:(?!\1|\\)\.|\\.)*$/,
-          (match) => {
-            if (!match.endsWith('"') && !match.endsWith("'")) {
-              return match + '"';
-            }
-            return match;
-          }
-        );
-    
-        try {
-          JSON.parse(repaired);
-          return repaired;
-        } catch {}
-    
-        // 5. CORRECAO: Tentar fechar strings nao terminadas no MEIO do JSON
-        // Conta aspas e ve se alguma string ficou aberta
-        let quoteBalanced = repaired;
-        let inString = false;
-        let stringChar = '';
-        let result = '';
-        for (let i = 0; i < quoteBalanced.length; i++) {
-          const ch = quoteBalanced[i];
-          const prev = i > 0 ? quoteBalanced[i-1] : '';
-          if (!inString) {
-            if ((ch === '"' || ch === "'") && prev !== '\\') {
-              inString = true;
-              stringChar = ch;
-            }
-            result += ch;
-          } else {
-            if (ch === '\\') {
-              result += ch;
-              i++; // skip next char
-              if (i < quoteBalanced.length) {
-                result += quoteBalanced[i];
-              }
-            } else if (ch === stringChar) {
-              inString = false;
-              result += ch;
-            } else {
-              result += ch;
-            }
-          }
+    if (!input || input.trim() === '') return null;
+
+    let repaired = input;
+
+    // 1. Remover caracteres de controle
+    repaired = repaired.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+
+    // 2. Tentar parse direto primeiro (se ja for valido)
+    try {
+      JSON.parse(repaired);
+      return repaired;
+    } catch {}
+
+    // 3. CORRECAO: Escapar sequencias de escape incompletas (\u, \x)
+    repaired = repaired.replace(
+      /\\([ux])([0-9a-fA-F]{0,3})($|[^0-9a-fA-F])/g,
+      (match, escapeChar, hexDigits, nextChar) => {
+        const expectedLen = escapeChar === 'u' ? 4 : 2;
+        if (hexDigits.length < expectedLen) {
+          return '\\\\' + match;
         }
-        // Se ainda estamos dentro de uma string no final, fechar a string
-        if (inString) {
-          result += stringChar;
-          quoteBalanced = result;
-        }
-    
-        try {
-          JSON.parse(quoteBalanced);
-          return quoteBalanced;
-        } catch {}
-    
-        // 6. Remover trailing commas
-        repaired = repaired.replace(/,\s*([}\]])/g, '$1');
-    
-        try {
-          JSON.parse(repaired);
-          return repaired;
-        } catch {}
-    
-        // 7. Ultimo recurso: extrair objeto JSON valido do meio do texto
-        const jsonMatch = repaired.match(/\{[\s\S]*\}|\[[\s\S]*\]/);
-        if (jsonMatch) {
-          try {
-            JSON.parse(jsonMatch[0]);
-            return jsonMatch[0];
-          } catch {}
-        }
-    
-        return null;
+        return match;
       }
+    );
+
+    try {
+      JSON.parse(repaired);
+      return repaired;
+    } catch {}
+
+    // 4. Tentar fechar strings nao terminadas (no final do texto)
+    repaired = repaired.replace(
+      /(["'])(?:(?!\1|\\)\.|\\\.)*$/,
+      (match) => {
+        if (!match.endsWith('"') && !match.endsWith("'")) {
+          return match + '"';
+        }
+        return match;
+      }
+    );
+
+    try {
+      JSON.parse(repaired);
+      return repaired;
+    } catch {}
+
+    // 5. CORRECAO: Tentar fechar strings nao terminadas no MEIO do JSON
+    let quoteBalanced = repaired;
+    let inString = false;
+    let stringChar = '';
+    let result = '';
+    for (let i = 0; i < quoteBalanced.length; i++) {
+      const ch = quoteBalanced[i];
+      const prev = i > 0 ? quoteBalanced[i-1] : '';
+      if (!inString) {
+        if ((ch === '"' || ch === "'") && prev !== '\\') {
+          inString = true;
+          stringChar = ch;
+        }
+        result += ch;
+      } else {
+        if (ch === '\\') {
+          result += ch;
+          i++; // skip next char
+          if (i < quoteBalanced.length) {
+            result += quoteBalanced[i];
+          }
+        } else if (ch === stringChar) {
+          inString = false;
+          result += ch;
+        } else {
+          result += ch;
+        }
+      }
+    }
+    if (inString) {
+      result += stringChar;
+      quoteBalanced = result;
+    }
+
+    try {
+      JSON.parse(quoteBalanced);
+      return quoteBalanced;
+    } catch {}
+
+    // 6. CORRECAO v2: Balancear brackets apos fechar strings
+    let bracketBalanced = quoteBalanced;
+    inString = false;
+    let openBraces = 0;
+    let openBrackets = 0;
+    for (let i = 0; i < bracketBalanced.length; i++) {
+      const ch = bracketBalanced[i];
+      const prev = i > 0 ? bracketBalanced[i - 1] : '';
+      if (ch === '"' && prev !== '\\') {
+        inString = !inString;
+      } else if (!inString) {
+        if (ch === '{') openBraces++;
+        else if (ch === '}') openBraces--;
+        else if (ch === '[') openBrackets++;
+        else if (ch === ']') openBrackets--;
+      }
+    }
+    while (openBrackets > 0) {
+      bracketBalanced += ']';
+      openBrackets--;
+    }
+    while (openBraces > 0) {
+      bracketBalanced += '}';
+      openBraces--;
+    }
+
+    try {
+      JSON.parse(bracketBalanced);
+      return bracketBalanced;
+    } catch {}
+
+    // 7. Remover trailing commas
+    repaired = repaired.replace(/,\s*([}\]])/g, '$1');
+
+    try {
+      JSON.parse(repaired);
+      return repaired;
+    } catch {}
+
+    // 8. Ultimo recurso: extrair objeto JSON valido do meio do texto
+    const jsonMatch = repaired.match(/\{[\s\S]*\}|\[[\s\S]*\]/);
+    if (jsonMatch) {
+      try {
+        JSON.parse(jsonMatch[0]);
+        return jsonMatch[0];
+      } catch {}
+    }
+
+    return null;
+  }
 }

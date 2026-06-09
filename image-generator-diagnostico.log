@@ -1,0 +1,88 @@
+======================================================================
+ DIAGNÓSTICO - Image Generator Agent
+ DATA: 2026-06-08
+ ARQUIVO: core/agents/image-generator.agent.ts
+======================================================================
+
+PROBLEMA 1 - MODELO INEXISTENTE (CRÍTICO)
+------------------------------------------
+Configurado: model = "models/gemini-3.1-flash-image"
+Realidade:   O modelo "gemini-3.1-flash-image" NÃO EXISTE na API do Google Gemini.
+
+Modelos reais de geração de imagem do Google:
+  - gemini-2.0-flash-exp-image-generation (recomendado, experimental)
+  - imagen-3.0-generate-001 (via Vertex AI)
+
+⇒ O Agent.run() no agent.ts tenta fazer chat.completions.create() com esse modelo
+  → A API retorna erro 404 (modelo não encontrado)
+  → O Agent faz 5 retries com backoff
+  → Todas falham
+  → Retorna "[Erro no processamento: ...]"
+
+PROBLEMA 2 - CONFLITO DE ESTRATÉGIAS (CRÍTICO)
+----------------------------------------------
+O agente tem DUAS abordagens conflitantes:
+A) Configura model="models/gemini-3.1-flash-image" + baseURL no Agent
+   → Agent.run() chama chat.completions.create() com esse modelo
+   → FLUXO NUNCA FUNCIONA (Problema 1)
+
+B) Nas generalInstructions, instrui o LLM a usar api_request manualmente
+   → Faz sentido, MAS o fluxo (A) é executado primeiro
+   → Se (A) falha, o retry/backoff esgota e o agente retorna erro
+   → (B) NUNCA É ALCANÇADO
+
+⇒ O Planner recebe o erro, tenta fallback, e eventualmente outro agente
+  (provavelmente assistant) responde no lugar, SEM gerar imagem alguma.
+
+PROBLEMA 3 - ENDPOINT OPENAI-COMPATÍVEL NÃO SUPORTA IMAGEM
+------------------------------------------------------------
+baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/"
+
+O endpoint OpenAI-compatible do Gemini serve APENAS para modelos de TEXTO
+(gemini-2.0-flash, gemini-2.5-pro, etc.). Para geração de IMAGEM, é necessário
+usar o endpoint REST direto:
+  POST .../v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key=...
+
+A apiIntegrationTool.ts está configurada corretamente (timeout, headers, etc.),
+mas NUNCA é chamada porque o fluxo quebra no Agent.run() antes.
+
+PROBLEMA 4 - FALTA DE LOG/DEBUG DO ERRO REAL
+----------------------------------------------
+O Agent.ts captura o erro e retorna "[Erro no processamento: ...]" sem detalhes.
+O Orchestrator não loga o erro real do modelo.
+O usuário nunca vê o erro verdadeiro ("model not found").
+
+FLUXO COMPLETO DO ERRO:
+1. User: "gere uma imagem de..."
+2. Orchestrator → Planner decide → "image-generator"
+3. Orchestrator → imageGeneratorAgent.run(agentPrompt)
+4. Agent.run() → client.chat.completions.create({ model: "models/gemini-3.1-flash-image" })
+5. Gemini API → 404 Not Found (modelo não existe)
+6. Agent.retryWithBackoff() → 5 tentativas, todas falham
+7. Agent.run() retorna "[Erro no processamento: 404 - model not found]"
+8. Orchestrator recebe erro → Reflection → falha
+9. Orchestrator tenta finish → writer agent formata resposta
+10. Writer agent diz "Sim, imagem gerada com sucesso!" (Mentira!)
+
+======================================================================
+ CORREÇÕES NECESSÁRIAS:
+======================================================================
+
+1. REMOVER model e baseURL inadequados do imageGeneratorAgent
+   - Deixar o Agent usar o modelo padrão (deepseek) para processar instruções
+
+2. CORRIGIR as instruções para usar o modelo real:
+   - gemini-2.0-flash-exp-image-generation (via api_request REST)
+
+3. GARANTIR que a tool api_request seja chamada para gerar a imagem
+   - O LLM (deepseek) processa as instruções e chama api_request
+   - api_request faz POST para o endpoint REST do Gemini com o modelo correto
+
+4. ADICIONAR verificação de erro no fluxo:
+   - Se a API retornar erro, informar claramente ao usuário
+   - Usar image_audit para registrar sucesso ou falha
+
+======================================================================
+
+✅ Fix applied: removed invalid model and baseURL, now uses api_request to gemini-2.0-flash-exp-image-generation.
+✅ Additional improvements: agent now uses deepseek as LLM processor, Gemini REST API via api_request for image generation, image_audit for logging, transparent user communication about model/prompt used.

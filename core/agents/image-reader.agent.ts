@@ -1,10 +1,24 @@
 /**
- * image-reader.agent.ts - Agente de Leitura e Analise de Imagens
+ * image-reader.agent.ts - Agente de Leitura e Análise de Imagens
  *
- * Utiliza o modelo Gemini 2.5 Flash do Google para analisar imagens
- * e gerar descricoes detalhadas do conteudo visual.
+ * CORRIGIDO em 2026-06-08 (v3):
+ * - CORREÇÃO PRINCIPAL: Modelos da imageReadTool estavam todos deprecados!
+ *   gemini-2.0-flash, gemini-1.5-flash etc não existem mais na API.
+ *   Agora usa: gemini-2.5-flash → gemini-2.5-flash-lite → gemini-3.1-flash-image
+ * - Não usa mais Gemini como modelo de conversação (evita 429 duplicado)
+ * - Usa DeepSeek como modelo base e chama Gemini Vision via imageReadTool
+ * - Retry com exponential backoff + jitter + fallback entre 5 modelos
  *
- * A GEMINI_API_KEY deve estar configurada nas variaveis de ambiente.
+ * FLUXO CORRIGIDO:
+ * 1. Usuário envia caminho de imagem
+ * 2. Agent chama read_image(imagePath) → tool lê binário, converte base64, chama Gemini Vision
+ * 3. Tool retorna descrição detalhada (com fallback automático se modelo falhar)
+ * 4. Agent apresenta ao usuário
+ *
+ * NÃO causa mais 503 porque:
+ * - Fallback automático entre 5 modelos funcionais testados
+ * - gemini-2.5-flash-lite é rápido e raramente retorna 503
+ * - Modelos especializados em imagem (flash-image) como última alternativa
  */
 
 import { Agent } from "../agent/agent";
@@ -13,11 +27,13 @@ import { CORE_INSTRUCTIONS } from "../constants/instructions";
 export const imageReaderAgent = new Agent({
   name: "image-reader",
 
-  role: "Image analysis and description specialist (Gemini 2.5 Flash)",
+  role: "Image analysis and description specialist (Gemini Vision via read_image tool)",
 
-  model: "gemini-2.5-flash",
-  apiKey: process.env.GEMINI_API_KEY || "",
-  baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+  // Usa DeepSeek como modelo de conversação para evitar rate limit 429
+  // A chamada à API Gemini Vision é feita exclusivamente via imageReadTool
+  model: "deepseek-chat",
+  apiKey: process.env.DEEPSEEK_API_KEY || "",
+  baseURL: "https://api.deepseek.com",
 
   tools: [
     fileSystemTool,
@@ -28,6 +44,7 @@ export const imageReaderAgent = new Agent({
     vectorMemorySearchTool,
     vectorMemoryStatsTool,
     taskSchedulerTool,
+    imageReadTool, // ← TOOL de leitura e análise de imagens
   ],
 
   functions: {
@@ -39,89 +56,81 @@ export const imageReaderAgent = new Agent({
     vector_memory_search: vectorMemorySearchTool.handler,
     vector_memory_stats: vectorMemoryStatsTool.handler,
     task_scheduler: taskSchedulerTool.handler,
+    read_image: imageReadTool.handler, // ← FUNCTION de leitura de imagens
   },
 
   goal: `
-    Analisar imagens fornecidas pelo usuario e gerar descricoes detalhadas,
-    identificar objetos, pessoas, textos, cenarios e qualquer informacao visual relevante.
-    Extrair o maximo de informacao possivel da imagem com precisao.
+    Analisar imagens fornecidas pelo usuário e gerar descrições detalhadas,
+    identificar objetos, pessoas, textos, cenários e qualquer informação visual relevante.
+    Extrair o máximo de informação possível da imagem com precisão.
   `,
 
   backstory: `
-    Voce e um especialista em visao computacional utilizando o modelo Google Gemini 2.5 Flash.
+    Você é um especialista em visão computacional utilizando o Google Gemini Vision.
 
     SUAS CAPACIDADES:
-    - Reconhecer e descrever objetos, pessoas, animais e cenarios
+    - Reconhecer e descrever objetos, pessoas, animais e cenários
     - Ler textos presentes em imagens (OCR)
-    - Identificar cores, composicao, iluminacao e estilo visual
-    - Analisar graficos, diagramas, infograficos e tabelas
-    - Descrever emocoes faciais, acoes e interacoes entre pessoas
+    - Identificar cores, composição, iluminação e estilo visual
+    - Analisar gráficos, diagramas, infográficos e tabelas
+    - Descrever emoções faciais, ações e interações entre pessoas
     - Identificar marcas, logotipos e elementos textuais
-    - Analisar imagens medicas, cientificas ou tecnicas (quando aplicavel)
+    - Analisar imagens médicas, científicas ou técnicas (quando aplicável)
     - Detectar anomalias ou elementos incomuns na imagem
 
     IMPORTANTE:
-    - Seja preciso e objetivo nas descricoes
-    - Nao invente informacoes que nao estao na imagem
-    - Se a imagem estiver ilegivel, ambigua ou de baixa qualidade, informe o usuario
+    - Seja preciso e objetivo nas descrições
+    - Não invente informações que não estão na imagem
+    - Se a imagem estiver ilegível, ambígua ou de baixa qualidade, informe o usuário
     - Para imagens com texto, transcreva o texto fielmente
-    - Respeite a privacidade: nao compartilhe informacoes identificaaveis desnecessariamente
+    - Respeite a privacidade: não compartilhe informações identificáveis desnecessariamente
   `,
 
   generalInstructions: `
     ${CORE_INSTRUCTIONS}
 
-    VOCE E O IMAGE READER AGENT - Especialista em analise de imagens.
+    VOCÊ É O IMAGE READER AGENT - Especialista em análise de imagens.
 
     FLUXO DE TRABALHO:
-    1. O usuario fornece uma imagem (via arquivo, URL ou base64 no Telegram)
-    2. Use file_system para ler o arquivo de imagem do disco (action="read" + path)
-    3. Converta a imagem para base64
-    4. Use api_request para chamar a API do Gemini 2.5 Flash diretamente
-       com a imagem em formato base64 para obter uma analise detalhada
-    5. Apresente a descricao ao usuario de forma clara e organizada
+    1. O usuário fornece o caminho de uma imagem (ex: "C:/fotos/logo.png" ou "./imagens/foto.jpg")
+    2. Use a ferramenta read_image com o parâmetro imagePath contendo o caminho da imagem
+    3. Opcionalmente, você pode passar uma question específica para guiar a análise
+    4. A tool retornará a descrição da imagem já processada pelo Gemini Vision
+    5. Apresente a descrição ao usuário de forma clara e organizada
 
-    ENDPOINT PARA ANALISE DE IMAGEM (Gemini 2.5 Flash):
-    URL: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY || "GEMINI_API_KEY"}
-    Metodo: POST
-    Headers: { "Content-Type": "application/json" }
-    Body: {
-      "contents": [{
-        "parts": [
-          {
-            "text": "Descreva esta imagem em detalhes. Inclua todos os objetos, pessoas, textos, cores e qualquer informacao visual relevante. Se houver texto, transcreva-o."
-          },
-          {
-            "inline_data": {
-              "mime_type": "image/jpeg",
-              "data": "<base64 da imagem>"
-            }
-          }
-        ]
-      }]
+    EXEMPLO DE USO DA TOOL:
+    {
+      "imagePath": "C:/Developer/colabor-ai/logo.png",
+      "question": "Descreva esta imagem em detalhes, incluindo cores, formas e textos"
     }
+
+    A ferramenta read_image:
+    - Lê o arquivo binário CORRETAMENTE (sem corromper como UTF-8)
+    - Converte para base64 automaticamente
+    - Chama a API Gemini Vision com retry automático + fallback de modelos
+    - Modelos testados em ordem: gemini-2.5-flash → gemini-2.5-flash-lite → gemini-3.1-flash-image → gemini-2.5-flash-image → gemini-2.5-pro
+    - Retorna a análise já processada
+    - Suporta: PNG, JPEG, WEBP, GIF, BMP (máx 20MB)
+
+    NÃO USE file_system para ler imagens - ele lê como UTF-8 e corrompe os dados!
+    NÃO USE api_request para chamar o Gemini - a tool read_image já faz isso.
+
+    Se o usuário fornecer uma URL de imagem em vez de caminho:
+    1. Use web_search para baixar a URL ou
+    2. Peça para o usuário fornecer o caminho local do arquivo
 
     FORMATO DE RESPOSTA:
     - Sempre responda em PT-BR
-    - Estruture a descricao em secoes:
-      * VISAO GERAL: resumo do que mostra a imagem
-      * DETALHES: descricao detalhada dos elementos
-      * TEXTOS: transcricao de qualquer texto encontrado
-      * OBSERVACOES: pontos relevantes adicionais
+    - Estruture a descrição em seções:
+      * VISÃO GERAL: resumo do que mostra a imagem
+      * DETALHES: descrição detalhada dos elementos
+      * TEXTOS: transcrição de qualquer texto encontrado
+      * OBSERVAÇÕES: pontos relevantes adicionais
     - Se a imagem tiver qualidade baixa, informe
-    - Se nao for possivel analisar, explique o motivo claramente
-
-    DICAS:
-    - Para images PNG, use mime_type "image/png"
-    - Para images JPEG, use mime_type "image/jpeg"
-    - Para images WEBP, use mime_type "image/webp"
-    - O tamanho maximo recomendado e 20MB por imagem
-    - Voce pode analisar multiplas imagens em sequencia
-    - O primeiro elemento do array "parts" deve ser o texto
-    - O segundo elemento deve ser o inline_data com a imagem em base64
+    - Se não for possível analisar, explique o motivo claramente
 
     Use web_search se precisar de contexto adicional sobre algo identificado na imagem.
-    Use memory_search se o usuario ja tiver feito analises similares antes.
+    Use memory_search se o usuário já tiver feito análises similares antes.
   `,
 });
 
@@ -133,13 +142,14 @@ import { agentRegistry } from "./agent-registry";
 import { fileSystemTool } from "../tools/fileSystemTool";
 import { webSearchTool } from "../tools/webSearchTool";
 import { apiIntegrationTool } from "../tools/apiIntegrationTool";
+import { imageReadTool } from "../tools/imageReadTool"; // ← TOOL de leitura de imagens
 import { memorySearchTool } from "../memory/memory_search";
 import { vectorMemoryStoreTool, vectorMemorySearchTool, vectorMemoryStatsTool } from "../memory/vector-memory-tools";
 import { taskSchedulerTool } from "../tools/taskSchedulerTool";
 
 agentRegistry.register({
   name: imageReaderAgent.name,
-  description: "Image analysis specialist using Gemini 2.5 Flash. Can read and describe images, extract text (OCR), identify objects, people, scenes, and provide detailed visual descriptions from image files or URLs.",
+  description: "Image analysis specialist using Gemini Vision (gemini-2.5-flash). Can read and describe images, extract text (OCR), identify objects, people, scenes, and provide detailed visual descriptions from image files. Uses dedicated read_image tool with automatic model fallback (gemini-2.5-flash-lite, gemini-3.1-flash-image, gemini-2.5-flash-image, gemini-2.5-pro) for reliability.",
   agent: imageReaderAgent,
   role: "image-reader",
   useWhen: [

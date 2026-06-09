@@ -203,8 +203,43 @@ function safeJsonParse(input: string): any {
       try {
         return JSON.parse(balanced);
       } catch {}
-    
-      // Estrategia 7: Extrair primeiro objeto JSON valido
+          // ============================================================
+          // CORRECAO v2: Balancear brackets apos fechar strings
+          // Resolve: "Unterminated string in JSON at position N"
+          // Quando o JSON foi truncado no meio, apos fechar a string,
+          // ainda faltam fechar brackets { } [ ] abertos.
+          // ============================================================
+          let bracketBalanced = balanced;
+          inString = false;
+          let openBraces = 0;
+          let openBrackets = 0;
+          for (let i = 0; i < bracketBalanced.length; i++) {
+            const ch = bracketBalanced[i];
+            const prev = i > 0 ? bracketBalanced[i - 1] : '';
+            if (ch === '"' && prev !== '\\') {
+              inString = !inString;
+            } else if (!inString) {
+              if (ch === '{') openBraces++;
+              else if (ch === '}') openBraces--;
+              else if (ch === '[') openBrackets++;
+              else if (ch === ']') openBrackets--;
+            }
+          }
+          // Fecha brackets restantes na ordem correta
+          while (openBrackets > 0) {
+            bracketBalanced += ']';
+            openBrackets--;
+          }
+          while (openBraces > 0) {
+            bracketBalanced += '}';
+            openBraces--;
+          }
+        
+          try {
+            return JSON.parse(bracketBalanced);
+          } catch {}
+        
+          // Estrategia 7: Extrair primeiro objeto JSON valido
       const jsonObjectMatch = input.match(/\{(?:[^{}]|"(?:[^"\\]|\\.)*")*\}/);
       if (jsonObjectMatch) {
         try {
@@ -672,7 +707,7 @@ function safeJsonParse(input: string): any {
       lastAgentName = parsed.agent;
 
       // CORRECAO: Busca case-insensitive para evitar erro "agente 'python' nao encontrado"
-      // O planner pode decidir "python" (minúsculo) mas o agente pode estar registrado como "PythonAgent"
+      // O planner pode decidir "python" (minÃºsculo) mas o agente pode estar registrado como "PythonAgent"
       const target = this.agents.find(
         (a) => a.name.toLowerCase() === parsed.agent.toLowerCase()
       );

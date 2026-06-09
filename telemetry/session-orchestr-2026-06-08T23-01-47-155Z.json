@@ -1,0 +1,58 @@
+{
+  "sessionId": "orchestrator_1780959520399_i7c0v8",
+  "userInput": "sim",
+  "startedAt": "2026-06-08T23:01:43.938Z",
+  "finishedAt": "2026-06-08T23:01:47.153Z",
+  "totalDuration": 3215,
+  "totalLLMCalls": 1,
+  "totalPromptTokens": 16648,
+  "totalCompletionTokens": 166,
+  "totalTokens": 16814,
+  "maxContextWindowTokens": 16648,
+  "avgTokensPerLLMCall": 16814,
+  "estimatedCostUSD": 0.0047,
+  "totalAgentCalls": 1,
+  "agentCallBreakdown": {
+    "PlannerAgent": 1
+  },
+  "avgAgentCalls": 1,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 1,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780959704019,
+      "duration": 3122,
+      "promptTokens": 16648,
+      "completionTokens": 166,
+      "totalTokens": 16814,
+      "historyLength": 8,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    sim\n\n    Conversation history:\n    user: o seguinte erro continua acontecendo: \n\nacredito que seja uma implementação incorreta ou a transformação da imagem base64, para corrigir",
+      "startTime": 1780959704019,
+      "duration": 3125,
+      "success": true,
+      "responseLength": 281,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Execute o build do projeto em C:\\Developer\\colabor-ai. No terminal, navegue até C:\\Developer\\colabor-ai e execute 'npm run build'. Capture a saída completa (stdout e stderr) e retorne o resultado para",
+      "chosenAgent": "python",
+      "step": 1,
+      "timestamp": 1780959707145
+    }
+  ],
+  "toolCalls": []
+}

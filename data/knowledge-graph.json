@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-06-08T19:13:05.234Z",
+  "savedAt": "2026-06-09T02:26:17.961Z",
   "nodes": [
     {
       "key": "colabor-ai",
@@ -40,7 +40,8 @@
     {
       "key": "o que",
       "predicates": [
-        "é"
+        "é",
+        "tem"
       ]
     },
     {
@@ -5948,7 +5949,8 @@
     {
       "key": "ou",
       "predicates": [
-        "prefere"
+        "prefere",
+        "tem"
       ]
     },
     {
@@ -6260,6 +6262,78 @@
       "predicates": [
         "has_total_facts"
       ]
+    },
+    {
+      "key": "na imagem",
+      "predicates": [
+        "tem"
+      ]
+    },
+    {
+      "key": "../tools/imagegenerationtool",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "15",
+      "predicates": [
+        "has_total_files"
+      ]
+    },
+    {
+      "key": "202",
+      "predicates": [
+        "has_total_facts"
+      ]
+    },
+    {
+      "key": "../tools/imagereadtool",
+      "predicates": [
+        "imports"
+      ]
+    },
+    {
+      "key": "20",
+      "predicates": [
+        "has_total_files"
+      ]
+    },
+    {
+      "key": "283",
+      "predicates": [
+        "has_total_facts"
+      ]
+    },
+    {
+      "key": "hero com gradiente e",
+      "predicates": [
+        "chamada"
+      ]
+    },
+    {
+      "key": "pra ação",
+      "predicates": [
+        "chamada"
+      ]
+    },
+    {
+      "key": "2026-06-09",
+      "predicates": [
+        "had_conversation"
+      ]
+    },
+    {
+      "key": "outra ideia",
+      "predicates": [
+        "tem"
+      ]
+    },
+    {
+      "key": "quer dar uma olhada em como ficou ou",
+      "predicates": [
+        "prefere"
+      ]
     }
   ],
   "edges": [
@@ -6288,6 +6362,14 @@
         },
         {
           "object": "292",
+          "confidence": 1
+        },
+        {
+          "object": "15",
+          "confidence": 1
+        },
+        {
+          "object": "20",
           "confidence": 1
         }
       ]
@@ -6338,6 +6420,14 @@
         },
         {
           "object": "2362",
+          "confidence": 1
+        },
+        {
+          "object": "202",
+          "confidence": 1
+        },
+        {
+          "object": "283",
           "confidence": 1
         }
       ]
@@ -22140,6 +22230,10 @@
         {
           "object": "../tools/imageaudittool",
           "confidence": 0.95
+        },
+        {
+          "object": "../tools/imagegenerationtool",
+          "confidence": 0.95
         }
       ]
     },
@@ -22234,6 +22328,10 @@
         },
         {
           "object": "../tools/taskschedulertool",
+          "confidence": 0.95
+        },
+        {
+          "object": "../tools/imagereadtool",
           "confidence": 0.95
         }
       ]
@@ -22693,6 +22791,10 @@
       "targets": [
         {
           "object": "2026-06-08",
+          "confidence": 0.5
+        },
+        {
+          "object": "2026-06-09",
           "confidence": 0.5
         }
       ]
@@ -23564,6 +23666,42 @@
         {
           "object": "small",
           "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "key": "o que::tem",
+      "targets": [
+        {
+          "object": "na imagem",
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "key": "hero com gradiente e::chamada",
+      "targets": [
+        {
+          "object": "pra ação",
+          "confidence": 0.75
+        }
+      ]
+    },
+    {
+      "key": "ou::tem",
+      "targets": [
+        {
+          "object": "outra ideia",
+          "confidence": 0.8500000000000001
+        }
+      ]
+    },
+    {
+      "key": "quer dar uma olhada em como ficou ou::prefere",
+      "targets": [
+        {
+          "object": "ajustar algo",
+          "confidence": 0.8
         }
       ]
     }

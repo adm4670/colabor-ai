@@ -1,0 +1,178 @@
+{
+  "sessionId": "orchestrator_1780959520399_i7c0v8",
+  "userInput": "o seguinte erro continua acontecendo: \n\nacredito que seja uma implementação incorreta ou a transformação da imagem base64, para corrigir isso crie toda essa lógica em uma tool para o modelo: \n\nerro: \n\no seguinte agent: C:\\Developer\\colabor-ai\\core\\agents\\image-reader.agent.ts\n\nestá apresentando a seguinte mensagem:   └──────────────────────────────────────────────────────────────────┘\n[2026-06-08T22:47:10.348Z] [WARN] [Agent] Retry 1/5 em 4244ms {\"error\":\"429 status code (no body)\",\"status\":429,\"isRateLimit\":true,\"attempt\":0}\n[2026-06-08T22:47:25.953Z] [WARN] [Agent] Retry 2/5 em 15968ms {\"error\":\"429 status code (no body)\",\"status\":429,\"isRateLimit\":true,\"attempt\":1}\n[2026-06-08T22:47:53.434Z] [WARN] [Agent] Retry 3/5 em 59177ms {\"error\":\"429 status code (no body)\",\"status\":429,\"isRateLimit\":true,\"attempt\":2}\n[2026-06-08T22:49:04.183Z] [WARN] [Agent] Retry 4/5 em 255692ms {\"error\":\"429 status code (no body)\",\"status\":429,\"isRateLimit\":true,\"attempt\":3}\n\ncorrija ele, se necessário crie uma tool",
+  "startedAt": "2026-06-08T22:58:49.312Z",
+  "finishedAt": "2026-06-08T22:59:00.421Z",
+  "totalDuration": 11109,
+  "totalLLMCalls": 6,
+  "totalPromptTokens": 25090,
+  "totalCompletionTokens": 1462,
+  "totalTokens": 26552,
+  "maxContextWindowTokens": 8453,
+  "avgTokensPerLLMCall": 4425,
+  "estimatedCostUSD": 0.0084,
+  "totalAgentCalls": 5,
+  "agentCallBreakdown": {
+    "ThinkingAgent": 4,
+    "PlannerAgent": 1
+  },
+  "avgAgentCalls": 5,
+  "totalToolCalls": 2,
+  "toolCallBreakdown": {
+    "knowledge_graph_scan": 1,
+    "file_system": 1
+  },
+  "totalSteps": 1,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "knowledge-graph",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780959527431,
+      "duration": 3336,
+      "promptTokens": 7703,
+      "completionTokens": 240,
+      "totalTokens": 7943,
+      "historyLength": 2,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780959530768,
+      "duration": 1506,
+      "promptTokens": 2186,
+      "completionTokens": 10,
+      "totalTokens": 2196,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780959532689,
+      "duration": 1869,
+      "promptTokens": 2212,
+      "completionTokens": 17,
+      "totalTokens": 2229,
+      "historyLength": 6,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780959534973,
+      "duration": 1638,
+      "promptTokens": 2268,
+      "completionTokens": 19,
+      "totalTokens": 2287,
+      "historyLength": 9,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1780959535111,
+      "duration": 1553,
+      "promptTokens": 2268,
+      "completionTokens": 16,
+      "totalTokens": 2284,
+      "historyLength": 10,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1780959529388,
+      "duration": 11027,
+      "promptTokens": 8453,
+      "completionTokens": 1160,
+      "totalTokens": 9613,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me analyze the user's request.",
+      "startTime": 1780959530768,
+      "duration": 1512,
+      "success": true,
+      "responseLength": 46,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 They want me to: 1.",
+      "startTime": 1780959532689,
+      "duration": 1872,
+      "success": true,
+      "responseLength": 62,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 knowledge_graph_scan...",
+      "startTime": 1780959534973,
+      "duration": 1639,
+      "success": true,
+      "responseLength": 68,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\Developer\\colabor-ai\\core\\agents\\imag\"",
+      "startTime": 1780959535111,
+      "duration": 1556,
+      "success": true,
+      "responseLength": 56,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    o seguinte erro continua acontecendo: \n\nacredito que seja uma implementação incorreta ou a transformação da imagem base64, para corrigir isso crie toda essa lógica em uma tool p",
+      "startTime": 1780959529388,
+      "duration": 11028,
+      "success": true,
+      "responseLength": 1027,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Leia o arquivo C:\\Developer\\colabor-ai\\core\\agents\\image-reader.agent.ts para entender a implementação atual da conversão base64 e chamada à API Gemini. Depois, analise a estrutura de tools existente ",
+      "chosenAgent": "python",
+      "step": 1,
+      "timestamp": 1780959540417
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "knowledge_graph_scan",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780959535108,
+      "hasError": false,
+      "duration": 7678
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "knowledge-graph",
+      "timestamp": 1780959535117,
+      "hasError": false,
+      "duration": 7686
+    }
+  ]
+}
