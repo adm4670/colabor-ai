@@ -109,7 +109,120 @@ interface ReflectionResult {
   learning: string;
 }
 
-export class AgentOrchestrator {
+// ============================================================
+// CORRECAO: Utilitario para reparar JSON malformado de LLMs
+// ============================================================
+
+/**
+ * Tenta fazer parse de uma string como JSON, com varias estrategias
+ * de reparo para lidar com JSON malformado retornado por LLMs.
+ */
+function safeJsonParse(input: string): any {
+      if (!input || input.trim() === '') return null;
+    
+      // Estrategia 1: Tentativa direta
+      try {
+        return JSON.parse(input);
+      } catch {
+        // Continua para estrategias de reparo
+      }
+    
+      let repaired = input;
+    
+      // Estrategia 2: Remover caracteres de controle
+      repaired = repaired.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+    
+      try {
+        return JSON.parse(repaired);
+      } catch {}
+    
+      // Estrategia 3: Escapar sequencias de escape incompletas (\u, \x)
+      repaired = repaired.replace(
+        /\\([ux])([0-9a-fA-F]{0,3})($|[^0-9a-fA-F])/g,
+        (match, escapeChar, hexDigits, nextChar) => {
+          const expectedLen = escapeChar === 'u' ? 4 : 2;
+          if (hexDigits.length < expectedLen) {
+            return '\\\\' + match;
+          }
+          return match;
+        }
+      );
+    
+      try {
+        return JSON.parse(repaired);
+      } catch {}
+    
+      // Estrategia 4: Remover trailing commas
+      repaired = repaired.replace(/,\s*([}\]])/g, '$1');
+    
+      try {
+        return JSON.parse(repaired);
+      } catch {}
+    
+      // Estrategia 5: Tentar fechar strings nao terminadas (no final do texto)
+      repaired = repaired.replace(/:(\s*)"([^"]*)$/, ':$1"$2"');
+    
+      try {
+        return JSON.parse(repaired);
+      } catch {}
+    
+      // Estrategia 6: CORRECAO - Balancear aspas em todo o JSON
+      let balanced = repaired;
+      let inString = false;
+      let stringChar = '';
+      let result = '';
+      for (let i = 0; i < balanced.length; i++) {
+        const ch = balanced[i];
+        const prev = i > 0 ? balanced[i - 1] : '';
+        if (!inString) {
+          if ((ch === '"' || ch === "'") && prev !== '\\') {
+            inString = true;
+            stringChar = ch;
+          }
+          result += ch;
+        } else {
+          if (ch === '\\') {
+            result += ch;
+            i++;
+            if (i < balanced.length) {
+              result += balanced[i];
+            }
+          } else if (ch === stringChar) {
+            inString = false;
+            result += ch;
+          } else {
+            result += ch;
+          }
+        }
+      }
+      if (inString) {
+        result += stringChar;
+        balanced = result;
+      }
+    
+      try {
+        return JSON.parse(balanced);
+      } catch {}
+    
+      // Estrategia 7: Extrair primeiro objeto JSON valido
+      const jsonObjectMatch = input.match(/\{(?:[^{}]|"(?:[^"\\]|\\.)*")*\}/);
+      if (jsonObjectMatch) {
+        try {
+          return JSON.parse(jsonObjectMatch[0]);
+        } catch {}
+      }
+    
+      // Estrategia 8: Extrair array JSON valido
+      const jsonArrayMatch = input.match(/\[(?:[^\[\]]|"(?:[^"\\]|\\.)*")*\]/);
+      if (jsonArrayMatch) {
+        try {
+          return JSON.parse(jsonArrayMatch[0]);
+        } catch {}
+      }
+    
+      return null;
+    }
+    export class AgentOrchestrator {
   private sessionId: string;
   public eventStream: EventStream;
   private contextEngine: ContextEngine;
@@ -196,7 +309,11 @@ export class AgentOrchestrator {
 
     try {
       const reflectionRaw = await reflectorAgent.run(reflectionPrompt);
-      const parsed = JSON.parse(reflectionRaw);
+      // CORRECAO: Usar safeJsonParse para lidar com JSON malformado
+      const parsed = safeJsonParse(reflectionRaw);
+      if (!parsed) {
+        throw new Error("Failed to parse reflection JSON");
+      }
       return {
         success: parsed.success || "partial",
         complete: parsed.complete ?? true,
@@ -426,8 +543,14 @@ export class AgentOrchestrator {
 
       let parsed: any;
 
+      // ============================================================
+      // CORRECAO: Usar safeJsonParse para o JSON do planner
+      // ============================================================
       try {
-        parsed = JSON.parse(decision);
+        parsed = safeJsonParse(decision);
+        if (!parsed) {
+          throw new Error("Failed to parse planner JSON");
+        }
         _tel.trackPlannerDecision({
           instruction: parsed.instruction?.slice(0, 200) || "",
           chosenAgent: parsed.agent || "unknown",
@@ -548,7 +671,11 @@ export class AgentOrchestrator {
       lastInstruction = parsed.instruction;
       lastAgentName = parsed.agent;
 
-      const target = this.agents.find((a) => a.name === parsed.agent);
+      // CORRECAO: Busca case-insensitive para evitar erro "agente 'python' nao encontrado"
+      // O planner pode decidir "python" (minúsculo) mas o agente pode estar registrado como "PythonAgent"
+      const target = this.agents.find(
+        (a) => a.name.toLowerCase() === parsed.agent.toLowerCase()
+      );
 
       if (!target) {
         console.warn(`Agent not found: ${parsed.agent}`);
