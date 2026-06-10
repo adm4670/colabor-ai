@@ -1,0 +1,310 @@
+{
+  "sessionId": "orchestrator_1781060414181_a7esl3",
+  "userInput": "Escola a estratégia mais vitoriosa e indique proporção de stops e gain",
+  "startedAt": "2026-06-10T04:26:50.237Z",
+  "finishedAt": "2026-06-10T04:27:47.594Z",
+  "totalDuration": 57357,
+  "totalLLMCalls": 12,
+  "totalPromptTokens": 68775,
+  "totalCompletionTokens": 4841,
+  "totalTokens": 73616,
+  "maxContextWindowTokens": 18266,
+  "avgTokensPerLLMCall": 6135,
+  "estimatedCostUSD": 0.0239,
+  "totalAgentCalls": 12,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 7,
+    "assistant": 1,
+    "ReflectorAgent": 1,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 12,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781065610643,
+      "duration": 11836,
+      "promptTokens": 17190,
+      "completionTokens": 1010,
+      "totalTokens": 18200,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065622487,
+      "duration": 1718,
+      "promptTokens": 2143,
+      "completionTokens": 62,
+      "totalTokens": 2205,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781065622496,
+      "duration": 23911,
+      "promptTokens": 12722,
+      "completionTokens": 2220,
+      "totalTokens": 14942,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065646410,
+      "duration": 1325,
+      "promptTokens": 2153,
+      "completionTokens": 28,
+      "totalTokens": 2181,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065648142,
+      "duration": 1451,
+      "promptTokens": 2135,
+      "completionTokens": 21,
+      "totalTokens": 2156,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065650016,
+      "duration": 1181,
+      "promptTokens": 2129,
+      "completionTokens": 17,
+      "totalTokens": 2146,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065650019,
+      "duration": 2192,
+      "promptTokens": 2473,
+      "completionTokens": 97,
+      "totalTokens": 2570,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065652232,
+      "duration": 966,
+      "promptTokens": 2129,
+      "completionTokens": 1,
+      "totalTokens": 2130,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781065652234,
+      "duration": 6714,
+      "promptTokens": 18266,
+      "completionTokens": 549,
+      "totalTokens": 18815,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065658956,
+      "duration": 1500,
+      "promptTokens": 2131,
+      "completionTokens": 16,
+      "totalTokens": 2147,
+      "historyLength": 3,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781065658954,
+      "duration": 1601,
+      "promptTokens": 2131,
+      "completionTokens": 22,
+      "totalTokens": 2153,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781065658958,
+      "duration": 8634,
+      "promptTokens": 3173,
+      "completionTokens": 798,
+      "totalTokens": 3971,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    Escola a estratégia mais vitoriosa e indique proporção de stops e gain\n\n    Conversation history:\n    user: vamos criar um trader system utilizando o metatrader 5 com a seguinte",
+      "startTime": 1781065610643,
+      "duration": 11839,
+      "success": true,
+      "responseLength": 430,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Com base na pesquisa que você mesmo fez sobre estratégias lucrativas no QuantCon…\"",
+      "startTime": 1781065622487,
+      "duration": 1720,
+      "success": true,
+      "responseLength": 220,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O usuário está me pedindo para \"escolher a estratégia mais vitoriosa\" e indicar proporção de stops e gain, baseado na pe",
+      "startTime": 1781065646410,
+      "duration": 1326,
+      "success": true,
+      "responseLength": 96,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou analisar os resultados da pesquisa e dar uma recomendação fundamentada.",
+      "startTime": 1781065648142,
+      "duration": 1453,
+      "success": true,
+      "responseLength": 81,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n    User request:\n    Escola a estratégia mais vitoriosa e indique proporção de stops e gain\n\n    Conversation history:\n    user: vamos criar um trader system utilizando o metatrader 5 com a seguinte",
+      "startTime": 1781065622496,
+      "duration": 27519,
+      "success": true,
+      "responseLength": 3072,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1781065650016,
+      "duration": 1183,
+      "success": true,
+      "responseLength": 69,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n    Evaluate the agent execution result honestly.\n\n    Task: Escola a estratégia mais vitoriosa e indique proporção de stops e gain\n    Agent used: assistant\n    Instruction given: Com base na pesqui",
+      "startTime": 1781065650019,
+      "duration": 2194,
+      "success": true,
+      "responseLength": 369,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1781065652232,
+      "duration": 968,
+      "success": true,
+      "responseLength": 4,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    Escola a estratégia mais vitoriosa e indique proporção de stops e gain\n\n    Conversation history:\n    user: vamos criar um trader system utilizando o metatrader 5 com a seguinte",
+      "startTime": 1781065652234,
+      "duration": 6716,
+      "success": true,
+      "responseLength": 321,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Formatando resposta...",
+      "startTime": 1781065658956,
+      "duration": 1503,
+      "success": true,
+      "responseLength": 55,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 📝 Preparando a resposta final...",
+      "startTime": 1781065658954,
+      "duration": 1603,
+      "success": true,
+      "responseLength": 77,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. If it's already natural, just polish it slightly. If it's JSON or internal ",
+      "startTime": 1781065658958,
+      "duration": 8636,
+      "success": true,
+      "responseLength": 1648,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Com base na pesquisa que você mesmo fez sobre estratégias lucrativas no QuantConnect e papers acadêmicos, e considerando que o usuário está desenvolvendo robôs scalper para Mini-Índice (WIN) no MT5, e",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1781065622483
+    },
+    {
+      "instruction": "A estratégia mais vitoriosa já foi apresentada anteriormente: Trend Following + Machine Learning (XGBoost com threshold de confiança) + Volatility Scaling, com proporção SL:TP de 1:2 (ex.: SL 100 pts ",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1781065658952
+    }
+  ],
+  "toolCalls": []
+}

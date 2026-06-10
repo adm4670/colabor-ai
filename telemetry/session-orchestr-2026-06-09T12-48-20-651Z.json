@@ -1,0 +1,243 @@
+{
+  "sessionId": "orchestrator_1780972187932_xi2w73",
+  "userInput": "Pense em um modelo de machine learning que consiga prever no fechamento de um candle de 5 minutos no mínimo índice se o próximo candle vai andar no mínimo 25 pontos para baixo, ou seja é uma operação de venda. Por premissa nesse datasets teremos uma base bem desbalanceada, como montar algo que realmente funcione e gere lucro",
+  "startedAt": "2026-06-09T12:47:33.100Z",
+  "finishedAt": "2026-06-09T12:48:20.651Z",
+  "totalDuration": 47551,
+  "totalLLMCalls": 9,
+  "totalPromptTokens": 50131,
+  "totalCompletionTokens": 3385,
+  "totalTokens": 53516,
+  "maxContextWindowTokens": 14176,
+  "avgTokensPerLLMCall": 5946,
+  "estimatedCostUSD": 0.0173,
+  "totalAgentCalls": 9,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 5,
+    "assistant": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 9,
+  "totalToolCalls": 0,
+  "toolCallBreakdown": {},
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781009253390,
+      "duration": 4773,
+      "promptTokens": 12363,
+      "completionTokens": 233,
+      "totalTokens": 12596,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781009258173,
+      "duration": 1351,
+      "promptTokens": 2139,
+      "completionTokens": 20,
+      "totalTokens": 2159,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781009258176,
+      "duration": 27381,
+      "promptTokens": 10394,
+      "completionTokens": 2275,
+      "totalTokens": 12669,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781009285561,
+      "duration": 1560,
+      "promptTokens": 2136,
+      "completionTokens": 16,
+      "totalTokens": 2152,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781009287536,
+      "duration": 1712,
+      "promptTokens": 2146,
+      "completionTokens": 25,
+      "totalTokens": 2171,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781009289662,
+      "duration": 1446,
+      "promptTokens": 2124,
+      "completionTokens": 10,
+      "totalTokens": 2134,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781009289665,
+      "duration": 3334,
+      "promptTokens": 2529,
+      "completionTokens": 192,
+      "totalTokens": 2721,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781009293030,
+      "duration": 1347,
+      "promptTokens": 2124,
+      "completionTokens": 11,
+      "totalTokens": 2135,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781009293031,
+      "duration": 7617,
+      "promptTokens": 14176,
+      "completionTokens": 603,
+      "totalTokens": 14779,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    Pense em um modelo de machine learning que consiga prever no fechamento de um candle de 5 minutos no mínimo índice se o próximo candle vai andar no mínimo 25 pontos para baixo, ",
+      "startTime": 1781009253390,
+      "duration": 4776,
+      "success": true,
+      "responseLength": 650,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"O usuário quer uma explicação conceitual sobre como montar um modelo de ML para …\"",
+      "startTime": 1781009258173,
+      "duration": 1353,
+      "success": true,
+      "responseLength": 75,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Boa, o usuário fez uma pergunta conceitual bem direta sobre ML para trading.",
+      "startTime": 1781009285561,
+      "duration": 1562,
+      "success": true,
+      "responseLength": 60,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Ele quer um modelo que preveja, no fechamento de um candle de 5 minutos, se o próximo candle vai cair pelo menos 25 pont",
+      "startTime": 1781009287536,
+      "duration": 1715,
+      "success": true,
+      "responseLength": 92,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n    User request:\n    Pense em um modelo de machine learning que consiga prever no fechamento de um candle de 5 minutos no mínimo índice se o próximo candle vai andar no mínimo 25 pontos para baixo, ",
+      "startTime": 1781009258176,
+      "duration": 31485,
+      "success": true,
+      "responseLength": 5663,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1781009289662,
+      "duration": 1448,
+      "success": true,
+      "responseLength": 35,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n    Evaluate the agent execution result honestly.\n\n    Task: Pense em um modelo de machine learning que consiga prever no fechamento de um candle de 5 minutos no mínimo índice se o próximo candle vai",
+      "startTime": 1781009289665,
+      "duration": 3337,
+      "success": true,
+      "responseLength": 704,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1781009293030,
+      "duration": 1349,
+      "success": true,
+      "responseLength": 48,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    Pense em um modelo de machine learning que consiga prever no fechamento de um candle de 5 minutos no mínimo índice se o próximo candle vai andar no mínimo 25 pontos para baixo, ",
+      "startTime": 1781009293031,
+      "duration": 7618,
+      "success": true,
+      "responseLength": 562,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "O usuário quer uma explicação conceitual sobre como montar um modelo de ML para prever movimento de -25 pts em candle de 5 min, com base desbalanceada e foco em lucro real. Forneça uma análise complet",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1781009258168
+    },
+    {
+      "instruction": "Complete a resposta do assistente que foi truncada. Incorpore os pontos sólidos já mencionados (formulação do problema, features, tratamento de desbalanceamento, validação temporal, métricas de lucro,",
+      "chosenAgent": "writer",
+      "step": 2,
+      "timestamp": 1781009300650
+    }
+  ],
+  "toolCalls": []
+}

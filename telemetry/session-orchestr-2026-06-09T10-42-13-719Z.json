@@ -1,0 +1,763 @@
+{
+  "sessionId": "orchestrator_1780972187932_xi2w73",
+  "userInput": "Quais as principais notícias de Pernambuco hoje",
+  "startedAt": "2026-06-09T10:40:32.275Z",
+  "finishedAt": "2026-06-09T10:42:13.718Z",
+  "totalDuration": 101443,
+  "totalLLMCalls": 33,
+  "totalPromptTokens": 137790,
+  "totalCompletionTokens": 3031,
+  "totalTokens": 140821,
+  "maxContextWindowTokens": 12981,
+  "avgTokensPerLLMCall": 4267,
+  "estimatedCostUSD": 0.0405,
+  "totalAgentCalls": 27,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 23,
+    "browser": 1,
+    "ReflectorAgent": 1
+  },
+  "avgAgentCalls": 27,
+  "totalToolCalls": 6,
+  "toolCallBreakdown": {
+    "web_search": 3,
+    "browser_action": 3
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001632446,
+      "duration": 2370,
+      "promptTokens": 7987,
+      "completionTokens": 114,
+      "totalTokens": 8101,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001634824,
+      "duration": 1611,
+      "promptTokens": 2145,
+      "completionTokens": 23,
+      "totalTokens": 2168,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 2448,
+      "promptTokens": 8907,
+      "completionTokens": 145,
+      "totalTokens": 9052,
+      "historyLength": 2,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001637274,
+      "duration": 1355,
+      "promptTokens": 2128,
+      "completionTokens": 27,
+      "totalTokens": 2155,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001639053,
+      "duration": 1087,
+      "promptTokens": 2131,
+      "completionTokens": 17,
+      "totalTokens": 2148,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001640551,
+      "duration": 1596,
+      "promptTokens": 2135,
+      "completionTokens": 21,
+      "totalTokens": 2156,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 7764,
+      "promptTokens": 9116,
+      "completionTokens": 113,
+      "totalTokens": 9229,
+      "historyLength": 4,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001642591,
+      "duration": 1167,
+      "promptTokens": 2122,
+      "completionTokens": 21,
+      "totalTokens": 2143,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001644169,
+      "duration": 1159,
+      "promptTokens": 2131,
+      "completionTokens": 15,
+      "totalTokens": 2146,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001645897,
+      "duration": 1271,
+      "promptTokens": 2134,
+      "completionTokens": 21,
+      "totalTokens": 2155,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 13630,
+      "promptTokens": 9325,
+      "completionTokens": 144,
+      "totalTokens": 9469,
+      "historyLength": 6,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001648457,
+      "duration": 1280,
+      "promptTokens": 2127,
+      "completionTokens": 29,
+      "totalTokens": 2156,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001650154,
+      "duration": 1316,
+      "promptTokens": 2148,
+      "completionTokens": 20,
+      "totalTokens": 2168,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001651881,
+      "duration": 1125,
+      "promptTokens": 2128,
+      "completionTokens": 17,
+      "totalTokens": 2145,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 19614,
+      "promptTokens": 9536,
+      "completionTokens": 141,
+      "totalTokens": 9677,
+      "historyLength": 8,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001654443,
+      "duration": 1463,
+      "promptTokens": 2128,
+      "completionTokens": 20,
+      "totalTokens": 2148,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001656317,
+      "duration": 1243,
+      "promptTokens": 2126,
+      "completionTokens": 21,
+      "totalTokens": 2147,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001657977,
+      "duration": 1093,
+      "promptTokens": 2131,
+      "completionTokens": 13,
+      "totalTokens": 2144,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 57603,
+      "promptTokens": 9737,
+      "completionTokens": 99,
+      "totalTokens": 9836,
+      "historyLength": 10,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001692431,
+      "duration": 1464,
+      "promptTokens": 2126,
+      "completionTokens": 20,
+      "totalTokens": 2146,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001694304,
+      "duration": 1160,
+      "promptTokens": 2126,
+      "completionTokens": 23,
+      "totalTokens": 2149,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001695880,
+      "duration": 1173,
+      "promptTokens": 2135,
+      "completionTokens": 18,
+      "totalTokens": 2153,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 73125,
+      "promptTokens": 9913,
+      "completionTokens": 73,
+      "totalTokens": 9986,
+      "historyLength": 12,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001707952,
+      "duration": 1180,
+      "promptTokens": 2128,
+      "completionTokens": 15,
+      "totalTokens": 2143,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001709538,
+      "duration": 1307,
+      "promptTokens": 2123,
+      "completionTokens": 12,
+      "totalTokens": 2135,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001711285,
+      "duration": 1402,
+      "promptTokens": 2122,
+      "completionTokens": 9,
+      "totalTokens": 2131,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "browser",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001634826,
+      "duration": 84342,
+      "promptTokens": 12981,
+      "completionTokens": 861,
+      "totalTokens": 13842,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 6
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001719171,
+      "duration": 1342,
+      "promptTokens": 2131,
+      "completionTokens": 15,
+      "totalTokens": 2146,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001720932,
+      "duration": 1511,
+      "promptTokens": 2141,
+      "completionTokens": 26,
+      "totalTokens": 2167,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001722857,
+      "duration": 1311,
+      "promptTokens": 2124,
+      "completionTokens": 13,
+      "totalTokens": 2137,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001722859,
+      "duration": 2096,
+      "promptTokens": 2440,
+      "completionTokens": 110,
+      "totalTokens": 2550,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781001724974,
+      "duration": 1214,
+      "promptTokens": 2124,
+      "completionTokens": 11,
+      "totalTokens": 2135,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781001724976,
+      "duration": 8739,
+      "promptTokens": 8854,
+      "completionTokens": 804,
+      "totalTokens": 9658,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    Quais as principais notícias de Pernambuco hoje\n\n    Conversation history:\n    user: build, commit e push\nassistant: **RESULT:**\n✅ Build, commit e push concluídos com sucesso!\n\n",
+      "startTime": 1781001632446,
+      "duration": 2373,
+      "success": true,
+      "responseLength": 240,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 browser → \"Navegue até um site de busca (Google) e pesquise 'principais notícias de Pernamb…\"",
+      "startTime": 1781001634824,
+      "duration": 1613,
+      "success": true,
+      "responseLength": 73,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou buscar as notícias de Pernambuco de hoje.",
+      "startTime": 1781001637274,
+      "duration": 1357,
+      "success": true,
+      "responseLength": 81,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou usar o web_search para buscar e extrair as informações mais recentes.",
+      "startTime": 1781001639053,
+      "duration": 1088,
+      "success": true,
+      "responseLength": 62,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"search_and_scrape, principais notícias de Pernambuco hoje 0\"",
+      "startTime": 1781001640551,
+      "duration": 1597,
+      "success": true,
+      "responseLength": 66,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O search_and_scrape falhou.",
+      "startTime": 1781001642591,
+      "duration": 1169,
+      "success": true,
+      "responseLength": 75,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou tentar primeiro fazer a busca e depois extrair o texto separadamente.",
+      "startTime": 1781001644169,
+      "duration": 1161,
+      "success": true,
+      "responseLength": 54,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"search, notícias Pernambuco 09/06/2026\"",
+      "startTime": 1781001645897,
+      "duration": 1272,
+      "success": true,
+      "responseLength": 64,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 A busca não retornou resultados com a data exata.",
+      "startTime": 1781001648457,
+      "duration": 1282,
+      "success": true,
+      "responseLength": 88,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou tentar buscar de forma mais genérica e depois acessar sites de notícias de Pernambuco como Jornal do Commercio, Diár",
+      "startTime": 1781001650154,
+      "duration": 1318,
+      "success": true,
+      "responseLength": 66,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 web_search: \"search, notícias Pernambuco hoje\"",
+      "startTime": 1781001651881,
+      "duration": 1127,
+      "success": true,
+      "responseLength": 54,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 A busca no DuckDuckGo não está retornando resultados.",
+      "startTime": 1781001654443,
+      "duration": 1466,
+      "success": true,
+      "responseLength": 66,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Pode ser um problema com o mecanismo de busca.",
+      "startTime": 1781001656317,
+      "duration": 1245,
+      "success": true,
+      "responseLength": 67,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 browser_action: \"navigate, https://jc.ne10.uol.com.br/\"",
+      "startTime": 1781001657977,
+      "duration": 1094,
+      "success": true,
+      "responseLength": 40,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 O site do JC pode estar lento ou bloqueando.",
+      "startTime": 1781001692431,
+      "duration": 1465,
+      "success": true,
+      "responseLength": 72,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou tentar o Diário de Pernambuco.",
+      "startTime": 1781001694304,
+      "duration": 1162,
+      "success": true,
+      "responseLength": 71,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 browser_action: \"navigate, https://www.diariodepernambuco.com.br/\"",
+      "startTime": 1781001695880,
+      "duration": 1174,
+      "success": true,
+      "responseLength": 59,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Consegui acessar o Diário de Pernambuco.",
+      "startTime": 1781001707952,
+      "duration": 1181,
+      "success": true,
+      "responseLength": 38,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou extrair o texto da página.",
+      "startTime": 1781001709538,
+      "duration": 1307,
+      "success": true,
+      "responseLength": 49,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 browser_action: \"extractText\"",
+      "startTime": 1781001711285,
+      "duration": 1403,
+      "success": true,
+      "responseLength": 33,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Consegui extrair muitas notícias do Diário de Pernambuco.",
+      "startTime": 1781001719171,
+      "duration": 1343,
+      "success": true,
+      "responseLength": 39,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Vou organizar um resumo das principais notícias de hoje (09/06/2026) para o usuário.",
+      "startTime": 1781001720932,
+      "duration": 1513,
+      "success": true,
+      "responseLength": 89,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "browser",
+      "instruction": "\n    User request:\n    Quais as principais notícias de Pernambuco hoje\n\n    Conversation history:\n    user: build, commit e push\nassistant: **RESULT:**\n✅ Build, commit e push concluídos com sucesso!\n\n",
+      "startTime": 1781001634826,
+      "duration": 88030,
+      "success": true,
+      "responseLength": 2502,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1781001722857,
+      "duration": 1313,
+      "success": true,
+      "responseLength": 49,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n    Evaluate the agent execution result honestly.\n\n    Task: Quais as principais notícias de Pernambuco hoje\n    Agent used: browser\n    Instruction given: Navegue até um site de busca (Google) e pes",
+      "startTime": 1781001722859,
+      "duration": 2098,
+      "success": true,
+      "responseLength": 409,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1781001724974,
+      "duration": 1217,
+      "success": true,
+      "responseLength": 48,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    Quais as principais notícias de Pernambuco hoje\n\n    Conversation history:\n    user: build, commit e push\nassistant: **RESULT:**\n✅ Build, commit e push concluídos com sucesso!\n\n",
+      "startTime": 1781001724976,
+      "duration": 8740,
+      "success": true,
+      "responseLength": 601,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Navegue até um site de busca (Google) e pesquise 'principais notícias de Pernambuco hoje' ou 'notícias Pernambuco 09/06/2026'. Extraia os resultados principais com títulos e resumos das notícias.",
+      "chosenAgent": "browser",
+      "step": 1,
+      "timestamp": 1781001634820
+    },
+    {
+      "instruction": "Com base nos resultados da busca no browser, crie uma resposta amigável e bem organizada com as principais notícias de Pernambuco de hoje (09/06/2026). Organize por categorias: Saúde (vacina da dengue",
+      "chosenAgent": "writer",
+      "step": 2,
+      "timestamp": 1781001733717
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "web_search",
+      "agentName": "browser",
+      "timestamp": 1781001640554,
+      "hasError": false,
+      "duration": 5728
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "browser",
+      "timestamp": 1781001646232,
+      "hasError": false,
+      "duration": 11406
+    },
+    {
+      "toolName": "web_search",
+      "agentName": "browser",
+      "timestamp": 1781001652074,
+      "hasError": false,
+      "duration": 17248
+    },
+    {
+      "toolName": "browser_action",
+      "agentName": "browser",
+      "timestamp": 1781001690486,
+      "hasError": false,
+      "duration": 55660
+    },
+    {
+      "toolName": "browser_action",
+      "agentName": "browser",
+      "timestamp": 1781001705621,
+      "hasError": false,
+      "duration": 70795
+    },
+    {
+      "toolName": "browser_action",
+      "agentName": "browser",
+      "timestamp": 1781001711340,
+      "hasError": false,
+      "duration": 76514
+    }
+  ]
+}

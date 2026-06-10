@@ -182,3 +182,9 @@
 
 ## Preferencias
 - [2026-06-09] Ou se tiver outra ideia do que fazer agora, é só falar
+
+## Preferencias
+- [2026-06-10] testar primeiro?
+
+## Preferencias
+- [2026-06-10] explorar a rota do **Bookmap + bridge pro MT5**? 🤔

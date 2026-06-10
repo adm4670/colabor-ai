@@ -1,0 +1,715 @@
+{
+  "sessionId": "orchestrator_1780972187932_xi2w73",
+  "userInput": "isso foi no colabor-ai?",
+  "startedAt": "2026-06-09T13:31:35.955Z",
+  "finishedAt": "2026-06-09T13:32:22.324Z",
+  "totalDuration": 46369,
+  "totalLLMCalls": 30,
+  "totalPromptTokens": 163972,
+  "totalCompletionTokens": 2207,
+  "totalTokens": 166179,
+  "maxContextWindowTokens": 16340,
+  "avgTokensPerLLMCall": 5539,
+  "estimatedCostUSD": 0.0467,
+  "totalAgentCalls": 25,
+  "agentCallBreakdown": {
+    "PlannerAgent": 2,
+    "ThinkingAgent": 20,
+    "assistant": 1,
+    "ReflectorAgent": 1,
+    "WriterAgent": 1
+  },
+  "avgAgentCalls": 25,
+  "totalToolCalls": 7,
+  "toolCallBreakdown": {
+    "vector_memory_search": 1,
+    "memory_search": 2,
+    "file_system": 4
+  },
+  "totalSteps": 2,
+  "totalReflections": 0,
+  "llmCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011896322,
+      "duration": 4890,
+      "promptTokens": 15515,
+      "completionTokens": 314,
+      "totalTokens": 15829,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011901221,
+      "duration": 1413,
+      "promptTokens": 2143,
+      "completionTokens": 23,
+      "totalTokens": 2166,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011901224,
+      "duration": 3131,
+      "promptTokens": 11912,
+      "completionTokens": 203,
+      "totalTokens": 12115,
+      "historyLength": 2,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011904356,
+      "duration": 1875,
+      "promptTokens": 2141,
+      "completionTokens": 41,
+      "totalTokens": 2182,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011906658,
+      "duration": 1487,
+      "promptTokens": 2125,
+      "completionTokens": 19,
+      "totalTokens": 2144,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011908555,
+      "duration": 1529,
+      "promptTokens": 2149,
+      "completionTokens": 39,
+      "totalTokens": 2188,
+      "historyLength": 3,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011908558,
+      "duration": 1649,
+      "promptTokens": 2149,
+      "completionTokens": 27,
+      "totalTokens": 2176,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011901224,
+      "duration": 12084,
+      "promptTokens": 12571,
+      "completionTokens": 390,
+      "totalTokens": 12961,
+      "historyLength": 5,
+      "hadToolCalls": true,
+      "toolCallCount": 2,
+      "turnIndex": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011913309,
+      "duration": 1387,
+      "promptTokens": 2137,
+      "completionTokens": 18,
+      "totalTokens": 2155,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011915109,
+      "duration": 1328,
+      "promptTokens": 2124,
+      "completionTokens": 19,
+      "totalTokens": 2143,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011916872,
+      "duration": 1628,
+      "promptTokens": 2151,
+      "completionTokens": 23,
+      "totalTokens": 2174,
+      "historyLength": 3,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011916867,
+      "duration": 1666,
+      "promptTokens": 2151,
+      "completionTokens": 19,
+      "totalTokens": 2170,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011901224,
+      "duration": 17675,
+      "promptTokens": 13021,
+      "completionTokens": 77,
+      "totalTokens": 13098,
+      "historyLength": 8,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 2
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011918902,
+      "duration": 1286,
+      "promptTokens": 2123,
+      "completionTokens": 14,
+      "totalTokens": 2137,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011920600,
+      "duration": 1607,
+      "promptTokens": 2132,
+      "completionTokens": 16,
+      "totalTokens": 2148,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011901224,
+      "duration": 21711,
+      "promptTokens": 15578,
+      "completionTokens": 83,
+      "totalTokens": 15661,
+      "historyLength": 10,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 3
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011922938,
+      "duration": 1138,
+      "promptTokens": 2124,
+      "completionTokens": 11,
+      "totalTokens": 2135,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011924488,
+      "duration": 1464,
+      "promptTokens": 2137,
+      "completionTokens": 15,
+      "totalTokens": 2152,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011901224,
+      "duration": 25581,
+      "promptTokens": 15677,
+      "completionTokens": 84,
+      "totalTokens": 15761,
+      "historyLength": 12,
+      "hadToolCalls": true,
+      "toolCallCount": 1,
+      "turnIndex": 4
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011926807,
+      "duration": 1649,
+      "promptTokens": 2129,
+      "completionTokens": 23,
+      "totalTokens": 2152,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011928871,
+      "duration": 1381,
+      "promptTokens": 2126,
+      "completionTokens": 15,
+      "totalTokens": 2141,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "assistant",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011901224,
+      "duration": 30040,
+      "promptTokens": 16340,
+      "completionTokens": 125,
+      "totalTokens": 16465,
+      "historyLength": 14,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 5
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011931265,
+      "duration": 1579,
+      "promptTokens": 2134,
+      "completionTokens": 21,
+      "totalTokens": 2155,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011933260,
+      "duration": 1221,
+      "promptTokens": 2124,
+      "completionTokens": 15,
+      "totalTokens": 2139,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011933262,
+      "duration": 1857,
+      "promptTokens": 2412,
+      "completionTokens": 71,
+      "totalTokens": 2483,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011935126,
+      "duration": 1454,
+      "promptTokens": 2124,
+      "completionTokens": 11,
+      "totalTokens": 2135,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "PlannerAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011935129,
+      "duration": 4703,
+      "promptTokens": 15668,
+      "completionTokens": 279,
+      "totalTokens": 15947,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011939841,
+      "duration": 1293,
+      "promptTokens": 2126,
+      "completionTokens": 17,
+      "totalTokens": 2143,
+      "historyLength": 3,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "model": "deepseek-chat",
+      "startTime": 1781011939838,
+      "duration": 1405,
+      "promptTokens": 2126,
+      "completionTokens": 20,
+      "totalTokens": 2146,
+      "historyLength": 4,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    },
+    {
+      "agentName": "WriterAgent",
+      "model": "deepseek-v4-flash",
+      "startTime": 1781011939843,
+      "duration": 2478,
+      "promptTokens": 2603,
+      "completionTokens": 175,
+      "totalTokens": 2778,
+      "historyLength": 2,
+      "hadToolCalls": false,
+      "toolCallCount": 0,
+      "turnIndex": 0
+    }
+  ],
+  "agentCalls": [
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    isso foi no colabor-ai?\n\n    Conversation history:\n    assistant: Pronto! Aqui vai um resumo das principais notícias de Pernambuco de hoje 📰\n\n**🚨 Acidentes e Violência**\n- Mot",
+      "startTime": 1781011896322,
+      "duration": 4893,
+      "success": true,
+      "responseLength": 373,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🧠 assistant → \"Sim, foi no colabor-ai! O build, commit e push que você pediu foi executado no r…\"",
+      "startTime": 1781011901221,
+      "duration": 1415,
+      "success": true,
+      "responseLength": 79,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking \"isso foi no colabor-ai?\" - referring to the previous build, commit, and push that was done.",
+      "startTime": 1781011904356,
+      "duration": 1876,
+      "success": true,
+      "responseLength": 156,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me check the memory to understand the context better.",
+      "startTime": 1781011906658,
+      "duration": 1488,
+      "success": true,
+      "responseLength": 60,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 vector_memory_search: \"colabor-ai build commit push cloud-edge-\"",
+      "startTime": 1781011908555,
+      "duration": 1531,
+      "success": true,
+      "responseLength": 124,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"colabor-ai cloud edge architecture branc\"",
+      "startTime": 1781011908558,
+      "duration": 1651,
+      "success": true,
+      "responseLength": 97,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 The user is asking if the build, commit, and push I just did was on the colabor-ai project.",
+      "startTime": 1781011913309,
+      "duration": 1388,
+      "success": true,
+      "responseLength": 58,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me look at the conversation history more carefully.",
+      "startTime": 1781011915109,
+      "duration": 1330,
+      "success": true,
+      "responseLength": 70,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"exists, /workspace/colabor-ai\"",
+      "startTime": 1781011916872,
+      "duration": 1630,
+      "success": true,
+      "responseLength": 91,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"exists, C:\\Developer\\colabor-ai\"",
+      "startTime": 1781011916867,
+      "duration": 1668,
+      "success": true,
+      "responseLength": 56,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me check what's at that path.",
+      "startTime": 1781011918902,
+      "duration": 1288,
+      "success": true,
+      "responseLength": 42,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"list, C:\\Developer\\colabor-ai\"",
+      "startTime": 1781011920600,
+      "duration": 1609,
+      "success": true,
+      "responseLength": 53,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me check the current git branch to confirm.",
+      "startTime": 1781011922938,
+      "duration": 1140,
+      "success": true,
+      "responseLength": 41,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 file_system: \"read, C:\\\\Developer\\\\colabor-ai\\\\.git\\\\HEAD\"",
+      "startTime": 1781011924488,
+      "duration": 1464,
+      "success": true,
+      "responseLength": 51,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me check via memory what branch we're on and what happened previously.",
+      "startTime": 1781011926807,
+      "duration": 1651,
+      "success": true,
+      "responseLength": 77,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔧 memory_search: \"branch cloud-edge-architecture atual col\"",
+      "startTime": 1781011928871,
+      "duration": 1383,
+      "success": true,
+      "responseLength": 53,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 💭 Let me also check the latest memory to see what branch we're currently on for colabor-ai.",
+      "startTime": 1781011931265,
+      "duration": 1582,
+      "success": true,
+      "responseLength": 77,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "assistant",
+      "instruction": "\n    User request:\n    isso foi no colabor-ai?\n\n    Conversation history:\n    assistant: Pronto! Aqui vai um resumo das principais notícias de Pernambuco de hoje 📰\n\n**🚨 Acidentes e Violência**\n- Mot",
+      "startTime": 1781011901224,
+      "duration": 32035,
+      "success": true,
+      "responseLength": 369,
+      "llmCallsCount": 0
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🔎 Revisando se a resposta ficou boa...",
+      "startTime": 1781011933260,
+      "duration": 1241,
+      "success": true,
+      "responseLength": 54,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ReflectorAgent",
+      "instruction": "\n    Evaluate the agent execution result honestly.\n\n    Task: isso foi no colabor-ai?\n    Agent used: assistant\n    Instruction given: Sim, foi no colabor-ai! O build, commit e push que você pediu foi",
+      "startTime": 1781011933262,
+      "duration": 1860,
+      "success": true,
+      "responseLength": 248,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 🗺️ Decidindo a melhor abordagem...",
+      "startTime": 1781011935126,
+      "duration": 1456,
+      "success": true,
+      "responseLength": 48,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "PlannerAgent",
+      "instruction": "\n    User request:\n    isso foi no colabor-ai?\n\n    Conversation history:\n    assistant: Pronto! Aqui vai um resumo das principais notícias de Pernambuco de hoje 📰\n\n**🚨 Acidentes e Violência**\n- Mot",
+      "startTime": 1781011935129,
+      "duration": 4706,
+      "success": true,
+      "responseLength": 194,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: Formatando resposta...",
+      "startTime": 1781011939841,
+      "duration": 1295,
+      "success": true,
+      "responseLength": 47,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "ThinkingAgent",
+      "instruction": "Description: 📝 Preparando a resposta final...",
+      "startTime": 1781011939838,
+      "duration": 1407,
+      "success": true,
+      "responseLength": 63,
+      "llmCallsCount": 1
+    },
+    {
+      "agentName": "WriterAgent",
+      "instruction": "You are a friendly assistant. Convert the following message into a natural, conversational response in Brazilian Portuguese. If it's already natural, just polish it slightly. If it's JSON or internal ",
+      "startTime": 1781011939843,
+      "duration": 2481,
+      "success": true,
+      "responseLength": 286,
+      "llmCallsCount": 1
+    }
+  ],
+  "plannerDecisions": [
+    {
+      "instruction": "Sim, foi no colabor-ai! O build, commit e push que você pediu foi executado no repositório do colabor-ai, na branch `cloud-edge-architecture` — a mesma que começamos a desenvolver no dia 07/06 quando ",
+      "chosenAgent": "assistant",
+      "step": 1,
+      "timestamp": 1781011901217
+    },
+    {
+      "instruction": "Sim, foi no colabor-ai. O build, commit e push foram executados no repositório colabor-ai, branch cloud-edge-architecture, e o build foi bem-sucedido.",
+      "chosenAgent": "finish",
+      "step": 2,
+      "timestamp": 1781011939836
+    }
+  ],
+  "toolCalls": [
+    {
+      "toolName": "vector_memory_search",
+      "agentName": "assistant",
+      "timestamp": 1781011908557,
+      "hasError": false,
+      "duration": 7333
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1781011908573,
+      "hasError": false,
+      "duration": 7349
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1781011916872,
+      "hasError": false,
+      "duration": 15648
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1781011916876,
+      "hasError": false,
+      "duration": 15652
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1781011920645,
+      "hasError": false,
+      "duration": 19421
+    },
+    {
+      "toolName": "file_system",
+      "agentName": "assistant",
+      "timestamp": 1781011924490,
+      "hasError": false,
+      "duration": 23266
+    },
+    {
+      "toolName": "memory_search",
+      "agentName": "assistant",
+      "timestamp": 1781011928898,
+      "hasError": false,
+      "duration": 27674
+    }
+  ]
+}
