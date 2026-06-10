@@ -1,7 +1,6 @@
 import { Agent } from "../agent/agent";
     import { logger } from "../utils/logger";
-    import { browserAgent } from "../agents/browser.agent";
-import { reflectorAgent } from "../agents/reflector.agent";
+    import { reflectorAgent } from "../agents/reflector.agent";
     import {
       appendToTranscript,
       loadSessionTranscript,

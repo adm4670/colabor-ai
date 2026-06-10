@@ -12,11 +12,11 @@
     ## Agentes Disponiveis
     - **PlannerAgent**: Decide qual agente executar (cerebro do sistema)
     - **AssistantAgent**: Conversa geral, perguntas simples
-    - **PythonAgent**: Executa codigo Python
-    - **BrowserAgent**: Automacao web (navegar, clicar, screenshots)
+    - **PythonAgent**: Executa codigo Python E navegacao web com Playwright (preencher formularios, clicar, extrair texto, screenshots - visivel ou headless)
     - **ShellAgent**: Comandos shell (npm, git, fs)
     - **TaskManagerAgent**: CRUD de tarefas
     - **AnswerAgent**: Formata resposta final (WriterAgent)
+    - ~~**BrowserAgent**~~: **REMOVED** - Funcao incorporada ao PythonAgent + Playwright
     
     ## Preferencias do Usuario
     - Respostas devem ser em PT-BR
@@ -29,81 +29,28 @@
     - 2025: Adicionado suporte a Telegram via polling
     - 2026: Iniciada migracao para session transcript em JSONL
     - 2026: Adicionado EventStream para streaming de eventos
+    - **2026-06-10: BrowserAgent removido.** PythonAgent agora acumula as funcoes de navegacao web usando Playwright.
     
+    ## Alteracoes Realizadas
     
-    ## Alteracoes Realizadas (09/03/2026)
-    - **Corrigido erro "Agent not found: ShellAgent"**: Adicionado `shellAgent` na lista de subAgents do `core/orchestrator/main.ts`
-    - **Criado `core/constants/instructions.ts`**: Arquivo com `CORE_INSTRUCTIONS` e `FORMAT_RESPONSE_JSON` para centralizar instrucoes compartilhadas entre agentes
-    - **Refatorado `planner.agent.ts`**: Substituido bloco de identidade duplicado por import de `CORE_INSTRUCTIONS`
-    - **Refatorado `orchestrator/main.ts`**: Substituido bloco de identidade duplicado por import de `CORE_INSTRUCTIONS`
-    - **Atualizados agentes**: Todos os agentes agora importam `CORE_INSTRUCTIONS` como prefixo em suas `generalInstructions`
-    - **Removido `core/tools/cmdExecTool.ts`**: Arquivo duplicado do `shellExecTool.ts` (nao era importado por nenhum outro arquivo)
+    ### 2026-06-10: BrowserAgent removido - PythonAgent + Playwright
+    - **BrowserAgent desativado**: Navegacao web movida para PythonAgent
+    - **PythonAgent atualizado**: Adicionadas capacidades de Playwright (navegar, clicar, preencher formularios, screenshots, modo visivel/headless)
+    - **PlannerAgent atualizado**: Instrucoes agora direcionam tarefas web para PythonAgent
+    - **Orchestrator atualizado**: browserAgent removido da lista de subAgents
+    - **web-search skill atualizada**: Referencias a BrowserAgent substituidas por PythonAgent+Playwright
+    - **MEMORY.md limpo**: Entradas duplicadas/garbadas removidas
+    - **Motivacao**: BrowserAgent estourava limite de contexto (100k+ tokens) em paginas complexas. PythonAgent com scripts Playwright e mais enxuto (2k-5k tokens), flexivel e resiliente.
     
-## Fatos
-- [2026-05-29] tínhamos conversado antes, e na época eu não encontrei nenhum registro de conversas anteriores substanciais
-
-## Preferencias
-- [2026-05-29] que eu comece a implementar alguma das melhorias?** Posso atacar os problemas por prioridade — começando pelos críticos
-
-## Preferencias
-- [2026-05-29] revisar algum arquivo específico?
-
-## Preferencias
-- [2026-05-29] - `src/tools/manageObjectivesTool
-
-## Aprendizados
-- [2026-05-29] - `src/telegram/bot
-
-## Preferencias
-- [2026-05-29] Confirme que a variável `MONGO_URI` está configurada no painel do Render (*Environment → Environment Variables*)
-- [2026-05-29] A *Shell* é mais segura pra testar, a *automática* é melhor pra produção 🚀
-
-## Preferencias
-- [2026-05-29] ajustar algo no design? Posso mexer nas cores, textos, seções ou adicionar animações novas 😊
-
-## Aprendizados
-- [2026-05-29] - *Relatório semanal de procrastinação:* quantas tarefas adiadas, quantas concluídas, padrões (ex: "você sempre adia reuniões às segundas")
-
-## Aprendizados
-- [2026-05-30] 🚀 Próximo passo: 22h14, já era
-- [2026-05-30] 🚀 Próximo passo: 22h15
-
-## Fatos
-- [2026-05-30] rebuild + deploy para ativar tudo
-
-## Preferencias
-- [2026-05-30] - `src/agents/profileExtractor
-- [2026-05-30] objetivos, etc
-
-## Aprendizados
-- [2026-05-30] Quer se aprofundar em algum desses tópicos ou ver algo mais específico?
-
-## Preferencias
-- [2026-05-30] revisar algum ponto antes?
-
-## Fatos
-- [2026-05-30] você achar importantes
-
-## Preferencias
-- [2026-05-30] - **Integração com action4
-
-## Preferencias
-- [2026-05-30] discutir algum detalhe da arquitetura primeiro?
-
-## Preferencias
-- [2026-05-30] começar já pela implementação da base?
-
-## Preferencias
-- [2026-05-30] testar o que já está no ar?
-
-## Preferencias
-- [2026-05-30] falar de outra coisa?
-
-## Preferencias
-- [2026-05-30] algo diferente 😊
-
-## Preferencias
-- [2026-05-30] fazer algum ajuste no conteúdo?
-
-## Preferencias
-- [2026-05-30] - *A)* Commitar só o `memory/` + adicionar os artefatos ao `
+    ### 2026-03-09: Correcoes e refatoracoes
+    - **Corrigido erro "Agent not found: ShellAgent"**: Adicionado `shellAgent` na lista de subAgents
+    - **Criado `core/constants/instructions.ts`**: Instrucoes centralizadas
+    - **Refatorado `planner.agent.ts`**: Substituido bloco de identidade duplicado
+    - **Removido `core/tools/cmdExecTool.ts`**: Arquivo duplicado
+    
+    ## Aprendizados
+    - [2026-06-10] Navegacao web com PythonAgent + Playwright e mais estavel que BrowserAgent separado
+    - [2026-06-10] Pagina de ramais do Senac PE e publica (link "Ramais" no topo), nao precisa de login
+    - [2026-06-10] Ramal do Marcio Higo (Coordenadoria Sistemas - GTI): 6680
+    - [2026-05-29] Shell e mais segura pra testar, automatica e melhor para producao
+    

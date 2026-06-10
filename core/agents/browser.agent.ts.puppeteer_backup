@@ -10,7 +10,7 @@ import { CORE_INSTRUCTIONS, DEFAULT_MODEL } from "../constants/instructions";
           backstory:
             "Um assistente especializado em automacao de navegadores. Capaz de abrir sites, clicar em elementos, preencher formularios, extrair texto e capturar screenshots como um verdadeiro clawbot.",
         
-          model: process.env.MODEL || DEFAULT_MODEL,
+          model: "deepseek-v4-flash",
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         

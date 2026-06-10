@@ -1,360 +1,423 @@
-import puppeteer, { Browser, Page } from "puppeteer";
-    import path from "path";
-    import fs from "fs";
-    import { logger } from "../utils/logger";
+import { chromium, type Browser, type Page, type BrowserContext } from "playwright";
+        import path from "path";
+        import fs from "fs";
+        import { logger } from "../utils/logger";
     
-    // ============================================================
-    // Browser Tool - Navegacao Web (estilo clawbot)
-    // ============================================================
+        // ============================================================
+        // Browser Tool - Navegacao Web (Playwright)
+        // ============================================================
+        //
+        // Migrado de Puppeteer para Playwright em 2026-06-10.
+        // 
+        // Melhorias:
+        // - Suporte a modo headless E headed (visivel)
+        // - Playwright como motor (mais rapido, suporte a mais navegadores)
+        // - aceita parametro headless por chamada, permitindo alternar entre modos
+        // - Fallback automatico para Chrome do sistema
+        // ============================================================
     
-    let browserInstance: Browser | null = null;
-    let pageInstance: Page | null = null;
+        let browserInstance: Browser | null = null;
+        let contextInstance: BrowserContext | null = null;
+        let pageInstance: Page | null = null;
     
-    const SCREENSHOTS_DIR = path.join(process.cwd(), "src", "browser_data");
-    const HEADLESS = process.env.PUPPETEER_HEADLESS !== "false"; // default: true
+        const SCREENSHOTS_DIR = path.join(process.cwd(), "src", "browser_data");
+        
+        // Modo padrao vindo de env var (mantido para compatibilidade)
+        const DEFAULT_HEADLESS = process.env.BROWSER_HEADLESS !== "false";
     
-    async function getPage(): Promise<Page> {
-      if (!browserInstance || !browserInstance.isConnected()) {
-        logger.info("[BrowserTool] Iniciando navegador Puppeteer...", { headless: HEADLESS });
+        /**
+         * Obtem ou cria uma instancia do navegador Playwright.
+         * @param headless Se true, roda em background (sem janela visivel). Se false, abre janela visivel.
+         */
+        async function getPage(headless: boolean = DEFAULT_HEADLESS): Promise<Page> {
+          if (!browserInstance || !browserInstance.isConnected()) {
+            logger.info("[BrowserTool] Iniciando navegador Playwright...", { headless });
     
-        browserInstance = await puppeteer.launch({
-          executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-          headless: HEADLESS ? "new" as any : false,
-          args: [
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-dev-shm-usage",
-            "--disable-gpu",
-            "--window-size=1280,800",
-          ],
-          defaultViewport: { width: 1280, height: 800 },
-        });
+            browserInstance = await chromium.launch({
+              headless,
+              args: [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+                "--window-size=1280,800",
+              ],
+            });
     
-        pageInstance = await browserInstance.newPage();
+            contextInstance = await browserInstance.newContext({
+              viewport: { width: 1280, height: 800 },
+              userAgent:
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            });
     
-        // Configurar timeout generoso
-        pageInstance.setDefaultNavigationTimeout(30000);
+            pageInstance = await contextInstance.newPage();
     
-        // Interceptar console do browser
-        pageInstance.on("console", (msg) => {
-          logger.debug(`[BrowserTool:console] ${msg.type()}: ${msg.text()}`);
-        });
+            // Configurar timeout generoso
+            pageInstance.setDefaultNavigationTimeout(30000);
+            pageInstance.setDefaultTimeout(15000);
     
-        logger.info("[BrowserTool] Navegador iniciado com sucesso");
-      }
+            // Interceptar console do browser
+            pageInstance.on("console", (msg) => {
+              logger.debug(`[BrowserTool:console] ${msg.type()}: ${msg.text()}`);
+            });
     
-      if (!pageInstance) {
-        const pages = await browserInstance.pages();
-        pageInstance = pages[0] || (await browserInstance.newPage());
-      }
+            // Interceptar dialogs (alert, confirm, prompt) - aceita automaticamente
+            pageInstance.on("dialog", async (dialog) => {
+              logger.warn(`[BrowserTool:dialog] ${dialog.type()}: ${dialog.message()}`);
+              await dialog.accept();
+            });
     
-      return pageInstance;
-    }
+            logger.info("[BrowserTool] Navegador Playwright iniciado com sucesso");
+          }
     
-    function ensureScreenshotsDir(): void {
-      if (!fs.existsSync(SCREENSHOTS_DIR)) {
-        fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
-        logger.info(`[BrowserTool] Diretorio de screenshots criado: ${SCREENSHOTS_DIR}`);
-      }
-    }
+          if (!pageInstance) {
+            const pages = contextInstance?.pages() || [];
+            pageInstance = pages[0] || (await contextInstance!.newPage());
+          }
     
-    
-    // ============================================================
-    // Browser Health Check
-    // ============================================================
-    
-    export function isBrowserAlive(): boolean {
-      try {
-        return !!(browserInstance && browserInstance.isConnected());
-      } catch {
-        return false;
-      }
-    }
-    
-    export async function restartBrowser(): Promise<boolean> {
-      try {
-        if (browserInstance) {
-          try { await browserInstance.close(); } catch {}
+          return pageInstance;
         }
-        browserInstance = null;
-        pageInstance = null;
-        await getPage(); // Reinicia
-        logger.info("[BrowserTool] Browser reiniciado com sucesso");
-        return true;
-      } catch (e: any) {
-        logger.error(`[BrowserTool] Falha ao reiniciar browser: ${e.message}`);
-        return false;
-      }
-    }
     
-    export async function ensureBrowserAlive(): Promise<boolean> {
-      if (isBrowserAlive()) return true;
-      logger.warn("[BrowserTool] Browser nao esta vivo. Tentando reiniciar...");
-      return await restartBrowser();
-    }
+        function ensureScreenshotsDir(): void {
+          if (!fs.existsSync(SCREENSHOTS_DIR)) {
+            fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+            logger.info(`[BrowserTool] Diretorio de screenshots criado: ${SCREENSHOTS_DIR}`);
+          }
+        }
     
+        // ============================================================
+        // Browser Health Check
+        // ============================================================
     
-export const browserExecTool = {
-      type: "function",
+        export function isBrowserAlive(): boolean {
+          try {
+            return !!(browserInstance && browserInstance.isConnected());
+          } catch {
+            return false;
+          }
+        }
     
-      function: {
-        name: "browser_action",
-        description: "Executa acoes de navegacao web: navegar, clicar, preencher, capturar tela, extrair texto, rolar",
-        parameters: {
-          type: "object",
-          properties: {
-            action: {
-              type: "string",
-              enum: ["navigate", "click", "fill", "screenshot", "extractText", "scroll", "close"],
-              description: "Acao a ser executada no navegador"
-            },
-            url: {
-              type: "string",
-              description: "URL para navegar (usado com action='navigate')"
-            },
-            selector: {
-              type: "string",
-              description: "Seletor CSS para clicar, preencher ou extrair texto"
-            },
-            value: {
-              type: "string",
-              description: "Valor para preencher no campo (usado com action='fill')"
-            },
-            direction: {
-              type: "string",
-              enum: ["up", "down"],
-              description: "Direcao para rolar (usado com action='scroll')"
-            },
-            amount: {
-              type: "number",
-              description: "Quantidade em pixels para rolar (usado com action='scroll')"
+        export async function restartBrowser(): Promise<boolean> {
+          try {
+            if (browserInstance) {
+              try { await browserInstance.close(); } catch {}
             }
+            browserInstance = null;
+            contextInstance = null;
+            pageInstance = null;
+            await getPage(DEFAULT_HEADLESS); // Reinicia
+            logger.info("[BrowserTool] Browser reiniciado com sucesso");
+            return true;
+          } catch (e: any) {
+            logger.error(`[BrowserTool] Falha ao reiniciar browser: ${e.message}`);
+            return false;
+          }
+        }
+    
+        export async function ensureBrowserAlive(): Promise<boolean> {
+          if (isBrowserAlive()) return true;
+          logger.warn("[BrowserTool] Browser nao esta vivo. Tentando reiniciar...");
+          return await restartBrowser();
+        }
+    
+        // ============================================================
+        // Tool Definition
+        // ============================================================
+    
+        export const browserExecTool = {
+          type: "function",
+    
+          function: {
+            name: "browser_action",
+            description:
+              "Executa acoes de navegacao web via Playwright: navegar, clicar, preencher, capturar tela, extrair texto, rolar. Suporta modo visivel (headed) ou background (headless).",
+            parameters: {
+              type: "object",
+              properties: {
+                action: {
+                  type: "string",
+                  enum: ["navigate", "click", "fill", "screenshot", "extractText", "scroll", "close"],
+                  description:
+                    "Acao a ser executada no navegador. Use 'navigate' para ir a uma URL, 'click' para clicar, 'fill' para preencher campo, 'screenshot' para capturar tela, 'extractText' para ler conteudo, 'scroll' para rolar, 'close' para fechar.",
+                },
+                url: {
+                  type: "string",
+                  description: "URL para navegar (usado com action='navigate'). Ex: https://www.google.com",
+                },
+                selector: {
+                  type: "string",
+                  description:
+                    "Seletor CSS para clicar, preencher ou extrair texto. Ex: #email, .btn-primary, button[type='submit']",
+                },
+                value: {
+                  type: "string",
+                  description: "Valor para preencher no campo (usado com action='fill'). Ex: usuario@email.com",
+                },
+                direction: {
+                  type: "string",
+                  enum: ["up", "down"],
+                  description: "Direcao para rolar a pagina (usado com action='scroll')",
+                },
+                amount: {
+                  type: "number",
+                  description: "Quantidade em pixels para rolar (usado com action='scroll'). Padrao: 500",
+                },
+                headless: {
+                  type: "boolean",
+                  description:
+                    "Se verdadeiro (true), executa em background sem janela visivel. Se falso (false), abre o navegador visivel para o usuario acompanhar. Padrao: true (headless). Use false quando o usuario pedir para 'mostrar' ou 'exibir' o browser.",
+                },
+              },
+              required: ["action"],
+            },
           },
-          required: ["action"]
-        }
-      },
     
-      handler: async ({
-        action,
-        url,
-        selector,
-        value,
-        direction,
-        amount
-      }: {
-        action: string;
-        url?: string;
-        selector?: string;
-        value?: string;
-        direction?: "up" | "down";
-        amount?: number;
-      }) => {
-        try {
-          logger.info(`[BrowserTool] Acao: ${action}`, { url, selector, value });
+          handler: async ({
+            action,
+            url,
+            selector,
+            value,
+            direction,
+            amount,
+            headless,
+          }: {
+            action: string;
+            url?: string;
+            selector?: string;
+            value?: string;
+            direction?: "up" | "down";
+            amount?: number;
+            headless?: boolean;
+          }) => {
+            try {
+              // Resolver modo headless: prefere o parametro da chamada, depois env var, padrao true
+              const effectiveHeadless = headless !== undefined ? headless : DEFAULT_HEADLESS;
     
-          switch (action) {
-            // --------------------------------------------------
-            // NAVEGAR
-            // --------------------------------------------------
-            case "navigate": {
-              if (!url) {
-                return { success: false, error: "URL e obrigatoria para action='navigate'" };
-              }
-    
-              const page = await getPage();
-    
-              logger.info(`[BrowserTool] Navegando para: ${url}`);
-              await page.goto(url, {
-                waitUntil: ["networkidle2", "domcontentloaded"],
-                timeout: 30000,
+              logger.info(`[BrowserTool] Acao: ${action}`, {
+                url,
+                selector,
+                value,
+                headless: effectiveHeadless,
               });
     
-              const pageTitle = await page.title();
-              const currentUrl = page.url();
+              switch (action) {
+                // --------------------------------------------------
+                // NAVEGAR
+                // --------------------------------------------------
+                case "navigate": {
+                  if (!url) {
+                    return { success: false, error: "URL e obrigatoria para action='navigate'" };
+                  }
     
-              logger.info(`[BrowserTool] Pagina carregada`, { title: pageTitle, url: currentUrl });
+                  const page = await getPage(effectiveHeadless);
     
-              return {
-                success: true,
-                title: pageTitle,
-                url: currentUrl,
-                message: `Navegou para ${currentUrl} - Titulo: ${pageTitle}`
-              };
-            }
+                  logger.info(`[BrowserTool] Navegando para: ${url} (headless=${effectiveHeadless})`);
+                  await page.goto(url, {
+                    waitUntil: "networkidle",
+                    timeout: 30000,
+                  });
     
-            // --------------------------------------------------
-            // CLICAR
-            // --------------------------------------------------
-            case "click": {
-              if (!selector) {
-                return { success: false, error: "Selector e obrigatorio para action='click'" };
-              }
+                  const pageTitle = await page.title();
+                  const currentUrl = page.url();
     
-              const page = await getPage();
+                  logger.info(`[BrowserTool] Pagina carregada`, { title: pageTitle, url: currentUrl });
     
-              // Esperar o elemento estar visivel
-              await page.waitForSelector(selector, { timeout: 10000 });
-              await page.click(selector);
-    
-              // Aguardar um pouco para a pagina reagir
-              await new Promise(r => setTimeout(r, 500));
-    
-              logger.info(`[BrowserTool] Clique realizado no seletor: ${selector}`);
-    
-              return {
-                success: true,
-                message: `Clique realizado no elemento '${selector}'`
-              };
-            }
-    
-            // --------------------------------------------------
-            // PREENCHER CAMPO
-            // --------------------------------------------------
-            case "fill": {
-              if (!selector || value === undefined) {
-                return { success: false, error: "Selector e value sao obrigatorios para action='fill'" };
-              }
-    
-              const page = await getPage();
-    
-              await page.waitForSelector(selector, { timeout: 10000 });
-    
-              // Limpar campo antes de preencher
-              await page.click(selector, { clickCount: 3 }); // seleciona todo texto
-              await page.keyboard.press("Backspace");
-              await page.type(selector, value, { delay: 30 }); // digitar com delay realista
-    
-              logger.info(`[BrowserTool] Campo preenchido: ${selector} = ${value}`);
-    
-              return {
-                success: true,
-                message: `Campo '${selector}' preenchido com '${value}'`
-              };
-            }
-    
-            // --------------------------------------------------
-            // SCREENSHOT
-            // --------------------------------------------------
-            case "screenshot": {
-              const page = await getPage();
-              ensureScreenshotsDir();
-    
-              const timestamp = Date.now();
-              const filename = `screenshot_${timestamp}.png`;
-              const filepath = path.join(SCREENSHOTS_DIR, filename);
-    
-              await page.screenshot({
-                path: filepath,
-                fullPage: true,
-                type: "png",
-              });
-    
-              // Retornar base64 para uso do LLM
-              const imageBuffer = fs.readFileSync(filepath);
-              const base64 = imageBuffer.toString("base64");
-    
-              logger.info(`[BrowserTool] Screenshot salvo: ${filename} (${imageBuffer.length} bytes)`);
-    
-              return {
-                success: true,
-                filename,
-                path: filepath,
-                base64,
-                size: imageBuffer.length,
-                message: `Screenshot capturado: ${filename}`
-              };
-            }
-    
-            // --------------------------------------------------
-            // EXTRAIR TEXTO
-            // --------------------------------------------------
-            case "extractText": {
-              const page = await getPage();
-    
-              let text: string;
-    
-              if (selector) {
-                const element = await page.$(selector);
-                if (!element) {
-                  return { success: false, error: `Elemento '${selector}' nao encontrado` };
+                  return {
+                    success: true,
+                    title: pageTitle,
+                    url: currentUrl,
+                    message: `Navegou para ${currentUrl} - Titulo: ${pageTitle}`,
+                  };
                 }
-                text = await page.$eval(selector, (el: any) => el.innerText || el.textContent || "");
-              } else {
-                // Extrair texto do body inteiro
-                text = await page.$eval("body", (el: any) => el.innerText || el.textContent || "");
+    
+                // --------------------------------------------------
+                // CLICAR
+                // --------------------------------------------------
+                case "click": {
+                  if (!selector) {
+                    return { success: false, error: "Selector e obrigatorio para action='click'" };
+                  }
+    
+                  const page = await getPage(effectiveHeadless);
+    
+                  // Esperar o elemento estar visivel
+                  await page.waitForSelector(selector, { timeout: 10000 });
+                  
+                  // Scroll ate o elemento antes de clicar (garante visibilidade)
+                  await page.locator(selector).scrollIntoViewIfNeeded();
+                  await page.click(selector);
+    
+                  // Aguardar um pouco para a pagina reagir
+                  await new Promise((r) => setTimeout(r, 500));
+    
+                  logger.info(`[BrowserTool] Clique realizado no seletor: ${selector}`);
+    
+                  return {
+                    success: true,
+                    message: `Clique realizado no elemento '${selector}'`,
+                  };
+                }
+    
+                // --------------------------------------------------
+                // PREENCHER CAMPO
+                // --------------------------------------------------
+                case "fill": {
+                  if (!selector || value === undefined) {
+                    return {
+                      success: false,
+                      error: "Selector e value sao obrigatorios para action='fill'",
+                    };
+                  }
+    
+                  const page = await getPage(effectiveHeadless);
+    
+                  await page.waitForSelector(selector, { timeout: 10000 });
+    
+                  // Playwright fill ja limpa o campo automaticamente
+                  await page.locator(selector).fill(value);
+    
+                  logger.info(`[BrowserTool] Campo preenchido: ${selector} = ${value}`);
+    
+                  return {
+                    success: true,
+                    message: `Campo '${selector}' preenchido com '${value}'`,
+                  };
+                }
+    
+                // --------------------------------------------------
+                // SCREENSHOT
+                // --------------------------------------------------
+                case "screenshot": {
+                  const page = await getPage(effectiveHeadless);
+                  ensureScreenshotsDir();
+    
+                  const timestamp = Date.now();
+                  const filename = `screenshot_${timestamp}.png`;
+                  const filepath = path.join(SCREENSHOTS_DIR, filename);
+    
+                  await page.screenshot({
+                    path: filepath,
+                    fullPage: true,
+                    type: "png",
+                  });
+    
+                  // Retornar base64 para uso do LLM
+                  const imageBuffer = fs.readFileSync(filepath);
+                  const base64 = imageBuffer.toString("base64");
+    
+                  logger.info(
+                    `[BrowserTool] Screenshot salvo: ${filename} (${imageBuffer.length} bytes)`
+                  );
+    
+                  return {
+                    success: true,
+                    filename,
+                    path: filepath,
+                    base64,
+                    size: imageBuffer.length,
+                    message: `Screenshot capturado: ${filename}`,
+                  };
+                }
+    
+                // --------------------------------------------------
+                // EXTRAIR TEXTO
+                // --------------------------------------------------
+                case "extractText": {
+                  const page = await getPage(effectiveHeadless);
+    
+                  let text: string;
+    
+                  if (selector) {
+                    const element = await page.$(selector);
+                    if (!element) {
+                      return {
+                        success: false,
+                        error: `Elemento '${selector}' nao encontrado`,
+                      };
+                    }
+                    text = await page.$eval(selector, (el: any) => el.innerText || el.textContent || "");
+                  } else {
+                    // Extrair texto do body inteiro
+                    text = await page.$eval("body", (el: any) => el.innerText || el.textContent || "");
+                  }
+    
+                  // Limitar tamanho para nao estourar contexto do LLM
+                  const maxLength = 8000;
+                  const truncated =
+                    text.length > maxLength
+                      ? text.slice(0, maxLength) +
+                        `\n... [truncado: ${text.length - maxLength} caracteres]`
+                      : text;
+    
+                  logger.info(
+                    `[BrowserTool] Texto extraido (${text.length} chars, mostrando ${Math.min(text.length, maxLength)})`
+                  );
+    
+                  return {
+                    success: true,
+                    text: truncated,
+                    fullLength: text.length,
+                    message: `Texto extraido com sucesso (${text.length} caracteres)`,
+                  };
+                }
+    
+                // --------------------------------------------------
+                // ROLAR PAGINA
+                // --------------------------------------------------
+                case "scroll": {
+                  const page = await getPage(effectiveHeadless);
+                  const scrollAmount = amount || 500;
+                  const delta = direction === "up" ? -scrollAmount : scrollAmount;
+    
+                  await page.evaluate((deltaY: number) => {
+                    // @ts-ignore - window is valid inside page.evaluate()
+                    window.scrollBy(0, deltaY);
+                  }, delta);
+    
+                  await new Promise((r) => setTimeout(r, 300));
+    
+                  logger.info(`[BrowserTool] Rolagem ${direction}: ${scrollAmount}px`);
+    
+                  return {
+                    success: true,
+                    direction,
+                    amount: scrollAmount,
+                    message: `Pagina rolada ${direction} em ${scrollAmount}px`,
+                  };
+                }
+    
+                // --------------------------------------------------
+                // FECHAR NAVEGADOR
+                // --------------------------------------------------
+                case "close": {
+                  if (browserInstance) {
+                    await browserInstance.close();
+                    browserInstance = null;
+                    contextInstance = null;
+                    pageInstance = null;
+                    logger.info("[BrowserTool] Navegador fechado");
+                  }
+                  return { success: true, message: "Navegador fechado" };
+                }
+    
+                default:
+                  return {
+                    success: false,
+                    error: `Acao desconhecida: '${action}'. Acoes validas: navigate, click, fill, screenshot, extractText, scroll, close`,
+                  };
               }
+            } catch (error: any) {
+              logger.error(`[BrowserTool] Erro na acao '${action}'`, {
+                error: error.message,
+                stack: error.stack?.slice(0, 500),
+              });
     
-              // Limitar tamanho para nao estourar contexto do LLM
-              const maxLength = 8000;
-              const truncated = text.length > maxLength ? text.slice(0, maxLength) + `
-... [truncado: ${text.length - maxLength} caracteres]` : text;
-    
-              logger.info(`[BrowserTool] Texto extraido (${text.length} chars, mostrando ${Math.min(text.length, maxLength)})`);
-    
-              return {
-                success: true,
-                text: truncated,
-                fullLength: text.length,
-                message: `Texto extraido com sucesso (${text.length} caracteres)`
-              };
-            }
-    
-            // --------------------------------------------------
-            // ROLAR PAGINA
-            // --------------------------------------------------
-            case "scroll": {
-              const page = await getPage();
-              const scrollAmount = amount || 500;
-              const delta = direction === "up" ? -scrollAmount : scrollAmount;
-    
-              await page.evaluate((deltaY: number) => {
-                // @ts-ignore - window is valid inside page.evaluate()
-                window.scrollBy(0, deltaY);
-              }, delta);
-    
-              await new Promise(r => setTimeout(r, 300));
-    
-              logger.info(`[BrowserTool] Rolagem ${direction}: ${scrollAmount}px`);
-    
-              return {
-                success: true,
-                direction,
-                amount: scrollAmount,
-                message: `Pagina rolada ${direction} em ${scrollAmount}px`
-              };
-            }
-    
-            // --------------------------------------------------
-            // FECHAR NAVEGADOR
-            // --------------------------------------------------
-            case "close": {
-              if (browserInstance) {
-                await browserInstance.close();
-                browserInstance = null;
-                pageInstance = null;
-                logger.info("[BrowserTool] Navegador fechado");
-              }
-              return { success: true, message: "Navegador fechado" };
-            }
-    
-            default:
               return {
                 success: false,
-                error: `Acao desconhecida: '${action}'. Acoes validas: navigate, click, fill, screenshot, extractText, scroll, close`
+                error: error.message,
+                action,
               };
-          }
-        } catch (error: any) {
-          logger.error(`[BrowserTool] Erro na acao '${action}'`, {
-            error: error.message,
-            stack: error.stack?.slice(0, 500)
-          });
-    
-          return {
-            success: false,
-            error: error.message,
-            action
-          };
-        }
-      }
-    };
+            }
+          },
+        };
     

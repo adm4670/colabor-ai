@@ -15,7 +15,8 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "core/**/*.ts"
@@ -24,6 +25,8 @@
     "node_modules",
     "dist",
     "coverage",
-    "tmp"
+    "tmp",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }

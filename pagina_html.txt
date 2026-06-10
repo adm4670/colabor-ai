@@ -1,0 +1,1123 @@
+<!DOCTYPE html><html lang="pt-br" data-useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"><head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <title>Senac Intranet</title>
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/font-awesome.min.css">
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/icon-font.min.css">
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/animate.css">
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/util.css">
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/main.css"> 
+ <link rel="stylesheet" type="text/css" href="layoutIntranet/css/classic.css">
+ <link rel="shortcut icon" href="layoutIntranet/img/favicon.png">
+ <link rel="preconnect" href="//fonts.gstatic.com/" crossorigin="">
+<style>
+    .efeitoImg 
+    {
+      position: relative;
+      width: 50%;
+    }
+
+    .efeitoImg:hover .image 
+    {
+      opacity: 0.5;
+    }
+
+    .iconImg 
+    {
+      color: #3cacb2;
+    }
+
+    .iconImg:hover .icone
+    {
+      color: #5fc27e;   
+      opacity: 0.5;
+    }
+	
+	.btnEntrar
+	{
+		background-color: #000000;	
+	}
+	
+	.btnEntrar:hover
+	{
+		background-color: #787777;	
+	}
+</style><style type="text/css">.apexcharts-canvas {
+  position: relative;
+  user-select: none;
+  /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+}
+
+/* scrollbar is not visible by default for legend, hence forcing the visibility */
+.apexcharts-canvas ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px;
+}
+.apexcharts-canvas ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  box-shadow: 0 0 1px rgba(255,255,255,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+.apexcharts-canvas.dark {
+  background: #343F57;
+}
+
+.apexcharts-inner {
+  position: relative;
+}
+
+.legend-mouseover-inactive {
+  transition: 0.15s ease all;
+  opacity: 0.20;
+}
+
+.apexcharts-series-collapsed {
+  opacity: 0;
+}
+
+.apexcharts-gridline, .apexcharts-text {
+  pointer-events: none;
+}
+
+.apexcharts-tooltip {
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px -4px #999;
+  cursor: default;
+  font-size: 14px;
+  left: 62px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 12;
+  transition: 0.15s ease all;
+}
+.apexcharts-tooltip.light {
+  border: 1px solid #e3e3e3;
+  background: rgba(255, 255, 255, 0.96);
+}
+.apexcharts-tooltip.dark {
+  color: #fff;
+  background: rgba(30,30,30, 0.8);
+}
+.apexcharts-tooltip * {
+  font-family: inherit;
+}
+
+.apexcharts-tooltip .apexcharts-marker,
+.apexcharts-area-series .apexcharts-area,
+.apexcharts-line {
+  pointer-events: none;
+}
+
+.apexcharts-tooltip.active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-tooltip-title {
+  padding: 6px;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.apexcharts-tooltip.light .apexcharts-tooltip-title {
+  background: #ECEFF1;
+  border-bottom: 1px solid #ddd;
+}
+.apexcharts-tooltip.dark .apexcharts-tooltip-title {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #333;
+}
+
+.apexcharts-tooltip-text-value,
+.apexcharts-tooltip-text-z-value {
+  display: inline-block;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.apexcharts-tooltip-text-z-label:empty,
+.apexcharts-tooltip-text-z-value:empty {
+  display: none;
+}
+
+.apexcharts-tooltip-text-value, 
+.apexcharts-tooltip-text-z-value {
+  font-weight: 600;
+}
+
+.apexcharts-tooltip-marker {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: 0px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.apexcharts-tooltip-series-group {
+  padding: 0 10px;
+  display: none;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+}
+
+.apexcharts-tooltip-series-group.active .apexcharts-tooltip-marker {
+  opacity: 1;
+}
+.apexcharts-tooltip-series-group.active, .apexcharts-tooltip-series-group:last-child {
+  padding-bottom: 4px;
+}
+.apexcharts-tooltip-series-group-hidden {
+  opacity: 0;
+  height: 0;
+  line-height: 0;
+  padding: 0 !important;
+}
+.apexcharts-tooltip-y-group {
+  padding: 6px 0 5px;
+}
+.apexcharts-tooltip-candlestick {
+  padding: 4px 8px;
+}
+.apexcharts-tooltip-candlestick > div {
+  margin: 4px 0;
+}
+.apexcharts-tooltip-candlestick span.value {
+  font-weight: bold;
+}
+
+.apexcharts-tooltip-rangebar {
+  padding: 5px 8px;
+}
+
+.apexcharts-tooltip-rangebar .category {
+  font-weight: 600;
+  color: #777;
+}
+
+.apexcharts-tooltip-rangebar .series-name {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.apexcharts-xaxistooltip {
+  opacity: 0;
+  padding: 9px 10px;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+	background: #ECEFF1;
+  border: 1px solid #90A4AE;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-xaxistooltip.dark {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.apexcharts-xaxistooltip:after, .apexcharts-xaxistooltip:before {
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.apexcharts-xaxistooltip:after {
+	border-color: rgba(236, 239, 241, 0);
+	border-width: 6px;
+	margin-left: -6px;
+}
+.apexcharts-xaxistooltip:before {
+	border-color: rgba(144, 164, 174, 0);
+	border-width: 7px;
+	margin-left: -7px;
+}
+
+.apexcharts-xaxistooltip-bottom:after, .apexcharts-xaxistooltip-bottom:before {
+  bottom: 100%;
+}
+
+.apexcharts-xaxistooltip-top:after, .apexcharts-xaxistooltip-top:before {
+  top: 100%;
+}
+
+.apexcharts-xaxistooltip-bottom:after {
+  border-bottom-color: #ECEFF1;
+}
+.apexcharts-xaxistooltip-bottom:before {
+  border-bottom-color: #90A4AE;
+}
+
+.apexcharts-xaxistooltip-bottom.dark:after {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+.apexcharts-xaxistooltip-bottom.dark:before {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-xaxistooltip-top:after {
+  border-top-color:#ECEFF1
+}
+.apexcharts-xaxistooltip-top:before {
+  border-top-color: #90A4AE;
+}
+.apexcharts-xaxistooltip-top.dark:after {
+  border-top-color:rgba(0, 0, 0, 0.5);
+}
+.apexcharts-xaxistooltip-top.dark:before {
+  border-top-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.apexcharts-xaxistooltip.active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-yaxistooltip {
+  opacity: 0;
+  padding: 4px 10px;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+	background: #ECEFF1;
+  border: 1px solid #90A4AE;
+}
+
+.apexcharts-yaxistooltip.dark {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.apexcharts-yaxistooltip:after, .apexcharts-yaxistooltip:before {
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.apexcharts-yaxistooltip:after {
+	border-color: rgba(236, 239, 241, 0);
+	border-width: 6px;
+	margin-top: -6px;
+}
+.apexcharts-yaxistooltip:before {
+	border-color: rgba(144, 164, 174, 0);
+	border-width: 7px;
+	margin-top: -7px;
+}
+
+.apexcharts-yaxistooltip-left:after, .apexcharts-yaxistooltip-left:before {
+  left: 100%;
+}
+
+.apexcharts-yaxistooltip-right:after, .apexcharts-yaxistooltip-right:before {
+  right: 100%;
+}
+
+.apexcharts-yaxistooltip-left:after {
+  border-left-color: #ECEFF1;
+}
+.apexcharts-yaxistooltip-left:before {
+  border-left-color: #90A4AE;
+}
+.apexcharts-yaxistooltip-left.dark:after {
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+.apexcharts-yaxistooltip-left.dark:before {
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip-right:after {
+  border-right-color: #ECEFF1;
+}
+.apexcharts-yaxistooltip-right:before {
+  border-right-color: #90A4AE;
+}
+.apexcharts-yaxistooltip-right.dark:after {
+  border-right-color: rgba(0, 0, 0, 0.5);
+}
+.apexcharts-yaxistooltip-right.dark:before {
+  border-right-color: rgba(0, 0, 0, 0.5);
+}
+
+.apexcharts-yaxistooltip.active {
+  opacity: 1;
+}
+.apexcharts-yaxistooltip-hidden {
+  display: none;
+}
+
+.apexcharts-xcrosshairs, .apexcharts-ycrosshairs {
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-xcrosshairs.active, .apexcharts-ycrosshairs.active {
+  opacity: 1;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-ycrosshairs-hidden {
+  opacity: 0;
+}
+
+.apexcharts-zoom-rect {
+  pointer-events: none;
+}
+.apexcharts-selection-rect {
+  cursor: move;
+}
+
+.svg_select_points, .svg_select_points_rot {
+  opacity: 0;
+  visibility: hidden;
+}
+.svg_select_points_l, .svg_select_points_r {
+  cursor: ew-resize;
+  opacity: 1;
+  visibility: visible;
+  fill: #888;
+}
+.apexcharts-canvas.zoomable .hovering-zoom {
+  cursor: crosshair
+}
+.apexcharts-canvas.zoomable .hovering-pan {
+  cursor: move
+}
+
+.apexcharts-xaxis,
+.apexcharts-yaxis {
+  pointer-events: none;
+}
+
+.apexcharts-zoom-icon, 
+.apexcharts-zoom-in-icon,
+.apexcharts-zoom-out-icon,
+.apexcharts-reset-zoom-icon, 
+.apexcharts-pan-icon, 
+.apexcharts-selection-icon,
+.apexcharts-menu-icon, 
+.apexcharts-toolbar-custom-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  line-height: 24px;
+  color: #6E8192;
+  text-align: center;
+}
+
+
+.apexcharts-zoom-icon svg, 
+.apexcharts-zoom-in-icon svg,
+.apexcharts-zoom-out-icon svg,
+.apexcharts-reset-zoom-icon svg,
+.apexcharts-menu-icon svg {
+  fill: #6E8192;
+}
+.apexcharts-selection-icon svg {
+  fill: #444;
+  transform: scale(0.76)
+}
+
+.dark .apexcharts-zoom-icon svg, 
+.dark .apexcharts-zoom-in-icon svg,
+.dark .apexcharts-zoom-out-icon svg,
+.dark .apexcharts-reset-zoom-icon svg, 
+.dark .apexcharts-pan-icon svg, 
+.dark .apexcharts-selection-icon svg,
+.dark .apexcharts-menu-icon svg, 
+.dark .apexcharts-toolbar-custom-icon svg{
+  fill: #f3f4f5;
+}
+
+.apexcharts-canvas .apexcharts-zoom-icon.selected svg, 
+.apexcharts-canvas .apexcharts-selection-icon.selected svg, 
+.apexcharts-canvas .apexcharts-reset-zoom-icon.selected svg {
+  fill: #008FFB;
+}
+.light .apexcharts-selection-icon:not(.selected):hover svg,
+.light .apexcharts-zoom-icon:not(.selected):hover svg, 
+.light .apexcharts-zoom-in-icon:hover svg, 
+.light .apexcharts-zoom-out-icon:hover svg, 
+.light .apexcharts-reset-zoom-icon:hover svg, 
+.light .apexcharts-menu-icon:hover svg {
+  fill: #333;
+}
+
+.apexcharts-selection-icon, .apexcharts-menu-icon {
+  position: relative;
+}
+.apexcharts-reset-zoom-icon {
+  margin-left: 5px;
+}
+.apexcharts-zoom-icon, .apexcharts-reset-zoom-icon, .apexcharts-menu-icon {
+  transform: scale(0.85);
+}
+
+.apexcharts-zoom-in-icon, .apexcharts-zoom-out-icon {
+  transform: scale(0.7)
+}
+
+.apexcharts-zoom-out-icon {
+  margin-right: 3px;
+}
+
+.apexcharts-pan-icon {
+  transform: scale(0.62);
+  position: relative;
+  left: 1px;
+  top: 0px;
+}
+.apexcharts-pan-icon svg {
+  fill: #fff;
+  stroke: #6E8192;
+  stroke-width: 2;
+}
+.apexcharts-pan-icon.selected svg {
+  stroke: #008FFB;
+}
+.apexcharts-pan-icon:not(.selected):hover svg {
+  stroke: #333;
+}
+
+.apexcharts-toolbar {
+  position: absolute;
+  z-index: 11;
+  top: 0px;
+  right: 3px;
+  max-width: 176px;
+  text-align: right;
+  border-radius: 3px;
+  padding: 0px 6px 2px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.apexcharts-toolbar svg {
+  pointer-events: none;
+}
+
+.apexcharts-menu {
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 3px;
+  right: 10px;
+  opacity: 0;
+  min-width: 110px;
+  transition: 0.15s ease all;
+  pointer-events: none;
+}
+
+.apexcharts-menu.open {
+  opacity: 1;
+  pointer-events: all;
+  transition: 0.15s ease all;
+}
+
+.apexcharts-menu-item {
+  padding: 6px 7px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.light .apexcharts-menu-item:hover {
+  background: #eee;
+}
+.dark .apexcharts-menu {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .apexcharts-toolbar {
+    /*opacity: 0;*/
+  }
+
+  .apexcharts-canvas:hover .apexcharts-toolbar {
+    opacity: 1;
+  } 
+}
+
+.apexcharts-datalabel.hidden {
+  opacity: 0;
+}
+
+.apexcharts-pie-label,
+.apexcharts-datalabel, .apexcharts-datalabel-label, .apexcharts-datalabel-value {
+  cursor: default;
+  pointer-events: none;
+}
+
+.apexcharts-pie-label-delay {
+  opacity: 0;
+  animation-name: opaque;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.apexcharts-canvas .hidden {
+  opacity: 0;
+}
+
+.apexcharts-hide .apexcharts-series-points {
+  opacity: 0;
+}
+
+.apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events, .apexcharts-radar-series path, .apexcharts-radar-series polygon {
+  pointer-events: none;
+}
+
+/* markers */
+
+.apexcharts-marker {
+  transition: 0.15s ease all;
+}
+
+@keyframes opaque {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}</style></head>
+
+<body>
+ <nav class="navbar navbar-expand navbar-light navbar-landing bg-light">
+  <a class="navbar-brand" href="#">
+   <img src="layoutIntranet/img/senacpe-logo.png" alt="Senac PE" width="100">
+  </a>
+  <ul class="navbar-nav ml-auto text-center">
+   <li class="nav-item active d-none d-md-inline-block">
+	<!-- http://www3.pe.senac.br/corpore.net/Login.aspx -->
+    <a class="nav-link" href="https://www3.pe.senac.br/RM/web/app/RH/PortalMeuRH/#/login" target="_blank">
+     <div class="my-4 iconImg" style="margin-bottom: 0rem!important; margin-top: 0rem!important;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users landing-features-icon icone" style=" width: 30px; height: 30px; color: #3cacb2;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      <h5 class="mt-2 font-weight-bold text-center icone" style="font-family: Nunito Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; color: #6c757d!important; font-size: .875rem; font-weight: 600!important;     line-height: 1.2;
+    color: #000;">Portal RH</h5>
+     </div>
+    </a>
+   </li>
+   <li class="nav-item active d-none d-md-inline-block">
+    <a class="nav-link" href="https://www2.pe.senac.br/send/painel/main/login" target="_blank">
+     <div class="my-4 iconImg" style="margin-bottom: 0rem!important; margin-top: 0rem!important;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send landing-features-icon icone" style=" width: 30px; height: 30px; color: #3cacb2;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      <h5 class="mt-2 font-weight-bold text-center icone" style="font-family: Nunito Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; color: #6c757d!important; font-size: .875rem; font-weight: 600!important;     line-height: 1.2;
+    color: #000;">Send</h5>
+     </div>
+    </a>
+   </li>
+   <li class="nav-item active d-none d-md-inline-block">
+    <a class="nav-link" href="https://outlook.office.com/owa/" target="_blank">
+     <div class="my-4 iconImg" style="margin-bottom: 0rem!important; margin-top: 0rem!important;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail landing-features-icon icone" style=" width: 30px; height: 30px; color: #3cacb2;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      <h5 class="mt-2 font-weight-bold text-center icone" style="font-family: Nunito Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; color: #6c757d!important; font-size: .875rem; font-weight: 600!important;     line-height: 1.2;
+    color: #000;">WebMail</h5>
+     </div>
+    </a>
+   </li>
+   <li class="nav-item active d-none d-md-inline-block">
+    <a class="nav-link" href="http://intranet.pe.senac.br/dr/intranet.net/ramais/" target="_blank">
+     <div class="my-4 iconImg" style="margin-bottom: 0rem!important; margin-top: 0rem!important;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone landing-features-icon icone" style=" width: 30px; height: 30px; color: #3cacb2;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <h5 class="mt-2 font-weight-bold text-center icone" style="font-family: Nunito Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; color: #6c757d!important; font-size: .875rem; font-weight: 600!important;     line-height: 1.2;
+    color: #000;">Ramais</h5>
+     </div>
+    </a>
+   </li>  
+   <li class="nav-item active d-none d-md-inline-block">
+    <a class="nav-link" href="http://intranet.pe.senac.br/dr/intranet.net/documentos/gercom/senac_mais_faq.pdf" target="_blank">
+     <div class="my-4 iconImg" style="margin-bottom: 0rem!important; margin-top: 0rem!important;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square landing-features-icon icone" style=" width: 30px; height: 30px; color: #3cacb2;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <h5 class="mt-2 font-weight-bold text-center icone" style="font-family: Nunito Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; color: #6c757d!important; font-size: .875rem; font-weight: 600!important;     line-height: 1.2;
+    color: #000;">Senac Mais</h5>
+     </div>
+    </a>
+   </li>
+  </ul>  
+ </nav>
+ <section class="landing-intro pt-5" style="padding-top: 0rem!important;">
+  <div class="limiter">
+   <div class="container-login100" style="min-height: 60vh; background-image: url('layoutIntranet/img/back5.png');background-position: top; background-repeat: no-repeat; background-size: cover;">
+    <div class="wrap-login100 p-t-190 p-b-30" style="padding-top: 0px; padding-bottom: 0px;">
+     <form name="form1" method="post" action="default.aspx" id="form1" class="login100-form validate-form">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTg3MDIxMDQzMw9kFgJmD2QWAgIFDw9kFgIeB29ua2V5dXAFH3JldHVybiBhdXRvVGFiKHRoaXMsIDUsIGV2ZW50KTtkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBQZyYk5vdmEFCHJiQW50aWdhBQhyYkFudGlnYeJsT2RmxKJoGiYtAyf9BbJNeuN6" style="">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="FCADEB58" style="">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBgL0kOe7CALlwPmTDALJnKuTBwLerPilDALxiYiEAQKDhuH4BRuuU84Qxu4WGtZKCEtYGKHhcyiP" style="">
+</div>
+      <div class="login100-form-avatar">
+       <img src="layoutIntranet/img/avatar4.png" alt="SENAC">
+      </div>
+      <span class="login100-form-title p-t-20 p-b-45" style="padding-bottom: 0px;padding-top: 0px;">&nbsp;</span>
+      <div class="form-check form-check-inline" style="padding-bottom: 25px"></div>
+      <div class="form-check form-check-inline" style="margin-bottom: 0rem;">
+       <span class="form-check-input" name="rbNova" style=" -ms-transform: scale(2); -webkit-transform: scale(2); transform: scale(2);"><input id="rbNova" type="radio" name="Versao" value="rbNova" checked="checked" style=""></span>
+       <label class="form-check-label" for="rbNova" style="font-weight: 900; padding-left: 0.25rem;">INTRANET</label>
+       <label class="form-check-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+       <span class="form-check-input" name="rbAntiga" style=" -ms-transform: scale(2); -webkit-transform: scale(2); transform: scale(2);"><input id="rbAntiga" type="radio" name="Versao" value="rbAntiga" style=""></span>
+       <label class="form-check-label" for="rbAntiga" style="font-weight: 900; padding-left: 0.25rem;">SISTEMA</label>
+      </div>
+      <div class="form-check form-check-inline">&nbsp;</div>
+      <span class="login100-form-title p-t-20 p-b-45" style="padding-bottom: 0px;padding-top: 0px;">&nbsp;</span>
+      <div class="wrap-input100 validate-input m-b-10" data-validate="Digite sua Matrícula">
+       <input name="txtChapa" type="text" maxlength="5" id="txtChapa" class="input100" placeholder="Chapa" required="true" onkeyup="return autoTab(this, 5, event);" style="">
+       <span class="focus-input100"></span>
+       <span class="symbol-input100">
+        <i class="fa fa-user"></i>
+       </span>
+      </div>
+      <div class="wrap-input100 validate-input m-b-10" data-validate="Digite sua senha">
+       <input name="txtSenha" type="password" maxlength="5" id="txtSenha" class="input100" placeholder="Senha" required="true" style="">
+       <span class="focus-input100"></span>
+       <span class="symbol-input100">
+        <i class="fa fa-lock"></i>
+       </span>
+      </div>
+      <div class="container-login100-form-btn p-t-10">
+       <input type="submit" name="btnAcessar" value="Entrar" id="btnAcessar" class="login100-form-btn btnEntrar" style="">
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="pt-6 pb-3">
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+     <div class="mb-3">
+      <h2>Acesso Rápido</h2>
+      <p class="text-muted">&nbsp;</p>
+     </div>
+     <div class="row">
+      <!--<div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="http://manager.pe.senac.br/projects/ps05/issues/new">
+        <img src="layoutIntranet/img/chamado2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Abrir Chamado</h4>
+      </div>   -->  
+       
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/taskmanager/login">
+        <img src="layoutIntranet/img/chamado2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Abrir Chamado</h4>
+      </div>
+
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://intranet.pe.senac.br/dr/intranet.net/glc/index.html">
+        <img src="layoutIntranet/img/chamado3.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>GLC - Fluxos, material de apoio, solicitação de cadastro</h4>
+      </div>
+
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://outlook.office.com/owa/">
+        <img src="layoutIntranet/img/webMail4.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>WebMail</h4>
+      </div> 
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www3.pe.senac.br/RM/web/app/RH/PortalMeuRH/#/login">
+        <img src="layoutIntranet/img/portalRH3.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Portal RH</h4>
+      </div>	  	 
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://cloud.plataforma.senac.br/#/login?returnUrl=%2F">
+        <img src="layoutIntranet/img/sig.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>SIG</h4>
+      </div>  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://pewebmanager.mxm.senac.br/principal/dashboard">
+        <img src="layoutIntranet/img/mxm4.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>MXM - WebManager</h4>
+      </div>	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/beneficio/colaborador/">
+        <img src="layoutIntranet/img/creche.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Auxílio Creche</h4>
+      </div>
+	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/manuais-referencia">
+        <img src="layoutIntranet/img/manualreferencia.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>DEP - Manuais de Referência</h4>
+      </div>
+
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://csc.senac.br/index.php">
+        <img src="layoutIntranet/img/glpi.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>GLPI - DN</h4>
+      </div>
+
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://seisenac.df.senac.br/sip/login.php?sigla_orgao_sistema=Senac-DF&amp;sigla_sistema=SEI&amp;infra_url=L3NlaS8=">
+        <img src="layoutIntranet/img/sei.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>SEI</h4>
+      </div>
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www.pe.senac.br/manuais-do-sei/">
+        <img src="layoutIntranet/img/sei_manual.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Manual do Usuário SEI</h4>
+      </div>
+     </div>
+    </div>
+   </div>
+
+
+ </div></section>
+
+ <section class="py-3 bg-white">
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+     <div class="mb-4">
+      <h2>Outros Sistemas</h2>   
+     </div>
+     <div class="row">
+     <!--
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/docsystempe/login">
+        <img src="layoutIntranet/img/docSystemPE2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>DocSystemPE</h4>
+      </div>-->
+
+       
+       <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://intranet.pe.senac.br/dr/intranet.net/GSJD/index.html">
+        <img src="layoutIntranet/img/contrato.jpg" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4> GSJD - Fluxos e Normativos</h4>
+      </div>
+      
+
+
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/pagamento/login">
+        <img src="layoutIntranet/img/pagamento2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Controle de Pagamento</h4>
+      </div>
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="http://intranet.pe.senac.br/dr/orcamento/">
+        <img src="layoutIntranet/img/planilhaFormacaoPreco2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Planilha Formação de Preço</h4>
+      </div> <!--     
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/canal/atendente/acesso.php">
+        <img src="layoutIntranet/img/canalAluno2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Canal do Aluno</h4>
+      </div> --> 
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/gestao_faculdade/app_Login/">
+        <img src="layoutIntranet/img/gestaoFaculdadeSenac2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Gestão Faculdade Senac</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="http://intranet.pe.senac.br/dr/sgps/">
+        <img src="layoutIntranet/img/gestaoContrato2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Gestão de Prestação de Serviço</h4>
+      </div><!--
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/comercio/adm/login.php">
+        <img src="layoutIntranet/img/comercio2.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Programa Senac Comércio</h4>
+      </div>-->	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senac.assinamos.com.br/app/login">
+        <img src="layoutIntranet/img/assinamos.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Assinamos</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/agenda">
+        <img src="layoutIntranet/img/agendaUIP.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Agenda UIP</h4>
+      </div>	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/evento">
+        <img src="layoutIntranet/img/eventos.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Eventos</h4>
+      </div>
+	  
+	  
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/evento/dashboard-vestibular2025.php">
+        <img src="layoutIntranet/img/vestibular.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Acompanhamento Vestibular</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/aprendizagem/login.php">
+        <img src="layoutIntranet/img/jovemAprendiz3.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Matrículas Jovem Aprendiz</h4>
+      </div>
+	  
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/licitacao/">
+        <img src="layoutIntranet/img/licitacao.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Licitação</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/contratoinstrutor/login">
+        <img src="layoutIntranet/img/contratacao.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Contratação de Instrutores</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/minhaagenda/login.php">
+        <img src="layoutIntranet/img/minhaagendauip.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Minha Agenda UIP</h4>
+      </div>
+	  
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="http://intranet.pe.senac.br/dr/crm/">
+        <img src="layoutIntranet/img/crm.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>CRM</h4>
+      </div>
+	  
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www6.pe.senac.br/feedback/login.php">
+        <img src="layoutIntranet/img/feedback.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Acompanhamento do Aluno</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/gestaocongresso/login">
+        <img src="layoutIntranet/img/gestaoCongresso.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Gestão Congresso</h4>
+      </div>
+	  
+	  
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco.sharepoint.com/sites/ComunicandoTIC">
+        <img src="layoutIntranet/img/powerbi.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Dashboard Corporativo</h4>
+      </div>
+	  
+	  
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/producaofaculdade/login">
+        <img src="layoutIntranet/img/producaoFaculdade.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Produção Faculdade</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/ambienteremoto/login ">
+        <img src="layoutIntranet/img/ambienteRemoto.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Ambiente Remoto Rede Física</h4>
+      </div>
+	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/gerenciamentodebolsas/login">
+        <img src="layoutIntranet/img/bolsa.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Gerenciamento de Bolsa</h4>
+      </div>
+	  
+	  <!--
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/headcount/login">
+        <img src="layoutIntranet/img/headCount.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>HeadCount</h4>
+      </div>-->
+	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www5.pe.senac.br/Termo-de-compromisso/src/View/login.php">
+        <img src="layoutIntranet/img/termoAceite.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Termo Compromisso</h4>
+      </div>
+	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco.sharepoint.com/sites/GTIComunica">
+        <img src="layoutIntranet/img/portalGTI.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Portal GTI</h4>
+      </div>
+	  <!--
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/taskmanager/login">
+        <img src="layoutIntranet/img/taskmanager.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Sistema de Atividades</h4>
+      </div>-->
+	  	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/spc/login">
+        <img src="layoutIntranet/img/spc.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Gestão de Inadimplentes</h4>
+	   </div>
+	      
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://app1.pe.senac.br/servicosgerais/login">
+        <img src="layoutIntranet/img/servicos_gerais.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Serviços Gerais</h4>
+      </div>
+	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://www7.pe.senac.br/usoimagem/login">
+        <img src="layoutIntranet/img/usoimg.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Uso de Imagem</h4>
+      </div>
+
+	  
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ 
+ <section class="py-3 bg-white">
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+     <div class="mb-4">
+      <h2>Espaço Psicopedagógico</h2>   
+     </div>
+     <div class="row">
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <!-- Documento 2024 Subistituido 17/01/2025 <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/g/personal/analemos_pe_senac_br/EQ2XHhDo2FJCoR0oDgvMG-UBfkgQgwLVP4k7DiWrjKYAcQ">-->
+	   <!-- Nova Alteração 21/01/2025  <a class="card mb-2 shadow-lg" target="_blank" href="https://intranet.pe.senac.br/dr/intranet.net/documentos/dep/MATRICULAS_DE_PCD_E_TRANSTORNOS_2025.xlsx">-->
+	   <!-- <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/g/personal/jessicaacioly_pe_senac_br/EbVhsMXhg4hHtcC3vtzfaNoBWOPbVRjFQziir8MZlay9qQ?e=IhkaYg"> --> 
+	   
+	   <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/g/personal/jessicaacioly_pe_senac_br/IQCL9TnhGWAISLcHkxnkAcJ4AVgPPDcjItaTC9UXaYcJrX0?e=StXSbM">
+        <img src="layoutIntranet/img/pcd.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Matrículas de PCD e Transtornos - 2026</h4>
+      </div>
+  <!--<div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/g/personal/analemos_pe_senac_br/Ec7c4tnEQeZNjgGQe5I4AigBC67ooidzactNPaXE4eHyog?e=UOOTga">
+        <img src="layoutIntranet/img/pdi.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Plano Educacional Individual</h4>
+      </div>-->
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://intranet.pe.senac.br/dr/intranet.net/documentos/dep/PLANO_EDUCACIONAL_INDIVIDUAL.xlsx">
+        <img src="layoutIntranet/img/pdi.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <h4>Plano Educacional Individual</h4>
+      </div>
+	  
+	  
+	  <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://outlook.office365.com/owa/calendar/AgendamentoPsicopedaggico@pe.senac.br/bookings/">
+        <img src="layoutIntranet/img/calendario.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       </a>
+       <!--<h4>Calend&aacute;rio Plant&atilde;o Remoto Psicopedag&oacute;gico</h4>-->
+       <h4>Agendamento Psicopedagógico</h4>
+      </div>
+	  
+<!--
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/g/personal/analemos_pe_senac_br/Ed_MYLY6D9lJnTkRv0xgSPQB9nnGCU0k3ueNDN5CsFz0jA">
+        <img src="layoutIntranet/img/calendario.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <!--<h4>Calend&aacute;rio Plant&atilde;o Remoto Psicopedag&oacute;gico</h4>- ->
+       <h4>Plantão Remoto para Estudante</h4>
+      </div>	  
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/r/personal/jessicaacioly_pe_senac_br/_layouts/15/Doc.aspx?sourcedoc=%7B536F1C9F-59F6-47A5-9D13-D62AA3EA2AE8%7D&file=Plant%C3%A3o%20%20PRESENCIAL%20PSICOPEDAG%C3%93GICO%20-%20fevereiro-%2023.xlsx&action=default&mobileredirect=true">
+        <img src="layoutIntranet/img/plantao.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Plantão Presencial para Estudantes</h4>
+      </div>	
+      <div class="col-md-6 col-lg-2 py-3 efeitoImg">
+       <a class="card mb-2 shadow-lg" target="_blank" href="https://senacpernambuco-my.sharepoint.com/:x:/g/personal/analemos_pe_senac_br/Ee7lRp4dEctGstpXR9iy5GsBBotn2GkV1jTzqz-n0buo3A?e=4%3AEeBAyN&at=9&CID=7110ea3e-eb80-fae5-4492-4e901799f740">
+        <img src="layoutIntranet/img/psicopedagogico.png" class="card-img-top image" alt="" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+       </a>
+       <h4>Plantão para Coordenadores e Docentes</h4>
+      </div>  -->
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ 
+ 
+ <section class="py-5">
+  <div class="container text-center">
+   <h6 class="mb-0">GTI 2026</h6>
+  </div>
+ </section>
+ <script src="layoutIntranet/js/app.js"></script>
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>

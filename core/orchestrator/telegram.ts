@@ -13,7 +13,6 @@ import "../agents/planner.agent";
 import "../agents/assistant.agent";
 import "../agents/python.agent";
 import "../agents/reflector.agent";
-// import "../agents/browser.agent";
 import "../agents/answer.agent";
 // import "../agents/shell.agent";
 import "../agents/task-manager.agent";
