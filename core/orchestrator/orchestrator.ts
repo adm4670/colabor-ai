@@ -339,6 +339,10 @@ import { Agent } from "../agent/agent";
             .join("\n");
     
           const plannerPrompt = `
+    IMPORTANTE: Voce e um sistema de resposta APENAS JSON. NUNCA responda com texto conversacional.
+    Sua saida deve ser SEMPRE um objeto JSON valido com os campos 'agent' e 'instruction'.
+    Nao faca perguntas, nao explique, nao cumprimente. Apenas JSON puro.
+
     User request:
     ${input}
     
@@ -384,16 +388,33 @@ import { Agent } from "../agent/agent";
             console.log(decision);
           }
     
-          let parsed: any;
     
-          try {
-            parsed = JSON.parse(decision);
-          } catch {
-            console.warn("Planner returned invalid JSON");
-            this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
-            this.eventStream.push(createEvent("agent_end"));
-            this.eventStream.end();
-            return lastResult || "Erro ao interpretar resposta do planner.";
+          let parsed: any;
+          let parseAttempts = 0;
+          const maxParseAttempts = 2;
+    
+          while (parseAttempts <= maxParseAttempts) {
+            try {
+              parsed = JSON.parse(decision);
+              break;
+            } catch {
+              parseAttempts++;
+              if (parseAttempts <= maxParseAttempts) {
+                console.warn(`Planner returned invalid JSON (attempt ${parseAttempts}). Retrying...`);
+                const retryPrompt = plannerPrompt + `\n\nIMPORTANTE: Sua resposta anterior nao era um JSON valido. Responda APENAS com um JSON valido. Nenhum texto extra, nenhuma explicacao, nenhuma pergunta. Apenas o JSON puro.`;
+                decision = await this.planner.run(retryPrompt);
+                if (this.debug) {
+                  console.log("Planner retry decision:");
+                  console.log(decision);
+                }
+              } else {
+                console.warn("Planner returned invalid JSON after retries");
+                this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
+                this.eventStream.push(createEvent("agent_end"));
+                this.eventStream.end();
+                return lastResult || "Erro ao interpretar resposta do planner.";
+              }
+            }
           }
     
           if (this.debug) {
