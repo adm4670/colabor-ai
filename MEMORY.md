@@ -54,3 +54,5 @@
     - [2026-06-10] Ramal do Marcio Higo (Coordenadoria Sistemas - GTI): 6680
     - [2026-05-29] Shell e mais segura pra testar, automatica e melhor para producao
     
+## Preferencias
+- [2026-06-11] suas entre sessões
