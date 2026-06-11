@@ -380,7 +380,7 @@ import { Agent } from "../agent/agent";
               if (onProgress) {
                 onProgress("\u{1F5FA}\uFE0F Decidindo a melhor abordagem...").catch(() => {});
               }
-          const decision = await this.planner.run(plannerPrompt);
+          let decision = await this.planner.run(plannerPrompt);
           this.eventStream.push(createEvent("text_delta", { content: "Planner respondeu." }));
     
           if (this.debug) {
