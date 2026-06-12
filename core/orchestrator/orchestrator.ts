@@ -7,6 +7,7 @@ import { Agent } from "../agent/agent";
       generateSessionId,
       getRecentMessages,
       type TranscriptMessage,
+      saveSessionTranscript,
     } from "../session/transcript";
     import {
       memorySearchTool,
@@ -249,11 +250,113 @@ import { Agent } from "../agent/agent";
         })().catch(() => {});
       }
     
-  async run(runInput: RunInput) {
+
+      /**
+       * Sumarizacao inteligente do historico de conversa.
+       * 
+       * Quando o transcript excede 100 mensagens, pega as mensagens mais antigas,
+       * manda o LLM resumir em 1-2 paragrafos concisos, e substitui as mensagens
+       * antigas pelo resumo, mantendo as ultimas 20 mensagens intactas.
+       * 
+       * Beneficios:
+       * - Preserva contexto essencial (decisoes, preferencias, historico)
+       * - Reduz drasticamente o tamanho do prompt
+       * - Sanitiza naturalmente caracteres mal formatados (escapes hex, etc)
+       */
+      private async summarizeHistory(onProgress?: (msg: string) => Promise<void>): Promise<void> {
+        try {
+          const allMessages = loadSessionTranscript(this.sessionId);
+          
+          // So executa se houver mais de 100 mensagens
+          if (allMessages.length <= 100) return;
+          
+          const KEEP_RECENT = 20;
+          const MAX_OLD_TO_SUMMARIZE = 80;
+          
+          // Mensagens antigas (tudo exceto as ultimas KEEP_RECENT)
+          const oldMessages = allMessages.slice(0, -KEEP_RECENT);
+          const oldToSummarize = oldMessages.length > MAX_OLD_TO_SUMMARIZE 
+            ? oldMessages.slice(0, MAX_OLD_TO_SUMMARIZE) 
+            : oldMessages;
+          
+          // Ultimas mensagens (conversa recente)
+          const recentMessages = allMessages.slice(-KEEP_RECENT);
+          
+          if (this.debug) {
+            console.log(`[Summarize] Total: ${allMessages.length}, Old: ${oldMessages.length} (summarizing ${oldToSummarize.length}), Recent: ${recentMessages.length}`);
+          }
+          
+          if (onProgress) {
+            await onProgress("\u{1F4DD} Resumindo historico da conversa...");
+          }
+          
+          // Formatar mensagens antigas para o prompt de sumarizacao
+          const historyText = oldToSummarize
+            .map((m) => `${m.role}: ${m.content}`)
+            .join("\n\n");
+          
+          // Usar o planner (LLM) para resumir
+          const summaryPrompt = `Resuma o seguinte historico de conversa em 1-2 paragrafos concisos em portugues.
+    Mantenha apenas informacoes essenciais: decisoes tomadas, preferencias do usuario, tarefas realizadas, e contexto importante para continuidade da conversa.
+    Ignore saudacoes, erros de ferramentas, e mensagens de sistema internas.
+    
+    Historico:
+    ${historyText.slice(0, 8000)}
+    
+    Resumo conciso (1-2 paragrafos em portugues):`;
+          
+          const summary = await this.planner.run(summaryPrompt);
+          const cleanSummary = summary?.trim() || "[Resumo indisponivel]";
+          
+          if (this.debug) {
+            console.log(`[Summarize] Summary generated (${cleanSummary.length} chars)`);
+          }
+          
+          // Criar mensagens de resumo
+          const summaryMessages: TranscriptMessage[] = [
+            {
+              role: "system",
+              content: `[Resumo do historico anterior]: ${cleanSummary}`,
+              timestamp: Date.now(),
+            },
+          ];
+          
+          // Substituir o transcript: resumo + ultimas mensagens
+          const newTranscript = [...summaryMessages, ...recentMessages];
+          saveSessionTranscript(this.sessionId, newTranscript);
+          
+          if (this.debug) {
+            console.log(`[Summarize] Transcript compactado: ${newTranscript.length} mensagens (era ${allMessages.length})`);
+          }
+          
+          // Atualizar o ContextEngine
+          this.contextEngine.setHistory(
+            newTranscript.map((m) => ({
+              role: m.role as "system" | "user" | "assistant" | "tool",
+              content: m.content,
+              name: m.name,
+              tool_call_id: m.tool_call_id,
+            }))
+          );
+        } catch (e) {
+          // Sumarizacao nao e critica - se falhar, continua com o historico original
+          if (this.debug) {
+            console.warn("[Summarize] Failed to summarize history:", e);
+          }
+        }
+      }
+        
+      async run(runInput: RunInput) {
         const { input, history = [], sessionId, onProgress } = runInput;
         if (sessionId) this.sessionId = sessionId;
     
-        this.eventStream.push(createEvent("agent_start"));
+            
+            // === SUMARIZACAO INTELIGENTE DO HISTORICO ===
+            // Se o transcript exceder 100 mensagens, resume as mais antigas
+            if (sessionId) {
+              await this.summarizeHistory(onProgress);
+            }
+    this.eventStream.push(createEvent("agent_start"));
     
             // Feedback inicial para o usuario
             if (onProgress) {
