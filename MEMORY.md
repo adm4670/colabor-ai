@@ -71,3 +71,9 @@
 
 ## Preferencias
 - [2026-06-12] ver os resultados do backtest primeiro? 😊
+
+## Fatos
+- [2026-06-12] viola Jones sobre visão computacional
+
+## Aprendizados
+- [2026-06-12] que seleciona as melhores features e combina classificadores fracos em um forte
