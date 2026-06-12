@@ -59,3 +59,6 @@
 
 ## Decisoes
 - [2026-06-12] O `orchestrator
+
+## Preferencias
+- [2026-06-12] ## Como funcionaria no orchestrator
