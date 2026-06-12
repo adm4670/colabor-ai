@@ -22,7 +22,7 @@ export class PlannerAgent {
 
   constructor(model?: string) {
     this.client = createDefaultClient();
-    this.model = model || "deepseek-chat";
+    this.model = model || "deepseek-v4-flash";
     logger.info(`[PlannerAgent] Inicializado com modelo ${this.model}`);
   }
 

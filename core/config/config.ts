@@ -9,7 +9,7 @@ export interface AppConfig {
 }
 
 const DEFAULTS: AppConfig = {
-  model: "deepseek-chat",
+  model: "deepseek-v4-flash",
   llmProvider: "deepseek",
   maxMessagesPerSession: 100,
   pythonTimeout: 30000,

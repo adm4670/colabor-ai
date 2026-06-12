@@ -3,6 +3,7 @@ import { Agent } from "../agent/agent";
         import { pythonExecTool } from "../tools/pythonExecTool";
         import { memorySearchTool } from "../memory/memory_search";
         import { webSearchTool } from "../tools/webSearchTool";
+        import { dateTimeTool } from "../tools/dateTimeTool";
         
         export const pythonAgent = new Agent({
           name: "PythonAgent",
@@ -14,12 +15,13 @@ import { Agent } from "../agent/agent";
           apiKey: process.env.DEEPSEEK_API_KEY || "",
           baseURL: "https://api.deepseek.com",
         
-          tools: [pythonExecTool, memorySearchTool, webSearchTool],
+          tools: [pythonExecTool, memorySearchTool, webSearchTool, dateTimeTool],
         
           functions: {
             execute_python: pythonExecTool.handler,
             memory_search: memorySearchTool.handler,
             web_search: webSearchTool.handler,
+            get_current_datetime_pe: dateTimeTool.handler,
           },
         
           generalInstructions: `
@@ -28,6 +30,7 @@ import { Agent } from "../agent/agent";
             You can write and execute Python code using the execute_python tool.
             You can search long-term memory using the memory_search tool.
             You can search the internet using the web_search tool.
+                You can get the current date and time in Pernambuco, Brazil using the get_current_datetime_pe tool.
         
             === WEB NAVIGATION WITH PLAYWRIGHT ===
             You can also perform web browsing using Playwright (already installed).

@@ -8,7 +8,7 @@ class PlannerAgent {
     model;
     constructor(model) {
         this.client = (0, provider_1.createDefaultClient)();
-        this.model = model || "deepseek-chat";
+        this.model = model || "deepseek-v4-flash";
         logger_1.logger.info(`[PlannerAgent] Inicializado com modelo ${this.model}`);
     }
     async decide(input, history, context, agents) {

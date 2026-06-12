@@ -59,3 +59,15 @@
 
 ## Decisoes
 - [2026-06-12] O `orchestrator
+
+## Preferencias
+- [2026-06-12] **atualizar o código** para incluir o que está na documentação (LONG + SHORT + range + LightGBM)?
+
+## Preferencias
+- [2026-06-12] revisar mais algum detalhe? 😊
+
+## Decisoes
+- [2026-06-12] Sempre que o `run()` termina (por qualquer motivo), o planner é zerado
+
+## Preferencias
+- [2026-06-12] ver os resultados do backtest primeiro? 😊

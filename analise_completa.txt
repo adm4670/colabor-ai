@@ -1,0 +1,192 @@
+================================================================================
+ANÁLISE DO PROBLEMA DE LIMITE DE TOKENS NO COLABOR-AI
+================================================================================
+
+1. retryWithBackoff method:
+retryWithBackoff<T>(
+        fn: () => Promise<T>,
+        maxRetries: number = 3,
+        baseDelay: number = 1000
+      ): Promise<T> {
+        let lastError: any;
+        
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+          try {
+            return await fn();
+          } catch (error: any) {
+            lastError = error;
+            
+            // Verificar se deve retry
+            const status = error?.status || error?.response?.status;
+            const shouldRetry = 
+              status === 429 || // rate limit
+              (status && status >= 500) || // server error
+              error?.code === 'ECONNRESET' ||
+              error?.code === 'ETIMEDOUT' ||
+              error?.code === 'ENOTFOUND' ||
+              error?.message?.includes('timeout') ||
+              error?.message?.includes('rate');
+            
+            if (!shouldRetry || attempt === maxRetries) {
+              throw lastError;
+            }
+            
+            // Exponential backoff com �10% jitter
+            const delay = baseDelay * Math.pow(2, attempt);
+            const jitter = delay * 0.1 * (Math.random() * 2 - 1);
+            const waitMs = Math.floor(delay + jitter);
+            
+            console.log(`[Agent] Retry ${attempt + 1}/${maxRetries} em ${waitMs}ms: ${error.message}`);
+            await new Promise(resolve => setTimeout(resolve, waitMs));
+          }
+        }
+        
+        throw lastError;
+      }
+    
+  async run(userMessage: string, onProgress?: (msg: string) => Promise<void>): Promise<string> {
+        console.log("\n==============================");
+        console.log(`[Agent] [${this.name}] User input:`);
+        console.log(userMessage);
+    
+        await this.ensureSystemMessage();
+    
+        this.history.push({
+          role: "user",
+          content: userMessage,
+        });
+    
+        try {
+          while (true) {
+            console.log("\n[Agent] Enviando requisicao para o modelo...");
+            console.log(`[Agent] Historico atual: ${this.history.length} mensagens`);
+    
+            const response = await this.retryWithBackoff(
+              () => this.client.chat.completions.create({
+                model: this.model,
+                messages: this.history as any,
+                tools: this.tools.length ? this.tools : undefined,
+                tool_choice: this.tools.length ? "auto" : undefined,
+              } as any),
+              3 // maxRetries
+            );
+    
+            const ms
+
+2. resetHistory method:
+resetHistory(): void {
+        this.history = [];
+        console.log(`[Agent] Historico de ${this.name} resetado.`);
+      }
+    
+      private async ensureSystemMessage(): Promise<void> {
+        const systemPrompt = await this.buildSystemPrompt();
+        if (this.history.length > 0 && this.histo
+
+3. Verificação de métodos de truncamento:
+   - 'truncat' encontrado 0 vezes
+   - 'trim' encontrado 2 vezes
+   - 'prune' encontrado 0 vezes
+   - 'limit' encontrado 2 vezes
+   - 'clean' encontrado 0 vezes
+
+4. Análise do histórico de mensagens:
+   - O Agent.history NUNCA é truncado
+   - resetHistory() existe mas NUNCA é chamado
+   - Cada chamada de run() adiciona: 1 system + 1 user + N*(1 assistant + M tool_results)
+   - Não há limite de tokens nem de mensagens
+
+
+=== CONTEXT ENGINE (início) ===
+class ContextEngine {
+      private config: ContextEngineConfig;
+      private systemPrompt: string = "";
+      private rawHistory: ContextMessage[] = [];
+      private compressed: ContextSummary | null = null;
+      private memoryEngine = getMemoryEngine();
+      private llmClient: OpenAI | null = null;
+      private summaryCache: Map<string, string> = new Map();
+    
+      constructor(config?: Partial<ContextEngineConfig>) {
+        this.config = { ...DEFAULT_CONFIG, ...config };
+        // Inicializar cliente LLM para sumarizacao (lazy)
+        try {
+          this.llmClient = createDefaultClient();
+        } catch {
+          logger.warn("[ContextEngine] Nao foi possivel criar cliente LLM para sumarizacao. Usando fallback.");
+        }
+      }
+    
+      /**
+       * Define o system prompt (nao conta no budget de mensagens)
+       */
+      setSystemPrompt(prompt: string): void {
+        this.systemPrompt = prompt;
+      }
+    
+      /**
+       * Atualiza o historico bruto
+       */
+    
+      /**
+       * Carrega mensagens do transcript da sessao.
+       * Util para restaurar contexto entre sessoes.
+       */
+      loadFromTranscript(messages: ContextMessage[]): void {
+        this.rawHistory = [...messages];
+        this.compressed = null;
+        if (messages.length > 0) {
+          logger.info(
+            `[ContextEngine] Carregadas ${messages.length} mensagens do transcript`
+          );
+        }
+      }
+    
+      setHistory(messages: ContextMessage[]): void {
+        this.rawHistory = [...messages];
+        this.compressed = null; // invalida cache
+      }
+    
+      /**
+       * Adiciona uma mensagem ao historico
+       */
+      addMessage(message: ContextMessage): void {
+        this.rawHistory.push(message);
+        this.compressed = null;
+      }
+    
+      /**
+       * Retorna o historico bruto atual
+       */
+      getRawHistory(): ContextMessage[] {
+        return [...this.rawHistory];
+      }
+    
+      /**
+       * Processa o contexto: aplica compressao se necessario.
+       * 
+       * Se mode="summarize", usa LLM para sumarizacao inteligente
+       * que preserva decisoes, preferencias e fatos importantes.
+       */
+      async buildContext(): Promise<ContextSummary> {
+        const history = [...this.rawHistory];
+        const totalTokens = estimateMessagesTokens(history);
+    
+        // Se esta dentro do budget, retorna como esta
+        if (totalTokens <= this.config.maxTokens || history.length <= this.config.minMessages) {
+          const result: ContextSummary = {
+            messages: history,
+            summarizedCount: 0,
+            estimatedTokens: totalTokens,
+          };
+          this.compressed = result;
+          return result;
+        }
+    
+        // Modo summarize: usar LLM para compressao inteligente
+        if (this.config.mode === "summarize") {
+          return await this.summarizeIntelligently(history);
+        }
+    
+        // Modo trim: compressao simples
+        return this.compress(history);

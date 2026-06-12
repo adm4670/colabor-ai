@@ -390,7 +390,7 @@
     
         try {
           const response = await this.llmClient.chat.completions.create({
-            model: this.config.summaryModel || "deepseek-chat",
+            model: this.config.summaryModel || "deepseek-v4-flash",
             messages: [
               { role: "system", content: "You are a precise context summarizer. Follow the rules exactly." },
               { role: "user", content: summarizationPrompt },

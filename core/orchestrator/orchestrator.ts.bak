@@ -412,7 +412,6 @@ import { Agent } from "../agent/agent";
                 this.eventStream.push(createEvent("turn_end", { content: lastResult || "Erro ao interpretar resposta do planner." }));
                 this.eventStream.push(createEvent("agent_end"));
                 this.eventStream.end();
-                this.planner.resetHistory();
                 return lastResult || "Erro ao interpretar resposta do planner.";
               }
             }
@@ -502,7 +501,6 @@ import { Agent } from "../agent/agent";
             this.eventStream.push(createEvent("turn_end", { content: lastResult }));
             this.eventStream.push(createEvent("agent_end"));
             this.eventStream.end(lastResult as any);
-            this.planner.resetHistory();
             return lastResult || parsed.instruction || "Concluido.";
           }
     
@@ -525,7 +523,6 @@ import { Agent } from "../agent/agent";
             console.warn(`Agent not found: ${parsed.agent}`);
             this.eventStream.push(createEvent("agent_end"));
             this.eventStream.end();
-            this.planner.resetHistory();
             return lastResult || `Erro: agente '${parsed.agent}' nao encontrado.`;
           }
     
@@ -655,7 +652,6 @@ import { Agent } from "../agent/agent";
     
         this.eventStream.push(createEvent("agent_end"));
         this.eventStream.end(lastResult as any);
-        this.planner.resetHistory();
         return lastResult || "Nao foi possivel concluir a tarefa.";
       }
     
