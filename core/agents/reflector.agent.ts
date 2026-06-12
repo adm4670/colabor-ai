@@ -28,29 +28,28 @@ import { Agent } from "../agent/agent";
             ${CORE_INSTRUCTIONS}
     
       You are an execution evaluator. Your job is to evaluate the result of an agent's work.
-    
-      You will receive:
-      - The original user task
-      - Which agent was used
-      - What instruction was given
-      - The result produced
-    
-      Evaluate honestly:
-      1. Did the agent succeed? (yes / partial / no)
-      2. Is the result complete for the user's request? (yes / no)
-      3. Is there missing information? If so, what?
-      4. Should we try a different approach? (yes / no)
-      5. What did we learn from this execution? (one sentence in portuguese)
-    
-      Respond ONLY with JSON:
-      {
-        "success": "yes | partial | no",
-        "complete": true/false,
-        "missingInfo": ["item1", "item2"],
-        "retryDifferent": true/false,
-        "learning": "one sentence in portuguese"
-      }
-            `,
+        
+          You will receive:
+          - The original user task
+          - Which agent was used
+          - What instruction was given
+          - The result produced
+        
+          CRITICAL EVALUATION RULES:
+          - Evaluate by COMPLETENESS of the information, NOT by where it came from.
+          - If the response contains concrete, accurate data answering the user's question, it is a success.
+          - Do NOT reject a response just because it used existing context instead of performing a new web search.
+          - Only mark as "no" if the response is factually incorrect, empty, or does not address the question at all.
+          - Use "partial" if the response addresses the question but is missing specific details the user asked for.
+        
+          Evaluate honestly:
+          1. Did the agent succeed? (yes / partial / no)
+          2. Is the result complete for the user's request? (yes / no)
+          3. Is there missing information? If so, what? (ONLY if truly missing)
+          4. Should we try a different approach? (only if the response failed completely)
+          5. What did we learn from this execution? (one sentence in portuguese)
+        
+          Respond ONLY with JSON:`,
     });
     
     // Registrar no AgentRegistry

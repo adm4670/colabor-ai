@@ -56,3 +56,6 @@
     
 ## Preferencias
 - [2026-06-11] suas entre sessões
+
+## Decisoes
+- [2026-06-12] O `orchestrator

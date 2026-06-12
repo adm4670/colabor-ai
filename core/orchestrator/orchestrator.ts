@@ -437,20 +437,40 @@ import { Agent } from "../agent/agent";
           }
     
           // Stop condition
-              if (parsed.agent === "finish") {
-                if (onProgress) {
-                  onProgress("\u{1F4DD} Preparando a resposta final...").catch(() => {});
+                            if (parsed.agent === "finish") {
+                    // Garantir que a resposta final seja formatada pelo WriterAgent
+                    if (lastResult && lastAgentName !== "writer" && lastAgentName !== "WriterAgent" && lastAgentName !== "Writer") {
+                        if (onProgress) {
+                          onProgress("\u{1F4DD} Formatando resposta final...").catch(() => {});
+                        }
+                        const writerAgent = this.agents.find(
+                          (a) => a.name.toLowerCase() === "writer" || a.name === "WriterAgent"
+                        );
+                        if (writerAgent) {
+                      const formatPrompt = 'Formate a seguinte resposta para o usuario de forma clara e amigavel. Use emojis moderados, tabelas quando adequado, e mantenha o tom natural.\n\nResposta:\n' + lastResult.slice(0, 2000) + '';
+                          try {
+                            const formatted = await writerAgent.agent.run(formatPrompt);
+                            if (formatted && formatted.length > 10) {
+                              lastResult = formatted;
+                            }
+                          } catch (e) {
+                            // Se falhar, mantem o resultado original
+                          }
+                        }
+                    }
+                    if (onProgress) {
+                      onProgress("\u{1F4DD} Preparando a resposta final...").catch(() => {});
+                    }
+                if (this.debug) {
+                  console.log("\nORCHESTRATION FINISHED");
                 }
-            if (this.debug) {
-              console.log("\nORCHESTRATION FINISHED");
-            }
-    
-            // Save assistant response to transcript
-            appendToTranscript(this.sessionId, {
-              role: "assistant",
-              content: lastResult || parsed.instruction || "Concluido.",
-              timestamp: Date.now(),
-            });
+        
+                // Save assistant response to transcript
+                appendToTranscript(this.sessionId, {
+                  role: "assistant",
+                  content: lastResult || parsed.instruction || "Concluido.",
+                  timestamp: Date.now(),
+                });
 
             // Registrar resposta final no ContextEngine
             this.contextEngine.addMessage({
@@ -595,7 +615,7 @@ import { Agent } from "../agent/agent";
             if (reflection.success === "no" && reflection.retryDifferent) {
               delete parsed.instruction; // Forca nova instrucao
               context += `\n\nPrevious attempt with ${parsed.agent} failed: ${result.slice(0, 300)}`;
-              context += `\nMissing: ${reflection.missingInfo.join(", ")}`;
+              context += `\n[Feedback]: The previous response was insufficient. Please refine: ${reflection.missingInfo.join(", ")}`;
               if (this.debug) {
                 console.log("Reflection suggests retry with different approach");
               }
